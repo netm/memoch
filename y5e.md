@@ -11,7 +11,7 @@
 <body>
 
     <canvas id="gameCanvas"></canvas>
-    <script src="/js/y5e.js"></script>
+    <script src="y5e.js"></script>
 
 </body>
 </html>

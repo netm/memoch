@@ -11,6 +11,6 @@
 <body>
   <!-- Canvas is created dynamically in game.js -->
 
-  <script src="/js/y3c.js"></script>
+  <script src="y3c.js"></script>
 </body>
 </html>

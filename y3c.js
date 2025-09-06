@@ -27,9 +27,9 @@
 
   function preloadImages() {
     const srcMap = {
-      "1P": 'zjump1.png',
-      "2P": 'zjump2.png',
-      "CPU": 'zjump3.png'
+      "1P": '/images/zjump1.png',
+      "2P": '/images/zjump2.png',
+      "CPU": '/images/zjump3.png'
     };
 
     for (const key in srcMap) {

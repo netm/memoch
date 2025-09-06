@@ -19,7 +19,7 @@
         <div id="p2-backward" class="button">後</div>
     </div>
 
-  <script src="/js/y4d.js" defer></script>
+  <script src="y4d.js" defer></script>
 
 </body>
 </html>

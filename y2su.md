@@ -62,6 +62,6 @@
     <div id="overlay"></div>
   </div>
 
-  <script src="/js/y2su.js"></script>
+  <script src="y2su.js"></script>
 </body>
 </html>

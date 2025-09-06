@@ -25,7 +25,7 @@
   </div>
 </div>
 
-    <script src="/js/sensuiscript.js"></script>
+    <script src="sensuiscript.js"></script>
 
     </body>
 </html>

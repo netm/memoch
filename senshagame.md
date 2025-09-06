@@ -38,7 +38,7 @@
             <button id="rightButton">▶</button>
         </div>
 
-    <script src="/js/ssscript.js"></script>
+    <script src="ssscript.js"></script>
 </div>
     </body>
 </html>

@@ -41,6 +41,6 @@
         </div>
     </div>
   
-  <script src="/js/y2cardgame.js"></script>
+  <script src="y2cardgame.js"></script>
 </body>
 </html>

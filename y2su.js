@@ -57,9 +57,9 @@
 
   // 画像ロード → ゲーム開始
   Promise.all([
-    loadImage('zs1.png'),
-    loadImage('zs2.png'),
-    loadImage('zs3.png')
+    loadImage('/images/zs1.png'),
+    loadImage('/images/zs2.png'),
+    loadImage('/images/zs3.png')
   ])
   .then(function(results) {
     [img1, img2, img3] = results;

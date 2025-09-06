@@ -8,10 +8,10 @@ const startButton = document.getElementById('startButton');
 // --- 画像の定義とロード ---
 const images = {};
 const imagePaths = {
-    playerCar: 'zcar1.jpg',
-    enemyCar: 'zcar2.jpg',
-    fuelItem: 'zcar3.jpg',
-    repairItem: 'zcar4.jpg'
+    playerCar: '/images/zcar1.jpg',
+    enemyCar: '/images/zcar2.jpg',
+    fuelItem: '/images/zcar3.jpg',
+    repairItem: '/images/zcar4.jpg'
 };
 let imagesLoadedCount = 0;
 const totalImages = Object.keys(imagePaths).length;
