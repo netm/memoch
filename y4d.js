@@ -2,11 +2,11 @@
 
 // --- Image Assets ---
 const imgP1    = new Image();
-imgP1.src      = '/images/znp1.png';
+imgP1.src      = 'znp1.png';
 const imgP2    = new Image();
-imgP2.src      = '/images/znp2.png';
+imgP2.src      = 'znp2.png';
 const imgEnemy = new Image();
-imgEnemy.src   = '/images/znp2.png';
+imgEnemy.src   = 'znp2.png';
 
 // --- Canvas & Global Setup ---
 const canvas = document.createElement('canvas');

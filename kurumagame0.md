@@ -110,7 +110,7 @@
 
         <button id="startButton">開始</button>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ</a>
 
-    <script src="/js/game0.js"></script>
+    <script src="game0.js"></script>
 </div>
     </body>
 </html>

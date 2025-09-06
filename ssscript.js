@@ -38,16 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 逕ｻ蜒上�隱ｭ縺ｿ霎ｼ縺ｿ ---
     const playerImage = new Image();
-    playerImage.src = '/images/zsensha1.png';
+    playerImage.src = 'zsensha1.png';
 
     const playerLeftImage = new Image();
-    playerLeftImage.src = '/images/zsensha1.png';
+    playerLeftImage.src = 'zsensha1.png';
 
     const playerRightImage = new Image();
-    playerRightImage.src = '/images/zsensha1.png';
+    playerRightImage.src = 'zsensha1.png';
 
     const enemyImage = new Image();
-    enemyImage.src = '/images/zsensha4.png';
+    enemyImage.src = 'zsensha4.png';
 
     let imagesLoadedCount = 0;
     const totalImages = 4;

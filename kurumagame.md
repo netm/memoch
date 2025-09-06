@@ -117,7 +117,7 @@
 <p><a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         </div>
 
-    <script src="/js/game.js"></script>
+    <script src="game.js"></script>
 
 </div>
     </body>

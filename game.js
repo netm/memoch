@@ -15,10 +15,10 @@ const downButton        = document.getElementById('downButton');
 // --- 画像ロード設定 ---
 const images       = {};
 const imagePaths   = {
-  playerCar:  '/images/zcar1.png',
-  enemyCar:   '/images/zcar2.jpg',
-  fuelItem:   '/images/zcar3.jpg',
-  repairItem: '/images/zcar4.jpg'
+  playerCar:  'zcar1.png',
+  enemyCar:   'zcar2.jpg',
+  fuelItem:   'zcar3.jpg',
+  repairItem: 'zcar4.jpg'
 };
 let imagesLoadedCount = 0;
 const totalImages     = Object.keys(imagePaths).length;
@@ -48,8 +48,8 @@ const gamepadKeys   = {
 const playerCar = {
   x:                   canvas.width / 2,
   y:                   canvas.height - 100,
-  width:               14,
-  height:              25,
+  width:               36,
+  height:              63,
   speed:               0,
   maxSpeed:            7,
   acceleration:        0.2,
@@ -66,16 +66,16 @@ const playerCar = {
 
 // --- 敵車設定 ---
 const enemyCars          = [];
-const maxEnemyCars       = 16;
+const maxEnemyCars       = 7;
 const enemyBaseSpeed     = 2;
-const enemySpawnInterval = 40;
+const enemySpawnInterval = 90;
 let enemySpawnCounter    = 0;
 
 // --- アイテム設定 ---
 const items              = [];
-const itemSpawnInterval  = 160;
+const itemSpawnInterval  = 250;
 let itemSpawnCounter     = 0;
-const itemSize           = 22;
+const itemSize           = 35;
 
 
 // --- 画像ロード ---
@@ -307,8 +307,8 @@ function updateEnemyCars() {
   if (enemySpawnCounter >= enemySpawnInterval &&
       enemyCars.length < maxEnemyCars) {
     const car = {
-      width:  19,
-      height: 30,
+      width:  45,
+      height: 72,
       speed:  enemyBaseSpeed + Math.random()*2
     };
     const side = Math.floor(Math.random()*3);

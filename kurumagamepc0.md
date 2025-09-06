@@ -100,7 +100,7 @@
 
          <p>無料ゲーム集</p>
 <p class="left"><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
-    <script src="/js/game0.js"></script>
+    <script src="game0.js"></script>
 </div>
     </body>
 </html>

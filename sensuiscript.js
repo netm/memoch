@@ -10,11 +10,11 @@ let keys = {};
 let buttons = { up: false, down: false, left: false, right: false };
 
 const playerImg = new Image();
-playerImg.src = "/images/zsensuikan1.png";
+playerImg.src = "zsensuikan1.png";
 const enemyImg = new Image();
-enemyImg.src = "/images/zsensuikan2.png";
+enemyImg.src = "zsensuikan2.png";
 const obstacleImg = new Image();
-obstacleImg.src = "/images/zsensuikan3.png";
+obstacleImg.src = "zsensuikan3.png";
 
 class Entity {
   constructor(x, y, img) {

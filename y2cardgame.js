@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (value === 0) {
             const img = document.createElement('img');
-            img.src = '/images/z2card.png';
+            img.src = 'z2card.png';
             img.alt = 'Z2 Card';
             cardFront.appendChild(img);
         } else {
@@ -239,10 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
         isInputEnabled = false;
         let message = '';
         if (player1Score > opponentScore) {
-            message = '1P　勝利☆<br>再戦する';
+            message = '1Pの勝利☆<br>再対戦する';
         } else if (opponentScore > player1Score) {
             const winner = (opponentType === 'computer') ? 'コンピューター' : '2P';
-            message = `${winner}　勝利☆<br>再戦する`;
+            message = `${winner}の勝利☆<br>再対戦する`;
         } else {
             message = '引き分け<br>再対戦する';
         }
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (value === 0) {
                 const img = document.createElement('img');
-                img.src = '/images/z2card.png';
+                img.src = 'z2card.png';
                 img.alt = 'Z2 Card';
                 cardFront.appendChild(img);
             } else {

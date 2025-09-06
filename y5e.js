@@ -338,7 +338,7 @@ const questions = [
     "連絡もっとほしい？",
     "老後、都会と田舎どっちに住む？",
     "わさび　食べれる？",];
-const CARD_IMAGES             = ['/images/zjump1.png', '/images/zjump2.png', '/images/zjump3.png', '/images/zjump4.png'];
+const CARD_IMAGES             = ['zjump1.png', 'zjump2.png', 'zjump3.png', 'zjump4.png'];
 const STAGE_COLOR             = '#ffefff';
 const CARD_ROWS               = 3;
 const CARD_COLS               = 4;

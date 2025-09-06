@@ -15,10 +15,10 @@ const downButton        = document.getElementById('downButton');
 // --- 画像ロード設定 ---
 const images       = {};
 const imagePaths   = {
-  playerCar:  '/images/zcar1.png',
-  enemyCar:   '/images/zcar2.jpg',
-  fuelItem:   '/images/zcar3.jpg',
-  repairItem: '/images/zcar4.jpg'
+  playerCar:  'zcar1.png',
+  enemyCar:   'zcar2.jpg',
+  fuelItem:   'zcar3.jpg',
+  repairItem: 'zcar4.jpg'
 };
 let imagesLoadedCount = 0;
 const totalImages     = Object.keys(imagePaths).length;

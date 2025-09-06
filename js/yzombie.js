@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 画像読み込み
   const images = {};
   const imageSources = {
-    player: 'zombie1.png',
-    enemy:  'zombie2.png',
-    itemA:  'zombie3.png',
-    itemB:  'zombie4.png'
+    player: '/images/zombie1.png',
+    enemy:  '/images/zombie2.png',
+    itemA:  '/images/zombie3.png',
+    itemB:  '/images/zombie4.png'
   };
   let loaded = 0;
   const total = Object.keys(imageSources).length;

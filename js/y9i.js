@@ -13,7 +13,7 @@
   let currentCard  = null;
   let score        = 0;
 
-  const cardFiles = ['zjump1.png','zjump2.png','zjump3.png','zjump4.png'];
+  const cardFiles = ['/images/zjump1.png','/images/zjump2.png','/images/zjump3.png','/images/zjump4.png'];
   const cards     = [];
 
   const bank = [
