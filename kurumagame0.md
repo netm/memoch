@@ -2,13 +2,13 @@
 <html dir="ltr" lang="ja">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="車ブラウザゲーム無料スマホタブレット対応の縦画面です。">
-        <meta name="keywords" content="車,ブラウザ,ゲーム,無料,タブレット">
+<meta name="description" content="車ブラウザゲーム2無料スマホタブレット対応の縦画面用です。">
+        <meta name="keywords" content="車,ブラウザ,ゲーム,無料,スマホ">
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
-        <title>車ブラウザゲーム無料スマホタブレット対応</title>
+        <title>車ブラウザゲーム2無料スマホタブレット対応</title>
     <style>
         body {
             display: flex;
@@ -94,8 +94,6 @@
 
         </div>
 
-  <!-- ここがオーバーレイ専用コンテナ -->
-  <div id="game-overlay">
 
     <canvas id="gameCanvas" width="380" height="450"></canvas> <div id="gameStatus">
         <p>燃料: <span id="fuel">100</span></p>
@@ -110,15 +108,9 @@
         <button id="rightButton" class="control-button left-right">▶</button>
     </div>
 
-        <button id="startButton">開始</button>　　
+        <button id="startButton">開始</button>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ</a>
 
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p><br>
-<p><a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
-        </div>
-
-    <script src="/js/game.js"></script>
-
+    <script src="/js/game0.js"></script>
 </div>
     </body>
 </html>

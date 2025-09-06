@@ -1,24 +1,20 @@
----
-layout: layouts/base
-title: game
----
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html dir="ltr" lang="ja">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="無料ブラウザゲームPCスマホタブレット対応です。">
-        <meta name="keywords" content="ブラウザゲーム,無料,PC,スマホ">
+<meta name="description" content="ブラウザゲームのホラーシューティング無料PCスマホ対応ゾンビ迷宮脱出ゲームの説明です。">
+        <meta name="keywords" content="ブラウザゲーム,ホラー,無料,PC,スマホ">
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="c.css" media="all">
-        <title>無料ブラウザゲームPCスマホタブレット対応</title>
+        <title>ブラウザゲームのホラーシューティング無料PCスマホ対応</title>
     </head>
     <body>
         <div id="container">
         <div id="banner">
-        <h1><a href="https://memoc.pages.dev/game1/">無料ブラウザゲームPCスマホタブレット対応</a></h1>
-          <div class="blockbody"><p>無料ブラウザゲームPCスマホタブレット対応のものを製作しました　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
+        <h1><a href="https://memoc.pages.dev/yzombi1/">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></h1>
+          <div class="blockbody"><p>ブラウザゲームのホラーシューティング無料PCスマホ対応の説明　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
 　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
@@ -69,24 +65,24 @@ title: game
 </div>
          <div class="sidetitle">学習ゲーム</div>
         <div class="side">
-<p>説明　小学生　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
-<p>PCスマホ　<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
+<p>PCスマホ　小学生　<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a></p>
           <br>
-<p>説明　小６　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
-<p>PCスマホ　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
+<p>PCスマホ　小６　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
           <br>
-<p>説明　中一　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
-<p>PCスマホ　<a href="https://memoc.pages.dev/y8h/" target="_blank">英語中学生クイズ面白いゲーム 英単語中学一年生</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+<p>PCスマホ　中一　<a href="https://memoc.pages.dev/y8h/" target="_blank">英語中学生クイズ面白いゲーム 英単語中学一年生</a></p>
           <br>
-<p>説明　中二　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
-<p>PCスマホ　<a href="https://memoc.pages.dev/y9i/" target="_blank">英単語の暗記サイト中学二年生の英単語クイズゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
+<p>PCスマホ　中二　<a href="https://memoc.pages.dev/y9i/" target="_blank">英単語の暗記サイト中学二年生の英単語クイズゲーム</a></p>
           <br>
-<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<p>PCスマホ　中三　<a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズ面白いゲーム</a></p>
 </div>
          <div class="sidetitle">便利なタイマー</div>
         <div class="side">
-<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 </div>
          <div class="sidetitle">無料イラスト</div>
         <div class="side">
@@ -184,196 +180,83 @@ setInterval('Watch()',500);
         <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/memochou.png"></div>
         </div>
         <div id="content">
-        <h2>無料ブラウザゲームPCパソコン用とスマホ用　☆サバイバルブルーカー☆</h2>
-<img src="/images/zcar1.png" alt="車ブラウザゲームの自機「ブルースポーツカー」" width="100" height="210" align="left">
-         <p>ホームページ会社から勝手に広告を入れられて作動しないゲームが多くなっております</p>
-         <p>☆サバイバルブルーカー☆</p>
-<p>■説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a>　車の無料ブラウザゲーム、アイテムの説明など。</p>
-<br>
-<p>スマホ　☆<a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲーム無料スマホタブレット版</a>☆　←スマホ縦画面用、タブレット対応。</p>
-<br>
-<p>PCパソコン　☆<a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲーム無料PCパソコン用</a>☆　←PCパソコン、ノートパソコンのキーボード対応。</p><br>
-<p>無料ブラウザゲームを製作しました。最初からすぐ遊べます☆</p>
-          <p>PCパソコンUSBコントローラーなどゲームパッド対応。</p><br>
-<p>アプリのインストール不要なので、アプリの更新不要!　インストール無し、ダウンロード不要、課金なし、面倒な設定無しです。</p><br>
-
-<br>
-<h3>☆サバイバルブルーカー2☆</h3>
-         <p>ホームページ会社から勝手に広告を入れられて作動しないゲームが多くなっております</p>
-<p>■別バージョンも作りました☆</p><p>☆サバイバルブルーカー2☆</p>
-<p>2のスマホ　<a href="https://memoc.pages.dev/kurumagame0/" target="_blank">車ブラウザゲーム2無料スマホタブレット版</a>（スマホやタブレットで操作）広大なマップバージョン。</p><br>
-<p>2のPCパソコン　<a href="https://memoc.pages.dev/kurumagamepc0/" target="_blank">車ブラウザゲーム2無料PCパソコン用</a>（PCパソコンで操作）広大なマップバージョンです。</p>
-<p>PCパソコンのUSBコントローラーなどゲームパッド対応。</p><br>
+        <h2>ブラウザゲームのホラー</h2>
+<img src="/images/zombie1.png" alt="ブラウザゲームのホラーゾンビ迷宮脱出ゲームの主人公「紗楽蘭楽」" width="200" height="270" align="left"><p>ブラウザゲームのホラーものを作りました。</p><br>
+<p>ゾンビ迷宮脱出ゲームの主人公「紗楽蘭楽（さららら）」は、魔法使いのかわいい女の子。</p><br><p>光の呪文でモンスター退治できます。</p><p>暗闇の迷宮脱出ゲームです。</p>
 <br clear="left">
+<p>☆<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</a>☆（スマホとタブレットやPCパソコン対応）</p><br>
+<p>アプリなし!　すべて無料、完全無課金。</p>
+<p>遊び方、アイテム、ルール説明は下にあります。</p><br>
+<p>スマホとタブレットは、タッチパネルで操作できるスマホゲーム。</p>
+<p>PCパソコンの少しホラーなブラウザゲーム、キーボード操作は下にあります。</p>
 <br>
+<h3>ブラウザゲームのホラーシューティング「ゾンビ迷宮脱出ゲーム」のルール説明</h3>
+<p>ブラウザゲームのホラーシューティング「ゾンビ迷宮脱出ゲーム」は、モンスターが突然あらわれるよ。</p><br>
+<p>■ルール説明</p>
+<p>主人公は、光の呪文で怪物たちと戦います。</p>
+<p>フロアにゾンビがいるので、注意して進んで下さい。</p>
+<p>そのフロアのゴールは、茶色の扉です☆</p>
+<br>
+<img src="/images/zombie2.png" alt="ブラウザゲームのホラーゾンビ迷宮脱出ゲームの「敵のゾンビ」" width="180" height="210" align="left">
+<p>「敵のゾンビ」は、足が遅い。</p>
+<p>ゾンビ達の体に毒があるよ、気を付けてね。</p>
 
-        <h2>無料スマホPCタブレット対応　☆戦車ゲームブラウザシューティング☆</h2>
-<img src="/images/zsensha1.png" alt="戦車ゲームブラウザシューティング" width="100" height="210" align="left">
-         <p>☆戦車ゲームブラウザシューティング☆</p>
-<p>■説明　<a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></p>
-<br>
-<p>PC・スマホ　☆<a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a>☆　スマホ縦画面用とタブレット、PCパソコン、すべて対応。</p>
-<br>
-<p>戦車の無料ブラウザゲーム。こちらも完全無課金ゲーム。</p>
-<p>画面タッチでできるスマホゲーム、パソコンのキーボードでも操作できます。</p>
           <br clear="left"><br>
-
-<h2>無料ブラウザゲームPCパソコンおもしろいスマホゲーム　☆SEAシューティング☆</h2>
-<img src="/images/zsensuikan1.png" alt="潜水艦ゲーム無料PCスマホタブレット" width="230" height="120" align="left">
-         <p>☆SEAシューティング☆</p>
-<p>■説明　<a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料PCスマホタブレット対応シューティングの説明</a></p><br>
-<p>PC・スマホ　☆<a href="https://memoc.pages.dev/sensuikangame/" target="_blank">潜水艦ゲーム無料PCスマホタブレット対応シューティング</a>☆　PCパソコン、スマホ横画面用とタブレット、すべて対応。</p>
-<br>
-<p>潜水艦の無料ブラウザゲーム。完全無料。</p>
-<p>魚雷の誘導弾が楽しいスマホゲーム☆</p>
+<img src="/images/zombie4.png" alt="ブラウザゲームのホラーゾンビ迷宮脱出ゲームの「ランタンのアイテム」" width="180" height="210" align="left">
+<p>「ランタンのアイテム」を取ると、主人公のまわりが明るくなります。</p>
+<p>そのフロアにいる間、視界が広くなります。</p><br>
+<p>早めに見つけたいアイテム☆</p>
           <br clear="left"><br>
-        <h3>2人対戦ゲーム☆潜水艦ゲーム2</h3>
-<p><a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可 無料PCスマホ対応seaシューティングゲームの説明</a></p>
-<p>一人用も二人用ゲームもどちらもできます。</p><br>
-<p>☆<a href="https://memoc.pages.dev/y2su/" target="_blank">潜水艦seaシューティング2 ブラウザゲーム友達と2人対戦可</a>☆</p>
-<p>画面の左半分をタップまたはクリックすると1人用、右半分をタップすると2人対戦。</p><br>
-<p>誘導弾同士で友達と対戦ができるスマホゲーム☆</p><br>
+<img src="/images/zombie3.png" alt="ブラウザゲームのホラーゾンビ迷宮脱出ゲームの「お札のアイテム」" width="180" height="210" align="left">
+<p>「お札のアイテム」を取ると、怪物たちの動きが止まります（←懐かしのキョンシースタイル!）</p><br>
+<p>そのフロアに強力な結界が張られます☆</p><br>
+<p>ゾンビの動きが止まっても、触れると毒でやられてしまうので要注意!</p>
+          <br clear="left"><br>
+<p>■遊び方</p>
+<p>最初の画面をタップかクリックすると、ゲームがスタート☆</p><br>
+<p>ゾンビをよけて、倒して、茶色の扉を見つけよう。</p>
+<p>灰の壁は、光の呪文で消せるよ。</p><br>
+<p>コンテニューは何回でもOK（←作者の優しさがにじみ出る）</p><br>
 
-        <h2>☆カードゲーム二人はペンギン☆大人と子ども2人対戦可能スマホPCタブレット対応</h2>
-<img src="/images/z2card.png" alt="カードゲーム二人はペンギン" width="220" height="210" align="left">
-          <p>☆カードゲーム二人はペンギン☆</p>
-<p>■説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
-<br><p>「一番最初」より強いともらえるよ。</p><p>二人対戦もできる、コンピューター対戦も可。</p>
-          <br clear="left">
-<p>PC・スマホ　☆<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン ブラウザゲーム</a>☆</p>
-<p>完全無料。簡単なカードゲーム、大人と子ども2人で遊べる☆</p>
-<br>
-
-        <h2>無料スマホPCタブレット対応　☆ゾンビ迷宮脱出ゲーム☆</h2>
-<img src="/images/zombie1.png" alt="ゾンビ迷宮脱出ゲームの主人公" width="200" height="270" align="left">
-         <p>ホームページ会社から勝手に広告を入れられて作動しないゲームが多くなっております</p>
-<p>☆ゾンビ迷宮脱出ゲーム☆</p>
-          <p>■説明　<a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></p>
-<br>
-<p>ゾンビを見かけたら逃げる、倒す☆ホラーシューティングゲーム。</p><p>役立つアイテムもあるよ☆</p>
-          <br clear="left">
-<p>PCスマホ　☆<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</a>☆</p>
-<p>完全無課金、スマホアプリ不要、電車やお店の待ち時間に最適☆</p>
-<br>
+<p>スマートフォンですぐできるから、電車や料理の待ち時間にもおすすめのゲーム。</p><br>
+<p>スマホアプリのインストール不要!</p><p>アプリの更新いらない☆</p><br><p>スマホの右上の点々をクリックし「ホーム画面に追加」すると、いつでもどこでも遊べます☆</p><br>
+ <p>わりとおもしろいな、友達に教えたい、などと思ったら、<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">https://memoc.pages.dev/</span>をコピペして、ご自身のSNSやブログなどに書いていただけると、新作ゲームを作る励みになります。</p><br>
 
 
-        <h2>カードゲーム二人用と一人用も　☆氷上ペット散歩☆</h2>
-<img src="/images/zjump1.png" alt="氷上ペット散歩の主人公" width="200" height="260" align="left">
-<p>☆氷上ペット散歩☆</p>
-          <p>■説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
-<br>
-<p>三マス分ジャンプできます☆</p><p>着地した3マス目は氷が割れます☆</p>
-<br>
-<p>カードゲーム二人用対戦も☆カップルにもおすすめ</p><p>一人用でAI対戦も楽しい頭脳ゲーム☆</p>
-          <br clear="left">
-<p>PCスマホ　☆<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム二人用もできるブラウザゲーム</a>☆（スマホとタブレットやPCパソコン対応）</p><br>
+<p>☆<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</a>☆（スマホとタブレットやPCパソコン対応）</p><br>
+        <h4>ブラウザゲームのホラー「ゾンビ迷宮脱出ゲーム」は無料でPCスマホ対応</h4>
+<p>ブラウザゲームのホラー「ゾンビ迷宮脱出ゲーム」は無料でPCスマホ対応です。</p><p>更新ダウンロードなし、インストールなし、課金なし、面倒な設定なしですぐ遊べます。</p><br>
+<p>PCノートパソコンは、マウスでクリックして、スタート☆</p><br>
+<p>上下左右のパソコンキーボード（方向キー、矢印ボタン）を使用して、移動できます。</p>
+<p>エンター、スペース、で決定。</p>
+<p>1プレイヤー、左は a。右は d。上は w。下は s。</p>
+<p>デスクトップパソコン、ノートパソコンでもキーボードから操作可能です。</p><br>
+<p>大きな画面で、ずっと無料で遊べます。</p><p>ブックマークにお気に入り登録して、ご自由にお使い下さい。</p><br>
+<p>ご自身のブログやホームページに、<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">https://memoc.pages.dev/</span>へのリンクを貼っていただけると、新作ゲーム作りの応援になります。</p><br>
 
-        <h2>忍者ペンギンゲーム 一人用二人用も　☆氷上ペット散歩☆</h2>
-<img src="/images/znp1.png" alt="忍者ペンギン" width="200" height="260" align="left">
-<p>☆忍者ペンギン☆</p>
-          <p>■説明　<a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
-<br>
-<p>ジャンプして手裏剣で攻撃☆</p><p>忍法で敵と対戦☆</p>
-<br>
-<p>一人用のAI対戦では、浮遊感がくせになるアクションシューティングゲーム☆</p>
-<p>二人用対戦も楽しい☆</p>
-          <br clear="left">
-<p>PCスマホ　☆<a href="https://memoc.pages.dev/y4d/" target="_blank">忍者ペンギン 2P対戦もできる無料ブラウザゲーム</a>☆（スマホ・タブレット・PCパソコン対応）</p><br>
-<br>
-
-        <h2>カップル盛り上がる質問300ゲーム☆スマホ・タブレット・PCパソコン対応</h2>
-<img src="/images/zjump2.png" alt="カップル質問ゲームのシロクマ" width="200" height="260" align="left">
-<p>■説明　<a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
-<p>カードをめくって質問に答えて、交代☆</p><p>カップル盛り上がる質問300ゲームは、デートに最適です☆</p>
-<br>
-<p>PCスマホ　☆<a href="https://memoc.pages.dev/y5e/" target="_blank">カップル盛り上がる質問300ゲーム</a>☆（スマホ・タブレット・PCパソコン対応）</p>
-          <br clear="left">
-<br>
-
-        <h2>英語クイズ小学生向けゲーム☆2人協力プレイができる無料ブラウザゲーム スマホ対応</h2>
-<p>英語クイズ小学生向けゲームは、800語以上の英単語を収録☆</p><p>英語スマホアプリ不要で、完全無料です☆</p>
-<br>
-<p>英語を日本語にかさねよう☆</p>
-<p>2人協力プレイができる無料ブラウザゲームです☆</p>
-<br>
-          <p>■説明　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
-<br>
-<p>PCスマホ　☆<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a>☆（スマホとタブレットやPCパソコン対応）</p>
-<p>アイフォン、iOS、LINEブラウザは、発音機能に対応していないですが遊べます。</p><p>マイクロソフトのエッジ、グーグルクロームは、ネイティブ発音機能に対応しています☆</p>
-<br>
-<h3>英単語小6クイズゲーム</h3>
-<p>英単語の小6バージョンになります☆</p>
-          <p>■説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
-<br>
-<p>PCスマホ　☆<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a>☆</p>
-<br>
-        <h2>英語中学生クイズ面白いゲーム☆2人協力プレイができる無料ブラウザゲーム スマホ対応</h2>
-<p>英語中学生クイズ、面白いゲーム☆</p>
-<p>まずは中学一年生で習う英単語です☆</p>
-<br>
-<p>■説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
- <br>
-<p>PCスマホ　<a href="https://memoc.pages.dev/y8h/" target="_blank">英語中学生クイズ面白いゲーム 英単語中学一年生</a></p>
- <br>
-
-<h3>中学生二年生の英単語ゲーム</h3>
-<p>中学生二年生で習う英単語ゲームです☆</p>
-<br>
-<p>■説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
-<br>
-<p>PCスマホ　<a href="https://memoc.pages.dev/y9i/" target="_blank">英単語の暗記サイト中学二年生の英単語クイズゲーム</a></p>
- <br>
-<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
- <br>
-          <p>☆新作ゲーム製作中　近日公開☆</p><br>
-
-<p>スマホの右上の点々をクリックし「ホーム画面に追加」すると、いつでもどこでも遊べます☆</p><br>
- <p>わりとおもしろいな、友達に教えたい、などと思ったら、<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">https://memoc.pages.dev/</span>をコピペして、ご自身のSNSやブログなどに書いていただけると、新作ゲームを作る応援になります。</p><br>
-
-<h3>無料ブラウザゲームPCパソコン</h3>
-<p>車の無料ブラウザゲームをPCパソコンやノートパソコン用にしました。</p>
-<p>パソコンのキーボードで操作できます。</p><br>
-<p>画面サイズを、PCパソコンやノートパソコン用の大きさにしています。</p>
-<p>もし画面の大きさが合わなかったりずれていたら、ブラウザの画面の拡大か縮小を調整して下さい。</p><br>
-<p><a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲーム無料PCパソコン用</a></p>
-<p>インストール不要、ダウンロード無し、課金無し、面倒な設定なしの無料ブラウザゲームです☆</p><br>
-        <h4>無料ブラウザゲーム スマホタブレット対応</h4>
-<p>車の無料ブラウザゲーム スマホタブレット対応のものを製作しました。</p><br>
-<p>ダウンロード無し、インストール無し、課金無し、面倒な設定無しですぐ遊べます。</p><br>
-<p>キーボードが無いスマートフォンなどからも操作できるゲームにしました。</p><br>
-<p>スマホ縦画面用ゲームです。</p>
-<p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲーム無料スマホタブレット版</a></p>
-<br>
-<p>アプリのインストール無し、アプリの更新無しの無料ブラウザゲーム☆</p><br>
-
-
-<p><a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a></p>
-<p>スマホとタブレット、PCパソコンのキーボード、すべて対応。</p>
-<br>
-          <p>無料ゲーム　シューティング</p>
+         <p>無料ゲーム</p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
-<p><a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲーム無料スマホタブレット版</a></p>
+<p><a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲーム無料PCパソコン用</a></p>
 <p><a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></p>
 <p><a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料PCスマホタブレット対応シューティングの説明</a></p>
 <p><a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可 無料PCスマホ対応seaシューティングゲームの説明</a></p>
 <p><a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></p>
-<p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
-<br>
-         <p>無料カードゲーム</p>
-<p><a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
 <p><a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
-<p><a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
-<br>
+<p><a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン ブラウザゲーム</a></p>
+<p><a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
+<p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
+          <br>
          <p>学習ゲーム</p>
+<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
 <p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
-<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
 <br>
          <p>便利なタイマー</p>
-<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 <br>
          <p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>

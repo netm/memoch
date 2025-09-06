@@ -1,8 +1,3 @@
----
-layout: layouts/base
-title: メモ帳代わりwebブラウザ便利サイト
----
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html dir="ltr" lang="ja">
     <head>
@@ -21,7 +16,7 @@ title: メモ帳代わりwebブラウザ便利サイト
         <h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
         <div class="blockbody">
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>
-　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a>
+　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a>
 　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>
 　　<a href="https://memoc.pages.dev/rank/" target="_blank">ランキング</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
@@ -76,6 +71,8 @@ setInterval('Watch()',500);
 // ]]></script>
 </div>
 <div id="Watch">00:00</div>
+　<a href="https://github.com/login" target="_blank">GitHub</a>
+　<a href="https://dash.cloudflare.com" target="_blank">cloudflare</a>
 　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
 　<a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
@@ -103,11 +100,9 @@ setInterval('Watch()',500);
 </div>
          <div class="sidetitle">新着情報</div>
         <div class="side">
-<p>「中学生三年生の英単語ゲーム」を作りました</p>
-<p>「複利電卓・積立NISAの金額再投資計算機」を作りました</p>
-<p>メモ付き電卓に便利な単位換算機能を追加しました</p>
 <p>「休日引きこもりがちになる人の特徴と対処法」の記事を書きました</p>
-<p>「中学生二年生の英単語ゲーム」作りました</p>
+<p>中学生二年生の英単語ゲーム作りました</p>
+<p>英単語の中学1年生用作りました</p>
 <p>「便利なタイマー」2個を製作しました</p>
 </div>
          <div class="sidetitle">無料ゲーム</div>
@@ -174,6 +169,7 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+
           </div>
          <div class="sidetitle">何でもランキング</div>
         <div class="side">
@@ -196,7 +192,14 @@ setInterval('Watch()',500);
         <div id="content">
         <h2>メモ帳代わりwebブラウザ（随時コピー推奨）</h2>
         <p><form>
-<textarea name="テキストエリア" rows="26" cols="68" wrap="hard">メモ帳
+<textarea name="テキストエリア" rows="26" cols="68" wrap="hard">■3本線のみやる■　一か月めど　上下に行くほどもうかる
+　　　　　3本線以外は全部損する　MACDや指標はダマしが多い
+　今後のイメージ
+25日線で反発して上昇か　　かいり率 BNF
+エヌビディア決算の3日後から下落の調整、ナスダック調整につられるか
+自社株買い相場PBR1優位といってもつられるときはつられる
+3本線以外はきびしい　　相場に興味ないくらいじゃないとやられる
+
 </textarea>
 </form>
 <p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>
@@ -206,46 +209,10 @@ setInterval('Watch()',500);
 </textarea>
 </form>
 <p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
-        <h4>値段メモのための生活便利サイト　リンク集</h4>
-        <p>コンビニ　<a href="https://www.sej.co.jp/" target="_blank">セブンイレブン</a>
-　<a href="https://www.family.co.jp/" target="_blank">ファミリーマート</a>
-　<a href="https://www.lawson.co.jp/" target="_blank">ローソン</a></p>
-<p>生活家電・ゲーム　<a href="https://www.yodobashi.com/" target="_blank">ヨドバシカメラ</a>
-　<a href="https://www.biccamera.com/bc/main/" target="_blank">ビックカメラ</a>
-          <p>生活家具・雑貨　<a href="https://www.nitori-net.jp/" target="_blank">ニトリ</a>
-　<a href="https://www.muji.com/jp/" target="_blank">無印良品</a></p>
-<p>洋服・アパレル　<a href="https://www.uniqlo.com/" target="_blank">ユニクロ</a>
-　<a href="https://www.gu-global.com/jp/ja/" target="_blank">GU</a>
-　<a href="https://workman.jp/" target="_blank">ワークマン</a>
-　<a href="https://www.shimamura.gr.jp/shimamura/" target="_blank">しまむら</a></p>
-<p>激安ショップ　<a href="https://www.donki.com/" target="_blank">ドンキホーテ</a>
-　<a href="https://ok-corporation.jp/" target="_blank">オーケーストア</a>
-　<a href="https://www.gyomusuper.jp/" target="_blank">業務スーパー</a></p>
-<p>総合スーパー　<a href="https://www.aeonretail.jp/" target="_blank">イオン</a>
-　<a href="https://www.itoyokado.co.jp/" target="_blank">イトーヨーカドー</a>
-　<a href="https://www.maruetsu.co.jp/" target="_blank">マルエツ</a>
-　<a href="https://store.lifecorp.jp/" target="_blank">ライフ</a>
-　<a href="https://www.seiyu.co.jp/" target="_blank">西友</a>
-<p>100円ショップ　<a href="https://www.daiso-sangyo.co.jp/" target="_blank">ダイソー</a>
-　<a href="https://www.seria-group.com/corp/overview/" target="_blank">セリア</a>
-　<a href="https://www.cando-web.co.jp/" target="_blank">Can Do キャンドゥ</a></p>
-         <h5>銀行金融のメモに役立つリンク集</h5>
+        <h4>銀行金融のメモに役立つリンク集</h4>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
-　<a href="https://www.bk.mufg.jp/" target="_blank">三菱UFJ銀行</a>
-　<a href="https://www.smbc.co.jp/" target="_blank">三井住友銀行</a>
-　<a href="https://www.mizuhobank.co.jp/" target="_blank">みずほ銀行</a>
-　<a href="https://www.resonabank.co.jp/" target="_blank">りそな銀行</a>
 　<a href="https://www.sbishinseibank.co.jp/" target="_blank">SBI新生銀行</a>
-　<a href="https://www.netbk.co.jp/contents/" target="_blank">住信SBIネット銀行</a>
-　<a href="https://www.jibunbank.co.jp/" target="_blank">au じぶん銀行</a>
-　<a href="https://www.rakuten-bank.co.jp/" target="_blank">楽天銀行</a>
-　<a href="https://moneykit.net/" target="_blank">ソニー銀行</a></p>
-       <p>株式・NISA積み立て　<a href="https://www.nomura.co.jp/" target="_blank">野村證券</a>
-　<a href="https://www.daiwa.jp/" target="_blank">大和証券</a>
-　<a href="https://www.mizuho-sc.com/" target="_blank">みずほ証券</a>
-　<a href="https://www.smbcnikko.co.jp/" target="_blank">SMBC日興証券</a>
-　<a href="https://www.sbisec.co.jp/" target="_blank">SBI証券</a>
-　<a href="https://www.rakuten-sec.co.jp/" target="_blank">楽天証券</a></p>
+       <p>株式・NISA積み立て　<a href="https://www.sbisec.co.jp/" target="_blank">SBI証券</a>
 <p>経済指標　<a href="https://www.nikkei.com/" target="_blank">日本経済新聞</a>
 　<a href="https://finance.yahoo.co.jp/" target="_blank">ヤフーファイナンス</a>
 　<a href="https://finance.yahoo.co.jp/quote/998407.O/chart" target="_blank">日経平均チャート</a>
@@ -259,11 +226,8 @@ setInterval('Watch()',500);
 　<a href="https://ja.wikipedia.org/wiki/" target="_blank">Wikipedia</a>
 　<a href="https://www.docomo.ne.jp/" target="_blank">NTTドコモ</a></p>
         <p>IT・無料ブログ
-　<a href="https://www.cybozu.com/" target="_blank">サイボウズ</a>
-　<a href="https://www.microsoft.com/ja-jp/microsoft-365/sharepoint/collaboration?ms.officeurl=sharepoint" target="_blank">sharepoint</a>
-　<a href="https://kakaku.com/" target="_blank">価格.com</a>
-　<a href="https://line.me/ja/" target="_blank">LINE</a>
-　<a href="https://www.nicovideo.jp/" target="_blank">ニコニコ</a>
+　<a href="https://developers.google.com/analytics?hl=ja" target="_blank">アナリティクス</a>
+　<a href="https://adsense.google.com/intl/ja_jp/start/" target="_blank">adsense</a>
 　<a href="https://ameblo.jp/" target="_blank">アメーバブログ</a>
 　<a href="http://blog.jp/" target="_blank">ライブドアブログ</a></p>
          <h4>無料漫画本・ゲーム・掲示板まとめブログの便利なリンク集</h4>
@@ -283,54 +247,10 @@ setInterval('Watch()',500);
 　<a href="https://itainews.com/" target="_blank">痛いニュース</a>
 　<a href="http://blog.livedoor.jp/kinisoku/" target="_blank">キニ速</a>
 　<a href="http://blog.livedoor.jp/nanjstu/" target="_blank">なんじぇいスタジアム＠なんJまとめ</a></p>
-          <h5>旅行・美容 生活に便利なリンク集</h5>
-        <p>旅行　<a href="https://www.jalan.net/" target="_blank">じゃらん</a>
-　<a href="https://travel.rakuten.co.jp/" target="_blank">楽天トラベル</a>
-        <p>美容　<a href="https://beauty.hotpepper.jp/" target="_blank">ホットペッパービューティー</a>
-　<a href="https://zozo.jp/" target="_blank">ZOZOTOWN ゾゾタウン</a>
-　<a href="https://trilltrill.jp/" target="_blank">TRILL</a></p>
           <h3>価格メモに役立つリンク集</h3>
                 <p>グルメサイト　<a href="https://tabelog.com/" target="_blank">食べログ</a>
 　<a href="https://www.gnavi.co.jp/" target="_blank">ぐるなび</a>
 　<a href="https://www.hotpepper.jp/" target="_blank">ホットペッパーグルメ</a></p>
-        <p>飲食店・レストラン　<a href="https://www.skylark.co.jp/gusto/" target="_blank">ガスト</a>
-　<a href="https://www.saizeriya.co.jp/" target="_blank">サイゼリヤ</a>
-　<a href="https://www.joyfull.co.jp/" target="_blank">ジョイフル</a>
-　<a href="https://www.bikkuri-donkey.com/" target="_blank">びっくりドンキー</a></p>
-<p>ファストフード　<a href="https://www.mcdonalds.co.jp/" target="_blank">マクドナルド</a>
-　<a href="https://www.mos.jp/" target="_blank">モスバーガー</a>
-　<a href="https://www.kfc.co.jp/" target="_blank">ケンタッキー</a></p>
-<p>牛丼・うどん　<a href="https://www.sukiya.jp/" target="_blank">すき家</a>
-　<a href="https://www.yoshinoya.com/" target="_blank">吉野家</a>
-　<a href="https://www.matsuyafoods.co.jp/" target="_blank">松屋</a>
-　<a href="https://www.nakau.co.jp/" target="_blank">なか卯</a>
-　<a href="https://jp.marugame.com/" target="_blank">丸亀製麺</a></p>
-<p>和食・中華　<a href="https://hidakaya.hiday.co.jp/" target="_blank">日高屋</a>
-　<a href="https://www.yayoiken.com/" target="_blank">やよい軒</a>
-　<a href="https://www.ootoya.com/" target="_blank">大戸屋</a>
-　<a href="https://www.ohsho.co.jp/" target="_blank">餃子の王将</a>
-　<a href="https://www.ringerhut.jp/" target="_blank">リンガーハット</a>
-　<a href="https://www.ichibanya.co.jp/" target="_blank">カレーハウスCoCo壱番屋</a>
-　<a href="https://www.arclandservice.co.jp/katsuya/" target="_blank">かつや</a>
-　<a href="https://kushi-tanaka.com/" target="_blank">串カツ田中</a>
-　<a href="https://www.yakiniku-king.jp/" target="_blank">焼肉きんぐ</a></p>
-<p>回転寿司　<a href="https://www.akindo-sushiro.co.jp/" target="_blank">スシロー</a>
-　<a href="https://www.hama-sushi.co.jp/" target="_blank">はま寿司</a>
-　<a href="https://www.kurasushi.co.jp/" target="_blank">くら寿司</a>
-　<a href="https://www.ginsara.jp/" target="_blank">銀のさら 出前</a>
-　<a href="https://www.gindaco.com/" target="_blank">銀だこ</a></p>
-<p>宅配ピザ　<a href="https://www.dominos.jp/" target="_blank">ドミノピザ</a>
-　<a href="https://www.pizzahut.jp/" target="_blank">ピザハット</a>
-　<a href="https://www.pizza-la.co.jp/" target="_blank">ピザーラ</a></p>
-<p>テイクアウト　<a href="https://www.hottomotto.com/" target="_blank">ほっともっと</a>
-　<a href="https://www.toshu.co.jp/origin_bento/" target="_blank">オリジン弁当</a>
-　<a href="https://www.hokkahokka-tei.jp/" target="_blank">ほっかほっか亭</a></p>
-<p>カフェ　<a href="https://www.starbucks.co.jp/" target="_blank">スターバックス</a>
-　<a href="https://www.doutor.co.jp/dcs/" target="_blank">ドトールコーヒー</a>
-　<a href="https://www.komeda.co.jp/" target="_blank">コメダ珈琲店</a></p>
-<p>スイーツ　<a href="https://www.31ice.co.jp/" target="_blank">サーティワンアイスクリーム</a>
-　<a href="https://www.misterdonut.jp/" target="_blank">ミスタードーナツ</a>
-　<a href="https://www.chateraise.co.jp/" target="_blank">シャトレーゼ</a></p>
           <h4>何でもランキング　メモ帳代わりに書いた文章はコピー推奨</h4>
         <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
@@ -361,7 +281,6 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
-<p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
 <br>
          <p>便利なタイマー</p>
 <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
@@ -391,7 +310,6 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
 
         </div>
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>

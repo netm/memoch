@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<meta name="description" content="タイマーおしゃれサイトはweb上で簡単設定できます。PC・スマホ・タブレット対応です">
+        <meta name="keywords" content="タイマー,おしゃれ,サイト">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>タイマーおしゃれサイト</title>
+  <link rel="stylesheet" href="yzp.css">
+</head>
+<body>  <div class="top-section">
+    <div id="digital-timer">
+      <span class="digit">00</span>:<span class="digit">00</span>:<span class="digit">00</span>
+    </div>
+    <div id="status"></div>
+    <canvas id="analog-clock" width="80" height="80"></canvas>
+  </div>
+  
+  <div class="middle-section">
+    <button class="duration-btn" data-study="10" data-unit="sec">10秒</button>
+    <button class="duration-btn" data-study="20" data-unit="sec">20秒</button>
+    <button class="duration-btn" data-study="30" data-unit="sec">30秒</button>
+    <button class="duration-btn" data-study="40" data-unit="sec">40秒</button>
+    <button class="duration-btn" data-study="50" data-unit="sec">50秒</button>
+    <button class="duration-btn" data-study="60" data-unit="sec">60秒</button>
+    <button class="duration-btn" data-study="90" data-unit="sec">1分30秒</button>
+    <button class="duration-btn" data-study="120" data-unit="sec">2分</button>
+    <button class="duration-btn" data-study="150" data-unit="sec">2分30秒</button>
+    <button class="duration-btn" data-study="180" data-unit="sec">3分</button>
+    <button class="duration-btn" data-study="210" data-unit="sec">3分30秒</button>
+    <button class="duration-btn" data-study="4" data-unit="min">4分</button>
+    <button class="duration-btn" data-study="5" data-unit="min">5分</button>
+    <button class="duration-btn" data-study="6" data-unit="min">6分</button>
+    <button class="duration-btn" data-study="7" data-unit="min">7分</button>
+    <button class="duration-btn" data-study="8" data-unit="min">8分</button>
+    <button class="duration-btn" data-study="9" data-unit="min">9分</button>
+    <button class="duration-btn" data-study="10" data-unit="min">10分</button>
+    <button class="duration-btn" data-study="14" data-unit="min">14分</button>
+    <button class="duration-btn" data-study="15" data-unit="min">15分</button>
+    <button class="duration-btn" data-study="20" data-unit="min">20分</button>
+    <button class="duration-btn" data-study="25" data-unit="min">25分</button>
+    <button class="duration-btn" data-study="30" data-unit="min">30分</button>
+    <button class="duration-btn" data-study="40" data-unit="min">40分</button>
+    <button class="duration-btn" data-study="45" data-unit="min">45分</button>
+    <button class="duration-btn" data-study="50" data-unit="min">50分</button>
+    <button class="duration-btn" data-study="60" data-unit="min">60分</button>
+    <button class="duration-btn" data-study="90" data-unit="min">90分</button>
+    <button class="duration-btn" data-study="120" data-unit="min">2時間</button>
+    <button class="duration-btn" data-study="180" data-unit="min">3時間</button>
+  </div>
+  
+  <div class="duration-section">
+    <button class="sound-btn" data-sound="electronic" data-blink="true">ピピピ　点滅</button>
+    <button class="sound-btn" data-sound="triangle" data-blink="true">単音　点滅</button>
+    <button class="sound-btn" data-sound="electronic" data-blink="false">ピピピ</button>
+    <button class="sound-btn" data-sound="triangle" data-blink="false">単音</button>
+    <button class="sound-btn" data-sound="none" data-blink="true">点滅</button>
+    <button id="start">スタート</button>
+    <button id="reset">リセット</button>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+  </div>
+  
+  <div class="bottom-section">
+  <p>※画面スリープは解除推奨　　<a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p>
+  <p>スリープ中はタイマーが鳴らないので、設定を変更して下さい　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマーおすすめwebサイト</a></p>
+  </div>
+
+         <p>無料ゲーム集</p>
+<p class="left"><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
+<br>
+
+         <p>学習ゲーム</p>
+<p class="left"><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<br>
+
+         <p>TVerを便利に</p>
+<p class="left"><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
+<br>
+         <p>便利なタイマー・リアルタイム時計</p>
+<p class="left"><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<p class="left"><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p class="left"><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
+<br>
+         <p>便利な電卓・計算機</p>
+<p class="left"><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+<p class="left"><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+<p class="left"><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
+<p class="left"><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
+  <br>
+        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p><br>
+<p><a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
+<p><a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p><br><br><br>
+        <p><span class="copyright">
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
+        Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span><br><br><br></p>
+        </div>
+
+<script src="/js/yzpa.js"></script>
+
+</body>
+</html>

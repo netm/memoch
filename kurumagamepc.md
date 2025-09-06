@@ -2,13 +2,13 @@
 <html dir="ltr" lang="ja">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="車ブラウザゲーム無料スマホタブレット対応の縦画面です。">
-        <meta name="keywords" content="車,ブラウザ,ゲーム,無料,タブレット">
+<meta name="description" content="車ブラウザゲーム無料PCパソコン用です。PCはパソコンの矢印ボタンで操作可能です。">
+        <meta name="keywords" content="車,ブラウザ,ゲーム,無料,PC">
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
-        <title>車ブラウザゲーム無料スマホタブレット対応</title>
+        <title>車ブラウザゲーム無料PCパソコン用</title>
     <style>
         body {
             display: flex;
@@ -24,17 +24,6 @@
             -ms-user-select: none; /* IE/Edge */
             user-select: none; /* Standard */
         }
-#game-overlay {
-  width: 100%;
-  height: 40vh;          /* ビューポートの40%高さに設定 */
-  max-height: 300px;     /* 任意で上限px指定 */
-  overflow: hidden;      /* はみ出た部分は隠す */
-  position: relative;    /* 内部で絶対配置する場合の基準 */
-  background: #000;      /* 任意で背景色 */
-  z-index: 100;          /* 他コンテンツより手前に表示 */
-}
-
-
         canvas {
             border: 2px solid #333;
             background-color: #000000; /* 道路の色 */
@@ -48,7 +37,7 @@
         .control-button {
             width: 80px;
             height: 80px;
-            font-size: 1.5em;
+            font-size: 1em;
             font-weight: bold;
             background-color: #4CAF50;
             color: white;
@@ -66,14 +55,14 @@
             box-shadow: 0 0 3px rgba(0,0,0,0.3);
         }
         #gameStatus {
-            margin-top: 10px;
+            margin-top: 4px;
             font-size: 1.2em;
             display: flex;
             gap: 20px;
         }
         #startButton {
             padding: 15px 30px;
-            font-size: 1.5em;
+            font-size: 1em;
             background-color: #f44336;
             color: white;
             border: none;
@@ -90,35 +79,29 @@
     <body>
         <div id="container">
         <div id="banner">
-        <h1><a href="https://memoc.pages.dev/kurumagame/">車ブラウザゲーム無料スマホタブレット対応</a></h1>
+        <h1><a href="https://memoc.pages.dev/kurumagamepc/">車ブラウザゲーム無料PCパソコン用</a></h1>
 
         </div>
 
-  <!-- ここがオーバーレイ専用コンテナ -->
-  <div id="game-overlay">
 
-    <canvas id="gameCanvas" width="380" height="450"></canvas> <div id="gameStatus">
+    <canvas id="gameCanvas" width="1000" height="350"></canvas> <div id="gameStatus">
         <p>燃料: <span id="fuel">100</span></p>
         <p>耐久度: <span id="durability">100</span></p>
-        <p>距離: <span id="distance">0</span> m</p>
+        <p>距離: <span id="distance">0</span> m</p>　<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>　<p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
     </div>
 
     <div id="controls">
-    <button id="downButton" class="control-button">▼</button>
         <button id="upButton" class="control-button">▲</button>
+    <button id="downButton" class="control-button">▼</button>
+        <button id="startButton">開始</button>
         <button id="leftButton" class="control-button left-right">◀</button>
-        <button id="rightButton" class="control-button left-right">▶</button>
+        <button id="rightButton" class="control-button left-right">▶</button>　　<p>PCはパソコンキーボードの矢印ボタンで操作可能</p>
     </div>
 
-        <button id="startButton">開始</button>　　
 
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p><br>
-<p><a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
-        </div>
-
+         <p>無料ゲーム集</p>
+<p class="left"><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
     <script src="/js/game.js"></script>
-
 </div>
     </body>
 </html>
