@@ -6,7 +6,7 @@
         <meta name="keywords" content="忍者,ペンギン,ブラウザゲーム,2P">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>忍者ペンギン 2P対戦もできる無料ブラウザゲーム</title>
-  <link rel="stylesheet" href="y4d.css">
+  <link rel="stylesheet" href="/css/y4d.css">
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
@@ -19,7 +19,7 @@
         <div id="p2-backward" class="button">後</div>
     </div>
 
-  <script src="y4d.js" defer></script>
+  <script src="/js/y4d.js" defer></script>
 
 </body>
 </html>

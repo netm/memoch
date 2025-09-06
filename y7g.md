@@ -6,7 +6,7 @@
         <meta name="keywords" content="英単語,小6">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>英単語小6クイズゲーム</title>
-  <link rel="stylesheet" href="y6f.css">
+  <link rel="stylesheet" href="/css/y6f.css">
 </head>
 <body>
 

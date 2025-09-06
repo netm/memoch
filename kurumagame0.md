@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
         <title>車ブラウザゲーム2無料スマホタブレット対応</title>
     <style>
         body {
@@ -24,16 +24,6 @@
             -ms-user-select: none; /* IE/Edge */
             user-select: none; /* Standard */
         }
-#game-overlay {
-  width: 100%;
-  height: 40vh;          /* ビューポートの40%高さに設定 */
-  max-height: 300px;     /* 任意で上限px指定 */
-  overflow: hidden;      /* はみ出た部分は隠す */
-  position: relative;    /* 内部で絶対配置する場合の基準 */
-  background: #000;      /* 任意で背景色 */
-  z-index: 100;          /* 他コンテンツより手前に表示 */
-}
-
 
         canvas {
             border: 2px solid #333;
@@ -110,7 +100,7 @@
 
         <button id="startButton">開始</button>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ</a>
 
-    <script src="game0.js"></script>
+    <script src="/js/game0.js"></script>
 </div>
     </body>
 </html>

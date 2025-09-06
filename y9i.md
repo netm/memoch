@@ -6,7 +6,7 @@
         <meta name="keywords" content="英単語,暗記,サイト">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>英単語の暗記サイト中学二年生の英単語クイズゲーム</title>
-  <link rel="stylesheet" href="y6f.css">
+  <link rel="stylesheet" href="/css/y6f.css">
 </head>
 <body>
 

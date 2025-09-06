@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<meta name="description" content="潜水艦seaシューティング2はブラウザゲーム友達と2人対戦可です。PCスマホタブレット対応、無料で完全無課金">
+        <meta name="keywords" content="潜水艦,ブラウザゲーム,2人">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>潜水艦seaシューティング2 ブラウザゲーム友達と2人対戦可</title>
+  <link rel="stylesheet" href="/css/y2su.css">
+</head>
+<body>
+<script>
+  // 1. グローバル変数として宣言
+  let img1, img2, img3;
+  let assetsLoaded = 0;
+
+  function assetLoaded() {
+    if (++assetsLoaded === 3) {
+      // 全画像読み込み完了後にゲーム開始
+      initGame();
+      showOverlay(
+        'よこ画面\n左側タップ vs COM　◆　右側タップ vs 2P\nタップ or クリックで開始',
+        startGame
+      );
+      requestAnimationFrame(loop);
+    }
+  }
+
+  // 2. DOM 準備完了後に各画像をロード
+  window.addEventListener('DOMContentLoaded', () => {
+    img1 = new Image();
+    img2 = new Image();
+    img3 = new Image();
+
+    img1.onload = assetLoaded;
+    img2.onload = assetLoaded;
+    img3.onload = assetLoaded;
+
+    img1.src = 'assets/player1.png';
+    img2.src = 'assets/player2.png';
+    img3.src = 'assets/enemy.png';
+  });
+
+  // 既存の initGame(), loop(), showOverlay(), startGame() 等はそのまま利用
+</script>
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+    <div id="p1-controls" class="control">
+      <button id="p1-up">上</button>
+      <button id="p1-down">下</button>
+    </div>
+    <div id="p2-controls" class="control">
+      <button id="p2-up">上</button>
+      <button id="p2-down">下</button>
+    </div>
+    <div id="overlay"></div>
+  </div>
+  <script src="/js/y2su.js"></script>
+</body>
+</html>

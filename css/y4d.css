@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    overflow: hidden; /* スクロールバーを常に非表示にする */
+    background-color: black; /* Canvas読み込み前の背景色 */
+
+}
+
+
+canvas {
+    display: block; /* Canvas下の余分なスペースを削除 */
+    position: absolute; /* 他の要素との重なりを制御 */
+    top: 0;
+    left: 0;
+}

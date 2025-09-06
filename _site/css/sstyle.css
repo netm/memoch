@@ -1,0 +1,294 @@
+body {
+    margin: 0;
+    overflow: hidden; /* スクロール防止 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 画面いっぱいに広げる */
+    background-color: #202020; /* 暗めの背景色 */
+    font-family: 'Press Start 2P', cursive, monospace; /* レトロなフォント */
+    color: #DDDDDD; /* UIの文字色 */
+    user-select: none; /* テキスト選択無効 */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    touch-action: manipulation; /* ダブルタップズーム防止 */
+
+    padding: 0!important;
+    padding-bottom: 0!important;
+}
+.fc2ad * {
+    position: static!important;
+}
+#fc2_bottom_bnr{position:static!important;}
+
+#game-overlay {
+  width: 100%;
+  height: 400vh;          /* ビューポートの40%高さに設定 */
+  max-height: 300px;     /* 任意で上限px指定 */
+  overflow: hidden;      /* はみ出た部分は隠す */
+  position: relative;    /* 内部で絶対配置する場合の基準 */
+  background: #000;      /* 任意で背景色 */
+  z-index: 100;          /* 他コンテンツより手前に表示 */
+}
+
+
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    max-width: 480px; /* ファミコンのアスペクト比に近づける (3:2に近い) */
+    max-height: 720px; /* スマホ縦持ちに合わせた高さ */
+    border: 4px solid #606060;
+    box-sizing: border-box;
+    background-color: #000000; /* ゲーム全体の背景 */
+    position: relative;
+    image-rendering: pixelated; /* ドット絵を潰さずに表示 */
+}
+
+#game-canvas {
+    background-color: #008000; /* ゲーム画面の背景色（暗い草地風） */
+    flex-grow: 1; /* 残りのスペースを埋める */
+    width: 100%;
+    display: block;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #404040;
+    padding: 10px 0;
+    min-height: 140px; /* ボタンエリアの最低高さを確保 */
+    box-sizing: border-box;
+    border-top: 2px solid #606060;
+    display: none; /* ゲーム開始まで非表示 */
+}
+
+.control-group {
+    flex: 1; /* 均等な幅 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* ボタン間のスペース */
+}
+
+.center-controls {
+    flex: 2; /* 中央ボタンを大きめに */
+}
+
+.control-button {
+    width: 70px;
+    height: 70px;
+    font-size: 0; /* テキストを非表示 */
+    background-color: #A0A0A0;
+    border: 3px solid #808080;
+    border-radius: 50%; /* 丸いボタン */
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px #606060; /* 立体感 */
+    transition: all 0.05s ease;
+    -webkit-tap-highlight-color: transparent; /* タップ時のハイライトを無効化 */
+}
+
+.control-button:active {
+    background-color: #C0C0C0;
+    box-shadow: 0 2px #606060;
+    transform: translateY(2px);
+}
+
+.dir-button {
+    background-color: #606060; /* 十字キーの色 */
+    border-color: #404040;
+}
+
+/* 方向ボタンの▲▼マーク */
+.dir-button.up::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg); /* ▲の形 */
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 20px solid #FFFFFF;
+}
+.dir-button.down::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg); /* ▼の形 */
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 20px solid #FFFFFF;
+}
+
+.fire-button {
+    width: 100px;
+    height: 100px;
+    background-color: #D04040; /* 赤いボタン */
+    border-color: #A03030;
+    font-size: 1.6em; /* FIREの文字を表示 */
+    color: white;
+    text-shadow: 1px 1px 0 #802020;
+    line-height: 1; /* 行の高さを調整 */
+}
+
+#game-info {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    font-size: 0.7em;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 #000000;
+    z-index: 10;
+    display: none; /* ゲーム開始まで非表示 */
+}
+
+#message-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    white-space: nowrap;
+    display: none;
+    z-index: 100;
+    text-align: center;
+}
+
+.game-action-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-family: 'Press Start 2P', cursive, monospace;
+    background-color: #4040D0; /* 青系のボタン */
+    color: white;
+    border: 3px solid #3030A0;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px #202080;
+    transition: all 0.1s ease;
+    z-index: 101;
+    white-space: nowrap;
+}
+
+.game-action-button:active {
+    background-color: #6060E0;
+    box-shadow: 0 2px #202080;
+    transform: translate(-50%, -50%) translateY(3px);
+}
+
+#start-button {
+    display: block; /* 最初は表示 */
+}
+
+#next-level-button,
+#restart-button {
+    display: none; /* 最初は非表示 */
+}
+
+#restart-button {
+    transform: translate(-50%, calc(-50% + 80px)); /* "次のステージ"ボタンの下に配置 */
+}
+
+/* 横向きスマートフォン対応 */
+@media (orientation: landscape) {
+    #game-container {
+        flex-direction: row; /* 横並び */
+        max-width: 90vw; /* 縦横比を固定しつつ画面に収める */
+        max-height: 90vh; /* 横向き画面の高さに合わせる */
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #game-canvas {
+        flex-grow: 1;
+        width: auto;
+        height: 100%;
+    }
+
+    #controls {
+        flex-direction: column; /* ボタンを縦に並べる */
+        min-width: 140px; /* コントロールエリアの最低幅 */
+        width: 30%; /* コントロールの幅調整 */
+        height: 100%;
+        padding: 0;
+        justify-content: space-around;
+        border-top: none;
+        border-left: 2px solid #606060;
+    }
+
+    .control-group {
+        flex-direction: row; /* 横向き時はボタングループを横並びに */
+        flex-wrap: wrap; /* ボタンが多ければ折り返す */
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .control-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .fire-button {
+        width: 80px;
+        height: 80px;
+        font-size: 1.4em;
+    }
+
+    .dir-button.up::before,
+    .dir-button.down::before {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 16px solid #FFFFFF;
+    }
+
+    #game-info {
+        flex-direction: column;
+        align-items: flex-start;
+        top: 5px;
+        left: auto;
+        right: 5px;
+        width: auto;
+        padding: 5px 10px;
+        font-size: 0.6em;
+    }
+
+    .game-action-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    #start-button {
+        transform: translate(-50%, calc(-50% - 80px)); /* 横向きでの位置調整 */
+    }
+
+    #next-level-button {
+        transform: translate(-50%, calc(-50% + 0px)); /* 横向きでの位置調整 */
+    }
+
+    #restart-button {
+        transform: translate(-50%, calc(-50% + 60px)); /* 横向きでの位置調整 */
+    }
+}

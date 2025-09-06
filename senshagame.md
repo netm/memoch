@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <link rel="stylesheet" href="ssstyle.css">
+    <link rel="stylesheet" href="/css/ssstyle.css">
         <title>戦車ゲームブラウザシューティング</title>
   </head>
     <body>
@@ -38,7 +38,7 @@
             <button id="rightButton">▶</button>
         </div>
 
-    <script src="ssscript.js"></script>
+    <script src="/js/ssscript.js"></script>
 </div>
     </body>
 </html>

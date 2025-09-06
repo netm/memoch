@@ -6,7 +6,7 @@
         <meta name="keywords" content="タイマー,おしゃれ,サイト">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>タイマーおしゃれサイト</title>
-  <link rel="stylesheet" href="yzp.css">
+  <link rel="stylesheet" href="/css/yzp.css">
 </head>
 <body>  <div class="top-section">
     <div id="digital-timer">

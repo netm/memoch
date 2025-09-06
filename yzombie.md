@@ -6,7 +6,7 @@
         <meta name="keywords" content="ゾンビ,ゲーム,PC,無料,ブラウザゲーム">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</title>
-  <link rel="stylesheet" href="yzombie.css">
+  <link rel="stylesheet" href="/css/yzombie.css">
 </head>
 <body>
 

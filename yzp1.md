@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="c.css" media="all">
+        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
   　<title>勉強タイマーおすすめwebサイトの説明 PCスマホ対応</title>
     </head>
     <body>

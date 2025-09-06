@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="sensuistyle.css">
+    <link rel="stylesheet" href="/css/sensuistyle.css">
 
         <title>潜水艦ゲーム無料PCスマホタブレット対応シューティング</title>
   </head>
@@ -25,7 +25,7 @@
   </div>
 </div>
 
-    <script src="sensuiscript.js"></script>
+    <script src="/js/sensuiscript.js"></script>
 
     </body>
 </html>

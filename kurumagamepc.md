@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
         <title>車ブラウザゲーム無料PCパソコン用</title>
     <style>
         body {
@@ -101,7 +101,7 @@
 
          <p>無料ゲーム集</p>
 <p class="left"><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
-    <script src="game.js"></script>
+    <script src="/js/game.js"></script>
 </div>
     </body>
 </html>

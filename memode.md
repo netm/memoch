@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
         <meta name="keywords" content="メモ,電卓,web,ブラウザ">
-  <link rel="stylesheet" href="z999.css">
+  <link rel="stylesheet" href="/css/z999.css">
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
     </head>
 <body>

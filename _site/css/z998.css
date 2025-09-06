@@ -1,0 +1,157 @@
+/* リセット＆基本設定 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ページ全体レイアウト */
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f0f4ff, #d9e4ff);
+
+    padding: 0!important;
+    padding-bottom: 0!important;
+}
+.fc2ad * {
+    position: static!important;
+}
+#fc2_bottom_bnr{position:static!important;}
+
+#game-overlay {
+  width: 100%;
+  height: 40vh;          /* ビューポートの40%高さに設定 */
+  max-height: 300px;     /* 任意で上限px指定 */
+  overflow: hidden;      /* はみ出た部分は隠す */
+  position: relative;    /* 内部で絶対配置する場合の基準 */
+  background: #000;      /* 任意で背景色 */
+  z-index: 100;          /* 他コンテンツより手前に表示 */
+}
+
+
+
+/* コンテナ */
+.container {
+  width: 400px;
+  text-align: center;
+}
+
+.left   { text-align: left; }
+
+h1 {
+  margin-bottom: 1rem;
+  color: #334e8c;
+}
+
+h2 {
+color:#557303;
+font-size: 88%; 
+line-height: 1em; 
+font-weight:bolder;
+padding:10px 0px 5px 20px;
+margin:0px 0px 0px 0px;
+border-bottom:1px dotted #7ABD3C;
+background-color:#f0f2ff;
+border-radius: 1vh;
+text-align: left;
+}
+
+h3 {
+color:#557303;
+font-size: 90%;
+line-height: 1em;
+font-weight:bolder;
+padding:8px 0px 7px 20px;
+margin:10px 0px 5px 0px;
+border-bottom:1px dotted #7ABD3C;
+background-color:#fcfabd;
+border-radius: 2vh;
+text-align: left;
+}
+h4 {
+position: center;
+padding:8px 0px 7px 20px;
+margin:0px 0px 0px 0px;
+  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), transparent);
+  background: linear-gradient(to right, rgb(255, 186, 115), transparent);
+  color: #545454;
+  font-size: 90%;
+border-radius: 2vh;
+text-align: left;
+}
+
+/* カード風ボックス */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* フィールドセット＆レジェンド */
+fieldset {
+  border: none;
+  margin-bottom: 1rem;
+}
+
+legend {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: #334e8c;
+}
+
+/* フィールドセット内ラベル */
+fieldset label {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  color: #334e8c;
+}
+
+/* 各入力項目ラベル */
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #334e8c;
+}
+
+/* テキスト入力＆プルダウン */
+input,
+select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #aac4ff;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #7292ff;
+  outline: none;
+}
+
+/* 積立項目（遷移の準備） */
+#savings-label,
+#savings-count-label {
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+  overflow: hidden;
+}
+
+/* 結果表示 */
+.result {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #1a2b5d;
+}
+
+#output {
+  font-weight: bold;
+}

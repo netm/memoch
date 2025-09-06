@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    overflow: hidden; /* スクロール防止 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 画面全体の高さに合わせる */
+    background-color: #333;
+    font-family: 'Arial', sans-serif;
+    -webkit-touch-callout: none; /* iOSで長押しによるメニュー表示を禁止 */
+    -webkit-user-select: none; /* iOSでテキスト選択を禁止 */
+    user-select: none; /* 他のブラウザでテキスト選択を禁止 */
+
+    padding: 0!important;
+    padding-bottom: 0!important;
+}
+.fc2ad * {
+    position: static!important;
+}
+#fc2_bottom_bnr{position:static!important;}
+
+#game-overlay {
+  width: 100%;
+  height: 400vh;          /* ビューポートの40%高さに設定 */
+  max-height: 300px;     /* 任意で上限px指定 */
+  overflow: hidden;      /* はみ出た部分は隠す */
+  position: relative;    /* 内部で絶対配置する場合の基準 */
+  background: #000;      /* 任意で背景色 */
+  z-index: 100;          /* 他コンテンツより手前に表示 */
+}
+
+
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    /* 縦画面固定を意識して、幅を狭く、高さを広く設定 */
+    max-width: 500px; /* 例: スマートフォンの幅に合わせて調整 */
+    max-height: 900px; /* 例: スマートフォンの高さに合わせて調整 */
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    background-color: black;
+    touch-action: none; /* canvas上でのデフォルトのタッチアクションを無効化 */
+}
+
+.game-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    /* 初期状態では非表示にする */
+    display: none;
+}
+
+/* スタート画面のみ初期表示 */
+#start-screen {
+    display: flex;
+}
+
+#game-over-screen, #victory-screen {
+    z-index: 11; /* 他の画面より前面に表示されるように */
+}
+
+
+#controls {
+    position: absolute;
+    bottom: 24px; /* スマートフォンの下部操作ボタンを考慮して少し上に */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* ボタン間のスペース */
+    z-index: 10;
+}
+
+#controls button {
+    width: 160px;
+    height: 90px;
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: 2px solid black;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* タップ時のハイライトを無効化 */
+}
+
+#controls button:active {
+    background-color: rgba(255, 255, 255, 0.6);
+}

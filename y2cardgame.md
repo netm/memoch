@@ -6,7 +6,7 @@
         <meta name="keywords" content="カードゲーム,二人,ブラウザゲーム">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>カードゲーム二人はペンギン ブラウザゲーム</title>
-  <link rel="stylesheet" href="y2card.css">
+  <link rel="stylesheet" href="/css/y2card.css">
 </head>
 <body>
 
@@ -41,6 +41,6 @@
         </div>
     </div>
   
-  <script src="y2cardgame.js"></script>
+  <script src="/js/y2cardgame.js"></script>
 </body>
 </html>

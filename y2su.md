@@ -6,7 +6,7 @@
         <meta name="keywords" content="潜水艦,ブラウザゲーム,2人">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>潜水艦seaシューティング2 ブラウザゲーム友達と2人対戦可</title>
-  <link rel="stylesheet" href="y2su.css">
+  <link rel="stylesheet" href="/css/y2su.css">
 </head>
 
 <body>
@@ -62,6 +62,6 @@
     <div id="overlay"></div>
   </div>
 
-  <script src="y2su.js"></script>
+  <script src="/js/y2su.js"></script>
 </body>
 </html>

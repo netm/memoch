@@ -1,0 +1,243 @@
+/* Reset default spacing and box model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+
+    padding: 0!important;
+    padding-bottom: 0!important;
+}
+.fc2ad * {
+    position: static!important;
+}
+#fc2_bottom_bnr{position:static!important;}
+
+#game-overlay {
+  width: 100%;
+  height: 40vh;          /* ビューポートの40%高さに設定 */
+  max-height: 300px;     /* 任意で上限px指定 */
+  overflow: hidden;      /* はみ出た部分は隠す */
+  position: relative;    /* 内部で絶対配置する場合の基準 */
+  background: #000;      /* 任意で背景色 */
+  z-index: 100;          /* 他コンテンツより手前に表示 */
+}
+
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 10px;
+}
+
+/* Top Section: Digital Timer, Status, Analog Clock */
+.top-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#digital-timer {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+
+#digital-timer .digit {
+  display: inline-block;
+  width: 2ch;
+  text-align: center;
+}
+
+#status {
+  font-size: 3.5rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+#analog-clock {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Middle Section: Sound Buttons */
+.middle-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.sound-btn {
+  padding: 10px 12px;
+  min-width: 60px;
+  min-height: 44px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e0e0e0;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sound-btn:hover {
+  background-color: #d5d5d5;
+}
+
+.sound-btn.active {
+  background-color: #6bfa71;
+  color: #000;
+}
+
+/* Middle Section: Duration Buttons */
+.duration-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.duration-btn {
+  padding: 10px 12px;
+  min-width: 60px;
+  min-height: 44px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e0e0e0;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.duration-btn:hover {
+  background-color: #d5d5d5;
+}
+
+.duration-btn.active {
+  background-color: #6ff775;
+  color: #000;
+}
+
+/* Bottom Section: Controls and Slider */
+.bottom-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+#start, #reset {
+  padding: 12px 20px;
+  min-width: 80px;
+  min-height: 44px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#start:hover, #reset:hover {
+  background-color: #19c9ff;
+}
+
+#reset {
+  background-color: #ff57ab;
+}
+
+#reset:hover {
+  background-color: #c62828;
+}
+
+#volume-slider {
+  width: 150px;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  #digital-timer {
+    font-size: 2rem;
+  }
+
+  #analog-clock {
+    width: 60px;
+    height: 60px;
+  }
+
+  .sound-btn,
+  .duration-btn,
+  #start,
+  #reset {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    min-width: 50px;
+    min-height: 40px;
+  }
+
+  #volume-slider {
+    width: 120px;
+  }
+}
+
+/* Blinking Animation for Top Elements */
+@keyframes blink {
+  0%, 100% {
+    background-color: #fff;
+    color: #000;
+  }
+  50% {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+/* Blinking Animation for Page Background */
+@keyframes blink-bg {
+  0%, 100% {
+    background-color: #f5f5f5;
+  }
+  50% {
+    background-color: #333;
+  }
+}
+
+/*
+  To activate the blink + invert effect when time’s up:
+  1. Add class="timer-ended" to <body>
+  2. Add class="timer-ended" to the .top-section element
+*/
+
+body.timer-ended {
+  animation: blink-bg 1s infinite;
+}
+
+.top-section.timer-ended #digital-timer,
+.top-section.timer-ended #status,
+.top-section.timer-ended #analog-clock {
+  animation: blink 1s infinite;
+}

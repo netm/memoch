@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
+        <meta name="keywords" content="メモ,電卓,web,ブラウザ">
+  <link rel="stylesheet" href="/css/z999.css">
+  <title>メモ付き電卓のwebブラウザ無料サイト</title>
+    </head>
+<body>
+        <h1><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></h1>
+          <div class="blockbody"><p>メモ付き電卓のwebブラウザ無料サイト 分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p>
+</div>
+  <div class="calculator-wrapper">
+    <!-- モード選択 -->
+<p><!-- 電卓部 -->
+<div class="calculator">
+<div class="mode-select">
+<label for="modeSelect">モード：</label>
+<select id="modeSelect">
+<option value="standard">電卓モード</option>
+<option value="currency">通貨</option>
+<option value="length">長さ</option>
+<option value="weight">重さ</option>
+<option value="fraction">分数計算</option>
+<option value="time">時間</option>
+<option value="root">ルート平方根</option>
+</select>
+</div>
+<div class="display" id="display">0</div>
+<div class="keys">
+<!-- 拡張ボタン群 -->
+<button data-action="clear">AC</button>
+<button data-action="delete">⌫</button>
+<button data-action="percent">%</button>
+<button data-action="tax">TAX</button></p>
+<p><button data-action="sqrt">√</button>
+<button data-action="operator">^</button>
+<button data-action="operator">÷</button>
+<button data-action="operator">×</button></p>
+<p><!-- 通常キー -->
+<button>7</button>
+<button>8</button>
+<button>9</button>
+<button data-action="operator">−</button></p>
+<p><button>4</button>
+<button>5</button>
+<button>6</button>
+<button data-action="operator">+</button></p>
+<p><button>1</button>
+<button>2</button>
+<button>3</button>
+<button data-action="fractionSlash">/</button>
+<button data-action="calculate" class="equals">=</button></p>
+<p><button class="zero">0</button>
+<button>.</button>
+</div>
+</div></p>
+<p><!-- 単位変換パネル -->
+<div class="converter" id="converterPanel">
+<input type="number" id="convertInput" placeholder="値を入力">
+<select id="unitFrom"></select>
+→
+<select id="unitTo"></select>
+<button id="doConvert">単位変換</button>
+</div></p>
+<p><!-- メモ部 -->
+<div class="memo">
+<h2>メモ付き電卓　計算履歴</h2>
+<div id="history"></div>
+<div class="memo-buttons">
+<button id="clearHistory">クリア</button>
+<button id="copyHistory">コピー</button>
+</div>
+</div></p>
+  </div>
+  <script src="/js/z999.js"></script>
+<h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
+<p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
+<p>さらに、便利な分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p><br>
+<h2>メモ機能は電卓の右側に計算履歴として表示</h2>
+<p>右側に計算履歴として、自動でメモとして表示されます。</p><br>
+<p><h3>メモ付き電卓の便利な使い方</h3></p>
+<p>メモ機能の各行をクリックすると、電卓の窓に再表示。</p><br>
+<p>再表示されたら、そこから計算の続きを始めることができます。</p>
+<p>もう一回打ちなおす手間がかからなくて、便利です。</p><br>
+<p><h3>メモ付き機能のボタンの説明</h3></p>
+<p>「クリア」ボタンは、履歴をすべて削除。</p>
+<p>「コピー」ボタンは、履歴テキストをクリップボードにコピーします。</p>
+<br>
+<h2>メモ付き電卓webブラウザ無料サイトの使い方の説明 </h2>
+<p>使い方の説明です。</p>
+<p>メモ付き電卓のwebブラウザ無料サイトは、初心者でも簡単に使えます。</p><br>
+<p><h3>左上のモード選択</h3></p>
+<p>最初に、画面の左上にある「モード選択」をします。</p>
+<p>電卓モードか、通過、長さ、重さ、分数計算、時間、ルート平方根を選択してください。</p><br>
+<p>モードによって、画面表示が切り替わります。</p>
+<br>
+<p><h3>電卓モード</h3></p>
+<p>電卓モードは、数字「0～9/」と「.」で値を入力。</p>
+<p>「*」は「×　かけ算」, 「/」は「÷　わり算」</p>
+<br>
+<p><h3>累乗計算</h3></p>
+<p>「^」で、累乗計算ができます。</p>
+<p>たとえば 2 ^ 5 = 32　2を5回累乗すると（2x2x2x2x2=）32です。</p>
+<br>
+        <h3>%パーセント計算</h3>
+<p>「%」を押すと、パーセント計算になります。</p><br>
+<p>現在の値を 100 で割ります。</p>
+<p>100%を1とするので、50%は0.5になります。</p>
+<br>
+        <h3>消費税計算</h3>
+<p>「TAX」で、消費税計算します。</p>
+<p>4900で「TAX」を押すと10%消費税込み値段の5390になります。</p>
+<br>
+        <h3>その他のボタン</h3>
+<p>「AC」は、すべてクリアして、リセットします。</p>
+<p>「⌫」は、最後の文字を１つ削除します。</p>
+<br>
+<p><h4>PCキーボード操作も可</h4></p>
+<p>パソコンのキーボード操作も可能です。</p><br>
+<p>数字キー「0～9」「.」「+、-、*（×）、/（÷）、 ^」で計算入力</p>
+<p>Enter または = で、計算実行。</p>
+<p>Backspace は、⌫（一文字削除）</p>
+<p>Escape は、AC（全クリア）</p>
+<p>Shift+5（%）は、％計算</p>
+<p>tキーは、TAX 計算</p>
+<p>rキーは、√（ルート平方根モード時）。</p>
+<br>
+<h2>単位変換機能の電卓webブラウザ無料サイトの説明</h2>
+<p>画面の左上にあるモードから「通貨、長さ、重さ、時間」を選びます。</p><br>
+<p>電卓の右にある空欄「値を入力」に「数値」を入力。</p>
+<p>その右の「単位」→「単位」から単位を選択。</p><br>
+<p>「単位変換」ボタンを押すと、変換されます。</p><br>
+        <h3>通貨モード</h3>
+<p>電卓の左上にある「通貨」を選びます。</p>
+<p>電卓の右にある空欄に「数字」を入力。</p><br>
+<p>「1」「USD」を選ぶ→「JPY」を選ぶ</p>
+<p>「単位変換」ボタンを押すと、「1ドル→145円」に変換されます。</p><br>
+<p>※ドル円相場は変動しやすいので、「1ドル→145円」の固定の数値換算です。</p><br>
+<br>
+        <h3>長さモード</h3>
+<p>左上にあるモードの「長さ」を選びます。</p>
+<p>電卓の右にある空欄に「数字」を入力。</p><br>
+<p>「12」「inch」を選ぶ→「cm」を選ぶ</p>
+<p>「単位変換」ボタンを押すと、「30.48cm」に変換されます。</p><br>
+<p><h3>重さモード</h3></p>
+<p>画面の左上にある「重さ」を選びます。</p>
+<p>電卓の右にある空欄に「重さの数値」を入力。</p><br>
+<p>「12.5」「lb (ポンド)」を選ぶ→「kg」を選ぶ</p>
+<p>「単位変換」ボタンを押すと、「5.6699kg」と変換されます。</p><br>
+<p><h3>分数モード</h3></p>
+<p>左上にあるモード「分数計算」を選択。</p>
+<p>「a/b」の形式で入力し、＋, −, ×, ÷ を押して別の分数と計算、</p>
+<p>= を押すと最小分母・分子に約分された結果が「n/d」で表示。</p><br>
+<p>例　1/2 ＋ 3/4 = → 「5/4」。</p><br>
+<p><h3>時間モード</h3></p>
+<p>電卓の左上にある「時間」を選びます。</p>
+<p>電卓の右にある空欄に「時間の数字」を入力。</p><br>
+<p>「1.2」「hr（時）」を選ぶ→「min（分）」を選ぶ</p>
+<p>「単位変換」ボタンを押すと、「72（分）」と変換されます。</p><br>
+<p><h3>ルート平方根モード</h3></p>
+<p>左上にあるモード「ルート平方根」を選択。</p>
+<p>数字を入力して、√ ボタンを押すと平方根を計算します。</p>
+<p>例　√2 = 1.414213562373 </p><br>
+<p><p>便利な電卓・計算機</p></p>
+<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+<p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
+  <br>
+         <p>学習ゲーム</p>
+<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
+<p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
+<p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+<p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
+<br>
+         <p>便利なタイマー・リアルタイム時計</p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
+<br>
+         <p>肩こり解消</p>
+<p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング</a></p>
+<br>
+<p>TVerを便利に</p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
+<br>
+         <p>無料ゲーム集</p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
+<br>
+<p><div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+        <p><span class="copyright">
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
+        Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
+        </div>
+</body>
+</html>
