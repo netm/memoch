@@ -200,6 +200,15 @@ setInterval('Watch()',500);
 自社株買い相場PBR1優位といってもつられるときはつられる
 3本線以外はきびしい　　相場に興味ないくらいじゃないとやられる
 
+
+npm run serve
+
+さいごにやるのは（VS Codeのターミナルにうつのは）
+git add .
+git commit -m "Deploy to Cloudflare Pages"
+git push origin main
+
+
 </textarea>
 </form>
 <p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>

@@ -10,24 +10,6 @@ body {
   touch-action: none; /* スクロールや拡大防止 */
 
 }
-.fc2ad * {
-    position: static!important;
-}
-#fc2_bottom_bnr{
-  position:static!important;
-}
-
-/* 広告エリアを強制非表示に */
-  #ad_left, 
-  #ad_right, 
-  .fc2ad_banner, 
-  .ad_overlay {
-    position: static!important;
-  }
-  /* ゲーム領域を上へ持ち上げ */
-  #game-container {
-    margin-top: 0 !important;
-  }
 
 
 #gameContainer {

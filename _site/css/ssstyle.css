@@ -11,24 +11,7 @@ body {
     -webkit-user-select: none; /* iOSでテキスト選択を禁止 */
     user-select: none; /* 他のブラウザでテキスト選択を禁止 */
 
-    padding: 0!important;
-    padding-bottom: 0!important;
 }
-.fc2ad * {
-    position: static!important;
-}
-#fc2_bottom_bnr{position:static!important;}
-
-#game-overlay {
-  width: 100%;
-  height: 400vh;          /* ビューポートの40%高さに設定 */
-  max-height: 300px;     /* 任意で上限px指定 */
-  overflow: hidden;      /* はみ出た部分は隠す */
-  position: relative;    /* 内部で絶対配置する場合の基準 */
-  background: #000;      /* 任意で背景色 */
-  z-index: 100;          /* 他コンテンツより手前に表示 */
-}
-
 
 
 #game-container {

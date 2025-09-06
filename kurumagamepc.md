@@ -98,9 +98,6 @@
         <button id="rightButton" class="control-button left-right">▶</button>　　<p>PCはパソコンキーボードの矢印ボタンで操作可能</p>
     </div>
 
-
-         <p>無料ゲーム集</p>
-<p class="left"><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
     <script src="/js/game.js"></script>
 </div>
     </body>
