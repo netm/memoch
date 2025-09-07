@@ -5,7 +5,7 @@
     <meta name="description" content="車ブラウザゲーム2無料スマホタブレット対応の縦画面用です。">
     <meta name="keywords" content="車,ブラウザ,ゲーム,無料,スマホ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>車ブラウザゲーム2無料スマホタブレット対応</title>
     <style>
       body {
@@ -103,7 +103,7 @@
       <a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>
       <a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ</a>
 
-      <script src="js/game0.js"></script>
+      <script src="/js/game0.js"></script>
     </div>
   </body>
 </html>git add .

@@ -5,7 +5,7 @@
     <meta name="description" content="車ブラウザゲーム無料スマホタブレット対応の縦画面です。">
     <meta name="keywords" content="車,ブラウザ,ゲーム,無料,タブレット">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>車ブラウザゲーム無料スマホタブレット対応</title>
     <style>
       body {
@@ -101,7 +101,7 @@
 
       <button id="startButton">開始</button>
 
-      <script src="js/game.js"></script>
+      <script src="/js/game.js"></script>
     </div>
   </body>
 </html>
