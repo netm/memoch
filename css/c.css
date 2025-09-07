@@ -7,6 +7,40 @@ zoom: 115%;
 
 }
 
+.site-nav {
+  width: 100%;
+  box-sizing: border-box;      /* パディング込みで幅100%になる */
+  display: flex;
+  justify-content: center;
+  gap: 1rem;                   /* 要素間隔を統一 */
+  padding: 1rem 0;
+  margin: 0 auto;
+  flex-wrap: wrap;             /* 狭い画面で折り返し */
+}
+
+.site-nav a {
+  flex: 0 1 auto;              /* コンテンツ幅を保ちつつ縮小可 */
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
+.nav {
+  width: 100%;
+  box-sizing: border-box;      /* パディング込みで幅100%になる */
+  display: flex;
+  justify-content: center;
+  gap: 1rem;                   /* 要素間隔を統一 */
+  padding: 1rem 0;
+  margin: 0 auto;
+  flex-wrap: wrap;             /* 狭い画面で折り返し */
+}
+
+.nav a {
+  flex: 0 1 auto;              /* コンテンツ幅を保ちつつ縮小可 */
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
+
+
 
 #container{
 margin:0px auto;
@@ -155,12 +189,6 @@ padding:0px 0px 0px 0px;
 .description strong{ 
 text-decoration: none;
 font-weight: normal;
-}
-.navi {
-font-size: 90%; 
-text-align:center;
-margin-bottom:2px;
-margin-top:2px;
 }
 #content {
 margin:0px 0px 0px 15px;
