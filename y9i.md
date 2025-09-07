@@ -5,9 +5,24 @@
 <meta name="description" content="英単語の暗記サイト中学二年生の英単語クイズゲーム  PCスマホタブレット対応で課金なし無料です">
         <meta name="keywords" content="英単語,暗記,サイト">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <title>英単語の暗記サイト中学二年生の英単語クイズゲーム</title>
   <link rel="stylesheet" href="/css/y6f.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
 <body>
 
 <script src="/js/y9i.js"></script>

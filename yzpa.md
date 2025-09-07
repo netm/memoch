@@ -5,9 +5,24 @@
 <meta name="description" content="タイマーおしゃれサイトはweb上で簡単設定できます。PC・スマホ・タブレット対応です">
         <meta name="keywords" content="タイマー,おしゃれ,サイト">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <title>タイマーおしゃれサイト</title>
   <link rel="stylesheet" href="/css/yzp.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
 <body>  <div class="top-section">
     <div id="digital-timer">
       <span class="digit">00</span>:<span class="digit">00</span>:<span class="digit">00</span>

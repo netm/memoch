@@ -7,10 +7,25 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
     <link rel="stylesheet" href="/css/sensuistyle.css">
 
         <title>潜水艦ゲーム無料PCスマホタブレット対応シューティング</title>
-  </head>
+  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
   <body>
 
   <div id="gameContainer">

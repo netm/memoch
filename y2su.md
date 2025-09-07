@@ -5,9 +5,24 @@
 <meta name="description" content="潜水艦seaシューティング2はブラウザゲーム友達と2人対戦可です。PCスマホタブレット対応、無料で完全無課金">
         <meta name="keywords" content="潜水艦,ブラウザゲーム,2人">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <title>潜水艦seaシューティング2 ブラウザゲーム友達と2人対戦可</title>
   <link rel="stylesheet" href="/css/y2su.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
 
 <body>
 

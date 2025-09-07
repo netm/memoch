@@ -5,9 +5,24 @@
 <meta name="description" content="カードゲーム二人はペンギン ブラウザゲーム友達と対戦可です。PCスマホタブレット対応、無料で完全無課金">
         <meta name="keywords" content="カードゲーム,二人,ブラウザゲーム">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <title>カードゲーム二人はペンギン ブラウザゲーム</title>
   <link rel="stylesheet" href="/css/y2card.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
 <body>
 
     <div id="game-container">

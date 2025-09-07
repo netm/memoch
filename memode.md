@@ -4,9 +4,24 @@
   <meta charset="UTF-8">
 <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
         <meta name="keywords" content="メモ,電卓,web,ブラウザ">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <link rel="stylesheet" href="/css/z999.css">
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
-    </head>
+    
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
 <body>
         <h1><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></h1>
           <div class="blockbody"><p>メモ付き電卓のwebブラウザ無料サイト 分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p>

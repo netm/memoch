@@ -5,6 +5,7 @@
     <meta name="description" content="車ブラウザゲーム2無料スマホタブレット対応の縦画面用です。">
     <meta name="keywords" content="車,ブラウザ,ゲーム,無料,スマホ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
     <link rel="stylesheet" href="/css/style.css">
     <title>車ブラウザゲーム2無料スマホタブレット対応</title>
     <style>
@@ -73,7 +74,21 @@
         transform: translateY(2px);
       }
     </style>
-  </head>
+  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
   <body>
     <div id="container">
       <div id="banner">

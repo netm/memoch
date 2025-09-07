@@ -5,9 +5,24 @@
 <meta name="description" content="忍者ペンギン 2P対戦もできる無料ブラウザゲーム PCスマホタブレット対応で完全無課金です">
         <meta name="keywords" content="忍者,ペンギン,ブラウザゲーム,2P">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <title>忍者ペンギン 2P対戦もできる無料ブラウザゲーム</title>
   <link rel="stylesheet" href="/css/y4d.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
 <body>
     <canvas id="gameCanvas"></canvas>
 
