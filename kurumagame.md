@@ -22,15 +22,6 @@
         -ms-user-select: none;
         user-select: none;
       }
-      #game-overlay {
-        width: 100%;
-        height: 40vh;
-        max-height: 300px;
-        overflow: hidden;
-        position: relative;
-        background: #000;
-        z-index: 100;
-      }
       canvas {
         border: 2px solid #333;
         background-color: #000;
