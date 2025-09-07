@@ -24,9 +24,9 @@ let imagesLoadedCount = 0;
 const totalImages     = Object.keys(imagePaths).length;
 
 // --- ゲーム状態変数 ---
-let gameRunning    = false;
-let distance       = 0;
-let prevPadStates  = [];
+let gameRunning   = false;
+let distance      = 0;
+let prevPadStates = [];
 
 // --- 入力状態管理 ---
 // キーボード＋タッチ入力
@@ -37,7 +37,7 @@ const keyboardKeys = {
   ArrowDown:  false
 };
 // ゲームパッド入力（毎フレーム上書き）
-const gamepadKeys   = {
+const gamepadKeys  = {
   ArrowLeft:  false,
   ArrowRight: false,
   ArrowUp:    false,
@@ -66,17 +66,16 @@ const playerCar = {
 
 // --- 敵車設定 ---
 const enemyCars          = [];
-const maxEnemyCars       = 16;
+const maxEnemyCars       = 15;
 const enemyBaseSpeed     = 2;
-const enemySpawnInterval = 40;
+const enemySpawnInterval = 45;
 let enemySpawnCounter    = 0;
 
 // --- アイテム設定 ---
-const items              = [];
-const itemSpawnInterval  = 160;
-let itemSpawnCounter     = 0;
-const itemSize           = 22;
-
+const items             = [];
+const itemSpawnInterval = 160;
+let itemSpawnCounter    = 0;
+const itemSize          = 22;
 
 // --- 画像ロード ---
 function loadImages() {
@@ -94,19 +93,18 @@ function loadImages() {
   }
 }
 
-
-// --- キーボード＆タッチ操作設定 ---
+// --- 入力設定（クリック・タッチ・キーボード・ゲームパッド） ---
 function setupInput() {
   // タッチ → keyboardKeys にマッピング
   const setKey = (k, v) => { keyboardKeys[k] = v; };
-  leftButton .addEventListener('touchstart', e=>{ e.preventDefault(); setKey('ArrowLeft',  true ); });
-  leftButton .addEventListener('touchend',   e=>{ e.preventDefault(); setKey('ArrowLeft',  false); });
-  rightButton.addEventListener('touchstart', e=>{ e.preventDefault(); setKey('ArrowRight', true ); });
-  rightButton.addEventListener('touchend',   e=>{ e.preventDefault(); setKey('ArrowRight', false); });
-  upButton    .addEventListener('touchstart', e=>{ e.preventDefault(); setKey('ArrowUp',    true ); });
-  upButton    .addEventListener('touchend',   e=>{ e.preventDefault(); setKey('ArrowUp',    false); });
-  downButton  .addEventListener('touchstart', e=>{ e.preventDefault(); setKey('ArrowDown',  true ); });
-  downButton  .addEventListener('touchend',   e=>{ e.preventDefault(); setKey('ArrowDown',  false); });
+  leftButton .addEventListener('touchstart', e => { e.preventDefault(); setKey('ArrowLeft',  true ); });
+  leftButton .addEventListener('touchend',   e => { e.preventDefault(); setKey('ArrowLeft',  false); });
+  rightButton.addEventListener('touchstart', e => { e.preventDefault(); setKey('ArrowRight', true ); });
+  rightButton.addEventListener('touchend',   e => { e.preventDefault(); setKey('ArrowRight', false); });
+  upButton    .addEventListener('touchstart', e => { e.preventDefault(); setKey('ArrowUp',    true ); });
+  upButton    .addEventListener('touchend',   e => { e.preventDefault(); setKey('ArrowUp',    false); });
+  downButton  .addEventListener('touchstart', e => { e.preventDefault(); setKey('ArrowDown',  true ); });
+  downButton  .addEventListener('touchend',   e => { e.preventDefault(); setKey('ArrowDown',  false); });
 
   // キーボード操作
   window.addEventListener('keydown', e => {
@@ -126,41 +124,38 @@ function setupInput() {
       keyboardKeys[e.key] = false;
     }
   });
+
+  // スタートボタン：クリック＆タッチ対応
+  startButton.addEventListener('click', () => {
+    startGame();
+  });
+  startButton.addEventListener('touchend', e => {
+    e.preventDefault();
+    startGame();
+  });
 }
 
-
-// --- ゲームパッド入力ポーリング ---
+// --- ゲームパッドポーリング ---
 function pollGamepad() {
-  const gps = navigator.getGamepads ? navigator.getGamepads() : [];
-  // まず全 gamepadKeys を false にリセット
-  ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].forEach(k => {
-    gamepadKeys[k] = false;
-  });
+  const gps = navigator.getGamepads?.() || [];
+  ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].forEach(k => gamepadKeys[k] = false);
 
-  for (let i = 0; i < gps.length; i++) {
-    const gp = gps[i];
-    if (!gp) continue;
+  gps.forEach((gp, i) => {
+    if (!gp) return;
+    gamepadKeys.ArrowUp    ||= gp.buttons[12]?.pressed;
+    gamepadKeys.ArrowDown  ||= gp.buttons[13]?.pressed;
+    gamepadKeys.ArrowLeft  ||= gp.buttons[14]?.pressed;
+    gamepadKeys.ArrowRight ||= gp.buttons[15]?.pressed;
 
-    // D-pad
-    gamepadKeys.ArrowUp    = gamepadKeys.ArrowUp    || gp.buttons[12]?.pressed;
-    gamepadKeys.ArrowDown  = gamepadKeys.ArrowDown  || gp.buttons[13]?.pressed;
-    gamepadKeys.ArrowLeft  = gamepadKeys.ArrowLeft  || gp.buttons[14]?.pressed;
-    gamepadKeys.ArrowRight = gamepadKeys.ArrowRight || gp.buttons[15]?.pressed;
-
-    // Start(9) / A(0) / X(2) で Enter 相当
     const enterNow = gp.buttons[9]?.pressed || gp.buttons[0]?.pressed || gp.buttons[2]?.pressed;
     const prev     = prevPadStates[i]?.enter || false;
-    if (enterNow && !prev && !gameRunning) {
-      startGame();
-    }
+    if (enterNow && !prev && !gameRunning) startGame();
     prevPadStates[i] = { enter: enterNow };
-  }
+  });
 }
 
-
-// --- ゲーム初期化・開始・終了 ---
+// --- 初期化・開始・終了 ---
 function initializeGame() {
-  // プレイヤー車リセット
   playerCar.x          = canvas.width  / 2;
   playerCar.y          = canvas.height - 100;
   playerCar.speed      = 0;
@@ -168,17 +163,15 @@ function initializeGame() {
   playerCar.fuel       = playerCar.maxFuel;
   playerCar.durability = playerCar.maxDurability;
 
-  // ゲームデータリセット
   distance           = 0;
   enemyCars.length   = 0;
   items.length       = 0;
   enemySpawnCounter  = 0;
   itemSpawnCounter   = 0;
+  prevPadStates      = [];
 
-  // 入力状態リセット
   Object.keys(keyboardKeys).forEach(k => keyboardKeys[k] = false);
   Object.keys(gamepadKeys).forEach(k   => gamepadKeys[k]   = false);
-  prevPadStates = [];
 
   updateStatus();
   gameRunning = false;
@@ -186,6 +179,7 @@ function initializeGame() {
 }
 
 function startGame() {
+  console.log('▶ startGame() 呼び出し');
   if (imagesLoadedCount < totalImages) {
     alert('画像を読み込み中です…');
     return;
@@ -201,16 +195,14 @@ function endGame() {
   alert(`走行距離: ${distance.toFixed(0)} m\nもう一度挑戦しよう！`);
 }
 
-
-// --- ステータス表示更新 ---
+// --- ステータス更新 ---
 function updateStatus() {
   fuelDisplay.textContent        = playerCar.fuel.toFixed(0);
   durabilityDisplay.textContent = playerCar.durability.toFixed(0);
   distanceDisplay.textContent   = distance.toFixed(0);
 }
 
-
-// --- 描画処理 ---
+// --- 描画 ---
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -251,7 +243,6 @@ function draw() {
   });
 }
 
-
 // --- 衝突判定 (AABB) ---
 function checkCollision(a, b) {
   const ax = a.x - a.width/2, ay = a.y - a.height/2;
@@ -261,7 +252,6 @@ function checkCollision(a, b) {
          ay < by + b.height &&
          ay + a.height > by;
 }
-
 
 // --- ゲームロジック更新 ---
 function updatePlayerCar() {
@@ -286,17 +276,14 @@ function updatePlayerCar() {
     }
   }
 
-  // 移動
   playerCar.x += playerCar.speed * Math.cos(playerCar.angle);
   playerCar.y += playerCar.speed * Math.sin(playerCar.angle);
 
-  // 画面端制限
   playerCar.x = Math.min(canvas.width  - playerCar.width/2,
                          Math.max(playerCar.width/2, playerCar.x));
   playerCar.y = Math.min(canvas.height - playerCar.height/2,
                          Math.max(playerCar.height/2, playerCar.y));
 
-  // 燃料消費
   playerCar.fuel -= playerCar.fuelConsumptionRate *
                     (Math.abs(playerCar.speed)/playerCar.maxSpeed + 0.5);
   if (playerCar.fuel < 0) playerCar.fuel = 0;
@@ -321,7 +308,7 @@ function updateEnemyCars() {
       car.y     = Math.random()*(canvas.height - car.height)+car.height/2;
       car.angle = 0;
     } else {
-      car.x     = canvas.width+car.width/2;
+      car.x     = canvas.width + car.width/2;
       car.y     = Math.random()*(canvas.height - car.height)+car.height/2;
       car.angle = Math.PI;
     }
@@ -369,7 +356,6 @@ function updateGameLogic() {
 
   distance += Math.abs(playerCar.speed) * 0.1;
 
-  // 敵との衝突
   enemyCars.forEach((e, i) => {
     if (checkCollision(playerCar, e)) {
       playerCar.durability = Math.max(0, playerCar.durability - playerCar.collisionDamage);
@@ -377,29 +363,27 @@ function updateGameLogic() {
     }
   });
 
-  // アイテム取得
   items.forEach((it, i) => {
     const rectIt = { x: it.x, y: it.y, width: it.size, height: it.size };
     const rectPl = {
-      x: playerCar.x- playerCar.width/2,
-      y: playerCar.y- playerCar.height/2,
+      x: playerCar.x - playerCar.width/2,
+      y: playerCar.y - playerCar.height/2,
       width:  playerCar.width,
       height: playerCar.height
     };
     if (checkCollision(rectPl, rectIt)) {
-      if (it.type==='fuel') {
-        playerCar.fuel = Math.min(playerCar.maxFuel, playerCar.fuel+30);
+      if (it.type === 'fuel') {
+        playerCar.fuel = Math.min(playerCar.maxFuel, playerCar.fuel + 30);
       } else {
-        playerCar.durability = Math.min(playerCar.maxDurability, playerCar.durability+25);
+        playerCar.durability = Math.min(playerCar.maxDurability, playerCar.durability + 25);
       }
       items.splice(i, 1);
     }
   });
 
   updateStatus();
-  if (playerCar.fuel<=0||playerCar.durability<=0) endGame();
+  if (playerCar.fuel <= 0 || playerCar.durability <= 0) endGame();
 }
-
 
 // --- メインループ ---
 function mainLoop() {

@@ -151,10 +151,10 @@
   <script src="/js/z998.js"></script>
 
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a><br></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
-        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
-        Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. <br><br><br></span></p>
-        </div>
-</body>
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
+        Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
+        </div></div>
+    </body>
 </html>
