@@ -101,6 +101,9 @@
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
 <p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズ面白いゲーム</a></p>
 <p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p>
+<p><a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月 無料で書き込みダウンロード保存も</a></p>
+
 <br>
        </div>
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>

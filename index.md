@@ -220,7 +220,7 @@ setInterval('Watch()',500);
 <p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
         <h2>書き込みカレンダーメモ帳にも</h2>
 <p>書き込みカレンダーを予定などのメモ帳にも活用できます。</p>
-<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り子どもも簡単</a></p>
+<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り子どもも簡単作成</a></p>
         <h3>値段メモのための生活便利サイト　リンク集</h3>
         <p>コンビニ　<a href="https://www.sej.co.jp/" target="_blank">セブンイレブン</a>
 　<a href="https://www.family.co.jp/" target="_blank">ファミリーマート</a>
@@ -410,8 +410,10 @@ setInterval('Watch()',500);
 
         </div>
 
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
+        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+        <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>

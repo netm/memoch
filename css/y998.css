@@ -32,7 +32,7 @@ h1{
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   bottom: 0; /*下寄せの指定*/
-  background: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #076ad9 80%);
+  background: linear-gradient(90deg, #1946ec 0%, #6daef8 40%, #5ef892 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 overflow: hidden;
