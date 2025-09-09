@@ -52,6 +52,7 @@
  - <a href="https://news.yahoo.co.jp/ranking/access/news" target="_blank">アクセスランキング</a>
 　<a href="https://www.youtube.com/" target="_blank">YouTubeユーチューブ</a>
 　<a href="https://tver.jp/" target="_blank">TVer</a>　<a href="https://memoc.pages.dev/tver/" target="_blank">ティーバー検索用</a>
+　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>
 　<a href="https://weather.yahoo.co.jp/weather/" target="_blank">今日の天気</a>
 　<a href="https://tenki.jp/week/" target="_blank">週間天気</a>
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
@@ -113,6 +114,7 @@ setInterval('Watch()',500);
 </div>
          <div class="sidetitle">新着情報</div>
         <div class="side">
+<p>「書き込みカレンダー」を作りました</p>
 <p>「中学生三年生の英単語ゲーム」を作りました</p>
 <p>「複利電卓・積立NISAの金額再投資計算機」を作りました</p>
 <p>メモ付き電卓に便利な単位換算機能を追加しました</p>
@@ -216,7 +218,10 @@ setInterval('Watch()',500);
 </textarea>
 </form>
 <p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
-        <h4>値段メモのための生活便利サイト　リンク集</h4>
+        <h2>書き込みカレンダーメモ帳にも</h2>
+<p>書き込みカレンダーを予定などのメモ帳にも活用できます。</p>
+<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り子どもも簡単</a></p>
+        <h3>値段メモのための生活便利サイト　リンク集</h3>
         <p>コンビニ　<a href="https://www.sej.co.jp/" target="_blank">セブンイレブン</a>
 　<a href="https://www.family.co.jp/" target="_blank">ファミリーマート</a>
 　<a href="https://www.lawson.co.jp/" target="_blank">ローソン</a></p>
@@ -239,7 +244,7 @@ setInterval('Watch()',500);
 <p>100円ショップ　<a href="https://www.daiso-sangyo.co.jp/" target="_blank">ダイソー</a>
 　<a href="https://www.seria-group.com/corp/overview/" target="_blank">セリア</a>
 　<a href="https://www.cando-web.co.jp/" target="_blank">Can Do キャンドゥ</a></p>
-         <h5>銀行金融のメモに役立つリンク集</h5>
+         <h4>銀行金融のメモに役立つリンク集</h4>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
 　<a href="https://www.bk.mufg.jp/" target="_blank">三菱UFJ銀行</a>
 　<a href="https://www.smbc.co.jp/" target="_blank">三井住友銀行</a>
