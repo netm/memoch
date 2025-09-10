@@ -114,6 +114,7 @@ setInterval('Watch()',500);
 </div>
          <div class="sidetitle">新着情報</div>
         <div class="side">
+<p>「お絵描きデジタルペイント無料サイト メモ帳にも」を作成</p>
 <p>「書き込みカレンダー」を作りました</p>
 <p>「中学生三年生の英単語ゲーム」を作りました</p>
 <p>「複利電卓・積立NISAの金額再投資計算機」を作りました</p>
@@ -212,12 +213,15 @@ setInterval('Watch()',500);
 </textarea>
 </form>
 <p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>
-        <h3>メモ帳２個目便利なウェブブラウザ</h3>
+        <h2>メモ帳２個目便利なウェブブラウザ</h2>
         <p><form>
 <textarea name="テキストエリア" rows="26" cols="68" wrap="hard">メモ帳２
 </textarea>
 </form>
 <p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
+        <h2>スマホタッチで直接書き込めるメモ帳</h2>
+<p>スマホタッチもしくはPCのマウスで直接書き込めるメモ帳です。</p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
         <h2>書き込みカレンダーメモ帳にも</h2>
 <p>書き込みカレンダーを予定などのメモ帳にも活用できます。</p>
 <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り子どもも簡単作成</a></p>
@@ -298,13 +302,13 @@ setInterval('Watch()',500);
 　<a href="https://itainews.com/" target="_blank">痛いニュース</a>
 　<a href="http://blog.livedoor.jp/kinisoku/" target="_blank">キニ速</a>
 　<a href="http://blog.livedoor.jp/nanjstu/" target="_blank">なんじぇいスタジアム＠なんJまとめ</a></p>
-          <h5>旅行・美容 生活に便利なリンク集</h5>
+          <h4>旅行・美容 生活に便利なリンク集</h4>
         <p>旅行　<a href="https://www.jalan.net/" target="_blank">じゃらん</a>
 　<a href="https://travel.rakuten.co.jp/" target="_blank">楽天トラベル</a>
         <p>美容　<a href="https://beauty.hotpepper.jp/" target="_blank">ホットペッパービューティー</a>
 　<a href="https://zozo.jp/" target="_blank">ZOZOTOWN ゾゾタウン</a>
 　<a href="https://trilltrill.jp/" target="_blank">TRILL</a></p>
-          <h3>価格メモに役立つリンク集</h3>
+          <h5>価格メモに役立つリンク集</h5>
                 <p>グルメサイト　<a href="https://tabelog.com/" target="_blank">食べログ</a>
 　<a href="https://www.gnavi.co.jp/" target="_blank">ぐるなび</a>
 　<a href="https://www.hotpepper.jp/" target="_blank">ホットペッパーグルメ</a></p>
@@ -346,7 +350,7 @@ setInterval('Watch()',500);
 <p>スイーツ　<a href="https://www.31ice.co.jp/" target="_blank">サーティワンアイスクリーム</a>
 　<a href="https://www.misterdonut.jp/" target="_blank">ミスタードーナツ</a>
 　<a href="https://www.chateraise.co.jp/" target="_blank">シャトレーゼ</a></p>
-          <h4>何でもランキング　メモ帳代わりに書いた文章はコピー推奨</h4>
+          <h5>何でもランキング　メモ帳代わりに書いた文章はコピー推奨</h5>
         <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
@@ -354,7 +358,7 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
         <p>何でもランキングをクリックするとこのページから移動します。メモ帳代わりに書いた文章はコピー推奨です。</p>
-        <h5>メモ帳代わりwebブラウザ便利サイトは役立つリンクを集めた無料のホームページ</h5>
+        <h2>メモ帳代わりwebブラウザ便利サイトは役立つリンクを集めた無料のホームページ</h2>
         <p>毎日の生活に役立つリンクを集めた「理想的な無料ホームページ」があったらいいな、形にしたい、と思いサイト制作を始めました。</p>
 <p>携帯スマホにたくさんアプリを入れると容量が圧迫されるという問題を、当サイトで解決。使いやすいホームページです。</p>
         <p>「メモ帳代わりのwebブラウザ」と「便利なサイト」が1ページに載っているスタートページとして使用するコンセプトで制作しています。</p>
