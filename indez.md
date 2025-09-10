@@ -202,7 +202,7 @@ setInterval('Watch()',500);
 　<a href="https://takra.web.fc2.com/" target="_blank">卓球中古ラケット激安卓球屋Ｋ</a>
 </div>
         <div class="sidetitle">ＱＲコード</div>
-        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/memochou.png"></div>
+        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
         <h2>メモ帳代わりwebブラウザ（随時コピー推奨）</h2>
@@ -214,16 +214,11 @@ setInterval('Watch()',500);
 エヌビディア決算の3日後から下落の調整、ナスダック調整につられるか
 自社株買い相場PBR1優位といってもつられるときはつられる
 3本線以外はきびしい　　相場に興味ないくらいじゃないとやられる
-
-
 npm run serve
-
 さいごにやるのは（VS Codeのターミナルにうつのは）
 git add .
 git commit -m "Deploy to Cloudflare Pages"
 git push origin main
-
-
 </textarea>
 </form>
 <p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>

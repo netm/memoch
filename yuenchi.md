@@ -151,7 +151,7 @@ setInterval('Watch()',500);
 　<a href="https://takra.web.fc2.com/" target="_blank">卓球中古ラケット激安卓球屋Ｋ</a>
 </div>
         <div class="sidetitle">ＱＲコード</div>
-        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/memochou.png"></div>
+        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
         <h2>遊園地ランキングトップ3と2024年度の年間入場者数</h2>

@@ -164,7 +164,7 @@ setInterval('Watch()',500);
 　<a href="https://takra.web.fc2.com/" target="_blank">卓球中古ラケット激安卓球屋Ｋ</a>
 </div>
         <div class="sidetitle">ＱＲコード</div>
-        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/memochou.png"></div>
+        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
         <h2>便利サイト</h2>
@@ -214,9 +214,7 @@ setInterval('Watch()',500);
 　<a href="https://www.resonabank.co.jp/" target="_blank">りそな銀行</a>
 　<a href="https://www.sbishinseibank.co.jp/" target="_blank">SBI新生銀行</a>
 　<a href="https://www.netbk.co.jp/contents/" target="_blank">住信SBIネット銀行</a>
-　<a href="https://www.jibunbank.co.jp/" target="_blank">au じぶん銀行</a>
-　<a href="https://www.rakuten-bank.co.jp/" target="_blank">楽天銀行</a>
-　<a href="https://moneykit.net/" target="_blank">ソニー銀行</a></p>
+　<a href="https://www.rakuten-bank.co.jp/" target="_blank">楽天銀行</a></p>
        <p>株式・NISA積み立て　<a href="https://www.nomura.co.jp/" target="_blank">野村證券</a>
 　<a href="https://www.daiwa.jp/" target="_blank">大和証券</a>
 　<a href="https://www.mizuho-sc.com/" target="_blank">みずほ証券</a>

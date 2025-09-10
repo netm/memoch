@@ -14,12 +14,9 @@ title: game
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
         <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
         <title>無料ブラウザゲームPCスマホタブレット対応</title>
-    
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
