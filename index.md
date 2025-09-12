@@ -131,11 +131,13 @@
 </div>
          <div class="sidetitle">新着情報</div>
         <div class="side">
+<p>「家計簿項目表のブラウザアプリ」を作りました</p>
+<p>「クロッキー帳デジタル」を作りました</p>
 <p>「お絵描きデジタルペイント無料サイト メモ帳にも」を作成</p>
 <p>「書き込みカレンダー」を作りました</p>
 <p>「中学生三年生の英単語ゲーム」を作りました</p>
 <p>「複利電卓・積立NISAの金額再投資計算機」を作りました</p>
-<p>メモ付き電卓に便利な単位換算機能を追加しました</p>
+<p>「メモ付き電卓」に便利な単位換算機能を追加しました</p>
 </div>
          <div class="sidetitle">無料ゲーム</div>
         <div class="side">
@@ -238,6 +240,47 @@
 <p>書き込みカレンダーに予定をデジタル手帳として、メモ帳代わりに記入できます。</p>
 <p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
 <p>今月　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月無料で書き込みダウンロード保存も</a></p><br>
+        <h2>メモ帳代わりwebブラウザ便利サイトのコンテンツ</h2>
+<p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
+<p>説明　<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマー</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲームスマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲームPCパソコン</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame0/" target="_blank">車ブラウザゲーム2スマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc0/" target="_blank">車ブラウザゲーム2パソコン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ</a>　　<a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a></p>
+<p>説明　<a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料</a>　　<a href="https://memoc.pages.dev/sensuikangame/" target="_blank">潜水艦ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可の説明</a>　　<a href="https://memoc.pages.dev/y2su/" target="_blank">潜水艦seaシューティング2</a></p>
+<p>説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦</a>　　<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング</a>　　<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しい</a>　　<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明</a>　　<a href="https://memoc.pages.dev/y4d/" target="_blank">忍者ペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明</a>　　<a href="https://memoc.pages.dev/y5e/" target="_blank">カップル盛り上がる質問ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明</a>　　<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明</a>　　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直す</a>　<a href="https://memoc.pages.dev/y8h/" target="_blank">英単語中学一年生クイズ</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生</a>　　<a href="https://memoc.pages.dev/y9i/" target="_blank">中学二年生の英単語クイズゲーム</a>　　
+<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
+<p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング</a>　　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズ</a>　　<a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキング</a>　　<a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキング</a>　　<a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキング</a>　　<a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート</a>　　<a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/stresssukunai/" target="_blank">ストレス少ない仕事</a>　　<a href="https://memoc.pages.dev/kyuujitunetakiri/" target="_blank">休日寝たきり</a>　　<a href="https://memoc.pages.dev/kyuujituhikikomori/" target="_blank">休日引きこもり</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料</a>　　<a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラスト</a>　　<a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト</a>　　<a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラスト</a>　　<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト</a>　　<a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト</a>　　<a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト</a>　　　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラスト</a>　　<a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラスト</a>　　<a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラスト</a>　　<a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラスト</a></p>
+<br>
+          <p>便利サイト無料で生活に役立つリンク集は、アプリいらず、更新インストール不要☆</p>
+<p>当サイトはリンクフリーなので、ご自由にお使い下さい。</p>
+<p>スマホ右上の点々をクリックし「ホーム画面に追加」すると便利です。</p>
         <h3>値段メモのための生活便利サイト　リンク集</h3>
         <p>コンビニ　<a href="https://www.sej.co.jp/" target="_blank">セブンイレブン</a>
 　<a href="https://www.family.co.jp/" target="_blank">ファミリーマート</a>
@@ -261,7 +304,7 @@
 <p>100円ショップ　<a href="https://www.daiso-sangyo.co.jp/" target="_blank">ダイソー</a>
 　<a href="https://www.seria-group.com/corp/overview/" target="_blank">セリア</a>
 　<a href="https://www.cando-web.co.jp/" target="_blank">Can Do キャンドゥ</a></p>
-         <h4>銀行金融のメモに役立つリンク集</h4>
+         <h3>銀行金融のメモに役立つリンク集</h3>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
 　<a href="https://www.bk.mufg.jp/" target="_blank">三菱UFJ銀行</a>
 　<a href="https://www.smbc.co.jp/" target="_blank">三井住友銀行</a>
@@ -325,44 +368,6 @@
                 <p>グルメサイト　<a href="https://tabelog.com/" target="_blank">食べログ</a>
 　<a href="https://www.gnavi.co.jp/" target="_blank">ぐるなび</a>
 　<a href="https://www.hotpepper.jp/" target="_blank">ホットペッパーグルメ</a></p>
-        <p>飲食店・レストラン　<a href="https://www.skylark.co.jp/gusto/" target="_blank">ガスト</a>
-　<a href="https://www.saizeriya.co.jp/" target="_blank">サイゼリヤ</a>
-　<a href="https://www.joyfull.co.jp/" target="_blank">ジョイフル</a>
-　<a href="https://www.bikkuri-donkey.com/" target="_blank">びっくりドンキー</a></p>
-<p>ファストフード　<a href="https://www.mcdonalds.co.jp/" target="_blank">マクドナルド</a>
-　<a href="https://www.mos.jp/" target="_blank">モスバーガー</a>
-　<a href="https://www.kfc.co.jp/" target="_blank">ケンタッキー</a></p>
-<p>牛丼・うどん　<a href="https://www.sukiya.jp/" target="_blank">すき家</a>
-　<a href="https://www.yoshinoya.com/" target="_blank">吉野家</a>
-　<a href="https://www.matsuyafoods.co.jp/" target="_blank">松屋</a>
-　<a href="https://www.nakau.co.jp/" target="_blank">なか卯</a>
-　<a href="https://jp.marugame.com/" target="_blank">丸亀製麺</a></p>
-<p>和食・中華　<a href="https://hidakaya.hiday.co.jp/" target="_blank">日高屋</a>
-　<a href="https://www.yayoiken.com/" target="_blank">やよい軒</a>
-　<a href="https://www.ootoya.com/" target="_blank">大戸屋</a>
-　<a href="https://www.ohsho.co.jp/" target="_blank">餃子の王将</a>
-　<a href="https://www.ringerhut.jp/" target="_blank">リンガーハット</a>
-　<a href="https://www.ichibanya.co.jp/" target="_blank">カレーハウスCoCo壱番屋</a>
-　<a href="https://www.arclandservice.co.jp/katsuya/" target="_blank">かつや</a>
-　<a href="https://kushi-tanaka.com/" target="_blank">串カツ田中</a>
-　<a href="https://www.yakiniku-king.jp/" target="_blank">焼肉きんぐ</a></p>
-<p>回転寿司　<a href="https://www.akindo-sushiro.co.jp/" target="_blank">スシロー</a>
-　<a href="https://www.hama-sushi.co.jp/" target="_blank">はま寿司</a>
-　<a href="https://www.kurasushi.co.jp/" target="_blank">くら寿司</a>
-　<a href="https://www.ginsara.jp/" target="_blank">銀のさら 出前</a>
-　<a href="https://www.gindaco.com/" target="_blank">銀だこ</a></p>
-<p>宅配ピザ　<a href="https://www.dominos.jp/" target="_blank">ドミノピザ</a>
-　<a href="https://www.pizzahut.jp/" target="_blank">ピザハット</a>
-　<a href="https://www.pizza-la.co.jp/" target="_blank">ピザーラ</a></p>
-<p>テイクアウト　<a href="https://www.hottomotto.com/" target="_blank">ほっともっと</a>
-　<a href="https://www.toshu.co.jp/origin_bento/" target="_blank">オリジン弁当</a>
-　<a href="https://www.hokkahokka-tei.jp/" target="_blank">ほっかほっか亭</a></p>
-<p>カフェ　<a href="https://www.starbucks.co.jp/" target="_blank">スターバックス</a>
-　<a href="https://www.doutor.co.jp/dcs/" target="_blank">ドトールコーヒー</a>
-　<a href="https://www.komeda.co.jp/" target="_blank">コメダ珈琲店</a></p>
-<p>スイーツ　<a href="https://www.31ice.co.jp/" target="_blank">サーティワンアイスクリーム</a>
-　<a href="https://www.misterdonut.jp/" target="_blank">ミスタードーナツ</a>
-　<a href="https://www.chateraise.co.jp/" target="_blank">シャトレーゼ</a></p>
           <h5>何でもランキング　メモ帳代わりに書いた文章はコピー推奨</h5>
         <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
@@ -395,9 +400,10 @@
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
 <p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
 <br>
-         <p>便利なタイマー</p>
-<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+         <p>便利なタイマー・時計</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
 <br>
          <p>TVer系</p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
@@ -415,9 +421,7 @@
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
-<p><br><p>便利なコンテンツ</p></p>
-<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a>
-</p>
+<br><p>便利な電卓・計算機</p>
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
@@ -427,7 +431,7 @@
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p><p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
-        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
         </div></div>
     </body>
