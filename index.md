@@ -274,8 +274,6 @@
 <br>
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキング</a>　　<a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート</a>　　<a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/stresssukunai/" target="_blank">ストレス少ない仕事</a>　　<a href="https://memoc.pages.dev/kyuujitunetakiri/" target="_blank">休日寝たきり</a>　　<a href="https://memoc.pages.dev/kyuujituhikikomori/" target="_blank">休日引きこもり</a></p>
-<br>
 <p><a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料</a>　　<a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラスト</a>　　<a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト</a>　　<a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラスト</a>　　<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト</a>　　<a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト</a>　　<a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト</a>　　　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラスト</a>　　<a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラスト</a>　　<a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラスト</a>　　<a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラスト</a></p>
 <br>
           <p>便利サイト無料で生活に役立つリンク集は、アプリいらず、更新インストール不要☆</p>
@@ -381,6 +379,11 @@
 <p>携帯スマホにたくさんアプリを入れると容量が圧迫されるという問題を、当サイトで解決。使いやすいホームページです。</p>
         <p>「メモ帳代わりのwebブラウザ」と「便利なサイト」が1ページに載っているスタートページとして使用するコンセプトで制作しています。</p>
 <br>
+         <p>お絵描きコンテンツ</p>
+    <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
+　　<p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p><br>
+         <p>メモできるカレンダー</p>
+    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
          <p>無料ゲーム</p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
 <p><a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a></p>
@@ -421,12 +424,14 @@
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
-<br><p>便利な電卓・計算機</p>
+<br><p>便利な電卓</p>
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+<br><p>便利な計算機</p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
-<p></div></p>
+</div>
 <p><div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p><p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
