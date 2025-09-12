@@ -5,7 +5,7 @@
 <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
         <meta name="keywords" content="メモ,電卓,web,ブラウザ">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-  <link rel="stylesheet" href="/css/z999.css">
+  <link rel="stylesheet" href="css/z999.css">
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -24,22 +24,22 @@
 
   <div class="calculator-wrapper">
     <!-- モード選択 -->
+
+    <!-- 電卓部 -->
     <div class="calculator">
-      <div class="mode-select">
-        <label for="modeSelect">モード：</label>
-        <select id="modeSelect">
-          <option value="standard">電卓モード</option>
-          <option value="currency">通貨</option>
-          <option value="length">長さ</option>
-          <option value="weight">重さ</option>
-          <option value="fraction">分数計算</option>
-          <option value="time">時間</option>
-          <option value="root">ルート平方根</option>
-        </select>
-      </div>
-
+    <div class="mode-select">
+      <label for="modeSelect">モード：</label>
+      <select id="modeSelect">
+        <option value="standard">電卓モード</option>
+        <option value="currency">通貨</option>
+        <option value="length">長さ</option>
+        <option value="weight">重さ</option>
+        <option value="fraction">分数計算</option>
+        <option value="time">時間</option>
+        <option value="root">ルート平方根</option>
+      </select>
+    </div>
       <div class="display" id="display">0</div>
-
       <div class="keys">
         <!-- 拡張ボタン群 -->
         <button data-action="clear">AC</button>
@@ -52,6 +52,7 @@
         <button data-action="operator">÷</button>
         <button data-action="operator">×</button>
 
+        <!-- 通常キー -->
         <button>7</button>
         <button>8</button>
         <button>9</button>
@@ -66,10 +67,11 @@
         <button>2</button>
         <button>3</button>
         <button data-action="fractionSlash">/</button>
+<button data-action="calculate" class="equals">=</button>
+
 
         <button class="zero">0</button>
         <button>.</button>
-        <button data-action="calculate" class="equals">=</button>
       </div>
     </div>
 
@@ -91,6 +93,9 @@
         <button id="copyHistory">コピー</button>
       </div>
     </div>
+  </div>
+
+  <script src="js/z999.js"></script>
 
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
@@ -229,9 +234,6 @@
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
 <br>
 
-  <script src="/js/z999.js"></script>
-
-  </div>
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">

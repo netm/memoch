@@ -1,4 +1,3 @@
-// z999.js
 // --- DOM 要素取得 ---
 const display         = document.getElementById('display');
 const keys            = document.querySelector('.keys');
