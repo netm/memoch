@@ -209,6 +209,8 @@ setInterval('Watch()',500);
         <p><form>
 <textarea name="テキストエリア" rows="26" cols="68" wrap="hard">■3本線のみやる■　一か月めど　上下に行くほどもうかる
 　　　　　3本線以外は全部損する　MACDや指標はダマしが多い
+　パーフェクトになったら、25日移動平均線近くで買う　1365ダブル　→　かい離率　RSI　ストキャス　で売る　ダブルインバース1357　6日連続で買う　→　25日移動平均線近くで決済
+　　　「上昇は三か月間続く」
 　今後のイメージ
 25日線で反発して上昇か　　かいり率 BNF
 エヌビディア決算の3日後から下落の調整、ナスダック調整につられるか
@@ -228,6 +230,52 @@ git push origin main
 </textarea>
 </form>
 <p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
+        <h2>スマホタッチで直接書き込めるメモ帳</h2>
+<p>スマホタッチもしくはPCのマウスで直接書き込めるメモ帳・お絵描きデジタルペイントです。</p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
+        <h2>書き込みカレンダーメモ帳にも</h2>
+<p>書き込みカレンダーに予定をデジタル手帳として、メモ帳代わりに記入できます。</p>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+<p>今月　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月無料で書き込みダウンロード保存も</a></p><br>
+        <h2>メモ帳代わりwebブラウザ便利サイトのコンテンツ</h2>
+<p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
+<p>説明　<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマー</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲームスマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲームPCパソコン</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame0/" target="_blank">車ブラウザゲーム2スマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc0/" target="_blank">車ブラウザゲーム2パソコン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ</a>　　<a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a></p>
+<p>説明　<a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料</a>　　<a href="https://memoc.pages.dev/sensuikangame/" target="_blank">潜水艦ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可の説明</a>　　<a href="https://memoc.pages.dev/y2su/" target="_blank">潜水艦seaシューティング2</a></p>
+<p>説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦</a>　　<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング</a>　　<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しい</a>　　<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明</a>　　<a href="https://memoc.pages.dev/y4d/" target="_blank">忍者ペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明</a>　　<a href="https://memoc.pages.dev/y5e/" target="_blank">カップル盛り上がる質問ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明</a>　　<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明</a>　　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直す</a>　<a href="https://memoc.pages.dev/y8h/" target="_blank">英単語中学一年生クイズ</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生</a>　　<a href="https://memoc.pages.dev/y9i/" target="_blank">中学二年生の英単語クイズゲーム</a>　　
+<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
+<p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング</a>　　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズ</a>　　<a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキング</a>　　<a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキング</a>　　<a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキング</a>　　<a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート</a>　　<a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料</a>　　<a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラスト</a>　　<a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト</a>　　<a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラスト</a>　　<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト</a>　　<a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト</a>　　<a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト</a>　　　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラスト</a>　　<a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラスト</a>　　<a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラスト</a>　　<a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラスト</a></p>
+<br>
+          <p>便利サイト無料で生活に役立つリンク集は、アプリいらず、更新インストール不要☆</p>
+<p>当サイトはリンクフリーなので、ご自由にお使い下さい。</p>
+<p>スマホ右上の点々をクリックし「ホーム画面に追加」すると便利です。</p>
         <h4>銀行金融のメモに役立つリンク集</h4>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
 　<a href="https://www.sbishinseibank.co.jp/" target="_blank">SBI新生銀行</a>
