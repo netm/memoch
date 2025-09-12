@@ -91,9 +91,6 @@
         <button id="copyHistory">コピー</button>
       </div>
     </div>
-  </div>
-
-  <script src="/js/z999.js"></script>
 
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
@@ -232,6 +229,9 @@
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
 <br>
 
+  <script src="/js/z999.js"></script>
+
+  </div>
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
