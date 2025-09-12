@@ -113,7 +113,7 @@ margin-left: 6px; /* 好きなpxに調整できます */
 }
 
 h2 {
-color:#557303;
+color:#f0ffc8;
 font-size: 88%; 
 line-height: 1em; 
 font-weight:bolder;
@@ -132,7 +132,7 @@ border-radius: 1vh;
 }
 
 h3 {
-color:#557303;
+color:#f4ffd5;
 font-size: 90%;
 line-height: 1em;
 font-weight:bolder;
@@ -155,7 +155,7 @@ border-radius: 2vh;
 
 
 h5 {
-color:#557303;
+color:#f3ffd1;
 font-size: 90%;
 line-height: 1em;
 font-weight:bolder;
@@ -226,7 +226,14 @@ margin:0px 200px 0px 0px;
 background-color:#292929;
 color:#ffffff;
 }
-
+.time{
+font-size:40px;
+font-weight:normal;
+padding:5px;
+margin:0px 0px 0px 0px;
+background-color:#292929;
+color:#ffffff;
+}
 .blockbody {
 color:#3f995e;
 background-color:#292929;

@@ -218,7 +218,14 @@ margin:0px 200px 0px 0px;
 background-color:#ffffff;
 color:#000000;
 }
-
+.time{
+font-size:40px;
+font-weight:normal;
+padding:5px;
+margin:0px 0px 0px 0px;
+background-color:#ffffff;
+color:#000000;
+}
 .blockbody {
 color:#3f995e;
 font-size: 100%;

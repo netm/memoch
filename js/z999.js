@@ -131,6 +131,7 @@ historyArea.addEventListener('click', e => {
   const bNum  = parseFloat(bRaw);
 
   if (modeSelect.value === 'fraction') {
+    // 分数モードは fraction の calculate を再利用
     prevRaw      = aRaw;
     operator     = op;
     currentInput = bRaw;
@@ -138,6 +139,7 @@ historyArea.addEventListener('click', e => {
     updateDisplay();
   }
   else if (modeSelect.value === 'root') {
+    // Rootモード：累乗の場合
     if (op === '^') {
       prevValue    = aNum;
       operator     = '^';
@@ -147,16 +149,18 @@ historyArea.addEventListener('click', e => {
     }
   }
   else if (unitOptions[modeSelect.value]) {
+    // コンバーターモード
     convertInput.value = aNum;
     unitFrom.value     = aRaw.replace(/[0-9.\-]+/, '');
     unitTo.value       = bRaw.replace(/[0-9.\-]+/, '');
     doConvertBtn.click();
   }
   else {
+    // Standardモード
     prevRaw      = aRaw;
     prevValue    = aNum;
     operator     = op;
-    currentInput = bRaw.toString();
+    currentInput = bNum.toString();
     calculate();
     updateDisplay();
   }
@@ -219,6 +223,7 @@ function calculate() {
 
   // Rootモード
   if (mode === 'root') {
+    // √ は handleSqrt() で済むので、ここでは ^ のみ扱う
     if (operator !== '^' || prevValue === null || currentInput === '') return;
     const b      = parseFloat(currentInput);
     let   result = Math.pow(prevValue, b);
