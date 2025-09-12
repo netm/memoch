@@ -29,22 +29,22 @@
 
   <div class="calculator-wrapper">
     <!-- モード選択 -->
-
-    <!-- 電卓部 -->
     <div class="calculator">
-    <div class="mode-select">
-      <label for="modeSelect">モード：</label>
-      <select id="modeSelect">
-        <option value="standard">電卓モード</option>
-        <option value="currency">通貨</option>
-        <option value="length">長さ</option>
-        <option value="weight">重さ</option>
-        <option value="fraction">分数計算</option>
-        <option value="time">時間</option>
-        <option value="root">ルート平方根</option>
-      </select>
-    </div>
+      <div class="mode-select">
+        <label for="modeSelect">モード：</label>
+        <select id="modeSelect">
+          <option value="standard">電卓モード</option>
+          <option value="currency">通貨</option>
+          <option value="length">長さ</option>
+          <option value="weight">重さ</option>
+          <option value="fraction">分数計算</option>
+          <option value="time">時間</option>
+          <option value="root">ルート平方根</option>
+        </select>
+      </div>
+
       <div class="display" id="display">0</div>
+
       <div class="keys">
         <!-- 拡張ボタン群 -->
         <button data-action="clear">AC</button>
@@ -57,7 +57,6 @@
         <button data-action="operator">÷</button>
         <button data-action="operator">×</button>
 
-        <!-- 通常キー -->
         <button>7</button>
         <button>8</button>
         <button>9</button>
@@ -72,11 +71,10 @@
         <button>2</button>
         <button>3</button>
         <button data-action="fractionSlash">/</button>
-<button data-action="calculate" class="equals">=</button>
-
 
         <button class="zero">0</button>
         <button>.</button>
+        <button data-action="calculate" class="equals">=</button>
       </div>
     </div>
 
@@ -216,6 +214,7 @@
 <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
 <p><a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月 無料で書き込みダウンロード保存も</a></p>
 <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
+<br>
          <p>学習ゲーム</p>
 <p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>

@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+        <link rel="stylesheet" type="text/css" href="/css/d.css" media="all">
         <title>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</title>
     
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
@@ -57,35 +57,41 @@
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
 　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
-          <div>
-<center><script>
-var today=new Date(); 
 
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
+            <div class="clock-container">
+    <span class="date" id="date"></span>
+    <span class="time" id="time"></span>
+  </div>
 
-var week_ja= new Array("日","月","火","水","木","金","土");
+  <script>
+    function pad(n) {
+      return n < 10 ? "0" + n : n;
+    }
 
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
+    function updateClock() {
+      const now = new Date();
+
+      // 年月日と曜日
+      const year  = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day   = now.getDate();
+      const weekDays = ["日","月","火","水","木","金","土"];
+      const week  = weekDays[now.getDay()];
+      const dateStr = `${year}年${month}月${day}日（${week}）`;
+
+      // 時刻（hh:mm）
+      const hh = pad(now.getHours());
+      const mm = pad(now.getMinutes());
+      const timeStr = `${hh}:${mm}`;
+
+      document.getElementById("date").textContent = dateStr;
+      document.getElementById("time").textContent = timeStr;
+    }
+
+    // 初回実行と、以降 500ms ごとに更新
+    updateClock();
+    setInterval(updateClock, 500);
+  </script>
 　<a href="https://github.com/login" target="_blank">GitHub</a>
 　<a href="https://dash.cloudflare.com" target="_blank">cloudflare</a>
 　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
@@ -210,14 +216,15 @@ setInterval('Watch()',500);
 <textarea name="テキストエリア" rows="26" cols="68" wrap="hard">■3本線のみやる■　一か月めど　上下に行くほどもうかる
 　　　　　3本線以外は全部損する　MACDや指標はダマしが多い
 　パーフェクトになったら、25日移動平均線近くで買う　1365ダブル　→　かい離率　RSI　ストキャス　で売る　ダブルインバース1357　6日連続で買う　→　25日移動平均線近くで決済
-　　　「上昇は三か月間続く」
+　　　「上昇は三か月間続く」　　　パーフェクトになってから3か月
 　今後のイメージ
 25日線で反発して上昇か　　かいり率 BNF
 エヌビディア決算の3日後から下落の調整、ナスダック調整につられるか
 自社株買い相場PBR1優位といってもつられるときはつられる
-3本線以外はきびしい　　相場に興味ないくらいじゃないとやられる
-npm run serve
-さいごにやるのは（VS Codeのターミナルにうつのは）
+　　3本線以外はきびしい　　相場に興味ないくらいじゃないとやられる
+長いから分割で書くね、いいよと書くまでだまっててね
+修正した全文をjavascript css htmlの順番で書いて。説明はいらないよ。いいよ。
+　　さいごにやるのは（VS Codeのターミナルにうつのは）
 git add .
 git commit -m "Deploy to Cloudflare Pages"
 git push origin main
@@ -241,8 +248,8 @@ git push origin main
 <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
 <br>
-<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
 <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
 <p>説明　<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマー</a></p>
@@ -255,28 +262,30 @@ git push origin main
 <p>説明　<a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ</a>　　<a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a></p>
 <p>説明　<a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料</a>　　<a href="https://memoc.pages.dev/sensuikangame/" target="_blank">潜水艦ゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可の説明</a>　　<a href="https://memoc.pages.dev/y2su/" target="_blank">潜水艦seaシューティング2</a></p>
-<p>説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦</a>　　<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン</a></p>
 <p>説明　<a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング</a>　　<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム</a></p>
-<p>説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しい</a>　　<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明</a>　　<a href="https://memoc.pages.dev/y4d/" target="_blank">忍者ペンギン</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦</a>　　<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しい</a>　　<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明</a>　　<a href="https://memoc.pages.dev/y5e/" target="_blank">カップル盛り上がる質問ゲーム</a></p>
+<br>
 <p>説明　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明</a>　　<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明</a>　　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直す</a>　<a href="https://memoc.pages.dev/y8h/" target="_blank">英単語中学一年生クイズ</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生</a>　　<a href="https://memoc.pages.dev/y9i/" target="_blank">中学二年生の英単語クイズゲーム</a>　　
 <p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
 <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング</a>　　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズ</a>　　<a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキング</a>　　<a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキング</a>　　<a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子</a></p>
+<p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
 <br>
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキング</a>　　<a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート</a>　　<a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料</a>　　<a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラスト</a>　　<a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト</a>　　<a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラスト</a>　　<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト</a>　　<a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト</a>　　<a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト</a>　　　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラスト</a>　　<a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラスト</a>　　<a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラスト</a>　　<a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラスト</a></p>
+<p><a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>　　<a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラスト</a>　　<a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト</a>　　<a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラスト</a>　　<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト</a>　　<a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト</a>　　<a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト</a>　　　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラスト</a>　　<a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラスト</a>　　<a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラスト</a>　　<a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラスト</a></p>
 <br>
           <p>便利サイト無料で生活に役立つリンク集は、アプリいらず、更新インストール不要☆</p>
 <p>当サイトはリンクフリーなので、ご自由にお使い下さい。</p>
 <p>スマホ右上の点々をクリックし「ホーム画面に追加」すると便利です。</p>
-        <h4>銀行金融のメモに役立つリンク集</h4>
+        <h3>銀行金融のメモに役立つリンク集</h3>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
 　<a href="https://www.sbishinseibank.co.jp/" target="_blank">SBI新生銀行</a>
        <p>株式・NISA積み立て　<a href="https://www.sbisec.co.jp/" target="_blank">SBI証券</a>
@@ -331,16 +340,22 @@ git push origin main
 <p>携帯スマホにたくさんアプリを入れると容量が圧迫されるという問題を、当サイトで解決。使いやすいホームページです。</p>
         <p>「メモ帳代わりのwebブラウザ」と「便利なサイト」が1ページに載っているスタートページとして使用するコンセプトで制作しています。</p>
 <br>
+         <p>お絵描きコンテンツ</p>
+    <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
+    <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p><br>
+         <p>メモできるカレンダー</p>
+    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
          <p>無料ゲーム</p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
 <p><a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a></p>
 <p><a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></p>
 <p><a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料PCスマホタブレット対応シューティングの説明</a></p>
 <p><a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可 無料PCスマホ対応seaシューティングゲームの説明</a></p>
-<p><a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
 <p><a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></p>
+<p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p><br>
+         <p>無料カードゲーム</p>
+<p><a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
 <p><a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
-<p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
 <p><a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
 <br>
          <p>学習ゲーム</p>
@@ -348,16 +363,17 @@ git push origin main
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+<p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
 <br>
-         <p>便利なタイマー</p>
-<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+         <p>便利なタイマー・時計</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
 <br>
          <p>TVer系</p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-
 <br><p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -370,16 +386,14 @@ git push origin main
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
-
-<br><p>便利なコンテンツ</p>
-<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a>
-</p>
+<br><p>便利な電卓</p>
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-
-        </div>
-
+<br><p>家計簿・貯蓄</p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
+<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+</div>
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
