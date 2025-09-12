@@ -1,4 +1,5 @@
 body {
+background-color:#292929;
 font-family:Verdana;
 margin:30px;
 padding:0px;
@@ -51,7 +52,7 @@ font-family:Verdana;
 }
 
 a{
-color:#000d99;
+color:#4151ff;
 line-height:2em;
 font-size: 100%;
 font-weight:none;
@@ -61,7 +62,7 @@ a:hover{
 text-decoration: none;
 }
 a.ab{
-color:#000d99;
+color:#5564ff;
 border:none;
 font-size: 86%;
 font-weight:none;
@@ -71,10 +72,10 @@ text-decoration: underline;
 width: 100%;
 margin-left:auto;
 margin-right:auto;
-border-top: 2px solid #000d99;
-border-left: 2px solid #000d99;
-border-right: 2px solid #000d99;
-border-bottom: 2px solid #000d99;
+border-top: 2px solid #7d88fb;
+border-left: 2px solid #7883f8;
+border-right: 2px solid #7a85fe;
+border-bottom: 2px solid #838dfe;
 margin:0px 0px 0px 0px;
 padding:2px 6px 2px 6px;
 }  
@@ -163,6 +164,7 @@ border-radius: 2vh;
 
 p{
 color:#edffd8;
+background-color:#292929;
 font-size: 96%;
 line-height: 2em;
 padding-top:0px;
@@ -182,6 +184,7 @@ margin:-20px 0px 0px 0px;
 
 .description {
 color:#6E8C4C;
+background-color:#292929;
 font-size: 100%; 
 text-decoration: none;
 line-height: 2em;
@@ -193,6 +196,7 @@ font-weight: normal;
 }
 #content {
 color:#edffd8;
+background-color:#292929;
 margin:0px 0px 0px 15px;
 float:left;
 width:565px;
@@ -202,6 +206,7 @@ font-family:Verdana;
 
 .blog {
 color:#edffd8;
+background-color:#292929;
 padding:0px;
 text-align:left;
 margin-bottom:20px;
@@ -214,12 +219,13 @@ font-size:14px;
 font-weight:normal;
 padding:5px;
 margin:0px 200px 0px 0px;
-background-color:#000000;
+background-color:#292929;
 color:#ffffff;
 }
 
 .blockbody {
 color:#3f995e;
+background-color:#292929;
 font-size: 100%;
 text-decoration: none;
 line-height: 2em;
@@ -233,7 +239,7 @@ color:#edffd8;
 font-weight:normal;
 margin:0px;
 padding:10px;
-background-color:#000000;
+background-color:#292929;
 border:1px solid #7ABD3C;
 }
 
@@ -247,6 +253,7 @@ font-size:13px;}
 
 .text{
 color:#edffd8;
+background-color:#292929;
 font-size: 100%; 
 padding:6px 0px 6px 0px;
 line-height: 2em;
@@ -313,7 +320,7 @@ font-family:Verdana;
 padding:0px 5px 10px 5px;
 margin-bottom:10px;
 line-height: 2em;
-background-color:#000000;
+background-color:#292929;
 border-radius: 1vh;
 }
 .side-tag {
@@ -321,7 +328,7 @@ padding:10px 5px 10px 5px;
 margin-bottom:10px;
 }
 .side a{
-color:#000d99;
+color:#7f8aff;
 border:none;
 }
 .side a:hover{
@@ -346,7 +353,7 @@ margin-right:10px;
 text-align:center;
 }
 .syndicate a{
-color:#000d99;
+color:#8892fb;
 }
 #Watch{
 display: inline-block;
@@ -401,7 +408,7 @@ margin: 20px 0px 20px 0px;
 #footer{
 clear:left;
 text-align:center;
-background-color:#000000;
+background-color:#292929;
 }
 .copyright{
 font-size:90%;
@@ -410,7 +417,7 @@ text-align:center;
 padding:0px 0px 5px 0px;
 margin:0px 0px 10px 0px;
 border-bottom:1px dotted #7ABD3C;
-background-color:#d6d6d6;
+background-color:#292929;
 
 }
 blockquote{
