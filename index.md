@@ -1,21 +1,33 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
-        <meta name="keywords" content="メモ帳,web,ブラウザ,便利,サイト">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
-         <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>メモ帳代わりWebブラウザ便利サイト</title>
+  <meta name="description"
+        content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
+  <meta name="keywords"
+        content="メモ帳, web, ブラウザ, 便利, サイト">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
         <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
         <title>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</title>
-   
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
+  <style>
+    /* 中央寄せ */
+    .clock-container {
+      text-align: center;
+      font-family: sans-serif;
+      font-size: 1.5em;
+    }
+    .date, .time {
+      display: block;
+      margin: 0.5em 0;
+    }
+  </style>
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -25,11 +37,11 @@
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
-        <div class="blockbody">
+<p><body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
+<div class="blockbody"></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>
 　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a>
 　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>
@@ -52,41 +64,46 @@
  - <a href="https://news.yahoo.co.jp/ranking/access/news" target="_blank">アクセスランキング</a>
 　<a href="https://www.youtube.com/" target="_blank">YouTubeユーチューブ</a>
 　<a href="https://tver.jp/" target="_blank">TVer</a>　<a href="https://memoc.pages.dev/tver/" target="_blank">ティーバー検索用</a>
-　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>
+　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月無料</a>
 　<a href="https://weather.yahoo.co.jp/weather/" target="_blank">今日の天気</a>
 　<a href="https://tenki.jp/week/" target="_blank">週間天気</a>
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
 　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
-          <div>
-<center><script>
-var today=new Date(); 
+            <div class="clock-container">
+    <span class="date" id="date"></span>
+    <span class="time" id="time"></span>
+  </div>
 
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
+  <script>
+    function pad(n) {
+      return n < 10 ? "0" + n : n;
+    }
 
-var week_ja= new Array("日","月","火","水","木","金","土");
+    function updateClock() {
+      const now = new Date();
 
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
+      // 年月日と曜日
+      const year  = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day   = now.getDate();
+      const weekDays = ["日","月","火","水","木","金","土"];
+      const week  = weekDays[now.getDay()];
+      const dateStr = `${year}年${month}月${day}日（${week}）`;
+
+      // 時刻（hh:mm）
+      const hh = pad(now.getHours());
+      const mm = pad(now.getMinutes());
+      const timeStr = `${hh}:${mm}`;
+
+      document.getElementById("date").textContent = dateStr;
+      document.getElementById("time").textContent = timeStr;
+    }
+
+    // 初回実行と、以降 500ms ごとに更新
+    updateClock();
+    setInterval(updateClock, 500);
+  </script>
 　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
 　<a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
@@ -125,7 +142,6 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
 <p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
 <p><a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
-
 <p><a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></p>
 <p><a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</a></p>
 <p><a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
@@ -171,9 +187,8 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -217,11 +232,12 @@ setInterval('Watch()',500);
 </form>
 <p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
         <h2>スマホタッチで直接書き込めるメモ帳</h2>
-<p>スマホタッチもしくはPCのマウスで直接書き込めるデジタルペイント兼メモ帳です。</p>
+<p>スマホタッチもしくはPCのマウスで直接書き込めるメモ帳・お絵描きデジタルペイントです。</p>
 <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
         <h2>書き込みカレンダーメモ帳にも</h2>
 <p>書き込みカレンダーに予定をデジタル手帳として、メモ帳代わりに記入できます。</p>
-<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+<p>今月　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月無料で書き込みダウンロード保存も</a></p><br>
         <h3>値段メモのための生活便利サイト　リンク集</h3>
         <p>コンビニ　<a href="https://www.sej.co.jp/" target="_blank">セブンイレブン</a>
 　<a href="https://www.family.co.jp/" target="_blank">ファミリーマート</a>
@@ -387,8 +403,7 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-
-<br><p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
+<p><br><p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
 <br>
@@ -400,19 +415,16 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
-
-<br><p>便利なコンテンツ</p>
+<p><br><p>便利なコンテンツ</p></p>
 <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a>
 </p>
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
-
-        </div>
-
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
-        <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p><p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<p></div></p>
+<p><div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p><p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />

@@ -112,35 +112,6 @@
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
 </div>
-          <div>
-<center><script>
-var today=new Date(); 
-
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
-
-var week_ja= new Array("日","月","火","水","木","金","土");
-
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
       <div class="sidetitle">暮らし生活リンク</div>
         <div class="side"><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
 　<a href="https://www.kuronekoyamato.co.jp/" target="_blank">ヤマト運輸</a>
@@ -158,7 +129,7 @@ setInterval('Watch()',500);
 　<a href="https://takra.web.fc2.com/" target="_blank">卓球中古ラケット激安卓球屋Ｋ</a>
 </div>
         <div class="sidetitle">ＱＲコード</div>
-        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/memochou.png"></div>
+        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
         <h2>アニメ無料ホラー系のおすすめ人気トップ1</h2>

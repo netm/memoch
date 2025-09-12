@@ -47,35 +47,6 @@
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
 <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 </div>
-          <div>
-<center><script>
-var today=new Date(); 
-
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
-
-var week_ja= new Array("日","月","火","水","木","金","土");
-
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
          <div class="sidetitle">人気順コンテンツ</div>
         <div class="side">
 <p>1　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
@@ -161,7 +132,7 @@ setInterval('Watch()',500);
 　<a href="https://takra.web.fc2.com/" target="_blank">卓球中古ラケット激安卓球屋Ｋ</a>
 </div>
         <div class="sidetitle">ＱＲコード</div>
-        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/memochou.png"></div>
+        <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
         <h2>TVerティーバー検索用 ジャンルとカテゴリー</h2>

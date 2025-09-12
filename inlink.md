@@ -13,9 +13,19 @@
     
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
+  <style>
+    /* 中央寄せ */
+    .clock-container {
+      text-align: center;
+      font-family: sans-serif;
+      font-size: 1.5em;
+    }
+    .date, .time {
+      display: block;
+      margin: 0.5em 0;
+    }
+  </style>
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -47,37 +57,41 @@
         <div class="sidetitle">便利サイト 日時</div>
         <div class="side">
           
-          <div>
-<center><script>
-var today=new Date(); 
+          
+            <div class="clock-container">
+    <span class="date" id="date"></span>
+    <span class="time" id="time"></span>
+  </div>
 
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
+  <script>
+    function pad(n) {
+      return n < 10 ? "0" + n : n;
+    }
 
-var week_ja= new Array("日","月","火","水","木","金","土");
+    function updateClock() {
+      const now = new Date();
 
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
+      // 年月日と曜日
+      const year  = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day   = now.getDate();
+      const weekDays = ["日","月","火","水","木","金","土"];
+      const week  = weekDays[now.getDay()];
+      const dateStr = `${year}年${month}月${day}日（${week}）`;
 
-          </div>
+      // 時刻（hh:mm）
+      const hh = pad(now.getHours());
+      const mm = pad(now.getMinutes());
+      const timeStr = `${hh}:${mm}`;
+
+      document.getElementById("date").textContent = dateStr;
+      document.getElementById("time").textContent = timeStr;
+    }
+
+    // 初回実行と、以降 500ms ごとに更新
+    updateClock();
+    setInterval(updateClock, 500);
+  </script>
          <div class="sidetitle">人気順コンテンツ</div>
         <div class="side">
 <p>1　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
@@ -167,7 +181,55 @@ setInterval('Watch()',500);
         <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
-        <h2>便利サイト</h2>
+        <h2>便利サイトコンテンツ</h2>
+<p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
+<p>説明　<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマー</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a></p>
+<p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲームスマホ</a></p>
+<p><a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲームPCパソコン</a></p>
+<p><a href="https://memoc.pages.dev/kurumagame0/" target="_blank">車ブラウザゲーム2スマホ</a></p>
+<p><a href="https://memoc.pages.dev/kurumagamepc0/" target="_blank">車ブラウザゲーム2パソコン</a></p>
+<p><a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a></p>
+<p>説明　<a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ</a></p>
+<p>説明　<a href="https://memoc.pages.dev/sensuikangame1/" target="_blank">潜水艦ゲーム無料</a>　　<a href="https://memoc.pages.dev/sensuikangame/" target="_blank">潜水艦ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦</a>　　<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング</a>　　<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/sensuikangame2/" target="_blank">潜水艦ゲーム2人対戦可の説明</a>　　<a href="https://memoc.pages.dev/y2su/" target="_blank">潜水艦seaシューティング2</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しい</a>　　<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明</a>　　<a href="https://memoc.pages.dev/y4d/" target="_blank">忍者ペンギン</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明</a></p>
+<p><a href="https://memoc.pages.dev/y5e/" target="_blank">カップル盛り上がる質問ゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明</a>　　<a href="https://memoc.pages.dev/y6f/" target="_blank">英語クイズ小学生向けゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明</a>　　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直す</a>　<a href="https://memoc.pages.dev/y8h/" target="_blank">英単語中学一年生クイズ</a></p>
+<p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生</a>　　<a href="https://memoc.pages.dev/y9i/" target="_blank">中学二年生の英単語クイズゲーム</a>　　
+<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
+<p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング</a>　　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズ</a>　　<a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキング</a>　　<a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキング</a>　　<a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキング</a>　　<a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/stresssukunai/" target="_blank">ストレス少ない仕事</a>　　<a href="https://memoc.pages.dev/kyuujitunetakiri/" target="_blank">休日寝たきり</a>　　
+<p><a href="https://memoc.pages.dev/kyuujituhikikomori/" target="_blank">休日引きこもり</a></p></p>
+<br>
+<p><a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料</a>　　<a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラスト</a>　　<a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト</a>　　<a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラスト</a>　　<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト</a>　　<a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト</a>　　<a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト</a>　　　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラスト</a>　　<a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラスト</a>　　<a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラスト</a>　　<a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラスト</a></p>
+<br>
+<p><a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+          <p>便利サイト無料で生活に役立つリンク集は、アプリいらず、更新インストール不要☆</p>
+<p>当サイトはリンクフリーなので、ご自由にお使い下さい。</p>
+<p>スマホ右上の点々をクリックし「ホーム画面に追加」すると便利です。</p>
+          <h3>大手の便利サイト</h3>
 <p><a href="http://www.google.co.jp/" target="_blank">グーグル</a>
 　<a href="http://www.yahoo.co.jp/" target="_blank">ヤフー</a>
 　<a href="http://www.msn.co.jp/" target="_blank">msn</a>
@@ -177,25 +239,21 @@ setInterval('Watch()',500);
 <p><a href="https://news.yahoo.co.jp/topics/top-picks" target="_blank">ヤフーニュース</a>
  - <a href="https://news.yahoo.co.jp/ranking/access/news" target="_blank">アクセスランキング</a>
 　<a href="https://www.youtube.com/" target="_blank">YouTubeユーチューブ</a></p>
-<p><a href="https://tver.jp/" target="_blank">TVer</a>　<a href="https://memoc.pages.dev/tver/" target="_blank">ティーバー検索用</a>
-　<a href="https://chatgpt.com/" target="_blank">ChatGPT チャットGPT</a>　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">リアルタイム検索</a></p>
+<p><a href="https://tver.jp/" target="_blank">TVer</a>　　<a href="https://chatgpt.com/" target="_blank">ChatGPT チャットGPT</a>　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">リアルタイム検索</a></p>
 <p><a href="https://weather.yahoo.co.jp/weather/" target="_blank">今日の天気</a>
 　<a href="https://tenki.jp/week/" target="_blank">週間天気</a>
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
 　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>
 　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a></p>
-          <h3>便利サイト無料のSNS</h3>
+          <h3>SNS</h3>
 <p><a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
 　<a href="https://x.com/" target="_blank">Xエックス Twitterツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagramインスタグラム</a>
 　<a href="https://www.tiktok.com/ja-JP/" target="_blank">TikTokティックトック</a>
 　<a href="https://www.facebook.com/" target="_blank">facebookフェイスブック</a>
 　<a href="https://mixi.jp/" target="_blank">mixiミクシィ</a></p>
-          <p>便利サイト無料で生活に役立つリンク集は、アプリのインストール更新不要☆</p>
-<p>スマホ右上の点々をクリックし「ホーム画面に追加」すると便利です。</p>
-
-          <h4>便利サイト生活に役立つリンク集</h4>
+          <h4>生活に役立つリンク集</h4>
 <p><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
 　<a href="https://www.kuronekoyamato.co.jp/" target="_blank">ヤマト運輸</a>
 　<a href="https://www.amazon.co.jp/" target="_blank">Amazon</a>
@@ -204,8 +262,6 @@ setInterval('Watch()',500);
 <p><a href="https://auctions.yahoo.co.jp/" target="_blank">ヤフオク</a>
 　<a href="https://jp.mercari.com/" target="_blank">メルカリ</a>
 　<a href="https://jmty.jp/" target="_blank">ジモティー</a></p>
-<p>便利サイト生活に役立つリンク集です。当サイトはリンクフリーです。</p>
-
          <h5>銀行金融の生活に役立つリンク集</h5>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
 　<a href="https://www.bk.mufg.jp/" target="_blank">三菱UFJ銀行</a>
@@ -222,7 +278,6 @@ setInterval('Watch()',500);
 　<a href="https://www.sbisec.co.jp/" target="_blank">SBI証券</a>
 　<a href="https://www.rakuten-sec.co.jp/" target="_blank">楽天証券</a></p>
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
-
 <p>経済指標　<a href="https://www.nikkei.com/" target="_blank">日本経済新聞</a>
 　<a href="https://finance.yahoo.co.jp/" target="_blank">ヤフーファイナンス</a>
 　<a href="https://finance.yahoo.co.jp/quote/998407.O/chart" target="_blank">日経平均チャート</a>
@@ -291,18 +346,18 @@ setInterval('Watch()',500);
 <p>100円ショップ　<a href="https://www.daiso-sangyo.co.jp/" target="_blank">ダイソー</a>
 　<a href="https://www.seria-group.com/corp/overview/" target="_blank">セリア</a>
 　<a href="https://www.cando-web.co.jp/" target="_blank">Can Do キャンドゥ</a></p>
-          <h3>グルメ生活に役立つ便利サイト・リンク集</h3>
+          <h5>グルメ生活に役立つ便利サイト・リンク集</h5>
                 <p>グルメサイト　<a href="https://tabelog.com/" target="_blank">食べログ</a>
 　<a href="https://www.gnavi.co.jp/" target="_blank">ぐるなび</a>
 　<a href="https://www.hotpepper.jp/" target="_blank">ホットペッパーグルメ</a></p>
-          <h4>何でもランキング　便利サイト無料で生活に役立つコンテンツ</h4>
+          <h2>何でもランキング　便利サイト無料で生活に役立つコンテンツ</h2>
         <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
-        <h5>便利サイト無料で生活に役立つリンク集は毎日が快適になるホームページ</h5>
+        <h3>便利サイト無料で生活に役立つリンク集は毎日が快適になるホームページ</h3>
         <p>便利サイト無料で生活に役立つリンク集は、毎日が快適になるホームページというコンセプトで制作しています。</p>
 <p>携帯スマホのアプリで容量が圧迫される・アプリ更新で容量不足という問題を、当サイトで解決。使いやすいホームページです。</p>
         <p>「便利なサイト」が1ページに載っているスタートページ。</p><br>

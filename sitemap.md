@@ -92,7 +92,7 @@
 <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 <p><a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマーおすすめwebサイト</a></p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
-<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a>
+<p><a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
 <p><a href="https://memoc.pages.dev/y8h/" target="_blank">英語中学生クイズ面白いゲーム 英単語中学一年生</a></p>
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
 <p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
@@ -103,6 +103,9 @@
 <p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
 <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p>
 <p><a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月 無料で書き込みダウンロード保存も</a></p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
+<p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
 
 <br>
        </div>
