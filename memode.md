@@ -5,7 +5,7 @@
 <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
         <meta name="keywords" content="メモ,電卓,web,ブラウザ">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-  <link rel="stylesheet" href="css/z999.css">
+  <link rel="stylesheet" href="/css/z999.css">
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -95,7 +95,7 @@
     </div>
   </div>
 
-  <script src="js/z999.js"></script>
+  <script src="/js/z999.js"></script>
 
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
