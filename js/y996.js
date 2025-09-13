@@ -1,4 +1,4 @@
-// indez996.js
+// /js/y996.js
 document.addEventListener('DOMContentLoaded', () => {
   const canvas         = document.getElementById('draw-canvas');
   const ctx            = canvas.getContext('2d');
@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 音声ファイルをあらかじめ読み込む
   const pipipiSound = new Audio('https://raw.githubusercontent.com/google/WebFundamentals/master/src/site/voice/sounds/notification.mp3');
-  const piSound    = new Audio('https://raw.githubusercontent.com/google/WebFundamentals/master/src/site/voice/sounds/notification-2.mp3');
+  const piSound     = new Audio('https://raw.githubusercontent.com/google/WebFundamentals/master/src/site/voice/sounds/notification-2.mp3');
   pipipiSound.preload = 'auto';
-  piSound.preload    = 'auto';
-  pipipiSound.volume = 1.0;
-  piSound.volume     = 1.0;
+  piSound.preload     = 'auto';
+  pipipiSound.volume  = 1.0;
+  piSound.volume      = 1.0;
   pipipiSound.load();
   piSound.load();
 
@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let isErasing        = false;
   let timerInterval;
   let totalSeconds     = 60;
-  let currentSoundMode = 'pipipi';
+  // デフォルトは最初のボタン（画面点滅）に合わせる
+  let currentSoundMode = soundBtns[0].dataset.mode;
 
   function initializeCanvas() {
     const savedDrawing = localStorage.getItem('savedDrawing');
@@ -82,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDrawing) return;
     e.preventDefault();
     const [x, y] = getCoords(e);
-    ctx.lineCap               = 'round';
-    ctx.lineJoin              = 'round';
+    ctx.lineCap                   = 'round';
+    ctx.lineJoin                  = 'round';
     ctx.globalCompositeOperation = isErasing ? 'destination-out' : 'source-over';
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -152,7 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startTimer() {
     clearInterval(timerInterval);
-    if (totalSeconds <= 0) return;
+    if (totalSeconds <= 0) {
+      handleTimerEnd();
+      return;
+    }
     timerInterval = setInterval(() => {
       totalSeconds--;
       updateTimerDisplay();
@@ -164,20 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleTimerEnd() {
-    switch (currentSoundMode) {
-      case 'pipipi':
-        pipipiSound.currentTime = 0;
-        pipipiSound.play().catch(err => console.error('Audio再生エラー:', err));
-        break;
-      case 'pi':
-        piSound.currentTime = 0;
-        piSound.play().catch(err => console.error('Audio再生エラー:', err));
-        break;
-      case 'flash':
-        document.body.classList.add('flash');
-        setTimeout(() => document.body.classList.remove('flash'), 1000);
-        break;
-    }
+    // 秒数0到達で必ず画面点滅
+    document.body.classList.add('flash');
+    setTimeout(() => document.body.classList.remove('flash'), 1000);
   }
 
   // イベントバインド
@@ -194,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   colorButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      isErasing        = false;
-      ctx.strokeStyle  = btn.dataset.color;
+      isErasing         = false;
+      ctx.strokeStyle   = btn.dataset.color;
       colorPicker.value = btn.dataset.color;
     });
   });
@@ -237,8 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 初期化
   initializeCanvas();
-  ctx.lineWidth = penWidthSlider.value;
-  ctx.strokeStyle = colorPicker.value;
+  ctx.lineWidth     = penWidthSlider.value;
+  ctx.strokeStyle   = colorPicker.value;
   soundBtns[0].classList.add('active');
   updateTimerDisplay();
 });
