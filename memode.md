@@ -8,8 +8,6 @@
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
 </head>
 <body>
-        <div id="container">
-        <div id="content">
         <h1><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></h1>
           <div class="blockbody"><p>メモ付き電卓のwebブラウザ無料サイト 分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p>
 </div>
@@ -59,8 +57,7 @@
         <button>2</button>
         <button>3</button>
         <button data-action="fractionSlash">/</button>
-<button data-action="calculate" class="equals">=</button>
-
+        <button data-action="calculate" class="equals">=</button>
 
         <button class="zero">0</button>
         <button>.</button>
@@ -78,7 +75,7 @@
 
     <!-- メモ部 -->
     <div class="memo">
-      <h2>メモ付き電卓　計算履歴</h2>
+      <h2>計算履歴</h2>
       <div id="history"></div>
       <div class="memo-buttons">
         <button id="clearHistory">クリア</button>
