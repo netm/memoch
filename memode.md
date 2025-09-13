@@ -8,10 +8,13 @@
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
 </head>
 <body>
+        <div id="container">
+        <div id="banner">
         <h1><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></h1>
           <div class="blockbody"><p>メモ付き電卓のwebブラウザ無料サイト 分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p>
 </div>
-
+</div>
+        <div id="content">
   <div class="calculator-wrapper">
     <!-- モード選択 -->
 
@@ -86,6 +89,10 @@
 
   <script src="/js/z999.js"></script>
 
+        <p><form>
+<textarea name="テキストエリア" rows="17" cols="68" wrap="hard">メモ欄
+</textarea>
+</form>
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
 <p>さらに、便利な分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p><br>
