@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ba9898;
+  background-color: #ebebeb;
   margin: 0;
   padding: 10px;
   touch-action: none;
@@ -66,21 +66,21 @@ button {
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #f8f8f8;
+  background-color: #bababa;
   font-size: 14px;
   transition: background-color 0.2s;
 }
 button:hover {
-  background-color: #e0e0e0;
+  background-color: #8d8d8d;
 }
 button.active {
   background-color: #007bff;
-  color: white;
+  color: rgb(0, 0, 0);
   border-color: #007bff;
 }
 
 #timer-display {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   color: #333;
   background-color: #eee;
@@ -92,7 +92,7 @@ button.active {
 
 #start-btn {
   background-color: #28a745;
-  color: white;
+  color: rgb(0, 0, 0);
   border-color: #28a745;
 }
 #start-btn:hover {
@@ -159,7 +159,7 @@ footer {
   font-size: 14px;
 }
 footer a {
-  color: #007bff;
+  color: #0054ae;
   text-decoration: none;
 }
 footer a:hover {
