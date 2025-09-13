@@ -5,14 +5,7 @@ padding:0px;
 text-align:left;
 zoom: 115%;
 
-    padding: 0!important;
-    padding-bottom: 0!important;
 }
-.fc2ad * {
-    position: static!important;
-}
-#fc2_bottom_bnr{position:static!important;}
-
 #container{
 margin:0px auto;
 width:800px;

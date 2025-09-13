@@ -137,6 +137,7 @@
 <textarea name="テキストエリア" rows="14" cols="68" wrap="hard">投資メモ
 </textarea>
 </form>
+    <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p><br>
 <p>投資用株式リンク集　<a href="https://finance.yahoo.co.jp/quote/998407.O/chart" target="_blank">日経平均チャート</a>　<a href="https://finance.yahoo.co.jp/quote/%5EDJI/chart" target="_blank">NYダウチャート</a>　<a href="https://finance.yahoo.co.jp/quote/%5EIXIC/chart" target="_blank">ナスダックチャート</a></p>
 <p><a href="https://nikkei225jp.com/chart/" target="_blank">日経平均リアルタイムチャート</a>
 　<a href="https://nikkei225jp.com/nasdaq/" target="_blank">NYダウ平均株価リアルタイムチャート</a></p>
