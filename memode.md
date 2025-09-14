@@ -151,8 +151,7 @@
         </div>
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
-<p><a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p><br>
-
+<p><a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p>
 <p>計算履歴として、自動でメモとして表示されます。</p><br>
 
 <h2>メモ付き電卓webブラウザ無料サイトの使い方の説明 </h2>
@@ -171,6 +170,7 @@
 <p><a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p><br>
 
          <p>便利な電卓・計算機</p>
+    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
