@@ -12,166 +12,57 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="calculator-container">
-        <div class="settings">
-            <select id="modeSelector">
-                <option value="calculator">電卓</option>
-                <option value="currency">通貨</option>
-                <option value="length">長さ</option>
-                <option value="weight">重さ</option>
-                <option value="fraction">分数</option>
-                <option value="time">時間</option>
-                <option value="sqrt">ルート(√)</option>
-            </select>
-            <div>
-                <label for="taxRate">税率(%):</label>
-                <input type="number" id="taxRate" value="10">
-            </div>
-        </div>
-        <div id="display">0</div>
+    <div id="capture-area">
+        <div class="app-container">
+            <div id="memo-display"></div>
+            <div id="display">0</div>
+            <div class="calculator">
+                <div class="calculator-keys">
+                    <button class="control-btn" data-action="clear-all">すべて消去</button>
+                    <button class="control-btn" data-action="undo">一つ戻す</button>
+                    
+                    <button data-action="operator" data-value="÷">÷</button>
+                    <button data-action="operator" data-value="×">×</button>
 
-        <div id="currencyMode" class="mode-specific">
-            <div class="controls">
-                <span>入力した数値を変換します</span>
-                <select id="fromUnit">
-                    <option value="JPY">円 (JPY)</option>
-                    <option value="USD">ドル (USD)</option>
-                    <option value="EUR">ユーロ (EUR)</option>
-                </select>
-                <span>↓</span>
-                <select id="toUnit">
-                    <option value="USD">ドル (USD)</option>
-                    <option value="JPY">円 (JPY)</option>
-                    <option value="EUR">ユーロ (EUR)</option>
-                </select>
-                <button id="convertBtn">変換</button>
-            </div>
-        </div>
+                    <button data-action="number" data-value="7">7</button>
+                    <button data-action="number" data-value="8">8</button>
+                    <button data-action="number" data-value="9">9</button>
+                    <button data-action="operator" data-value="-">-</button>
 
-        <div id="lengthMode" class="mode-specific">
-             <div class="controls">
-                <span>入力した数値を変換します</span>
-                <select id="fromUnit">
-                    <option value="m">メートル (m)</option>
-                    <option value="cm">センチメートル (cm)</option>
-                    <option value="km">キロメートル (km)</option>
-                    <option value="in">インチ (in)</option>
-                    <option value="ft">フィート (ft)</option>
-                </select>
-                <span>↓</span>
-                <select id="toUnit">
-                    <option value="cm">センチメートル (cm)</option>
-                    <option value="m">メートル (m)</option>
-                    <option value="km">キロメートル (km)</option>
-                    <option value="in">インチ (in)</option>
-                    <option value="ft">フィート (ft)</option>
-                </select>
-                <button id="convertLengthBtn">変換</button>
-            </div>
-        </div>
-        
-        <div id="weightMode" class="mode-specific">
-             <div class="controls">
-                <span>入力した数値を変換します</span>
-                <select id="fromUnit">
-                    <option value="kg">キログラム (kg)</option>
-                    <option value="g">グラム (g)</option>
-                    <option value="lb">ポンド (lb)</option>
-                    <option value="oz">オンス (oz)</option>
-                </select>
-                <span>↓</span>
-                <select id="toUnit">
-                    <option value="g">グラム (g)</option>
-                    <option value="kg">キログラム (kg)</option>
-                    <option value="lb">ポンド (lb)</option>
-                    <option value="oz">オンス (oz)</option>
-                </select>
-                <button id="convertWeightBtn">変換</button>
-            </div>
-        </div>
+                    <button data-action="number" data-value="4">4</button>
+                    <button data-action="number" data-value="5">5</button>
+                    <button data-action="number" data-value="6">6</button>
+                    <button data-action="operator" data-value="+">+</button>
 
-        <div id="timeMode" class="mode-specific">
-             <div class="controls">
-                <span>入力した数値を変換します</span>
-                <select id="fromUnit">
-                    <option value="hr">時間</option>
-                    <option value="min">分</option>
-                    <option value="s">秒</option>
-                    <option value="day">日</option>
-                </select>
-                <span>↓</span>
-                <select id="toUnit">
-                    <option value="min">分</option>
-                    <option value="hr">時間</option>
-                    <option value="s">秒</option>
-                    <option value="day">日</option>
-                </select>
-                <button id="convertTimeBtn">変換</button>
-            </div>
-        </div>
-
-        <div id="fractionMode" class="mode-specific">
-            <div class="controls">
-                <div class="fraction-inputs">
-                    <input type="text" id="fraction1" placeholder="例: 1/2">
-                    <select id="fractionOp">
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                        <option value="×">×</option>
-                        <option value="÷">÷</option>
-                    </select>
-                    <input type="text" id="fraction2" placeholder="例: 3/4">
+                    <button data-action="number" data-value="1">1</button>
+                    <button data-action="number" data-value="2">2</button>
+                    <button data-action="number" data-value="3">3</button>
+                    
+                    <button data-action="number" data-value="0" style="grid-column: span 2;">0</button>
+                    <button data-action="decimal" data-value=".">.</button>
+                    
+                    <button data-action="equals" data-value="=" style="grid-row: span 2;">=</button>
                 </div>
-                <button id="calculateFractionBtn">分数計算</button>
             </div>
-        </div>
-        
-        <div class="calculator-buttons">
-            <button data-action="clear-all" class="wide-button">すべて消去</button>
-            <button data-action="undo">⌫</button>
-            <button data-action="operator" data-value="÷">÷</button>
-
-            <button data-action="special" data-value="%">%</button>
-            <button data-action="operator" data-value="^">xʸ</button>
-            <button data-action="special" data-value="√">√</button>
-            <button data-action="operator" data-value="×">×</button>
-
-            <button data-action="number" data-value="7">7</button>
-            <button data-action="number" data-value="8">8</button>
-            <button data-action="number" data-value="9">9</button>
-            <button data-action="operator" data-value="-">-</button>
-
-            <button data-action="number" data-value="4">4</button>
-            <button data-action="number" data-value="5">5</button>
-            <button data-action="number" data-value="6">6</button>
-            <button data-action="operator" data-value="+">+</button>
-
-            <button data-action="number" data-value="1">1</button>
-            <button data-action="number" data-value="2">2</button>
-            <button data-action="number" data-value="3">3</button>
-            <button data-action="calculate" data-value="=" rowspan="2" style="grid-row: span 2;">=</button>
-
-            <button data-action="special" data-value="tax">税込</button>
-            <button data-action="number" data-value="0">0</button>
-            <button data-action="number" data-value=".">.</button>
-        </div>
-
-        <div class="footer-link">
-            
-    <a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>
+             <textarea id="notes" placeholder="ここにメモを追加できます..."></textarea>
+             <button id="save-png" class="control-btn">PNG画像で保存</button>
         </div>
     </div>
 
-    <div class="history-container">
-        <h2>計算履歴</h2>
-        <ul id="historyList"></ul>
-        <div class="history-buttons">
-            <button id="savePngBtn">PNGで保存</button>
-            <button id="clearHistoryBtn">履歴を消去</button>
-        </div>
+    <div class="footer-link">
+    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
+    <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
+    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
+    <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+    <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
+    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p><br>
+    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
     </div>
-</div>
 
 <script src="/js/z999.js"></script>
 

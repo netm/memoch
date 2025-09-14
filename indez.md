@@ -56,7 +56,7 @@
 　<a href="https://tenki.jp/week/" target="_blank">週間天気</a>
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
-　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
+　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>　<a href="https://gemini.google.com/app?hl=ja" target="_blank">geminiジェミニ</a>
 
             <div class="clock-container">
     <span class="date" id="date"></span>

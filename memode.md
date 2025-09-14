@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
+  <meta charset="UTF-8">
+<meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓機能と画像保存機能付きです。">
     <meta name="keywords" content="メモ,電卓,web,ブラウザ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-3701488620779249">
@@ -152,7 +152,6 @@
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
 <p><a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p><br>
-<p>さらに、便利な分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p><br>
 
 <h2>メモ機能は電卓の右側に計算履歴として表示</h2>
 <p>右側に計算履歴として、自動でメモとして表示されます。</p><br>
