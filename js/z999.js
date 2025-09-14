@@ -1,342 +1,273 @@
-// --- DOM 要素取得 ---
-const display         = document.getElementById('display');
-const keys            = document.querySelector('.keys');
-const modeSelect      = document.getElementById('modeSelect');
-const converterPanel  = document.getElementById('converterPanel');
-const unitFrom        = document.getElementById('unitFrom');
-const unitTo          = document.getElementById('unitTo');
-const convertInput    = document.getElementById('convertInput');
-const doConvertBtn    = document.getElementById('doConvert');
-const historyArea     = document.getElementById('history');
-const clearHistoryBtn = document.getElementById('clearHistory');
-const copyHistoryBtn  = document.getElementById('copyHistory');
+document.addEventListener('DOMContentLoaded', function() {
+    const display = document.getElementById('display');
+    const historyList = document.getElementById('historyList');
+    const modeSelector = document.getElementById('modeSelector');
+    const calculatorButtons = document.querySelector('.calculator-buttons');
+    const taxRateInput = document.getElementById('taxRate');
+    let currentInput = '';
+    let operator = '';
+    let previousInput = '';
+    let history = JSON.parse(localStorage.getItem('calculatorHistory')) || [];
+    let currentMode = 'calculator';
 
-// --- 計算状態 ---
-let currentInput = '';
-let operator     = null;
-let prevRaw      = null;  // 履歴用オリジナル入力
-let prevValue    = null;  // 数値演算用
-
-// --- 単位換算データ ---
-const rates = {
-  currency: { 'USD_JPY': 145,   'JPY_USD': 1/145 },
-  length:   { 'm_km':   0.001,  'km_m': 1000,
-              'cm_m':   0.01,   'm_cm': 100,
-              'inch_cm':2.54 },
-  weight:   { 'g_kg':   0.001,  'kg_g': 1000,
-              'lb_kg':  0.453592,'kg_lb':2.20462 },
-  time:     { 's_min':  1/60,   'min_s':60,
-              'min_hr': 1/60,   'hr_min':60 }
-};
-const unitOptions = {
-  currency:['USD','JPY'],
-  length:  ['m','km','cm','inch'],
-  weight:  ['g','kg','lb'],
-  time:    ['s','min','hr']
-};
-
-// --- 初期化 ---
-handleModeChange();
-updateDisplay();
-
-// --- イベントリスナ ---
-// 画面ボタン操作
-keys.addEventListener('click', e => {
-  const btn    = e.target;
-  const val    = btn.textContent;
-  const action = btn.dataset.action;
-
-  if (!action)                 appendNumber(val);
-  if (action === 'operator')   chooseOperator(val);
-  if (action === 'clear')      clearAll();
-  if (action === 'delete')     deleteLast();
-  if (action === 'calculate')  calculate();
-  if (action === 'percent')    handlePercent();
-  if (action === 'tax')        handleTax();
-  if (action === 'sqrt')       handleSqrt();
-  if (action === 'fractionSlash') appendSlash();
-
-  updateDisplay();
-});
-
-// キーボード操作
-document.addEventListener('keydown', e => {
-  const key = e.key;
-
-  // 数字・小数点
-  if (/^[0-9]$/.test(key) || key === '.') {
-    appendNumber(key);
-  }
-
-  // 分数モード専用スラッシュ
-  if (key === '/' && modeSelect.value === 'fraction') {
-    e.preventDefault();
-    appendSlash();
-  }
-
-  // 演算子キー（+ - ^ * /）
-  if (['+','-','^','*','/'].includes(key) && !(key === '/' && modeSelect.value === 'fraction')) {
-    const map = {
-      '+': '+',
-      '-': '−',
-      '^': '^',
-      '*': '×',
-      '/': '÷'
-    };
-    chooseOperator(map[key]);
-  }
-
-  if (key === 'Enter' || key === '=') calculate();
-  if (key === 'Backspace')            deleteLast();
-  if (key === 'Escape')               clearAll();
-  if (key === '%')                    handlePercent();
-  if (key.toLowerCase() === 't')      handleTax();
-  if (key.toLowerCase() === 'r')      handleSqrt();
-
-  updateDisplay();
-});
-
-// モード切替
-modeSelect.addEventListener('change', handleModeChange);
-
-// 単位換算
-doConvertBtn.addEventListener('click', () => {
-  const mode = modeSelect.value;
-  const from = unitFrom.value;
-  const to   = unitTo.value;
-  const val  = parseFloat(convertInput.value);
-  const key  = `${from}_${to}`;
-  let   res  = NaN;
-
-  if (rates[mode] && rates[mode][key] != null) {
-    res = val * rates[mode][key];
-  }
-
-  display.textContent = isNaN(res) ? 'Error' : res;
-  logHistory(`${val}${from}`, '→', `${res}${to}`);
-});
-
-// 履歴クリア／コピー
-clearHistoryBtn.addEventListener('click', () => historyArea.textContent = '');
-copyHistoryBtn.addEventListener('click', () => navigator.clipboard.writeText(historyArea.textContent));
-
-// 履歴クリックで再計算
-historyArea.addEventListener('click', e => {
-  if (!e.target.classList.contains('history-line')) return;
-  const parts = e.target.textContent.split(' ');
-  const aRaw  = parts[0];
-  const op    = parts[1];
-  const bRaw  = parts[2];
-  const aNum  = parseFloat(aRaw);
-  const bNum  = parseFloat(bRaw);
-
-  if (modeSelect.value === 'fraction') {
-    // 分数モードは fraction の calculate を再利用
-    prevRaw      = aRaw;
-    operator     = op;
-    currentInput = bRaw;
-    calculate();
-    updateDisplay();
-  }
-  else if (modeSelect.value === 'root') {
-    // Rootモード：累乗の場合
-    if (op === '^') {
-      prevValue    = aNum;
-      operator     = '^';
-      currentInput = bNum.toString();
-      calculate();
-      updateDisplay();
+    // --- Core Functions ---
+    function updateDisplay() {
+        display.textContent = currentInput || '0';
     }
-  }
-  else if (unitOptions[modeSelect.value]) {
-    // コンバーターモード
-    convertInput.value = aNum;
-    unitFrom.value     = aRaw.replace(/[0-9.\-]+/, '');
-    unitTo.value       = bRaw.replace(/[0-9.\-]+/, '');
-    doConvertBtn.click();
-  }
-  else {
-    // Standardモード
-    prevRaw      = aRaw;
-    prevValue    = aNum;
-    operator     = op;
-    currentInput = bNum.toString();
-    calculate();
-    updateDisplay();
-  }
-});
 
-// --- ヘルパー関数 ---
-// 浮動小数点誤差対策：任意桁で丸め
-function round(num, decimals = 12) {
-  const factor = Math.pow(10, decimals);
-  return Math.round((num + Number.EPSILON) * factor) / factor;
-}
-
-// 数字・小数点入力
-function appendNumber(n) {
-  if (n === '.' && currentInput.includes('.')) return;
-  currentInput = (currentInput === '0' || currentInput === '') ? n : currentInput + n;
-}
-
-// 分数スラッシュ入力
-function appendSlash() {
-  if (modeSelect.value !== 'fraction') return;
-  if (currentInput.includes('/')) return;
-  currentInput = currentInput === '' ? '0/' : currentInput + '/';
-}
-
-// 演算子選択
-function chooseOperator(op) {
-  if (currentInput === '') return;
-  prevRaw   = currentInput;
-  prevValue = (modeSelect.value === 'fraction') ? null : parseFloat(currentInput);
-  operator  = op;
-  currentInput = '';
-}
-
-// 計算実行
-function calculate() {
-  const mode = modeSelect.value;
-
-  // 分数モード
-  if (mode === 'fraction') {
-    if (!operator || !prevRaw || !currentInput) return;
-    const f1 = parseFraction(prevRaw);
-    const f2 = parseFraction(currentInput);
-    let n, d;
-    switch (operator) {
-      case '+': n = f1.n*f2.d + f2.n*f1.d; d = f1.d*f2.d; break;
-      case '−': n = f1.n*f2.d - f2.n*f1.d; d = f1.d*f2.d; break;
-      case '×': n = f1.n*f2.n;              d = f1.d*f2.d; break;
-      case '÷': n = f1.n*f2.d;              d = f1.d*f2.n; break;
-      default:  return;
+    function updateHistory() {
+        historyList.innerHTML = '';
+        history.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            historyList.appendChild(li);
+        });
+        localStorage.setItem('calculatorHistory', JSON.stringify(history));
     }
-    const g = gcd(Math.abs(n), Math.abs(d));
-    n /= g; d /= g;
-    const result = `${n}/${d}`;
-    logHistory(prevRaw, operator, currentInput, result);
-    currentInput = result;
-    operator = prevRaw = null;
-    return;
-  }
 
-  // Rootモード
-  if (mode === 'root') {
-    // √ は handleSqrt() で済むので、ここでは ^ のみ扱う
-    if (operator !== '^' || prevValue === null || currentInput === '') return;
-    const b      = parseFloat(currentInput);
-    let   result = Math.pow(prevValue, b);
-    result = round(result);
-    logHistory(prevValue, '^', b, result);
-    currentInput = result.toString();
-    operator = prevValue = null;
-    return;
-  }
+    function clearAll() {
+        currentInput = '';
+        operator = '';
+        previousInput = '';
+        updateDisplay();
+    }
 
-  // Standardモード（四則＋累乗）
-  if (!operator || currentInput === '') return;
-  const a = prevValue;
-  const b = parseFloat(currentInput);
-  let result;
-  switch (operator) {
-    case '+': result = a + b; break;
-    case '−': result = a - b; break;
-    case '×': result = a * b; break;
-    case '÷': result = a / b; break;
-    case '^': result = Math.pow(a, b); break;
-    default:  return;
-  }
-  result = round(result);
-  logHistory(a, operator, b, result);
-  currentInput = result.toString();
-  operator = prevValue = null;
-}
+    function undo() {
+        currentInput = currentInput.slice(0, -1);
+        updateDisplay();
+    }
 
-// % 計算
-function handlePercent() {
-  if (!currentInput) return;
-  const raw = parseFloat(currentInput) * 0.01;
-  const val = round(raw, 4);
-  logHistory(currentInput, '%', val);
-  currentInput = val.toString();
-}
+    function handleNumber(number) {
+        if (currentInput.includes('.') && number === '.') return;
+        currentInput += number;
+        updateDisplay();
+    }
 
-// 消費税計算 (+10%)
-function handleTax() {
-  if (!currentInput) return;
-  const raw = parseFloat(currentInput) * 1.10;
-  const val = round(raw, 4);
-  logHistory(currentInput, 'TAX', val);
-  currentInput = val.toString();
-}
+    function handleOperator(op) {
+        if (currentInput === '') return;
+        if (previousInput !== '') {
+            calculate();
+        }
+        operator = op;
+        previousInput = currentInput;
+        currentInput = '';
+    }
 
-// √ 計算（Rootモード専用）
-function handleSqrt() {
-  if (modeSelect.value !== 'root' || !currentInput) return;
-  const val    = parseFloat(currentInput);
-  const result = round(Math.sqrt(val));
-  logHistory(`√(${currentInput})`, '=', result);
-  currentInput = result.toString();
-}
+    function calculate() {
+        if (previousInput === '' || currentInput === '' || operator === '') return;
+        let result;
+        const prev = parseFloat(previousInput);
+        const current = parseFloat(currentInput);
 
-// 最後の文字削除
-function deleteLast() {
-  currentInput = currentInput.slice(0, -1);
-}
+        switch (operator) {
+            case '+': result = prev + current; break;
+            case '-': result = prev - current; break;
+            case '×': result = prev * current; break;
+            case '÷': result = prev / current; break;
+            case '^': result = Math.pow(prev, current); break;
+            default: return;
+        }
 
-// 全クリア
-function clearAll() {
-  currentInput = '';
-  operator     = prevRaw = prevValue = null;
-}
+        const calculation = `${previousInput} ${operator} ${currentInput} = ${result}`;
+        history.push(calculation);
+        updateHistory();
 
-// ディスプレイ更新
-function updateDisplay() {
-  display.textContent = currentInput || '0';
-}
+        currentInput = result.toString();
+        operator = '';
+        previousInput = '';
+        updateDisplay();
+    }
 
-// 履歴追加
-function logHistory(a, op, b, res) {
-  const line = document.createElement('div');
-  line.classList.add('history-line');
-  const text = res === undefined
-    ? `${a} ${op} ${b}`
-    : `${a} ${op} ${b} = ${res}`;
-  line.textContent = text;
-  historyArea.appendChild(line);
-  historyArea.scrollTop = historyArea.scrollHeight;
-}
+    function handleSpecialFunction(func) {
+        if (currentInput === '') return;
+        let result;
+        const value = parseFloat(currentInput);
 
-// モード切替時にコンバータ表示／非表示
-function handleModeChange() {
-  const m = modeSelect.value;
-  if (unitOptions[m]) {
-    converterPanel.style.display = 'flex';
-    populateUnits(unitOptions[m]);
-  } else {
-    converterPanel.style.display = 'none';
-  }
-}
+        switch (func) {
+            case '%':
+                result = value / 100;
+                break;
+            case '√':
+                result = Math.sqrt(value);
+                 history.push(`√${currentInput} = ${result}`);
+                break;
+            case 'tax':
+                const taxRate = parseFloat(taxRateInput.value) / 100;
+                result = value * (1 + taxRate);
+                history.push(`${currentInput} + 税(${taxRateInput.value}%) = ${result}`);
+                break;
+        }
+        currentInput = result.toString();
+        updateDisplay();
+        if (func !== 'tax') {
+            history.push(`${currentInput} = ${result}`);
+        }
+        updateHistory();
+    }
 
-// 単位ドロップダウン生成
-function populateUnits(list) {
-  unitFrom.innerHTML = '';
-  unitTo.innerHTML   = '';
-  list.forEach(u => {
-    unitFrom.appendChild(new Option(u, u));
-    unitTo.appendChild(new Option(u, u));
-  });
-}
+    function convertUnits() {
+        const fromUnit = document.getElementById('fromUnit').value;
+        const toUnit = document.getElementById('toUnit').value;
+        const inputValue = parseFloat(currentInput);
 
-// 分数文字列を数値分数にパース
-function parseFraction(str) {
-  if (!str.includes('/')) return { n: parseInt(str,10), d: 1 };
-  const [nu, de] = str.split('/');
-  return { n: parseInt(nu,10), d: parseInt(de,10) };
-}
+        if (isNaN(inputValue)) return;
 
-// 最大公約数
-function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
-}
+        let result;
+        const conversionRates = {
+            // Currency (Example Rates)
+            'JPY': 1, 'USD': 0.0068, 'EUR': 0.0063,
+            // Length
+            'm': 1, 'cm': 100, 'km': 0.001, 'in': 39.3701, 'ft': 3.28084,
+            // Weight
+            'kg': 1, 'g': 1000, 'lb': 2.20462, 'oz': 35.274,
+            // Time
+            's': 1, 'min': 1/60, 'hr': 1/3600, 'day': 1/86400,
+        };
+
+        const fromRate = getConversionRate(fromUnit);
+        const toRate = getConversionRate(toUnit);
+        
+        // Base unit conversion logic
+        const baseValue = inputValue / fromRate;
+        result = baseValue * toRate;
+
+        display.textContent = result.toFixed(5);
+        history.push(`${inputValue} ${fromUnit} = ${result.toFixed(5)} ${toUnit}`);
+        updateHistory();
+    }
+    
+    function getConversionRate(unit) {
+        // A more flexible way to handle mixed unit types
+        // Currency (Example Rates)
+        if (unit === 'JPY') return 1; if (unit === 'USD') return 0.0068; if (unit === 'EUR') return 0.0063;
+        // Length
+        if (unit === 'm') return 1; if (unit === 'cm') return 100; if (unit === 'km') return 0.001; if (unit === 'in') return 39.3701; if (unit === 'ft') return 3.28084;
+        // Weight
+        if (unit === 'kg') return 1; if (unit === 'g') return 1000; if (unit === 'lb') return 2.20462; if (unit === 'oz') return 35.274;
+        // Time
+        if (unit === 's') return 3600; if (unit === 'min') return 60; if (unit === 'hr') return 1; if (unit === 'day') return 1/24;
+        return 1;
+    }
+
+
+    function handleFraction() {
+        const fraction1 = document.getElementById('fraction1').value;
+        const fraction2 = document.getElementById('fraction2').value;
+        const operation = document.getElementById('fractionOp').value;
+
+        try {
+            const [num1, den1] = fraction1.split('/').map(Number);
+            const [num2, den2] = fraction2.split('/').map(Number);
+
+            if (isNaN(num1) || isNaN(den1) || isNaN(num2) || isNaN(den2) || den1 === 0 || den2 === 0) {
+                display.textContent = 'Invalid Fraction';
+                return;
+            }
+
+            let resultNum, resultDen;
+            switch(operation) {
+                case '+':
+                    resultNum = num1 * den2 + num2 * den1;
+                    resultDen = den1 * den2;
+                    break;
+                case '-':
+                     resultNum = num1 * den2 - num2 * den1;
+                    resultDen = den1 * den2;
+                    break;
+                case '×':
+                    resultNum = num1 * num2;
+                    resultDen = den1 * den2;
+                    break;
+                case '÷':
+                    resultNum = num1 * den2;
+                    resultDen = den1 * num2;
+                    break;
+            }
+
+            const commonDivisor = gcd(resultNum, resultDen);
+            const simplifiedNum = resultNum / commonDivisor;
+            const simplifiedDen = resultDen / commonDivisor;
+            
+            const result = simplifiedDen === 1 ? simplifiedNum.toString() : `${simplifiedNum}/${simplifiedDen}`;
+            display.textContent = result;
+            history.push(`${fraction1} ${operation} ${fraction2} = ${result}`);
+            updateHistory();
+
+        } catch (e) {
+            display.textContent = 'Error';
+        }
+    }
+
+    function gcd(a, b) {
+        return b === 0 ? a : gcd(b, a % b);
+    }
+
+
+    // --- Mode Switching ---
+    function switchMode(mode) {
+        currentMode = mode;
+        document.querySelectorAll('.mode-specific').forEach(el => el.style.display = 'none');
+        calculatorButtons.style.display = 'none';
+        clearAll();
+
+        if (mode === 'calculator' || mode === 'sqrt') {
+            calculatorButtons.style.display = 'grid';
+        } else {
+            document.getElementById(`${mode}Mode`).style.display = 'block';
+        }
+         if (mode === 'sqrt') {
+            display.textContent = "数字入力後に√を押して下さい";
+        }
+    }
+
+    // --- Event Listeners ---
+    calculatorButtons.addEventListener('click', e => {
+        const target = e.target;
+        if (!target.matches('button')) return;
+
+        const { action, value } = target.dataset;
+
+        switch (action) {
+            case 'number': handleNumber(value); break;
+            case 'operator': handleOperator(value); break;
+            case 'calculate': calculate(); break;
+            case 'clear-all': clearAll(); break;
+            case 'undo': undo(); break;
+            case 'special': handleSpecialFunction(value); break;
+        }
+    });
+
+    modeSelector.addEventListener('change', (e) => switchMode(e.target.value));
+
+    document.getElementById('convertBtn').addEventListener('click', convertUnits);
+    document.getElementById('convertLengthBtn').addEventListener('click', convertUnits);
+    document.getElementById('convertWeightBtn').addEventListener('click', convertUnits);
+    document.getElementById('convertTimeBtn').addEventListener('click', convertUnits);
+    document.getElementById('calculateFractionBtn').addEventListener('click', handleFraction);
+
+    document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+        history = [];
+        updateHistory();
+    });
+
+    document.getElementById('savePngBtn').addEventListener('click', () => {
+         // Temporarily set background to white for the image
+        const originalBg = document.body.style.backgroundColor;
+        document.body.style.backgroundColor = 'white';
+
+        html2canvas(document.querySelector('.calculator-container')).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'calculator-capture.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            
+            // Revert background color
+            document.body.style.backgroundColor = originalBg;
+        });
+    });
+
+    // --- Initial Setup ---
+    updateDisplay();
+    updateHistory();
+    switchMode('calculator');
+});
