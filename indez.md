@@ -256,7 +256,8 @@ git push origin main
 <p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
 <p>説明　<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマー</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a></p>
+<p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a></p>
+<p>解説　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓web</a>　　<a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料</a></p>
 <p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲームスマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲームPCパソコン</a></p>
