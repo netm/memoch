@@ -18,8 +18,8 @@
             <div id="display">0</div>
             <div class="calculator">
                 <div class="calculator-keys">
-                    <button class="control-btn" data-action="clear-all">すべて消去</button>
-                    <button class="control-btn" data-action="undo">一つ戻す</button>
+                    <button class="control-btn" data-action="clear-all">AC</button>
+                    <button class="control-btn" data-action="undo">⌫</button>
                     
                     <button data-action="operator" data-value="÷">÷</button>
                     <button data-action="operator" data-value="×">×</button>
