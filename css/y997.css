@@ -141,14 +141,56 @@ header h1 {
 }
 
 .clear-btn {
-  background-color: #aaa;
-  color: #fff;
+  background-color: #007d43;
+  color: #ffffff;
   margin-left: 10px;
 }
 
 .save-btn:hover,
 .clear-btn:hover {
   opacity: 0.9;
+}
+
+
+h2 {
+color:#557303;
+font-size: 88%; 
+line-height: 1em; 
+font-weight:bolder;
+padding:10px 0px 5px 0px;
+margin:0px 0px 0px 0px;
+border-bottom:1px dotted #7ABD3C;
+background-color:#f0f2ff;
+border-radius: 1vh;
+}
+
+h2 a{
+text-decoration: none;
+color:#000d99;
+background-color:#f0f2ff;
+border-radius: 1vh;
+}
+
+h3 {
+color:#557303;
+font-size: 90%;
+line-height: 1em;
+font-weight:bolder;
+padding:8px 0px 7px 20px;
+margin:10px 0px 5px 0px;
+border-bottom:1px dotted #7ABD3C;
+background-color:#fcfabd;
+border-radius: 2vh;
+}
+h4 {
+position: center;
+padding:8px 0px 7px 20px;
+margin:0px 0px 0px 0px;
+  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), transparent);
+  background: linear-gradient(to right, rgb(255, 186, 115), transparent);
+  color: #545454;
+  font-size: 90%;
+border-radius: 2vh;
 }
 
 /* フッター */

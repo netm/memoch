@@ -92,6 +92,8 @@
     updateClock();
     setInterval(updateClock, 500);
   </script>
+　<a href="https://ohotuku.jp/keyword_select/" target="_blank">キーワードチェック</a>
+　<a href="https://html-css-javascript.com/replace/" target="_blank">文字列置換ツール</a>
 　<a href="https://github.com/login" target="_blank">GitHub</a>
 　<a href="https://dash.cloudflare.com" target="_blank">cloudflare</a>
 　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>

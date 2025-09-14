@@ -15,7 +15,7 @@ h1 {
   font-size: 26px;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-  background: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #ff3bef 80%);
+  background: linear-gradient(90deg, #00522b 0%, #076ad9 40%, #008758 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   overflow: hidden;
@@ -74,7 +74,7 @@ button:hover {
   background-color: #8d8d8d;
 }
 button.active {
-  background-color: #007bff;
+  background-color: #7abaff;
   color: rgb(0, 0, 0);
   border-color: #007bff;
 }
@@ -91,7 +91,7 @@ button.active {
 }
 
 #start-btn {
-  background-color: #28a745;
+  background-color: #81ff9e;
   color: rgb(0, 0, 0);
   border-color: #28a745;
 }

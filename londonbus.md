@@ -110,37 +110,6 @@
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
           </div>
-          <div>
-<center><script>
-var today=new Date(); 
-
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
-
-var week_ja= new Array("日","月","火","水","木","金","土");
-
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
-
-
          <div class="sidetitle">snsリンク集</div>
         <div class="side"><a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
@@ -182,6 +151,10 @@ setInterval('Watch()',500);
 <p>このバスの中のイラスト画像も上記の<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">アドレス</span>を記述していただければ無料フリー素材として使用可能となっています。</p><br>
 <p>ご自身のsnsに記述していただければ、ご報告は不要です。</p>
 <br>
+         <p>お絵描きコンテンツ</p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
+<p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p><br>
+<p><a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a></p><br>
 <p>イラスト無料</p><p><a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト無料フリー素材かわいいかっこいい画像</a></p>
 <p><a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラストかわいい画像と特徴の豆知識</a></p>
 <p><a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラストかわいい物リアルとシルエット無料フリー画像</a></p>
