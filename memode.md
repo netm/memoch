@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-<meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
-　<meta name="keywords" content="メモ,電卓,web,ブラウザ">
-　<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-  <link rel="stylesheet" href="/css/z999.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
+    <meta name="keywords" content="メモ,電卓,web,ブラウザ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+    <title>メモ付き電卓のwebブラウザ無料サイト</title>
+    <link rel="stylesheet" href="/css/z999.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <title>メモ付き電卓のwebブラウザ無料サイト</title>
-    </head>
+</head>
 <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></h1>
-          <div class="blockbody"><p>メモ付き電卓のwebブラウザ無料サイト 分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p>
-</div>
 
 <div class="container">
     <div class="calculator-container">
@@ -163,7 +158,8 @@
         </div>
 
         <div class="footer-link">
-            <a href="https://www.example.com" target="_blank">自分のサイトに戻る</a>
+            
+    <a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>
         </div>
     </div>
 
@@ -177,7 +173,8 @@
     </div>
 </div>
 
-  <script src="/js/z999.js"></script>
+<script src="/js/z999.js"></script>
+
 
         <p><form>
 <textarea name="テキストエリア" rows="17" cols="68" wrap="hard">メモ欄
