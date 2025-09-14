@@ -131,13 +131,13 @@
 </div>
          <div class="sidetitle">新着情報</div>
         <div class="side">
-<p>「家計簿項目表のブラウザアプリ」を作りました</p>
+<p>「イラストお題ルーレット」を作りました</p>
+<p>「家計簿項目表のブラウザアプリ」を製作</p>
 <p>「クロッキー帳デジタル」を作りました</p>
 <p>「お絵描きデジタルペイント無料サイト メモ帳にも」を作成</p>
 <p>「書き込みカレンダー」を作りました</p>
 <p>「中学生三年生の英単語ゲーム」を作りました</p>
 <p>「複利電卓・積立NISAの金額再投資計算機」を作りました</p>
-<p>「メモ付き電卓」に便利な単位換算機能を追加しました</p>
 </div>
          <div class="sidetitle">無料ゲーム</div>
         <div class="side">
@@ -244,7 +244,7 @@
 <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレット</a></p><br>
 <p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
@@ -384,6 +384,7 @@
          <p>お絵描きコンテンツ</p>
     <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
     <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a></p><br>
          <p>メモできるカレンダー</p>
     <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
          <p>無料ゲーム</p>
