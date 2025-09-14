@@ -151,7 +151,7 @@
         </div>
 <h2>メモ付き電卓webブラウザはメモ機能と計算機が無料</h2>
 <p>メモ付き電卓webブラウザはメモ機能と計算機が無料でお使いいただけます。</p><br>
-<p><a href="https://memoc.pages.dev/memod/">メモ付き電卓</a></p><br>
+<p><a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p><br>
 <p>さらに、便利な分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算の機能付き。</p><br>
 
 <h2>メモ機能は電卓の右側に計算履歴として表示</h2>
@@ -251,7 +251,7 @@
 <p>左上にあるモード「ルート平方根」を選択。</p>
 <p>数字を入力して、√ ボタンを押すと平方根を計算します。</p>
 <p>例　√2 = 1.414213562373 </p><br>
-<p><a href="https://memoc.pages.dev/memod/">メモ付き電卓</a></p><br>
+<p><a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p><br>
 
 
          <p>便利な電卓・計算機</p>
@@ -288,8 +288,8 @@
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
 <br>
 
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-        <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+        <div id="footer"><p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+        <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
