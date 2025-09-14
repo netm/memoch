@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="description" content="メモ付き電卓のwebブラウザ無料サイトです。メモ付き電卓＆分数計算 ルート累乗 ％ 長さ重さ単位換算 消費税計算機能付きです。">
-        <meta name="keywords" content="メモ,電卓,web,ブラウザ">
+　<meta name="keywords" content="メモ,電卓,web,ブラウザ">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <link rel="stylesheet" href="/css/z999.css">
   <title>メモ付き電卓のwebブラウザ無料サイト</title>
     </head>
@@ -58,7 +59,7 @@
         <button>2</button>
         <button>3</button>
         <button data-action="fractionSlash">/</button>
-<button data-action="calculate" class="equals">=</button>
+        <button data-action="calculate" class="equals">=</button>
 
 
         <button class="zero">0</button>
