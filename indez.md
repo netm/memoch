@@ -186,19 +186,19 @@ git push origin main
         <h2>書き込みカレンダーメモ帳にも</h2>
 <p>書き込みカレンダーに予定をデジタル手帳として、メモ帳代わりに記入できます。</p>
 <p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
-<p>今月　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月無料で書き込みダウンロード保存も</a></p><br>
         <h2>メモ帳代わりwebブラウザ便利サイトのコンテンツ</h2>
 <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレット</a></p><br>
-<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレット</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
 <p>説明　<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzp/" target="_blank">勉強タイマー</a></p>
 <br>
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a></p>
 <p>解説　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓web</a>　　<a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p>
+<br>
+<p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月無料</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料</a></p>
 <p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲームスマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲームPCパソコン</a></p>
