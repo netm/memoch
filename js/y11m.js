@@ -459,7 +459,7 @@
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
       [
-        '英語クイズ中学3年生向けゲーム',
+        '英語ことわざおしゃれなクイズゲーム',
         '正解にかさねてね',
         '左タップ：1人用　右タップ：2人協力'
       ].forEach((txt, i) => {
