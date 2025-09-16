@@ -152,36 +152,8 @@
         </div>
         <div id="content">
         <h2>現在時刻を秒単位の時計でWeb表示 時間と日付</h2>
-<div id="realtime"></div>
-<script>
-    function twoDigit(num) {
-      let ret;
-      if( num < 10 ) 
-	    ret = "0" + num; 
-      else 
-   	    ret = num; 
-      return ret;
-    }
-    function showClock() {
-      let nowTime = new Date();
-      let nowHour = twoDigit( nowTime.getHours() );
-      let nowMin  = twoDigit( nowTime.getMinutes() );
-      let nowSec  = twoDigit( nowTime.getSeconds() );
-      let msg = "" + nowHour + ":" + nowMin + ":" + nowSec;
-      document.getElementById("realtime").innerHTML = msg;
-    }
-    setInterval('showClock()',1000);
- </script>
- <script>
-var today=new Date(); 
-<p>//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
-var week_ja= new Array(&quot;日&quot;,&quot;月&quot;,&quot;火&quot;,&quot;水&quot;,&quot;木&quot;,&quot;金&quot;,&quot;土&quot;);
-//年・月・日・曜日を書き出す
-document.write(month+&quot;月&quot;+day+&quot;日 &quot;+week_ja[week]+&quot;曜&quot;);
-  </script>
+  <div id="date"></div>
+  <div id="time"></div>
 <br><br><p>便利なタイマーも無料でお使いいただけます。</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
 <p>設定の時間を、一回計ります。</p><br>
@@ -262,5 +234,6 @@ document.write(month+&quot;月&quot;+day+&quot;日 &quot;+week_ja[week]+&quot;�
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
         </div></div>
+  <script src="/js/tokei.js"></script>
     </body>
 </html>

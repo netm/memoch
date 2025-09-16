@@ -47,39 +47,8 @@
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
 　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
-            <div class="clock-container">
-    <span class="date" id="date"></span>
-    <span class="time" id="time"></span>
-  </div>
-  <script>
-    function pad(n) {
-      return n < 10 ? "0" + n : n;
-    }
-
-    function updateClock() {
-      const now = new Date();
-
-      // 年月日と曜日
-      const year  = now.getFullYear();
-      const month = now.getMonth() + 1;
-      const day   = now.getDate();
-      const weekDays = ["日","月","火","水","木","金","土"];
-      const week  = weekDays[now.getDay()];
-      const dateStr = `${year}年${month}月${day}日（${week}）`;
-
-      // 時刻（hh:mm）
-      const hh = pad(now.getHours());
-      const mm = pad(now.getMinutes());
-      const timeStr = `${hh}:${mm}`;
-
-      document.getElementById("date").textContent = dateStr;
-      document.getElementById("time").textContent = timeStr;
-    }
-
-    // 初回実行と、以降 500ms ごとに更新
-    updateClock();
-    setInterval(updateClock, 500);
-  </script>
+  <div id="date"></div>
+  <div id="time"></div>
 <p><a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
 　<a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
@@ -429,5 +398,6 @@
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
         </div></div>
+  <script src="/js/tokei.js"></script>
     </body>
 </html>
