@@ -152,8 +152,9 @@
         </div>
         <div id="content">
         <h2>現在時刻を秒単位の時計でWeb表示 時間と日付</h2>
-  <div id="date"></div>
-  <div id="time"></div>
+  <div id="time" aria-live="polite"></div>
+　<div id="date" aria-live="polite"></div>
+
 <br><br><p>便利なタイマーも無料でお使いいただけます。</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
 <p>設定の時間を、一回計ります。</p><br>

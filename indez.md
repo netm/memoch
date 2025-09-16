@@ -35,8 +35,8 @@
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
 　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>　<a href="https://gemini.google.com/app?hl=ja" target="_blank">geminiジェミニ</a>
-  <div id="date"></div>
-  <div id="time"></div>
+  <div id="date" aria-live="polite"></div>
+  <div id="time" aria-live="polite"></div>
 <p><a href="https://ohotuku.jp/keyword_select/" target="_blank">キーワードチェック</a>
 　<a href="https://html-css-javascript.com/replace/" target="_blank">文字列置換ツール</a>
 　<a href="https://github.com/login" target="_blank">GitHub</a>
@@ -354,6 +354,6 @@ git push origin main
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
         </div>
-  <script src="/js/tokei.js"></script>
+  <script src="/js/time.js"></script>
     </body>
 </html>
