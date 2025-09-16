@@ -5,11 +5,9 @@
 　　<meta name="robots" content="noindex, nofollow">
 　　<meta name="description" content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
         <meta name="keywords" content="メモ帳,web,ブラウザ,便利,サイト">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/d.css" media="all">
+　　 <link rel="stylesheet" href="/css/d.css" media="all">
         <title>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</title>
 </head>
 <body>
@@ -17,14 +15,7 @@
 <div id="banner">
 <h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
 <div class="blockbody"></p>
-<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>
-　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a>
-　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>
-　　<a href="https://memoc.pages.dev/rank/" target="_blank">ランキング</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
-　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>
-　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
-　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓web</a>　　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー</a>　　<a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/rank/" target="_blank">ランキング</a></p><p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a>　　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a></p>
         </div>
         </div>
         <div id="links-left">

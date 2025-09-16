@@ -1,11 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 <meta name="description" content="車ブラウザゲーム無料PCパソコン用です。PCはパソコンの矢印ボタンで操作可能です。">
         <meta name="keywords" content="車,ブラウザ,ゲーム,無料,PC">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
     <link rel="stylesheet" href="/css/style.css">

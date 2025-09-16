@@ -6,12 +6,9 @@
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <link rel="stylesheet" href="/css/z998.css">
   <title>複利電卓・積立NISAの金額再投資計算機</title>
-    
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -84,9 +81,7 @@
           将来価値 (A): <span id="output">¥0</span>
         </div>
       </form>
-
 <br>
-
 <h2>複利電卓と積立NISAの金額再投資計算機が無料でおしゃれシンプル</h2>
 <p class="left">複利計算ができる電卓と、積立NISAの金額再投資計算機です。</p>
 <p class="left">無料で使えて、シンプルでおしゃれなデザインにしました。</p>
@@ -161,7 +156,6 @@
          <p>無料ゲーム集</p>
 <p class="left"><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
 <br>
-  </div>
   </div>
   <script src="/js/z998.js"></script>
 

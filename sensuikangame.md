@@ -1,11 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 <meta name="description" content="潜水艦ゲーム無料PCスマホタブレット対応のシューティング横画面です。">
         <meta name="keywords" content="潜水艦,ゲーム,無料,PC,シューティング">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
     <link rel="stylesheet" href="/css/sensuistyle.css">
