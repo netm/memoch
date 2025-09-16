@@ -11,18 +11,6 @@
         <title>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-  <style>
-    /* 中央寄せ */
-    .clock-container {
-      text-align: center;
-      font-family: sans-serif;
-      font-size: 1.5em;
-    }
-    .date, .time {
-      display: block;
-      margin: 0.5em 0;
-    }
-  </style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
