@@ -358,12 +358,20 @@ font-size:200%;
   font-size: 0.8em;
   color: #666;
   margin-bottom: 0.5em;
+  padding-top:   10px;  /* 上の余白 */
+  padding-right:  2px;  /* 右の余白 */
+  padding-bottom: 2px;  /* 下の余白 */
+  padding-left:  20px;  /* 左の余白 */
 }
 
 #time {
   font-size: 2.5em;
   font-weight: bold;
   color: #000;
+  padding-top:   10px;  /* 上の余白 */
+  padding-right:  2px;  /* 右の余白 */
+  padding-bottom: 2px;  /* 下の余白 */
+  padding-left:  20px;  /* 左の余白 */
 }
 
 #calculator {
