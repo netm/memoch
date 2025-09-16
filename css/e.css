@@ -342,7 +342,7 @@ font-size:200%;
 #date {
   font-size: 1.5em;
   color: #666;
-  margin-bottom: 0.5em;  
+  margin-bottom: 0.3em;  
   padding-top:   10px;  /* 上の余白 */
   padding-right:  2px;  /* 右の余白 */
   padding-bottom:10px;  /* 下の余白 */
@@ -350,10 +350,10 @@ font-size:200%;
 }
 
 #time {
-  font-size: 7em;
+  font-size: 6em;
   font-weight: bold;
   color: #000;
-  padding-top:   20px;  /* 上の余白 */
+  padding-top:   40px;  /* 上の余白 */
   padding-right:  2px;  /* 右の余白 */
   padding-bottom: 2px;  /* 下の余白 */
   padding-left:  20px;  /* 左の余白 */

@@ -163,7 +163,6 @@
 　　　「上昇は三か月間続く」　　　パーフェクトになってから3か月
 　今後のイメージ
 25日線で反発して上昇か　　かいり率 BNF
-エヌビディア決算の3日後から下落の調整、ナスダック調整につられるか
 自社株買い相場PBR1優位といってもつられるときはつられる
 　　3本線以外はきびしい　　相場に興味ないくらいじゃないとやられる
 長いから分割で書くね、いいよと書くまでだまっててね
@@ -172,14 +171,6 @@
 git add .
 git commit -m "Deploy to Cloudflare Pages"
 git push origin main
-推奨ヘッダ
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="c.css" media="all">
-  <script src="app.js"></script>
-</head>
 </textarea>
 </form>
 <p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>
