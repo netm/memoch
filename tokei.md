@@ -1,21 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+        <meta charset="UTF-8">
 <meta name="description" content="現在の時刻をリアルタイムで秒時計Web表示しています。無料でポップアップ広告無しです。">
         <meta name="keywords" content="現在,時刻,リアルタイム,秒">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+        <link rel="stylesheet" href="/css/e.css" media="all">
         <title>現在時刻リアルタイム秒時計Web表示</title>
-    
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -25,11 +20,11 @@
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/tokei/">現在時刻リアルタイム秒時計Web表示</a></h1>
-          <div class="blockbody"><p>現在の時刻をリアルタイム秒単位の時計でWeb表示　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/tokei/">現在時刻リアルタイム秒時計Web表示</a></h1>
+<div class="blockbody"><p>現在の時刻をリアルタイム秒単位の時計でWeb表示　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
 　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
@@ -88,9 +83,8 @@
 <p>4　<a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
 <p>5　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
 </div>
-
-         <div class="sidetitle">学習ゲーム</div>
-        <div class="side">
+<div class="sidetitle">学習ゲーム</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
@@ -126,9 +120,8 @@
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -181,18 +174,13 @@
  </script>
  <script>
 var today=new Date(); 
-
-//月・日・曜日を取得
+<p>//月・日・曜日を取得
 var month = today.getMonth()+1;
 var week = today.getDay();
 var day = today.getDate();
-
-var week_ja= new Array("日","月","火","水","木","金","土");
-
+var week_ja= new Array(&quot;日&quot;,&quot;月&quot;,&quot;火&quot;,&quot;水&quot;,&quot;木&quot;,&quot;金&quot;,&quot;土&quot;);
 //年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-
-  
+document.write(month+&quot;月&quot;+day+&quot;日 &quot;+week_ja[week]+&quot;曜&quot;);
   </script>
 <br><br><p>便利なタイマーも無料でお使いいただけます。</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
@@ -248,7 +236,6 @@ document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-
 <br><p>何でもランキング</p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
 <p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
@@ -256,7 +243,6 @@ document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
-
 <br><p>レジャー生活</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -269,10 +255,9 @@ document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
-
-        </div>
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+</div>
+<div id="footer"><p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>

@@ -1,17 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>メモ帳代わりWebブラウザ便利サイト</title>
-  <meta name="description"
-        content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
-  <meta name="keywords"
-        content="メモ帳,web,ブラウザ,便利,サイト">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
+  <meta name="keywords" content="メモ帳,web,ブラウザ,便利,サイト">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+        <link rel="stylesheet" href="/css/c.css" media="all">
         <title>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
@@ -42,14 +38,7 @@
 <div id="banner">
 <h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
 <div class="blockbody">
-<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>
-　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a>
-　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>
-　　<a href="https://memoc.pages.dev/rank/" target="_blank">ランキング</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
-　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>
-　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
-　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓web</a>　　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー</a>　　<a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/rank/" target="_blank">ランキング</a></p><p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a>　　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a></p>
         </div>
         </div>
         <div id="links-left">
@@ -74,7 +63,6 @@
     <span class="date" id="date"></span>
     <span class="time" id="time"></span>
   </div>
-
   <script>
     function pad(n) {
       return n < 10 ? "0" + n : n;
@@ -104,22 +92,22 @@
     updateClock();
     setInterval(updateClock, 500);
   </script>
-　<a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
+<p><a href="https://search.yahoo.co.jp/realtime/" target="_blank">ヤフーXリアルタイム検索</a>
 　<a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
 　<a href="https://www.tiktok.com/ja-JP/" target="_blank">TikTok ティックトック</a>
 　<a href="https://www.facebook.com/" target="_blank">facebook フェイスブック</a>
-　<a href="https://mixi.jp/" target="_blank">mixi ミクシィ</a>
-          </div>
-      <div class="sidetitle">暮らし生活リンク集</div>
-        <div class="side"><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
+　<a href="https://mixi.jp/" target="_blank">mixi ミクシィ</a></p>
+</div>
+<div class="sidetitle">暮らし生活リンク集</div>
+<div class="side"><p><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
 　<a href="https://www.kuronekoyamato.co.jp/" target="_blank">ヤマト運輸</a>
 　<a href="https://www.amazon.co.jp/" target="_blank">Amazon</a>
 　<a href="https://www.rakuten.co.jp/" target="_blank">楽天</a>
 　<a href="https://shopping.yahoo.co.jp/" target="_blank">ヤフーショッピング</a>
 　<a href="https://auctions.yahoo.co.jp/" target="_blank">ヤフオク</a>
 　<a href="https://jp.mercari.com/" target="_blank">メルカリ</a>
-　<a href="https://jmty.jp/" target="_blank">ジモティー</a>
+　<a href="https://jmty.jp/" target="_blank">ジモティー</a></p>
 </div>
          <div class="sidetitle">人気順コンテンツ</div>
         <div class="side">
@@ -131,6 +119,8 @@
 </div>
          <div class="sidetitle">新着情報</div>
         <div class="side">
+<p>「英語ことわざおしゃれなクイズゲーム」を作成</p>
+<p>電卓の不具合を修正</p>
 <p>「イラストお題ルーレット」を作りました</p>
 <p>「家計簿項目表のブラウザアプリ」を製作</p>
 <p>「クロッキー帳デジタル」を作りました</p>
@@ -226,13 +216,13 @@
 <textarea name="テキストエリア" rows="26" cols="68" wrap="hard">メモ帳
 </textarea>
 </form>
-<p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>
+<p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p><br>
         <h2>メモ帳２個目便利なウェブブラウザ</h2>
         <p><form>
 <textarea name="テキストエリア" rows="26" cols="68" wrap="hard">メモ帳２
 </textarea>
 </form>
-<p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p>
+<p>メモ帳２個目の便利なウェブブラウザです。パソコンの場合、メモ枠の右下にある角をクリックしたまま動かすと、メモ欄が拡大します。リンクフリーです。</p><br>
         <h2>スマホタッチで直接書き込めるメモ帳</h2>
 <p>スマホタッチもしくはPCのマウスで直接書き込めるメモ帳・お絵描きデジタルペイントです。</p>
 <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
@@ -244,7 +234,6 @@
 <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
 <br>
-<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレット</a></p><br>
 <p>説明　<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
@@ -253,6 +242,7 @@
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>　　<a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表</a>　　<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓</a>　　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a></p>
 <p>解説　<a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓web</a>　　<a href="https://memoc.pages.dev/memod/" target="_blank">メモ付き電卓</a></p>
 <br>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレット</a></p><br>
 <p>説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料</a></p>
 <p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲームスマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc/" target="_blank">車ブラウザゲームPCパソコン</a></p>
 <p><a href="https://memoc.pages.dev/kurumagame0/" target="_blank">車ブラウザゲーム2スマホ</a>　　<a href="https://memoc.pages.dev/kurumagamepc0/" target="_blank">車ブラウザゲーム2パソコン</a></p>
@@ -270,8 +260,7 @@
 <p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明</a>　　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直す</a>　<a href="https://memoc.pages.dev/y8h/" target="_blank">英単語中学一年生クイズ</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生</a>　　<a href="https://memoc.pages.dev/y9i/" target="_blank">中学二年生の英単語クイズゲーム</a>　　
-<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a></p>
-<br>
+<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a>　　<a href="https://memoc.pages.dev/y11m/" target="_blank">英語ことわざおしゃれなクイズ</a></p><br>
 <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング</a>　　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズ</a>　　<a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキング</a>　　<a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキング</a>　　<a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
 <br>
@@ -287,7 +276,7 @@
 　<a href="https://www.family.co.jp/" target="_blank">ファミリーマート</a>
 　<a href="https://www.lawson.co.jp/" target="_blank">ローソン</a></p>
 <p>生活家電・ゲーム　<a href="https://www.yodobashi.com/" target="_blank">ヨドバシカメラ</a>
-　<a href="https://www.biccamera.com/bc/main/" target="_blank">ビックカメラ</a>
+　<a href="https://www.biccamera.com/bc/main/" target="_blank">ビックカメラ</a></p>
           <p>生活家具・雑貨　<a href="https://www.nitori-net.jp/" target="_blank">ニトリ</a>
 　<a href="https://www.muji.com/jp/" target="_blank">無印良品</a></p>
 <p>洋服・アパレル　<a href="https://www.uniqlo.com/" target="_blank">ユニクロ</a>
@@ -301,7 +290,7 @@
 　<a href="https://www.itoyokado.co.jp/" target="_blank">イトーヨーカドー</a>
 　<a href="https://www.maruetsu.co.jp/" target="_blank">マルエツ</a>
 　<a href="https://store.lifecorp.jp/" target="_blank">ライフ</a>
-　<a href="https://www.seiyu.co.jp/" target="_blank">西友</a>
+　<a href="https://www.seiyu.co.jp/" target="_blank">西友</a></p>
 <p>100円ショップ　<a href="https://www.daiso-sangyo.co.jp/" target="_blank">ダイソー</a>
 　<a href="https://www.seria-group.com/corp/overview/" target="_blank">セリア</a>
 　<a href="https://www.cando-web.co.jp/" target="_blank">Can Do キャンドゥ</a></p>
@@ -369,6 +358,7 @@
                 <p>グルメサイト　<a href="https://tabelog.com/" target="_blank">食べログ</a>
 　<a href="https://www.gnavi.co.jp/" target="_blank">ぐるなび</a>
 　<a href="https://www.hotpepper.jp/" target="_blank">ホットペッパーグルメ</a></p>
+<br>
           <h5>何でもランキング　メモ帳代わりに書いた文章はコピー推奨</h5>
         <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
@@ -377,14 +367,18 @@
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
         <p>何でもランキングをクリックするとこのページから移動します。メモ帳代わりに書いた文章はコピー推奨です。</p>
+<br>
         <h2>メモ帳代わりwebブラウザ便利サイトは役立つリンクを集めた無料のホームページ</h2>
+
         <p>毎日の生活に役立つリンクを集めた「理想的な無料ホームページ」があったらいいな、形にしたい、と思いサイト制作を始めました。</p>
 <p>携帯スマホにたくさんアプリを入れると容量が圧迫されるという問題を、当サイトで解決。使いやすいホームページです。</p>
+<br>
         <p>「メモ帳代わりのwebブラウザ」と「便利なサイト」が1ページに載っているスタートページとして使用するコンセプトで制作しています。</p>
+
 <br>
          <p>お絵描きコンテンツ</p>
     <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
-    <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p>
     <p><a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a></p><br>
          <p>メモできるカレンダー</p>
     <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
@@ -407,6 +401,7 @@
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
 <p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
+<p><a href="https://memoc.pages.dev/y11m/" target="_blank">英語ことわざおしゃれなクイズゲーム</a></p>
 <br>
          <p>便利なタイマー・時計</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
@@ -417,7 +412,8 @@
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-<br><p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
+<br>
+          <p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
 <br>

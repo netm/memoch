@@ -1,8 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+　　<meta name="robots" content="noindex, nofollow">
+　　<meta name="description" content="メモ帳代わりwebブラウザ便利サイトは無料で生活に役立つリンク集を集めました。最初に開くページとしてお気に入り登録どうぞ。">
         <meta name="keywords" content="メモ帳,web,ブラウザ,便利,サイト">
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
@@ -10,26 +11,12 @@
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
         <link rel="stylesheet" type="text/css" href="/css/d.css" media="all">
         <title>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</title>
-    
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
-     crossorigin="anonymous"></script>
-
 </head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5D799GZERM');
-</script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
-        <div class="blockbody">
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></h1>
+<div class="blockbody"></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>
 　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a>
 　　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a>
@@ -57,12 +44,10 @@
 　<a href="https://www.jma.go.jp/bosai/rain/" target="_blank">雨雲の動き</a>
 　<a href="https://www.navitime.co.jp/transfer/" target="_blank">乗換案内</a>
 　<a href="https://translate.google.co.jp/" target="_blank">Google翻訳</a>　<a href="https://chatgpt.com/" target="_blank">ChatGPT</a>　<a href="https://gemini.google.com/app?hl=ja" target="_blank">geminiジェミニ</a>
-
-            <div class="clock-container">
-    <span class="date" id="date"></span>
-    <span class="time" id="time"></span>
+<div class="clock-container">
+<span class="date" id="date"></span>
+<span class="time" id="time"></span>
   </div>
-
   <script>
     function pad(n) {
       return n < 10 ? "0" + n : n;
@@ -92,7 +77,7 @@
     updateClock();
     setInterval(updateClock, 500);
   </script>
-　<a href="https://ohotuku.jp/keyword_select/" target="_blank">キーワードチェック</a>
+<p><a href="https://ohotuku.jp/keyword_select/" target="_blank">キーワードチェック</a>
 　<a href="https://html-css-javascript.com/replace/" target="_blank">文字列置換ツール</a>
 　<a href="https://github.com/login" target="_blank">GitHub</a>
 　<a href="https://dash.cloudflare.com" target="_blank">cloudflare</a>
@@ -101,17 +86,17 @@
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
 　<a href="https://www.tiktok.com/ja-JP/" target="_blank">TikTok ティックトック</a>
 　<a href="https://www.facebook.com/" target="_blank">facebook フェイスブック</a>
-　<a href="https://mixi.jp/" target="_blank">mixi ミクシィ</a>
-          </div>
-      <div class="sidetitle">暮らし生活リンク集</div>
-        <div class="side"><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
+　<a href="https://mixi.jp/" target="_blank">mixi ミクシィ</a></p>
+</div>
+<div class="sidetitle">暮らし生活リンク集</div>
+<div class="side"><p><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
 　<a href="https://www.kuronekoyamato.co.jp/" target="_blank">ヤマト運輸</a>
 　<a href="https://www.amazon.co.jp/" target="_blank">Amazon</a>
 　<a href="https://www.rakuten.co.jp/" target="_blank">楽天</a>
 　<a href="https://shopping.yahoo.co.jp/" target="_blank">ヤフーショッピング</a>
 　<a href="https://auctions.yahoo.co.jp/" target="_blank">ヤフオク</a>
 　<a href="https://jp.mercari.com/" target="_blank">メルカリ</a>
-　<a href="https://jmty.jp/" target="_blank">ジモティー</a>
+　<a href="https://jmty.jp/" target="_blank">ジモティー</a></p>
 </div>
          <div class="sidetitle">人気順コンテンツ</div>
         <div class="side">
@@ -133,7 +118,6 @@
 <p><a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
 <p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
 <p><a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
-
 <p><a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></p>
 <p><a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</a></p>
 <p><a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
@@ -179,9 +163,8 @@
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -192,10 +175,9 @@
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
-
-          </div>
-         <div class="sidetitle">何でもランキング</div>
-        <div class="side">
+<p></div>
+<div class="sidetitle">何でもランキング</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
@@ -230,6 +212,14 @@
 git add .
 git commit -m "Deploy to Cloudflare Pages"
 git push origin main
+推奨ヘッダ
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="c.css" media="all">
+  <script src="app.js"></script>
+</head>
 </textarea>
 </form>
 <p>無料アプリのインストールは不要☆スマホ右上の点々をクリックし「ホーム画面に追加」ブックマークにお気に入り登録して、ご自由にお使い下さい。</p>
@@ -276,8 +266,7 @@ git push origin main
 <p>説明　<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明</a>　　<a href="https://memoc.pages.dev/y7g/" target="_blank">英単語小6クイズゲーム</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直す</a>　<a href="https://memoc.pages.dev/y8h/" target="_blank">英単語中学一年生クイズ</a></p>
 <p>説明　<a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生</a>　　<a href="https://memoc.pages.dev/y9i/" target="_blank">中学二年生の英単語クイズゲーム</a>　　
-<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a></p>
-<br>
+<p><a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズゲーム</a>　　<a href="https://memoc.pages.dev/y11m/" target="_blank">英語ことわざおしゃれなクイズ</a></p><br>
 <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング</a>　　<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズ</a>　　<a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキング</a>　　<a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキング</a>　　<a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキング</a>　　<a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系</a></p>
 <br>
@@ -368,6 +357,7 @@ git push origin main
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
 <p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
+<p><a href="https://memoc.pages.dev/y11m/" target="_blank">英語ことわざおしゃれなクイズゲーム</a></p>
 <br>
          <p>便利なタイマー・時計</p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
@@ -403,6 +393,6 @@ git push origin main
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
-        </div></div>
+        </div>
     </body>
 </html>

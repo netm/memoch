@@ -1,21 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 <meta name="description" content="投資メモと電卓webブラウザが無料の便利サイトです。">
         <meta name="keywords" content="投資,メモ,電卓,web">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+  <link rel="stylesheet" href="/css/c.css" media="all">
         <title>投資メモ電卓webブラウザ無料サイト</title>
-    
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -25,11 +20,11 @@
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/toushi/">投資メモ電卓webブラウザ無料サイト</a></h1>
-          <div class="blockbody"><p>投資メモと電卓webブラウザが無料の便利サイトです　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/toushi/">投資メモ電卓webブラウザ無料サイト</a></h1>
+<div class="blockbody"><p>投資メモと電卓webブラウザが無料の便利サイトです　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
 　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
@@ -39,9 +34,9 @@
           </div>
         </div>
         <div id="links-left">
- 
-         <div class="sidetitle">便利なタイマー</div>
-        <div class="side">
+<p><div class="sidetitle">便利なタイマー</div>
+<div class="side">
+<p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
 <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 </div>
          <div class="sidetitle">人気順コンテンツ</div>
@@ -72,21 +67,19 @@
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 </div>
-
-         <div class="sidetitle">無料イラスト</div>
-        <div class="side">
-<p><a href="https://memoc.pages.dev/peace/">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
+<div class="sidetitle">無料イラスト</div>
+<div class="side">
+<p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト無料おしゃれでかっこいい画像シンプル</a></p>
 <p><a href="https://memoc.pages.dev/penguin/" target="_blank">ペンギンのイラストかわいい画像と特徴の豆知識</a></p>
 <p><a href="https://memoc.pages.dev/panda/" target="_blank">パンダのイラスト無料フリー素材かわいいかっこいい画像</a></p>
 <p><a href="https://memoc.pages.dev/xbuta/" target="_blank">豚のイラストかわいい物リアルとシルエット無料フリー画像</a></p>
-<p><a href="https://memoc.pages.dev/xakushu/">握手のイラストかわいい無料フリー画像</a></p>
-<p><a href="https://memoc.pages.dev/xstar/">星のイラストかっこいい無料フリー画像</a></p>
+<p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
+<p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -141,6 +134,7 @@
 <p>投資用株式リンク集　<a href="https://finance.yahoo.co.jp/quote/998407.O/chart" target="_blank">日経平均チャート</a>　<a href="https://finance.yahoo.co.jp/quote/%5EDJI/chart" target="_blank">NYダウチャート</a>　<a href="https://finance.yahoo.co.jp/quote/%5EIXIC/chart" target="_blank">ナスダックチャート</a></p>
 <p><a href="https://nikkei225jp.com/chart/" target="_blank">日経平均リアルタイムチャート</a>
 　<a href="https://nikkei225jp.com/nasdaq/" target="_blank">NYダウ平均株価リアルタイムチャート</a></p>
+<br>
 <p><a href="https://finance.yahoo.co.jp/" target="_blank">ヤフーファイナンス</a>
 　<a href="https://finance.yahoo.co.jp/stocks/ranking/up" target="_blank">値上がりランキング</a>
 　<a href="https://finance.yahoo.co.jp/stocks/ranking/down" target="_blank">値下がりランキング</a>
@@ -150,6 +144,7 @@
 　<a href="https://finance.yahoo.co.jp/stocks/ranking/yearToDateLow" target="_blank">年初来安値更新</a>
 　<a href="https://finance.yahoo.co.jp/stocks/ranking/volume" target="_blank">出来高</a>
 　<a href="https://finance.yahoo.co.jp/stocks/ranking/volumeIncrease" target="_blank">出来高増加率</a></p>
+<br>
 <p><a href="https://kabutan.jp/" target="_blank">株探</a></p>
 <p><a href="https://kabutan.jp/warning/?mode=2_1" target="_blank">今日の株価上昇率ランキング</a>
 　<a href="https://kabutan.jp/warning/?mode=2_2" target="_blank">今日の株価下落率ランキング</a>
@@ -157,13 +152,13 @@
 　<a href="https://kabutan.jp/warning/?mode=11_22" target="_blank">過去1年の株価下落率ランキング</a>
 　<a href="https://kabutan.jp/warning/?mode=7_1" target="_blank">信用売り残の増加ランキング</a>
 　<a href="https://kabutan.jp/warning/?mode=7_2" target="_blank">信用買い残の増加ランキング</a></p>
+<br>
 <p><a href="https://minkabu.jp/" target="_blank">みんかぶ</a></p>
 <p><a href="https://minkabu.jp/financial_item_ranking/buy_picks_rise" target="_blank">買い予想数上昇ランキング</a>
 　<a href="https://minkabu.jp/financial_item_ranking/sell_picks_rise" target="_blank">売り予想数上昇ランキング</a>
 　<a href="https://minkabu.jp/stock/search?&page=1&sort_key=favorite_count&order=desc&minimum_purchase_price[0]=min&minimum_purchase_price[1]=max&market_capitalization[0]=min&market_capitalization[1]=max" target="_blank">銘柄スクリーニング 割安銘柄</a>
 　<a href="https://minkabu.jp/stock/search?view=result&page=1&sort_key=sales_cagr_3y&order=desc&recommend=growth_stock&minimum_purchase_price[0]=min&minimum_purchase_price[1]=max&market_capitalization[0]=min&market_capitalization[1]=500&sales_cagr_3y[0]=30&sales_cagr_3y[1]=max&roe[0]=10&roe[1]=max" target="_blank">銘柄スクリーニング 成長期待銘柄</a>
-
-       <p><a href="https://www.nikkei.com/" target="_blank">日本経済新聞</a></p>
+<p><a href="https://www.nikkei.com/" target="_blank">日本経済新聞</a></p>
 <h4>株式証券会社・銀行の便利なリンク集</h4>
        <p>株式証券会社・NISA積み立て　<a href="https://www.nomura.co.jp/" target="_blank">野村證券</a>
 　<a href="https://www.daiwa.jp/" target="_blank">大和証券</a>
@@ -174,6 +169,7 @@
 　<a href="https://www.rakuten-sec.co.jp/" target="_blank">楽天証券</a>
 　<a href="https://www.click-sec.com/" target="_blank">GMOクリック証券</a>
 　<a href="https://www.sbineotrade.jp/" target="_blank">SBIネオトレード証券</a></p>
+<br>
        <p>銀行　<a href="https://www.jp-bank.japanpost.jp/" target="_blank">ゆうちょ銀行</a>
 　<a href="https://www.bk.mufg.jp/" target="_blank">三菱UFJ銀行</a>
 　<a href="https://www.smbc.co.jp/" target="_blank">三井住友銀行</a>
@@ -184,7 +180,7 @@
 　<a href="https://www.jibunbank.co.jp/" target="_blank">au じぶん銀行</a>
 　<a href="https://www.rakuten-bank.co.jp/" target="_blank">楽天銀行</a>
 　<a href="https://moneykit.net/" target="_blank">ソニー銀行</a></p>
-
+<br>
 <h2>電卓webブラウザ　計算機とメモ帳が無料</h2>
 <div id="calculator">
         <input type="text" id="display" disabled>
@@ -215,33 +211,30 @@
             </tr>
         </table>
     </div>
-    
-    <script>
-        function appendToDisplay(value) {
-            document.getElementById('display').value += value;
-        }
-        
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-        
-        function calculateResult() {
-            try {
-                const result = eval(document.getElementById('display').value);
-                document.getElementById('display').value = result;
-            } catch (error) {
-                document.getElementById('display').value = 'Error';
-            }
-        }
-    </script>
-        <p><form>
+<script>
+function appendToDisplay(value) {
+document.getElementById('display').value += value;
+}
+function clearDisplay() {
+document.getElementById('display').value = '';
+}
+function calculateResult() {
+try {
+const result = eval(document.getElementById('display').value);
+document.getElementById('display').value = result;
+} catch (error) {
+document.getElementById('display').value = 'Error';
+}
+}
+</script>
+<p><form>
 <textarea name="テキストエリア" rows="17" cols="68" wrap="hard">投資メモ2
 </textarea>
 </form>
 <p>投資メモと電卓が無料で使える便利なwebサイトです。</p>
-
-        <h3>株初心者は勉強を何から始めるか?まずは少額からNISA</h3>
-        <p>株初心者は勉強を何から始めるか?という問題には、まずは投資の本がおすすめです。</p>
+<br>
+<h3>株初心者は勉強を何から始めるか?まずは少額からNISA</h3>
+<p>株初心者は勉強を何から始めるか?という問題には、まずは投資の本がおすすめです。</p>
 <p>株式投資の本のうち、わかりやすく書いてあるものを選ぶとよいです。</p>
 <p>株式投資は自己責任の世界です。</p>
 <p>勉強したら、まずは10万円から20万円の少額から始めてみましょう。</p>
@@ -256,6 +249,16 @@
 <p>現物のみだからこそ、暴落時に生き残ることができて数年数十年で億まで増やせたと発言されています。</p>
 <p>資産形成をしたいなら、退場しないことが大切です。</p>
 <br>
+<p>電卓・計算機</p>
+<p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
+<p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+<br>
+         <p>便利なタイマー</p>
+<p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<br>
          <p>無料ゲーム</p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
 <p><a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a></p>
@@ -266,31 +269,24 @@
 <p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
 <p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
 <br>
-         <p>便利なタイマー</p>
-<p><a href="https://memoc.pages.dev/yzpa1/">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
-<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
-<br>
          <p>TVer系コンテンツ</p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
 <br>
 <p>便利なコンテンツ</p>
-<p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
+<p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
-<p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
-<p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
-<p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-
-<br><p>何でもランキング</p>
-<p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
+<br>
+<p>何でもランキング</p>
 <p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
 <p><a href="https://memoc.pages.dev/restau/" target="_blank">レストラン ランキング1位からトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
-
-<br><p>レジャー生活</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
+<p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
+<br>
+<p>レジャー生活</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
 <br>
@@ -300,14 +296,13 @@
 <p><a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト無料画像とバスの中</a></p>
 <p><a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト無料おしゃれでかっこいい画像シンプル</a></p>
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
-<p><a href="https://memoc.pages.dev/peace/">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
+<p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
-
-        </div>
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+</div>
+<div id="footer"><p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
-        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
         </div></div>
     </body>

@@ -1,14 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="イラスト無料おしゃれでポップなフリー素材画像 人物と女の子や動物など。">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+        <meta name="description" content="イラスト無料おしゃれでポップなフリー素材画像 人物と女の子や動物など。">
         <meta name="keywords" content="イラスト,無料,おしゃれ,ポップ,フリー">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+        <link rel="stylesheet" href="/css/c.css" media="all">
         <title>イラスト無料おしゃれでポップなフリー素材の画像 人物 女の子 動物</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
@@ -22,15 +20,14 @@
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></h1>
-          <div class="blockbody"><p>イラスト無料おしゃれでポップなフリー素材の画像 人物と女の子や動物など　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></h1>
+<div class="blockbody"><p>イラスト無料おしゃれでポップなフリー素材の画像 人物と女の子や動物など　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>
 　<a href="https://memoc.pages.dev/muden/" target="_blank">電卓</a></p>
   <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>
 　<a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
-
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット</a>　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a>
 　<a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ</a>
 　<a href="https://memoc.pages.dev/rank/" target="_blank">ランキング</a></p>
@@ -108,20 +105,17 @@
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-
 </div>
         <div class="sidetitle">ＱＲコード</div>
         <div class="side"><img alt="ＱＲコード" src="https://memoc.pages.dev/images/memochou.png"></div>
         </div>
         <div id="content">
-
 <h2>イラスト無料おしゃれでポップなフリー素材の画像</h2>
 <p>イラスト無料でフリー素材の画像です。</p>
 <p>おしゃれでポップなイラストの画像ページを作りました。</p>
 <p>ご自身のSNSやブログかホームページに　<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">https://memoc.pages.dev/</span>　のアドレスをコピペして記述していただければ、フリー素材の画像としてご使用可能です。</p><br>
 <img src="/images/zlondonbus2.png" alt="ロンドンバスのイラスト無料おしゃれ" width="290" height="220" align="left"><p>ロンドンバスのイラスト無料おしゃれな画像のフリー素材になります。</p>
 <p>もっと見たい方は→<a href="https://memoc.pages.dev/londonbus/" target="_blank">ロンドンバスのイラスト無料画像とバスの中</a></p><br clear="left"><br>
-
 <h3>ピアノのイラスト無料おしゃれでポップなフリー素材の画像</h3>
 <img src="/images/zpiano.jpg" alt="ピアノのおしゃれなかわいいイラスト" width="270" height="300" align="left"><p>ピアノのイラストおしゃれなかわいい無料フリー素材の画像になります。</p>
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p><br clear="left"><br>
@@ -218,7 +212,6 @@
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-
 <br><p>何でもランキング</p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
 <p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
@@ -228,8 +221,8 @@
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
 <br>
 </div>
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>

@@ -1,21 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="TVerティーバーの検索用リンク集です。カテゴリとジャンル タレント名・俳優別">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+　　　　<meta name="description" content="TVerティーバーの検索用リンク集です。カテゴリとジャンル タレント名・俳優別にしてワンタッチで簡単に検索できるよう便利なサイトにしました">
         <meta name="keywords" content="TVer,検索用,リンク集,ティーバー">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+         <link rel="stylesheet" href="/css/c.css" media="all">
         <title>TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</title>
-    
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -25,11 +20,11 @@
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/tver/">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></h1>
-          <div class="blockbody"><p>TVerティーバーの検索用リンク集 使いやすいカテゴリとジャンル タレント名・俳優別・番組名別です。</p>
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/tver/">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></h1>
+<div class="blockbody"><p>TVerティーバーの検索用リンク集 使いやすいカテゴリとジャンル タレント名・俳優別・番組名別です。</p>
   <p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>
 　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>
@@ -41,9 +36,8 @@
           </div>
         </div>
         <div id="links-left">
-
-         <div class="sidetitle">便利なタイマー</div>
-        <div class="side">
+<div class="sidetitle">便利なタイマー</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
 <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 </div>
@@ -75,9 +69,8 @@
 <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
 <p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
 </div>
-
-         <div class="sidetitle">無料イラスト</div>
-        <div class="side">
+<div class="sidetitle">無料イラスト</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/piano/" target="_blank">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></p>
 <p><a href="https://memoc.pages.dev/guitar/" target="_blank">ギターのイラスト無料おしゃれでかっこいい画像シンプル</a></p>
@@ -87,9 +80,8 @@
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -137,6 +129,7 @@
         <div id="content">
         <h2>TVerティーバー検索用 ジャンルとカテゴリー</h2>
 <p>TVerティーバー検索用 ジャンルとカテゴリー別の無料配信</p>
+<p>カテゴリとジャンル タレント名・俳優別にしてワンタッチで簡単に検索できるよう便利なサイトにしました☆</p>
 <p><a href="https://tver.jp/categories/drama" target="_blank">ドラマ</a>
 　<a href="https://tver.jp/categories/variety" target="_blank">バラエティ</a>
 　<a href="https://tver.jp/tags/news_documentary" target="_blank">報道ドキュメンタリー</a>
@@ -313,7 +306,7 @@
 　<a href="https://tver.jp/search/%E5%90%8D%E9%96%80%E6%A0%A1" target="_blank">名門校</a>
 　<a href="https://tver.jp/search/%E3%82%82%E3%81%AE%E3%81%BE%E3%81%AD" target="_blank">ものまね</a>
 　<a href="https://tver.jp/search/%E5%95%8F%E9%A1%8C%E7%89%A9%E4%BB%B6" target="_blank">問題物件</a>
-　<a href="https://tver.jp/search/%E6%81%8B%E6%84%9B" target="_blank">恋愛</a>
+　<a href="https://tver.jp/search/%E6%81%8B%E6%84%9B" target="_blank">恋愛</a></p>
 <p>スポーツ　<a href="https://tver.jp/search/%E3%82%B4%E3%83%AB%E3%83%95" target="_blank">ゴルフ</a>
 　<a href="https://tver.jp/search/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC" target="_blank">サッカー</a>
 　<a href="https://tver.jp/search/%E5%8D%93%E7%90%83" target="_blank">卓球</a>
@@ -347,12 +340,11 @@
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
 <br>
 <p>便利なコンテンツ</p>
-<p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
+<p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-
 <br><p>何でもランキング</p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
 <p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
@@ -360,7 +352,6 @@
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
-
 <br><p>レジャー生活</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -374,10 +365,9 @@
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
-
-        </div>
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
-<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+</div>
+<div id="footer"><p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>

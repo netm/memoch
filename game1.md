@@ -1,18 +1,12 @@
----
-layout: layouts/base
-title: game
----
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 <meta name="description" content="無料ブラウザゲームPCスマホタブレット対応です。">
         <meta name="keywords" content="ブラウザゲーム,無料,PC,スマホ">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+　　 <link rel="stylesheet" href="/css/c.css" media="all">
         <title>無料ブラウザゲームPCスマホタブレット対応</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
@@ -26,11 +20,11 @@ title: game
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/game1/">無料ブラウザゲームPCスマホタブレット対応</a></h1>
-          <div class="blockbody"><p>無料ブラウザゲームPCスマホタブレット対応のものを製作しました　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/game1/">無料ブラウザゲームPCスマホタブレット対応</a></h1>
+<div class="blockbody"><p>無料ブラウザゲームPCスマホタブレット対応のものを製作しました　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
 　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
@@ -111,9 +105,8 @@ title: game
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side">
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -139,43 +132,12 @@ title: game
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
           </div>
-          <div>
-<center><script>
-var today=new Date(); 
-
-//月・日・曜日を取得
-var month = today.getMonth()+1;
-var week = today.getDay();
-var day = today.getDate();
-
-var week_ja= new Array("日","月","火","水","木","金","土");
-
-//年・月・日・曜日を書き出す
-document.write(month+"月"+day+"日 "+week_ja[week]+"曜");
-</script></center>
-<script>// <![CDATA[
-function digs(num) {
-return ( num < 10 )?num = "0" + num:num = num
-}
-function Watch() {
-var date = new Date();
-var nowHour = digs( date.getHours() );
-var nowMin = digs( date.getMinutes() );
-var msg = nowHour + ":" + nowMin;
-document.getElementById("Watch").innerHTML = msg;
-}
-setInterval('Watch()',500);
-// ]]></script>
-</div>
-<div id="Watch">00:00</div>
-
-
-         <div class="sidetitle">snsリンク集</div>
-        <div class="side"><a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
+<div class="sidetitle">snsリンク集</div>
+<div class="side"><p><a href="https://x.com/" target="_blank">X Twitter エックスツイッター</a>
 　<a href="https://www.instagram.com/" target="_blank">instagram インスタグラム</a>
 　<a href="https://www.tiktok.com/ja-JP/" target="_blank">TikTok ティックトック</a>
 　<a href="https://www.facebook.com/" target="_blank">facebook フェイスブック</a>
-　<a href="https://mixi.jp/" target="_blank">mixi ミクシィ</a>
+　<a href="https://mixi.jp/" target="_blank">mixi ミクシィ</a></p>
 </div>      <div class="sidetitle">暮らし生活リンク</div>
         <div class="side"><a href="https://www.post.japanpost.jp/index/" target="_blank">郵便局</a>
 　<a href="https://www.kuronekoyamato.co.jp/" target="_blank">ヤマト運輸</a>
@@ -198,7 +160,6 @@ setInterval('Watch()',500);
         <div id="content">
         <h2>無料ブラウザゲームPCパソコン用とスマホ用　☆サバイバルブルーカー☆</h2>
 <img src="/images/zcar1.png" alt="車ブラウザゲームの自機「ブルースポーツカー」" width="100" height="210" align="left">
-         <p>ホームページ会社から勝手に広告を入れられて作動しないゲームが多くなっております</p>
          <p>☆サバイバルブルーカー☆</p>
 <p>■説明　<a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a>　車の無料ブラウザゲーム、アイテムの説明など。</p>
 <br>
@@ -208,20 +169,17 @@ setInterval('Watch()',500);
 <p>無料ブラウザゲームを製作しました。最初からすぐ遊べます☆</p>
           <p>PCパソコンUSBコントローラーなどゲームパッド対応。</p><br>
 <p>アプリのインストール不要なので、アプリの更新不要!　インストール無し、ダウンロード不要、課金なし、面倒な設定無しです。</p><br>
-
 <br>
 <h3>☆サバイバルブルーカー2☆</h3>
-         <p>ホームページ会社から勝手に広告を入れられて作動しないゲームが多くなっております</p>
 <p>■別バージョンも作りました☆</p><p>☆サバイバルブルーカー2☆</p>
 <p>2のスマホ　<a href="https://memoc.pages.dev/kurumagame0/" target="_blank">車ブラウザゲーム2無料スマホタブレット版</a>（スマホやタブレットで操作）広大なマップバージョン。</p><br>
 <p>2のPCパソコン　<a href="https://memoc.pages.dev/kurumagamepc0/" target="_blank">車ブラウザゲーム2無料PCパソコン用</a>（PCパソコンで操作）広大なマップバージョンです。</p>
 <p>PCパソコンのUSBコントローラーなどゲームパッド対応。</p><br>
 <br clear="left">
 <br>
-
-        <h2>無料スマホPCタブレット対応　☆戦車ゲームブラウザシューティング☆</h2>
+<h2>無料スマホPCタブレット対応　☆戦車ゲームブラウザシューティング☆</h2>
 <img src="/images/zsensha1.png" alt="戦車ゲームブラウザシューティング" width="100" height="210" align="left">
-         <p>☆戦車ゲームブラウザシューティング☆</p>
+<p>☆戦車ゲームブラウザシューティング☆</p>
 <p>■説明　<a href="https://memoc.pages.dev/senshagame1/" target="_blank">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></p>
 <br>
 <p>PC・スマホ　☆<a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a>☆　スマホ縦画面用とタブレット、PCパソコン、すべて対応。</p>
@@ -229,7 +187,6 @@ setInterval('Watch()',500);
 <p>戦車の無料ブラウザゲーム。こちらも完全無課金ゲーム。</p>
 <p>画面タッチでできるスマホゲーム、パソコンのキーボードでも操作できます。</p>
           <br clear="left"><br>
-
 <h2>無料ブラウザゲームPCパソコンおもしろいスマホゲーム　☆SEAシューティング☆</h2>
 <img src="/images/zsensuikan1.png" alt="潜水艦ゲーム無料PCスマホタブレット" width="230" height="120" align="left">
          <p>☆SEAシューティング☆</p>
@@ -245,20 +202,17 @@ setInterval('Watch()',500);
 <p>☆<a href="https://memoc.pages.dev/y2su/" target="_blank">潜水艦seaシューティング2 ブラウザゲーム友達と2人対戦可</a>☆</p>
 <p>画面の左半分をタップまたはクリックすると1人用、右半分をタップすると2人対戦。</p><br>
 <p>誘導弾同士で友達と対戦ができるスマホゲーム☆</p><br>
-
-        <h2>☆カードゲーム二人はペンギン☆大人と子ども2人対戦可能スマホPCタブレット対応</h2>
+<h2>☆カードゲーム二人はペンギン☆大人と子ども2人対戦可能スマホPCタブレット対応</h2>
 <img src="/images/z2card.png" alt="カードゲーム二人はペンギン" width="220" height="210" align="left">
-          <p>☆カードゲーム二人はペンギン☆</p>
+<p>☆カードゲーム二人はペンギン☆</p>
 <p>■説明　<a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
 <br><p>「一番最初」より強いともらえるよ。</p><p>二人対戦もできる、コンピューター対戦も可。</p>
           <br clear="left">
 <p>PC・スマホ　☆<a href="https://memoc.pages.dev/y2cardgame/" target="_blank">カードゲーム二人はペンギン ブラウザゲーム</a>☆</p>
 <p>完全無料。簡単なカードゲーム、大人と子ども2人で遊べる☆</p>
 <br>
-
-        <h2>無料スマホPCタブレット対応　☆ゾンビ迷宮脱出ゲーム☆</h2>
+<h2>無料スマホPCタブレット対応　☆ゾンビ迷宮脱出ゲーム☆</h2>
 <img src="/images/zombie1.png" alt="ゾンビ迷宮脱出ゲームの主人公" width="200" height="270" align="left">
-         <p>ホームページ会社から勝手に広告を入れられて作動しないゲームが多くなっております</p>
 <p>☆ゾンビ迷宮脱出ゲーム☆</p>
           <p>■説明　<a href="https://memoc.pages.dev/yzombi1/" target="_blank">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></p>
 <br>
@@ -267,9 +221,7 @@ setInterval('Watch()',500);
 <p>PCスマホ　☆<a href="https://memoc.pages.dev/yzombie/" target="_blank">ゾンビ迷宮脱出ゲーム 無料PCスマホ対応ブラウザゲーム</a>☆</p>
 <p>完全無課金、スマホアプリ不要、電車やお店の待ち時間に最適☆</p>
 <br>
-
-
-        <h2>カードゲーム二人用と一人用も　☆氷上ペット散歩☆</h2>
+<h2>カードゲーム二人用と一人用も　☆氷上ペット散歩☆</h2>
 <img src="/images/zjump1.png" alt="氷上ペット散歩の主人公" width="200" height="260" align="left">
 <p>☆氷上ペット散歩☆</p>
           <p>■説明　<a href="https://memoc.pages.dev/y3c2/" target="_blank">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
@@ -279,8 +231,7 @@ setInterval('Watch()',500);
 <p>カードゲーム二人用対戦も☆カップルにもおすすめ</p><p>一人用でAI対戦も楽しい頭脳ゲーム☆</p>
           <br clear="left">
 <p>PCスマホ　☆<a href="https://memoc.pages.dev/y3c/" target="_blank">「氷上ペット散歩」カードゲーム二人用もできるブラウザゲーム</a>☆（スマホとタブレットやPCパソコン対応）</p><br>
-
-        <h2>忍者ペンギンゲーム 一人用二人用も　☆氷上ペット散歩☆</h2>
+<h2>忍者ペンギンゲーム 一人用二人用も　☆氷上ペット散歩☆</h2>
 <img src="/images/znp1.png" alt="忍者ペンギン" width="200" height="260" align="left">
 <p>☆忍者ペンギン☆</p>
           <p>■説明　<a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
@@ -292,8 +243,7 @@ setInterval('Watch()',500);
           <br clear="left">
 <p>PCスマホ　☆<a href="https://memoc.pages.dev/y4d/" target="_blank">忍者ペンギン 2P対戦もできる無料ブラウザゲーム</a>☆（スマホ・タブレット・PCパソコン対応）</p><br>
 <br>
-
-        <h2>カップル盛り上がる質問300ゲーム☆スマホ・タブレット・PCパソコン対応</h2>
+<h2>カップル盛り上がる質問300ゲーム☆スマホ・タブレット・PCパソコン対応</h2>
 <img src="/images/zjump2.png" alt="カップル質問ゲームのシロクマ" width="200" height="260" align="left">
 <p>■説明　<a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
 <p>カードをめくって質問に答えて、交代☆</p><p>カップル盛り上がる質問300ゲームは、デートに最適です☆</p>
@@ -301,8 +251,7 @@ setInterval('Watch()',500);
 <p>PCスマホ　☆<a href="https://memoc.pages.dev/y5e/" target="_blank">カップル盛り上がる質問300ゲーム</a>☆（スマホ・タブレット・PCパソコン対応）</p>
           <br clear="left">
 <br>
-
-        <h2>英語クイズ小学生向けゲーム☆2人協力プレイができる無料ブラウザゲーム スマホ対応</h2>
+<h2>英語クイズ小学生向けゲーム☆2人協力プレイができる無料ブラウザゲーム スマホ対応</h2>
 <p>英語クイズ小学生向けゲームは、800語以上の英単語を収録☆</p><p>英語スマホアプリ不要で、完全無料です☆</p>
 <br>
 <p>英語を日本語にかさねよう☆</p>
@@ -327,7 +276,6 @@ setInterval('Watch()',500);
  <br>
 <p>PCスマホ　<a href="https://memoc.pages.dev/y8h/" target="_blank">英語中学生クイズ面白いゲーム 英単語中学一年生</a></p>
  <br>
-
 <h3>中学生二年生の英単語ゲーム</h3>
 <p>中学生二年生で習う英単語ゲームです☆</p>
 <br>
@@ -338,10 +286,8 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
  <br>
           <p>☆新作ゲーム製作中　近日公開☆</p><br>
-
 <p>スマホの右上の点々をクリックし「ホーム画面に追加」すると、いつでもどこでも遊べます☆</p><br>
  <p>わりとおもしろいな、友達に教えたい、などと思ったら、<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">https://memoc.pages.dev/</span>をコピペして、ご自身のSNSやブログなどに書いていただけると、新作ゲームを作る応援になります。</p><br>
-
 <h3>無料ブラウザゲームPCパソコン</h3>
 <p>車の無料ブラウザゲームをPCパソコンやノートパソコン用にしました。</p>
 <p>パソコンのキーボードで操作できます。</p><br>
@@ -357,8 +303,6 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/kurumagame/" target="_blank">車ブラウザゲーム無料スマホタブレット版</a></p>
 <br>
 <p>アプリのインストール無し、アプリの更新無しの無料ブラウザゲーム☆</p><br>
-
-
 <p><a href="https://memoc.pages.dev/senshagame/" target="_blank">戦車ゲームブラウザシューティング</a></p>
 <p>スマホとタブレット、PCパソコンのキーボード、すべて対応。</p>
 <br>
@@ -400,12 +344,10 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/peace/" target="_blank">ピースのイラストおしゃれでかわいい着物姿など画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xakushu/" target="_blank">星のイラストかっこいい無料フリー画像</a></p>
-
 <br><p>TVer系</p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-
 <br>
 <p>何でもランキング</p>
 <p><a href="https://memoc.pages.dev/naniwa/" target="_blank">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
@@ -414,7 +356,6 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
-
 <br>
 <p>便利なコンテンツ</p>
 <p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
@@ -422,11 +363,9 @@ setInterval('Watch()',500);
 <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
 <p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
 <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-
 <br>
           </div>
-      
-        <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
+<div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />

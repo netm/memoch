@@ -1,21 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html dir="ltr" lang="ja">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="電卓無料サイト 生活に役立つとても便利なリンク集です。">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="電卓無料サイト 生活に役立つとても便利なリンク集です。">
         <meta name="keywords" content="電卓,無料,サイト,便利">
-        <meta http-equiv="Content-Style-Type" content="text/css">
-        <meta http-equiv="Content-Script-Type" content="text/javascript">
          <meta name="viewport" content="width=device-width,initial-scale=1.0">
          <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-        <link rel="stylesheet" type="text/css" href="/css/c.css" media="all">
+　　<link rel="stylesheet" href="/css/c.css" media="all">
         <title>電卓無料サイト 生活に役立つ便利なリンク集</title>
-    
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
      crossorigin="anonymous"></script>
-
 </head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
 <script>
@@ -25,11 +20,11 @@
 
   gtag('config', 'G-5D799GZERM');
 </script>
-    <body>
-        <div id="container">
-        <div id="banner">
-        <h1><a href="https://memoc.pages.dev/muden/">電卓無料サイト 生活に役立つ便利なサイトリンク集</a></h1>
-          <div class="blockbody"><p>電卓無料サイト 生活に役立つ便利なリンク集です。　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
+<body>
+<div id="container">
+<div id="banner">
+<h1><a href="https://memoc.pages.dev/muden/">電卓無料サイト 生活に役立つ便利なサイトリンク集</a></h1>
+<div class="blockbody"><p>電卓無料サイト 生活に役立つ便利なリンク集です。　　<a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a>　　<a href="https://memoc.pages.dev/inlink/" target="_blank">便利サイト無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>
 　<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれ</a>
@@ -90,9 +85,8 @@
 <p><a href="https://memoc.pages.dev/xakushu/">握手のイラストかわいい無料フリー画像</a></p>
 <p><a href="https://memoc.pages.dev/xstar/">星のイラストかっこいい無料フリー画像</a></p>
 </div>
-
-         <div class="sidetitle">レジャー系コンテンツ</div>
-        <div class="side">
+<p><div class="sidetitle">レジャー系コンテンツ</div>
+<div class="side"></p>
 <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -162,25 +156,22 @@
             </tr>
         </table>
     </div>
-    
-    <script>
-        function appendToDisplay(value) {
-            document.getElementById('display').value += value;
-        }
-        
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-        
-        function calculateResult() {
-            try {
-                const result = eval(document.getElementById('display').value);
-                document.getElementById('display').value = result;
-            } catch (error) {
-                document.getElementById('display').value = 'Error';
-            }
-        }
-    </script>
+<script>
+function appendToDisplay(value) {
+document.getElementById('display').value += value;
+}
+function clearDisplay() {
+document.getElementById('display').value = '';
+}
+function calculateResult() {
+try {
+const result = eval(document.getElementById('display').value);
+document.getElementById('display').value = result;
+} catch (error) {
+document.getElementById('display').value = 'Error';
+}
+}
+</script>
 <h3>電卓の無料サイト 計算できて便利に</h3>
 <p>電卓の無料サイトです。計算しながら色々なサイトへアクセスできる便利なホームページ。</p>
 <h4>シンプルで見やすい表示の電卓 ポップアップ広告無し</h4>
@@ -283,6 +274,22 @@
 　<a href="https://www.misterdonut.jp/" target="_blank">ミスタードーナツ</a>
 　<a href="https://www.chateraise.co.jp/" target="_blank">シャトレーゼ</a></p>
 <br>
+<p>電卓・計算機</p>
+<p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
+<p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+<br>
+         <p>便利なタイマー</p>
+<p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<br>
+         <p>学習ゲーム</p>
+<p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
+<p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
+<p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+<p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
+<br>
          <p>無料ゲーム</p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
 <p><a href="https://memoc.pages.dev/kurumagamese/" target="_blank">車ブラウザゲーム無料PCスマホタブレット</a></p>
@@ -292,21 +299,10 @@
 <p><a href="https://memoc.pages.dev/taisengame/" target="_blank">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></p>
 <p><a href="https://memoc.pages.dev/y4d2/" target="_blank">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></p>
 <br>
-         <p>学習ゲーム</p>
-<p><a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></p>
-<p><a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a></p>
-<p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
-<p><a href="https://memoc.pages.dev/y9i2/" target="_blank">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></p>
-<br>
-         <p>便利なタイマー</p>
-<p><a href="https://memoc.pages.dev/yzpa1/">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
-<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
-<br>
 <p>TVer系</p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
 <p><a href="https://memoc.pages.dev/tver1/" target="_blank">TVerティーバーの人気ランキングトップ30位　2025年5月</a></p>
 <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-
 <br>         <p>レジャー系コンテンツ</p><p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
 <p><a href="https://memoc.pages.dev/ueno/" target="_blank">上野動物園でデート ゴリラとコビトカバ!突然コアラ!神社も</a></p>
 <p><a href="https://memoc.pages.dev/sinkai/" target="_blank">深海魚の不細工でかわいい画像まとめ!食べるの?</a></p>
@@ -327,25 +323,17 @@
 <p><a href="https://memoc.pages.dev/rank1/" target="_blank">アマゾンの売れ筋ランキングと人気度ランキング2025年4月</a></p>
 <p><a href="https://memoc.pages.dev/rank3/" target="_blank">柔軟剤の人気売上ランキングトップテン</a></p>
 <p><a href="https://memoc.pages.dev/rank4/" target="_blank">カルディのお菓子おすすめ人気ランキングトップ10</a></p>
-
 <br>
 <p>便利なコンテンツ</p>
 <p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a></p>
 <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
 <br>
-<p>電卓・計算機</p>
-<p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
-<p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
-<p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
-
-<br>
         </div>
         <div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p><p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/">サイトマップ</a></p>
 <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
         <p><span class="copyright">
-        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br />
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
         Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
-        </div></div>
+        </div>
     </body>
 </html>
