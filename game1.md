@@ -278,9 +278,18 @@
 <br>
 <p>PCスマホ　<a href="https://memoc.pages.dev/y9i/" target="_blank">英単語の暗記サイト中学二年生の英単語クイズゲーム</a></p>
  <br>
-<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<h3>中学生三年生の英単語ゲーム</h3>
+<p>中学生三年生で習う英単語ゲームです☆</p>
+<br>
+<p>■説明　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
  <br>
-          <p>☆新作ゲーム製作中　近日公開☆</p><br>
+<p>PCスマホ　<a href="https://memoc.pages.dev/y10k/" target="_blank">英単語中学三年生のクイズ面白いゲーム</a></p>
+ <br>
+<h3>英語ことわざおしゃれなクイズゲーム</h3>
+<p>英語ことわざおしゃれなクイズゲームです☆</p>
+<br>
+<p>PCスマホ　<a href="https://memoc.pages.dev/y11m/" target="_blank">英語ことわざおしゃれなクイズゲーム</a></p>
+ <br>
 <p>スマホの右上の点々をクリックし「ホーム画面に追加」すると、いつでもどこでも遊べます☆</p><br>
  <p>わりとおもしろいな、友達に教えたい、などと思ったら、<span style="color:#960087;background-color:#FFDDFF;font-size:1.2em;">https://memoc.pages.dev/</span>をコピペして、ご自身のSNSやブログなどに書いていただけると、新作ゲームを作る応援になります。</p><br>
 <h3>無料ブラウザゲームPCパソコン</h3>
