@@ -1,0 +1,154 @@
+/* 全文 */
+body {
+    font-family: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#controls {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #495057;
+}
+
+.option-btn {
+    padding: 8px 16px;
+    border: 1px solid #ced4da;
+    border-radius: 16px;
+    background-color: #fff;
+    color: #495057;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease-in-out;
+}
+
+.option-btn:hover {
+    background-color: #e2e6ea;
+    border-color: #b1b9c1;
+}
+
+.option-btn.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    font-weight: bold;
+}
+
+#actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+#actions button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#actions button:hover {
+    background-color: #218838;
+}
+
+#actions #print-btn { background-color: #17a2b8; }
+#actions #print-btn:hover { background-color: #138496; }
+#actions #png-btn { background-color: #ffc107; color: #333; }
+#actions #png-btn:hover { background-color: #e0a800; }
+#actions #pdf-btn { background-color: #dc3545; }
+#actions #pdf-btn:hover { background-color: #c82333; }
+#actions #translate-btn { background-color: #6c757d; }
+#actions #translate-btn:hover { background-color: #5a6268; }
+
+
+#message-container {
+    width: 90%;
+    max-width: 1000px;
+    flex-grow: 1;
+}
+
+#message-output {
+    width: 100%;
+    height: 250px;
+    padding: 15px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    border-radius: 12px;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+footer {
+    margin-top: auto;
+    padding-top: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* For printing */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #message-container, #message-container * {
+        visibility: visible;
+    }
+    #message-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+    }
+    #message-output {
+        border: none;
+        height: auto;
+    }
+}

@@ -190,6 +190,8 @@
 <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム</a></p>
 <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバー検索用</a>　　<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲーム</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法</a></p>
 <br>
+<p><a href="https://memoc.pages.dev/y994/" target="_blank">退職者へのメッセージジェネレーター上司・同僚・後輩・一言にも対応</a>
+<br>
 <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタル</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレット</a></p>
 <br>
 <p>説明　<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーの解説</a>　　<a href="https://memoc.pages.dev/yzpa/" target="_blank">タイマーおしゃれサイト</a></p>
