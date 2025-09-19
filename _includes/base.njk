@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ title | default("サイトタイトル") }}</title>
+    <meta name="description" content="{{ description | default("サイトの説明をここに入力") }}">
+    <meta name="keywords" content="{{ keywords | default("キーワード1, キーワード2") }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="{{ adsense_account }}">
+    <link rel="stylesheet" href="{{ stylesheet | default("/assets/css/style.css") }}" media="all">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+    <main>
+      {{ content | safe }}
+    </main>
+<div id="footer"><p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a>　　<a href="https://memoc.pages.dev/inlink/">便利サイト無料で生活に役立つリンク集</a></p>
+<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a>　　<a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a>　　<a href="https://memoc.pages.dev/sitemap/" target="_blank">サイトマップ</a></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a>　<a href="https://memoc.pages.dev/illust/">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p>
+        <p><span class="copyright">
+        Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
+        Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span></p>
+        </div></div>
+  </body>
+</html>
