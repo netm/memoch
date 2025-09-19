@@ -1,7 +1,21 @@
-<nav style="display:flex; justify-content:center; margin:0; padding:1rem 0;">
-  <a href="/" {% if title == "Home" %}class="active"{% endif %}>Home</a>
-  <a href="/tver/" {% if title == "tver" %}class="active"{% endif %}>Tver検索用</a>
-  <a href="/game1/" {% if title == "game1" %}class="active"{% endif %}>無料ゲーム</a>
-  <a href="/y10k2/" {% if title == "y10k2" %}class="active"{% endif %}>学習ゲーム</a>
-  <a href="/illust/" {% if title == "illust" %}class="active"{% endif %}>イラスト無料</a>
-</nav>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ title | default("サイトタイトル") }}</title>
+    <meta name="description" content="{{ description | default("サイトの説明をここに入力") }}">
+    <meta name="keywords" content="{{ keywords | default("キーワード1, キーワード2") }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="{{ adsense_account }}">
+    <link rel="stylesheet" href="{{ stylesheet | default("/assets/css/style.css") }}" media="all">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
