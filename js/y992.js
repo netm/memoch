@@ -7,17 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsContainer = document.getElementById('settingsContainer');
 
     const defaultItems = [
-        { name: '習い事', abbr: '習い事', freq: 'weekly', day: 1, color: '#00d632', weight: 900 },
-        { name: '水泳', abbr: 'プール', freq: 'weekly', day: 4, color: '#00c9db', weight: 900 },
-        { name: 'ヨガ', abbr: 'ヨガ', freq: 'weekly', day: 3, color: '#000000', weight: 900 },
-        { name: 'ジム', abbr: 'ジム', freq: 'weekly', day: 2, color: '#0000ff', weight: 800 },
-        { name: '筋トレ', abbr: '筋トレ', freq: '2nd-4th', day: 3, color: '#b3007d', weight: 800 },
-        { name: '英会話', abbr: '英会話', freq: '2nd', day: 5, color: '#de7600', weight: 800 },
-        { name: '楽器', abbr: '楽器', freq: '1st-3rd', day: 5, color: '#cca000', weight: 800 },
-        { name: 'ダンス', abbr: 'ダンス', freq: 'weekly', day: 5, color: '#0087b8', weight: 800 },
-        { name: 'パソコン', abbr: 'パソコン', freq: '4th', day: 2, color: '#ffa500', weight: 800 },
+        { name: '習い事', abbr: '習い事', freq: 'weekly', day: 1, color: '#cca000', weight: 900 },
+        { name: 'ジム', abbr: 'ジム', freq: 'weekly', day: 2, color: '#0000ff', weight: 900 },
+        { name: '英会話', abbr: '英会話', freq: '2nd', day: 5, color: '#9c038aff', weight: 800 },
         { name: '読書', abbr: '読書', freq: '1st', day: 3, color: '#008000', weight: 800 },
-        { name: '料理', abbr: '料理教室', freq: '3rd', day: 3, color: '#ff578c', weight: 800 },
     ];
 
     function loadSettings() {
