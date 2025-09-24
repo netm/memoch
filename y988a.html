@@ -11,12 +11,19 @@
   <link rel="stylesheet" href="/css/y989.css">
 </head>
 <body>
-<button id="runTest">Run fetchItems()</button>
+<button id="runDelete">Delete first item</button>
 <script>
-document.getElementById('runTest').addEventListener('click', async () => {
-  console.log(await fetchItems());
+document.getElementById('runDelete').addEventListener('click', async () => {
+  const data = await fetchItems();
+  console.log('before', data);
+  if (!data.items.length) return alert('no items');
+  const res = await deleteItem(data.items[0].id, data.version).catch(e=>{ console.error(e); alert('error'); });
+  console.log('delete result', res);
+  const after = await fetchItems();
+  console.log('after', after);
 });
 </script>
+
     <script src="/js/app.js" defer></script>
 </body>
 </html>
