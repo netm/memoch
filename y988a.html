@@ -11,6 +11,12 @@
   <link rel="stylesheet" href="/css/y989.css">
 </head>
 <body>
+<button id="runTest">Run fetchItems()</button>
+<script>
+document.getElementById('runTest').addEventListener('click', async () => {
+  console.log(await fetchItems());
+});
+</script>
     <script src="/js/app.js" defer></script>
 </body>
 </html>
