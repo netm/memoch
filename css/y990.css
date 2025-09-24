@@ -1,0 +1,309 @@
+  #timetable-capture img[src*="counter_img.php"],
+  #timetable-capture img[src*="media.fc2.com"] {
+    visibility: hidden !important;
+  }
+
+/* 基本 */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* キャプチャ領域（上下を広げて縦長に） */
+#timetable-capture {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 24px auto;
+    background: #fff;
+    padding: 24px 16px 24px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: block;
+}
+
+/* header */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.header-input {
+    font-size: 2.0em;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: transparent;
+    text-align: center;
+    padding: 6px;
+    transition: border-color 0.3s;
+}
+
+h1 {
+    color:#557303;
+    font-size: 100%;
+    line-height: 1em;
+    font-weight:bolder;
+    padding:10px 0 5px;
+    margin:0;
+    border-bottom:1px dotted #7ABD3C;
+    background-color:#f0f2ff;
+    border-radius: 1vh;
+}
+
+h2 {
+    color:#557303;
+    font-size: 100%;
+    line-height: 1em;
+    font-weight:bolder;
+    padding:10px 0 5px;
+    margin:0;
+    border-bottom:1px dotted #7ABD3C;
+    background-color:#f0f2ff;
+    border-radius: 1vh;
+    text-align: left;
+}
+
+/* main2 */
+main2 { width: 100%; overflow-x: auto; }
+
+/* Table（縦を長く：行高アップ） */
+#timetable {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    margin: 0 auto;
+}
+
+#timetable th, #timetable td {
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    height: 88px; /* 60px→88pxで縦長に */
+}
+
+#timetable th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* 曜日入力 */
+#timetable thead th input[type="text"] {
+    font-size: 1.5em;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    text-align: center;
+    width: 100%;
+}
+
+/* セル内余白 */
+#timetable td { position: relative; padding: 10px 6px; }
+
+/* 入力欄 */
+#timetable input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    padding: 6px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+}
+#timetable input[type="text"]:focus {
+    outline: 1px solid #007bff;
+    background-color: #eaf4ff;
+}
+
+/* ドロップターゲット */
+.drop-target {
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-height: 64px; /* 科目セルも縦長に */
+}
+.drop-target:hover { background-color: #eaf4ff; }
+
+/* 科目表示 */
+.drop-target .subject-item {
+    cursor: default;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 6px;
+    font-size: 1.0em;
+    line-height: 1.2;
+    white-space: pre-wrap;
+}
+
+/* 左列（時限） */
+.time-cell {
+    padding: 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+/* クリック編集可能ラベル */
+.time-top, .time-bottom { display: block; outline: none; }
+.time-top {
+    font-weight: 700;
+    font-size: 1.6em; /* 少し大きめ */
+    line-height: 1.1;
+}
+.time-bottom {
+    font-weight: 400;
+    font-size: 1.0em; /* 0.85→1.0で読みやすく */
+    line-height: 1.2;
+    color: #444;
+    padding-bottom: 8px;
+}
+.time-top:focus, .time-bottom:focus {
+    background-color: #eaf4ff;
+    border-radius: 4px;
+}
+
+/* パレット */
+#subject-palette-container {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+#subject-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.subject-item {
+    padding: 8px 15px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+    background-color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 32px;
+    box-sizing: border-box;
+}
+.subject-item:hover { background-color: #eee; }
+.subject-item.selected {
+    outline: 3px solid #007bff;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+/* ツール */
+#tools {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+#color-controls, #font-weight-controls, #font-size-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.color-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+#color-picker {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+#font-weight-slider { width: 150px; }
+#font-size-slider { width: 180px; }
+
+/* フッターとボタン */
+footer {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 30px;
+    text-align: center;
+}
+#buttons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+#buttons button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#save-png-btn { background-color: #28a745; }
+#save-png-btn:hover { background-color: #218838; }
+#print-btn { background-color: #007bff; }
+#print-btn:hover { background-color: #0069d9; }
+#clear-all-btn { background-color: #dc3545; }
+#clear-all-btn:hover { background-color: #c82333; }
+
+#instructions {
+    text-align: left;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+#instructions h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+/* 印刷 */
+@media print {
+    body { background: white; padding: 0; }
+    #subject-palette-container, #buttons, #instructions, footer a { display: none !important; }
+    #timetable-capture { box-shadow: none; max-width: 100%; background: white; padding: 8px; }
+    main2 { overflow: visible; }
+    #timetable { max-width: 100%; border-collapse: collapse; }
+    .subject-item.selected { outline: none !important; box-shadow: none !important; }
+}
+
+/* html2canvas 用の一時クラス */
+.body-capture-only > :not(#timetable-capture) { display: none !important; }

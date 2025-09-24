@@ -1,0 +1,103 @@
+/* indez989.css (追記: PNG保存ボタンとキャプチャ用のスタイル調整を含む) */
+:root{
+  --bg-short: #ffe5e5;
+  --bg-medium: #fff8e5;
+  --bg-long: #e5ffe5;
+  --accent: #2b6cb0;
+  --muted: #666;
+  --max-width: 1100px;
+  --border: #e6e6e6;
+  --th-bg: #f5f5f5;
+  --page-bg: #f7f9fc;
+}
+
+/* 基本レイアウト */
+html,body { height:100%; }
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  margin:20px;
+  line-height:1.6;
+  color:#222;
+  max-width:var(--max-width);
+  margin-left:auto;
+  margin-right:auto;
+  padding:0 16px;
+  background:#fff;
+}
+
+/* ヘッディング */
+h1 { text-align:center; margin-bottom:8px; font-weight:700; }
+h2 { margin-top:32px; border-bottom:2px solid #eee; padding-bottom:6px; font-size:1.1rem; font-weight:600; }
+
+/* コントロール領域 */
+.controls {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:12px 0 18px;
+}
+#searchBox { flex:1; padding:8px 10px; font-size:1rem; border:1px solid #ddd; border-radius:6px; background:#fff; }
+button { background:var(--accent); color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; }
+button.secondary { background:#666; }
+button:active { transform:translateY(1px); }
+button:focus { outline:3px solid rgba(43,108,176,0.18); outline-offset:2px; }
+
+/* PNGボタンのスタイル */
+#savePngBtn { background: #20639b; }
+#savePngBtn svg { height:16px; width:16px; vertical-align:middle; }
+
+/* ソート結果コンテナ */
+.sorted-container { margin-bottom:20px; padding:12px; border-radius:6px; background:var(--page-bg); box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+
+/* テーブル */
+table { width:100%; border-collapse:collapse; margin-top:10px; background:#fff; }
+thead th, table tr:first-child th { background:var(--th-bg); position:sticky; top:0; z-index:1; }
+th, td { border:1px solid var(--border); padding:8px; text-align:left; vertical-align:middle; font-size:0.95rem; }
+th { font-weight:700; }
+.item-cell { font-weight:600; }
+
+/* 列幅 */
+.life-cell { white-space:nowrap; width:120px; }
+.next-cell { white-space:nowrap; width:140px; }
+.purchase-date { width:150px; padding:6px; border:1px solid #ddd; border-radius:4px; font-size:0.95rem; box-sizing:border-box; }
+
+/* 結果テーブル */
+.result { margin-top:8px; border-radius:6px; overflow:hidden; }
+.result th, .result td { padding:6px 8px; font-size:0.95rem; }
+
+/* 行の色分け */
+.short { background:var(--bg-short); }
+.medium { background:var(--bg-medium); }
+.long { background:var(--bg-long); }
+
+/* レスポンシブ */
+@media (max-width:800px) {
+  body { padding:0 12px; }
+  .controls { flex-direction:column; align-items:stretch; }
+  #searchBox { width:100%; }
+  .purchase-date { width:100%; }
+  th, td { font-size:0.9rem; padding:6px; }
+  .life-cell, .next-cell { width:auto; white-space:normal; }
+}
+
+/* 印刷 */
+@media print {
+  .controls, button, .sorted-container { display:none !important; }
+  body { margin:0; background:#fff; }
+  table { page-break-inside:avoid; font-size:11pt; }
+  th, td { border:1px solid #ccc; padding:6px; }
+}
+
+/* アクセシビリティ */
+.purchase-date:focus { outline:3px solid rgba(43,108,176,0.18); outline-offset:2px; }
+
+/* 長いテキストの折返し */
+td { word-break:break-word; }
+
+/* テーブル横スクロール容器がある場合の調整 */
+.table-wrapper { overflow-x:auto; }
+
+/* 保存ボタンの余白 */
+.controls .btn-group { display:flex; gap:8px; align-items:center; }
+
+/* End of indez989.css */

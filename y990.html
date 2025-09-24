@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="時間割ブラウザアプリは可燃ごみ・不燃ごみなど自由にカスタマイズ可能な無料のPCスマホタブレット対応サイト、png画像保存できます。">
+  <meta name="keywords" content="時間割,ブラウザ,アプリ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <title>時間割ブラウザアプリ</title>
+  <link rel="stylesheet" href="/css/y990.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+    <div id="timetable-capture">
+        <header>
+            <input id="year-input" class="header-input" type="text" placeholder="時間割">
+            <input id="class-input" class="header-input" type="text" placeholder="3年B組">
+        </header>
+        <main2>
+            <table id="timetable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><input type="text" value="月"></th>
+                        <th><input type="text" value="火"></th>
+                        <th><input type="text" value="水"></th>
+                        <th><input type="text" value="木"></th>
+                        <th><input type="text" value="金"></th>
+                        <th><input type="text" value="土"></th>
+                        <th><input type="text" value="日"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 1限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true">1限</span>
+                            <span class="time-bottom" contenteditable="true">08:55–09:40</span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 2限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true">2限</span>
+                            <span class="time-bottom" contenteditable="true">09:50–10:35</span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 3限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true">3限</span>
+                            <span class="time-bottom" contenteditable="true">10:45–11:30</span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 4限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true">4限</span>
+                            <span class="time-bottom" contenteditable="true">11:40–12:25</span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 5限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true">5限</span>
+                            <span class="time-bottom" contenteditable="true">13:15–14:00</span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 6限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true">6限</span>
+                            <span class="time-bottom" contenteditable="true">14:10–14:55</span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 7限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true"></span>
+                            <span class="time-bottom" contenteditable="true"></span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                    <!-- 8限 -->
+                    <tr>
+                        <td class="time-cell">
+                            <span class="time-top" contenteditable="true"></span>
+                            <span class="time-bottom" contenteditable="true"></span>
+                        </td>
+                        <td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td><td class="drop-target"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main2>
+    </div>
+    <div id="subject-palette-container">
+        <h1>科目パレット</h1>
+        <div id="subject-palette">
+            |<span class="subject-item" contenteditable="true"></span>
+            |<span class="subject-item" contenteditable="true">国語</span>
+            |<span class="subject-item" contenteditable="true">英語</span>
+            |<span class="subject-item" contenteditable="true">算数</span>
+            |<span class="subject-item" contenteditable="true">数学</span>
+            |<span class="subject-item" contenteditable="true">理科</span>
+            |<span class="subject-item" contenteditable="true">社会</span>
+            |<span class="subject-item" contenteditable="true">体育</span>
+            |<span class="subject-item" contenteditable="true">音楽</span>
+            |<span class="subject-item" contenteditable="true">美術</span>
+            |<span class="subject-item" contenteditable="true">情報</span>
+            |<span class="subject-item" contenteditable="true">家庭科</span>
+            |<span class="subject-item" contenteditable="true">図工</span>
+            |<span class="subject-item" contenteditable="true">道徳</span>
+            |<span class="subject-item" contenteditable="true">クラブ</span>
+            |<span class="subject-item" contenteditable="true">部活</span>
+            |<span class="subject-item" contenteditable="true"></span>|
+        </div>
+        <div id="tools">
+            <div id="color-controls">
+                <span>色:</span>
+                <button class="color-btn" style="background-color:#000000" aria-label="黒"></button>
+                <button class="color-btn" style="background-color:#e53935" aria-label="赤"></button>
+                <button class="color-btn" style="background-color:#43a047" aria-label="緑"></button>
+                <button class="color-btn" style="background-color:#1e88e5" aria-label="青"></button>
+                <button class="color-btn" style="background-color:#fdd835" aria-label="黄"></button>
+                <input type="color" id="color-picker" aria-label="カラーピッカー">
+            </div>
+            <div id="font-weight-controls">
+                <span>太さ:</span>
+                <input type="range" id="font-weight-slider" min="300" max="900" step="100" value="400">
+            </div>
+            <div id="font-size-controls">
+                <span>サイズ:</span>
+                <input type="range" id="font-size-slider" min="12" max="28" step="1" value="16">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div id="buttons">
+            <button id="save-png-btn">PNG保存</button>
+            <button id="print-btn">印刷</button>
+            <button id="clear-all-btn">全消去</button>
+        </div>
+        <div id="instructions">
+        <h1>時間割ブラウザアプリ</h1>
+        <h2>時間割ブラウザアプリの使い方</h2>
+        <p>一番上の「時間割表」「3年B組」の部分や、曜日、時間を自由に入力できます。</p>
+        <p>例えば、「2025年」「英語」と変更すると、英語の先生用の時間割も作成可能です。</p><br>
+        <h3>国語や英語など項目の文字</h3>
+        <p>下の項目の文字（国語、英語など）をクリックして選択します。</p>
+        <p>選択された項目は、青い枠で囲まれます。</p>
+        <p>青い枠で囲まれた項目は、クリックして直接編集できます。</p>
+        <p>項目を選択した状態で、文字の色や文字の太さを変更できます。</p>
+        <p>項目を選択し、時間割のマスをクリックすると、貼り付けられます。</p>
+        <h3>1マス消去</h3>
+        <p>1マス消去したい場合は、一番左か右の無記入の項目をクリックしてから、消したいマスをクリック。</p>
+        <p>さらに1マスづつ消去するときは、そのまま次に消したいマスをクリックして下さい。</p>
+        <h3>ブラウザ保存機能</h3>
+        <p>「PNG画像で保存」ボタンは、時間割を画像としてダウンロードできます。</p>
+        <p>「印刷」ボタンは、パソコンとつなげているコピー機やプリンターからプリントアウトできます。</p>
+        <p>「すべて消去」ボタンで、入力した内容をすべてリセットできます。（注意：元には戻せません）</p>
+        <h3>ブラウザ保存機能</h3>
+        <p>作成した時間割は、自動でブラウザに保存されます。</p>
+        <p>スマホ・タブレット・PCなど、個別の端末に記憶されます。</p>
+        <p>次回ひらいた時に、同じ状態から始められます。</p><br>
+        <p>「すべて消去」ボタンで、ブラウザから消去されます。</p>
+        <h2>時間割ブラウザアプリは無料のPCスマホタブレット対応サイト</h2>
+        <p>無料で使えるPCスマホタブレット対応サイトです。</p>
+        <p>SNSでシェアされるとうれしいです。</p>
+        <p>ブログやホームページからのリンクも、ご自由にどうぞ。</p><br>
+        <h3>学校や塾の先生および関係者様へ</h3>
+        <p>当サイトへのリンクを貼っていただければ、学校や塾などで使用していただいて構いません。</p>
+        <p>時間割ブラウザアプリ</p>
+        <p>https://memoc.pages.dev/y990/</p>
+        <p>もしくは</p>
+        <p>メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</p>
+        <p>https://memoc.pages.dev/</p>
+        <p>リンクが貼ってあれば、ご担当者様からのご連絡は不要です。</p>
+        <p>今後とも、どうぞご利用くださいませ。</p><br>
+        </div>
+    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
+    <p><a href="https://memoc.pages.dev/y8h2/"    target="_blank">英語中学からやり直すサイト高校生も大人も</a></p><br>
+    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzpa1/"  target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
+    <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
+    <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p><br>
+    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
+    <p><a href="https://memoc.pages.dev/tver/"    target="_blank">TVerティーバーの検索用リンク集</a></p><br>
+    <p><a href="https://memoc.pages.dev/game1/"   target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
+    </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="/js/y990.js"></script>
+</body>
+</html>
