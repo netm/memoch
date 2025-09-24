@@ -1,269 +1,185 @@
-// js/app.js - 統合版
-// 前提: html 側にある要素 ID / クラス と整合するよう組み立てています。
-// サーバー同期を優先し、失敗時は localStorage をフォールバックとして使用します.
+// js/app.js - 統合版（共有機能 + サーバ同期 + localStorage フォールバック）
+// 機能：項目追加・編集・削除・ソート・全消去・PNG保存・カラー選択・共有URL生成
+// 前提：/api/items エンドポイントが Cloudflare Workers (KV / D1) 側で動作すること
+// 起動時に URL パラメータ `fridge` があればそれを使い、なければ UUID を生成して URL を更新します。
 
-const FRIDGE = 'test-fridge';
-const CONTAINER_SELECTOR = '#item-list'; // tbody の ID
 const STORAGE_KEY = 'foodStockItems';
+let FRIDGE = null; // fridge id（UUID like）
+let items = [];
+let serverVersion = null;
 
-// --- Server API helpers ---
-async function serverFetchItems() {
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(FRIDGE)}`);
-  if (!res.ok) throw new Error('server fetch failed: ' + res.status);
-  return res.json(); // { ok, items, version }
-}
-
-async function serverAddItem(item, expectedVersion = undefined) {
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(FRIDGE)}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ item, expectedVersion })
-  });
-  return { status: res.status, body: await res.json().catch(() => null) };
-}
-
-async function serverUpdateItem(item, expectedVersion) {
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(FRIDGE)}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ item, expectedVersion })
-  });
-  return { status: res.status, body: await res.json().catch(() => null) };
-}
-
-async function serverDeleteItem(id, expectedVersion) {
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(FRIDGE)}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id, expectedVersion })
-  });
-  return { status: res.status, body: await res.json().catch(() => null) };
-}
-
-// --- Local storage helpers (fallback) ---
-function loadItemsLocal() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch (e) {
-    console.warn('load local failed', e);
-    return [];
-  }
-}
-function saveItemsLocal(items) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  } catch (e) {
-    console.warn('save local failed', e);
-  }
-}
-
-// --- App state ---
-let items = []; // array of item objects
-let serverVersion = null; // server side version, if available
-let currentEditingColorItemId = null;
-let confirmActionCallback = null;
-
-// --- Utility ---
-function formatDateInput(dateStr) {
-  if (!dateStr) return '';
-  // ensure YYYY-MM-DD
+// --- util ---
+function uuidLike() { return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+function formatDateInput(dateStr){
+  if(!dateStr) return '';
   const d = new Date(dateStr);
-  if (isNaN(d)) return '';
+  if(isNaN(d)) return '';
   return d.toISOString().split('T')[0];
 }
-function getExpiryStatus(dateString) {
-  if (!dateString) return { status: 'ok', days: Infinity };
-  const today = new Date(); today.setHours(0,0,0,0);
-  const expiryDate = new Date(dateString); expiryDate.setHours(0,0,0,0);
-  const diffTime = expiryDate - today;
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  if (diffDays < 0) return { status: 'expired', days: diffDays };
-  if (diffDays <= 3) return { status: 'near', days: diffDays };
-  return { status: 'ok', days: diffDays };
+function escapeHtml(s){ return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
+function qs(k){ return new URL(location.href).searchParams.get(k); }
+function pushFridgeToUrl(id){
+  const url = new URL(location.href);
+  url.searchParams.set('fridge', id);
+  history.replaceState(null,'',url.toString());
 }
-function uuidLike() { return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+function copyToClipboard(text){ navigator.clipboard?.writeText(text).catch(()=>{}); }
 
-// --- Rendering ---
-function renderItems() {
-  const tbody = document.querySelector(CONTAINER_SELECTOR);
+// --- Server helpers (assume REST API at /api/items) ---
+async function apiFetchItems(fridge){
+  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`);
+  if(!res.ok) throw new Error('fetch failed ' + res.status);
+  return res.json();
+}
+async function apiAddItem(fridge, item, expectedVersion){
+  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ item, expectedVersion })
+  });
+  return { status: res.status, body: await res.json().catch(()=>null) };
+}
+async function apiUpdateItem(fridge, item, expectedVersion){
+  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`, {
+    method: 'PUT',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ item, expectedVersion })
+  });
+  return { status: res.status, body: await res.json().catch(()=>null) };
+}
+async function apiDeleteItem(fridge, id, expectedVersion){
+  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`, {
+    method: 'DELETE',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ id, expectedVersion })
+  });
+  return { status: res.status, body: await res.json().catch(()=>null) };
+}
+
+// --- localStorage fallback ---
+function loadLocal(){
+  try{
+    const s = localStorage.getItem(STORAGE_KEY + ':' + FRIDGE);
+    return s ? JSON.parse(s) : [];
+  }catch(e){ return []; }
+}
+function saveLocal(){
+  try{ localStorage.setItem(STORAGE_KEY + ':' + FRIDGE, JSON.stringify(items)); }catch(e){}
+}
+
+// --- expiry status ---
+function getExpiryStatus(dateString){
+  if(!dateString) return { status:'ok', days: Infinity };
+  const today = new Date(); today.setHours(0,0,0,0);
+  const d = new Date(dateString); d.setHours(0,0,0,0);
+  const diffDays = Math.ceil((d - today)/(1000*60*60*24));
+  if(diffDays < 0) return { status:'expired', days: diffDays };
+  if(diffDays <= 3) return { status:'near', days: diffDays };
+  return { status:'ok', days: diffDays };
+}
+
+// --- render ---
+function renderItems(){
+  const tbody = document.getElementById('item-list');
   const emptyState = document.getElementById('empty-state');
-  if (!tbody) return console.warn('container not found:', CONTAINER_SELECTOR);
-
+  if(!tbody) return;
   tbody.innerHTML = '';
-  if (!items || items.length === 0) {
-    if (emptyState) emptyState.style.display = 'block';
-    return;
-  } else {
-    if (emptyState) emptyState.style.display = 'none';
-  }
+  if(!items || items.length === 0){ emptyState.style.display = 'block'; return; }
+  emptyState.style.display = 'none';
 
-  items.forEach(item => {
+  items.forEach(item=>{
     const tr = document.createElement('tr');
-
     const expiryInfo = getExpiryStatus(item.expiryDate || item.bestByDate);
-    if (expiryInfo.status === 'expired') tr.classList.add('expired');
-    else if (expiryInfo.status === 'near') tr.classList.add('near-expired');
+    if(expiryInfo.status === 'expired') tr.classList.add('expired');
+    else if(expiryInfo.status === 'near') tr.classList.add('near-expired');
 
     tr.innerHTML = `
-      <td class="px-4 py-3 whitespace-nowrap">
-        <input type="text" value="${escapeHtml(item.name || '')}" data-id="${item.id}" data-key="name" class="p-1 w-full bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" style="color: ${item.color || '#1f2937'};">
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap">
-        <input type="text" value="${escapeHtml(String(item.count || '1'))}" data-id="${item.id}" data-key="count" class="p-1 w-20 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap flex items-center gap-2">
-        <span class="text-xs text-gray-500">少</span>
-        <input type="range" min="0" max="100" value="${Number(item.amount || 50)}" data-id="${item.id}" data-key="amount" class="w-24 cursor-pointer">
-        <span class="text-xs text-gray-500">多</span>
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap">
-        <input type="date" value="${formatDateInput(item.expiryDate)}" data-id="${item.id}" data-key="expiryDate" class="p-1 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap">
-        <input type="date" value="${formatDateInput(item.bestByDate)}" data-id="${item.id}" data-key="bestByDate" class="p-1 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap">
-        <input type="date" value="${formatDateInput(item.purchaseDate)}" data-id="${item.id}" data-key="purchaseDate" class="p-1 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap">
-        <button data-id="${item.id}" class="open-color-picker w-8 h-8 rounded-full" style="background-color: ${item.color || '#1f2937'}; border: 2px solid #e5e7eb;" aria-label="色を選択"></button>
-      </td>
-      <td class="px-4 py-3 whitespace-nowrap">
-        <button data-id="${item.id}" class="delete-item text-red-500 hover:text-red-700 text-xl" aria-label="削除"><i class="fas fa-trash-alt"></i></button>
-      </td>
+      <td><input type="text" value="${escapeHtml(item.name||'')}" data-id="${item.id}" data-key="name" class="name-input" style="color:${item.color||'#1f2937'}"></td>
+      <td><input type="text" value="${escapeHtml(String(item.count||'1'))}" data-id="${item.id}" data-key="count" class="count-input"></td>
+      <td class="amount-cell"><span class="text-xs text-gray-500">少</span>
+        <input type="range" min="0" max="100" value="${Number(item.amount||50)}" data-id="${item.id}" data-key="amount" class="amount-range">
+        <span class="text-xs text-gray-500">多</span></td>
+      <td><input type="date" value="${formatDateInput(item.expiryDate)}" data-id="${item.id}" data-key="expiryDate" class="date-input"></td>
+      <td><input type="date" value="${formatDateInput(item.bestByDate)}" data-id="${item.id}" data-key="bestByDate" class="date-input"></td>
+      <td><input type="date" value="${formatDateInput(item.purchaseDate)}" data-id="${item.id}" data-key="purchaseDate" class="date-input purchase-date"></td>
+      <td><button data-id="${item.id}" class="open-color-picker" style="background:${item.color||'#1f2937'}" aria-label="色を選択"></button></td>
+      <td><button data-id="${item.id}" class="delete-item" aria-label="削除"><i class="fas fa-trash-alt"></i></button></td>
     `;
     tbody.appendChild(tr);
   });
 }
 
-// minimal escaping for inserted values
-function escapeHtml(s) {
-  return String(s)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-// --- CRUD operations (UI -> server/local) ---
-async function initFromServerOrLocal() {
-  try {
-    const data = await serverFetchItems();
-    if (data && Array.isArray(data.items)) {
-      items = data.items;
-      serverVersion = data.version;
-      saveItemsLocal(items);
-    } else {
-      items = loadItemsLocal();
-    }
-  } catch (e) {
-    console.warn('server fetch failed, using local', e);
-    items = loadItemsLocal();
+// --- CRUD orchestration (server first, fallback local) ---
+async function initData(){
+  // FRIDGE must be set
+  try{
+    const data = await apiFetchItems(FRIDGE);
+    items = Array.isArray(data.items)? data.items : [];
+    serverVersion = data.version || null;
+    saveLocal();
+  }catch(e){
+    items = loadLocal();
   }
   renderItems();
 }
 
-async function addItemServer(item) {
-  try {
-    const resp = await serverAddItem(item, serverVersion);
-    if (resp.status === 200 && resp.body && resp.body.ok) {
-      const fresh = await serverFetchItems();
-      items = fresh.items;
-      serverVersion = fresh.version;
-      saveItemsLocal(items);
-      renderItems();
-      return true;
-    } else if (resp.status === 409) {
-      const latest = await serverFetchItems();
-      items = latest.items;
-      serverVersion = latest.version;
-      saveItemsLocal(items);
-      renderItems();
-      alert('サーバー側に別の変更があります。変更を反映しました。もう一度お試しください。');
-      return false;
-    } else {
-      console.error('add failed', resp);
-      return false;
+async function addItem(item){
+  // optimistic local add
+  items.unshift(item);
+  saveLocal();
+  renderItems();
+  try{
+    const resp = await apiAddItem(FRIDGE, item, serverVersion);
+    if(resp.status === 200 && resp.body && resp.body.ok){
+      const fresh = await apiFetchItems(FRIDGE);
+      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+    }else if(resp.status === 409){
+      const fresh = await apiFetchItems(FRIDGE);
+      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+      alert('別の変更があります。最新データを反映しました。');
     }
-  } catch (e) {
-    console.warn('add server failed, fallback to local', e);
-    // fallback: local
-    items.unshift(item);
-    saveItemsLocal(items);
-    renderItems();
-    return true;
+  }catch(e){
+    // keep local
   }
 }
 
-async function updateItemServer(item) {
-  try {
-    const resp = await serverUpdateItem(item, serverVersion);
-    if (resp.status === 200 && resp.body && resp.body.ok) {
-      const fresh = await serverFetchItems();
-      items = fresh.items;
-      serverVersion = fresh.version;
-      saveItemsLocal(items);
-      renderItems();
-      return true;
-    } else if (resp.status === 409) {
-      const latest = await serverFetchItems();
-      items = latest.items;
-      serverVersion = latest.version;
-      saveItemsLocal(items);
-      renderItems();
-      alert('サーバー側に別の変更があります。最新の状態を読み込みました。');
-      return false;
-    } else {
-      console.error('update failed', resp);
-      return false;
+async function updateItem(item){
+  const idx = items.findIndex(i=>i.id===item.id);
+  if(idx>-1){ items[idx]=item; saveLocal(); renderItems(); }
+  try{
+    const resp = await apiUpdateItem(FRIDGE, item, serverVersion);
+    if(resp.status===200 && resp.body && resp.body.ok){
+      const fresh = await apiFetchItems(FRIDGE);
+      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+    }else if(resp.status===409){
+      const fresh = await apiFetchItems(FRIDGE);
+      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+      alert('競合が発生しました。最新データに更新しました。');
     }
-  } catch (e) {
-    console.warn('update server failed, fallback to local', e);
-    const idx = items.findIndex(i => i.id === item.id);
-    if (idx > -1) items[idx] = item;
-    saveItemsLocal(items);
-    renderItems();
-    return true;
-  }
+  }catch(e){}
 }
 
-async function deleteItemServer(id) {
-  try {
-    const resp1 = await serverFetchItems(); // get latest version
-    const resp = await serverDeleteItem(id, resp1.version);
-    if (resp.status === 200 && resp.body && resp.body.ok) {
-      const fresh = await serverFetchItems();
-      items = fresh.items;
-      serverVersion = fresh.version;
-      saveItemsLocal(items);
-      renderItems();
-      return true;
-    } else if (resp.status === 409) {
-      const latest = await serverFetchItems();
-      items = latest.items;
-      serverVersion = latest.version;
-      saveItemsLocal(items);
-      renderItems();
-      alert('サーバー側に別の変更があります。最新の状態を読み込みました。');
-      return false;
-    } else {
-      console.error('delete failed', resp);
-      alert('削除に失敗しました');
-      return false;
+async function deleteItem(id){
+  // optimistic local remove
+  items = items.filter(i=>i.id!==id); saveLocal(); renderItems();
+  try{
+    const latest = await apiFetchItems(FRIDGE);
+    const resp = await apiDeleteItem(FRIDGE, id, latest.version);
+    if(resp.status===200 && resp.body && resp.body.ok){
+      const fresh = await apiFetchItems(FRIDGE);
+      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+    }else if(resp.status===409){
+      const fresh = await apiFetchItems(FRIDGE);
+      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+      alert('競合が発生しました。最新データに更新しました。');
+    }else{
+      // if failed, local already removed; could re-fetch
     }
-  } catch (e) {
-    console.warn('delete server failed, fallback to local', e);
-    items = items.filter(i => i.id !== id);
-    saveItemsLocal(items);
-    renderItems();
-    return true;
-  }
+  }catch(e){}
 }
 
-// --- Event handlers ---
-function handleAddItem() {
+// --- UI handlers ---
+function handleAddItem(){
   const newItem = {
     id: uuidLike(),
     name: '',
@@ -274,216 +190,163 @@ function handleAddItem() {
     purchaseDate: new Date().toISOString().split('T')[0],
     color: '#1f2937'
   };
-  // optimistic UI: add locally, then try server
-  items.unshift(newItem);
-  saveItemsLocal(items);
-  renderItems();
-  addItemServer(newItem).catch(e => console.warn(e));
+  addItem(newItem);
 }
 
-function handleSort() {
-  items.sort((a, b) => {
-    const dateA = a.expiryDate || a.bestByDate || '';
-    const dateB = b.expiryDate || b.bestByDate || '';
-    if (!dateA && !dateB) return 0;
-    if (!dateA) return 1;
-    if (!dateB) return -1;
-    return new Date(dateA) - new Date(dateB);
+function handleSort(){
+  items.sort((a,b)=>{
+    const da = a.expiryDate||a.bestByDate||'';
+    const db = b.expiryDate||b.bestByDate||'';
+    if(!da && !db) return 0;
+    if(!da) return 1;
+    if(!db) return -1;
+    return new Date(da) - new Date(db);
   });
-  saveItemsLocal(items);
-  renderItems();
+  saveLocal(); renderItems();
 }
 
-function handleSavePng() {
-  const foodStockList = document.getElementById('food-stock-list');
-  if (!foodStockList || typeof html2canvas === 'undefined') return alert('キャプチャ機能が利用できません');
-
+function handleSavePng(){
+  const container = document.getElementById('food-stock-list');
+  if(!container || typeof html2canvas==='undefined') return alert('キャプチャ機能が利用できません');
   const buttons = document.querySelectorAll('button');
-  buttons.forEach(btn => btn.classList.add('no-hover'));
-
-  html2canvas(foodStockList, {
-    scale: 2,
-    backgroundColor: '#f8fafc',
-    onclone: (doc) => {
-      const tableContainer = doc.querySelector('.table-container');
-      if (tableContainer) tableContainer.style.overflowX = 'visible';
-    }
-  }).then(canvas => {
-    const link = document.createElement('a');
-    link.download = `reizouko-stock-${new Date().toISOString().split('T')[0]}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    buttons.forEach(btn => btn.classList.remove('no-hover'));
-  }).catch(err => {
-    console.error('capture failed', err);
-    buttons.forEach(btn => btn.classList.remove('no-hover'));
+  buttons.forEach(b=>b.classList.add('no-hover'));
+  html2canvas(container, { scale:2, backgroundColor:'#f8fafc' }).then(canvas=>{
+    const a = document.createElement('a');
+    a.download = `reizouko-${new Date().toISOString().split('T')[0]}.png`;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    buttons.forEach(b=>b.classList.remove('no-hover'));
+  }).catch(err=>{
+    buttons.forEach(b=>b.classList.remove('no-hover'));
+    console.error(err);
     alert('キャプチャに失敗しました');
   });
 }
 
-function handleClearAll() {
-  showConfirmation(
-    'すべての項目を消去',
-    '本当にすべての食品データを消去しますか？この操作は元に戻せません。',
-    async () => {
-      // try server clear: perform delete for each item on server if possible
-      try {
-        const toDelete = items.map(i => i.id);
-        let ok = true;
-        for (const id of toDelete) {
-          const r = await deleteItemServer(id);
-          ok = ok && r;
-        }
-        if (!ok) {
-          // some deletions failed but local fallback will clear
-          items = [];
-          saveItemsLocal(items);
-          renderItems();
-        }
-      } catch (e) {
-        console.warn('clear all server failed', e);
-        items = [];
-        saveItemsLocal(items);
-        renderItems();
+function handleClearAll(){
+  if(!confirm('本当にすべての項目を消去しますか？この操作は元に戻せません。')) return;
+  // attempt server clear by deleting each
+  (async ()=>{
+    const toDelete = items.map(i=>i.id);
+    items = []; saveLocal(); renderItems();
+    try{
+      for(const id of toDelete){
+        await apiDeleteItem(FRIDGE, id, serverVersion).catch(()=>{});
       }
-    }
-  );
+      const fresh = await apiFetchItems(FRIDGE); items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
+    }catch(e){}
+  })();
 }
 
-function handleItemUpdate(e) {
-  const { id, key } = e.target.dataset;
-  const value = e.target.value;
-  const itemIndex = items.findIndex(item => item.id === id);
-  if (itemIndex > -1) {
-    // coerce types for amount and count
-    if (key === 'amount') items[itemIndex][key] = Number(value);
-    else items[itemIndex][key] = value;
-    saveItemsLocal(items);
-    // If dates changed update rendering immediately
-    if (key === 'expiryDate' || key === 'bestByDate' || key === 'purchaseDate') {
-      renderItems();
-    }
-    // push update to server (debounced-ish: we call directly here; for heavy edits add debounce)
-    updateItemServer(items[itemIndex]).catch(e => console.warn(e));
-  }
+// share
+function handleShare(){
+  const shareUrl = new URL(location.href);
+  shareUrl.searchParams.set('fridge', FRIDGE);
+  copyToClipboard(shareUrl.toString());
+  alert('共有リンクをコピーしました（クリップボード）');
 }
 
-function handleItemDelete(id) {
-  showConfirmation(
-    '項目を消去',
-    'この項目を消去しますか？',
-    async () => {
-      await deleteItemServer(id).catch(e => console.warn(e));
-    }
-  );
+// color modal
+let colorModalOpenFor = null;
+function openColorModal(id){
+  colorModalOpenFor = id;
+  const item = items.find(i=>i.id===id);
+  const picker = document.getElementById('color-picker');
+  if(picker && item) picker.value = item.color || '#1f2937';
+  document.getElementById('color-modal').style.display = 'flex';
 }
-
-// --- Modal logic ---
-function openColorModal(itemId) {
-  currentEditingColorItemId = itemId;
-  const item = items.find(i => i.id === itemId);
-  const colorPicker = document.getElementById('color-picker');
-  const colorModal = document.getElementById('color-modal');
-  if (item && colorPicker) colorPicker.value = item.color || '#1f2937';
-  if (colorModal) colorModal.style.display = 'flex';
-}
-function closeColorModal() {
-  const colorModal = document.getElementById('color-modal');
-  if (colorModal) colorModal.style.display = 'none';
-  currentEditingColorItemId = null;
-}
-function confirmColorSelection() {
-  const colorPicker = document.getElementById('color-picker');
-  if (!currentEditingColorItemId || !colorPicker) return closeColorModal();
-  const idx = items.findIndex(i => i.id === currentEditingColorItemId);
-  if (idx > -1) {
-    items[idx].color = colorPicker.value;
-    saveItemsLocal(items);
-    renderItems();
-    updateItemServer(items[idx]).catch(e => console.warn(e));
-  }
+function closeColorModal(){ document.getElementById('color-modal').style.display = 'none'; colorModalOpenFor = null; }
+function confirmColorSelection(){
+  const picker = document.getElementById('color-picker');
+  if(!colorModalOpenFor || !picker) return closeColorModal();
+  const idx = items.findIndex(i=>i.id===colorModalOpenFor);
+  if(idx>-1){ items[idx].color = picker.value; saveLocal(); renderItems(); updateItem(items[idx]); }
   closeColorModal();
 }
 
-// Confirmation modal
-function showConfirmation(title, message, callback) {
-  const confirmModal = document.getElementById('confirm-modal');
-  const confirmTitle = document.getElementById('confirm-title');
-  const confirmMessage = document.getElementById('confirm-message');
-  if (confirmTitle) confirmTitle.textContent = title;
-  if (confirmMessage) confirmMessage.textContent = message;
-  confirmActionCallback = callback;
-  if (confirmModal) confirmModal.style.display = 'flex';
+// event delegation for table interactions
+function wireTableEvents(){
+  const tbody = document.getElementById('item-list');
+  if(!tbody) return;
+  tbody.addEventListener('input', e=>{
+    const tgt = e.target;
+    if(!tgt.dataset) return;
+    const id = tgt.dataset.id; const key = tgt.dataset.key;
+    if(!id || !key) return;
+    const idx = items.findIndex(i=>i.id===id);
+    if(idx === -1) return;
+    if(key === 'amount') items[idx][key] = Number(tgt.value);
+    else items[idx][key] = tgt.value;
+    saveLocal(); renderItems();
+    // auto-set purchaseDate when user fills name and purchaseDate empty
+    if(key === 'name' && (!items[idx].purchaseDate || items[idx].purchaseDate==='')){
+      items[idx].purchaseDate = new Date().toISOString().split('T')[0];
+    }
+    updateItem(items[idx]);
+  });
+
+  tbody.addEventListener('change', e=>{
+    const tgt = e.target;
+    if(tgt.classList.contains('date-input')){
+      const id = tgt.dataset.id; const key = tgt.dataset.key;
+      const idx = items.findIndex(i=>i.id===id); if(idx>-1){
+        items[idx][key] = tgt.value;
+        saveLocal(); renderItems(); updateItem(items[idx]);
+      }
+    }
+  });
+
+  tbody.addEventListener('click', e=>{
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    if(btn.classList.contains('delete-item')){ const id = btn.dataset.id; deleteItem(id); }
+    else if(btn.classList.contains('open-color-picker')) openColorModal(btn.dataset.id);
+  });
+
+  // make text inputs editable on click/tap (already native), ensure purchaseDate auto-set on click if needed
+  tbody.addEventListener('focusin', e=>{
+    const tgt = e.target;
+    if(tgt.classList.contains('purchase-date')){
+      const id = tgt.dataset.id;
+      const idx = items.findIndex(i=>i.id===id);
+      if(idx>-1 && (!items[idx].purchaseDate || items[idx].purchaseDate==='')){
+        items[idx].purchaseDate = new Date().toISOString().split('T')[0];
+        saveLocal(); renderItems();
+      }
+    }
+  });
 }
-function closeConfirmation() {
-  const confirmModal = document.getElementById('confirm-modal');
-  if (confirmModal) confirmModal.style.display = 'none';
-  confirmActionCallback = null;
-}
 
-// --- Event wiring and initialization ---
-document.addEventListener('DOMContentLoaded', () => {
-  // Elements
-  const addItemBtn = document.getElementById('add-item-btn');
-  const sortBtn = document.getElementById('sort-by-expiry-btn');
-  const savePngBtn = document.getElementById('save-png-btn');
-  const clearAllBtn = document.getElementById('clear-all-btn');
-  const itemList = document.getElementById('item-list');
-  const foodStockList = document.getElementById('food-stock-list');
-  const emptyState = document.getElementById('empty-state');
-
-  const colorModal = document.getElementById('color-modal');
-  const confirmColorBtn = document.getElementById('confirm-color-btn');
-  const cancelColorBtn = document.getElementById('cancel-color-btn');
-  const colorPicker = document.getElementById('color-picker');
-
-  const confirmModal = document.getElementById('confirm-modal');
-  const confirmActionBtn = document.getElementById('confirm-action-btn');
-  const cancelConfirmBtn = document.getElementById('cancel-confirm-btn');
-
-  // Event listeners
-  if (addItemBtn) addItemBtn.addEventListener('click', handleAddItem);
-  if (sortBtn) sortBtn.addEventListener('click', handleSort);
-  if (savePngBtn) savePngBtn.addEventListener('click', handleSavePng);
-  if (clearAllBtn) clearAllBtn.addEventListener('click', handleClearAll);
-
-  if (itemList) {
-    itemList.addEventListener('change', e => {
-      if (e.target.matches('input[type="date"], input[type="range"]')) handleItemUpdate(e);
-    });
-    itemList.addEventListener('input', e => {
-      if (e.target.matches('input[type="text"]')) handleItemUpdate(e);
-    });
-    itemList.addEventListener('click', e => {
-      const target = e.target.closest('button');
-      if (!target) return;
-      if (target.classList.contains('delete-item')) handleItemDelete(target.dataset.id);
-      else if (target.classList.contains('open-color-picker')) openColorModal(target.dataset.id);
-    });
+// init UI wiring
+document.addEventListener('DOMContentLoaded', ()=>{
+  // determine FRIDGE id
+  const fromUrl = qs('fridge');
+  if(fromUrl){ FRIDGE = fromUrl; }
+  else {
+    FRIDGE = uuidLike();
+    pushFridgeToUrl(FRIDGE);
   }
 
-  // Color modal handlers
-  if (confirmColorBtn) confirmColorBtn.addEventListener('click', confirmColorSelection);
-  if (cancelColorBtn) cancelColorBtn.addEventListener('click', closeColorModal);
-  document.querySelectorAll('.color-box').forEach(box => {
-    box.addEventListener('click', () => {
-      if (colorPicker) colorPicker.value = box.dataset.color;
-    });
+  // wire top controls
+  document.getElementById('add-item-btn')?.addEventListener('click', handleAddItem);
+  document.getElementById('sort-by-expiry-btn')?.addEventListener('click', handleSort);
+  document.getElementById('save-png-btn')?.addEventListener('click', handleSavePng);
+  document.getElementById('clear-all-btn')?.addEventListener('click', handleClearAll);
+  document.getElementById('share-button')?.addEventListener('click', handleShare);
+
+  // color modal
+  document.getElementById('confirm-color-btn')?.addEventListener('click', confirmColorSelection);
+  document.getElementById('cancel-color-btn')?.addEventListener('click', closeColorModal);
+  document.querySelectorAll('.color-box').forEach(box=>box.addEventListener('click', ()=> document.getElementById('color-picker').value = box.dataset.color));
+  window.addEventListener('click', e=>{
+    if(e.target === document.getElementById('color-modal')) closeColorModal();
+    if(e.target === document.getElementById('confirm-modal')) document.getElementById('confirm-modal').style.display='none';
   });
 
-  // Confirmation modal handlers
-  if (confirmActionBtn) confirmActionBtn.addEventListener('click', () => {
-    if (confirmActionCallback) confirmActionCallback();
-    closeConfirmation();
-  });
-  if (cancelConfirmBtn) cancelConfirmBtn.addEventListener('click', closeConfirmation);
+  // share button visibility (show when FRIDGE present)
+  const shareContainer = document.getElementById('share-container');
+  if(shareContainer) shareContainer.classList.remove('hidden');
 
-  // Modal outside click to close
-  window.addEventListener('click', (e) => {
-    if (e.target === colorModal) closeColorModal();
-    if (e.target === confirmModal) closeConfirmation();
-  });
-
-  // Initialize data
-  initFromServerOrLocal();
+  wireTableEvents();
+  initData();
 });
