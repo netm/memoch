@@ -1,0 +1,146 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #1c1e21;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#count {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+    font-size: 16px;
+}
+
+#items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #f7f7f7;
+}
+
+.item-input {
+    padding: 8px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    width: 60px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-grow: 1;
+}
+
+#start {
+    background-color: #1877f2;
+    color: white;
+}
+#start:hover {
+    background-color: #166fe5;
+}
+
+#stop {
+    background-color: #e4e6eb;
+    color: #4b4f56;
+}
+#stop:hover {
+    background-color: #dcdfe3;
+}
+
+#auto-stop {
+    background-color: #42b72a;
+    color: white;
+}
+#auto-stop:hover {
+    background-color: #36a420;
+}
+
+
+.result-area {
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #1877f2;
+    border-radius: 8px;
+    background-color: #e7f3ff;
+}
+
+#result-title {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1c1e21;
+}
+
+#result-display {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1877f2;
+    min-height: 60px;
+    word-wrap: break-word;
+}
+
+.footer-link {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.footer-link a {
+    color: #1877f2;
+    text-decoration: none;
+}
+.footer-link a:hover {
+    text-decoration: underline;
+}

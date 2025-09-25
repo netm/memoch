@@ -5,7 +5,8 @@
     <meta name="description" content="車ブラウザゲーム無料スマホタブレット対応の縦画面です。">
     <meta name="keywords" content="車,ブラウザ,ゲーム,無料,タブレット">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="css/style.css">
+         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+    <link rel="stylesheet" href="/css/style.css">
     <title>車ブラウザゲーム無料スマホタブレット対応</title>
     <style>
       body {
@@ -21,15 +22,6 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-      }
-      #game-overlay {
-        width: 100%;
-        height: 40vh;
-        max-height: 300px;
-        overflow: hidden;
-        position: relative;
-        background: #000;
-        z-index: 100;
       }
       canvas {
         border: 2px solid #333;
@@ -82,7 +74,21 @@
         transform: translateY(2px);
       }
     </style>
-  </head>
+  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
+     crossorigin="anonymous"></script>
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D799GZERM');
+</script>
   <body>
     <div id="container">
       <div id="banner">
@@ -92,20 +98,25 @@
           </a>
         </h1>
       </div>
-<p><canvas id="gameCanvas" width="380" height="450"></canvas></p>
-<p><div id="gameStatus">
-<p>燃料: <span id="fuel">100</span></p>
-<p>耐久度: <span id="durability">100</span></p>
-<p>距離: <span id="distance">0</span> m</p>
-</div></p>
-<p><div id="controls">
-<button id="downButton" class="control-button">▼</button>
-<button id="upButton"   class="control-button">▲</button>
-<button id="leftButton" class="control-button left-right">◀</button>
-<button id="rightButton" class="control-button left-right">▶</button>
-</div></p>
-<p><button id="startButton">開始</button></p>
-<p><script src="js/game.js"></script>
-</div></p>
+
+      <canvas id="gameCanvas" width="380" height="450"></canvas>
+
+      <div id="gameStatus">
+        <p>燃料: <span id="fuel">100</span></p>
+        <p>耐久度: <span id="durability">100</span></p>
+        <p>距離: <span id="distance">0</span> m</p>
+      </div>
+
+      <div id="controls">
+        <button id="downButton" class="control-button">▼</button>
+        <button id="upButton"   class="control-button">▲</button>
+        <button id="leftButton" class="control-button left-right">◀</button>
+        <button id="rightButton" class="control-button left-right">▶</button>
+      </div>
+
+      <button id="startButton">開始</button>
+
+      <script src="/js/game.js"></script>
+    </div>
   </body>
 </html>

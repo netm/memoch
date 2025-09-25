@@ -1,322 +1,273 @@
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
-            const addItemBtn = document.getElementById('add-item-btn');
-            const sortBtn = document.getElementById('sort-by-expiry-btn');
-            const savePngBtn = document.getElementById('save-png-btn');
-            const clearAllBtn = document.getElementById('clear-all-btn');
-            const itemList = document.getElementById('item-list');
-            const foodStockList = document.getElementById('food-stock-list');
-            const emptyState = document.getElementById('empty-state');
-            
-            // Color Modal Elements
-            const colorModal = document.getElementById('color-modal');
-            const confirmColorBtn = document.getElementById('confirm-color-btn');
-            const cancelColorBtn = document.getElementById('cancel-color-btn');
-            const colorPicker = document.getElementById('color-picker');
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM要素の取得
+    const addItemBtn = document.getElementById('add-item-btn');
+    const copyTextBtn = document.getElementById('copy-text-btn');
+    const sortByExpiryBtn = document.getElementById('sort-by-expiry-btn');
+    const clearAllBtn = document.getElementById('clear-all-btn');
+    const saveAsPngBtn = document.getElementById('save-as-png-btn');
+    const shareTwitterBtn = document.getElementById('share-twitter-btn');
+    const shareLineBtn = document.getElementById('share-line-btn');
+    const autoTextArea = document.getElementById('auto-text-area');
+    const foodList = document.getElementById('food-list');
+    const listContainer = document.getElementById('list-container');
 
-            // Confirmation Modal Elements
-            const confirmModal = document.getElementById('confirm-modal');
-            const confirmTitle = document.getElementById('confirm-title');
-            const confirmMessage = document.getElementById('confirm-message');
-            const confirmActionBtn = document.getElementById('confirm-action-btn');
-            const cancelConfirmBtn = document.getElementById('cancel-confirm-btn');
+    // 食品データを格納する配列
+    let foodItems = [];
 
-            // --- State Management ---
-            let items = [];
-            let currentEditingColorItemId = null;
-            let confirmActionCallback = null;
+    // --- データ管理 ---
 
-            // --- Data Persistence (localStorage) ---
-            const STORAGE_KEY = 'foodStockItems';
+    // ローカルストレージからデータを読み込む
+    const loadData = () => {
+        const storedItems = localStorage.getItem('foodStockManagerItems');
+        if (storedItems) {
+            foodItems = JSON.parse(storedItems);
+        }
+    };
 
-            const loadItems = () => {
-                const storedItems = localStorage.getItem(STORAGE_KEY);
-                if (storedItems) {
-                    items = JSON.parse(storedItems);
-                }
-            };
+    // ローカルストレージにデータを保存する
+    const saveData = () => {
+        localStorage.setItem('foodStockManagerItems', JSON.stringify(foodItems));
+    };
 
-            const saveItems = () => {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-            };
+    // --- UI描画 ---
 
-            // --- Rendering ---
-            const renderItems = () => {
-                itemList.innerHTML = '';
-                if (items.length === 0) {
-                    emptyState.style.display = 'block';
-                } else {
-                    emptyState.style.display = 'none';
-                    items.forEach(item => {
-                        const tr = document.createElement('tr');
-                        
-                        // Apply styling for near/expired items
-                        const expiryInfo = getExpiryStatus(item.expiryDate || item.bestByDate);
-                        if (expiryInfo.status === 'expired') {
-                            tr.classList.add('expired');
-                        } else if (expiryInfo.status === 'near') {
-                            tr.classList.add('near-expired');
-                        }
+    // 食品リストを再描画する
+    const renderList = () => {
+        foodList.innerHTML = ''; // リストをクリア
+        if (foodItems.length === 0) {
+            foodList.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">アイテムがありません。「項目追加」ボタンで食品を追加してください。</td></tr>';
+        } else {
+            foodItems.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.classList.add('border-b', 'border-gray-200');
+                tr.dataset.id = item.id;
 
-                        tr.innerHTML = `
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <input type="text" value="${item.name}" data-id="${item.id}" data-key="name" class="p-1 w-full bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" style="color: ${item.color};">
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <input type="text" value="${item.count}" data-id="${item.id}" data-key="count" class="p-1 w-20 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap flex items-center gap-2">
-                                <span class="text-xs text-gray-500">少</span>
-                                <input type="range" min="0" max="100" value="${item.amount}" data-id="${item.id}" data-key="amount" class="w-24 cursor-pointer">
-                                <span class="text-xs text-gray-500">多</span>
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <input type="date" value="${item.expiryDate}" data-id="${item.id}" data-key="expiryDate" class="p-1 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <input type="date" value="${item.bestByDate}" data-id="${item.id}" data-key="bestByDate" class="p-1 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <input type="date" value="${item.purchaseDate}" data-id="${item.id}" data-key="purchaseDate" class="p-1 bg-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <button data-id="${item.id}" class="open-color-picker w-8 h-8 rounded-full" style="background-color: ${item.color}; border: 2px solid #e5e7eb;"></button>
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <button data-id="${item.id}" class="delete-item text-red-500 hover:text-red-700 text-xl"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        `;
-                        itemList.appendChild(tr);
-                    });
-                }
-            };
-            
-            const getExpiryStatus = (dateString) => {
-                if (!dateString) return { status: 'ok', days: Infinity };
+                const amountValue = parseInt(item.amount, 10);
+                const amountText = amountValue <= 33 ? '少' : amountValue <= 66 ? '中' : '多';
 
-                const today = new Date();
-                today.setHours(0, 0, 0, 0); // Normalize today to the start of the day
-
-                const expiryDate = new Date(dateString);
-                expiryDate.setHours(0, 0, 0, 0); // Normalize expiry date
-
-                const diffTime = expiryDate - today;
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                if (diffDays < 0) {
-                    return { status: 'expired', days: diffDays };
-                }
-                if (diffDays <= 3) {
-                    return { status: 'near', days: diffDays };
-                }
-                return { status: 'ok', days: diffDays };
-            };
-
-
-            // --- Event Handlers ---
-            const handleAddItem = () => {
-                const newItem = {
-                    id: Date.now().toString(),
-                    name: '',
-                    count: '1',
-                    amount: 50,
-                    expiryDate: '',
-                    bestByDate: '',
-                    purchaseDate: new Date().toISOString().split('T')[0],
-                    color: '#1f2937' // Default to dark gray
-                };
-                items.unshift(newItem); // Add to the top
-                saveAndRender();
-            };
-
-            const handleSort = () => {
-                items.sort((a, b) => {
-                    const dateA = a.expiryDate || a.bestByDate;
-                    const dateB = b.expiryDate || b.bestByDate;
-                    
-                    if (!dateA && !dateB) return 0;
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    
-                    return new Date(dateA) - new Date(b.expiryDate);
-                });
-                saveAndRender();
-            };
-
-            const handleSavePng = () => {
-                // Temporarily remove hover effects from buttons for cleaner screenshot
-                const buttons = document.querySelectorAll('button');
-                buttons.forEach(btn => btn.classList.add('no-hover'));
-
-                html2canvas(foodStockList, {
-                    scale: 2, // Higher resolution
-                    backgroundColor: '#f8fafc',
-                    onclone: (document) => {
-                         // Ensure table is fully visible in clone
-                        const tableContainer = document.querySelector('.table-container');
-                        if (tableContainer) {
-                             tableContainer.style.overflowX = 'visible';
-                        }
-                    }
-                }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = `reizouko-stock-${new Date().toISOString().split('T')[0]}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-
-                    // Restore hover effects
-                    buttons.forEach(btn => btn.classList.remove('no-hover'));
-                });
-            };
-
-            const handleClearAll = () => {
-                showConfirmation(
-                    'すべての項目を消去',
-                    '本当にすべての食品データを消去しますか？この操作は元に戻せません。',
-                    () => {
-                        items = [];
-                        saveAndRender();
-                    }
-                );
-            };
-
-            const handleItemUpdate = (e) => {
-                const { id, key } = e.target.dataset;
-                const value = e.target.value;
-                
-                const itemIndex = items.findIndex(item => item.id === id);
-                if (itemIndex > -1) {
-                    items[itemIndex][key] = value;
-                    saveItems();
-                     // Re-render only if date changes to update color
-                    if (key === 'expiryDate' || key === 'bestByDate') {
-                        renderItems();
-                    }
-                }
-            };
-            
-            const handleItemDelete = (id) => {
-                showConfirmation(
-                    '項目を消去',
-                    'この項目を消去しますか？',
-                    () => {
-                        items = items.filter(item => item.id !== id);
-                        saveAndRender();
-                    }
-                );
-            };
-
-            // --- Modal Logic ---
-            
-            // Color Modal
-            const openColorModal = (itemId) => {
-                currentEditingColorItemId = itemId;
-                const item = items.find(i => i.id === itemId);
-                if (item) {
-                    colorPicker.value = item.color;
-                }
-                colorModal.style.display = 'flex';
-            };
-
-            const closeColorModal = () => {
-                colorModal.style.display = 'none';
-                currentEditingColorItemId = null;
-            };
-
-            const confirmColorSelection = () => {
-                if (currentEditingColorItemId) {
-                    const itemIndex = items.findIndex(item => item.id === currentEditingColorItemId);
-                    if (itemIndex > -1) {
-                        items[itemIndex].color = colorPicker.value;
-                        saveAndRender();
-                    }
-                }
-                closeColorModal();
-            };
-
-            document.querySelectorAll('.color-box').forEach(box => {
-                box.addEventListener('click', () => {
-                    colorPicker.value = box.dataset.color;
-                });
+                tr.innerHTML = `
+                    <td class="p-2 align-middle">
+                        <input type="text" value="${item.name}" class="food-name-input w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" style="color: ${item.color};" placeholder="例: にんじん">
+                    </td>
+                    <td class="p-2 align-middle min-w-[150px]">
+                        <div class="flex items-center gap-2">
+                            <span>少</span>
+                            <input type="range" min="0" max="100" value="${item.amount}" class="amount-slider w-full cursor-pointer">
+                            <span>多</span>
+                        </div>
+                    </td>
+                    <td class="p-2 align-middle">
+                        <input type="date" value="${item.expiry}" class="expiry-date-input w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    </td>
+                    <td class="p-2 align-middle">
+                        <input type="date" value="${item.purchaseDate}" class="purchase-date-input w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    </td>
+                    <td class="p-2 align-middle">
+                        <div class="flex items-center gap-1 flex-wrap">
+                            <button class="color-btn w-6 h-6 rounded-full bg-black" data-color="black"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-red-500" data-color="#ef4444"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-blue-500" data-color="#3b82f6"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-green-500" data-color="#22c55e"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-orange-500" data-color="#f97316"></button>
+                            <input type="color" value="${item.color}" class="color-picker w-8 h-8 p-0 border-none rounded-full cursor-pointer">
+                        </div>
+                    </td>
+                    <td class="p-2 align-middle text-center">
+                        <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors">消去</button>
+                    </td>
+                `;
+                foodList.appendChild(tr);
             });
+        }
+        updateAutoText();
+    };
 
-            // Confirmation Modal
-            const showConfirmation = (title, message, callback) => {
-                confirmTitle.textContent = title;
-                confirmMessage.textContent = message;
-                confirmActionCallback = callback;
-                confirmModal.style.display = 'flex';
-            };
-            
-            const closeConfirmation = () => {
-                confirmModal.style.display = 'none';
-                confirmActionCallback = null;
-            };
-
-            confirmActionBtn.addEventListener('click', () => {
-                if (confirmActionCallback) {
-                    confirmActionCallback();
-                }
-                closeConfirmation();
-            });
-
-            cancelConfirmBtn.addEventListener('click', closeConfirmation);
-
-
-            // --- Event Listeners ---
-            addItemBtn.addEventListener('click', handleAddItem);
-            sortBtn.addEventListener('click', handleSort);
-            savePngBtn.addEventListener('click', handleSavePng);
-            clearAllBtn.addEventListener('click', handleClearAll);
-
-            itemList.addEventListener('change', e => {
-                if (e.target.matches('input[type="date"], input[type="range"]')) {
-                    handleItemUpdate(e);
-                }
-            });
-            itemList.addEventListener('input', e => {
-                 if (e.target.matches('input[type="text"]')) {
-                    handleItemUpdate(e);
-                }
-            });
-
-            itemList.addEventListener('click', e => {
-                const target = e.target.closest('button');
-                if (!target) return;
-
-                if (target.classList.contains('delete-item')) {
-                    handleItemDelete(target.dataset.id);
-                } else if (target.classList.contains('open-color-picker')) {
-                    openColorModal(target.dataset.id);
-                }
-            });
-            
-            // Color modal listeners
-            confirmColorBtn.addEventListener('click', confirmColorSelection);
-            cancelColorBtn.addEventListener('click', closeColorModal);
-            
-            // Close modal on outside click
-            window.addEventListener('click', (e) => {
-                if (e.target === colorModal) {
-                    closeColorModal();
-                }
-                if (e.target === confirmModal) {
-                    closeConfirmation();
-                }
-            });
-
-
-            // --- Initialization ---
-            const saveAndRender = () => {
-                saveItems();
-                renderItems();
-            };
-            
-            const init = () => {
-                loadItems();
-                renderItems();
-            };
-
-            init();
-
+    // 自動作成文章を更新する
+    const updateAutoText = () => {
+        let text = "【冷蔵庫・冷凍庫の中身リスト】\n";
+        const sortedItems = [...foodItems].sort((a, b) => {
+            if (a.expiry === b.expiry) return 0;
+            if (!a.expiry) return 1;
+            if (!b.expiry) return -1;
+            return new Date(a.expiry) - new Date(b.expiry);
         });
+        
+        sortedItems.forEach(item => {
+            if (item.name) {
+                const amountValue = parseInt(item.amount, 10);
+                const amountText = amountValue <= 33 ? '少' : amountValue <= 66 ? '中' : '多';
+                const expiryText = item.expiry ? `${item.expiry.replace(/-/g, '/')}まで` : '期限未設定';
+                const purchaseText = item.purchaseDate ? `${item.purchaseDate.replace(/-/g, '/')}購入` : '';
+                text += `・${item.name} | ${amountText} | ${expiryText} | ${purchaseText}\n`;
+            }
+        });
+        autoTextArea.value = text;
+    };
+    
+    // --- イベントハンドラ ---
+
+    // 項目追加ボタン
+    addItemBtn.addEventListener('click', () => {
+        const newItem = {
+            id: Date.now(),
+            name: '',
+            amount: 50,
+            expiry: '',
+            purchaseDate: '',
+            color: '#000000'
+        };
+        foodItems.unshift(newItem); // 先頭に追加
+        renderList();
+        saveData();
+    });
+
+    // 文章コピーボタン
+    copyTextBtn.addEventListener('click', () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(autoTextArea.value).then(() => {
+                alert('文章をコピーしました。');
+            }).catch(err => {
+                alert('コピーに失敗しました。');
+            });
+        } else {
+            autoTextArea.select();
+            document.execCommand('copy');
+            alert('文章をコピーしました。');
+        }
+    });
+
+    // 期限の短い順に並べるボタン
+    sortByExpiryBtn.addEventListener('click', () => {
+        foodItems.sort((a, b) => {
+            if (a.expiry === b.expiry) return 0;
+            if (!a.expiry) return 1;
+            if (!b.expiry) return -1;
+            return new Date(a.expiry) - new Date(b.expiry);
+        });
+        renderList();
+        saveData();
+    });
+
+    // すべて消去ボタン
+    clearAllBtn.addEventListener('click', () => {
+        if (confirm('すべての項目を消去します。よろしいですか？')) {
+            foodItems = [];
+            renderList();
+            saveData();
+        }
+    });
+
+    // PNG画像で保存ボタン
+    saveAsPngBtn.addEventListener('click', () => {
+        // html2canvasライブラリを使用してリストを画像に変換
+        html2canvas(listContainer, {
+            backgroundColor: '#ffffff',
+            scale: 2,
+            useCORS: true
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = `food-stock-list-${new Date().toISOString().slice(0,10)}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }).catch(err => {
+            console.error('PNG保存に失敗しました:', err);
+            alert('画像の保存に失敗しました。');
+        });
+    });
+
+    // X(旧Twitter)で共有ボタン
+    shareTwitterBtn.addEventListener('click', () => {
+        const text = encodeURIComponent(autoTextArea.value + "\n#食品管理 #フードストック");
+        window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+    });
+
+    // LINEで共有ボタン
+    shareLineBtn.addEventListener('click', () => {
+        const text = encodeURIComponent(autoTextArea.value);
+        window.open(`https://line.me/R/msg/text/?${text}`, '_blank');
+    });
+
+    // 今日の日付をYYYY-MM-DD形式で取得
+    const getTodayDate = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    };
+
+    // リスト内の入力イベントを委譲で処理
+    foodList.addEventListener('input', e => {
+        const target = e.target;
+        const tr = target.closest('tr');
+        if (!tr) return;
+
+        const id = Number(tr.dataset.id);
+        const item = foodItems.find(i => i.id === id);
+        if (!item) return;
+        
+        const className = target.className;
+
+        if (className.includes('food-name-input')) {
+            item.name = target.value;
+            // 食品名が入力され、かつ購入日が空欄の場合に今日の日付を自動入力
+            const purchaseInput = tr.querySelector('.purchase-date-input');
+            if (item.name && !purchaseInput.value) {
+                purchaseInput.value = getTodayDate();
+                item.purchaseDate = purchaseInput.value;
+            }
+        } else if (className.includes('amount-slider')) {
+            item.amount = target.value;
+        } else if (className.includes('expiry-date-input')) {
+            item.expiry = target.value;
+        } else if (className.includes('purchase-date-input')) {
+            item.purchaseDate = target.value;
+        } else if (className.includes('color-picker')) {
+            item.color = target.value;
+            tr.querySelector('.food-name-input').style.color = item.color;
+        }
+
+        saveData();
+        updateAutoText();
+    });
+
+    // リスト内のクリックイベントを委譲で処理
+    foodList.addEventListener('click', e => {
+        const target = e.target;
+        const tr = target.closest('tr');
+        if (!tr) return;
+
+        const id = Number(tr.dataset.id);
+
+        if (target.classList.contains('delete-btn')) {
+            if (confirm('この項目を消去しますか？')) {
+                foodItems = foodItems.filter(item => item.id !== id);
+                renderList();
+                saveData();
+            }
+        } else if (target.classList.contains('color-btn')) {
+            const color = target.dataset.color;
+            const item = foodItems.find(i => i.id === id);
+            if (item) {
+                item.color = color;
+                tr.querySelector('.food-name-input').style.color = color;
+                tr.querySelector('.color-picker').value = color;
+                saveData();
+                updateAutoText();
+            }
+        } else if (target.classList.contains('purchase-date-input') && !target.value) {
+            // 購入日欄が空の時にクリックされたら今日の日付を入力
+            const item = foodItems.find(i => i.id === id);
+            target.value = getTodayDate();
+            if (item) {
+                item.purchaseDate = target.value;
+                saveData();
+                updateAutoText();
+            }
+        }
+    });
+    
+    // --- 初期化処理 ---
+    loadData();
+    renderList();
+});

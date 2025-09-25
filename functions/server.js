@@ -1,0 +1,1 @@
+const http = require('http'); const handler = require('./index'); const srv = http.createServer((req, res) => handler(req, res)); srv.listen(3000, () => console.log('Server listening on http://localhost:3000'));

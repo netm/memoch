@@ -3,91 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>冷蔵庫ストッカー | 食品ロスを防ぐ在庫管理アプリ</title>
-    <meta name="description" content="冷蔵庫と冷凍庫の中身を簡単管理！消費期限・賞味期限を登録して、食品ロスをなくしましょう。スマホ・PC両対応で、ブラウザにデータを自動保存。URL共有で家族との共同管理も可能です。">
-    <meta name="keywords" content="冷蔵庫, 冷凍庫, 食品管理, 在庫管理, 消費期限, 賞味期限, 食品ロス, アプリ, 無料, 買い物リスト">
+    <title>冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</title>
+    <meta name="description" content="冷蔵庫と冷凍庫の中身を簡単管理！消費期限・賞味期限を登録して、食品ロスをなくしましょう。スマホ・PC対応のシンプルな食品管理Webアプリ。冷蔵庫・冷凍庫の中身、量、賞味期限、消費期限、購入日を一覧で簡単管理。フードロス削減をサポートします。ブラウザ保存、並べ替え、画像保存、共有機能付き。">
+    <meta name="keywords" content="冷蔵庫,冷凍庫,消費期限,賞味期限,食品管理,在庫管理,ストック管理,食品ロス,フードロス,アプリ,無料,サイト">
     <!-- OGP Tags for Social Sharing -->
-    <meta property="og:title" content="冷蔵庫ストッカー | 食品ロスを防ぐ在庫管理アプリ">
+    <meta property="og:title" content="冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ">
     <meta property="og:description" content="冷蔵庫と冷凍庫の中身を簡単管理！消費期限や在庫を登録して、食品ロスをなくしましょう。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content=""> <!-- TODO: デプロイ後にサイトのURLをここに入力 -->
+    <meta property="og:url" content="https://memoc.pages.dev/y988/"> <!-- TODO: 実際のURLに変更 -->
     <meta property="og:image" content="https://placehold.co/1200x630/E0F2F1/00796B?text=冷蔵庫ストッカー">
     <meta property="og:site_name" content="冷蔵庫ストッカー">
-    <!-- Tailwind CSS for styling -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="google-adsense-account" content="ca-pub-3701488620779249">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- html2canvas for PNG export -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" xintegrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoVBL5gI9kDXBET/UPw2kTirtxOcCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="/css/y988.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Header -->
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl md:text-3xl font-bold text-teal-700">
-                <i class="fas fa-seedling mr-2"></i>冷蔵庫ストッカー
-            </h1>
-            <div id="share-container" class="hidden">
-                <button id="share-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
-                    <i class="fas fa-share-alt mr-2"></i> 共有
-                </button>
-            </div>
-        </div>
-    </header>
-    <!-- Main Content -->
-    <main class="container mx-auto p-4">
-        <!-- Introduction Section -->
-        <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-xl font-semibold mb-2 text-teal-800">スマートな食品管理を始めよう</h2>
-            <p class="text-gray-600">
-                「冷蔵庫ストッカー」へようこそ！このツールを使えば、冷蔵庫や冷凍庫の中身を簡単に把握し、消費期限切れによる食品ロスを防げます。項目を追加して、在庫をスマートに管理しましょう。データは自動でお使いのブラウザに保存されます。
-            </p>
-        </section>
-        <!-- Control Panel -->
-        <section id="controls" class="bg-white p-4 rounded-lg shadow-md mb-6 flex flex-wrap gap-2 justify-center md:justify-start">
-            <button id="add-item-btn" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
-                <i class="fas fa-plus mr-2"></i> 項目を追加
-            </button>
-            <button id="sort-by-expiry-btn" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
-                <i class="fas fa-sort-amount-down mr-2"></i> 期限順に並べる
-            </button>
-            <button id="save-png-btn" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
-                <i class="fas fa-camera mr-2"></i> PNGで保存
-            </button>
-            <button id="clear-all-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
-                <i class="fas fa-trash-alt mr-2"></i> すべて消去
-            </button>
-        </section>
-        <!-- Food Stock Table -->
-        <section id="food-stock-list" class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="table-container">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">食品名</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">個数</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">量 (少↔多)</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">消費期限</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">賞味期限</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">購入日</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">カラー</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">消去</th>
-                        </tr>
-                    </thead>
-                    <tbody id="item-list" class="bg-white divide-y divide-gray-200">
-                        <!-- Items will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-             <div id="empty-state" class="text-center py-10 px-4">
-                <i class="fas fa-box-open text-4xl text-gray-300 mb-4"></i>
-                <p class="text-gray-500">まだ食品がありません。「項目を追加」ボタンから登録を始めましょう！</p>
-            </div>
-        </section>
-    </main>
-    <!-- Footer -->
-    <footer class="text-center py-6 mt-8 text-gray-500 text-sm">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 md:p-6 max-w-7xl">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-700">冷蔵庫ストッカー</h1>
+            <p class="mt-2 text-gray-600">冷蔵庫・冷凍庫の食品をシンプルに管理して、フードロスを減らしましょう。</p>
+        </header>
+        <main>
+            <!-- 操作ボタンエリア -->
+            <section id="actions" class="bg-white p-4 rounded-xl shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-3 sr-only">操作パネル</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap justify-center gap-3">
+                    <button id="add-item-btn" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                        項目追加
+                    </button>
+                    <button id="copy-text-btn" class="btn btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" /><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H4z" /></svg>
+                        文章コピー
+                    </button>
+                    <button id="sort-by-expiry-btn" class="btn btn-info">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" /></svg>
+                        期限順に並べる
+                    </button>
+                    <button id="clear-all-btn" class="btn btn-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd" /></svg>
+                        すべて消去
+                    </button>
+                    <button id="save-as-png-btn" class="btn btn-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                        PNG画像で保存
+                    </button>
+                    <button id="share-twitter-btn" class="btn btn-twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        Xで共有
+                    </button>
+                    <button id="share-line-btn" class="btn btn-line">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 128 128" fill="currentColor"><path d="M118.31 43.68c0-20.3-17.48-36.78-39.06-36.78H48.75c-21.58 0-39.06 17.48-39.06 36.78v.28c0 14.21 8.78 26.69 21.6 32.88V99.5c0 4.16 3.38 7.54 7.54 7.54h.43c1.78 0 3.49-.62 4.88-1.74l14.15-11.2h21.4c21.58 0 39.06-17.48 39.06-36.78v-.72zm-28.53 1.95h-9.2v20.59c0 2.24-1.82 4.06-4.06 4.06h-.58c-2.24 0-4.06-1.82-4.06-4.06V45.63h-9.2c-2.24 0-4.06-1.82-4.06-4.06s1.82-4.06 4.06-4.06h27.1c2.24 0 4.06 1.82 4.06 4.06s-1.82 4.06-4.06 4.06zm-42.66 0h-9.2v20.59c0 2.24-1.82 4.06-4.06 4.06h-.58c-2.24 0-4.06-1.82-4.06-4.06V45.63h-9.2c-2.24 0-4.06-1.82-4.06-4.06s1.82-4.06 4.06-4.06h27.1c2.24 0 4.06 1.82 4.06 4.06s-1.82 4.06-4.06 4.06z"/></svg>
+                        LINEで共有
+                    </button>
+                </div>
+            </section>
+            <!-- 文章自動作成エリア -->
+            <section id="auto-text-generation" class="mb-6">
+                <h2 class="text-xl font-bold mb-3">文章自動作成　冷蔵庫ストッカー</h2>
+                <div class="bg-white p-4 rounded-xl shadow-md">
+                    <textarea id="auto-text-area" rows="6" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" readonly placeholder="食品リストを元に、共有用の文章が自動で作成されます。"></textarea>
+                </div>
+            </section>
+            <!-- 食品リストエリア -->
+            <section id="list-container" class="bg-white rounded-xl shadow-md">
+                <h2 class="text-xl font-bold p-4 sr-only">食品リスト</h2>
+                <div class="table-container">
+                    <table class="w-full text-sm md:text-base">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-2 md:p-4 text-left font-bold">食品名</th>
+                                <th class="p-2 md:p-4 text-left font-bold">量</th>
+                                <th class="p-2 md:p-4 text-left font-bold">消費/賞味期限</th>
+                                <th class="p-2 md:p-4 text-left font-bold">購入日</th>
+                                <th class="p-2 md:p-4 text-left font-bold">カラー</th>
+                                <th class="p-2 md:p-4 text-center font-bold">消去</th>
+                            </tr>
+                        </thead>
+                        <tbody id="food-list">
+                            <!-- JavaScriptによって食品項目がここに追加されます -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
         <p>無料で使えるPC・スマホ・タブレット対応サイトです。</p>
         <p>SNSでいいね、シェアしてみんなの暮らしを便利に。</p>
         <p>ブログやホームページからのリンクも、ご自由にどうぞ。</p><br>
@@ -101,49 +110,18 @@
         <p>リンクが貼ってあれば、ご担当者様からのご連絡は不要です。</p>
         <p>今後とも、どうぞご利用くださいませ。</p><br>
     <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
-    <p><a href="https://memoc.pages.dev/y8h2/"    target="_blank">英語中学からやり直すサイト高校生も大人も</a></p><br>
+    <p><a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
     <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzpa1/"  target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
     <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
     <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br><br>
+    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p><br>
     <p><a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a></p><br>
     <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
-    <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p><br>
-    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
-    <p><a href="https://memoc.pages.dev/tver/"    target="_blank">TVerティーバーの検索用リンク集</a></p><br>
-    <p><a href="https://memoc.pages.dev/game1/"   target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
-    </footer>
-    <!-- Color Picker Modal -->
-    <div id="color-modal" class="modal">
-        <div class="modal-content">
-            <h3 class="text-lg font-semibold mb-4">カラーを選択</h3>
-            <div class="color-palette">
-                <div class="color-box" style="background-color: #1f2937;" data-color="#1f2937"></div>
-                <div class="color-box" style="background-color: #ef4444;" data-color="#ef4444"></div>
-                <div class="color-box" style="background-color: #3b82f6;" data-color="#3b82f6"></div>
-                <div class="color-box" style="background-color: #22c55e;" data-color="#22c55e"></div>
-                <div class="color-box" style="background-color: #f97316;" data-color="#f97316"></div>
-            </div>
-            <label for="color-picker" class="block mb-2">カスタムカラー:</label>
-            <input type="color" id="color-picker" class="w-full h-10 p-1 border border-gray-300 rounded-md">
-            <div class="mt-6 flex justify-end gap-2">
-                <button id="cancel-color-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">キャンセル</button>
-                <button id="confirm-color-btn" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg">決定</button>
-            </div>
-        </div>
+    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a></p><br>
+    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
     </div>
-    <!-- Confirmation Modal -->
-    <div id="confirm-modal" class="modal">
-        <div class="modal-content text-center">
-            <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"></i>
-            <h3 id="confirm-title" class="text-lg font-semibold mb-2"></h3>
-            <p id="confirm-message" class="text-gray-600 mb-6"></p>
-            <div class="flex justify-center gap-4">
-                <button id="cancel-confirm-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg">いいえ</button>
-                <button id="confirm-action-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg">はい</button>
-            </div>
-        </div>
-    </div>
-<script src="/js/y988.js"></script>
+      <script src="/js/y988.js"></script>
 </body>
 </html>

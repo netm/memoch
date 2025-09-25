@@ -1,492 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #f0f4f8;
+    --container-bg: #ffffff;
+    --display-bg: #e6eaf0;
+    --button-bg: #d9e2ec;
+    --operator-bg: #c9d6e4;
+    --action-bg: #b9c9d9;
+    --equals-bg: #a8d8ea;
+    --text-color: #334e68;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-font-family:Verdana;
-margin:30px;
-padding:0px;
-text-align:left;
-zoom: 115%;
-
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
 }
 
-
-
-#container{
-margin:0px auto;
-width:800px;
-line-height: 2em;
-background-color:#fff;
-font-family:Verdana;
+#capture-area {
+    background-color: var(--container-bg);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    width: 100%;
+    max-width: 420px;
 }
 
-a{
-color:#000d99;
-line-height:2em;
-font-size: 100%;
-font-weight:none;
-text-decoration: underline;
-}
-a:hover{
-text-decoration: none;
-}
-a.ab{
-color:#000d99;
-border:none;
-font-size: 86%;
-font-weight:none;
-text-decoration: underline;
-}
-.ka{
-width: 100%;
-margin-left:auto;
-margin-right:auto;
-border-top: 2px solid #000d99;
-border-left: 2px solid #000d99;
-border-right: 2px solid #000d99;
-border-bottom: 2px solid #000d99;
-margin:0px 0px 0px 0px;
-padding:2px 6px 2px 6px;
-}  
-
-h1{
-  display: inline-block;
-  font-size: 26px;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  bottom: 0; /*下寄せの指定*/
-  background: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #ff3bef 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-overflow: hidden;
-text-align:center;
-margin-left: 6px; /* 好きなpxに調整できます */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-h1 a{
-  display: inline-block;
-  font-size: 26px;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  bottom: 0; /*下寄せの指定*/
-  background: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #ff3bef 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-overflow: hidden;
-text-align:center;
-margin-left: 6px; /* 好きなpxに調整できます */
+#memo-display {
+    background-color: var(--display-bg);
+    padding: 15px;
+    border-radius: 10px;
+    height: 150px;
+    overflow-y: auto;
+    text-align: right;
+    font-size: 1em;
+    line-height: 1.6;
+    border: 1px solid #c9d6e4;
 }
 
-h2 {
-color:#557303;
-font-size: 88%; 
-line-height: 1em; 
-font-weight:bolder;
-padding:10px 0px 5px 0px;
-margin:0px 0px 0px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#f0f2ff;
-border-radius: 1vh;
+#display {
+    background-color: var(--display-bg);
+    color: var(--text-color);
+    font-size: 2.8em;
+    font-weight: 700;
+    padding: 15px 20px;
+    text-align: right;
+    border-radius: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 70px;
+    border: 1px solid #c9d6e4;
 }
 
-h2 a{
-text-decoration: none;
-color:#000d99;
-background-color:#f0f2ff;
-border-radius: 1vh;
+#notes {
+    background-color: var(--display-bg);
+    border: 1px solid #c9d6e4;
+    border-radius: 10px;
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 0.95em;
+    resize: vertical;
+}
+#notes:focus {
+    outline: 2px solid var(--equals-bg);
 }
 
-h3 {
-color:#557303;
-font-size: 90%;
-line-height: 1em;
-font-weight:bolder;
-padding:8px 0px 7px 20px;
-margin:10px 0px 5px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#fcfabd;
-border-radius: 2vh;
-}
-h4 {
-position: center;
-padding:8px 0px 7px 20px;
-margin:0px 0px 0px 0px;
-  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), transparent);
-  background: linear-gradient(to right, rgb(255, 186, 115), transparent);
-  color: #545454;
-  font-size: 90%;
-border-radius: 2vh;
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
-
-h5 {
-color:#557303;
-font-size: 90%;
-line-height: 1em;
-font-weight:bolder;
-padding:8px 0px 7px 20px;
-margin:10px 0px 5px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#f0f2ff;
-border-radius: 2vh;
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.4em;
+    font-weight: 700;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+    box-shadow: 0 4px 6px var(--shadow-color);
 }
 
-p{
-font-size: 96%;
-line-height: 2em;
-padding-top:0px;
-font-weight:none;
-padding:0px 0px 2px 0px;
-margin:0px 0px 0px 0px;
-}
-p strong{ 
-text-decoration: none;
-font-weight: normal;
-}
-#banner{
-font-family:Verdana;
-text-align:left;
-margin:-20px 0px 0px 0px;
+button:hover {
+    filter: brightness(1.05);
 }
 
-.description {
-color:#6E8C4C;
-font-size: 100%; 
-text-decoration: none;
-line-height: 2em;
-padding:0px 0px 0px 0px;
-}
-.description strong{ 
-text-decoration: none;
-font-weight: normal;
-}
-.navi {
-font-size: 90%; 
-text-align:center;
-margin-bottom:2px;
-margin-top:2px;
-}
-#content {
-margin:0px 0px 0px 15px;
-float:left;
-width:565px;
-font-size: 100%; 
-font-family:Verdana;
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
-.blog {
-padding:0px;
-text-align:left;
-margin-bottom:20px;
-padding:8px;
+button[data-action="operator"] {
+    background-color: var(--operator-bg);
 }
 
-.date{
-clear:left;
-font-size:14px;
-font-weight:normal;
-padding:5px;
-margin:0px 200px 0px 0px;
-background-color:#6E8C4C;
-color:#fff;
+button[data-action="equals"] {
+    background-color: var(--equals-bg);
+    grid-column: span 2;
 }
 
-.blockbody {
-color:#3f995e;
-font-size: 100%;
-text-decoration: none;
-line-height: 2em;
-padding:2px 2px 2px 20px;
-width: 768px; /*線の幅*/
-background:linear-gradient(transparent 90%, #88f2ad 0%);
+button.control-btn {
+    background-color: var(--action-bg);
+    font-size: 1.1em;
+    margin-top: 10px;
 }
 
-.blogbody {
-font-weight:normal;
-margin:0px;
-padding:10px;
-background-color:#fff;
-border:1px solid #7ABD3C;
+#save-png {
+    width: 100%;
+    background-color: #a8e6cf;
+    padding: 15px;
 }
 
-
-.title{
-}
-.title a{
-border:underline;
-font-weight:bolder;
-font-size:13px;}
-
-.text{
-font-size: 100%; 
-padding:6px 0px 6px 0px;
-line-height: 2em;
+.footer-link {
+    margin-top: 30px;
+    text-align: center;
 }
 
-
-img.yohaku{margin:4px 20px 4px 0px;}
-img.yohaku2{margin-right:20px;} 
-
-
-span.iro1{color:red;
-font-weight:bolder;}
-
-
-.posted{ 
-font-size: 10px; 
-text-align: right;
-padding:0px 0px 0px 0px;
-}
-#links-left {
-font-weight:normal;
-width:200px;
-float:left;
-margin: 0px 0px 0px 10px;
-_margin: 0px 0px 0px 5px;
-text-align:left;
-font-family:Verdana;
-}
-#links-right {
-font-weight:normal;
-width:200px;
-float:right;
-margin: 0px 0px 0px 10px;
-_margin: 0px 0px 0px 5px;
-text-align:left;
-font-family:Verdana;
-}
-#links {
-font-weight:normal;
-float:left;
-width:200px;
-margin: 0px 0px 0px 15px;
-text-align:left;
-font-family:Verdana;
+.footer-link a {
+    color: #88a2c2;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s;
 }
 
-
-.sidetitle  {
-  padding: 0.5rem 1rem;
-  color: #414538;
-  border-radius: 2vh;
-  background-image: -webkit-gradient(linear, right top, left top, from(#9be15d), to(#00e3ae));
-  background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
-  background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
-}
-.sidetitle:before {
-  content: '★';
-  color: #eeff33;
-  margin-right: 8px;
-}
-
-
-.side {
-padding:0px 5px 10px 5px;
-margin-bottom:10px;
-line-height: 2em;
-background-color:#f0f2ff;
-border-radius: 1vh;
-}
-.side-tag {
-padding:10px 5px 10px 5px;
-margin-bottom:10px;
-}
-.side a{
-color:#000d99;
-border:none;
-}
-.side a:hover{
-　text-decoration: underline;
-}
-.side-tag a{
-color:#000d99;
-}
-
-.powered {
-padding:8px 0px;
-text-align:center;
-}
-.powered table{
-margin:0px auto;
-text-align:center;
-}
-
-.syndicate {
-font-size:10px;
-margin-right:10px;
-text-align:center;
-}
-.syndicate a{
-color:#000d99;
-}
-#Watch{
-display: inline-block;
-width: 100%;
-text-align: center;
-font-weight:bold;
-font-size:200%;
-}
-#realtime{
-width: 100%;
-text-align: left;
-font-weight:bold;
-font-size:600%;
-padding:20px 5px 20px 5px;
-margin: 20px 0px 20px 0px;
-}
-.calculator-wrapper {
-  display: flex;
-  gap: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  background: #ffffff;
-}
-
-/* 電卓部 */
-.calculator {
-  background: linear-gradient(145deg, #e3eaff, #ffffff);
-  padding: 20px;
-  border-right: 1px solid #ddd;
-}
-
-.display {
-  background: #272727;
-  color: #fff;
-  padding: 15px;
-  font-size: 2rem;
-  text-align: right;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.keys {
-  display: grid;
-  grid-template-columns: repeat(4, 60px);
-  grid-gap: 10px;
-}
-
-.keys button {
-  padding: 15px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 8px;
-  background: #f0f1f5;
-  cursor: pointer;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-  transition: all 0.1s ease;
-}
-
-.keys button:hover {
-  background: #e0e1e8;
-}
-
-.keys button:active {
-  box-shadow: inset 2px 2px 6px rgba(0,0,0,0.1);
-}
-
-.keys button[data-action="operator"] {
-  background: #4e89ff;
-  color: #fff;
-}
-
-.keys .equals {
-  grid-column: span 2;
-  background: #7adb30;
-  color: #000;
-}
-
-/* メモ部 */
-.memo {
-  width: 200px;
-  padding: 20px;
-}
-
-.memo h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-#history {
-  height: 300px;
-  overflow-y: auto;
-  background: #fafafa;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  white-space: pre-wrap;
-}
-
-.memo-buttons {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.memo-buttons button {
-  flex: 1;
-  padding: 8px;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 6px;
-  background: #4e89ff;
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.memo-buttons button:hover {
-  background: #3b6ed1;
-}
-/* モードセレクト */
-.mode-select {
-  position: auto;
-  top: 20px; left: 20px;
-  font-size: 0.9rem;
-}
-
-/* コンバーターパネル */
-.converter {
-  display: none;       /* standard以外で表示 */
-  flex-direction: row;
-  align-items: center;
-  padding: 20px;
-  gap: 10px;
-}
-
-.converter input,
-.converter select {
-  padding: 6px;
-  font-size: 0.9rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-#doConvert {
-  padding: 6px 12px;
-  background: #4e89ff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#footer{
-clear:left;
-text-align:center;
-background-color:#d6d6d6;
-}
-.copyright{
-font-size:90%;
-width:100%;
-text-align:center;
-padding:0px 0px 5px 0px;
-margin:0px 0px 10px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#d6d6d6;
-
-}
-blockquote{
-border:1px solid #7ABD3C;
-padding:5px;
-margin:5px;
+.footer-link a:hover {
+    color: var(--text-color);
 }

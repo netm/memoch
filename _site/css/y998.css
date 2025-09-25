@@ -1,0 +1,250 @@
+/* indez998.css */
+:root {
+    --border-color: #ddd;
+    --primary-text: #333;
+    --sunday-text: #e60000;
+    --saturday-text: #007bff;
+    --button-bg: #f8f9fa;
+    --button-hover-bg: #e2e6ea;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h1{
+  display: inline-block;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  bottom: 0; /*下寄せの指定*/
+  background: linear-gradient(90deg, #1946ec 0%, #6daef8 40%, #5ef892 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+overflow: hidden;
+text-align:center;
+margin-left: 6px; /* 好きなpxに調整できます */
+}
+
+#app-container {
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#controls {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+#month-navigation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    order: 1;
+    flex-basis: 100%;
+    justify-content: center;
+}
+
+#month-navigation button {
+    font-size: 1.2rem;
+    padding: 5px 12px;
+}
+
+#month-year {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-text);
+    text-align: center;
+    min-width: 150px;
+}
+
+.tool-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+}
+
+.tool-group label {
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+button, .color-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+button:hover, .color-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.color-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    padding: 0;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+input[type="color"]::-moz-color-swatch {
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+#calendar-wrapper {
+    display: flex;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+}
+
+#calendar-container {
+    flex: 1;
+    position: relative;
+}
+
+#calendar {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    pointer-events: auto;
+}
+
+#calendar th, #calendar td {
+    border: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: top;
+    padding: 5px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+#calendar th {
+    text-align: center;
+    background-color: #f9f9f9;
+    font-weight: normal;
+    padding: 8px 5px;
+}
+
+#calendar-body td {
+    cursor: cell;
+}
+
+.sunday, th:first-child {
+    color: var(--sunday-text);
+}
+.saturday, th:last-child {
+    color: var(--saturday-text);
+}
+
+#drawing-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+#scroll-space {
+    width: 30px;
+    background: transparent;
+    pointer-events: auto;
+}
+
+#footer-link {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+}
+
+#footer-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#footer-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    #controls {
+        gap: 5px;
+        justify-content: space-around;
+    }
+    .tool-group {
+        flex-basis: 48%;
+        justify-content: center;
+    }
+    #month-navigation {
+        order: 0;
+        flex-basis: 100%;
+        margin-bottom: 5px;
+    }
+    #month-year {
+        font-size: 1.2rem;
+    }
+}
+
+@media (orientation: landscape) {
+    #scroll-space {
+        width: 50px;
+    }
+}

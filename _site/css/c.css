@@ -7,6 +7,38 @@ zoom: 115%;
 
 }
 
+.site-nav {
+  width: 100%;
+  box-sizing: border-box;      /* パディング込みで幅100%になる */
+  display: flex;
+  justify-content: center;
+  gap: 1rem;                   /* 要素間隔を統一 */
+  padding: 1rem 0;
+  margin: 0 auto;
+  flex-wrap: wrap;             /* 狭い画面で折り返し */
+}
+
+.site-nav a {
+  flex: 0 1 auto;              /* コンテンツ幅を保ちつつ縮小可 */
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
+.nav {
+  width: 100%;
+  box-sizing: border-box;      /* パディング込みで幅100%になる */
+  display: flex;
+  justify-content: center;
+  gap: 1rem;                   /* 要素間隔を統一 */
+  padding: 1rem 0;
+  margin: 0 auto;
+  flex-wrap: wrap;             /* 狭い画面で折り返し */
+}
+
+.nav a {
+  flex: 0 1 auto;              /* コンテンツ幅を保ちつつ縮小可 */
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
 
 #container{
 margin:0px auto;
@@ -44,7 +76,11 @@ border-bottom: 2px solid #000d99;
 margin:0px 0px 0px 0px;
 padding:2px 6px 2px 6px;
 }  
-
+form textarea {
+font-size: 105%;
+  background-color: rgb(249, 249, 249);
+  color: black;
+}
 h1{
   display: inline-block;
   font-size: 26px;
@@ -114,7 +150,6 @@ margin:0px 0px 0px 0px;
 border-radius: 2vh;
 }
 
-
 h5 {
 color:#557303;
 font-size: 90%;
@@ -156,12 +191,6 @@ padding:0px 0px 0px 0px;
 text-decoration: none;
 font-weight: normal;
 }
-.navi {
-font-size: 90%; 
-text-align:center;
-margin-bottom:2px;
-margin-top:2px;
-}
 #content {
 margin:0px 0px 0px 15px;
 float:left;
@@ -175,16 +204,6 @@ padding:0px;
 text-align:left;
 margin-bottom:20px;
 padding:8px;
-}
-
-.date{
-clear:left;
-font-size:14px;
-font-weight:normal;
-padding:5px;
-margin:0px 200px 0px 0px;
-background-color:#6E8C4C;
-color:#fff;
 }
 
 .blockbody {
@@ -260,7 +279,6 @@ text-align:left;
 font-family:Verdana;
 }
 
-
 .sidetitle  {
   padding: 0.5rem 1rem;
   color: #414538;
@@ -274,7 +292,6 @@ font-family:Verdana;
   color: #eeff33;
   margin-right: 8px;
 }
-
 
 .side {
 padding:0px 5px 10px 5px;
@@ -315,6 +332,7 @@ text-align:center;
 .syndicate a{
 color:#000d99;
 }
+
 #Watch{
 display: inline-block;
 width: 100%;
@@ -322,14 +340,27 @@ text-align: center;
 font-weight:bold;
 font-size:200%;
 }
-#realtime{
-width: 100%;
-text-align: left;
-font-weight:bold;
-font-size:600%;
-padding:20px 5px 20px 5px;
-margin: 20px 0px 20px 0px;
+
+#date {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 0.3em;
+  padding-top:   10px;  /* 上の余白 */
+  padding-right:  2px;  /* 右の余白 */
+  padding-bottom: 2px;  /* 下の余白 */
+  padding-left:  30px;  /* 左の余白 */
 }
+
+#time {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #000;
+  padding-top:    4px;  /* 上の余白 */
+  padding-right:  2px;  /* 右の余白 */
+  padding-bottom:20px;  /* 下の余白 */
+  padding-left:  30px;  /* 左の余白 */
+}
+
 #calculator {
              width: 300px;
             margin: 0 auto;
