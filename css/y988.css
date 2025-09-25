@@ -54,7 +54,6 @@ body {
 .btn-line { background-color: #06C755; }
 .btn-line:hover { background-color: #05a546; }
 
-
 /* テーブルのスタイル */
 .table-container {
     overflow-x: auto;
@@ -127,4 +126,57 @@ input[type="color"]::-webkit-color-swatch {
 input[type="color"]::-moz-color-swatch {
     border: none;
     border-radius: 50%;
+}
+
+/* フォーカス可視化（キーボード操作に配慮） */
+:focus {
+  outline: none;
+}
+:focus-visible, .btn:focus {
+  outline: 3px solid rgba(66,153,225,0.35);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(66,153,225,0.12);
+}
+
+/* アニメーション抑制を尊重 */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn:hover, .btn:active {
+    transition: none;
+  }
+}
+
+/* モバイルでテーブル行を見やすくする */
+table td, table th {
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* range の進捗色（Chrome/Safari 用）*/
+input[type="range"] {
+  background: linear-gradient(90deg, #4299e1 var(--range-percent, 50%), #e2e8f0 0%);
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 5px;
+}
+
+/* print: 不要な操作部を非表示にして表を見やすく */
+@media print {
+  .btn, #actions, textarea, .sr-only { display: none !important; }
+  body { background: #fff; color: #000; }
+  table { width: 100%; font-size: 12pt; }
+}
+
+/* 高コントラスト補助（OS設定検出） */
+@media (prefers-contrast: more) {
+  body { color: #0f172a; background-color: #fff; }
+  th { background-color: #e6eef7; }
+}
+
+/* カラーピッカー周りのフォーカス */
+input[type="color"]:focus-visible {
+  outline: 3px solid rgba(0,0,0,0.12);
+  outline-offset: 2px;
+  border-radius: 50%;
 }
