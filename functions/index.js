@@ -1,1 +1,0 @@
-module.exports = (req, res) => { let body=''; req.on('data', c=>body+=c); req.on('end', ()=>{ res.setHeader('Content-Type','application/json'); res.statusCode=200; res.end(JSON.stringify({ method:req.method, url:req.url, body })); }); }
