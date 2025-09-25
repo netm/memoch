@@ -1,115 +1,130 @@
-:root{
-  --bg-short: #ffe5e5;
-  --bg-medium: #fff8e5;
-  --bg-long: #e5ffe5;
-  --accent: #2b6cb0;
-  --muted: #666;
-  --max-width: 1100px;
-  --border: #e6e6e6;
-  --th-bg: #f5f5f5;
-  --page-bg: #f7f9fc;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
-/* 基本レイアウト */
-html,body { height:100%; }
 body {
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-  margin:20px;
-  line-height:1.6;
-  color:#222;
-  max-width:var(--max-width);
-  margin-left:auto;
-  margin-right:auto;
-  padding:0 16px;
-  background:#fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
 }
 
-/* ヘッディング */
-h1 { text-align:center; margin-bottom:8px; font-weight:700; }
-h2 { margin-top:32px; border-bottom:2px solid #eee; padding-bottom:6px; font-size:1.1rem; font-weight:600; }
-
-/* コントロール領域 */
-.controls {
-  display:flex;
-  gap:8px;
-  align-items:center;
-  margin:12px 0 18px;
-  flex-wrap:wrap;
-}
-#searchBox { flex:1; padding:8px 10px; font-size:1rem; border:1px solid #ddd; border-radius:6px; background:#fff; }
-button { background:var(--accent); color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; }
-button.secondary { background:#666; }
-button:active { transform:translateY(1px); }
-button:focus { outline:3px solid rgba(43,108,176,0.18); outline-offset:2px; }
-
-/* PNGボタンのスタイル */
-#savePngBtn { background: #20639b; }
-#savePngBtn svg { height:16px; width:16px; vertical-align:middle; }
-
-/* テーブル */
-.table-container { overflow-x:auto; }
-table { width:100%; border-collapse:collapse; margin-top:10px; background:#fff; }
-thead th, table tr:first-child th { background:var(--th-bg); position:sticky; top:0; z-index:1; }
-th, td { border:1px solid var(--border); padding:8px; text-align:left; vertical-align:middle; font-size:0.95rem; }
-th { font-weight:700; }
-.item-cell { font-weight:600; }
-
-/* 列幅 */
-.life-cell { white-space:nowrap; width:120px; }
-.next-cell { white-space:nowrap; width:140px; }
-.purchase-date { width:150px; padding:6px; border:1px solid #ddd; border-radius:4px; font-size:0.95rem; box-sizing:border-box; }
-
-/* 結果テーブル */
-.result { margin-top:8px; border-radius:6px; overflow:hidden; }
-.result th, .result td { padding:6px 8px; font-size:0.95rem; }
-
-/* 行の色分け */
-.expired { background:#fff1f0; }
-.near-expired { background:#fff7ed; }
-.short { background:var(--bg-short); }
-.medium { background:var(--bg-medium); }
-.long { background:var(--bg-long); }
-
-/* レスポンシブ */
-@media (max-width:800px) {
-  body { padding:0 12px; }
-  .controls { flex-direction:column; align-items:stretch; }
-  #searchBox { width:100%; }
-  .purchase-date { width:100%; }
-  th, td { font-size:0.9rem; padding:6px; }
-  .life-cell, .next-cell { width:auto; white-space:normal; }
+/* レスポンシブ対応：スマホ横向きで両端に広げる */
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
-/* 印刷 */
-@media print {
-  .controls, button, .sorted-container, .modal { display:none !important; }
-  body { margin:0; background:#fff; }
-  table { page-break-inside:avoid; font-size:11pt; }
-  th, td { border:1px solid #ccc; padding:6px; }
+/* ボタンの共通スタイル */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.btn:active {
+    transform: translateY(0);
 }
 
-/* アクセシビリティ */
-.purchase-date:focus { outline:3px solid rgba(43,108,176,0.18); outline-offset:2px; }
+.btn-primary { background-color: #4299e1; }
+.btn-primary:hover { background-color: #3182ce; }
+.btn-secondary { background-color: #a0aec0; }
+.btn-secondary:hover { background-color: #718096; }
+.btn-success { background-color: #48bb78; }
+.btn-success:hover { background-color: #38a169; }
+.btn-danger { background-color: #f56565; }
+.btn-danger:hover { background-color: #e53e3e; }
+.btn-warning { background-color: #ed8936; }
+.btn-warning:hover { background-color: #dd6b20; }
+.btn-info { background-color: #4fd1c5; }
+.btn-info:hover { background-color: #38b2ac; }
+.btn-twitter { background-color: #1DA1F2; }
+.btn-twitter:hover { background-color: #0c85d0; }
+.btn-line { background-color: #06C755; }
+.btn-line:hover { background-color: #05a546; }
 
-/* 長いテキストの折返し */
-td { word-break:break-word; }
 
-/* モーダル基礎 */
-.modal { display:none; position:fixed; inset:0; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); z-index:60; }
-.modal .modal-content { background:#fff; padding:18px; border-radius:10px; max-width:520px; width:90%; box-shadow:0 8px 30px rgba(0,0,0,0.12); }
+/* テーブルのスタイル */
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* iOSでのスムーズスクロール */
+}
 
-/* カラーパレット */
-.color-palette { display:flex; gap:8px; margin-bottom:8px; }
-.color-box { width:36px; height:36px; border-radius:6px; cursor:pointer; border:2px solid #fff; box-shadow:0 1px 2px rgba(0,0,0,0.06); }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-/* キャプチャ用: ホバー無効化 */
-.no-hover { pointer-events: none; opacity: 0.9; transition: none !important; }
+th {
+    background-color: #edf2f7;
+    font-weight: bold;
+    text-align: left;
+}
 
-/* ボタン小修正 */
-.delete-item { background:transparent; border:none; padding:6px; cursor:pointer; }
-.open-color-picker { display:inline-flex; align-items:center; justify-content:center; }
+th, td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
 
-/* テーブル固定ヘッダ用余白調整（モバイルで被らないように） */
-thead th { top:0; }
+/* スライダーのつまみスタイル */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4299e1;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+}
 
-/* End of CSS */
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #4299e1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: #4299e1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* スライダーのトラック（溝）のスタイル */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* カラーピッカーのスタイル調整 */
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+}

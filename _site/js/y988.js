@@ -1,352 +1,273 @@
-// js/app.js - 統合版（共有機能 + サーバ同期 + localStorage フォールバック）
-// 機能：項目追加・編集・削除・ソート・全消去・PNG保存・カラー選択・共有URL生成
-// 前提：/api/items エンドポイントが Cloudflare Workers (KV / D1) 側で動作すること
-// 起動時に URL パラメータ `fridge` があればそれを使い、なければ UUID を生成して URL を更新します。
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM要素の取得
+    const addItemBtn = document.getElementById('add-item-btn');
+    const copyTextBtn = document.getElementById('copy-text-btn');
+    const sortByExpiryBtn = document.getElementById('sort-by-expiry-btn');
+    const clearAllBtn = document.getElementById('clear-all-btn');
+    const saveAsPngBtn = document.getElementById('save-as-png-btn');
+    const shareTwitterBtn = document.getElementById('share-twitter-btn');
+    const shareLineBtn = document.getElementById('share-line-btn');
+    const autoTextArea = document.getElementById('auto-text-area');
+    const foodList = document.getElementById('food-list');
+    const listContainer = document.getElementById('list-container');
 
-const STORAGE_KEY = 'foodStockItems';
-let FRIDGE = null; // fridge id（UUID like）
-let items = [];
-let serverVersion = null;
+    // 食品データを格納する配列
+    let foodItems = [];
 
-// --- util ---
-function uuidLike() { return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
-function formatDateInput(dateStr){
-  if(!dateStr) return '';
-  const d = new Date(dateStr);
-  if(isNaN(d)) return '';
-  return d.toISOString().split('T')[0];
-}
-function escapeHtml(s){ return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
-function qs(k){ return new URL(location.href).searchParams.get(k); }
-function pushFridgeToUrl(id){
-  const url = new URL(location.href);
-  url.searchParams.set('fridge', id);
-  history.replaceState(null,'',url.toString());
-}
-function copyToClipboard(text){ navigator.clipboard?.writeText(text).catch(()=>{}); }
+    // --- データ管理 ---
 
-// --- Server helpers (assume REST API at /api/items) ---
-async function apiFetchItems(fridge){
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`);
-  if(!res.ok) throw new Error('fetch failed ' + res.status);
-  return res.json();
-}
-async function apiAddItem(fridge, item, expectedVersion){
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ item, expectedVersion })
-  });
-  return { status: res.status, body: await res.json().catch(()=>null) };
-}
-async function apiUpdateItem(fridge, item, expectedVersion){
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`, {
-    method: 'PUT',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ item, expectedVersion })
-  });
-  return { status: res.status, body: await res.json().catch(()=>null) };
-}
-async function apiDeleteItem(fridge, id, expectedVersion){
-  const res = await fetch(`/api/items?fridge=${encodeURIComponent(fridge)}`, {
-    method: 'DELETE',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ id, expectedVersion })
-  });
-  return { status: res.status, body: await res.json().catch(()=>null) };
-}
+    // ローカルストレージからデータを読み込む
+    const loadData = () => {
+        const storedItems = localStorage.getItem('foodStockManagerItems');
+        if (storedItems) {
+            foodItems = JSON.parse(storedItems);
+        }
+    };
 
-// --- localStorage fallback ---
-function loadLocal(){
-  try{
-    const s = localStorage.getItem(STORAGE_KEY + ':' + FRIDGE);
-    return s ? JSON.parse(s) : [];
-  }catch(e){ return []; }
-}
-function saveLocal(){
-  try{ localStorage.setItem(STORAGE_KEY + ':' + FRIDGE, JSON.stringify(items)); }catch(e){}
-}
+    // ローカルストレージにデータを保存する
+    const saveData = () => {
+        localStorage.setItem('foodStockManagerItems', JSON.stringify(foodItems));
+    };
 
-// --- expiry status ---
-function getExpiryStatus(dateString){
-  if(!dateString) return { status:'ok', days: Infinity };
-  const today = new Date(); today.setHours(0,0,0,0);
-  const d = new Date(dateString); d.setHours(0,0,0,0);
-  const diffDays = Math.ceil((d - today)/(1000*60*60*24));
-  if(diffDays < 0) return { status:'expired', days: diffDays };
-  if(diffDays <= 3) return { status:'near', days: diffDays };
-  return { status:'ok', days: diffDays };
-}
+    // --- UI描画 ---
 
-// --- render ---
-function renderItems(){
-  const tbody = document.getElementById('item-list');
-  const emptyState = document.getElementById('empty-state');
-  if(!tbody) return;
-  tbody.innerHTML = '';
-  if(!items || items.length === 0){ emptyState.style.display = 'block'; return; }
-  emptyState.style.display = 'none';
+    // 食品リストを再描画する
+    const renderList = () => {
+        foodList.innerHTML = ''; // リストをクリア
+        if (foodItems.length === 0) {
+            foodList.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">アイテムがありません。「項目追加」ボタンで食品を追加してください。</td></tr>';
+        } else {
+            foodItems.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.classList.add('border-b', 'border-gray-200');
+                tr.dataset.id = item.id;
 
-  items.forEach(item=>{
-    const tr = document.createElement('tr');
-    const expiryInfo = getExpiryStatus(item.expiryDate || item.bestByDate);
-    if(expiryInfo.status === 'expired') tr.classList.add('expired');
-    else if(expiryInfo.status === 'near') tr.classList.add('near-expired');
+                const amountValue = parseInt(item.amount, 10);
+                const amountText = amountValue <= 33 ? '少' : amountValue <= 66 ? '中' : '多';
 
-    tr.innerHTML = `
-      <td><input type="text" value="${escapeHtml(item.name||'')}" data-id="${item.id}" data-key="name" class="name-input" style="color:${item.color||'#1f2937'}"></td>
-      <td><input type="text" value="${escapeHtml(String(item.count||'1'))}" data-id="${item.id}" data-key="count" class="count-input"></td>
-      <td class="amount-cell"><span class="text-xs text-gray-500">少</span>
-        <input type="range" min="0" max="100" value="${Number(item.amount||50)}" data-id="${item.id}" data-key="amount" class="amount-range">
-        <span class="text-xs text-gray-500">多</span></td>
-      <td><input type="date" value="${formatDateInput(item.expiryDate)}" data-id="${item.id}" data-key="expiryDate" class="date-input"></td>
-      <td><input type="date" value="${formatDateInput(item.bestByDate)}" data-id="${item.id}" data-key="bestByDate" class="date-input"></td>
-      <td><input type="date" value="${formatDateInput(item.purchaseDate)}" data-id="${item.id}" data-key="purchaseDate" class="date-input purchase-date"></td>
-      <td><button data-id="${item.id}" class="open-color-picker" style="background:${item.color||'#1f2937'}" aria-label="色を選択"></button></td>
-      <td><button data-id="${item.id}" class="delete-item" aria-label="削除"><i class="fas fa-trash-alt"></i></button></td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
+                tr.innerHTML = `
+                    <td class="p-2 align-middle">
+                        <input type="text" value="${item.name}" class="food-name-input w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" style="color: ${item.color};" placeholder="例: にんじん">
+                    </td>
+                    <td class="p-2 align-middle min-w-[150px]">
+                        <div class="flex items-center gap-2">
+                            <span>少</span>
+                            <input type="range" min="0" max="100" value="${item.amount}" class="amount-slider w-full cursor-pointer">
+                            <span>多</span>
+                        </div>
+                    </td>
+                    <td class="p-2 align-middle">
+                        <input type="date" value="${item.expiry}" class="expiry-date-input w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    </td>
+                    <td class="p-2 align-middle">
+                        <input type="date" value="${item.purchaseDate}" class="purchase-date-input w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    </td>
+                    <td class="p-2 align-middle">
+                        <div class="flex items-center gap-1 flex-wrap">
+                            <button class="color-btn w-6 h-6 rounded-full bg-black" data-color="black"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-red-500" data-color="#ef4444"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-blue-500" data-color="#3b82f6"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-green-500" data-color="#22c55e"></button>
+                            <button class="color-btn w-6 h-6 rounded-full bg-orange-500" data-color="#f97316"></button>
+                            <input type="color" value="${item.color}" class="color-picker w-8 h-8 p-0 border-none rounded-full cursor-pointer">
+                        </div>
+                    </td>
+                    <td class="p-2 align-middle text-center">
+                        <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors">消去</button>
+                    </td>
+                `;
+                foodList.appendChild(tr);
+            });
+        }
+        updateAutoText();
+    };
 
-// --- CRUD orchestration (server first, fallback local) ---
-async function initData(){
-  // FRIDGE must be set
-  try{
-    const data = await apiFetchItems(FRIDGE);
-    items = Array.isArray(data.items)? data.items : [];
-    serverVersion = data.version || null;
-    saveLocal();
-  }catch(e){
-    items = loadLocal();
-  }
-  renderItems();
-}
+    // 自動作成文章を更新する
+    const updateAutoText = () => {
+        let text = "【冷蔵庫・冷凍庫の中身リスト】\n";
+        const sortedItems = [...foodItems].sort((a, b) => {
+            if (a.expiry === b.expiry) return 0;
+            if (!a.expiry) return 1;
+            if (!b.expiry) return -1;
+            return new Date(a.expiry) - new Date(b.expiry);
+        });
+        
+        sortedItems.forEach(item => {
+            if (item.name) {
+                const amountValue = parseInt(item.amount, 10);
+                const amountText = amountValue <= 33 ? '少' : amountValue <= 66 ? '中' : '多';
+                const expiryText = item.expiry ? `${item.expiry.replace(/-/g, '/')}まで` : '期限未設定';
+                const purchaseText = item.purchaseDate ? `${item.purchaseDate.replace(/-/g, '/')}購入` : '';
+                text += `・${item.name} | ${amountText} | ${expiryText} | ${purchaseText}\n`;
+            }
+        });
+        autoTextArea.value = text;
+    };
+    
+    // --- イベントハンドラ ---
 
-async function addItem(item){
-  // optimistic local add
-  items.unshift(item);
-  saveLocal();
-  renderItems();
-  try{
-    const resp = await apiAddItem(FRIDGE, item, serverVersion);
-    if(resp.status === 200 && resp.body && resp.body.ok){
-      const fresh = await apiFetchItems(FRIDGE);
-      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-    }else if(resp.status === 409){
-      const fresh = await apiFetchItems(FRIDGE);
-      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-      alert('別の変更があります。最新データを反映しました。');
-    }
-  }catch(e){
-    // keep local
-  }
-}
+    // 項目追加ボタン
+    addItemBtn.addEventListener('click', () => {
+        const newItem = {
+            id: Date.now(),
+            name: '',
+            amount: 50,
+            expiry: '',
+            purchaseDate: '',
+            color: '#000000'
+        };
+        foodItems.unshift(newItem); // 先頭に追加
+        renderList();
+        saveData();
+    });
 
-async function updateItem(item){
-  const idx = items.findIndex(i=>i.id===item.id);
-  if(idx>-1){ items[idx]=item; saveLocal(); renderItems(); }
-  try{
-    const resp = await apiUpdateItem(FRIDGE, item, serverVersion);
-    if(resp.status===200 && resp.body && resp.body.ok){
-      const fresh = await apiFetchItems(FRIDGE);
-      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-    }else if(resp.status===409){
-      const fresh = await apiFetchItems(FRIDGE);
-      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-      alert('競合が発生しました。最新データに更新しました。');
-    }
-  }catch(e){}
-}
+    // 文章コピーボタン
+    copyTextBtn.addEventListener('click', () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(autoTextArea.value).then(() => {
+                alert('文章をコピーしました。');
+            }).catch(err => {
+                alert('コピーに失敗しました。');
+            });
+        } else {
+            autoTextArea.select();
+            document.execCommand('copy');
+            alert('文章をコピーしました。');
+        }
+    });
 
-async function deleteItem(id){
-  // optimistic local remove
-  items = items.filter(i=>i.id!==id); saveLocal(); renderItems();
-  try{
-    const latest = await apiFetchItems(FRIDGE);
-    const resp = await apiDeleteItem(FRIDGE, id, latest.version);
-    if(resp.status===200 && resp.body && resp.body.ok){
-      const fresh = await apiFetchItems(FRIDGE);
-      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-    }else if(resp.status===409){
-      const fresh = await apiFetchItems(FRIDGE);
-      items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-      alert('競合が発生しました。最新データに更新しました。');
-    }else{
-      // if failed, local already removed; could re-fetch
-    }
-  }catch(e){}
-}
+    // 期限の短い順に並べるボタン
+    sortByExpiryBtn.addEventListener('click', () => {
+        foodItems.sort((a, b) => {
+            if (a.expiry === b.expiry) return 0;
+            if (!a.expiry) return 1;
+            if (!b.expiry) return -1;
+            return new Date(a.expiry) - new Date(b.expiry);
+        });
+        renderList();
+        saveData();
+    });
 
-// --- UI handlers ---
-function handleAddItem(){
-  const newItem = {
-    id: uuidLike(),
-    name: '',
-    count: '1',
-    amount: 50,
-    expiryDate: '',
-    bestByDate: '',
-    purchaseDate: new Date().toISOString().split('T')[0],
-    color: '#1f2937'
-  };
-  addItem(newItem);
-}
+    // すべて消去ボタン
+    clearAllBtn.addEventListener('click', () => {
+        if (confirm('すべての項目を消去します。よろしいですか？')) {
+            foodItems = [];
+            renderList();
+            saveData();
+        }
+    });
 
-function handleSort(){
-  items.sort((a,b)=>{
-    const da = a.expiryDate||a.bestByDate||'';
-    const db = b.expiryDate||b.bestByDate||'';
-    if(!da && !db) return 0;
-    if(!da) return 1;
-    if(!db) return -1;
-    return new Date(da) - new Date(db);
-  });
-  saveLocal(); renderItems();
-}
+    // PNG画像で保存ボタン
+    saveAsPngBtn.addEventListener('click', () => {
+        // html2canvasライブラリを使用してリストを画像に変換
+        html2canvas(listContainer, {
+            backgroundColor: '#ffffff',
+            scale: 2,
+            useCORS: true
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = `food-stock-list-${new Date().toISOString().slice(0,10)}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }).catch(err => {
+            console.error('PNG保存に失敗しました:', err);
+            alert('画像の保存に失敗しました。');
+        });
+    });
 
-function handleSavePng(){
-  const container = document.getElementById('food-stock-list');
-  if(!container || typeof html2canvas==='undefined') return alert('キャプチャ機能が利用できません');
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(b=>b.classList.add('no-hover'));
-  html2canvas(container, { scale:2, backgroundColor:'#f8fafc' }).then(canvas=>{
-    const a = document.createElement('a');
-    a.download = `reizouko-${new Date().toISOString().split('T')[0]}.png`;
-    a.href = canvas.toDataURL('image/png');
-    a.click();
-    buttons.forEach(b=>b.classList.remove('no-hover'));
-  }).catch(err=>{
-    buttons.forEach(b=>b.classList.remove('no-hover'));
-    console.error(err);
-    alert('キャプチャに失敗しました');
-  });
-}
+    // X(旧Twitter)で共有ボタン
+    shareTwitterBtn.addEventListener('click', () => {
+        const text = encodeURIComponent(autoTextArea.value + "\n#食品管理 #フードストック");
+        window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+    });
 
-function handleClearAll(){
-  if(!confirm('本当にすべての項目を消去しますか？この操作は元に戻せません。')) return;
-  // attempt server clear by deleting each
-  (async ()=>{
-    const toDelete = items.map(i=>i.id);
-    items = []; saveLocal(); renderItems();
-    try{
-      for(const id of toDelete){
-        await apiDeleteItem(FRIDGE, id, serverVersion).catch(()=>{});
-      }
-      const fresh = await apiFetchItems(FRIDGE); items = fresh.items; serverVersion = fresh.version; saveLocal(); renderItems();
-    }catch(e){}
-  })();
-}
+    // LINEで共有ボタン
+    shareLineBtn.addEventListener('click', () => {
+        const text = encodeURIComponent(autoTextArea.value);
+        window.open(`https://line.me/R/msg/text/?${text}`, '_blank');
+    });
 
-// share
-function handleShare(){
-  const shareUrl = new URL(location.href);
-  shareUrl.searchParams.set('fridge', FRIDGE);
-  copyToClipboard(shareUrl.toString());
-  alert('共有リンクをコピーしました（クリップボード）');
-}
+    // 今日の日付をYYYY-MM-DD形式で取得
+    const getTodayDate = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    };
 
-// color modal
-let colorModalOpenFor = null;
-function openColorModal(id){
-  colorModalOpenFor = id;
-  const item = items.find(i=>i.id===id);
-  const picker = document.getElementById('color-picker');
-  if(picker && item) picker.value = item.color || '#1f2937';
-  document.getElementById('color-modal').style.display = 'flex';
-}
-function closeColorModal(){ document.getElementById('color-modal').style.display = 'none'; colorModalOpenFor = null; }
-function confirmColorSelection(){
-  const picker = document.getElementById('color-picker');
-  if(!colorModalOpenFor || !picker) return closeColorModal();
-  const idx = items.findIndex(i=>i.id===colorModalOpenFor);
-  if(idx>-1){ items[idx].color = picker.value; saveLocal(); renderItems(); updateItem(items[idx]); }
-  closeColorModal();
-}
+    // リスト内の入力イベントを委譲で処理
+    foodList.addEventListener('input', e => {
+        const target = e.target;
+        const tr = target.closest('tr');
+        if (!tr) return;
 
-// event delegation for table interactions
-function wireTableEvents(){
-  const tbody = document.getElementById('item-list');
-  if(!tbody) return;
-  tbody.addEventListener('input', e=>{
-    const tgt = e.target;
-    if(!tgt.dataset) return;
-    const id = tgt.dataset.id; const key = tgt.dataset.key;
-    if(!id || !key) return;
-    const idx = items.findIndex(i=>i.id===id);
-    if(idx === -1) return;
-    if(key === 'amount') items[idx][key] = Number(tgt.value);
-    else items[idx][key] = tgt.value;
-    saveLocal(); renderItems();
-    // auto-set purchaseDate when user fills name and purchaseDate empty
-    if(key === 'name' && (!items[idx].purchaseDate || items[idx].purchaseDate==='')){
-      items[idx].purchaseDate = new Date().toISOString().split('T')[0];
-    }
-    updateItem(items[idx]);
-  });
+        const id = Number(tr.dataset.id);
+        const item = foodItems.find(i => i.id === id);
+        if (!item) return;
+        
+        const className = target.className;
 
-  tbody.addEventListener('change', e=>{
-    const tgt = e.target;
-    if(tgt.classList.contains('date-input')){
-      const id = tgt.dataset.id; const key = tgt.dataset.key;
-      const idx = items.findIndex(i=>i.id===id); if(idx>-1){
-        items[idx][key] = tgt.value;
-        saveLocal(); renderItems(); updateItem(items[idx]);
-      }
-    }
-  });
+        if (className.includes('food-name-input')) {
+            item.name = target.value;
+            // 食品名が入力され、かつ購入日が空欄の場合に今日の日付を自動入力
+            const purchaseInput = tr.querySelector('.purchase-date-input');
+            if (item.name && !purchaseInput.value) {
+                purchaseInput.value = getTodayDate();
+                item.purchaseDate = purchaseInput.value;
+            }
+        } else if (className.includes('amount-slider')) {
+            item.amount = target.value;
+        } else if (className.includes('expiry-date-input')) {
+            item.expiry = target.value;
+        } else if (className.includes('purchase-date-input')) {
+            item.purchaseDate = target.value;
+        } else if (className.includes('color-picker')) {
+            item.color = target.value;
+            tr.querySelector('.food-name-input').style.color = item.color;
+        }
 
-  tbody.addEventListener('click', e=>{
-    const btn = e.target.closest('button');
-    if(!btn) return;
-    if(btn.classList.contains('delete-item')){ const id = btn.dataset.id; deleteItem(id); }
-    else if(btn.classList.contains('open-color-picker')) openColorModal(btn.dataset.id);
-  });
+        saveData();
+        updateAutoText();
+    });
 
-  // make text inputs editable on click/tap (already native), ensure purchaseDate auto-set on click if needed
-  tbody.addEventListener('focusin', e=>{
-    const tgt = e.target;
-    if(tgt.classList.contains('purchase-date')){
-      const id = tgt.dataset.id;
-      const idx = items.findIndex(i=>i.id===id);
-      if(idx>-1 && (!items[idx].purchaseDate || items[idx].purchaseDate==='')){
-        items[idx].purchaseDate = new Date().toISOString().split('T')[0];
-        saveLocal(); renderItems();
-      }
-    }
-  });
-}
+    // リスト内のクリックイベントを委譲で処理
+    foodList.addEventListener('click', e => {
+        const target = e.target;
+        const tr = target.closest('tr');
+        if (!tr) return;
 
-// init UI wiring
-document.addEventListener('DOMContentLoaded', ()=>{
-  // determine FRIDGE id
-  const fromUrl = qs('fridge');
-  if(fromUrl){ FRIDGE = fromUrl; }
-  else {
-    FRIDGE = uuidLike();
-    pushFridgeToUrl(FRIDGE);
-  }
+        const id = Number(tr.dataset.id);
 
-  // wire top controls
-  document.getElementById('add-item-btn')?.addEventListener('click', handleAddItem);
-  document.getElementById('sort-by-expiry-btn')?.addEventListener('click', handleSort);
-  document.getElementById('save-png-btn')?.addEventListener('click', handleSavePng);
-  document.getElementById('clear-all-btn')?.addEventListener('click', handleClearAll);
-  document.getElementById('share-button')?.addEventListener('click', handleShare);
-
-  // color modal
-  document.getElementById('confirm-color-btn')?.addEventListener('click', confirmColorSelection);
-  document.getElementById('cancel-color-btn')?.addEventListener('click', closeColorModal);
-  document.querySelectorAll('.color-box').forEach(box=>box.addEventListener('click', ()=> document.getElementById('color-picker').value = box.dataset.color));
-  window.addEventListener('click', e=>{
-    if(e.target === document.getElementById('color-modal')) closeColorModal();
-    if(e.target === document.getElementById('confirm-modal')) document.getElementById('confirm-modal').style.display='none';
-  });
-
-  // share button visibility (show when FRIDGE present)
-  const shareContainer = document.getElementById('share-container');
-  if(shareContainer) shareContainer.classList.remove('hidden');
-
-  wireTableEvents();
-  initData();
+        if (target.classList.contains('delete-btn')) {
+            if (confirm('この項目を消去しますか？')) {
+                foodItems = foodItems.filter(item => item.id !== id);
+                renderList();
+                saveData();
+            }
+        } else if (target.classList.contains('color-btn')) {
+            const color = target.dataset.color;
+            const item = foodItems.find(i => i.id === id);
+            if (item) {
+                item.color = color;
+                tr.querySelector('.food-name-input').style.color = color;
+                tr.querySelector('.color-picker').value = color;
+                saveData();
+                updateAutoText();
+            }
+        } else if (target.classList.contains('purchase-date-input') && !target.value) {
+            // 購入日欄が空の時にクリックされたら今日の日付を入力
+            const item = foodItems.find(i => i.id === id);
+            target.value = getTodayDate();
+            if (item) {
+                item.purchaseDate = target.value;
+                saveData();
+                updateAutoText();
+            }
+        }
+    });
+    
+    // --- 初期化処理 ---
+    loadData();
+    renderList();
 });
