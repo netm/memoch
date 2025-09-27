@@ -1,111 +1,92 @@
 // script.js
 let data = [];
-let printItems = [];
+let printList = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("./datahijou.json")
-    .then(res => {
-      if (!res.ok) throw new Error("JSON読み込みエラー: " + res.status);
-      return res.json();
-    })
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('datahijou.json')
+    .then(res => res.json())
     .then(json => {
       data = json;
-      renderOverallRanking();
+      renderShelfLifeRanking();
       renderCategoryRanking();
-    })
-    .catch(err => console.error(err));
+      setupCalculator();
+      renderPrintList();
+    });
 });
 
-function renderOverallRanking() {
-  const sorted = data.slice().sort((a, b) => b.shelfLife - a.shelfLife);
-  let html = `<table>
-    <thead><tr><th>順位</th><th>商品名</th><th>保存年数</th></tr></thead><tbody>`;
-  sorted.slice(0, 10).forEach((item, i) => {
-    html += `<tr>
-      <td>${i + 1}</td>
-      <td>${item.name}</td>
-      <td>${item.shelfLife}年</td>
-    </tr>`;
+function renderShelfLifeRanking() {
+  const container = document.getElementById('shelfLifeRanking');
+  const sorted = [...data].sort((a, b) => b.shelfLifeYears - a.shelfLifeYears);
+  let html = '<h2>保存年数ランキング</h2><table><thead><tr><th>順位</th><th>製品名</th><th>保存年数</th></tr></thead><tbody>';
+  sorted.forEach((item, i) => {
+    html += `<tr><td>${i+1}</td><td>${item.name}</td><td>${item.shelfLifeYears}年</td></tr>`;
   });
-  html += `</tbody></table>`;
-  document.getElementById("overallRanking").innerHTML = html;
+  html += '</tbody></table>';
+  container.innerHTML = html;
 }
 
 function renderCategoryRanking() {
-  const categories = ["アルファ米", "パン缶", "缶詰", "レトルト食品"];
-  let html = "";
+  const container = document.getElementById('categoryRanking');
+  const categories = [...new Set(data.map(d => d.category))];
+  let html = '<h2>カテゴリ別ランキング</h2>';
   categories.forEach(cat => {
-    const list = data
-      .filter(i => i.category === cat)
-      .sort((a, b) => b.shelfLife - a.shelfLife)
-      .slice(0, 5);
-    if (list.length) {
-      html += `<h3>${cat}トップ5</h3><table>
-        <thead><tr><th>順位</th><th>商品名</th><th>保存年数</th></tr></thead><tbody>`;
-      list.forEach((item, i) => {
-        html += `<tr>
-          <td>${i + 1}</td>
-          <td>${item.name}</td>
-          <td>${item.shelfLife}年</td>
-        </tr>`;
-      });
-      html += `</tbody></table>`;
-    }
+    const items = data.filter(d => d.category === cat).sort((a, b) => b.shelfLifeYears - a.shelfLifeYears);
+    html += `<h3>${cat}</h3><table><thead><tr><th>順位</th><th>製品名</th><th>保存年数</th></tr></thead><tbody>`;
+    items.forEach((item, i) => {
+      html += `<tr><td>${i+1}</td><td>${item.name}</td><td>${item.shelfLifeYears}年</td></tr>`;
+    });
+    html += '</tbody></table>';
   });
-  document.getElementById("categoryRanking").innerHTML = html;
+  container.innerHTML = html;
 }
 
-function calcAndSuggest() {
-  const people = parseInt(document.getElementById("people").value, 10);
-  const days = parseInt(document.getElementById("days").value, 10);
-  if (isNaN(people) || people < 1 || isNaN(days) || days < 1) {
-    alert("家族人数と備蓄日数は1以上の整数で入力してください。");
-    return;
-  }
-
-  const waterPerDay = 3;
-  const ricePerDay = 3;
-  const sidePerDay = 2;
-
-  const totalWater = people * days * waterPerDay;
-  const totalRice = people * days * ricePerDay;
-  const totalSide = people * days * sidePerDay;
-
-  const waterItems = data.filter(i => i.category.includes("飲料"));
-  const riceItems = data.filter(i =>
-    ["アルファ米", "パン缶", "パン", "即席ご飯"].includes(i.category)
-  );
-  const sideItems = data.filter(i =>
-    ["缶詰", "レトルト食品", "栄養補助食品"].includes(i.category)
-  );
-
-  let html = "<form id='candidateForm'><ul>";
-  if (waterItems.length) {
-    html += `<li><label><input type="checkbox" value="水 ${totalWater}L（2Lペットボトル 約${Math.ceil(
-      totalWater / 2
-    )}本）"> 水: ${totalWater}L → 例: ${waterItems[0].name}</label></li>`;
-  }
-  if (riceItems.length) {
-    html += `<li><label><input type="checkbox" value="主食 ${totalRice}食分"> 主食: ${totalRice}食分 → 例: ${riceItems[0].name}</label></li>`;
-  }
-  if (sideItems.length) {
-    html += `<li><label><input type="checkbox" value="副食 約${totalSide}品"> 副食: 約${totalSide}品 → 例: ${sideItems[0].name}</label></li>`;
-  }
-  html += "</ul><button type='button' onclick='addToPrintList()'>印刷リストに追加</button></form>";
-  document.getElementById("suggestList").innerHTML = html;
+function setupCalculator() {
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    const family = parseInt(document.getElementById('familyCount').value) || 1;
+    const days = parseInt(document.getElementById('daysCount').value) || 1;
+    const req = family * days;
+    renderCandidates(req);
+  });
 }
 
-function addToPrintList() {
-  const checked = document.querySelectorAll("#candidateForm input[type=checkbox]:checked");
-  checked.forEach(cb => printItems.push(cb.value));
-  renderPrintList();
+function renderCandidates(req) {
+  const container = document.getElementById('candidateSection');
+  let html = `<h2>候補アイテム</h2><p>必要量：${req} パック</p><table><thead><tr><th>製品名</th><th>必要数</th><th>操作</th></tr></thead><tbody>`;
+  data.forEach(item => {
+    html += `<tr><td>${item.name}</td><td>${req}</td><td><button class="addBtn" data-name="${item.name}" data-req="${req}">追加</button></td></tr>`;
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+  document.querySelectorAll('.addBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name;
+      const count = parseInt(btn.dataset.req);
+      if (!printList.find(i => i.name === name)) {
+        printList.push({ name, count });
+        renderPrintList();
+      }
+    });
+  });
 }
 
 function renderPrintList() {
-  let html = "<ul>";
-  printItems.forEach(item => {
-    html += `<li>${item}</li>`;
+  const container = document.getElementById('printListSection');
+  let html = '<h2>印刷リスト</h2>';
+  if (printList.length === 0) {
+    html += '<p>リストは空です。</p>';
+  } else {
+    html += '<ul>';
+    printList.forEach(item => {
+      html += `<li>${item.name} × ${item.count}</li>`;
+    });
+    html += '</ul><button id="printBtn">リストを印刷</button> <button id="copyBtn">リストをコピー</button>';
+  }
+  container.innerHTML = html;
+  const printBtn = document.getElementById('printBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  if (printBtn) printBtn.addEventListener('click', () => window.print());
+  if (copyBtn) copyBtn.addEventListener('click', () => {
+    const text = printList.map(i => `${i.name} × ${i.count}`).join('\n');
+    navigator.clipboard.writeText(text).then(() => alert('リストをコピーしました'));
   });
-  html += "</ul>";
-  document.getElementById("printList").innerHTML = html;
 }

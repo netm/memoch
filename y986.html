@@ -3,43 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="家庭向け非常食データベース。保存年数ランキング、カテゴリ別ランキング、必要量計算ツール、印刷リスト機能で災害時の備蓄をサポートします。">
-  <meta name="keywords" content="非常食, 保存食, 賞味期限, 備蓄, 防災, 家庭用, ランキング, 計算ツール">
+  <meta name="keywords" content="非常食,保存食,賞味期限,備蓄,防災,家庭用,ランキング,計算ツール">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>非常食データベースと保存年数ランキング</title>
   <link rel="stylesheet" href="/css/y986.css">
 </head>
 <body>
-  <header>
-    <h1>非常食データベースと保存年数ランキング</h1>
-    <p>家庭での防災備蓄に役立つ非常食情報をまとめました。保存年数ランキングやカテゴリ別ランキング、必要量計算ツールで最適な備蓄計画を立てましょう。</p>
-  </header>
-  <main>
-    <section>
-      <h2>保存年数ランキング</h2>
-      <div id="overallRanking"></div>
-    </section>
-    <section>
-      <h2>カテゴリ別ランキング</h2>
-      <div id="categoryRanking"></div>
-    </section>
-    <section>
+  <div class="container">
+    <header>
+      <h1>非常食データベース</h1>
+    </header>
+    <section id="shelfLifeRanking"></section>
+    <section id="categoryRanking"></section>
+    <section id="calculator">
       <h2>必要量計算ツール</h2>
-      <label>家族人数: <input type="number" id="people" value="3" min="1"></label><br>
-      <label>備蓄日数: <input type="number" id="days" value="3" min="1"></label><br>
-      <button onclick="calcAndSuggest()">計算して候補を表示</button>
-      <div id="suggestList"></div>
+      <div>
+        <label for="familyCount">家族人数:</label>
+        <input type="number" id="familyCount" min="1" value="1">人
+        <label for="daysCount">備蓄日数:</label>
+        <input type="number" id="daysCount" min="1" value="1">日
+        <button id="calcBtn">計算</button>
+      </div>
     </section>
-    <section>
-      <h2>印刷リスト</h2>
-      <div id="printList"></div>
-      <button onclick="window.print()">このリストを印刷</button>
+    <section id="candidateSection"></section>
+    <section id="printListSection"></section>
+    <section id="summary">
+      <h2>まとめ</h2>
+      <p>非常食の保存年数やカテゴリ別ランキング、必要量計算ツールを活用して、家庭に最適な防災備蓄を整えましょう。</p>
     </section>
-  </main>
-  <footer>
-    <h3>まとめ</h3>
-    <p>非常食の保存年数やカテゴリ別ランキング、必要量計算ツールを活用して、家庭に最適な防災備蓄を整えましょう。</p>
-    <p><a href="/">自分のサイトに戻る</a></p>
-  </footer>
+    <footer>
+      <a href="https://your-site-url.com">自分のサイトに戻る</a>
+    </footer>
+  </div>
   <script src="/js/y986.js"></script>
 </body>
 </html>
