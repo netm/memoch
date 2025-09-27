@@ -5,16 +5,59 @@ let printItems = [];
 // JSON読み込み
 fetch("datahijou.json")
   .then(res => res.json())
-  .then(json => { data = json; });
+  .then(json => {
+    data = json;
+    renderOverallRanking();
+    renderCategoryRanking();
+  })
+  .catch(err => console.error(err));
+
+function renderOverallRanking() {
+  const sorted = [...data].sort((a, b) => b.shelfLife - a.shelfLife);
+  let html = `<table>
+    <thead><tr><th>順位</th><th>商品名</th><th>保存年数</th></tr></thead>
+    <tbody>`;
+  sorted.slice(0, 10).forEach((item, i) => {
+    html += `<tr>
+      <td>${i + 1}</td>
+      <td>${item.name}</td>
+      <td>${item.shelfLife}年</td>
+    </tr>`;
+  });
+  html += `</tbody></table>`;
+  document.getElementById("overallRanking").innerHTML = html;
+}
+
+function renderCategoryRanking() {
+  const categories = ["アルファ米", "パン缶", "缶詰", "レトルト食品"];
+  let html = "";
+  categories.forEach(cat => {
+    const list = data
+      .filter(i => i.category === cat)
+      .sort((a, b) => b.shelfLife - a.shelfLife)
+      .slice(0, 5);
+    if (list.length) {
+      html += `<h3>${cat}トップ5</h3><table>
+        <thead><tr><th>順位</th><th>商品名</th><th>保存年数</th></tr></thead><tbody>`;
+      list.forEach((item, i) => {
+        html += `<tr>
+          <td>${i + 1}</td>
+          <td>${item.name}</td>
+          <td>${item.shelfLife}年</td>
+        </tr>`;
+      });
+      html += `</tbody></table>`;
+    }
+  });
+  document.getElementById("categoryRanking").innerHTML = html;
+}
 
 function calcAndSuggest() {
   const people = parseInt(document.getElementById("people").value);
   const days = parseInt(document.getElementById("days").value);
-
-  const waterPerDay = 3; // L
-  const ricePerDay = 3; // 食
-  const sidePerDay = 2; // 品
-
+  const waterPerDay = 3;
+  const ricePerDay = 3;
+  const sidePerDay = 2;
   const totalWater = people * days * waterPerDay;
   const totalRice = people * days * ricePerDay;
   const totalSide = people * days * sidePerDay;
@@ -24,33 +67,28 @@ function calcAndSuggest() {
   const sideItems = data.filter(i => ["缶詰","レトルト食品","栄養補助食品"].includes(i.category));
 
   let html = "<form id='candidateForm'><ul>";
-  if (waterItems.length > 0) {
+  if (waterItems.length) {
     html += `<li><label><input type="checkbox" value="水 ${totalWater}L（2Lペットボトル 約${Math.ceil(totalWater/2)}本）"> 水: ${totalWater}L → 例: ${waterItems[0].name}</label></li>`;
   }
-  if (riceItems.length > 0) {
+  if (riceItems.length) {
     html += `<li><label><input type="checkbox" value="主食 ${totalRice}食分"> 主食: ${totalRice}食分 → 例: ${riceItems[0].name}</label></li>`;
   }
-  if (sideItems.length > 0) {
+  if (sideItems.length) {
     html += `<li><label><input type="checkbox" value="副食 約${totalSide}品"> 副食: 約${totalSide}品 → 例: ${sideItems[0].name}</label></li>`;
   }
   html += "</ul><button type='button' onclick='addToPrintList()'>印刷リストに追加</button></form>";
-
   document.getElementById("suggestList").innerHTML = html;
 }
 
 function addToPrintList() {
   const checkboxes = document.querySelectorAll("#candidateForm input[type=checkbox]:checked");
-  checkboxes.forEach(cb => {
-    printItems.push(cb.value);
-  });
+  checkboxes.forEach(cb => printItems.push(cb.value));
   renderPrintList();
 }
 
 function renderPrintList() {
   let html = "<ul>";
-  printItems.forEach(item => {
-    html += `<li>${item}</li>`;
-  });
+  printItems.forEach(item => html += `<li>${item}</li>`);
   html += "</ul>";
   document.getElementById("printList").innerHTML = html;
 }

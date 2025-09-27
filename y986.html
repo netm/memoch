@@ -16,25 +16,21 @@
   <main>
     <section>
       <h2>保存年数ランキング</h2>
-      <p>保存期間が長い非常食をランキング形式で紹介します。長期保存が可能な商品を選ぶことで、安心して備蓄できます。</p>
       <div id="overallRanking"></div>
     </section>
     <section>
       <h2>カテゴリ別ランキング</h2>
-      <p>アルファ米、パン缶、缶詰、レトルト食品などカテゴリごとに保存年数が長い商品をランキング表示します。</p>
       <div id="categoryRanking"></div>
     </section>
     <section>
       <h2>必要量計算ツール</h2>
-      <p>家族人数と備蓄日数を入力すると、水や主食、副食の必要量を自動計算し、商品候補を提示します。</p>
-      <label>家族人数: <input type="number" id="people" value="3"></label><br>
-      <label>備蓄日数: <input type="number" id="days" value="3"></label><br>
+      <label>家族人数: <input type="number" id="people" value="3" min="1"></label><br>
+      <label>備蓄日数: <input type="number" id="days" value="3" min="1"></label><br>
       <button onclick="calcAndSuggest()">計算して候補を表示</button>
       <div id="suggestList"></div>
     </section>
     <section>
       <h2>印刷リスト</h2>
-      <p>チェックした商品や計算結果を印刷リストに追加し、ブラウザの印刷機能で紙やPDFに出力できます。</p>
       <div id="printList"></div>
       <button onclick="window.print()">このリストを印刷</button>
     </section>
