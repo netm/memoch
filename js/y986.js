@@ -1,7 +1,6 @@
-// script.js（修正版）
+// script.js
 
 let data = [];
-let currentView = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('datahijou.json')
@@ -9,69 +8,73 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(json => {
       data = json;
       bindNav();
-      showShelfLifeRanking();
+      showShelfLife();
     })
-    .catch(err => console.error(err));
+    .catch(console.error);
 });
 
 function bindNav() {
-  document.getElementById('btnShelfLife').onclick = showShelfLifeRanking;
-  document.getElementById('btnCategory').onclick = showCategoryRanking;
-  document.getElementById('btnCalc').onclick = showCalcTool;
-  document.getElementById('btnPrintView').onclick = showPrintListView;
+  document.getElementById('btnShelfLife').addEventListener('click', showShelfLife);
+  document.getElementById('btnCategory').addEventListener('click', showCategory);
+  document.getElementById('btnCalc').addEventListener('click', showCalc);
+  document.getElementById('btnPrintView').addEventListener('click', showPrintList);
 
-  document.getElementById('btnAddSelected').onclick = addSelectedToPrintList;
-  document.getElementById('btnPrint').onclick = () => window.print();
-  document.getElementById('btnCopy').onclick = copyPrintList;
-  document.getElementById('btnClear').onclick = clearPrintList;
-  document.getElementById('btnSavePng').onclick = savePrintListAsPng;
-  document.getElementById('shareX').onclick = () => share('twitter');
-  document.getElementById('shareFB').onclick = () => share('facebook');
-  document.getElementById('shareLINE').onclick = () => share('line');
+  document.getElementById('btnAddSelected').addEventListener('click', addToPrintList);
+  document.getElementById('btnPrint').addEventListener('click', () => window.print());
+  document.getElementById('btnCopy').addEventListener('click', copyPrintList);
+  document.getElementById('btnClear').addEventListener('click', clearPrintList);
+  document.getElementById('btnSavePng').addEventListener('click', savePrintListAsPng);
+
+  document.getElementById('shareX').addEventListener('click', () => share('twitter'));
+  document.getElementById('shareFB').addEventListener('click', () => share('facebook'));
+  document.getElementById('shareLINE').addEventListener('click', () => share('line'));
 }
 
-function showShelfLifeRanking() {
-  currentView = 'ranking';
+function showShelfLife() {
   const main = document.getElementById('main');
   const sorted = [...data].sort((a, b) => b.shelfLifeYears - a.shelfLifeYears);
-  let html = `<h2>保存年数ランキング</h2><table><tr><th></th><th>商品名</th><th>メーカー</th><th>保存年数</th></tr>`;
+  let html = `<h2>保存年数ランキング</h2>
+    <table>
+      <tr><th></th><th>商品名</th><th>メーカー</th><th>保存年数</th></tr>`;
   sorted.forEach(item => {
-    html += `<tr>
-      <td><input type="checkbox" data-name="${item.name}"></td>
-      <td>${item.name}</td>
-      <td>${item.maker}</td>
-      <td>${item.shelfLifeYears}年</td>
-    </tr>`;
+    html += `
+      <tr>
+        <td><input type="checkbox" data-name="${item.name}"></td>
+        <td>${item.name}</td>
+        <td>${item.maker}</td>
+        <td>${item.shelfLifeYears}年</td>
+      </tr>`;
   });
   html += `</table>`;
   main.innerHTML = html;
 }
 
-function showCategoryRanking() {
-  currentView = 'category';
+function showCategory() {
   const main = document.getElementById('main');
   const byCat = data.reduce((acc, item) => {
-    (acc[item.category] = acc[item.category] || []).push(item);
+    (acc[item.category] ||= []).push(item);
     return acc;
   }, {});
   let html = `<h2>カテゴリ別ランキング</h2>`;
   for (const cat in byCat) {
     const sorted = byCat[cat].sort((a, b) => b.shelfLifeYears - a.shelfLifeYears);
-    html += `<h3>${cat}</h3><table><tr><th></th><th>商品名</th><th>保存年数</th></tr>`;
+    html += `<h3>${cat}</h3>
+      <table>
+        <tr><th></th><th>商品名</th><th>保存年数</th></tr>`;
     sorted.forEach(item => {
-      html += `<tr>
-        <td><input type="checkbox" data-name="${item.name}"></td>
-        <td>${item.name}</td>
-        <td>${item.shelfLifeYears}年</td>
-      </tr>`;
+      html += `
+        <tr>
+          <td><input type="checkbox" data-name="${item.name}"></td>
+          <td>${item.name}</td>
+          <td>${item.shelfLifeYears}年</td>
+        </tr>`;
     });
     html += `</table>`;
   }
   main.innerHTML = html;
 }
 
-function showCalcTool() {
-  currentView = 'calc';
+function showCalc() {
   const main = document.getElementById('main');
   main.innerHTML = `
     <h2>必要量計算ツール</h2>
@@ -80,18 +83,27 @@ function showCalcTool() {
     <button id="btnDoCalc">計算</button>
     <div id="calcResult"></div>
   `;
-  document.getElementById('btnDoCalc').onclick = doCalculation;
+  document.getElementById('btnDoCalc').addEventListener('click', doCalculation);
 }
 
 function doCalculation() {
   const p = +document.getElementById('inpPersons').value;
   const d = +document.getElementById('inpDays').value;
-  const water = 2 * p * d;
-  const staples = data.filter(i => i.category === 'アルファ米').slice(0, p * d);
-  const sides = data.filter(i => ['缶詰', 'レトルト食品'].includes(i.category)).slice(0, p * d);
+  const waterL = 2 * p * d;
+
+  // 主食：アルファ米から上位p*d件、副食：缶詰＋レトルトから上位p*d件
+  const staples = data
+    .filter(i => i.category === 'アルファ米')
+    .sort((a, b) => b.shelfLifeYears - a.shelfLifeYears)
+    .slice(0, p * d);
+
+  const sides = data
+    .filter(i => ['缶詰', 'レトルト食品'].includes(i.category))
+    .sort((a, b) => b.shelfLifeYears - a.shelfLifeYears)
+    .slice(0, p * d);
 
   let html = `<h3>結果</h3>
-    <label><input type="checkbox" data-name="水 ${water}L">水 ${water}L</label>
+    <label><input type="checkbox" data-name="水 ${waterL}L">水 ${waterL}L</label>
     <h4>主食候補</h4>`;
   staples.forEach(i => {
     html += `<label><input type="checkbox" data-name="${i.name}">${i.name}</label>`;
@@ -100,66 +112,68 @@ function doCalculation() {
   sides.forEach(i => {
     html += `<label><input type="checkbox" data-name="${i.name}">${i.name}</label>`;
   });
+
   document.getElementById('calcResult').innerHTML = html;
 }
 
-function showPrintListView() {
-  currentView = 'print';
+function showPrintList() {
   const main = document.getElementById('main');
   main.innerHTML = `<h2>印刷リスト</h2><div id="printList"></div>`;
   loadPrintList();
 }
 
-function addSelectedToPrintList() {
-  const printListEl = document.getElementById('printList');
-  if (!printListEl) {
-    alert('先に「印刷リスト」を開いてください');
+function addToPrintList() {
+  const printEl = document.getElementById('printList');
+  if (!printEl) {
+    alert('「印刷リスト」ビューを先に開いてください。');
     return;
   }
+
   const checked = document.querySelectorAll('#main input[type="checkbox"]:checked');
   const saved = JSON.parse(localStorage.getItem('printList') || '[]');
+
   checked.forEach(cb => {
     const name = cb.dataset.name;
     if (!saved.includes(name)) {
       saved.push(name);
       const div = document.createElement('div');
       div.textContent = name;
-      printListEl.appendChild(div);
+      printEl.appendChild(div);
     }
     cb.checked = false;
   });
+
   localStorage.setItem('printList', JSON.stringify(saved));
 }
 
 function loadPrintList() {
-  const printListEl = document.getElementById('printList');
-  if (!printListEl) return;
-  printListEl.innerHTML = '';
+  const printEl = document.getElementById('printList');
+  printEl.innerHTML = '';
   const saved = JSON.parse(localStorage.getItem('printList') || '[]');
   saved.forEach(name => {
     const div = document.createElement('div');
     div.textContent = name;
-    printListEl.appendChild(div);
+    printEl.appendChild(div);
   });
 }
 
 function copyPrintList() {
-  const printListEl = document.getElementById('printList');
-  if (!printListEl) return;
-  const text = Array.from(printListEl.children).map(el => el.textContent).join('\n');
+  const printEl = document.getElementById('printList');
+  const text = Array.from(printEl.children)
+    .map(div => div.textContent)
+    .join('\n');
   navigator.clipboard.writeText(text);
 }
 
 function clearPrintList() {
   localStorage.removeItem('printList');
-  const printListEl = document.getElementById('printList');
-  if (printListEl) printListEl.innerHTML = '';
+  const printEl = document.getElementById('printList');
+  if (printEl) printEl.innerHTML = '';
 }
 
 function savePrintListAsPng() {
-  const printListEl = document.getElementById('printList');
-  if (!printListEl) return;
-  html2canvas(printListEl).then(canvas => {
+  const printEl = document.getElementById('printList');
+  html2canvas(printEl).then(canvas => {
     const a = document.createElement('a');
     a.href = canvas.toDataURL();
     a.download = 'print_list.png';
