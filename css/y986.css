@@ -36,7 +36,7 @@ nav {
 }
 nav button {
   padding: 10px 14px;
-  color: #fff;
+  color: #3a3a3a;
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
@@ -57,7 +57,7 @@ nav button:hover {
 .controls button {
   padding: 8px 12px;
   font-size: .9rem;
-  color: #fff;
+  color: #3a3a3a;
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
