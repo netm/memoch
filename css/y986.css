@@ -3,11 +3,14 @@
   --font: 'Noto Sans JP', sans-serif;
   --text: #333;
   --bg: #fafafa;
+  --primary: #346751;
   --btn-radius: 6px;
   --transition: .3s ease;
 }
 * {
-  margin: 0; padding: 0; box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
   font-family: var(--font);
@@ -20,7 +23,7 @@ header {
   margin-bottom: 20px;
 }
 header h1 {
-  color: #2c3e50;
+  color: var(--primary);
   font-size: 2rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
@@ -32,7 +35,6 @@ nav {
   margin-bottom: 20px;
 }
 nav button {
-  --hue: 200;
   padding: 10px 14px;
   color: #fff;
   border: none;
@@ -87,6 +89,12 @@ main li {
   border-radius: 4px;
   margin-bottom: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  line-height: 1.4;
+}
+main li strong {
+  display: inline-block;
+  width: 80px;
+  color: var(--primary);
 }
 #cache {
   display: none;
@@ -111,7 +119,9 @@ main li {
   color: #065a9e;
 }
 @media (orientation: landscape) {
-  body { padding: 0; }
+  body {
+    padding: 0;
+  }
   header, nav, .controls, main {
     width: 100vw;
     margin: 0;

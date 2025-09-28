@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const main = document.getElementById('main');
   const cache = document.getElementById('cache');
   const nav = document.getElementById('nav');
-  const categories = Array.from(new Set(data.map(item => item.category)));
+  const categories = Array.from(new Set(data.map(i => i.category)));
 
-  // nav ボタン生成
+  // ナビボタン生成
   const allBtn = document.createElement('button');
   allBtn.textContent = '保存年数ランキング';
   allBtn.dataset.target = 'allList';
@@ -18,34 +18,40 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.appendChild(btn);
   });
 
-  // キャッシュ用リスト生成
-  const allList = document.createElement('ul');
-  allList.id = 'allList';
-  data.sort((a,b) => b.shelfLifeYears - a.shelfLifeYears)
-      .forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} — 保存年数: ${item.shelfLifeYears}年`;
-        allList.appendChild(li);
-      });
+  // リスト作成関数
+  function makeList(id, items) {
+    const ul = document.createElement('ul');
+    ul.id = id;
+    items.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <strong>名称:</strong> ${item.name}<br>
+        <strong>メーカー:</strong> ${item.maker}<br>
+        <strong>カテゴリ:</strong> ${item.category}<br>
+        <strong>保存期間:</strong> ${item.shelfLifeYears}年<br>
+        <strong>重さ:</strong> ${item.weight}<br>
+        <strong>アレルゲン:</strong> ${item.allergy}<br>
+        <strong>目安価格:</strong> ${item.price}
+      `;
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  // 全アイテムリスト
+  const allList = makeList('allList', data.sort((a, b) => b.shelfLifeYears - a.shelfLifeYears));
   cache.appendChild(allList);
 
+  // カテゴリ別リスト
   categories.forEach((cat, i) => {
-    const ul = document.createElement('ul');
-    ul.id = `cat-${i}`;
-    data.filter(x => x.category === cat)
-        .sort((a,b) => b.shelfLifeYears - a.shelfLifeYears)
-        .forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = `${item.name} — 保存年数: ${item.shelfLifeYears}年`;
-          ul.appendChild(li);
-        });
-    cache.appendChild(ul);
+    const items = data.filter(x => x.category === cat)
+                      .sort((a, b) => b.shelfLifeYears - a.shelfLifeYears);
+    cache.appendChild(makeList(`cat-${i}`, items));
   });
 
-  // navボタンカラーセット＆クリック処理
+  // ボタンクリック処理
   nav.querySelectorAll('button').forEach((btn, i, arr) => {
     const hue = Math.round(i * 360 / arr.length);
-    btn.style.setProperty('--hue', hue);
     btn.style.background = `linear-gradient(135deg, hsl(${hue},80%,60%), hsl(${hue},60%,70%))`;
     btn.addEventListener('click', () => {
       const tgt = btn.dataset.target;
@@ -55,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // コントロールボタン
+  // コントロール
   document.getElementById('btnPrint').onclick = () => window.print();
   document.getElementById('btnCopy').onclick = () => {
     const txt = Array.from(main.querySelectorAll('li')).map(li => li.textContent).join('\n');
@@ -71,16 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   document.getElementById('shareX').onclick = () => {
-    const url = encodeURIComponent(location.href);
-    window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank');
+    const u = encodeURIComponent(location.href);
+    window.open(`https://twitter.com/intent/tweet?url=${u}`, '_blank');
   };
   document.getElementById('shareFB').onclick = () => {
-    const url = encodeURIComponent(location.href);
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    const u = encodeURIComponent(location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${u}`, '_blank');
   };
   document.getElementById('shareLINE').onclick = () => {
-    const url = encodeURIComponent(location.href);
-    window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank');
+    const u = encodeURIComponent(location.href);
+    window.open(`https://social-plugins.line.me/lineit/share?url=${u}`, '_blank');
   };
 
   // 初期表示
