@@ -6,29 +6,45 @@
   <meta name="keywords" content="非常食,保存食,賞味期限,備蓄,防災,家庭用,ランキング,計算ツール">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>非常食データベースと保存年数ランキング</title>
-  <link rel="stylesheet" href="/css/y986.css">
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-</head>
-<body>  <header>
-    <h1>非常食データベースと保存年数ランキング</h1>
+  <link rel="stylesheet" href="/css/y986.css"></head>
+<body>
+  <header>
+    <h1>非常食リスト切替サンプル</h1>
   </header>
   <nav>
-    <button id="btnShelfLife">保存年数ランキング</button>
-    <button id="btnCategory">カテゴリ別ランキング</button>
-    <button id="btnCalc">必要量計算ツール</button>
-    <button id="btnPrintView">印刷リスト</button>
+    <button data-target="allList">保存年数ランキング</button>
+    <button data-target="alphaRice">アルファ米</button>
+    <button data-target="canBread">パン缶</button>
+    <button data-target="canned">缶詰</button>
+    <button data-target="retort">レトルト食品</button>
   </nav>
-  <div id="controls">
-    <button id="btnAddSelected">リストに追加</button>
-    <button id="btnPrint">リストを印刷</button>
-    <button id="btnCopy">リストをコピー</button>
-    <button id="btnClear">全消去</button>
-    <button id="btnSavePng">PNG画像で保存</button>
-    <button id="shareX">X</button>
-    <button id="shareFB">Facebook</button>
-    <button id="shareLINE">LINE</button>
-  </div>
   <main id="main"></main>
+  <section id="cache">
+    <ul id="allList">
+      <li>尾西のアルファ米 白飯 — 保存年数: 5年</li>
+      <li>尾西のアルファ米 五目ごはん — 保存年数: 5年</li>
+      <li>パン缶A — 保存年数: 3年</li>
+      <li>パン缶B — 保存年数: 4年</li>
+      <li>缶詰X — 保存年数: 2年</li>
+      <li>レトルト食品Y — 保存年数: 3年</li>
+    </ul>
+    <ul id="alphaRice">
+      <li>尾西のアルファ米 白飯 — 保存年数: 5年</li>
+      <li>尾西のアルファ米 五目ごはん — 保存年数: 5年</li>
+    </ul>
+    <ul id="canBread">
+      <li>パン缶A — 保存年数: 3年</li>
+      <li>パン缶B — 保存年数: 4年</li>
+    </ul>
+    <ul id="canned">
+      <li>缶詰X — 保存年数: 2年</li>
+      <li>缶詰Z — 保存年数: 1年</li>
+    </ul>
+    <ul id="retort">
+      <li>レトルト食品Y — 保存年数: 3年</li>
+      <li>レトルト食品W — 保存年数: 2年</li>
+    </ul>
+  </section>
   <footer>
     <p>このサイトは非常食の保存年数と必要量計算ツールを統合したサイトです。</p>
     <p><a href="https://あなたのサブドメイン.pages.dev">ホームに戻る</a></p>
