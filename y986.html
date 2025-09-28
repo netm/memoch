@@ -7,34 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>非常食データベースと保存年数ランキング</title>
   <link rel="stylesheet" href="/css/y986.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>非常食データベース</h1>
-    </header>
-    <section id="shelfLifeRanking"></section>
-    <section id="categoryRanking"></section>
-    <section id="calculator">
-      <h2>必要量計算ツール</h2>
-      <div>
-        <label for="familyCount">家族人数:</label>
-        <input type="number" id="familyCount" min="1" value="1">人
-        <label for="daysCount">備蓄日数:</label>
-        <input type="number" id="daysCount" min="1" value="1">日
-        <button id="calcBtn">計算</button>
-      </div>
-    </section>
-    <section id="candidateSection"></section>
-    <section id="printListSection"></section>
-    <section id="summary">
-      <h2>まとめ</h2>
-      <p>非常食の保存年数やカテゴリ別ランキング、必要量計算ツールを活用して、家庭に最適な防災備蓄を整えましょう。</p>
-    </section>
-    <footer>
-      <a href="https://your-site-url.com">自分のサイトに戻る</a>
-    </footer>
+<body>  <header>
+    <h1>非常食データベースと保存年数ランキング</h1>
+  </header>
+  <nav>
+    <button id="btnShelfLife">保存年数ランキング</button>
+    <button id="btnCategory">カテゴリ別ランキング</button>
+    <button id="btnCalc">必要量計算ツール</button>
+    <button id="btnPrintView">印刷リスト</button>
+  </nav>
+  <div id="controls">
+    <button id="btnAddSelected">リストに追加</button>
+    <button id="btnPrint">リストを印刷</button>
+    <button id="btnCopy">リストをコピー</button>
+    <button id="btnClear">全消去</button>
+    <button id="btnSavePng">PNG画像で保存</button>
+    <button id="shareX">X</button>
+    <button id="shareFB">Facebook</button>
+    <button id="shareLINE">LINE</button>
   </div>
+  <main id="main"></main>
+  <footer>
+    <p>このサイトは非常食の保存年数と必要量計算ツールを統合したサイトです。</p>
+    <p><a href="https://あなたのサブドメイン.pages.dev">ホームに戻る</a></p>
+  </footer>
   <script src="/js/y986.js"></script>
 </body>
 </html>
