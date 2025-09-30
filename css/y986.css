@@ -130,21 +130,6 @@ h2 {
   color: #274f42;
   position: relative;
 }
-
-/* h2 左丸マーカー（ガターに合わせて配置） */
-h2::before {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--gutter) + 8px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  background: rgba(52,103,81,0.95);
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
 /* h3 */
 h3 {
   font-size: 1.05rem;
