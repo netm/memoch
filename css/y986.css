@@ -1,99 +1,42 @@
-/* styles.css
-   要求: 見出し(h1/h2/h3)と段落(p)の装飾を維持しつつ、
-   PC/スマホ問わずコンテンツ横幅を画面いっぱいに広げる（フルワイド表示）
-   それ以外の既存レイアウトはなるべく元に戻す
-*/
-
+/* styles.css */
 :root {
   --font: 'Noto Sans JP', sans-serif;
   --text: #333;
-  --muted: #6b6b6b;
   --bg: #fafafa;
   --primary: #346751;
-  --primary-dark: #274f42;
-  --accent: #6c5ce7;
   --btn-radius: 6px;
-  --gutter: 28px; /* コンテンツ内での左余白（必要なら調整） */
   --transition: .3s ease;
 }
-
-/* リセット */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 全幅レイアウトの基本方針
-   header, nav, .controls, main を画面幅いっぱいに広げ、
-   内部のコンテンツは左右にガター（padding）を取って見栄えを整えます。
-*/
-header, nav, .controls, main {
-  width: 100%;
-  max-width: none;
-  box-sizing: border-box;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-}
-
-/* body の余白は最小化して画面いっぱいに */
 body {
-  padding: 10px 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  padding: 10px;
 }
-
-/* header */
 header {
   text-align: center;
   margin-bottom: 20px;
 }
-
-/* header h1（装飾維持） */
 header h1 {
   color: var(--primary);
   font-size: 2rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-  position: relative;
-  padding-left: 0.8rem;
-  margin: 0;
 }
-
-/* h1 左アクセントバー：ガターに合わせて表示 */
-header h1::before {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--gutter));
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 64%;
-  background: linear-gradient(180deg, var(--primary), rgba(52,103,81,0.75));
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(52,103,81,0.12);
-}
-
-/* nav（中央寄せを維持しつつ幅はフル） */
 nav {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
   margin-bottom: 20px;
-  padding-top: 6px;
-  padding-bottom: 6px;
 }
-
-/* nav ボタン（元スタイル） */
 nav button {
   padding: 10px 14px;
-  color: #3a3a3a;
+  color: #fff;
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
@@ -104,28 +47,22 @@ nav button:hover {
   transform: translateY(-2px);
   opacity: .9;
 }
-
-/* controls（元スタイル） */
 .controls {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
   margin: 20px 0;
-  padding-top: 6px;
-  padding-bottom: 6px;
 }
 .controls button {
   padding: 8px 12px;
   font-size: .9rem;
-  color: #3a3a3a;
+  color: #fff;
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
   transition: transform .2s, opacity var(--transition);
 }
-
-/* 個別ボタン色（元通り） */
 #btnPrint   { background: #6c5ce7; }
 #btnCopy    { background: #0984e3; }
 #btnReset   { background: #d63031; }
@@ -137,18 +74,10 @@ nav button:hover {
   transform: translateY(-1px);
   opacity: .9;
 }
-
-/* main を画面幅いっぱいに（中央寄せの max-width を解除） */
 main {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  box-sizing: border-box;
-  padding-top: 6px;
-  padding-bottom: 12px;
+  max-width: 600px;
+  margin: 0 auto;
 }
-
-/* リスト類は元に戻す（見た目崩れ対策） */
 main ul {
   list-style: none;
   padding: 0;
@@ -167,16 +96,12 @@ main li strong {
   width: 80px;
   color: var(--primary);
 }
-
-/* キャッシュ要素 */
 #cache {
   display: none;
 }
-
-/* 説明ブロック・フッターリンク（元に戻す） */
 .description {
-  max-width: none;
-  margin: 20px var(--gutter);
+  max-width: 600px;
+  margin: 20px auto;
   line-height: 1.6;
   color: #555;
 }
@@ -245,7 +170,6 @@ h3:hover::after {
   background: rgba(52,103,81,0.95);
   transform: translateX(4px);
 }
-
 /* p */
 p {
   font-size: 0.98rem;
@@ -255,32 +179,13 @@ p {
   line-height: 1.6;
 }
 
-/* レスポンシブ調整: 小さい画面ではガターを縮小して視認性を確保 */
-@media (max-width: 820px) {
-  :root { /* 動的に変えた例ではなく、ここでは表示上の挙動を調整 */
-    --gutter: 20px;
-  }
-  header h1::before { left: calc(-1 * var(--gutter)); }
-  h2::before { left: calc(-1 * var(--gutter) + 8px); }
-}
-
-/* 更に小さい画面 */
-@media (max-width: 480px) {
-  :root {
-    --gutter: 12px;
+@media (orientation: landscape) {
+  body {
+    padding: 0;
   }
   header, nav, .controls, main {
-    padding-left: var(--gutter);
-    padding-right: var(--gutter);
+    width: 100vw;
+    margin: 0;
+    padding: 0 10px;
   }
-  header h1::before { left: calc(-1 * var(--gutter)); width: 5px; }
-  h2::before { left: calc(-1 * var(--gutter) + 6px); width: 8px; height: 8px; }
-  nav, .controls { gap: 8px; }
-}
-
-/* アクセシビリティ: フォーカス可視化 */
-a:focus, button:focus {
-  outline: 3px solid rgba(52,103,81,0.12);
-  outline-offset: 2px;
-  border-radius: 6px;
 }
