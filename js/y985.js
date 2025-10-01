@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     let settings = {};
 
-    const clockColors  = ['#3f3f3fff', '#ebebebff', '#ffb835ff', '#daff35ff', '#e53e3e', '#ff3e6eff', '#89299eff', '#38a169', '#3182ce'];
+    const clockColors  = ['#363636ff', '#ebebebff', '#ffb835ff', '#daff35ff', '#e53e3e', '#ff3e6eff', '#89299eff', '#38a169', '#3182ce'];
     const designs      = ['classic', 'minimal', 'modern'];
     const bgColors     = ['#252525ff', '#3f4e6cff', '#ffd5a3ff', '#f7ffb9ff', '#ffc2c2ff', '#8849a2ff', '#d9ffe3ff', '#c3eaffff'];
 
