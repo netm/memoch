@@ -1,4 +1,3 @@
-// indez985.js
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('clockCanvas');
     const ctx = canvas.getContext('2d');
@@ -10,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     let settings = {};
 
-    const clockColors  = ['#333333', '#ffffff', '#e53e3e', '#38a169', '#3182ce'];
+    const clockColors  = ['#3f3f3fff', '#ebebebff', '#ffb835ff', '#daff35ff', '#e53e3e', '#ff3e6eff', '#89299eff', '#38a169', '#3182ce'];
     const designs      = ['classic', 'minimal', 'modern'];
-    const bgColors     = ['#f3f4f6', '#1a202c', '#fff5f5', '#f0fff4', '#ebf8ff'];
+    const bgColors     = ['#252525ff', '#3f4e6cff', '#ffd5a3ff', '#f7ffb9ff', '#ffc2c2ff', '#8849a2ff', '#d9ffe3ff', '#c3eaffff'];
 
     const changeColorBtn  = document.getElementById('changeColorBtn');
     const changeDesignBtn = document.getElementById('changeDesignBtn');
@@ -207,9 +206,28 @@ document.addEventListener('DOMContentLoaded', () => {
             saveSettings();
         });
         savePngBtn.addEventListener('click', () => {
+            // 修正点: PNG の背景が黒くなる問題を防ぐため、エクスポート時に背景色を下敷きとして描画してから画像化する
+            const dpr = window.devicePixelRatio || 1;
+            const cssSize = canvas.parentElement.offsetWidth;
+            const tmp = document.createElement('canvas');
+            tmp.width = Math.round(cssSize * dpr);
+            tmp.height = Math.round(cssSize * dpr);
+            const tctx = tmp.getContext('2d');
+
+            // デバイスピクセル比を考慮してクリアとスケールを設定
+            tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            // 背景を塗る（settings.backgroundColor を使用）
+            tctx.fillStyle = settings.backgroundColor || DEFAULTS.backgroundColor;
+            tctx.fillRect(0, 0, cssSize, cssSize);
+
+            // 現在の表示キャンバスを上に描画
+            // canvas は CSS ピクセルで描画されている前提なのでそのまま描画する
+            tctx.drawImage(canvas, 0, 0, cssSize, cssSize);
+
             const link = document.createElement('a');
             link.download = 'analog-clock.png';
-            link.href = canvas.toDataURL('image/png');
+            link.href = tmp.toDataURL('image/png');
             link.click();
         });
         resetBtn.addEventListener('click', () => {
