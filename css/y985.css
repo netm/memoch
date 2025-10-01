@@ -1,0 +1,93 @@
+/* indez985.css */
+body {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  transition: background-color 0.5s ease;
+}
+
+.clock-container {
+  width: 90vw;
+  max-width: 500px;
+  height: 90vw;
+  max-height: 500px;
+  margin: 2rem auto;
+  position: relative;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ボタン共通 */
+.control-btn {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 各ボタンの色とホバー */
+#changeColorBtn {
+  background: #3182ce;
+  color: #fff;
+}
+#changeColorBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#changeDesignBtn {
+  background: #38a169;
+  color: #fff;
+}
+#changeDesignBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#changeBgBtn {
+  background: #d69e2e;
+  color: #fff;
+}
+#changeBgBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#savePngBtn {
+  background: #805ad5;
+  color: #fff;
+}
+#savePngBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#resetBtn {
+  background: #e53e3e;
+  color: #fff;
+}
+#resetBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.social-btn {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+.social-btn:hover {
+  transform: scale(1.1);
+}
+
+/* リンクの色を青に変更 */
+a {
+  color: blue;
+}

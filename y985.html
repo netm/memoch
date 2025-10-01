@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="アナログ時計webアプリはデザイン表示切替機能付きです。背景色も変更でき、PNG画像保存やSNSシェア機能もあります。">
+  <meta name="keywords" content="アナログ,時計,web">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アナログ時計webアプリ表示切替機能付き</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/y985.css">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8 text-center">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+      アナログ時計webアプリ表示切替機能付き
+    </h1>
+    <div class="clock-container">
+      <canvas id="clockCanvas"></canvas>
+    </div>
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
+      <button id="changeColorBtn"  class="control-btn">文字盤色</button>
+      <button id="changeDesignBtn" class="control-btn">デザイン</button>
+      <button id="changeBgBtn"     class="control-btn">背景色</button>
+      <button id="savePngBtn"      class="control-btn">PNG画像保存</button>
+      <button id="resetBtn"        class="control-btn">リセット</button>
+    </div>
+    <div class="flex justify-center gap-4 mb-12">
+      <a id="twitterShare"  href="#" target="_blank" class="social-btn bg-[#1DA1F2]"  aria-label="Xでシェア">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+      </a>
+      <a id="facebookShare" href="#" target="_blank" class="social-btn bg-[#1877F2]" aria-label="Facebookでシェア">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"></path></svg>
+      </a>
+      <a id="lineShare"     href="#" target="_blank" class="social-btn bg-[#00B900]" aria-label="LINEでシェア">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 256 256"><path d="M215.3,73.1a35.2,35.2,0,0,0-28.8-15.6,40.4,40.4,0,0,0-15.1,3.3C158,52.5,147,45.3,133,42.5a43.5,43.5,0,0,0-10-1.2H122a43.3,43.3,0,0,0-26.6,8.7,46,46,0,0,0-17.5,19.3,55.4,55.4,0,0,0-4.3,25.4V96a5.5,5.5,0,0,0,1.5,3.9,5.7,5.7,0,0,0,4.1,1.7H88V208H56a8,8,0,0,0-8,8v16a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V216a8,8,0,0,0-8-8H168V144h8a8,8,0,0,0,8-8V104a8,8,0,0,0-8-8H168V88.4a36.4,36.4,0,0,1,6.5-21.7,23.4,23.4,0,0,1,18.8-10.4,21.5,21.5,0,0,1,16.5,7.9,8,8,0,0,0,13-2.1ZM152,144V208H104V101.6a6,6,0,0,0-4.1-5.7,5.5,5.5,0,0,0-5.9,1.1,40.1,40.1,0,0,0-14.8,24.3V208H64V96.3a39.2,39.2,0,0,1,3.1-15.9,30.1,30.1,0,0,1,11.5-12.7,27.3,27.3,0,0,1,16.6-5.5h.9a27.6,27.6,0,0,1,25.6,15.2,38.3,38.3,0,0,1,4.4,20.6V136a8,8,0,0,0,8,8h16Z"></path></svg>
+      </a>
+    </div>
+    <section class="text-left max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4 border-b-2 border-gray-300 pb-2">アナログ時計と時間の魅力：日常生活から宇宙まで</h2>
+      <p class="mb-6 text-gray-700 leading-relaxed">
+        アナログ時計は直感的に時間を把握できます。<br>私たちの生活は「時間」という見えない流れの中にあります。<br>朝起きてから夜眠るまで、あらゆる活動が時間によって区切られています。<br><br>このウェブサイトのアナログ時計webアプリは、その時間の流れを気分によって視覚的に変更できます。<br>デジタル表示の正確さも便利ですが、長針と短針が織りなすアナログ時計。<br>その動きは、時間の経過をより直感的に空間的に感じさせてくれます。
+      </p>
+      <h3 class="text-xl font-semibold mb-3">アナログ時計の仕組みとwebアプリ表示切替機能のデザイン</h3>
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        アナログ時計は、歯車とゼンマイ、あるいはクォーツ振動子といった精密なメカニズムによって時を刻みます。<br>その心臓部が、文字盤の上で針を動かし、私たちに時刻を伝えます。<br>このサイトでは、webアプリ表示切替機能によりボタン一つでデザインを変更できます。
+      </p>
+      <ul class="list-disc list-inside mb-6 pl-4 text-gray-700 space-y-2">
+        <li><strong>クラシックデザイン:</strong> 伝統的なローマ数字やアラビア数字を用いた、視認性の高いスタイル。</li>
+        <li><strong>ミニマルデザイン:</strong> 数字や目盛りを極限まで削ぎ落とし、シンプルさを追求した現代的なスタイル。</li>
+        <li><strong>モダンデザイン:</strong> 独創的なフォントや配色で、アート作品のような感覚を楽しむスタイル。</li>
+      </ul>
+      <p class="mb-6 text-gray-700 leading-relaxed">
+        背景色や文字盤の色も自由に変更できるため、あなただけのオリジナルアナログ時計をデザイン。<br>その日の気分やインテリアに合わせて楽しむことができます。
+      </p>
+      <h3 class="text-xl font-semibold mb-3">webサイトの技術の観点から</h3>
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        アナログ時計webアプリは、最新のwebサイトの技術を駆使して作成されています。<br>滑らかな時計の描画を実現し、見やすくどのデバイスでも快適に操作できるwebデザインにしました。<br>より多くの人に、お好みのデザインに簡単にカスタマイズして使用できるようにしています。
+      </p>
+    <footer class="mt-16">
+      <p class="mb-4 text-blue-700 leading-relaxed"><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集</a><br><br>
+<a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a><br><br>
+<a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a><br><br>
+<a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a><br><br>
+<a href="https://memoc.pages.dev/y992/" target="_blank">スケジュール帳ブラウザアプリ</a><br><br>
+<a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a><br><br>
+<a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a><br><br>
+<a href="https://memoc.pages.dev/y991/" target="_blank">ゴミ収集カレンダー</a><br><br>
+<a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a><br><br>
+<a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a><br><br>
+<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a><br><br>
+<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a><br><br>
+<a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a><br><br>
+<a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a><br><br>
+<a href="https://memoc.pages.dev/illust/" target="_blank">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a><br><br>
+<a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a><br><br>
+<a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a><br><br>
+<a href="https://memoc.pages.dev/y6f2/" target="_blank">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a><br><br>
+<a href="https://memoc.pages.dev/y7g2/" target="_blank">英単語小6クイズゲームの説明 小学生英語リスニング自宅学習用</a><br><br>
+<a href="https://memoc.pages.dev/y994/" target="_blank">退職者へのメッセージジェネレーター上司・同僚・後輩・一言にも対応</a><br><br>
+<a href="https://memoc.pages.dev/y993/" target="_blank">くじ引きツール</a><br><br>
+<a href="https://memoc.pages.dev/y989/" target="_blank">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a><br><br>
+<a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a><br><br>
+<a href="https://memoc.pages.dev/y987/" target="_blank">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a><br><br>
+<a href="https://memoc.pages.dev/y986/" target="_blank">非常食データベースと保存年数ランキング</a></p><br>
+    </footer>
+    </section>
+  </div>
+  <script src="/js/y985.js"></script>
+</body>
+</html>
