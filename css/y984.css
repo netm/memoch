@@ -1,0 +1,224 @@
+:root {
+    --primary-color: #005a9c;
+    --secondary-color: #e6f2ff;
+    --accent-color: #ff6347;
+    --text-color: #333;
+    --bg-color: #f8f9fa;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.site-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 5px solid var(--accent-color);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.site-header p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+}
+
+.filter-nav {
+    background-color: #fff;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.filter-nav h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 0.5rem;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.kana-btn, .prefecture-btn {
+    padding: 0.5em 1em;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.kana-btn:hover, .prefecture-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.kana-btn.active, .prefecture-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.main-content {
+    margin-top: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.action-buttons {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.action-btn {
+    padding: 0.6em 1.2em;
+    border: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+#copy-btn { background-color: #28a745; }
+#print-btn { background-color: #17a2b8; }
+#png-btn { background-color: #fd7e14; }
+#clear-btn { background-color: #dc3545; }
+#twitter-btn { background-color: #1DA1F2; }
+#facebook-btn { background-color: #1877F2; }
+#line-btn { background-color: #06C755; }
+
+.result-wrapper {
+    overflow-x: auto;
+}
+
+.dialect-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.dialect-table th, .dialect-table td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.dialect-table thead {
+    background-color: var(--secondary-color);
+}
+
+.dialect-table th {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.dialect-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.dialect-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.site-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.site-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .site-header h1 {
+        font-size: 1.5rem;
+    }
+    .container {
+        padding: 0.5rem;
+    }
+    .button-group {
+        gap: 0.3rem;
+    }
+    .kana-btn, .prefecture-btn, .action-btn {
+        font-size: 0.8rem;
+        padding: 0.4em 0.8em;
+    }
+    .dialect-table th, .dialect-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media print {
+    body {
+        background-color: #fff;
+    }
+    .site-header, .filter-nav, .action-buttons, .site-footer {
+        display: none;
+    }
+    .main-content {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .dialect-table, .dialect-table tbody, .dialect-table tr, .dialect-table td {
+        page-break-inside: avoid;
+    }
+    a[href]:after {
+        content: none !important;
+    }
+}
