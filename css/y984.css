@@ -34,7 +34,7 @@ h2, h3, p {
 
 .site-header {
     background-color: var(--primary-color);
-    color: white;
+    color: rgb(236, 236, 236);
     padding: 1rem;
     text-align: center;
     border-bottom: 5px solid var(--accent-color);
@@ -51,7 +51,7 @@ h2, h3, p {
 }
 
 .filter-nav {
-    background-color: #fff;
+    background-color: #e4e4e4;
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 8px;
@@ -74,7 +74,7 @@ h2, h3, p {
 .kana-btn, .prefecture-btn {
     padding: 0.5em 1em;
     border: 1px solid var(--border-color);
-    background-color: #fff;
+    background-color: #f0f0f0;
     color: var(--primary-color);
     cursor: pointer;
     border-radius: 5px;
@@ -95,7 +95,7 @@ h2, h3, p {
 
 .main-content {
     margin-top: 1rem;
-    background-color: #fff;
+    background-color: #eeeeee;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px var(--shadow-color);
