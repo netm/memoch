@@ -3,7 +3,7 @@
     --secondary-color: #e6f2ff;
     --accent-color: #47ff8a;
     --text-color: #333;
-    --bg-color: #e5fff5;
+    --bg-color: #ecfff8;
     --border-color: #dee2e6;
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
@@ -23,7 +23,7 @@ body {
 
 /* ここで h2, h3, p に同じ左の空白を指定します */
 h2, h3, p {
-    padding-left: 0.5rem;
+    padding-left: 1rem;
 }
 
 .container {
