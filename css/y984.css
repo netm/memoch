@@ -21,6 +21,11 @@ body {
     line-height: 1.6;
 }
 
+/* ここで h2, h3, p に同じ左の空白を指定します */
+h2, h3, p {
+    padding-left: 0.5rem;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
