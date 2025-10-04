@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-  <meta name="description" content="日付換算ツールは日付や営業日、年齢、期間、時間単位を即時計算するツール">
+  <meta name="description" content="日付換算ツールは日付や年齢、期間、時間単位を即時計算するツール">
   <title>日付換算ツール 年齢計算と時間単位変換</title>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link rel="stylesheet" href="/css/y981.css">
@@ -23,7 +23,7 @@
       <div class="logo">日⇄算</div>
       <div>
         <div class="title">日付換算ツール</div>
-        <div class="small">日付計算・営業日・年齢・期間・時間変換を1ページで</div>
+        <div class="small">日付計算・年齢・期間・時間変換を1ページで</div>
       </div>
     </header>
     <main class="card" id="app" role="main">
@@ -42,21 +42,6 @@
             </div>
             <div id="res-date" class="result" aria-live="polite">結果がここに表示されます</div>
             <div class="help">開始日を入れてEnterか計算ボタンで即時表示されます</div>
-          </section>
-          <hr class="sep">
-          <!-- 営業日計算 -->
-          <section class="section" aria-labelledby="h-business">
-            <h2 id="h-business">営業日計算（祝日対応）</h2>
-            <label for="business-start">開始日</label>
-            <input id="business-start" type="date" aria-label="営業日開始日">
-            <label for="business-offset">営業日数（正の値で進む）</label>
-            <input id="business-offset" type="number" inputmode="numeric" placeholder="例: 5">
-            <div class="actions">
-              <button id="btn-business-calc">営業日で計算</button>
-              <button class="secondary" onclick="document.getElementById('business-start').value='';document.getElementById('business-offset').value='';">クリア</button>
-            </div>
-            <div id="res-business" class="result" aria-live="polite">営業日換算結果がここに表示されます</div>
-            <div class="help">土日と簡易祝日リストを除外して計算します。祝日データはソースコードに定義</div>
           </section>
           <hr class="sep">
           <!-- 期間分解 -->
@@ -84,7 +69,6 @@
               <button class="secondary" onclick="document.getElementById('birth').value='';">クリア</button>
             </div>
             <div id="res-age" class="result" aria-live="polite">満年齢がここに表示されます</div>
-            <div class="help">和暦表示は簡易表示のみ。より正確な和暦変換は拡張してください</div>
           </section>
           <hr class="sep">
           <!-- 時間単位変換 -->
@@ -129,12 +113,12 @@
   <p class="help">
     日付換算ツールは、日付の加減算・営業日計算・年齢計算・期間分解・時間単位変換を
     ワンページで素早く行える無料のオンラインツールです。シンプルな操作で「日付計算」、
-    「営業日 変換」、「年齢 計算（西暦・和暦対応）」、「期間 日数 変換」などの日常的な
+    「営業日 変換」、「年齢 計算（西暦）」、「期間 日数 変換」などの日常的な
     計算を正確に行えます。
   </p>
   <p class="help">
     本サイトはモバイル最適化・高速表示を重視しており、検索から直接目的の計算結果に
-    到達できるようアンカー構造と共有リンク機能を備えています。会計やスケジュール管理、
+    到達できるようにしています。会計やスケジュール管理、
     契約期間の確認、業務での納期計算など幅広い用途でご利用ください。
   </p>
   <hr class="sep" />
@@ -143,12 +127,6 @@
     開始日から指定日数を加算・減算して目的の日付を瞬時に算出します。締切日や予定日の
     前後の日付をすばやく確認したいときに便利です。例: 「2025-05-01 から 10 日後」や
     「契約終了日の 30 日前」を即座に表示します。
-  </p>
-  <h3 style="margin-top:12px;">営業日計算（Business Day / 営業日 変換）</h3>
-  <p class="help">
-    土日と登録済みの祝日を除外して営業日ベースで日数を計算します。納期管理や稼働日数の
-    集計、労務関連の期限計算に最適です。祝日データはソース内で更新可能で、振替休日の
-    ロジックを追加して精度向上が可能です。
   </p>
   <h3 style="margin-top:12px;">期間分解（年/月/日 と 総日数の算出）</h3>
   <p class="help">
@@ -165,8 +143,7 @@
     秒、分、時間、日などの時間単位を相互に変換します。作業時間の集計やログデータの統計、
     サーバ稼働時間の換算などで利用できます。小数入力に対応し、精度を保って換算結果を提示します。
   </p>
-  <div style="margin-top:12px;">
-    
+  <div style="margin-top:12px;">    
 <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
 <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
 <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
