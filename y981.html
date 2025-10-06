@@ -44,6 +44,21 @@
             <div class="help">開始日を入れてEnterか計算ボタンで即時表示されます</div>
           </section>
           <hr class="sep">
+          <!-- 営業日計算 -->
+          <section class="section" aria-labelledby="h-business">
+            <h2 id="h-business">おおよその営業日計算</h2>
+            <label for="business-start">開始日</label>
+            <input id="business-start" type="date" aria-label="営業日開始日">
+            <label for="business-offset">営業日数（正の値で進む）</label>
+            <input id="business-offset" type="number" inputmode="numeric" placeholder="例: 5">
+            <div class="actions">
+              <button id="btn-business-calc">営業日で計算</button>
+              <button class="secondary" onclick="document.getElementById('business-start').value='';document.getElementById('business-offset').value='';">クリア</button>
+            </div>
+            <div id="res-business" class="result" aria-live="polite">営業日換算結果がここに表示されます</div>
+            <div class="help">土日と祝日を除外して計算します。祝日は毎年変わるので目安の営業日です。</div>
+          </section>
+          <hr class="sep">
           <!-- 期間分解 -->
           <section class="section" aria-labelledby="h-range">
             <h2 id="h-range">期間の分解</h2>
