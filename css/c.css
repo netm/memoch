@@ -13,7 +13,7 @@
   --muted: #566771;         /* サブテキスト */
   --accent-1: #60a5fa;      /* スカイブルー */
   --accent-2: #7dd3fc;      /* ライトシアン */
-  --accent-3: #f472b6;      /* ピンク系 */
+  --accent-3: #f4f072;      /* イエロー系 */
   --accent-4: #f59e0b;      /* アンバー（暖色アクセント） */
   --accent-5: #34d399;      /* ミントグリーン */
   --border: rgba(7,32,58,0.06);
@@ -110,7 +110,7 @@ h2 {
 }
 h3 {
   font-size: 1rem;
-  color: var(--accent-3);
+  color: var(--accent-);
   border-left: 4px solid rgba(244,114,182,0.18);
   padding-left: 10px;
   background: linear-gradient(90deg, rgba(244,114,182,0.02), transparent);
