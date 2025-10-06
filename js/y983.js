@@ -1,7 +1,6 @@
-// script.js - 全文
 (() => {
   // DOM
-  const moods = ["明日","未来","成功","偶然","目標","計画","次","活","前","昨日","過去","やる気","気持ち","心","本当","本気","うれしい","楽","感謝","感動","普通","休","体","時間","充","満","孤独","悲","哀","寂","失敗","不安","怒","忘"];
+  const moods = ["明日","未来","成功","目標","計画","次","活","前","昨日","過去","やる気","気持ち","心","本当","本気","うれしい","感謝","声","普通","休","体","時間","孤独","失敗","不安","怒","忘"];
   const btnToday = document.getElementById("btn-today");
   const moodButtons = document.getElementById("mood-buttons");
   const inputFeel = document.getElementById("feel-input");
@@ -144,21 +143,30 @@
     const style = getComputedStyle(box);
     const width = Math.max(box.offsetWidth, 600);
     const height = Math.max(box.offsetHeight, 200);
-    // inline styles for SVG text layout
-    const htmlText = box.querySelector(".quote-text").textContent.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-    const headline = box.querySelector(".quote-headline").textContent.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-    const author = box.querySelector(".quote-author").textContent.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+    // prepare text/html safely for foreignObject
+    // preserve line breaks by converting them to <br> and ensure pre-wrap
+    const rawHtml = box.querySelector(".quote-text").textContent || "";
+    const escaped = rawHtml.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    const htmlWithBreaks = escaped.replace(/\r\n|\r|\n/g,"<br/>");
+    const headlineRaw = box.querySelector(".quote-headline").textContent || "";
+    const headlineEsc = headlineRaw.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    const authorRaw = box.querySelector(".quote-author").textContent || "";
+    const authorEsc = authorRaw.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     const bg = window.getComputedStyle(box).backgroundColor || "#fff";
-    const fontFamily = style.fontFamily || "sans-serif";
+    const color = style.color || "#000";
+    const fontFamily = (style.fontFamily || "sans-serif").replace(/"/g,"'");
+
+    // include explicit white-space:pre-wrap so <br/> and long text wrap properly
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
         <rect width="100%" height="100%" fill="${bg}"/>
         <foreignObject x="0" y="0" width="${width}" height="${height}">
           <div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;display:flex;align-items:center;justify-content:center;padding:30px;box-sizing:border-box;">
-            <div style="font-family:${fontFamily};color:${style.color};max-width:100%;width:100%;">
-              <div style="font-size:28px;font-weight:700;margin-bottom:14px;line-height:1.2;">${headline}</div>
-              <div style="font-size:22px;line-height:1.5;margin-bottom:14px;">${htmlText}</div>
-              <div style="font-size:18px;text-align:right;color:rgba(0,0,0,0.6);">— ${author}</div>
+            <div style="font-family:${fontFamily};color:${color};max-width:100%;width:100%;">
+              <div style="font-size:28px;font-weight:700;margin-bottom:14px;line-height:1.2;word-break:break-word;">${headlineEsc}</div>
+              <div style="font-size:22px;line-height:1.5;margin-bottom:14px;white-space:pre-wrap;word-break:break-word;">${htmlWithBreaks}</div>
+              <div style="font-size:18px;text-align:right;color:rgba(0,0,0,0.6);">— ${authorEsc}</div>
             </div>
           </div>
         </foreignObject>
@@ -167,29 +175,45 @@
     const img = new Image();
     const svgBlob = new Blob([svg], {type:"image/svg+xml;charset=utf-8"});
     const url = URL.createObjectURL(svgBlob);
+
     img.onload = () => {
-      const c = document.createElement("canvas");
-      c.width = width * (window.devicePixelRatio||1);
-      c.height = height * (window.devicePixelRatio||1);
-      const ctx = c.getContext("2d");
-      ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
-      ctx.fillStyle = bg;
-      ctx.fillRect(0,0,width,height);
-      ctx.drawImage(img,0,0);
-      URL.revokeObjectURL(url);
-      c.toBlob(blob=>{
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
+      try{
+        const dpr = window.devicePixelRatio || 1;
+        const c = document.createElement("canvas");
+        c.width = Math.round(width * dpr);
+        c.height = Math.round(height * dpr);
+        const ctx = c.getContext("2d");
+        ctx.scale(dpr, dpr);
+        // fill with bg in case of transparent parts
+        ctx.fillStyle = bg;
+        ctx.fillRect(0,0,width,height);
+        ctx.drawImage(img,0,0);
+        URL.revokeObjectURL(url);
+        c.toBlob(blob=>{
+          if(!blob){
+            savedStatus.textContent = "PNG生成に失敗しました";
+            setTimeout(()=> savedStatus.textContent="",1500);
+            return;
+          }
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }, "image/png");
+      }catch(e){
+        URL.revokeObjectURL(url);
+        savedStatus.textContent = "PNG変換に失敗しました";
+        setTimeout(()=> savedStatus.textContent="",1500);
+      }
     };
     img.onerror = () => {
+      URL.revokeObjectURL(url);
       savedStatus.textContent = "PNG変換に失敗しました";
       setTimeout(()=> savedStatus.textContent="",1500);
     };
+    // use blob URL (same-origin) to avoid CORS taint; set src last to start loading
     img.src = url;
   }
 
@@ -249,12 +273,12 @@
   });
 
   // copy URL hash
-  btnCopyHash.addEventListener("click", ()=>{
+  btnCopyHash && btnCopyHash.addEventListener && btnCopyHash.addEventListener("click", ()=>{
     copyToClipboard(location.href);
   });
 
   // clear all
-  btnClear.addEventListener("click", ()=>{
+  btnClear && btnClear.addEventListener && btnClear.addEventListener("click", ()=>{
     inputFeel.value="";
     quoteFrame.innerHTML="";
     history.replaceState(null,"",location.pathname+location.search);
