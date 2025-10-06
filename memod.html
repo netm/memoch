@@ -1,62 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="メモ付き電卓と分数計算 ルート累乗 長さ重さ単位換算 消費税計算機能付きです。">
-    <meta name="keywords" content="メモ付き,電卓">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-    <title>メモ付き電卓</title>
-    <link rel="stylesheet" href="/css/z999.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <meta charset="utf-8">
+  <title>メモ付き電卓 | メモを残せるシンプル電卓（無料・ブラウザ対応）</title>
+  <meta name="description" content="メモ付き電卓。計算結果をすぐにメモに残せるシンプルで使いやすいブラウザ電卓。家計管理や学習、メモの保存・PNG出力に最適。スマホ・PC対応、アクセシビリティ対応済み。">
+  <meta name="keywords" content="メモ付き電卓, 電卓, ブラウザ電卓, 家計簿, 計算メモ, PNG保存, アクセシビリティ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Open Graph / SNS -->
+  <meta property="og:site_name" content="メモ付き電卓">
+  <meta property="og:title" content="メモ付き電卓 | メモを残せるシンプル電卓">
+  <meta property="og:description" content="計算結果をメモに残せる無料のブラウザ電卓。家計管理や学習に便利。PNGで画面を保存できます。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="メモ付き電卓 | メモを残せるシンプル電卓">
+  <meta name="twitter:description" content="計算→メモ→保存がスムーズ。スマホ・PC対応の使いやすい電卓アプリ。">
+  <!-- canonical -->
+  <link rel="canonical" href="https://memoc.pages.dev/your-calculator-page/">
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "メモ付き電卓",
+    "url": "https://memoc.pages.dev/your-calculator-page/",
+    "description": "計算結果をすぐにメモに残せるシンプルなブラウザ電卓。家計管理や学習で使えるメモ機能とPNG保存を搭載。",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <!-- Minimal critical CSS for consistent background and accessibility -->
+  <style>
+    :root{color-scheme: light light; --bg:#ffffff; --card:#ffffff; --text:#111111; --muted:#6b7280; --accent:#0ea5d8;}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP","Segoe UI",Roboto,"Yu Gothic",sans-serif;}
+    .wrap{max-width:920px;margin:24px auto;padding:20px;box-sizing:border-box;}
+    header{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+    h1{font-size:1.4rem;margin:0;}
+    .hero-desc{color:var(--muted);font-size:0.95rem;margin:0;}
+    .app{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 6px 18px rgba(16,24,40,0.06);}
+    #display{font-size:2rem;padding:12px;border-radius:8px;background:#f7f7f8;min-height:56px;display:flex;align-items:center;justify-content:space-between;box-sizing:border-box;}
+    .calculator-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
+    button{padding:12px;border-radius:8px;border:1px solid #e6e7eb;background:#fff;font-size:1rem;cursor:pointer;}
+    button:focus{outline:3px solid rgba(14,165,216,0.18);outline-offset:2px;}
+    #notes{width:100%;min-height:120px;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #e6e7eb;resize:vertical;font-size:1rem;}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+    .meta{margin-top:14px;color:var(--muted);font-size:0.9rem;}
+    footer{margin-top:18px;color:var(--muted);font-size:0.9rem;}
+    .footer-list{display:flex;flex-direction:column;gap:8px;padding-left:16px;margin:8px 0;}
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;}
+    @media (max-width:600px){
+      .wrap{padding:12px;margin:12px;}
+      #display{font-size:1.6rem;}
+    }
+  </style>
+  <!-- External script loaded deferred in body where used; html2canvas included later when needed -->
 </head>
 <body>
-    <div id="capture-area">
-        <div class="app-container">
-            <div id="memo-display"></div>
-            <div id="display">0</div>
-            <div class="calculator">
-                <div class="calculator-keys">
-                    <button class="control-btn" data-action="clear-all">AC</button>
-                    <button class="control-btn" data-action="undo">⌫</button>              
-                    <button data-action="operator" data-value="÷">÷</button>
-                    <button data-action="operator" data-value="×">×</button>
-                    <button data-action="number" data-value="7">7</button>
-                    <button data-action="number" data-value="8">8</button>
-                    <button data-action="number" data-value="9">9</button>
-                    <button data-action="operator" data-value="-">-</button>
-                    <button data-action="number" data-value="4">4</button>
-                    <button data-action="number" data-value="5">5</button>
-                    <button data-action="number" data-value="6">6</button>
-                    <button data-action="operator" data-value="+">+</button>
-                    <button data-action="number" data-value="1">1</button>
-                    <button data-action="number" data-value="2">2</button>
-                    <button data-action="number" data-value="3">3</button>
-                    <button data-action="number" data-value="0" style="grid-column: span 2;">0</button>
-                    <button data-action="decimal" data-value=".">.</button>
-                    <button data-action="equals" data-value="=" style="grid-row: span 2;">=</button>
-                </div>
-            </div>
-             <textarea id="notes" placeholder="ここにメモを追加できます..."></textarea>
-             <button id="save-png" class="control-btn">PNG画像で保存</button>
+  <div class="wrap">
+    <header>
+      <h1>メモ付き電卓</h1>
+      <p class="hero-desc">計算結果をそのままメモに残せるシンプルなブラウザ電卓。家計管理、勉強、買い物リストの計算などに便利。PNG保存で画面を保存できます。</p>
+    </header>
+    <main class="app" id="capture-area" role="main" aria-labelledby="calcTitle">
+      <h2 id="calcTitle" class="sr-only">電卓とメモ</h2>
+      <div id="memo-display" aria-live="polite" aria-atomic="true" class="sr-only">最新の計算メモがここに表示されます</div>
+      <div id="display" role="status" aria-live="polite">0</div>
+      <section class="calculator" aria-label="電卓">
+        <div class="calculator-keys" id="keys" role="group" aria-label="電卓のキー">
+          <button class="control-btn" data-action="clear-all" aria-label="全消去">AC</button>
+          <button class="control-btn" data-action="undo" aria-label="1文字戻す">⌫</button>
+          <button data-action="operator" data-value="÷" aria-label="割る">÷</button>
+          <button data-action="operator" data-value="×" aria-label="掛ける">×</button>
+          <button data-action="number" data-value="7" aria-label="7">7</button>
+          <button data-action="number" data-value="8" aria-label="8">8</button>
+          <button data-action="number" data-value="9" aria-label="9">9</button>
+          <button data-action="operator" data-value="-" aria-label="引く">-</button>
+          <button data-action="number" data-value="4" aria-label="4">4</button>
+          <button data-action="number" data-value="5" aria-label="5">5</button>
+          <button data-action="number" data-value="6" aria-label="6">6</button>
+          <button data-action="operator" data-value="+" aria-label="足す">+</button>
+          <button data-action="number" data-value="1" aria-label="1">1</button>
+          <button data-action="number" data-value="2" aria-label="2">2</button>
+          <button data-action="number" data-value="3" aria-label="3">3</button>
+          <button data-action="number" data-value="0" aria-label="0" style="grid-column: span 2;">0</button>
+          <button data-action="decimal" data-value="." aria-label="小数点">.</button>
+          <button data-action="equals" data-value="=" aria-label="イコール" style="grid-row: span 2;">=</button>
         </div>
-    </div>
-    <div class="footer-link">
-    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
-    <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p><br>
-    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
-    <p><a href="https://memoc.pages.dev/y981/" target="_blank">日付換算ツール 年齢計算と時間単位変換</a></p><br>
-    <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p><br>
-    <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p><br>
-    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/y985/" target="_blank">アナログ時計webアプリ表示切替機能付き</a></p><br>
-    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
-    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p><br>
-    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
-    </div>
-<script src="/js/z999.js"></script>
+      </section>
+      <label for="notes" class="sr-only">メモ入力</label>
+      <textarea id="notes" placeholder="計算結果や備考をここに書いて保存できます。家計メモ、買い物リスト、勉強メモなどに便利。" aria-label="メモ"></textarea>
+      <div class="controls" role="toolbar" aria-label="操作">
+        <button id="save-png" class="control-btn" aria-label="PNGで保存">PNG画像で保存</button>
+        <button id="copy-note" class="control-btn" aria-label="メモをクリップボードにコピー">メモをコピー</button>
+        <button id="append-result" class="control-btn" aria-label="計算結果をメモに追加">結果をメモに追加</button>
+      </div>
+      <p class="meta"><strong>使い方:</strong> 電卓で計算→「結果をメモに追加」でメモ欄へ保存→必要なら「PNG画像で保存」または「メモをコピー」で共有。スマホでもPCでも直感的に使えます。</p>
+      <section aria-labelledby="featureTitle" style="margin-top:14px;">
+        <h3 id="featureTitle">機能と特徴</h3>
+        <ul>
+          <li>計算機能：四則演算、連続計算、符号切替（-）対応</li>
+          <li>メモ機能：計算結果やコメントをそのまま保存・編集可能</li>
+          <li>保存機能：画面をPNGで保存して記録や共有に利用可能</li>
+          <li>アクセシビリティ：キーボード操作とスクリーンリーダー対応</li>
+          <li>レスポンシブ：スマホ・タブレット・PCで最適表示</li>
+        </ul>
+      </section>
+      <section aria-labelledby="faqTitle" style="margin-top:12px;">
+        <h3 id="faqTitle">よくある質問</h3>
+        <dl>
+          <dt>計算履歴は保存されますか？</dt>
+          <dd>ブラウザを閉じると初期化されます。必要なら「結果をコピー」してご自身で保存してください。</dd>
+          <dt>PNG画像にすると有料ですか？</dt>
+          <dd>無料でPNG画像にして保存できます。</dd>
+        </dl>
+      </section>
+      <footer aria-label="関連リンク">
+        <p class="meta">関連サイト：</p>
+        <div class="footer-list">
+          <a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイト</a>
+          <a href="https://memoc.pages.dev/muden/" target="_blank" rel="noopener">電卓無料サイト 生活に役立つリンク集</a>
+          <a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a>
+          <a href="https://memoc.pages.dev/y981/" target="_blank" rel="noopener">日付換算ツール 年齢計算と時間単位変換</a>
+          <a href="https://memoc.pages.dev/interestcalculation/" target="_blank" rel="noopener">複利電卓・積立NISAの金額再投資計算機</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <!-- 必要最小限のスクリプト（安全に数式評価、キーボード対応、PNG保存） -->
+  <script>
+    (function(){
+      // DOM
+      const display = document.getElementById('display');
+      const keys = document.getElementById('keys');
+      const notes = document.getElementById('notes');
+      const saveBtn = document.getElementById('save-png');
+      const copyBtn = document.getElementById('copy-note');
+      const appendBtn = document.getElementById('append-result');
+      let expr = '';
+      function updateDisplay(){ display.textContent = expr || '0'; }
+      function sanitizeForEval(s){
+        return s.replace(/×/g,'*').replace(/÷/g,'/').replace(/[^\d+\-*/().]/g,'');
+      }
+      function safeEval(s){
+        const safe = sanitizeForEval(s);
+        try { return Function('"use strict";return ('+safe+')')(); }
+        catch(e){ return NaN; }
+      }
+      keys.addEventListener('click', e=>{
+        const btn = e.target.closest('button');
+        if(!btn) return;
+        const action = btn.dataset.action;
+        const value = btn.dataset.value || btn.textContent;
+        if(action === 'number'){ expr += value; }
+        else if(action === 'decimal'){ expr += '.'; }
+        else if(action === 'operator'){
+          if(expr === '' && value === '-') expr = '-';
+          else if(/[+\-×÷]$/.test(expr)) expr = expr.slice(0,-1) + value;
+          else expr += value;
+        } else if(action === 'clear-all'){ expr = ''; }
+        else if(action === 'undo'){ expr = expr.slice(0,-1); }
+        else if(action === 'equals'){
+          const res = safeEval(expr);
+          expr = isFinite(res) ? String(res) : '';
+        }
+        updateDisplay();
+      });
+      document.addEventListener('keydown', e=>{
+        if(e.key >= '0' && e.key <= '9'){ expr += e.key; }
+        else if(e.key === '.') expr += '.';
+        else if(['+','-','*','/'].includes(e.key)){
+          const map = {'*':'×','/':'÷'};
+          expr += (map[e.key] || e.key);
+        } else if(e.key === 'Enter'){
+          const res = safeEval(expr);
+          expr = isFinite(res) ? String(res) : '';
+        } else if(e.key === 'Backspace') expr = expr.slice(0,-1);
+        else if(e.key === 'Escape') expr = '';
+        else return;
+        e.preventDefault();
+        updateDisplay();
+      });
+      appendBtn.addEventListener('click', ()=>{
+        const textToAdd = (expr || display.textContent) + '  ' + new Date().toLocaleString();
+        notes.value = notes.value ? notes.value + '\n' + textToAdd : textToAdd;
+        notes.focus();
+      });
+      copyBtn.addEventListener('click', async ()=>{
+        try {
+          await navigator.clipboard.writeText(notes.value || display.textContent);
+          alert('クリップボードにコピーしました');
+        } catch {
+          alert('コピーに失敗しました。ブラウザの許可を確認してください。');
+        }
+      });
+      // PNG保存は html2canvas を動的に読み込む（必要時のみ）
+      saveBtn.addEventListener('click', async ()=>{
+        if(!window.html2canvas){
+          const s = document.createElement('script');
+          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+          s.onload = () => capturePNG();
+          s.onerror = () => alert('画像保存用スクリプトの読み込みに失敗しました');
+          document.body.appendChild(s);
+        } else {
+          capturePNG();
+        }
+      });
+
+      function capturePNG(){
+        const target = document.getElementById('capture-area');
+        // キャプチャしたくない要素がある場合は一時的に非表示にする処理を追加可能
+        html2canvas(target, {scale:2, backgroundColor:'#ffffff', useCORS:true})
+          .then(canvas => {
+            canvas.toBlob(blob => {
+              if(!blob) { alert('画像生成に失敗しました'); return; }
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'memo-calculator.png';
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              URL.revokeObjectURL(url);
+            }, 'image/png');
+          })
+          .catch(()=> alert('画像保存に失敗しました'));
+      }
+
+      updateDisplay();
+    })();
+  </script>
 </body>
 </html>
