@@ -1,18 +1,21 @@
-/* カラーパレット（必要であればこのまま調整） */
+/* ==================================================
+   カラーパレットとベース
+   ================================================== */
 :root{
-  --site-bg: #d8d7d7;       /* ページ全体の薄い灰色背景 */
-  --panel-bg: #f0f0f0;      /* コンテンツパネル背景 */
-  --text: #062031;          /* メインテキスト（黒に近いダークネイビー） */
-  --muted: #566771;         /* サブテキスト */
-  --accent-1: #0000ff;      /* ブルー */
-  --accent-2: #b7d700;      /*  */
-  --accent-3: #435159;      /*  */
-  --accent-4: #f59e0b;      /*  */
-  --accent-5: #008655;      /*  */
+  --site-bg: #e8e8e8;
+  --panel-bg: #f8f8f8;
+  --text: #062031;
+  --muted: #566771;
+  --accent-1: #0000ff;
+  --accent-2: #b7d700;
+  --accent-3: #435159;
+  --accent-4: #f59e0b;
+  --accent-5: #008655;
   --border: rgba(7,32,58,0.06);
   --radius: 10px;
   --max-width: 1100px;
   --gap: 18px;
+  --gap-half: calc(var(--gap) / 2);
   --font-sans: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
 }
 
@@ -44,7 +47,9 @@ body[class], html[class], [class*="dark"], [data-theme] {
   background-color: var(--site-bg) !important;
 }
 
-/* レイアウト基礎 */
+/* ==================================================
+   全体レイアウトとヘッダー/サイト制約
+   ================================================== */
 .site {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -56,11 +61,16 @@ header[role="banner"] {
   gap: 12px;
   align-items: center;
   margin-bottom: 18px;
+  row-gap: calc(var(--gap) / 4);
 }
+
+/* リンク */
 a { color: var(--accent-1); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* パネルスタイル */
+/* ==================================================
+   パネル・カード共通スタイル
+   ================================================== */
 main, .card, aside, .panel {
   background: var(--panel-bg);
   border-radius: var(--radius);
@@ -69,7 +79,9 @@ main, .card, aside, .panel {
   box-shadow: 0 8px 24px rgba(7,32,58,0.04);
 }
 
-/* タイポグラフィ */
+/* ==================================================
+   タイポグラフィと見出しの装飾
+   ================================================== */
 h1, h2, h3, h4, h5 {
   margin: 0 0 10px 0;
   line-height: 1.15;
@@ -83,7 +95,6 @@ p, li, dd {
   line-height: 1.6;
 }
 
-/* 見出しのカラフル化（装飾付き） */
 h1 {
   display: block;
   width: 100%;
@@ -128,7 +139,7 @@ h5 {
   margin-top: 1.6em;
 }
 
-/* 見出し下のサブテキスト（淡いアクセント） */
+/* 見出し下のサブテキスト */
 .heading-sub {
   display:block;
   font-size:0.92rem;
@@ -164,19 +175,30 @@ h5 {
   border: 1px solid rgba(7,32,58,0.04);
 }
 
-/* レイアウトヘルパー
-   注: 改行用に挿入される要素（flex-basis:100%）による「行間」を半分に設定しています。これで視覚的に折り返す際の上下スペースが半減します。
-*/
+/* ==================================================
+   レイアウトヘルパーと2カラム（デスクトップ等幅）
+   ================================================== */
+/* 共通 .layout（折り返し行間を小さく） */
 .layout {
   display:flex;
-  gap:var(--gap);                 /* 全体のギャップ（主に横方向） */
+  gap:var(--gap);
   column-gap: var(--gap);
-  row-gap: calc(var(--gap) / 4);  /* 折り返し行間を半分にする（元は calc(var(--gap) / 2)） */
+  row-gap: calc(var(--gap) / 4);
   align-items:flex-start;
 }
 
-/* header など他の flex コンテナも同様に調整 */
-header[role="banner"] { row-gap: calc(var(--gap) / 4); }
+/* フレックス改行要素（視覚的折り返し用） */
+li[aria-hidden="true"][role="presentation"] {
+  flex-basis: 100%;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  font-size: 0;
+  min-height: 0;
+}
+
+/* nav や header の flex 調整 */
 nav ul {
   display:flex;
   flex-wrap:wrap;
@@ -185,37 +207,46 @@ nav ul {
   row-gap: calc(var(--gap) / 4);
 }
 
-/* main / aside レイアウト幅 */
-main { flex:1 1 640px; min-width:260px; }
-aside { width:320px; min-width:220px; }
-
-/* 改行（視覚的に折り返すための空要素）を特に扱うルール */
-li[aria-hidden="true"][role="presentation"] {
-  flex-basis: 100%;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-  font-size: 0;
-  /* 折り返し要素自体が余分な高さを作らないようにする */
-  min-height: 0;
+/* 等幅2カラム（デスクトップ）: main と aside を等分する */
+.layout.two-column {
+  /* ここでフレックスコンテナは等分する想定 */
+}
+.layout.two-column main {
+  flex: 1 1 50%;
+  min-width: 260px;
+  max-width: 100%;
+}
+.layout.two-column aside {
+  flex: 1 1 50%;
+  min-width: 220px;
+  max-width: 100%;
 }
 
-/* リスト類 */
+/* 代替レイアウト（以前の数値ベースの設定を残す） */
+main {
+  /* 基本の柔軟設定（上書きされる場合あり） */
+  flex:1 1 640px;
+  min-width:260px;
+}
+aside {
+  width:320px;
+  min-width:220px;
+}
+
+/* ==================================================
+   画像、リスト、フォーカス、フッター
+   ================================================== */
 ul.linklist { padding-left:1.1rem; margin:8px 0 18px 0; }
 ul.linklist li { margin:8px 0; color:var(--muted); }
 
-/* 画像 */
 figure { margin:12px 0; }
 img { max-width:100%; height:auto; display:block; border-radius:8px; }
 
-/* フォーカススタイル（アクセシビリティ） */
 :focus-visible {
   outline: 3px solid rgba(96,165,250,0.28);
   outline-offset: 2px;
 }
 
-/* フッター */
 footer[role="contentinfo"] {
   margin-top:24px;
   color:var(--muted);
@@ -225,13 +256,25 @@ footer[role="contentinfo"] {
   padding:12px 0;
 }
 
-/* レスポンシブ調整 */
-@media (max-width:980px) {
-  .layout { flex-direction:column; }
+/* 保険: black (#000000) を背景やボーダーに使っている他のCSSがあれば上書きする */
+* { box-sizing: border-box; }
+
+/* ==================================================
+   レスポンシブ：狭い画面では縦並び
+   ================================================== */
+@media (max-width: 980px) {
+  .layout {
+    flex-direction: column;
+    gap: var(--gap-half);
+  }
+  /* stacked 切り替え用クラスがあれば両方安全に対応 */
+  .layout.two-column { flex-direction: column; }
+  main, aside {
+    width: 100%;
+    flex: 1 1 100%;
+  }
   aside { width:100%; }
   .site { padding:12px; }
   h1 { font-size:1.1rem; }
   h2 { font-size:1rem; padding:6px 10px; }
 }
-
-/* 保険: black (#000000) を背景やボーダーに使っている他のCSSがあれば上書きする */
