@@ -1,10 +1,3 @@
-/* c.css — 全ページ共通
-   - 背景は常に薄い灰色
-   - 見出しはカラフルでおしゃれに
-   - 黒 (#000000) は文字以外で使用しない
-   - 文字色はダークネイビー系（完全な黒を避ける）
-*/
-
 /* カラーパレット（必要であればこのまま調整） */
 :root{
   --site-bg: #f4f6f8;       /* ページ全体の薄い灰色背景 */
@@ -98,32 +91,33 @@ h1 {
   background-clip: text;
   color: transparent;
   padding-bottom: 6px;
-}h2 {
+}
+h2 {
   font-size: 1.05rem;
   display: inline-block;
   padding: 6px 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgb(217, 250, 2), rgb(194, 255, 176));
-  color: var(--accent-);
+  background: linear-gradient(90deg, rgb(255, 179, 3), rgb(199, 255, 204));
+  color: var(--accent-1);
   box-shadow: inset 0 -2px 0 rgba(96,165,250,0.06);
   margin-top: 0.3em; /* 上部にスペースを追加 */
 }
-
 h3 {
   font-size: 1rem;
-  color: var(--accent-);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--accent-1);
   border-left: 4px solid rgba(244,114,182,0.18);
   padding-left: 10px;
   background: linear-gradient(90deg, rgba(244,114,182,0.02), transparent);
   margin-top: 1.6em; /* 上部に約一文字分の縦スペースを追加 */
 }
-
 h4 {
   font-size: 0.98rem;
   color: var(--accent-4);
   margin-top: 1.6em; /* 上部に約一文字分の縦スペースを追加 */
 }
-
 h5 {
   font-size: 0.95rem;
   color: var(--accent-5);
@@ -166,12 +160,29 @@ h5 {
   border: 1px solid rgba(7,32,58,0.04);
 }
 
-/* レイアウトヘルパー */
+/* レイアウトヘルパー
+   注: 改行用に挿入される要素（flex-basis:100%）による「行間」を半分にするために
+   row-gap を var(--gap) の半分に設定しています。これで視覚的に折り返す際の上下スペースが半減します。
+*/
 .layout {
   display:flex;
-  gap:var(--gap);
+  gap:var(--gap);                 /* 全体のギャップ（主に横方向） */
+  column-gap: var(--gap);
+  row-gap: calc(var(--gap) / 2);  /* 折り返し行間を半分にする（ここが重要） */
   align-items:flex-start;
 }
+
+/* header など他の flex コンテナも同様に調整 */
+header[role="banner"] { row-gap: calc(var(--gap) / 2); }
+nav ul {
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--gap);
+  column-gap: var(--gap);
+  row-gap: calc(var(--gap) / 2);
+}
+
+/* main / aside レイアウト幅 */
 main { flex:1 1 640px; min-width:260px; }
 aside { width:320px; min-width:220px; }
 
@@ -179,8 +190,6 @@ aside { width:320px; min-width:220px; }
 ul.linklist { padding-left:1.1rem; margin:8px 0 18px 0; }
 ul.linklist li { margin:8px 0; color:var(--muted); }
 
-nav ul { display:flex; flex-wrap:wrap; gap:8px; }
-nav a { display:inline-block; padding:2px 6px; text-decoration:none; }
 /* 画像 */
 figure { margin:12px 0; }
 img { max-width:100%; height:auto; display:block; border-radius:8px; }
