@@ -97,7 +97,7 @@ h2 {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgb(3, 255, 179), rgb(210, 255, 213));
+  background: linear-gradient(90deg, rgb(3, 255, 179), rgb(245, 255, 245));
   color: var(--accent-);
   box-shadow: inset 0 -2px 0 rgba(96,165,250,0.06);
   margin-top: 0.3em;
@@ -107,7 +107,7 @@ h3 {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgb(216, 249, 1), rgb(231, 240, 182));
+  background: linear-gradient(90deg, rgb(238, 255, 0), rgb(255, 255, 252));
   color: var(--accent-);
   box-shadow: inset 0 -2px 0 rgba(96,165,250,0.06);
   margin-top: 1.6em;
