@@ -216,6 +216,13 @@ width: 768px; /*線の幅*/
 background:linear-gradient(transparent 90%, #88f2ad 0%);
 }
 
+.blockbody a{
+color:#000d99;
+line-height:2em;
+font-size: 100%;
+font-weight:none;
+text-decoration: none;
+}
 .blogbody {
 font-weight:normal;
 margin:0px;
