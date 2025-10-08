@@ -1,18 +1,19 @@
 /* カラーパレット（必要であればこのまま調整） */
 :root{
   --site-bg: #f4f6f8;       /* ページ全体の薄い灰色背景 */
-  --panel-bg: #ffffffde;      /* コンテンツパネル背景 */
+  --panel-bg: #cececc;      /* コンテンツパネル背景 */
   --text: #062031;          /* メインテキスト（黒に近いダークネイビー） */
   --muted: #566771;         /* サブテキスト */
   --accent-1: #0000ff;      /* ブルー */
-  --accent-2: #b7d700;      /* ライトシアン */
-  --accent-3: #435159;      /* グレー系 */
-  --accent-4: #f59e0b;      /* アンバー（暖色アクセント） */
-  --accent-5: #008655;      /* ミントグリーン */
+  --accent-2: #b7d700;      /*  */
+  --accent-3: #435159;      /*  */
+  --accent-4: #f59e0b;      /*  */
+  --accent-5: #008655;      /*  */
   --border: rgba(7,32,58,0.06);
   --radius: 10px;
   --max-width: 1100px;
-  --gap: 18px;
+  --gap: 36px;              /* 倍に増やした主ギャップ（元 18px → 36px） */
+  --gap-half: 18px;         /* 補助変数（例: 半分のギャップが必要な場所用） */
   --font-sans: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
 }
 
@@ -53,9 +54,9 @@ body[class], html[class], [class*="dark"], [data-theme] {
 }
 header[role="banner"] {
   display: flex;
-  gap: 12px;
+  gap: 24px;                 /* header内のギャップも倍に */
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 36px;       /* header下の余白を倍に */
 }
 a { color: var(--accent-1); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -165,25 +166,25 @@ h5 {
 }
 
 /* レイアウトヘルパー
-   注: 改行用に挿入される要素（flex-basis:100%）による「行間」を半分にするために
-   row-gap を var(--gap) の半分に設定しています。これで視覚的に折り返す際の上下スペースが半減します。
+   注: 改行用に挿入される要素（flex-basis:100%）による「行間」を調整するために
+   row-gap を var(--gap-half) に設定しています（全体のギャップは倍増）。
 */
 .layout {
   display:flex;
   gap:var(--gap);                 /* 全体のギャップ（主に横方向） */
   column-gap: var(--gap);
-  row-gap: calc(var(--gap) / 4);  /* 折り返し行間を半分にする（元は calc(var(--gap) / 2)） */
+  row-gap: var(--gap-half);       /* 折り返し行間は元の値（18px）に相当 */
   align-items:flex-start;
 }
 
 /* header など他の flex コンテナも同様に調整 */
-header[role="banner"] { row-gap: calc(var(--gap) / 4); }
+header[role="banner"] { row-gap: var(--gap-half); }
 nav ul {
   display:flex;
   flex-wrap:wrap;
   gap:var(--gap);
   column-gap: var(--gap);
-  row-gap: calc(var(--gap) / 4);
+  row-gap: var(--gap-half);
 }
 
 /* main / aside レイアウト幅 */
@@ -203,8 +204,12 @@ li[aria-hidden="true"][role="presentation"] {
 }
 
 /* リスト類 */
-ul.linklist { padding-left:1.1rem; margin:8px 0 18px 0; }
-ul.linklist li { margin:8px 0; color:var(--muted); }
+ul.linklist { padding-left:1.1rem; margin:16px 0 36px 0; } /* 上下マージンを倍に */
+ul.linklist li { margin:16px 0; color:var(--muted); }       /* li間の余白を倍に */
+
+/* ナビゲーション内の個別リンク間の空白をより明確に（ユーザーの要望に対応） */
+nav ul li { margin-right: 0; padding-right: 0; } /* 既存の余白リセット */
+nav ul > li + li { margin-left: var(--gap); }    /* リスト間を var(--gap) で確実に空ける */
 
 /* 画像 */
 figure { margin:12px 0; }
@@ -218,7 +223,7 @@ img { max-width:100%; height:auto; display:block; border-radius:8px; }
 
 /* フッター */
 footer[role="contentinfo"] {
-  margin-top:24px;
+  margin-top:48px; /* 倍に */
   color:var(--muted);
   font-size:0.95rem;
   background:transparent;
@@ -233,7 +238,11 @@ footer[role="contentinfo"] {
   .site { padding:12px; }
   h1 { font-size:1.1rem; }
   h2 { font-size:1rem; padding:6px 10px; }
+  /* モバイルではリスト間の余白を少し抑える（視覚的バランス） */
+  ul.linklist { margin:12px 0 18px 0; }
+  ul.linklist li { margin:8px 0; }
+  header[role="banner"] { margin-bottom:18px; gap:12px; row-gap: calc(var(--gap-half) / 2); }
 }
 
 /* 保険: black (#000000) を背景やボーダーに使っている他のCSSがあれば上書きする */
-/* （不要な空ルールは削除済み） */
+* { box-sizing: border-box; }
