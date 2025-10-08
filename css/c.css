@@ -98,8 +98,7 @@ h1 {
   background-clip: text;
   color: transparent;
   padding-bottom: 6px;
-}
-h2 {
+}h2 {
   font-size: 1.05rem;
   display: inline-block;
   padding: 6px 12px;
@@ -107,21 +106,28 @@ h2 {
   background: linear-gradient(90deg, rgb(217, 250, 2), rgb(194, 255, 176));
   color: var(--accent-);
   box-shadow: inset 0 -2px 0 rgba(96,165,250,0.06);
+  margin-top: 0.9em; /* 上部に約一文字分の縦スペースを追加 */
 }
+
 h3 {
   font-size: 1rem;
   color: var(--accent-);
   border-left: 4px solid rgba(244,114,182,0.18);
   padding-left: 10px;
   background: linear-gradient(90deg, rgba(244,114,182,0.02), transparent);
+  margin-top: 0.9em; /* 上部に約一文字分の縦スペースを追加 */
 }
+
 h4 {
   font-size: 0.98rem;
   color: var(--accent-4);
+  margin-top: 0.9em; /* 上部に約一文字分の縦スペースを追加 */
 }
+
 h5 {
   font-size: 0.95rem;
   color: var(--accent-5);
+  margin-top: 0.9em; /* 上部に約一文字分の縦スペースを追加 */
 }
 
 /* 見出し下のサブテキスト（淡いアクセント） */
@@ -173,6 +179,8 @@ aside { width:320px; min-width:220px; }
 ul.linklist { padding-left:1.1rem; margin:8px 0 18px 0; }
 ul.linklist li { margin:8px 0; color:var(--muted); }
 
+nav ul { display:flex; flex-wrap:wrap; gap:8px; }
+nav a { display:inline-block; padding:4px 6px; text-decoration:none; }
 /* 画像 */
 figure { margin:12px 0; }
 img { max-width:100%; height:auto; display:block; border-radius:8px; }

@@ -70,24 +70,26 @@
 <body>
   <header role="banner" aria-label="サイトヘッダー">
     <div class="container" style="align-items:center;">
-      <h1 style="flex:1 1 auto;margin:0"><a href="https://memoc.pages.dev/" rel="home">メモ帳代わりwebブラウザ便利サイト</a></h1>
-      <nav aria-label="サイト内ナビゲーション" style="flex:0 0 auto">
-        <ul style="display:flex;gap:8px;list-style:none;margin:0;padding:0;">
-          <li><a href="#memo" aria-label="メモへ移動">メモ</a></li>
-          <li><a href="#time" aria-label="時計へ移動">時計</a></li>
-          <li><a href="#cale" aria-label="カレンダーへ移動">カレンダー</a></li>
-          <li><a href="#tools" aria-label="生活へ移動">生活ツール</a></li>
-          <li><a href="#coun" aria-label="貯金へ移動">貯金</a></li><br>
-          <li><a href="#calc" aria-label="電卓へ移動">電卓</a></li>
-          <li><a href="#tv" aria-label="ティーバーへ移動">ティーバー</a></li>
-          <li><a href="#games" aria-label="ゲームへ移動">ゲーム</a></li>
-          <li><a href="#eigo" aria-label="英語へ移動">英語</a></li>
-          <li><a href="#illust" aria-label="イラストへ移動">イラスト</a></li><br>
-          <li><a href="#rank" aria-label="ランキングへ移動">ランキング</a></li>
-          <li><a href="#jisho" aria-label="辞書へ移動">辞書</a></li>
-          <li><a href="#links" aria-label="ニュース メール 天気へ移動">ニュース メール 天気</a></li>
-        </ul>
-      </nav>
+      <h1 style="flex:1 1 auto;margin:0"><a href="https://memoc.pages.dev/" rel="home">メモ帳代わりwebブラウザ便利サイト</a></h1><nav aria-label="サイト内ナビゲーション" style="flex:0 0 auto">
+  <ul style="display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0;">
+    <li><a href="#memo" aria-label="メモへ移動">メモ</a></li>
+    <li><a href="#time" aria-label="時計へ移動">時計</a></li>
+    <li><a href="#cale" aria-label="カレンダーへ移動">カレンダー</a></li>
+    <li><a href="#tools" aria-label="生活へ移動">生活ツール</a></li>
+    <li><a href="#coun" aria-label="貯金へ移動">貯金</a></li>
+    <!-- 改行（視覚的に折り返すための空要素） -->
+    <li aria-hidden="true" role="presentation" style="flex-basis:100%;height:0;margin:0;padding:0;"></li>
+    <li><a href="#calc" aria-label="電卓へ移動">電卓</a></li>
+    <li><a href="#tv" aria-label="ティーバーへ移動">ティーバー</a></li>
+    <li><a href="#games" aria-label="ゲームへ移動">ゲーム</a></li>
+    <li><a href="#eigo" aria-label="英語へ移動">英語</a></li>
+    <li><a href="#illust" aria-label="イラストへ移動">イラスト</a></li>
+    <li aria-hidden="true" role="presentation" style="flex-basis:100%;height:0;margin:0;padding:0;"></li>
+    <li><a href="#rank" aria-label="ランキングへ移動">ランキング</a></li>
+    <li><a href="#jisho" aria-label="辞書へ移動">辞書</a></li>
+    <li><a href="#links" aria-label="ニュース メール 天気へ移動">ニュース メール 天気</a></li>
+  </ul>
+</nav>
     </div>
   </header>
   <div class="container" role="main" aria-labelledby="main-heading">
