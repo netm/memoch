@@ -101,9 +101,14 @@
         <h3 id="memo-heading">メモ帳（ブラウザ内に自動保存）</h3>
         <form onsubmit="return false" aria-label="メモフォーム">
           <label for="memo1" class="sr-only">メモ欄</label>
-          <textarea id="memo1" name="memo1" placeholder="ここにメモを書いてください。入力は自動的に保存されます。"></textarea>
+          <textarea id="memo1" name="memo1" placeholder="ここにメモを書くと、入力した文章は自動的に保存されます。"></textarea>
         </form>
         <p><small>自動保存機能を備えています。ページを閉じてもメモはブラウザに保存されます。クリアを押すとメモ帳の保存内容を消去。コピーボタンを押すとメモした内容をクリップボードに保存できます。</small></p>
+        <h3>メモ帳２個目（保存されない簡易版）</h3>
+        <p><form>
+<textarea name="テキストエリア" rows="26" cols="68" wrap="hard">ここは、保存されないメモ欄です。
+</textarea>
+</form>
       </section>
       <section id="time" aria-labelledby="time-heading">
         <h3 id="time-heading">時計</h3>
