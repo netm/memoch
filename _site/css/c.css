@@ -1,419 +1,280 @@
-body {
-font-family:Verdana;
-margin:30px;
-padding:0px;
-text-align:left;
-zoom: 115%;
-
+/* ==================================================
+   カラーパレットとベース
+   ================================================== */
+:root{
+  --site-bg: #e8e8e8;
+  --panel-bg: #f8f8f8;
+  --text: #062031;
+  --muted: #566771;
+  --accent-1: #0000ff;
+  --accent-2: #b7d700;
+  --accent-3: #435159;
+  --accent-4: #f59e0b;
+  --accent-5: #008655;
+  --border: rgba(7,32,58,0.06);
+  --radius: 10px;
+  --max-width: 1100px;
+  --gap: 18px;
+  --gap-half: calc(var(--gap) / 2);
+  --font-sans: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
 }
 
-.site-nav {
-  width: 100%;
-  box-sizing: border-box;      /* パディング込みで幅100%になる */
-  display: flex;
-  justify-content: center;
-  gap: 1rem;                   /* 要素間隔を統一 */
-  padding: 1rem 0;
+/* ベース（背景は強制的に薄灰） */
+html, body {
+  background-color: var(--site-bg) !important;
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* テーマ上書きや prefers-color-scheme を無効化（ライト統一） */
+html.dark, html[data-theme="dark"], body.dark, body[data-theme="dark"],
+.theme-dark, .dark-theme, [data-theme="dark"] {
+  background-color: var(--site-bg) !important;
+  color: var(--text) !important;
+}
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: var(--site-bg) !important;
+    color: var(--text) !important;
+  }
+}
+body[class], html[class], [class*="dark"], [data-theme] {
+  background-color: var(--site-bg) !important;
+}
+
+/* ==================================================
+   全体レイアウトとヘッダー/サイト制約
+   ================================================== */
+.site {
+  max-width: var(--max-width);
   margin: 0 auto;
-  flex-wrap: wrap;             /* 狭い画面で折り返し */
+  padding: 20px;
+  box-sizing: border-box;
 }
-
-.site-nav a {
-  flex: 0 1 auto;              /* コンテンツ幅を保ちつつ縮小可 */
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-}
-.nav {
-  width: 100%;
-  box-sizing: border-box;      /* パディング込みで幅100%になる */
+header[role="banner"] {
   display: flex;
-  justify-content: center;
-  gap: 1rem;                   /* 要素間隔を統一 */
-  padding: 1rem 0;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+  row-gap: calc(var(--gap) / 4);
+}
+
+/* リンク */
+a { color: var(--accent-1); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ==================================================
+   パネル・カード共通スタイル
+   ================================================== */
+main, .card, aside, .panel {
+  background: var(--panel-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(7,32,58,0.04);
+}
+
+/* ==================================================
+   タイポグラフィと見出しの装飾
+   ================================================== */
+h1, h2, h3, h4, h5 {
+  margin: 0 0 10px 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+  color: var(--text);
+}
+p, li, dd {
+  color: var(--muted);
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+h1 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1.25rem;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-top: 10px;
+  padding-bottom: 6px;
   margin: 0 auto;
-  flex-wrap: wrap;             /* 狭い画面で折り返し */
 }
-
-.nav a {
-  flex: 0 1 auto;              /* コンテンツ幅を保ちつつ縮小可 */
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-}
-
-#container{
-margin:0px auto;
-width:800px;
-line-height: 2em;
-background-color:#fff;
-font-family:Verdana;
-}
-
-a{
-color:#000d99;
-line-height:2em;
-font-size: 100%;
-font-weight:none;
-text-decoration: underline;
-}
-a:hover{
-text-decoration: none;
-}
-a.ab{
-color:#000d99;
-border:none;
-font-size: 86%;
-font-weight:none;
-text-decoration: underline;
-}
-.ka{
-width: 100%;
-margin-left:auto;
-margin-right:auto;
-border-top: 2px solid #000d99;
-border-left: 2px solid #000d99;
-border-right: 2px solid #000d99;
-border-bottom: 2px solid #000d99;
-margin:0px 0px 0px 0px;
-padding:2px 6px 2px 6px;
-}  
-form textarea {
-font-size: 105%;
-  background-color: rgb(249, 249, 249);
-  color: black;
-}
-h1{
-  display: inline-block;
-  font-size: 26px;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  bottom: 0; /*下寄せの指定*/
-  background: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #ff3bef 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-overflow: hidden;
-text-align:center;
-margin-left: 6px; /* 好きなpxに調整できます */
-}
-
-h1 a{
-  display: inline-block;
-  font-size: 26px;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  bottom: 0; /*下寄せの指定*/
-  background: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #ff3bef 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-overflow: hidden;
-text-align:center;
-margin-left: 6px; /* 好きなpxに調整できます */
-}
-
 h2 {
-color:#557303;
-font-size: 88%; 
-line-height: 1em; 
-font-weight:bolder;
-padding:10px 0px 5px 0px;
-margin:0px 0px 0px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#f0f2ff;
-border-radius: 1vh;
+  font-size: 1.05rem;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(0, 255, 0), rgb(245, 255, 245));
+  color: var(--accent-3);
+  box-shadow: inset 0 -2px 0 rgba(96,165,250,0.06);
+  margin-top: 0.3em;
 }
-
-h2 a{
-text-decoration: none;
-color:#000d99;
-background-color:#f0f2ff;
-border-radius: 1vh;
-}
-
 h3 {
-color:#557303;
-font-size: 90%;
-line-height: 1em;
-font-weight:bolder;
-padding:8px 0px 7px 20px;
-margin:10px 0px 5px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#fcfabd;
-border-radius: 2vh;
+  font-size: 1rem;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(255, 255, 0), rgb(255, 255, 252));
+  color: var(--accent-3);
+  box-shadow: inset 0 -2px 0 rgba(96,165,250,0.06);
+  margin-top: 1.6em;
 }
 h4 {
-position: center;
-padding:8px 0px 7px 20px;
-margin:0px 0px 0px 0px;
-  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), transparent);
-  background: linear-gradient(to right, rgb(255, 186, 115), transparent);
-  color: #545454;
-  font-size: 90%;
-border-radius: 2vh;
+  font-size: 0.98rem;
+  color: var(--accent-4);
+  margin-top: 1.6em;
 }
-
 h5 {
-color:#557303;
-font-size: 90%;
-line-height: 1em;
-font-weight:bolder;
-padding:8px 0px 7px 20px;
-margin:10px 0px 5px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#f0f2ff;
-border-radius: 2vh;
+  font-size: 0.95rem;
+  color: var(--accent-5);
+  margin-top: 1.6em;
 }
 
-p{
-font-size: 96%;
-line-height: 2em;
-padding-top:0px;
-font-weight:none;
-padding:0px 0px 2px 0px;
-margin:0px 0px 0px 0px;
-}
-p strong{ 
-text-decoration: none;
-font-weight: normal;
-}
-#banner{
-font-family:Verdana;
-text-align:left;
-margin:-20px 0px 0px 0px;
+/* 見出し下のサブテキスト */
+.heading-sub {
+  display:block;
+  font-size:0.92rem;
+  color:var(--muted);
+  margin-top:6px;
+  margin-bottom:12px;
 }
 
-.description {
-color:#6E8C4C;
-font-size: 100%; 
-text-decoration: none;
-line-height: 2em;
-padding:0px 0px 0px 0px;
-}
-.description strong{ 
-text-decoration: none;
-font-weight: normal;
-}
-#content {
-margin:0px 0px 0px 15px;
-float:left;
-width:565px;
-font-size: 100%; 
-font-family:Verdana;
+/* バッジや小さなアクセント */
+.badge {
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:0.85rem;
+  color:#fff;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-3));
 }
 
-.blog {
-padding:0px;
-text-align:left;
-margin-bottom:20px;
-padding:8px;
+/* ボタン */
+.btn {
+  display:inline-block;
+  padding:8px 12px;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  color:#fff;
+  border-radius:8px;
+  font-weight:700;
+  text-decoration:none;
+}
+.btn.secondary {
+  background: linear-gradient(90deg,#eef2ff, #fdf2f8);
+  color: var(--text);
+  border: 1px solid rgba(7,32,58,0.04);
 }
 
-.blockbody {
-color:#3f995e;
-font-size: 100%;
-text-decoration: none;
-line-height: 2em;
-padding:2px 2px 2px 20px;
-width: 768px; /*線の幅*/
-background:linear-gradient(transparent 90%, #88f2ad 0%);
+/* ==================================================
+   レイアウトヘルパーと2カラム（デスクトップ等幅）
+   ================================================== */
+/* 共通 .layout（折り返し行間を小さく） */
+.layout {
+  display:flex;
+  gap:var(--gap);
+  column-gap: var(--gap);
+  row-gap: calc(var(--gap) / 4);
+  align-items:flex-start;
 }
 
-.blogbody {
-font-weight:normal;
-margin:0px;
-padding:10px;
-background-color:#fff;
-border:1px solid #7ABD3C;
+/* フレックス改行要素（視覚的折り返し用） */
+li[aria-hidden="true"][role="presentation"] {
+  flex-basis: 100%;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  font-size: 0;
+  min-height: 0;
 }
 
-
-.title{
-}
-.title a{
-border:underline;
-font-weight:bolder;
-font-size:13px;}
-
-.text{
-font-size: 100%; 
-padding:6px 0px 6px 0px;
-line-height: 2em;
+/* nav や header の flex 調整 */
+nav ul {
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--gap);
+  column-gap: var(--gap);
+  row-gap: calc(var(--gap) / 4);
 }
 
-
-img.yohaku{margin:4px 20px 4px 0px;}
-img.yohaku2{margin-right:20px;} 
-
-
-span.iro1{color:red;
-font-weight:bolder;}
-
-
-.posted{ 
-font-size: 10px; 
-text-align: right;
-padding:0px 0px 0px 0px;
+/* 等幅2カラム（デスクトップ）: main と aside を等分する */
+.layout.two-column {
+  /* ここでフレックスコンテナは等分する想定 */
 }
-#links-left {
-font-weight:normal;
-width:200px;
-float:left;
-margin: 0px 0px 0px 10px;
-_margin: 0px 0px 0px 5px;
-text-align:left;
-font-family:Verdana;
+.layout.two-column main {
+  flex: 1 1 50%;
+  min-width: 260px;
+  max-width: 100%;
 }
-#links-right {
-font-weight:normal;
-width:200px;
-float:right;
-margin: 0px 0px 0px 10px;
-_margin: 0px 0px 0px 5px;
-text-align:left;
-font-family:Verdana;
-}
-#links {
-font-weight:normal;
-float:left;
-width:200px;
-margin: 0px 0px 0px 15px;
-text-align:left;
-font-family:Verdana;
+.layout.two-column aside {
+  flex: 1 1 50%;
+  min-width: 220px;
+  max-width: 100%;
 }
 
-.sidetitle  {
-  padding: 0.5rem 1rem;
-  color: #414538;
-  border-radius: 2vh;
-  background-image: -webkit-gradient(linear, right top, left top, from(#9be15d), to(#00e3ae));
-  background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
-  background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
+/* 代替レイアウト（以前の数値ベースの設定を残す） */
+main {
+  /* 基本の柔軟設定（上書きされる場合あり） */
+  flex:1 1 640px;
+  min-width:260px;
 }
-.sidetitle:before {
-  content: '★';
-  color: #eeff33;
-  margin-right: 8px;
+aside {
+  width:320px;
+  min-width:220px;
 }
 
-.side {
-padding:0px 5px 10px 5px;
-margin-bottom:10px;
-line-height: 2em;
-background-color:#f0f2ff;
-border-radius: 1vh;
-}
-.side-tag {
-padding:10px 5px 10px 5px;
-margin-bottom:10px;
-}
-.side a{
-color:#000d99;
-border:none;
-}
-.side a:hover{
-　text-decoration: underline;
-}
-.side-tag a{
-color:#000d99;
+/* ==================================================
+   画像、リスト、フォーカス、フッター
+   ================================================== */
+ul.linklist { padding-left:1.1rem; margin:8px 0 18px 0; }
+ul.linklist li { margin:8px 0; color:var(--muted); }
+
+figure { margin:12px 0; }
+img { max-width:100%; height:auto; display:block; border-radius:8px; }
+
+:focus-visible {
+  outline: 3px solid rgba(96,165,250,0.28);
+  outline-offset: 2px;
 }
 
-.powered {
-padding:8px 0px;
-text-align:center;
-}
-.powered table{
-margin:0px auto;
-text-align:center;
-}
-
-.syndicate {
-font-size:10px;
-margin-right:10px;
-text-align:center;
-}
-.syndicate a{
-color:#000d99;
+footer[role="contentinfo"] {
+  margin-top:24px;
+  color:var(--muted);
+  font-size:0.95rem;
+  background:transparent;
+  border:0;
+  padding:12px 0;
 }
 
-#Watch{
-display: inline-block;
-width: 100%;
-text-align: center;
-font-weight:bold;
-font-size:200%;
+/* 保険: black (#000000) を背景やボーダーに使っている他のCSSがあれば上書きする */
+* { box-sizing: border-box; }
+
+/* ==================================================
+   レスポンシブ：狭い画面では縦並び
+   ================================================== */
+@media (max-width: 980px) {
+  .layout {
+    flex-direction: column;
+    gap: var(--gap-half);
+  }
+  /* stacked 切り替え用クラスがあれば両方安全に対応 */
+  .layout.two-column { flex-direction: column; }
+  main, aside {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+  aside { width:100%; }
+  .site { padding:12px; }
+  h1 { font-size:1.1rem; }
+  h2 { font-size:1rem; padding:6px 10px; }
 }
-
-#date {
-  font-size: 0.8em;
-  color: #666;
-  margin-bottom: 0.3em;
-  padding-top:   10px;  /* 上の余白 */
-  padding-right:  2px;  /* 右の余白 */
-  padding-bottom: 2px;  /* 下の余白 */
-  padding-left:  30px;  /* 左の余白 */
-}
-
-#time {
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #000;
-  padding-top:    4px;  /* 上の余白 */
-  padding-right:  2px;  /* 右の余白 */
-  padding-bottom:20px;  /* 下の余白 */
-  padding-left:  30px;  /* 左の余白 */
-}
-
-#calculator {
-             width: 300px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            height: 40px;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        button {
-            width: 60px; /* ボタンの幅を変更 */
-            height: 60px; /* ボタンの高さを変更 */
-            font-size: 24px;
-            margin: 5px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-#footer{
-clear:left;
-text-align:center;
-background-color:#d6d6d6;
-}
-.copyright{
-font-size:90%;
-width:100%;
-text-align:center;
-padding:0px 0px 5px 0px;
-margin:0px 0px 10px 0px;
-border-bottom:1px dotted #7ABD3C;
-background-color:#d6d6d6;
-
-}
-blockquote{
-border:1px solid #7ABD3C;
-padding:5px;
-margin:5px;
-}
-

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <meta name="description" content="日付換算ツールは日付や年齢、期間、時間単位を即時計算するツール">
+  <title>日付換算ツール 年齢計算と時間単位変換</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" href="/css/y981.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">日⇄算</div>
+      <div>
+        <div class="title">日付換算ツール</div>
+        <div class="small">日付計算・年齢・期間・時間変換を1ページで</div>
+      </div>
+    </header>
+    <main class="card" id="app" role="main">
+      <div class="grid">
+        <div>
+          <!-- 日付加減算 -->
+          <section class="section" aria-labelledby="h-date">
+            <h2 id="h-date">日付の加減算</h2>
+            <label for="date-start">開始日</label>
+            <input id="date-start" type="date" aria-label="開始日">
+            <label for="date-offset">加算する日数（負の値で減算）</label>
+            <input id="date-offset" type="number" inputmode="numeric" placeholder="例: 10, -3">
+            <div class="actions">
+              <button id="btn-date-calc">計算する</button>
+              <button class="secondary" onclick="document.getElementById('date-start').value='';document.getElementById('date-offset').value='';">クリア</button>
+            </div>
+            <div id="res-date" class="result" aria-live="polite">結果がここに表示されます</div>
+            <div class="help">開始日を入れてEnterか計算ボタンで即時表示されます</div>
+          </section>
+          <hr class="sep">
+          <!-- 営業日計算 -->
+          <section class="section" aria-labelledby="h-business">
+            <h2 id="h-business">おおよその営業日計算</h2>
+            <label for="business-start">開始日</label>
+            <input id="business-start" type="date" aria-label="営業日開始日">
+            <label for="business-offset">営業日数（正の値で進む）</label>
+            <input id="business-offset" type="number" inputmode="numeric" placeholder="例: 5">
+            <div class="actions">
+              <button id="btn-business-calc">営業日で計算</button>
+              <button class="secondary" onclick="document.getElementById('business-start').value='';document.getElementById('business-offset').value='';">クリア</button>
+            </div>
+            <div id="res-business" class="result" aria-live="polite">営業日換算結果がここに表示されます</div>
+            <div class="help">土日と祝日を除外して計算します。祝日は毎年変わるので目安の営業日です。</div>
+          </section>
+          <hr class="sep">
+          <!-- 期間分解 -->
+          <section class="section" aria-labelledby="h-range">
+            <h2 id="h-range">期間の分解</h2>
+            <label for="range-start">開始日</label>
+            <input id="range-start" type="date">
+            <label for="range-end">終了日</label>
+            <input id="range-end" type="date">
+            <div class="actions">
+              <button id="btn-range-calc">期間を分解</button>
+              <button class="secondary" onclick="document.getElementById('range-start').value='';document.getElementById('range-end').value='';">クリア</button>
+            </div>
+            <div id="res-range" class="result" aria-live="polite">期間の年/月/日と総日数を表示します</div>
+          </section>
+        </div>
+        <aside>
+          <!-- 年齢計算 -->
+          <section class="section" aria-labelledby="h-age">
+            <h2 id="h-age">年齢計算</h2>
+            <label for="birth">生年月日</label>
+            <input id="birth" type="date">
+            <div class="actions">
+              <button id="btn-age-calc">年齢を計算</button>
+              <button class="secondary" onclick="document.getElementById('birth').value='';">クリア</button>
+            </div>
+            <div id="res-age" class="result" aria-live="polite">満年齢がここに表示されます</div>
+          </section>
+          <hr class="sep">
+          <!-- 時間単位変換 -->
+          <section class="section" aria-labelledby="h-time">
+            <h2 id="h-time">時間単位変換</h2>
+            <label for="time-value">値</label>
+            <input id="time-value" type="text" inputmode="decimal" placeholder="例 1.5">
+            <label for="time-from">変換元単位</label>
+            <select id="time-from">
+              <option>秒</option>
+              <option>分</option>
+              <option selected>時間</option>
+              <option>日</option>
+            </select>
+            <label for="time-to">変換先単位</label>
+            <select id="time-to">
+              <option selected>秒</option>
+              <option>分</option>
+              <option>時間</option>
+              <option>日</option>
+            </select>
+            <div class="actions">
+              <button id="btn-time-calc">変換</button>
+              <button class="secondary" onclick="document.getElementById('time-value').value='';">クリア</button>
+            </div>
+            <div id="res-time" class="result" aria-live="polite">変換結果がここに表示されます</div>
+          </section>
+          <hr class="sep">
+          <!-- 共有 -->
+          <section class="section" aria-labelledby="h-share">
+            <h2 id="h-share">共有リンク</h2>
+            <div class="share">
+              <input id="share-url" type="text" readonly aria-label="共有URL">
+              <button id="share-copy" disabled>コピー</button>
+            </div>
+            <div class="help">現在の入力をURLハッシュに保存して共有できます</div>
+          </section>
+        </aside>
+      </div>
+<section class="section" aria-labelledby="h-seo">
+  <h2 id="h-seo">日付換算ツールについて</h2>
+  <p class="help">
+    日付換算ツールは、日付の加減算・営業日計算・年齢計算・期間分解・時間単位変換を
+    ワンページで素早く行える無料のオンラインツールです。シンプルな操作で「日付計算」、
+    「営業日 変換」、「年齢 計算（西暦）」、「期間 日数 変換」などの日常的な
+    計算を正確に行えます。
+  </p>
+  <p class="help">
+    本サイトはモバイル最適化・高速表示を重視しており、検索から直接目的の計算結果に
+    到達できるようにしています。会計やスケジュール管理、
+    契約期間の確認、業務での納期計算など幅広い用途でご利用ください。
+  </p>
+  <hr class="sep" />
+  <h3 style="margin-top:12px;">日付の加減算</h3>
+  <p class="help">
+    開始日から指定日数を加算・減算して目的の日付を瞬時に算出します。締切日や予定日の
+    前後の日付をすばやく確認したいときに便利です。例: 「2025-05-01 から 10 日後」や
+    「契約終了日の 30 日前」を即座に表示します。
+  </p>
+  <h3 style="margin-top:12px;">期間分解（年/月/日 と 総日数の算出）</h3>
+  <p class="help">
+    2つの日付間の差分を「何年何ヶ月何日」や「総日数」で表示します。契約期間や勤続年数、
+    プロジェクトの経過期間を人間に分かりやすい形式で確認したいときに役立ちます。
+  </p>
+  <h3 style="margin-top:12px;">年齢計算（満年齢・和暦表示）</h3>
+  <p class="help">
+    生年月日から満年齢を計算し、必要に応じて西暦表記と簡易和暦表記を併記します。年齢確認、
+    年齢条件の判定、履歴書・申請書類のチェックなどで素早く年齢を把握できます。
+  </p>
+  <h3 style="margin-top:12px;">時間単位変換（秒・分・時間・日）</h3>
+  <p class="help">
+    秒、分、時間、日などの時間単位を相互に変換します。作業時間の集計やログデータの統計、
+    サーバ稼働時間の換算などで利用できます。小数入力に対応し、精度を保って換算結果を提示します。
+  </p>
+  <div style="margin-top:12px;">    
+<p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p>
+<p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
+<p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
+<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p>
+<p><a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月 無料で書き込みダウンロード保存も</a></p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
+<p><a href="https://memoc.pages.dev/y994/" target="_blank">退職者へのメッセージジェネレーター上司・同僚・後輩・一言にも対応</a></p>
+<p><a href="https://memoc.pages.dev/y992/" target="_blank">スケジュール帳ブラウザアプリ</a></p>
+<p><a href="https://memoc.pages.dev/y991/" target="_blank">ゴミ収集カレンダー</a></p>
+<p><a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a></p>
+<p><a href="https://memoc.pages.dev/y989/" target="_blank">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p>
+<p><a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p>
+<p><a href="https://memoc.pages.dev/y987/" target="_blank">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></p>
+<p><a href="https://memoc.pages.dev/y986/" target="_blank">非常食データベースと保存年数ランキング</a></p>
+<p><a href="https://memoc.pages.dev/y985/" target="_blank">アナログ時計webアプリ表示切替機能付き</a></p>
+<p><a href="https://memoc.pages.dev/y984/" target="_blank">日本全国方言比較辞典｜地域ごとの言葉の違い一覧</a></p>
+<p><a href="https://memoc.pages.dev/y983/" target="_blank">気分で探す名言 — 今の気持ちで最適な一言を</a></p>
+<p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なサイトリンク集</a></p>
+<p><a href="https://memoc.pages.dev/memode/" target="_blank">メモ付き電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
+<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+<p><a href="https://memoc.pages.dev/kyuujituhikikomori/" target="_blank">休日引きこもりがちになる人の特徴と対処法</a></p>
+<p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
+<p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p>
+<p><a href="https://memoc.pages.dev/rank2/" target="_blank">肩こり解消グッズの売れ筋ランキング アマゾンの人気ランキング</a></p>
+<p><a href="https://memoc.pages.dev/yuenchi/" target="_blank">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
+<p><a href="https://memoc.pages.dev/y5e2/" target="_blank">カップル質問ゲームの説明 PCスマホタブレットおすすめ無料</a></p>
+  </div>
+</section>
+    </main>
+  </div>
+  <script src="/js/y981.js"></script>
+</body>
+</html>

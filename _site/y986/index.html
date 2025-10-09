@@ -1,0 +1,5083 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="家庭向け非常食データベース。保存年数ランキング、カテゴリ別ランキング、必要量計算ツール、印刷リスト機能で災害時の備蓄をサポートします。">
+  <meta name="keywords" content="非常食,保存食,賞味期限,備蓄,防災,家庭用,ランキング,計算ツール">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <title>非常食データベースと保存年数ランキング</title>
+  <link rel="canonical" href="https://memoc.pages.dev/y986/">
+  <meta property="og:title" content="非常食データベースと保存年数ランキング">
+  <meta property="og:description" content="家庭向け非常食データベース。保存年数ランキング、カテゴリ別ランキング、必要量計算ツール、印刷リスト機能で災害時の備蓄をサポートします。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://memoc.pages.dev/y986/">
+  <meta property="og:site_name" content="非常食データベースと保存年数ランキング">
+  <link rel="stylesheet" href="/css/y986.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <header>
+    <h1>非常食データベースと保存年数ランキング</h1>
+    <p>家庭の防災備蓄に役立つ保存期間3年以上の非常食情報のまとめ。</p><p>保存年数ランキングやカテゴリ別ランキングを参考に備蓄しましょう。</p>
+  </header>
+    <section>
+      <h2>保存年数ランキング</h2>
+      <p>保存期間が長い非常食をランキング形式で表示。長期保存が可能な商品を選ぶことで、安心して備蓄できます。</p>
+      <h2>カテゴリ別ランキング</h2>
+      <p>米、パン、野菜缶詰、レトルトカレーなどカテゴリごとに保存年数が長い順番でランキング表示します。</p>
+    </section>
+  <nav id="nav"></nav>
+    <section>
+      <h2>印刷・コピー・画像保存・SNSでシェア共有のボタン</h2>
+      <p>チェックした非常食名と保存年数・アレルゲン・価格などを印刷・コピー・PNG画像保存し、ご家族や友達にSNSでシェア共有できます。</p>
+    </section>
+  <div class="controls">
+    <button id="btnPrint">印刷</button>
+    <button id="btnCopy">クリップボードにコピー</button>
+    <button id="btnReset">初期設定に戻す</button>
+    <button id="btnSavePng">PNG画像で保存</button>
+    <button id="shareX">X</button>
+    <button id="shareFB">Facebook</button>
+    <button id="shareLINE">LINE</button>
+  </div>
+  <main id="main"></main>
+  <section id="cache"></section>
+  <script id="data-json" type="application/json">
+[
+  {
+    "name": "尾西のアルファ米 白飯",
+    "maker": "尾西食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "アキモトのパンの缶詰（オレンジ味）",
+    "maker": "パン・アキモト",
+    "category": "パン",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・卵・乳",
+    "price": "400円"
+  },
+  {
+    "name": "尾西のアルファ米 山菜おこわ",
+    "maker": "尾西食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "380円"
+  },
+  {
+    "name": "尾西のアルファ米 ドライカレー",
+    "maker": "尾西食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "400円"
+  },
+  {
+    "name": "尾西のアルファ米 わかめご飯",
+    "maker": "尾西食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "380円"
+  },
+  {
+    "name": "尾西のアルファ米 五目ご飯",
+    "maker": "尾西食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "380円"
+  },
+  {
+    "name": "尾西のアルファ米 赤飯",
+    "maker": "尾西食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "アキモトの乾パン（プレーン）",
+    "maker": "パン・アキモト",
+    "category": "ビスケット",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "アキモトのウェハース缶（ココア味）",
+    "maker": "パン・アキモト",
+    "category": "お菓子",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "あたりめ（乾燥いか）",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "15g",
+    "allergy": "いか",
+    "price": "250円"
+  },
+  {
+    "name": "あさり水煮缶",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "220円"
+  },
+  {
+    "name": "あずき缶詰",
+    "maker": "はごろもフーズ",
+    "category": "豆",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "アイリスオーヤマ 缶deボローニャ",
+    "maker": "アイリスオーヤマ",
+    "category": "パン",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・卵・乳",
+    "price": "500円"
+  },
+  {
+    "name": "あんぱんの缶詰",
+    "maker": "パン・アキモト",
+    "category": "パン",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・卵・乳",
+    "price": "400円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ みそ汁",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆・小麦",
+    "price": "200円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ コーンポタージュ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "14g",
+    "allergy": "乳・小麦",
+    "price": "220円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ お吸い物（あさり）",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "8g",
+    "allergy": "大豆",
+    "price": "180円"
+  },
+  {
+    "name": "アオハタ つぶ入マーマレード缶",
+    "maker": "アオハタ",
+    "category": "フルーツ",
+    "shelfLifeYears": 4,
+    "weight": "160g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "あらびきウインナー缶詰",
+    "maker": "伊藤ハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "豚肉",
+    "price": "450円"
+  },
+  {
+    "name": "アイリスオーヤマ ミネラルウォーター",
+    "maker": "アイリスオーヤマ",
+    "category": "飲料",
+    "shelfLifeYears": 5,
+    "weight": "500ml",
+    "allergy": "なし",
+    "price": "100円"
+  },
+  {
+    "name": "あん肝缶詰",
+    "maker": "共栄水産",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "かに",
+    "price": "420円"
+  },
+  {
+    "name": "あしたのカレー レトルトカレー",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "アワビ缶詰 水煮",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "600円"
+  },
+  {
+    "name": "あゆ水煮缶詰",
+    "maker": "イチビキ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "あずきぜんざい缶詰",
+    "maker": "はごろもフーズ",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ にゅうめん 梅",
+    "maker": "アマノフーズ",
+    "category": "麺",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "小麦・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ 玉子スープ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "7g",
+    "allergy": "卵",
+    "price": "200円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ おかゆ（白がゆ）",
+    "maker": "アマノフーズ",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "アマノフーズ フリーズドライ おかゆ（梅がゆ）",
+    "maker": "アマノフーズ",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "22g",
+    "allergy": "なし",
+    "price": "270円"
+  },
+  {
+    "name": "アサヒグループ食品 乾パン",
+    "maker": "アサヒグループ食品",
+    "category": "ビスケット",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "320円"
+  },
+  {
+    "name": "アサヒグループ食品 おいしい牛乳クラッカー",
+    "maker": "アサヒグループ食品",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "乳・小麦",
+    "price": "280円"
+  },
+  {
+    "name": "アイリスオーヤマ 果汁100％リンゴジュース（缶）",
+    "maker": "アイリスオーヤマ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "190ml",
+    "allergy": "なし",
+    "price": "150円"
+  },
+  {
+    "name": "いなば 水煮ツナ（ライトミートタイプ）",
+    "maker": "いなば食品",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "320円"
+  },
+  {
+    "name": "いなば チキンとタイカレー缶",
+    "maker": "いなば食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "125g",
+    "allergy": "鶏肉・乳",
+    "price": "360円"
+  },
+  {
+    "name": "いわし旨煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "280円"
+  },
+  {
+    "name": "いわし蒲焼缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "いくら醤油漬け缶詰",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "魚卵",
+    "price": "650円"
+  },
+  {
+    "name": "いりこ（煮干し）",
+    "maker": "片山食品",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "いちごジャム（粒入り）",
+    "maker": "明治屋",
+    "category": "フルーツ",
+    "shelfLifeYears": 3,
+    "weight": "170g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "いちごジャム（ブルーベリー入り）",
+    "maker": "ノースファームストック",
+    "category": "フルーツ",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "450円"
+  },
+  {
+    "name": "いちばんコーン缶",
+    "maker": "ホテイフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "いわて南部せんべい",
+    "maker": "南部せんべい工房",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "320円"
+  },
+  {
+    "name": "いもけんぴ",
+    "maker": "ブルボン",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "いけだ まるごとコーン缶",
+    "maker": "飯田食品",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "いわし水煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "いかの西京漬け缶詰",
+    "maker": "共栄水産",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "いか",
+    "price": "450円"
+  },
+  {
+    "name": "インスタントみそ汁 わかめ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "8g",
+    "allergy": "大豆・小麦",
+    "price": "180円"
+  },
+  {
+    "name": "インスタントみそ汁 赤だし",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "8g",
+    "allergy": "大豆・小麦",
+    "price": "180円"
+  },
+  {
+    "name": "いかくん燻製いかリング",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "いか",
+    "price": "300円"
+  },
+  {
+    "name": "インド風チキンカレー レトルトパウチ",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "鶏肉・小麦・乳",
+    "price": "380円"
+  },
+  {
+    "name": "いなば フリーズドライ ベジタブルミックス",
+    "maker": "いなば食品",
+    "category": "野菜",
+    "shelfLifeYears": 5,
+    "weight": "15g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "いわて牛しぐれ煮缶詰",
+    "maker": "イチビキ",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "牛肉",
+    "price": "550円"
+  },
+  {
+    "name": "うずら卵水煮缶詰",
+    "maker": "イチビキ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "卵",
+    "price": "320円"
+  },
+  {
+    "name": "うなぎ蒲焼缶詰",
+    "maker": "山登",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "うなぎ",
+    "price": "650円"
+  },
+  {
+    "name": "うに缶詰",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "65g",
+    "allergy": "うに",
+    "price": "900円"
+  },
+  {
+    "name": "うずらの五目煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "卵・醤油",
+    "price": "420円"
+  },
+  {
+    "name": "ういろう缶詰（黒糖）",
+    "maker": "虎屋",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "120g",
+    "allergy": "小麦・大豆",
+    "price": "480円"
+  },
+  {
+    "name": "ウエハース缶詰（バニラ味）",
+    "maker": "三立製菓",
+    "category": "お菓子",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "ウインナー缶詰",
+    "maker": "伊藤ハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "豚肉",
+    "price": "450円"
+  },
+  {
+    "name": "ウイダーinゼリー マルチビタミン",
+    "maker": "森永製菓",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "220円"
+  },
+  {
+    "name": "うめぼし干し梅パック",
+    "maker": "紀州南高梅",
+    "category": "漬物",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "うどん乾麺スティック",
+    "maker": "日清食品",
+    "category": "麺",
+    "shelfLifeYears": 5,
+    "weight": "50g",
+    "allergy": "小麦・大豆",
+    "price": "300円"
+  },
+  {
+    "name": "うなぎ白焼缶",
+    "maker": "川登",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "75g",
+    "allergy": "うなぎ",
+    "price": "700円"
+  },
+  {
+    "name": "ウェルチ 缶ぶどうジュース",
+    "maker": "キリンビバレッジ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "ウコンあめ",
+    "maker": "和光堂",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ウォーターライス セット",
+    "maker": "アルファー食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "ウーロン茶缶",
+    "maker": "サントリー",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "500ml",
+    "allergy": "なし",
+    "price": "150円"
+  },
+  {
+    "name": "ウェハースパック チョコ",
+    "maker": "三立製菓",
+    "category": "チョコレート",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "ウェルきな粉餅缶",
+    "maker": "越後製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 4,
+    "weight": "120g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "うるち米クラッカー",
+    "maker": "ブルボン",
+    "category": "クラッカー",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "うまか棒 バーベキュー味",
+    "maker": "赤城製麺",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "小麦",
+    "price": "100円"
+  },
+  {
+    "name": "えいようかん缶",
+    "maker": "井村屋",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "えだ豆水煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "えだ豆醤油味スナック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "大豆",
+    "price": "180円"
+  },
+  {
+    "name": "エコノミー乾パン缶詰",
+    "maker": "パン・アキモト",
+    "category": "ビスケット",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "エネルギージェリー マルチビタミン",
+    "maker": "森永製菓",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "エネルギージェリー マンゴー味",
+    "maker": "森永製菓",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "エダムチーズ缶詰",
+    "maker": "森永乳業",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "エビベビースターラーメン缶",
+    "maker": "おやつカンパニー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "55g",
+    "allergy": "小麦・乳・えび",
+    "price": "130円"
+  },
+  {
+    "name": "エコフォレスト ドライフルーツミックス",
+    "maker": "栗原加工",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "おにぎり缶詰（鮭）",
+    "maker": "キョクヨー",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "140g",
+    "allergy": "魚",
+    "price": "350円"
+  },
+  {
+    "name": "おにぎり缶詰（梅）",
+    "maker": "キョクヨー",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "140g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "おでん缶詰",
+    "maker": "はごろもフーズ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・大豆",
+    "price": "450円"
+  },
+  {
+    "name": "おつまみホタテ水煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "ほたて",
+    "price": "480円"
+  },
+  {
+    "name": "おかき缶詰",
+    "maker": "亀田製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "おしゃぶり昆布",
+    "maker": "ふじっ子",
+    "category": "海藻",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "おしるこ缶詰",
+    "maker": "伊藤軒",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "オリーブマリネ缶詰",
+    "maker": "明治屋",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "なし",
+    "price": "450円"
+  },
+  {
+    "name": "オレンジジュース缶",
+    "maker": "カゴメ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "150円"
+  },
+  {
+    "name": "おもちパック",
+    "maker": "山本食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "500円"
+  },
+  {
+    "name": "おつまみさきいか",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "いか",
+    "price": "300円"
+  },
+  {
+    "name": "カンパン（乾パン）",
+    "maker": "パン・アキモト",
+    "category": "ビスケット",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "かまぼこ缶詰",
+    "maker": "鈴廣かまぼこ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "350円"
+  },
+  {
+    "name": "カニ缶詰（ほぐし身）",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "かに",
+    "price": "600円"
+  },
+  {
+    "name": "カットパイン缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "かぼちゃ甘煮缶詰",
+    "maker": "日本水産",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "カツオ土佐煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "カレー職人 レトルトカレー",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・乳",
+    "price": "360円"
+  },
+  {
+    "name": "カットみかん缶詰",
+    "maker": "大塚食品",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "140g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "かっぱえびせん",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "えび・小麦",
+    "price": "150円"
+  },
+  {
+    "name": "かりんとう缶",
+    "maker": "香月堂",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・大豆",
+    "price": "350円"
+  },
+  {
+    "name": "カステラケーキ缶",
+    "maker": "長崎堂",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・卵",
+    "price": "400円"
+  },
+  {
+    "name": "カシューナッツパック",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "カシューナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "カルシウム入りつぶ塩飴",
+    "maker": "のど飴本舗",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "きのこマリネ缶詰",
+    "maker": "日清食品",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "きんぴらごぼう缶詰",
+    "maker": "はごろもフーズ",
+    "category": "惣菜",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "ごぼう・醤油",
+    "price": "300円"
+  },
+  {
+    "name": "きんかん甘煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "きびだんごパック",
+    "maker": "川端老舗",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "きなこクッキー",
+    "maker": "亀田製菓",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "大豆・小麦",
+    "price": "280円"
+  },
+  {
+    "name": "きなこあめ",
+    "maker": "和光堂",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "きゃらめるコーン",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳・小麦",
+    "price": "150円"
+  },
+  {
+    "name": "キットカット ミニ",
+    "maker": "ネスレ",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "乳・小麦・大豆",
+    "price": "350円"
+  },
+  {
+    "name": "きのこスープパウチ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆・小麦",
+    "price": "200円"
+  },
+  {
+    "name": "きなこ棒",
+    "maker": "ブルボン",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "大豆",
+    "price": "250円"
+  },
+  {
+    "name": "きりざい氷あめ",
+    "maker": "浅田飴",
+    "category": "飴",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "きくらげ旨煮缶",
+    "maker": "マルハニチロ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "きのこミックス乾燥",
+    "maker": "いなば食品",
+    "category": "野菜",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "くず湯スティック",
+    "maker": "永谷園",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "くるみ入りナッツミックス",
+    "maker": "カルビー",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "くるみ",
+    "price": "300円"
+  },
+  {
+    "name": "くり甘露煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "130g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "くらげ酢漬け缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "くらげ",
+    "price": "450円"
+  },
+  {
+    "name": "くきわかめ水煮缶",
+    "maker": "ふじっ子",
+    "category": "海藻",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "くろまめ水煮缶詰",
+    "maker": "共栄水産",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "くるみパン缶詰",
+    "maker": "パン・アキモト",
+    "category": "パン",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・くるみ",
+    "price": "420円"
+  },
+  {
+    "name": "くろずあめ",
+    "maker": "ミツヤ",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "クラッカー缶詰",
+    "maker": "亀田製菓",
+    "category": "クラッカー",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "小麦",
+    "price": "320円"
+  },
+  {
+    "name": "クラシエ コーンスナック缶",
+    "maker": "クラシエフーズ",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "55g",
+    "allergy": "乳・小麦",
+    "price": "150円"
+  },
+  {
+    "name": "クラフトチーズ缶",
+    "maker": "森永乳業",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "380円"
+  },
+  {
+    "name": "クリームパイ缶",
+    "maker": "長崎堂",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳・卵",
+    "price": "400円"
+  },
+  {
+    "name": "クリームシチュー缶",
+    "maker": "ハウス食品",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・乳",
+    "price": "360円"
+  },
+  {
+    "name": "クマ笹茶ティーパック",
+    "maker": "アルファー食品",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "クランベリースナックパック",
+    "maker": "無印良品",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "けずりぶしパック",
+    "maker": "ヤマキ",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "10g",
+    "allergy": "魚",
+    "price": "280円"
+  },
+  {
+    "name": "けさきいかスライス",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "25g",
+    "allergy": "いか",
+    "price": "350円"
+  },
+  {
+    "name": "けんこうミックスナッツ",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "ナッツ",
+    "price": "350円"
+  },
+  {
+    "name": "ケチャップ缶詰",
+    "maker": "カゴメ",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "300g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ケールチップスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ケーキ缶（プレーン）",
+    "maker": "長崎堂",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・卵",
+    "price": "400円"
+  },
+  {
+    "name": "ケロッグ グラノーラ缶",
+    "maker": "ケロッグ",
+    "category": "シリアル",
+    "shelfLifeYears": 3,
+    "weight": "500g",
+    "allergy": "小麦・ナッツ",
+    "price": "1,000円"
+  },
+  {
+    "name": "けんさくみそ味あられ",
+    "maker": "亀田製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "小麦・大豆",
+    "price": "200円"
+  },
+  {
+    "name": "けんちん大根煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "大豆・ごま",
+    "price": "400円"
+  },
+  {
+    "name": "けんちん汁レトルト",
+    "maker": "マルコメ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "大豆",
+    "price": "250円"
+  },
+  {
+    "name": "コンビーフ缶詰",
+    "maker": "はごろもフーズ",
+    "category": "肉加工品",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "牛肉",
+    "price": "450円"
+  },
+  {
+    "name": "コーンスープ缶",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "乳・小麦",
+    "price": "300円"
+  },
+  {
+    "name": "コーンポタージュ缶",
+    "maker": "はごろもフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "180g",
+    "allergy": "乳",
+    "price": "320円"
+  },
+  {
+    "name": "コーンフレーク缶",
+    "maker": "ケロッグ",
+    "category": "シリアル",
+    "shelfLifeYears": 3,
+    "weight": "400g",
+    "allergy": "小麦",
+    "price": "800円"
+  },
+  {
+    "name": "ココナッツミルク缶詰",
+    "maker": "大塚食品",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "ココナッツジュース缶",
+    "maker": "エバラ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "150ml",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "こぶ入り昆布おつまみ",
+    "maker": "三幸産業",
+    "category": "海藻",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "こしあん缶詰",
+    "maker": "伊藤軒",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "こむぎパスタ缶（ペンネ）",
+    "maker": "日清食品",
+    "category": "パスタ",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "400円"
+  },
+  {
+    "name": "ココアパウダー缶",
+    "maker": "AGF",
+    "category": "飲料",
+    "shelfLifeYears": 5,
+    "weight": "200g",
+    "allergy": "乳",
+    "price": "500円"
+  },
+  {
+    "name": "コーンナッツミックスパック",
+    "maker": "カルビー",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "コアラのマーチ缶",
+    "maker": "ロッテ",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "こだわり和風おかき缶",
+    "maker": "亀田製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "さば水煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "さば味噌煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "魚",
+    "price": "320円"
+  },
+  {
+    "name": "さくらんぼシロップ漬け缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "サーモンフレーク缶詰",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "さんま蒲焼缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "サツマイモ甘煮缶詰",
+    "maker": "日本水産",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "さきいかスティック",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "いか",
+    "price": "250円"
+  },
+  {
+    "name": "サバのオリーブオイル漬け缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "魚",
+    "price": "450円"
+  },
+  {
+    "name": "サトイモ煮物缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "さばレモンペッパー焼き缶",
+    "maker": "イチビキ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "さばカレー味缶詰",
+    "maker": "ハウス食品",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "380円"
+  },
+  {
+    "name": "サラミスライスパック",
+    "maker": "プリマハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "豚肉",
+    "price": "350円"
+  },
+  {
+    "name": "サーモンスモークオイル漬缶",
+    "maker": "明治屋",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "500円"
+  },
+  {
+    "name": "さくら漬け瓶詰",
+    "maker": "紀州南高梅",
+    "category": "漬物",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "サフランライスパウチ",
+    "maker": "アルファー食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "サバトマトソース缶詰",
+    "maker": "日清オイリオ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "魚",
+    "price": "380円"
+  },
+  {
+    "name": "サイコロチーズ缶詰",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "しらす干し缶詰",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "ししゃも水煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "魚",
+    "price": "350円"
+  },
+  {
+    "name": "シーチキン Lフレーク",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "シーチキン マイルド",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "320円"
+  },
+  {
+    "name": "シーフードカレー缶詰",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・乳・魚介",
+    "price": "380円"
+  },
+  {
+    "name": "しょうが湯スティック",
+    "maker": "永谷園",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "しょうゆせんべい缶",
+    "maker": "岩塚製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・大豆",
+    "price": "300円"
+  },
+  {
+    "name": "しじみ味噌汁フリーズドライ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "220円"
+  },
+  {
+    "name": "シルクスイート干し芋パック",
+    "maker": "山形あるてぃー",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "シリアルバー チョコ味",
+    "maker": "グリコ",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "乳・小麦・大豆",
+    "price": "150円"
+  },
+  {
+    "name": "シリアルミックスナッツ",
+    "maker": "カルビー",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "ナッツ",
+    "price": "280円"
+  },
+  {
+    "name": "シークワーサーキャンディ",
+    "maker": "米屋",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "シーアスパラ水煮缶詰",
+    "maker": "ホテイフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "シナモンスティックビスケット",
+    "maker": "ロッテ",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "小麦・乳",
+    "price": "320円"
+  },
+  {
+    "name": "スパム缶詰",
+    "maker": "米国ホーメル",
+    "category": "肉加工品",
+    "shelfLifeYears": 5,
+    "weight": "200g",
+    "allergy": "豚肉",
+    "price": "600円"
+  },
+  {
+    "name": "スイートコーン缶詰",
+    "maker": "ホテイフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "スモークサーモン缶詰",
+    "maker": "明治屋",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "500円"
+  },
+  {
+    "name": "スープ缶 トマト",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "スープ缶 クラムチャウダー",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "乳・小麦",
+    "price": "320円"
+  },
+  {
+    "name": "スティックゼリー マルチビタミン",
+    "maker": "味の素",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "スナックミックスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "小麦・乳",
+    "price": "200円"
+  },
+  {
+    "name": "スモークチーズパック",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "するめいか袋詰",
+    "maker": "イチビキ",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "いか",
+    "price": "300円"
+  },
+  {
+    "name": "ストロベリーヨーグルト缶",
+    "maker": "明治",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "乳",
+    "price": "180円"
+  },
+  {
+    "name": "せんべい缶詰",
+    "maker": "亀田製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "110g",
+    "allergy": "小麦",
+    "price": "350円"
+  },
+  {
+    "name": "セサミビスケット缶",
+    "maker": "ネスレ",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・ごま",
+    "price": "350円"
+  },
+  {
+    "name": "セミドライトマト缶",
+    "maker": "マルハニチロ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "セミドライマンゴーパック",
+    "maker": "トーハト",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "450円"
+  },
+  {
+    "name": "セサミクラッカー",
+    "maker": "カルビー",
+    "category": "クラッカー",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "小麦・ごま",
+    "price": "280円"
+  },
+  {
+    "name": "セブンプレミアム せんべいミックス",
+    "maker": "セブン-イレブン",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "セレクトおかゆ（白がゆ）",
+    "maker": "アマノフーズ",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "260円"
+  },
+  {
+    "name": "セブンプレミアム ミネラルウォーター",
+    "maker": "セブン-イレブン",
+    "category": "飲料",
+    "shelfLifeYears": 5,
+    "weight": "500ml",
+    "allergy": "なし",
+    "price": "100円"
+  },
+  {
+    "name": "セレクトドライプルーン",
+    "maker": "無印良品",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "セミドライバナナチップ",
+    "maker": "東ハト",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "セサミスティック乾パン",
+    "maker": "パン・アキモト",
+    "category": "ビスケット",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・ごま",
+    "price": "300円"
+  },
+  {
+    "name": "セサミチョコバー",
+    "maker": "明治",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "乳・大豆",
+    "price": "200円"
+  },
+  {
+    "name": "ソーセージ缶詰",
+    "maker": "伊藤ハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "豚肉",
+    "price": "450円"
+  },
+  {
+    "name": "ソルトクラッカーパック",
+    "maker": "亀田製菓",
+    "category": "クラッカー",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "ソーダキャンディ",
+    "maker": "UHA味覚糖",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ソイビスケット",
+    "maker": "大塚製菓",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "大豆・小麦",
+    "price": "300円"
+  },
+  {
+    "name": "ソイルナッツミックス",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "ソフトラスク缶",
+    "maker": "長崎堂",
+    "category": "パン",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・乳",
+    "price": "400円"
+  },
+  {
+    "name": "ソフトサラミオイル漬け缶詰",
+    "maker": "明治屋",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "豚肉",
+    "price": "500円"
+  },
+  {
+    "name": "ソバの実スナック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "そば",
+    "price": "280円"
+  },
+  {
+    "name": "ソルトアーモンドパック",
+    "maker": "カルビー",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "アーモンド",
+    "price": "300円"
+  },
+  {
+    "name": "ソフトドライプルーンパック",
+    "maker": "東ハト",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ソフトサラダクラッカー缶",
+    "maker": "カルビー",
+    "category": "クラッカー",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "そばせんべいパック",
+    "maker": "岩塚製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "そば",
+    "price": "300円"
+  },
+  {
+    "name": "ソルティードライバナナチップ",
+    "maker": "東ハト",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ソイおからクッキー",
+    "maker": "無印良品",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "大豆・小麦",
+    "price": "300円"
+  },
+  {
+    "name": "ソース味ポテトチップスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "55g",
+    "allergy": "小麦",
+    "price": "150円"
+  },
+  {
+    "name": "たけのこ水煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "135g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "たらこスプレッド缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚・乳",
+    "price": "480円"
+  },
+  {
+    "name": "たまごスープフリーズドライ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "9g",
+    "allergy": "卵・大豆",
+    "price": "200円"
+  },
+  {
+    "name": "たらの水煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "タンドリーチキンレトルト",
+    "maker": "ハウス食品",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "鶏肉・乳",
+    "price": "380円"
+  },
+  {
+    "name": "たっぷりミートソース缶",
+    "maker": "はごろもフーズ",
+    "category": "パスタ",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・大豆",
+    "price": "350円"
+  },
+  {
+    "name": "たまり醤油飴",
+    "maker": "のど飴本舗",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "大豆・小麦",
+    "price": "250円"
+  },
+  {
+    "name": "タピオカミルクティー缶",
+    "maker": "サントリー",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "280g",
+    "allergy": "乳",
+    "price": "180円"
+  },
+  {
+    "name": "たまねぎスープパウチ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆・小麦",
+    "price": "210円"
+  },
+  {
+    "name": "たらこパスタソース缶",
+    "maker": "マリンフード",
+    "category": "パスタ",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "魚・大豆",
+    "price": "400円"
+  },
+  {
+    "name": "たこの旨煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "たこ",
+    "price": "500円"
+  },
+  {
+    "name": "たけのこ味噌汁スティック",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "8g",
+    "allergy": "大豆",
+    "price": "180円"
+  },
+  {
+    "name": "たらば蟹缶詰",
+    "maker": "伊藤水産",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "75g",
+    "allergy": "かに",
+    "price": "680円"
+  },
+  {
+    "name": "たくあん漬けスティック",
+    "maker": "秋田漬物",
+    "category": "漬物",
+    "shelfLifeYears": 3,
+    "weight": "25g",
+    "allergy": "なし",
+    "price": "120円"
+  },
+  {
+    "name": "チリコンカン缶詰",
+    "maker": "ハウス食品",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "牛肉・大豆",
+    "price": "380円"
+  },
+  {
+    "name": "チーズフォンデュ缶詰",
+    "maker": "明治",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "乳",
+    "price": "450円"
+  },
+  {
+    "name": "チキンラーメン缶",
+    "maker": "日清食品",
+    "category": "麺",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "小麦・卵",
+    "price": "400円"
+  },
+  {
+    "name": "チキンカレー缶詰",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "鶏肉・小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "チャーハンパウチ",
+    "maker": "マルハニチロ",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "卵・大豆",
+    "price": "300円"
+  },
+  {
+    "name": "ちりめんじゃこ水煮缶",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "350円"
+  },
+  {
+    "name": "チョコチップクッキー缶",
+    "maker": "ネスレ",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳・卵",
+    "price": "300円"
+  },
+  {
+    "name": "チョコレート缶",
+    "maker": "明治",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "乳・大豆",
+    "price": "200円"
+  },
+  {
+    "name": "チャイティー缶",
+    "maker": "サントリー",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "185g",
+    "allergy": "乳",
+    "price": "160円"
+  },
+  {
+    "name": "ちくわ詰合せ缶",
+    "maker": "水産日清",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "魚・小麦",
+    "price": "380円"
+  },
+  {
+    "name": "チンゲンサイ水煮缶",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "チンジャオロース缶",
+    "maker": "イチビキ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "牛肉・ピーマン",
+    "price": "450円"
+  },
+  {
+    "name": "チョコバー缶",
+    "maker": "森永製菓",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "乳・大豆",
+    "price": "150円"
+  },
+  {
+    "name": "つくね缶詰",
+    "maker": "水産日清",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "鶏肉・大豆",
+    "price": "380円"
+  },
+  {
+    "name": "つぶあん缶詰",
+    "maker": "伊藤軒",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "つぶ貝旨煮缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "つぶ貝",
+    "price": "500円"
+  },
+  {
+    "name": "つまみ昆布パック",
+    "maker": "ふじっ子",
+    "category": "海藻",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "つまみいか柚子風味",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "25g",
+    "allergy": "いか",
+    "price": "300円"
+  },
+  {
+    "name": "つけもの詰合せ缶",
+    "maker": "大徳寺漬物",
+    "category": "漬物",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "つな缶サラダ",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "320円"
+  },
+  {
+    "name": "つぼ焼きほたて缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "ほたて",
+    "price": "450円"
+  },
+  {
+    "name": "つみれ汁フリーズドライ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "12g",
+    "allergy": "魚・大豆",
+    "price": "220円"
+  },
+  {
+    "name": "つゆだく牛丼缶詰",
+    "maker": "松屋フーズ",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "牛肉・小麦・大豆",
+    "price": "500円"
+  },
+  {
+    "name": "つぶしりんごジャム缶",
+    "maker": "明治屋",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 5,
+    "weight": "140g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "てりやきチキン缶詰",
+    "maker": "伊藤ハム",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "鶏肉・小麦・乳",
+    "price": "380円"
+  },
+  {
+    "name": "てまり寿司缶詰",
+    "maker": "ヤマサ",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "450円"
+  },
+  {
+    "name": "てんさい糖クッキー",
+    "maker": "北見ハッカ通商",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "てんどん缶詰",
+    "maker": "やまや",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・魚介",
+    "price": "380円"
+  },
+  {
+    "name": "てらみす缶デザート",
+    "maker": "不二家",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "乳・卵",
+    "price": "350円"
+  },
+  {
+    "name": "天丼のたれ缶",
+    "maker": "レインボー食品",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "200g",
+    "allergy": "小麦・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "てんぷらそばパウチ",
+    "maker": "東洋水産",
+    "category": "麺",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・卵",
+    "price": "300円"
+  },
+  {
+    "name": "テトラパックミルク",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "乳",
+    "price": "180円"
+  },
+  {
+    "name": "てざわりとうふスティック",
+    "maker": "豆まめ",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "とん汁缶詰",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "9g",
+    "allergy": "大豆・豚肉",
+    "price": "220円"
+  },
+  {
+    "name": "トマトスープ缶",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "トマトジュース缶",
+    "maker": "キッコーマン",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "とりそぼろ缶",
+    "maker": "ホテイフーズ",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "鶏肉",
+    "price": "300円"
+  },
+  {
+    "name": "とり肉照り焼き缶詰",
+    "maker": "伊藤ハム",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "鶏肉・大豆",
+    "price": "400円"
+  },
+  {
+    "name": "とり飯缶詰",
+    "maker": "マルハニチロ",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "鶏肉・大豆",
+    "price": "350円"
+  },
+  {
+    "name": "トルティーヤチップス缶",
+    "maker": "タコベル",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "トウモロコシ",
+    "price": "300円"
+  },
+  {
+    "name": "トリュフマッシュルーム缶詰",
+    "maker": "明治屋",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "なし",
+    "price": "500円"
+  },
+  {
+    "name": "トマト豆カレー缶",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "大豆",
+    "price": "360円"
+  },
+  {
+    "name": "とろサーモンほぐし身缶",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "450円"
+  },
+  {
+    "name": "トマトケチャップ缶",
+    "maker": "カゴメ",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "300g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "トマトクリームスープ缶",
+    "maker": "クノール",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "乳",
+    "price": "320円"
+  },
+  {
+    "name": "とろみ出汁スティック",
+    "maker": "永谷園",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "トロピカルフルーツミックス缶",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "トリプルナッツミックス",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "なっとう缶詰",
+    "maker": "マルハニチロ",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "大豆",
+    "price": "380円"
+  },
+  {
+    "name": "なすの揚げびたし缶詰",
+    "maker": "日本水産",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ナガノりんごジュース缶",
+    "maker": "長野県農協",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ナッツミックスパック",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "ナッツ",
+    "price": "350円"
+  },
+  {
+    "name": "ナツメチップス",
+    "maker": "カルビー",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "なると金時さつまいも缶詰",
+    "maker": "ホテイフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ナポリタンパスタ缶",
+    "maker": "マルハニチロ",
+    "category": "パスタ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦",
+    "price": "380円"
+  },
+  {
+    "name": "ナチュラルチーズ缶",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "ナムル野菜缶詰",
+    "maker": "アマノフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "なつめいろ飴",
+    "maker": "のど飴本舗",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "220円"
+  },
+  {
+    "name": "なまらミルクティー缶",
+    "maker": "サントリー",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "185g",
+    "allergy": "乳",
+    "price": "160円"
+  },
+  {
+    "name": "にんじんスティック缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "にぼし水煮缶詰",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "320円"
+  },
+  {
+    "name": "にしん甘露煮缶詰",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "380円"
+  },
+  {
+    "name": "にら饅頭缶詰",
+    "maker": "水産日清",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・大豆",
+    "price": "400円"
+  },
+  {
+    "name": "にんじんスープフリーズドライ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "220円"
+  },
+  {
+    "name": "日本茶ティーバッグ",
+    "maker": "伊藤園",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "にんじんクッキー缶",
+    "maker": "ブルボン",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・卵",
+    "price": "350円"
+  },
+  {
+    "name": "ニュージャーマンソーセージ缶",
+    "maker": "伊藤ハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "豚肉・大豆",
+    "price": "450円"
+  },
+  {
+    "name": "ぬかづけ缶詰",
+    "maker": "はごろもフーズ",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "60g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ぬれおかき缶",
+    "maker": "亀田製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "ぬちまーす塩パック",
+    "maker": "海人商店",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "ぬるチーズ缶",
+    "maker": "明治",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "350円"
+  },
+  {
+    "name": "ぬか床スティック",
+    "maker": "永谷園",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "10g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ぬかみそあられ缶詰",
+    "maker": "三幸産業",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "小麦",
+    "price": "250円"
+  },
+  {
+    "name": "ぬかどこ漬けおかずパック",
+    "maker": "日本水産",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ぬれせんべいパック",
+    "maker": "岩塚製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "ぬか漬け米麹スナック",
+    "maker": "ブルボン",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "小麦・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "ぬか床味噌スープ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "220円"
+  },
+  {
+    "name": "ぬれチーズクッキー缶",
+    "maker": "ネスレ",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "320円"
+  },
+  {
+    "name": "練りごまチューブ",
+    "maker": "モランボン",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "ごま",
+    "price": "250円"
+  },
+  {
+    "name": "練りチーズ缶",
+    "maker": "明治",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "ねぎみそスナックパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "小麦・大豆",
+    "price": "200円"
+  },
+  {
+    "name": "ネーブルオレンジ缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "140g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ネギトロ缶",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "練りわさびチューブ",
+    "maker": "S&B",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "43g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ネイティブベリー乾燥ミックス",
+    "maker": "栗原加工",
+    "category": "ドライフルーツ",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "練り柚子スプレッド缶",
+    "maker": "はらだ屋",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "ネギ塩ポテトチップスミニ",
+    "maker": "湖池屋",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "45g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "のり塩ポテトチップスパック",
+    "maker": "湖池屋",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "55g",
+    "allergy": "なし",
+    "price": "150円"
+  },
+  {
+    "name": "のりしおせんべい缶",
+    "maker": "岩塚製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "のし梅缶詰",
+    "maker": "紀州南高梅",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "のりクッキー缶",
+    "maker": "ネスレ",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "のりスナックパック",
+    "maker": "三幸産業",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "のりまきあられ缶",
+    "maker": "亀田製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "小麦",
+    "price": "300円"
+  },
+  {
+    "name": "ノンカフェイン麦茶ティーバッグ",
+    "maker": "伊藤園",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ノンオイルツナ缶",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "350円"
+  },
+  {
+    "name": "のり梅こんぶおつまみパック",
+    "maker": "三幸産業",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "のりピーナッツ缶詰",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ピーナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "はちみつパック",
+    "maker": "大山養蜂場",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "600円"
+  },
+  {
+    "name": "はと麦茶パウチ",
+    "maker": "伊藤園",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ハム缶詰",
+    "maker": "伊藤ハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "豚肉",
+    "price": "500円"
+  },
+  {
+    "name": "ハヤシライス缶",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・乳",
+    "price": "400円"
+  },
+  {
+    "name": "はまち塩焼き缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "450円"
+  },
+  {
+    "name": "ハーブチキンスープ缶",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "鶏肉",
+    "price": "350円"
+  },
+  {
+    "name": "はちのす旨煮缶",
+    "maker": "マルシン",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "なし",
+    "price": "380円"
+  },
+  {
+    "name": "ハーフビスケット缶",
+    "maker": "ネスレ",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "ハイビスカスティー缶",
+    "maker": "アサヒ飲料",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "250ml",
+    "allergy": "なし",
+    "price": "150円"
+  },
+  {
+    "name": "はるさめスープパウチ",
+    "maker": "サンヨー食品",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "15g",
+    "allergy": "大豆・小麦",
+    "price": "180円"
+  },
+  {
+    "name": "ハニーバタークッキー缶",
+    "maker": "ブルボン",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・乳",
+    "price": "400円"
+  },
+  {
+    "name": "ハッシュドビーフ缶詰",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・乳",
+    "price": "380円"
+  },
+  {
+    "name": "はるまきパウチ",
+    "maker": "味の素",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・大豆",
+    "price": "450円"
+  },
+  {
+    "name": "ひじき煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "海藻",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ひきわり納豆缶",
+    "maker": "マルハニチロ",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "大豆",
+    "price": "350円"
+  },
+  {
+    "name": "ひらたけマリネ缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "ひき肉そぼろ缶詰",
+    "maker": "ホテイフーズ",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "鶏肉",
+    "price": "380円"
+  },
+  {
+    "name": "ひよこ豆カレー缶",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "360円"
+  },
+  {
+    "name": "ひまわりシードミックスパック",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "ひつまぶし風お茶漬けパック",
+    "maker": "永谷園",
+    "category": "ふりかけ",
+    "shelfLifeYears": 5,
+    "weight": "9g",
+    "allergy": "うなぎ",
+    "price": "250円"
+  },
+  {
+    "name": "ひじきと大豆煮缶",
+    "maker": "ふじっ子",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "ひきわり小豆ぜんざい缶",
+    "maker": "井村屋",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ひじきサラダ缶",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "ひとくち干し梅パック",
+    "maker": "紀州南高梅",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ふかひれスープ缶",
+    "maker": "ヤマサ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "480円"
+  },
+  {
+    "name": "ふきのとう甘煮缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ふりかけおかゆパック",
+    "maker": "アマノフーズ",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "大豆",
+    "price": "260円"
+  },
+  {
+    "name": "ふくろうかりんとう缶",
+    "maker": "香月堂",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・大豆",
+    "price": "330円"
+  },
+  {
+    "name": "ふじりんごジュース缶",
+    "maker": "信州りんご産直",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "りんご",
+    "price": "200円"
+  },
+  {
+    "name": "ふかし芋パック",
+    "maker": "ブルボン",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "フルーツポンチ缶",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "フルーツグラノーラ缶",
+    "maker": "カルビー",
+    "category": "シリアル",
+    "shelfLifeYears": 3,
+    "weight": "400g",
+    "allergy": "小麦・ナッツ",
+    "price": "800円"
+  },
+  {
+    "name": "フリーズドライみそ汁",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "ふっくらご飯パック",
+    "maker": "アルファー食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "ふわり豆乳スープ",
+    "maker": "マルコメ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "大豆",
+    "price": "250円"
+  },
+  {
+    "name": "ふかがりポテトチップス",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "じゃがいも",
+    "price": "150円"
+  },
+  {
+    "name": "ヘルシーコーン缶詰",
+    "maker": "ホテイフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "190g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "ヘルシーミックスナッツ",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "ナッツ",
+    "price": "350円"
+  },
+  {
+    "name": "ヘルシーグラノーラ缶",
+    "maker": "カルビー",
+    "category": "シリアル",
+    "shelfLifeYears": 3,
+    "weight": "400g",
+    "allergy": "小麦・ナッツ",
+    "price": "800円"
+  },
+  {
+    "name": "ヘーゼルナッツチョコ缶",
+    "maker": "明治",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "乳・大豆・ナッツ",
+    "price": "200円"
+  },
+  {
+    "name": "ヘルシーエナジーバー缶",
+    "maker": "味の素",
+    "category": "お菓子",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ヘンプシードクラッカー",
+    "maker": "無印良品",
+    "category": "クラッカー",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ヘルシーチキンパウチ",
+    "maker": "ハウス食品",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "鶏肉",
+    "price": "380円"
+  },
+  {
+    "name": "ヘビーチョコバー缶",
+    "maker": "森永製菓",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "乳・大豆",
+    "price": "150円"
+  },
+  {
+    "name": "ほうれん草とベーコン缶詰",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ほたて貝柱水煮缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "ほたて",
+    "price": "450円"
+  },
+  {
+    "name": "ほっけみりん干し缶",
+    "maker": "日本水産",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "ほねまで食べるさば缶",
+    "maker": "イチビキ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "320円"
+  },
+  {
+    "name": "ほし梅パック",
+    "maker": "紀州南高梅",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ほうじ茶ティーバッグ",
+    "maker": "伊藤園",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ほし芋スティック",
+    "maker": "ブルボン",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "ほしえびスナック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "えび",
+    "price": "200円"
+  },
+  {
+    "name": "ほたるいか素干し缶",
+    "maker": "三幸産業",
+    "category": "魚介乾物",
+    "shelfLifeYears": 3,
+    "weight": "25g",
+    "allergy": "いか",
+    "price": "350円"
+  },
+  {
+    "name": "ほうれん草スープパウチ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "ほたてバター焼き缶",
+    "maker": "明治屋",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "乳・ほたて",
+    "price": "500円"
+  },
+  {
+    "name": "ホワイトチョコレート缶",
+    "maker": "ネスレ",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "マーボー豆腐缶",
+    "maker": "ハウス食品",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "大豆・小麦",
+    "price": "380円"
+  },
+  {
+    "name": "マッシュルームスープ缶",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "170g",
+    "allergy": "乳・小麦・大豆",
+    "price": "300円"
+  },
+  {
+    "name": "マカロニグラタン缶",
+    "maker": "はごろもフーズ",
+    "category": "パスタ",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・乳・卵",
+    "price": "400円"
+  },
+  {
+    "name": "マヨネーズチューブ",
+    "maker": "キューピー",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "卵・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "マスカルポーネチーズ缶",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "マテ茶ティーバッグ",
+    "maker": "アルファー食品",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "マンゴーチャツネ缶",
+    "maker": "カゴメ",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "450円"
+  },
+  {
+    "name": "マンダリンオレンジ缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "マグロフレーク缶",
+    "maker": "ホテイフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "マグロたたき缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "350円"
+  },
+  {
+    "name": "マシュマロパック",
+    "maker": "グリコ",
+    "category": "お菓子",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ゼラチン・卵",
+    "price": "250円"
+  },
+  {
+    "name": "マカデミアナッツパック",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ナッツ",
+    "price": "300円"
+  },
+  {
+    "name": "マルゲリータピザ缶詰",
+    "maker": "日清食品",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "250g",
+    "allergy": "小麦・乳",
+    "price": "500円"
+  },
+  {
+    "name": "マヨネーズマリネサラダ缶",
+    "maker": "マルハニチロ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "卵・大豆",
+    "price": "380円"
+  },
+  {
+    "name": "マヒマヒスモーク缶",
+    "maker": "明治屋",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "500円"
+  },
+  {
+    "name": "マメ豆サラダ缶",
+    "maker": "アマノフーズ",
+    "category": "惣菜",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "大豆",
+    "price": "280円"
+  },
+  {
+    "name": "みそ汁フリーズドライ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "220円"
+  },
+  {
+    "name": "みそおでん缶詰",
+    "maker": "はごろもフーズ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・大豆",
+    "price": "450円"
+  },
+  {
+    "name": "みかん缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "みそパン缶詰",
+    "maker": "パン・アキモト",
+    "category": "パン",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・大豆",
+    "price": "420円"
+  },
+  {
+    "name": "みそカレー缶詰",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・大豆",
+    "price": "360円"
+  },
+  {
+    "name": "みりん粕チ乳製品ーズ缶",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "みそ野菜スープパウチ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "12g",
+    "allergy": "大豆・小麦",
+    "price": "230円"
+  },
+  {
+    "name": "みつ豆フルーツ缶",
+    "maker": "明治屋",
+    "category": "和菓子",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "みかんジュース缶",
+    "maker": "カゴメ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "みそミートソース缶",
+    "maker": "はごろもフーズ",
+    "category": "パスタ",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・大豆",
+    "price": "350円"
+  },
+  {
+    "name": "みそピークラッカー",
+    "maker": "カルビー",
+    "category": "クラッカー",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "大豆・小麦",
+    "price": "200円"
+  },
+  {
+    "name": "みそマヨネーズチューブ",
+    "maker": "キューピー",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "卵・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "むき枝豆缶詰",
+    "maker": "はごろもフーズ",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "100g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "むぎ茶ティーバッグ",
+    "maker": "伊藤園",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "むし焼き栗缶",
+    "maker": "マルハニチロ",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "むろあじみりん干し缶",
+    "maker": "日本水産",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "ムースチョコカップ",
+    "maker": "不二家",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "乳・卵",
+    "price": "350円"
+  },
+  {
+    "name": "むらさきいもチップスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "230円"
+  },
+  {
+    "name": "むぎとろパウチ",
+    "maker": "永谷園",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "むすび昆布かつお風味",
+    "maker": "ふじっ子",
+    "category": "海藻",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "むかしラムネボトル",
+    "maker": "UHA味覚糖",
+    "category": "飴",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ムソー豆乳スープ",
+    "maker": "マルコメ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "大豆",
+    "price": "250円"
+  },
+  {
+    "name": "めかぶ缶詰",
+    "maker": "はごろもフーズ",
+    "category": "海藻",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "めんたいこスプレッド",
+    "maker": "博多屋",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚卵",
+    "price": "450円"
+  },
+  {
+    "name": "メロン缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "メロンゼリー缶",
+    "maker": "不二家",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "めかじき照り焼き缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "400円"
+  },
+  {
+    "name": "メンマスナックパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "小麦",
+    "price": "200円"
+  },
+  {
+    "name": "めんつゆスティック",
+    "maker": "ミツカン",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "小麦",
+    "price": "180円"
+  },
+  {
+    "name": "メカジキ大根煮缶",
+    "maker": "ホテイフーズ",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "魚",
+    "price": "380円"
+  },
+  {
+    "name": "メープルクッキー缶",
+    "maker": "森永製菓",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "メジマグロフレーク缶",
+    "maker": "マルハニチロ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "もち入りおかゆパック",
+    "maker": "アマノフーズ",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "20g",
+    "allergy": "もち米",
+    "price": "280円"
+  },
+  {
+    "name": "もやしナムル缶詰",
+    "maker": "味の素",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "モンブランプリン缶",
+    "maker": "不二家",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "乳・卵",
+    "price": "360円"
+  },
+  {
+    "name": "モロヘイヤスープ缶",
+    "maker": "ハウス食品",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "なし",
+    "price": "310円"
+  },
+  {
+    "name": "もち米おこわ缶",
+    "maker": "マルハニチロ",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "もち米",
+    "price": "400円"
+  },
+  {
+    "name": "もろみ味噌パック",
+    "maker": "キッコーマン",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "大豆",
+    "price": "350円"
+  },
+  {
+    "name": "モッツァレラチーズ缶",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "乳",
+    "price": "420円"
+  },
+  {
+    "name": "もずくとろろスナック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "45g",
+    "allergy": "もずく",
+    "price": "200円"
+  },
+  {
+    "name": "もずく酢スティック",
+    "maker": "ふじっ子",
+    "category": "海藻",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "もろこしポタージュ缶",
+    "maker": "ポッカサッポロ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "なし",
+    "price": "290円"
+  },
+  {
+    "name": "モーニンググラノーラ缶",
+    "maker": "カルビー",
+    "category": "シリアル",
+    "shelfLifeYears": 3,
+    "weight": "400g",
+    "allergy": "小麦・ナッツ",
+    "price": "750円"
+  },
+  {
+    "name": "やきとり缶詰",
+    "maker": "ホテイフーズ",
+    "category": "鶏肉",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "鶏肉",
+    "price": "320円"
+  },
+  {
+    "name": "やさいミックスジュース缶",
+    "maker": "カゴメ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "やさいシチュー缶",
+    "maker": "ハウス食品",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "乳",
+    "price": "380円"
+  },
+  {
+    "name": "やきそばソース缶",
+    "maker": "オタフクソース",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦",
+    "price": "250円"
+  },
+  {
+    "name": "やきいもパウチ",
+    "maker": "ブルボン",
+    "category": "お菓子",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "280円"
+  },
+  {
+    "name": "やまいもチップスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "やとう豆サラダ缶",
+    "maker": "アマノフーズ",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "やまえびスナックパック",
+    "maker": "佐藤食品",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "えび",
+    "price": "200円"
+  },
+  {
+    "name": "やきにく風味おかず缶",
+    "maker": "伊藤ハム",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "牛肉・大豆",
+    "price": "380円"
+  },
+  {
+    "name": "やさいプロテインバー缶",
+    "maker": "無印良品",
+    "category": "お菓子",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "大豆",
+    "price": "250円"
+  },
+  {
+    "name": "やきとり串風おつまみパック",
+    "maker": "味の素",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "鶏肉",
+    "price": "350円"
+  },
+  {
+    "name": "やきとり皮缶詰",
+    "maker": "丸善",
+    "category": "鶏肉",
+    "shelfLifeYears": 5,
+    "weight": "70g",
+    "allergy": "鶏肉",
+    "price": "300円"
+  },
+  {
+    "name": "やまいもおろし風おかず缶",
+    "maker": "ふじっ子",
+    "category": "惣菜",
+    "shelfLifeYears": 5,
+    "weight": "90g",
+    "allergy": "山芋",
+    "price": "320円"
+  },
+  {
+    "name": "ゆで大豆水煮缶",
+    "maker": "マルハニチロ",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "200g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "ゆであずき缶",
+    "maker": "井村屋",
+    "category": "豆",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "ゆばスナックパック",
+    "maker": "オーサワジャパン",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "大豆",
+    "price": "300円"
+  },
+  {
+    "name": "ゆずこしょうチューブ",
+    "maker": "柴田食品",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "夕張メロンゼリー缶",
+    "maker": "北海道物産",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "380円"
+  },
+  {
+    "name": "ゆず塩ポテトチップス缶",
+    "maker": "湖池屋",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "55g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "ユッカチップスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ゆかりふりかけパック",
+    "maker": "丸美屋",
+    "category": "ふりかけ",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "ごま",
+    "price": "200円"
+  },
+  {
+    "name": "ゆでコーン缶",
+    "maker": "ホテイフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ゆずスポーツドリンクパウチ",
+    "maker": "ポッカサッポロ",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "よもぎ餅缶詰",
+    "maker": "中村製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "120g",
+    "allergy": "もち米",
+    "price": "350円"
+  },
+  {
+    "name": "ようかん缶",
+    "maker": "明治屋",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "110g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ようかんスティック",
+    "maker": "井村屋",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "9g×10本",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ようかんビスケット缶",
+    "maker": "ブルボン",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦",
+    "price": "350円"
+  },
+  {
+    "name": "よつ葉バター缶",
+    "maker": "よつ葉乳業",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "乳",
+    "price": "500円"
+  },
+  {
+    "name": "よだれ鶏缶",
+    "maker": "味の素",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "鶏肉・大豆",
+    "price": "380円"
+  },
+  {
+    "name": "よくばりナッツパック",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "ナッツ",
+    "price": "450円"
+  },
+  {
+    "name": "ヨーグルト風味ゼリーパック",
+    "maker": "森永製菓",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "乳",
+    "price": "280円"
+  },
+  {
+    "name": "ヨーグルトスムージーパウチ",
+    "maker": "トップバリュ",
+    "category": "乳製品",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "乳",
+    "price": "300円"
+  },
+  {
+    "name": "ラーメン缶",
+    "maker": "日清食品",
+    "category": "麺",
+    "shelfLifeYears": 3,
+    "weight": "85g",
+    "allergy": "小麦・卵",
+    "price": "250円"
+  },
+  {
+    "name": "ラタトゥイユ缶詰",
+    "maker": "ポッカサッポロ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ライスパフ缶",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ライトツナフレーク缶",
+    "maker": "はごろもフーズ",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "ラムチョコレート缶",
+    "maker": "森永製菓",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳・大豆",
+    "price": "250円"
+  },
+  {
+    "name": "ラビオリ缶詰",
+    "maker": "イタリアントマト",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・乳",
+    "price": "450円"
+  },
+  {
+    "name": "ライチジュース缶",
+    "maker": "果実の里",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "ライスクラッカー缶",
+    "maker": "三幸製菓",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "75g",
+    "allergy": "米",
+    "price": "300円"
+  },
+  {
+    "name": "ラスク缶",
+    "maker": "ネスレ",
+    "category": "パン",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "300円"
+  },
+  {
+    "name": "ラズベリーゼリー缶",
+    "maker": "不二家",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "りんごジュース缶",
+    "maker": "カゴメ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "りんご缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "りんごゼリー缶",
+    "maker": "不二家",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "りんごチップスパック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "りんごグラノーラ缶",
+    "maker": "カルビー",
+    "category": "シリアル",
+    "shelfLifeYears": 3,
+    "weight": "400g",
+    "allergy": "小麦・ナッツ",
+    "price": "800円"
+  },
+  {
+    "name": "リンゴパウンドケーキ缶",
+    "maker": "ブルボン",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "小麦・卵",
+    "price": "350円"
+  },
+  {
+    "name": "リンゴ果汁ゼリーパック",
+    "maker": "森永製菓",
+    "category": "ゼリー",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "リンゴバタースプレッド缶",
+    "maker": "雪印メグミルク",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "乳",
+    "price": "400円"
+  },
+  {
+    "name": "りんごスナックバー缶",
+    "maker": "無印良品",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ルイボスティーパック",
+    "maker": "健康茶房",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ルー入りカレーパック",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "小麦・乳",
+    "price": "380円"
+  },
+  {
+    "name": "ルッコラスナック缶",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "40g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ルマンドクッキー缶",
+    "maker": "ブルボン",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "小麦・乳",
+    "price": "400円"
+  },
+  {
+    "name": "ルビーグレープフルーツジュース缶",
+    "maker": "カゴメ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ルイベ風サーモンスナック",
+    "maker": "ホテイフーズ",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "魚",
+    "price": "300円"
+  },
+  {
+    "name": "ルピシア紅茶缶",
+    "maker": "ルピシア",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "なし",
+    "price": "800円"
+  },
+  {
+    "name": "ルーローハン缶詰",
+    "maker": "日清食品",
+    "category": "惣菜",
+    "shelfLifeYears": 5,
+    "weight": "180g",
+    "allergy": "豚肉・大豆・小麦",
+    "price": "450円"
+  },
+  {
+    "name": "ルビーキャロットジュース缶",
+    "maker": "伊藤園",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "195g",
+    "allergy": "なし",
+    "price": "220円"
+  },
+  {
+    "name": "ルバーブスムージーパウチ",
+    "maker": "トップバリュ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ルチン配合グミ",
+    "maker": "カルビー",
+    "category": "お菓子",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "ゼラチン",
+    "price": "200円"
+  },
+  {
+    "name": "ルビー色トマト缶",
+    "maker": "イチビキ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "140g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "レモン缶詰",
+    "maker": "はごろもフーズ",
+    "category": "フルーツ缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "レッドキドニービーンズ缶",
+    "maker": "マルハニチロ",
+    "category": "豆",
+    "shelfLifeYears": 5,
+    "weight": "190g",
+    "allergy": "大豆",
+    "price": "330円"
+  },
+  {
+    "name": "レンコンきんぴら缶",
+    "maker": "日本水産",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "320円"
+  },
+  {
+    "name": "レアチーズケーキ缶",
+    "maker": "不二家",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "乳",
+    "price": "380円"
+  },
+  {
+    "name": "レタススープパウチ",
+    "maker": "アマノフーズ",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "12g",
+    "allergy": "大豆",
+    "price": "220円"
+  },
+  {
+    "name": "レンジでご飯パック",
+    "maker": "アルファー食品",
+    "category": "米",
+    "shelfLifeYears": 5,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "レーズンクッキー缶",
+    "maker": "ブルボン",
+    "category": "クッキー",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "300円"
+  },
+  {
+    "name": "レンチンスープパック",
+    "maker": "キューピー",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "15g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "レンズ豆カレー缶",
+    "maker": "ハウス食品",
+    "category": "レトルトカレー",
+    "shelfLifeYears": 3,
+    "weight": "180g",
+    "allergy": "なし",
+    "price": "360円"
+  },
+  {
+    "name": "レッドオレンジジュース缶",
+    "maker": "カゴメ",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "200ml",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "レモネードスティック",
+    "maker": "森永製菓",
+    "category": "ドリンク",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "なし",
+    "price": "180円"
+  },
+  {
+    "name": "レモンペッパークラッカー",
+    "maker": "湖池屋",
+    "category": "クラッカー",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "小麦",
+    "price": "200円"
+  },
+  {
+    "name": "レモンコーンチップスパック",
+    "maker": "ナビスコ",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "トウモロコシ",
+    "price": "300円"
+  },
+  {
+    "name": "レンコン天ぷら缶",
+    "maker": "日本水産",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "小麦",
+    "price": "340円"
+  },
+  {
+    "name": "レンチンチャーハン缶",
+    "maker": "日清食品",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・卵",
+    "price": "380円"
+  },
+  {
+    "name": "レディトマトペースト缶",
+    "maker": "イチビキ",
+    "category": "調味料",
+    "shelfLifeYears": 5,
+    "weight": "140g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "レーズンバタービスケット缶",
+    "maker": "明治",
+    "category": "ビスケット",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "ローストビーフ缶詰",
+    "maker": "伊藤ハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "牛肉",
+    "price": "500円"
+  },
+  {
+    "name": "ロールキャベツ缶詰",
+    "maker": "ハウス食品",
+    "category": "惣菜",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "なし",
+    "price": "400円"
+  },
+  {
+    "name": "ロースハム缶詰",
+    "maker": "プリマハム",
+    "category": "肉加工品",
+    "shelfLifeYears": 3,
+    "weight": "90g",
+    "allergy": "豚肉",
+    "price": "450円"
+  },
+  {
+    "name": "ロブスターサラダ缶",
+    "maker": "明治屋",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "えび",
+    "price": "500円"
+  },
+  {
+    "name": "ローストトマト缶詰",
+    "maker": "カゴメ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "ロングライフミルク",
+    "maker": "雪印メグミルク",
+    "category": "乳製品",
+    "shelfLifeYears": 7,
+    "weight": "200ml",
+    "allergy": "乳",
+    "price": "180円"
+  },
+  {
+    "name": "ロイヤルミルクティー缶",
+    "maker": "サントリー",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "185g",
+    "allergy": "乳",
+    "price": "160円"
+  },
+  {
+    "name": "ローデッドポテトチップス",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "じゃがいも",
+    "price": "180円"
+  },
+  {
+    "name": "ロッシーニ風パスタソース缶",
+    "maker": "日清食品",
+    "category": "パスタ",
+    "shelfLifeYears": 3,
+    "weight": "200g",
+    "allergy": "小麦・乳・卵",
+    "price": "450円"
+  },
+  {
+    "name": "ローカカオチョコレート缶",
+    "maker": "明治",
+    "category": "チョコレート",
+    "shelfLifeYears": 3,
+    "weight": "60g",
+    "allergy": "乳・大豆",
+    "price": "220円"
+  },
+  {
+    "name": "ローストアーモンドミックス",
+    "maker": "無印良品",
+    "category": "ナッツ",
+    "shelfLifeYears": 3,
+    "weight": "50g",
+    "allergy": "ナッツ",
+    "price": "350円"
+  },
+  {
+    "name": "ロールケーキ缶",
+    "maker": "不二家",
+    "category": "デザート",
+    "shelfLifeYears": 3,
+    "weight": "120g",
+    "allergy": "乳・卵・小麦",
+    "price": "380円"
+  },
+  {
+    "name": "ロブスタービスク缶",
+    "maker": "ヤマサ",
+    "category": "スープ",
+    "shelfLifeYears": 3,
+    "weight": "160g",
+    "allergy": "えび",
+    "price": "420円"
+  },
+  {
+    "name": "ローズヒップティーパック",
+    "maker": "健康茶房",
+    "category": "飲料",
+    "shelfLifeYears": 3,
+    "weight": "15g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "わかめスープ缶",
+    "maker": "味の素",
+    "category": "スープ",
+    "shelfLifeYears": 5,
+    "weight": "10g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "わかめ水煮缶",
+    "maker": "はごろもフーズ",
+    "category": "野菜缶詰",
+    "shelfLifeYears": 5,
+    "weight": "80g",
+    "allergy": "なし",
+    "price": "300円"
+  },
+  {
+    "name": "わかめご飯缶",
+    "maker": "マルハニチロ",
+    "category": "米",
+    "shelfLifeYears": 3,
+    "weight": "150g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "わかめふりかけパック",
+    "maker": "丸美屋",
+    "category": "ふりかけ",
+    "shelfLifeYears": 3,
+    "weight": "20g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "わらび餅缶詰",
+    "maker": "中村製菓",
+    "category": "和菓子",
+    "shelfLifeYears": 5,
+    "weight": "120g",
+    "allergy": "なし",
+    "price": "350円"
+  },
+  {
+    "name": "わさびチューブ",
+    "maker": "S&B",
+    "category": "調味料",
+    "shelfLifeYears": 3,
+    "weight": "43g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "わかめスナックパック",
+    "maker": "三幸産業",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "30g",
+    "allergy": "なし",
+    "price": "250円"
+  },
+  {
+    "name": "わかめとろろスナック",
+    "maker": "カルビー",
+    "category": "スナック",
+    "shelfLifeYears": 3,
+    "weight": "45g",
+    "allergy": "なし",
+    "price": "200円"
+  },
+  {
+    "name": "ワッフルクッキー缶",
+    "maker": "ネスレ",
+    "category": "お菓子",
+    "shelfLifeYears": 3,
+    "weight": "100g",
+    "allergy": "小麦・乳",
+    "price": "350円"
+  },
+  {
+    "name": "わかさぎマリネ缶",
+    "maker": "明治屋",
+    "category": "魚介缶詰",
+    "shelfLifeYears": 3,
+    "weight": "70g",
+    "allergy": "魚",
+    "price": "450円"
+  },
+  {
+    "name": "わかめ茶づけパウチ",
+    "maker": "永谷園",
+    "category": "ふりかけ",
+    "shelfLifeYears": 3,
+    "weight": "8g",
+    "allergy": "大豆",
+    "price": "200円"
+  },
+  {
+    "name": "わかめと鶏そぼろおかず缶",
+    "maker": "ホテイフーズ",
+    "category": "鶏肉",
+    "shelfLifeYears": 3,
+    "weight": "80g",
+    "allergy": "鶏肉・大豆",
+    "price": "380円"
+  }
+]
+  </script>
+  <section class="description">
+    <p>非常食の詳細情報を「名称」「メーカー」「カテゴリ」「保存期間」「重さ」「アレルゲン」「目安価格」で確認できます。</p><p>カテゴリ切替や印刷、PNG保存、SNS共有で備蓄を効率化。</p>
+    <p><a href="https://amzn.to/46EUURa" target="_blank">Amazonの非常食ランキング</a></p>
+  </section>
+  <div class="footer-link">
+    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
+    <p><a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
+    <p><a href="https://memoc.pages.dev/y989/" target="_blank">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y992/" target="_blank">スケジュール帳ブラウザアプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+    <p><a href="https://memoc.pages.dev/y991/" target="_blank">ゴミ収集カレンダー</a></p><br>
+    <p><a href="https://memoc.pages.dev/y981/" target="_blank">日付換算ツール 年齢計算と時間単位変換</a></p><br>
+    <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p><br>
+    <p><a href="https://memoc.pages.dev/kyuujituhikikomori/" target="_blank">休日引きこもりがちになる人の特徴と対処法</a></p><br>
+    <p><a href="https://memoc.pages.dev/y984/" target="_blank">日本全国方言比較辞典</a></p><br>
+<p><a href="https://memoc.pages.dev/y983/" target="_blank">気分で探す名言 — 今の気持ちで最適な一言を</a></p><br>
+    <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
+    <p><a href="https://memoc.pages.dev/y994/" target="_blank">退職者へのメッセージジェネレーター上司・同僚・後輩・一言にも対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/y993/" target="_blank">くじ引きツール</a></p><br>
+    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
+    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a></p><br>
+    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p><br>
+    <p><a href="https://memoc.pages.dev/y987/" target="_blank">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></p><br>
+  </div>
+  <script src="/js/y986.js"></script>
+</body>
+</html>

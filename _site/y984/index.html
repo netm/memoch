@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="日本全国47都道府県の方言を、標準語から簡単に検索・比較できるオンライン辞典です。同じ「ありがとう」でも地域によってこんなに違う！例文付きで楽しく方言を学べます。">
+  <meta name="keywords" content="方言,辞典,比較,都道府県,地域別,方言変換,日本語,方言集">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <title>日本全国方言比較辞典｜地域ごとの言葉の違い一覧</title>
+  <meta property="og:title" content="日本全国方言比較辞典">
+  <meta property="og:description" content="地域ごとの言葉の違いを一覧で比較！あなたの出身地の方言は？">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://memoc.pages.dev/y984/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="/css/y984.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>日本全国 方言比較辞典</h1>
+      <p>同じ意味でも、地域によってこんなに違う。日本の言葉の多様性を楽しもう。</p>
+    </div>
+  </header>
+  <div class="container">
+    <nav class="filter-nav">
+      <h2>標準語の頭文字で探す</h2>
+      <div class="button-group">
+        <button class="kana-btn" data-kana="あ">あ</button>
+        <button class="kana-btn" data-kana="い">い</button>
+        <button class="kana-btn" data-kana="う">う</button>
+        <button class="kana-btn" data-kana="え">え</button>
+        <button class="kana-btn" data-kana="お">お</button>
+        <button class="kana-btn" data-kana="か">か</button>
+        <button class="kana-btn" data-kana="き">き</button>
+        <button class="kana-btn" data-kana="く">く</button>
+        <button class="kana-btn" data-kana="け">け</button>
+        <button class="kana-btn" data-kana="こ">こ</button>
+        <button class="kana-btn" data-kana="さ">さ</button>
+        <button class="kana-btn" data-kana="し">し</button>
+        <button class="kana-btn" data-kana="す">す</button>
+        <button class="kana-btn" data-kana="せ">せ</button>
+        <button class="kana-btn" data-kana="そ">そ</button>
+        <button class="kana-btn" data-kana="た">た</button>
+        <button class="kana-btn" data-kana="ち">ち</button>
+        <button class="kana-btn" data-kana="つ">つ</button>
+        <button class="kana-btn" data-kana="て">て</button>
+        <button class="kana-btn" data-kana="と">と</button>
+        <button class="kana-btn" data-kana="な">な</button>
+        <button class="kana-btn" data-kana="に">に</button>
+        <button class="kana-btn" data-kana="ぬ">ぬ</button>
+        <button class="kana-btn" data-kana="ね">ね</button>
+        <button class="kana-btn" data-kana="の">の</button>
+        <button class="kana-btn" data-kana="は">は</button>
+        <button class="kana-btn" data-kana="ひ">ひ</button>
+        <button class="kana-btn" data-kana="ふ">ふ</button>
+        <button class="kana-btn" data-kana="へ">へ</button>
+        <button class="kana-btn" data-kana="ほ">ほ</button>
+        <button class="kana-btn" data-kana="ま">ま</button>
+        <button class="kana-btn" data-kana="み">み</button>
+        <button class="kana-btn" data-kana="む">む</button>
+        <button class="kana-btn" data-kana="め">め</button>
+        <button class="kana-btn" data-kana="も">も</button>
+        <button class="kana-btn" data-kana="や">や</button>
+        <button class="kana-btn" data-kana="ゆ">ゆ</button>
+        <button class="kana-btn" data-kana="よ">よ</button>
+        <button class="kana-btn" data-kana="ら">ら</button>
+        <button class="kana-btn" data-kana="り">り</button>
+        <button class="kana-btn" data-kana="る">る</button>
+        <button class="kana-btn" data-kana="れ">れ</button>
+        <button class="kana-btn" data-kana="ろ">ろ</button>
+        <button class="kana-btn" data-kana="わ">わ</button>
+      </div>
+      <h2 style="margin-top: 1rem;">都道府県で探す</h2>
+      <div class="button-group prefecture-button-group" role="toolbar" aria-label="都道府県フィルター">
+        <button class="prefecture-btn" data-prefecture="北海道">北海道</button>
+        <button class="prefecture-btn" data-prefecture="青森県">青森県</button>
+        <button class="prefecture-btn" data-prefecture="岩手県">岩手県</button>
+        <button class="prefecture-btn" data-prefecture="宮城県">宮城県</button>
+        <button class="prefecture-btn" data-prefecture="秋田県">秋田県</button>
+        <button class="prefecture-btn" data-prefecture="山形県">山形県</button>
+        <button class="prefecture-btn" data-prefecture="福島県">福島県</button>
+        <button class="prefecture-btn" data-prefecture="茨城県">茨城県</button>
+        <button class="prefecture-btn" data-prefecture="栃木県">栃木県</button>
+        <button class="prefecture-btn" data-prefecture="群馬県">群馬県</button>
+        <button class="prefecture-btn" data-prefecture="埼玉県">埼玉県</button>
+        <button class="prefecture-btn" data-prefecture="千葉県">千葉県</button>
+        <button class="prefecture-btn" data-prefecture="東京都">東京都</button>
+        <button class="prefecture-btn" data-prefecture="神奈川県">神奈川県</button>
+        <button class="prefecture-btn" data-prefecture="新潟県">新潟県</button>
+        <button class="prefecture-btn" data-prefecture="富山県">富山県</button>
+        <button class="prefecture-btn" data-prefecture="石川県">石川県</button>
+        <button class="prefecture-btn" data-prefecture="福井県">福井県</button>
+        <button class="prefecture-btn" data-prefecture="山梨県">山梨県</button>
+        <button class="prefecture-btn" data-prefecture="長野県">長野県</button>
+        <button class="prefecture-btn" data-prefecture="岐阜県">岐阜県</button>
+        <button class="prefecture-btn" data-prefecture="静岡県">静岡県</button>
+        <button class="prefecture-btn" data-prefecture="愛知県">愛知県</button>
+        <button class="prefecture-btn" data-prefecture="三重県">三重県</button>
+        <button class="prefecture-btn" data-prefecture="滋賀県">滋賀県</button>
+        <button class="prefecture-btn" data-prefecture="京都府">京都府</button>
+        <button class="prefecture-btn" data-prefecture="大阪府">大阪府</button>
+        <button class="prefecture-btn" data-prefecture="兵庫県">兵庫県</button>
+        <button class="prefecture-btn" data-prefecture="奈良県">奈良県</button>
+        <button class="prefecture-btn" data-prefecture="和歌山県">和歌山県</button>
+        <button class="prefecture-btn" data-prefecture="鳥取県">鳥取県</button>
+        <button class="prefecture-btn" data-prefecture="島根県">島根県</button>
+        <button class="prefecture-btn" data-prefecture="岡山県">岡山県</button>
+        <button class="prefecture-btn" data-prefecture="広島県">広島県</button>
+        <button class="prefecture-btn" data-prefecture="山口県">山口県</button>
+        <button class="prefecture-btn" data-prefecture="徳島県">徳島県</button>
+        <button class="prefecture-btn" data-prefecture="香川県">香川県</button>
+        <button class="prefecture-btn" data-prefecture="愛媛県">愛媛県</button>
+        <button class="prefecture-btn" data-prefecture="高知県">高知県</button>
+        <button class="prefecture-btn" data-prefecture="福岡県">福岡県</button>
+        <button class="prefecture-btn" data-prefecture="佐賀県">佐賀県</button>
+        <button class="prefecture-btn" data-prefecture="長崎県">長崎県</button>
+        <button class="prefecture-btn" data-prefecture="熊本県">熊本県</button>
+        <button class="prefecture-btn" data-prefecture="大分県">大分県</button>
+        <button class="prefecture-btn" data-prefecture="宮崎県">宮崎県</button>
+        <button class="prefecture-btn" data-prefecture="鹿児島県">鹿児島県</button>
+        <button class="prefecture-btn" data-prefecture="沖縄県">沖縄県</button>
+      </div>
+    </nav>
+    <main class="main-content">
+      <section class="action-buttons" aria-label="操作ボタン">
+        <button id="copy-btn" class="action-btn">文章コピー</button>
+        <button id="print-btn" class="action-btn">印刷</button>
+        <button id="png-btn" class="action-btn">PNG画像で保存</button>
+        <button id="clear-btn" class="action-btn">フィルター解除</button>
+        <button id="twitter-btn" class="action-btn">Xで共有</button>
+        <button id="facebook-btn" class="action-btn">Facebookで共有</button>
+        <button id="line-btn" class="action-btn">LINEで共有</button>
+      </section>
+      <section id="result-container" aria-labelledby="result-heading">
+        <h2 id="result-heading" style="font-size: 1.2rem;">方言辞典の検索結果</h2>
+        <div class="result-wrapper">
+          <table class="dialect-table" aria-live="polite">
+            <thead>
+              <tr>
+                <th scope="col">標準語</th>
+                <th scope="col">方言</th>
+                <th scope="col">都道府県</th>
+                <th scope="col">例文</th>
+              </tr>
+            </thead>
+            <tbody id="dialect-table-body">
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script id="data-json" type="application/json">
+[
+  {"standard":"とても（凄く）","dialect":"なまら","prefecture":"北海道","example":"このラーメン、なまら美味いわ。"},
+  {"standard":"でしょう（～だよ）","dialect":"～だべさ","prefecture":"北海道","example":"明日も雨が降るべさ。"},
+  {"standard":"もつ（持つ）","dialect":"たく","prefecture":"北海道","example":"その荷物、たくか？"},
+  {"standard":"さわる（触る）","dialect":"ちょす","prefecture":"北海道","example":"おもちゃをちょさないで！"},
+  {"standard":"たべかす（食べかす）","dialect":"かます","prefecture":"北海道","example":"ほら、口にかますついてるよ。"},
+  {"standard":"つかれた（疲れた）","dialect":"こわい","prefecture":"北海道","example":"今日は仕事でこわい。"},
+  {"standard":"つめたい（冷たい）","dialect":"シャッコイ","prefecture":"北海道","example":"この水、シャッコイね。"},
+  {"standard":"わがままをいう（わがままを言う）","dialect":"ごんぼほる","prefecture":"北海道","example":"子供がごんぼほって困った。"},
+  {"standard":"かぎをかける（鍵をかける）","dialect":"じょっぴんかる","prefecture":"北海道","example":"寝る前にじょっぴんかってね。"},
+  {"standard":"だね（だよ）","dialect":"～じゃ","prefecture":"青森県","example":"これで、なとわ、けやぐだじゃ。"},
+  {"standard":"でしょう（でしょう？）","dialect":"～だべ？","prefecture":"青森県","example":"網仕事へずねがったべ？"},
+  {"standard":"ください","dialect":"～けろ","prefecture":"青森県","example":"これ、けろ。"},
+  {"standard":"さわる（触る）","dialect":"ちょす","prefecture":"北海道","example":"ストーブ、ちょすな！"},
+  {"standard":"はずかしい（恥ずかしい）","dialect":"めぐせぇ","prefecture":"青森県","example":"めぐせぇはんで、やめでけじゃ！"},
+  {"standard":"しよう（しなさい）","dialect":"～はんで","prefecture":"青森県","example":"おがが呼んでらはんで、はやぐ行け。"},
+  {"standard":"そうだ","dialect":"んだ","prefecture":"青森県","example":"んだ！"},
+  {"standard":"じゃあね","dialect":"へば","prefecture":"青森県","example":"へば！"},
+  {"standard":"どこへいくの？（どこへ行くの？）","dialect":"どさ？","prefecture":"青森県","example":"どさ？"},
+  {"standard":"おふろ（お風呂）","dialect":"ゆさ","prefecture":"青森県","example":"ゆさ！"},
+  {"standard":"ごはん（ご飯）","dialect":"まま","prefecture":"青森県","example":"腹減った！ままくいてぇ！"},
+  {"standard":"なんていっているの？（何て言っているの？）","dialect":"なんちゃー？","prefecture":"青森県","example":"なーなんちゃー？"},
+  {"standard":"たいへんだ（大変だ）","dialect":"へずね","prefecture":"青森県","example":"網仕事へずねがったべ。"},
+  {"standard":"たべて（食べて）","dialect":"け","prefecture":"秋田県","example":"これけ！"},
+  {"standard":"おいで","dialect":"け","prefecture":"秋田県","example":"こっちゃけ"},
+  {"standard":"じゃあ","dialect":"へば","prefecture":"秋田県","example":"へば、また明日な"},
+  {"standard":"そしたら（それなら）","dialect":"へば","prefecture":"秋田県","example":"へば、また明日な"},
+  {"standard":"そだつ（育つ）","dialect":"おがる","prefecture":"秋田県","example":"苗っこ、おがったな"},
+  {"standard":"もったいない","dialect":"いだましい","prefecture":"秋田県","example":"ごっつぉ、いがだがら、いだましいな"},
+  {"standard":"ああ","dialect":"あや","prefecture":"秋田県","example":"あや、久しぶりだんし"},
+  {"standard":"どうだ","dialect":"どだな","prefecture":"秋田県","example":"今日の天気どだなが？"},
+  {"standard":"またね、それでは","dialect":"へばまんず","prefecture":"秋田県","example":"行くがな、へばまんず。"},
+  {"standard":"です","dialect":"〜だす","prefecture":"秋田県","example":"んだす"},
+  {"standard":"そうだ","dialect":"んだ","prefecture":"秋田県","example":"んだ、んだ"},
+  {"standard":"いこう（行こう）","dialect":"あべ","prefecture":"秋田県","example":"そろそろ、あべな"},
+  {"standard":"はらがたつ（腹立たしい）","dialect":"かちゃくちゃね","prefecture":"秋田県","example":"あんまりだば、かちゃくちゃね"},
+  {"standard":"がんばって（頑張って）","dialect":"けっぱれ","prefecture":"岩手県","example":"けっぱれ！あと少しだ！"},
+  {"standard":"だね","dialect":"〜だっちゃ","prefecture":"岩手県","example":"きょうはいい天気だっちゃ"},
+  {"standard":"ですよ","dialect":"〜でがんす","prefecture":"岩手県","example":"はい、そうでがんす"},
+  {"standard":"ください","dialect":"くなんしぇ","prefecture":"岩手県","example":"これもくなんしぇ"},
+  {"standard":"なさい","dialect":"〜はんせ","prefecture":"岩手県","example":"早ぐ行がはんせ"},
+  {"standard":"でしょう","dialect":"〜だべ","prefecture":"岩手県","example":"明日は雪だべ"},
+  {"standard":"こわい、つかれる（こわい、疲れる）","dialect":"こえー、こえぐなった","prefecture":"岩手県","example":"こえぐなって、もうだめだ"},
+  {"standard":"だよ","dialect":"〜だす","prefecture":"岩手県","example":"俺のだす"},
+  {"standard":"きた（来た）","dialect":"きった","prefecture":"岩手県","example":"友達が遊びにきった"},
+  {"standard":"するな","dialect":"〜すな","prefecture":"岩手県","example":"そんなことすな"},
+  {"standard":"つかれた（疲れた）","dialect":"こえぇ","prefecture":"岩手県","example":"今日は一日こえぇ"},
+  {"standard":"かじりつく","dialect":"くっちゃがる","prefecture":"岩手県","example":"お餅にくっちゃがる"},
+  {"standard":"こんにちは（今日は）","dialect":"おばんでがんす","prefecture":"岩手県","example":"おばんでがんす"},
+  {"standard":"おはようございます","dialect":"おはよがんす","prefecture":"岩手県","example":"おはよがんす"},
+  {"standard":"またね","dialect":"んだば、まんつ","prefecture":"岩手県","example":"んだば、まんつ！"},
+  {"standard":"しちゃいけない","dialect":"〜ねま","prefecture":"岩手県","example":"遊んでばかりいねま"},
+  {"standard":"かわいい（可愛い）","dialect":"めんこい","prefecture":"宮城県","example":"あのコ、ほんっとめんこいなー。"},
+  {"standard":"つかれた（疲れた）","dialect":"こわい","prefecture":"宮城県","example":"きょうは歩ぎすぎで、こわいなー。"},
+  {"standard":"いいでしょう（良いでしょう）","dialect":"いいべ","prefecture":"宮城県","example":"この話、みんなに話してもいいべ？"},
+  {"standard":"すねる（拗ねる）","dialect":"むんつける","prefecture":"宮城県","example":"怒られてむんつけてるんでしょ。"},
+  {"standard":"またきてください（また来てください）","dialect":"またございん","prefecture":"宮城県","example":"おみせ、またございんね。"},
+  {"standard":"そうでしょう","dialect":"だっちゃ","prefecture":"宮城県","example":"それは本当のことだっちゃ。"},
+  {"standard":"そうだ","dialect":"んだ","prefecture":"宮城県","example":"んだ、その通りだっちゃ。"},
+  {"standard":"とても（非常に）","dialect":"いずい","prefecture":"宮城県","example":"この服は着心地がいずい。"},
+  {"standard":"きょうは（今日は）","dialect":"〜だず","prefecture":"山形県","example":"今日は、お天道様(てんとうさま)が、いい日だず。"},
+  {"standard":"ください","dialect":"けろ","prefecture":"山形県","example":"こいづ、けろ。"},
+  {"standard":"たべなさい（食べなさい）","dialect":"け","prefecture":"山形県","example":"早ぐ、まんま、け。"},
+  {"standard":"おこる（怒る）","dialect":"ごしゃぐ","prefecture":"山形県","example":"あんまり、ごしゃがねでけろ。"},
+  {"standard":"おなかいっぱい（お腹いっぱい）","dialect":"はらくっち","prefecture":"山形県","example":"はらくっちいもんで、あど、かんに。"},
+  {"standard":"ありがとう（有難う）","dialect":"おしょうしな","prefecture":"山形県","example":"おしょうしな。"},
+  {"standard":"そうだ","dialect":"んだ","prefecture":"山形県","example":"こないだ言ってたごど、ほんにすか？　んだ。"},
+  {"standard":"みずにひたす（水に浸す）","dialect":"うるかす","prefecture":"山形県","example":"お米、うるかしとぐね。"},
+  {"standard":"いわかんがある（違和感がある）","dialect":"いずい","prefecture":"山形県","example":"この靴、いずいな。"},
+  {"standard":"ぐあいがわるい（具合が悪い）","dialect":"あんべわり","prefecture":"山形県","example":"昨日はあんべわりくて寝てだ。"},
+  {"standard":"つかれた（疲れた）","dialect":"えんがみる","prefecture":"山形県","example":"いやぁ、えんがみだ。"},
+  {"standard":"はらがたつ（腹が立つ）","dialect":"ごせやぐ","prefecture":"山形県","example":"ごせやげるなぁ。"},
+  {"standard":"うるさい（煩い）","dialect":"うっつぁし","prefecture":"山形県","example":"あの人はうっつぁし人だぁ。"},
+  {"standard":"おかえりなさい（お帰りなさい）","dialect":"おつかれない","prefecture":"山形県","example":"おつかれない。"},
+  {"standard":"いらっしゃい","dialect":"こらんしょ","prefecture":"山形県","example":"またこらんしょ。"},
+  {"standard":"でしょう（～だね）","dialect":"だっぺ","prefecture":"茨城県","example":"明日は雨だっぺ？"},
+  {"standard":"おおきい（大きい）","dialect":"いがい","prefecture":"茨城県","example":"いがい車だな。"},
+  {"standard":"おれる（折れる）","dialect":"おっちょる","prefecture":"茨城県","example":"杖がおっちょる。"},
+  {"standard":"おいはらう（追い払う）","dialect":"おっとばす","prefecture":"茨城県","example":"犬をおっとばす。"},
+  {"standard":"いいかげん（いい加減）","dialect":"ごじゃっぺ","prefecture":"茨城県","example":"あいつはごじゃっぺだ。"},
+  {"standard":"あおあざ（青あざ）","dialect":"あおなじみ","prefecture":"茨城県","example":"転んであおなじみができた。"},
+  {"standard":"たべかけ（食べかけ）","dialect":"くっちゃし","prefecture":"茨城県","example":"ご飯くっちゃしにすんな。"},
+  {"standard":"めんどうくさい（面倒くさい）","dialect":"かったるい","prefecture":"茨城県","example":"今日はかったるいなあ。"},
+  {"standard":"だいじょうぶ（大丈夫）","dialect":"あつくない","prefecture":"茨城県","example":"そんなことしてあつくないの？"},
+  {"standard":"だって","dialect":"～だど","prefecture":"茨城県","example":"先生が来いって言ったど。"},
+  {"standard":"だいじょうぶ（大丈夫、心配ない）","dialect":"だいじ","prefecture":"栃木県","example":"転んじまったけど、だいじ？"},
+  {"standard":"つかれた（疲れた、しんどい）","dialect":"こわい","prefecture":"栃木県","example":"畑仕事でこわいわー"},
+  {"standard":"うまい（おいしい）","dialect":"うめえ／うんめい／うんまい","prefecture":"栃木県","example":"このラーメン、うんめえな！"},
+  {"standard":"でたらめ（出鱈目、いい加減なこと）","dialect":"ごじゃっぺ","prefecture":"栃木県","example":"ごじゃっぺ言ってんじゃねぇ！"},
+  {"standard":"ゆうしょく（夕食）","dialect":"おゆはん","prefecture":"栃木県","example":"もう、おゆはんの時間だよ。"},
+  {"standard":"いこう（行こう）","dialect":"～びゃあ／～しびゃあ","prefecture":"群馬県","example":"はやく行ぐべぇ"},
+  {"standard":"ください","dialect":"～りー","prefecture":"群馬県","example":"これ食べりー"},
+  {"standard":"しなさい","dialect":"～んない","prefecture":"群馬県","example":"ちゃんとしんない"},
+  {"standard":"でしょう","dialect":"～んべぇ","prefecture":"群馬県","example":"そうなんべぇ"},
+  {"standard":"おいしい（美味しい）","dialect":"う（ん）めぇ","prefecture":"群馬県","example":"この野菜はうんめぇ"},
+  {"standard":"とても","dialect":"えれぇ","prefecture":"群馬県","example":"えれぇ、おもしれぇ話だね"},
+  {"standard":"むしゃくしゃする","dialect":"しゃんくり","prefecture":"群馬県","example":"あんまりなことでしゃんくりした"},
+  {"standard":"おっちょこちょい","dialect":"ちょちょら","prefecture":"群馬県","example":"こんたあ、ちょちょらだんべぇ"},
+  {"standard":"こわす（壊す）","dialect":"ぼっこす","prefecture":"群馬県","example":"あの子がまたおもちゃをぼっこした"},
+  {"standard":"ありがとう（有難う）／ごめんね（ごめんね）","dialect":"あーね","prefecture":"群馬県","example":"手伝ってくれてあーね"},
+  {"standard":"どうしようもない","dialect":"わっきゃねぇ","prefecture":"群馬県","example":"そりゃあ、わっきゃねぇな"},
+  {"standard":"こうかんする（交換する）","dialect":"ばくる","prefecture":"群馬県","example":"ねぇ、こればくってくんない"},
+  {"standard":"してください（命令丁寧）","dialect":"～りー","prefecture":"群馬県","example":"これ食べりー"},
+  {"standard":"だろう（～でしょう）","dialect":"だんべ","prefecture":"埼玉県","example":"明日は雨が降るだんべ？"},
+  {"standard":"うしろ（後ろ／裏）","dialect":"うら","prefecture":"埼玉県","example":"家のうらに車を停めて"},
+  {"standard":"そうですか","dialect":"そうなん","prefecture":"埼玉県","example":"A: 明日、用事があるんだ。 B: そうなん"},
+  {"standard":"おす（押す）","dialect":"おっぺす","prefecture":"埼玉県","example":"そこをおっぺして"},
+  {"standard":"ひっかく（引っかく）","dialect":"かじる","prefecture":"埼玉県","example":"ネコに腕をかじられた"},
+  {"standard":"あさはやく（朝早く）","dialect":"あさっぱら","prefecture":"埼玉県","example":"あさっぱらから出かけるん？"},
+  {"standard":"あいがけ（交互に食べる）","dialect":"あいがけ","prefecture":"埼玉県","example":"みんなであいがけして食べよう"},
+  {"standard":"なまいきだ（生意気だ）","dialect":"しゃらくせぇ","prefecture":"埼玉県","example":"あの態度はしゃらくせぇな"},
+  {"standard":"あたたかい（温かい）","dialect":"あったけぇ","prefecture":"埼玉県","example":"あったけぇお茶をどうぞ"},
+  {"standard":"おわり（終わり）","dialect":"しんご","prefecture":"埼玉県","example":"この仕事はもうしんごだ"},
+  {"standard":"とても（非常に）","dialect":"いら","prefecture":"埼玉県","example":"いら腹が立った"},
+  {"standard":"かたづける（片付ける／しまう）","dialect":"かたす","prefecture":"埼玉県","example":"食器をかたして"},
+  {"standard":"いけない（まずい）","dialect":"おいねえ","prefecture":"千葉県","example":"そんなことしちゃ、おいねえだよ"},
+  {"standard":"おす（押す）","dialect":"おっぺす","prefecture":"千葉県","example":"スイッチ、おっぺしてくれ"},
+  {"standard":"だろう（でしょう）","dialect":"～だっぺ","prefecture":"千葉県","example":"明日、雨が降るだっぺ"},
+  {"standard":"いこう（しよう）","dialect":"～すんべ","prefecture":"千葉県","example":"そろそろ帰んべ"},
+  {"standard":"わがや（自分の家）","dialect":"おらが","prefecture":"千葉県","example":"おらがに遊びに来なよ"},
+  {"standard":"ほんきに（本気で）","dialect":"ほんこん","prefecture":"千葉県","example":"ほんこんやれよ！"},
+  {"standard":"しかる（叱る）","dialect":"おだす","prefecture":"千葉県","example":"言うこと聞かねえと、おだすぞ"},
+  {"standard":"やめておけ","dialect":"やんでく","prefecture":"千葉県","example":"もう、やんでくれ"},
+  {"standard":"どうしたの","dialect":"あじした","prefecture":"千葉県","example":"おい、あじした"},
+  {"standard":"つかれる（疲れる）","dialect":"こわい","prefecture":"千葉県","example":"今日は仕事でこわかった"},
+  {"standard":"ではないか","dialect":"〜じゃん","prefecture":"東京都","example":"今日の天気、すごくいいじゃん"},
+  {"standard":"こわい（怖い）","dialect":"おっかない","prefecture":"東京都","example":"この前、おっかない目に遭ったよ"},
+  {"standard":"かたづける（片付ける）","dialect":"かたす","prefecture":"東京都","example":"この部屋をかたして"},
+  {"standard":"ひ（ひ）","dialect":"し","prefecture":"東京都","example":"しとが来た。"},
+  {"standard":"し（し）","dialect":"ひ","prefecture":"東京都","example":"ひごとに行く。"},
+  {"standard":"どうするのか","dialect":"どうすんか","prefecture":"東京都","example":"どうすんか分かんない"},
+  {"standard":"わりこみ（割り込み）","dialect":"よこはいり","prefecture":"神奈川県","example":"行列に、よこはいりするんじゃねぇよ"},
+  {"standard":"すてる（捨てる）","dialect":"うっちゃる","prefecture":"神奈川県","example":"そんなゴミ、うっちゃってけろ"},
+  {"standard":"よこ（横）","dialect":"よこっちょ","prefecture":"神奈川県","example":"その箱、よこっちょに置いといて"},
+  {"standard":"うるさい／めんどうくさい（面倒くさい）","dialect":"うざったい／うざってー","prefecture":"神奈川県","example":"あの態度、うざったいんだよ"},
+  {"standard":"どうですか","dialect":"なじらね？","prefecture":"秋田県","example":"最近、なじらね？"},
+  {"standard":"どういうこと","dialect":"なじょなこと？","prefecture":"秋田県","example":"それ、なじょなこと？"},
+  {"standard":"つかれた（疲れた）","dialect":"えらい","prefecture":"秋田県","example":"1日働いて、えらかったて。"},
+  {"standard":"つめたい（冷たい）","dialect":"しゃっこい","prefecture":"秋田県","example":"この水、すごいはっこいね。"},
+  {"standard":"やわらかい（柔らかい）","dialect":"やっこい","prefecture":"秋田県","example":"このおもち、やっこいね。"},
+  {"standard":"はずかしい（恥ずかしい）","dialect":"しょうしい","prefecture":"秋田県","example":"みんなの前で発表するのは、しょうしい。"},
+  {"standard":"もうしわけない（申し訳ない）","dialect":"かんべね","prefecture":"秋田県","example":"迷惑かけて、かんべね。"},
+  {"standard":"さわる（触る）","dialect":"ちょす","prefecture":"秋田県","example":"食べ物で遊ばんで、ちょすな。"},
+  {"standard":"だらしない","dialect":"しょったれ","prefecture":"秋田県","example":"その格好はしょったれだね。"},
+  {"standard":"すてる（捨てる）","dialect":"びちゃる","prefecture":"秋田県","example":"このごみはもうびちゃるて。"},
+  {"standard":"いなか（田舎）","dialect":"ざいご","prefecture":"秋田県","example":"彼はざいごさ帰ったよ。"},
+  {"standard":"しんせんな（新鮮な）","dialect":"きときと","prefecture":"富山県","example":"きときとの魚、おいしいちゃ。"},
+  {"standard":"いいえ、かまわないですよ（構わないですよ）","dialect":"なーん、つかえんちゃ","prefecture":"富山県","example":"なーん、つかえんちゃ。気い遣わんとって。"},
+  {"standard":"はらがいっぱいでくるしい（腹がいっぱいで苦しい）","dialect":"はらうい","prefecture":"富山県","example":"食べすぎてはらういわ。"},
+  {"standard":"かたづける、しまう（片付ける）","dialect":"またいする","prefecture":"富山県","example":"この本、またいしてくれるけ？"},
+  {"standard":"おっくうだ（億劫だ）","dialect":"たいそ","prefecture":"富山県","example":"ああ、たいそや～。仕事休もうかな。"},
+  {"standard":"ずるい","dialect":"こっすい","prefecture":"富山県","example":"こっすいことしられんな！"},
+  {"standard":"こわれている、きたない（壊れている、汚い）","dialect":"おぞい","prefecture":"富山県","example":"この服おぞいがやちゃ。"},
+  {"standard":"だいじょうぶ、もんだいない（大丈夫、問題ない）","dialect":"じゃまない","prefecture":"富山県","example":"体調、じゃまないけ？"},
+  {"standard":"おどろく（驚く）","dialect":"だいてやる","prefecture":"富山県","example":"だいてやるほどでもない。"},
+  {"standard":"そうだよね／そうなの？","dialect":"おいね／どいね","prefecture":"石川県","example":"今日、雨降っとるねんて。おいね？"},
+  {"standard":"しんせんな（新鮮な／生きが良い）","dialect":"きときと","prefecture":"富山県","example":"この魚、今朝獲れたんやって。きときとで美味しいげん。"},
+  {"standard":"なの？／〜ですか？（疑問）","dialect":"〜がん／〜が","prefecture":"石川県","example":"もうご飯食べたがん？"},
+  {"standard":"ありがとう","dialect":"あんやと","prefecture":"石川県","example":"重かったでしょ。運んでくれてあんやと。"},
+  {"standard":"つかれた（疲れた）","dialect":"てきない","prefecture":"石川県","example":"今日は一日歩き回って、もうてきないわいや。"},
+  {"standard":"ありがとう／恐縮です","dialect":"気の毒な","prefecture":"石川県","example":"手伝ってくれて気の毒な。"},
+  {"standard":"だいじょうぶ（大丈夫）／問題ない","dialect":"だいじ","prefecture":"石川県","example":"風邪ひいて、だいじか？"},
+  {"standard":"うるさい／面倒くさい","dialect":"いじっかしい","prefecture":"石川県","example":"またあの人が来た。話が長くていじっかしいわ。"},
+  {"standard":"だめだ／〜いけない（否定）","dialect":"だっちゃ／だっちゃんが","prefecture":"石川県","example":"こんなところで遊んでいたらだっちゃんが！"},
+  {"standard":"そうだよ／はい、そうです","dialect":"ほやほや","prefecture":"福井県","example":"福井弁っていいのー？ ほやほや！"},
+  {"standard":"ふざける","dialect":"あばさける","prefecture":"福井県","example":"いつまでもあばさけてんと、勉強しなっせ！"},
+  {"standard":"あきた（飽きた）","dialect":"あいた","prefecture":"福井県","example":"このゲーム、もうあいたわ。"},
+  {"standard":"しつのわるい（質の悪い）／ぼろい","dialect":"おぞい","prefecture":"福井県","example":"おぞい携帯やのー。"},
+  {"standard":"ぎりぎりまでいっぱい","dialect":"つるつるいっぱい","prefecture":"福井県","example":"コップにつるつるいっぱい水を注ぐ。"},
+  {"standard":"あな（穴）","dialect":"あなんぼ","prefecture":"福井県","example":"服にあなんぼ開いてるで。"},
+  {"standard":"てれびのすなあらし（テレビの砂嵐）","dialect":"じゃみじゃみ","prefecture":"福井県","example":"テレビがじゃみじゃみになっとる。"},
+  {"standard":"だよね（確認）","dialect":"〜やざ","prefecture":"福井県","example":"これ、ええやざ？"},
+  {"standard":"だよね","dialect":"〜だら","prefecture":"静岡県","example":"今日はいい天気だら？"},
+  {"standard":"じゃないか","dialect":"〜じゃんけ","prefecture":"静岡県","example":"ほら、やっぱりじゃんけ。"},
+  {"standard":"だよ","dialect":"〜ずら","prefecture":"静岡県","example":"富士山がよく見えるずら。"},
+  {"standard":"おまえ／あなた（お前、あなた）","dialect":"おまん","prefecture":"静岡県","example":"おまんがほとんど食っちまったずら。"},
+  {"standard":"おばさん","dialect":"おばやん","prefecture":"静岡県","example":"このおばやん、とても元気だら。"},
+  {"standard":"たくさん","dialect":"うんと","prefecture":"静岡県","example":"今日はうんとおごっつぉを食べたずら。"},
+  {"standard":"あるく（歩く）","dialect":"あいく","prefecture":"静岡県","example":"駅まであいて行こうずら。"},
+  {"standard":"つかれた／体がきつい（疲れた、体がきつい）","dialect":"えらい","prefecture":"静岡県","example":"今日はえらかったから、もう寝るずら。"},
+  {"standard":"いこう（行こう）","dialect":"えべ","prefecture":"静岡県","example":"早くえべ。"},
+  {"standard":"ごちそう","dialect":"おごっつぉ","prefecture":"静岡県","example":"晩ごはんはおごっつぉにするずら。"},
+  {"standard":"やるき（やる気）、意欲","dialect":"ずく","prefecture":"長野県","example":"ずくだして、やればええに"},
+  {"standard":"はずかしい（恥ずかしい）、照れくさい","dialect":"しょうしい","prefecture":"長野県","example":"人前で歌うなんて、しょうしい"},
+  {"standard":"でしょう、だろう（推量）","dialect":"〜ずら","prefecture":"長野県","example":"明日は晴れるずら"},
+  {"standard":"だから","dialect":"だもんで","prefecture":"長野県","example":"風邪をひいただもんで、休んだ"},
+  {"standard":"かたい（固い）","dialect":"こわい","prefecture":"長野県","example":"この餅、こわくて食えん"},
+  {"standard":"すてる（捨てる）","dialect":"ほうる","prefecture":"長野県","example":"ゴミをほうっておいて"},
+  {"standard":"かわいそう","dialect":"おやげない","prefecture":"長野県","example":"転んで泣いてる、おやげないね"},
+  {"standard":"すてる（捨てる）","dialect":"ほかる","prefecture":"岐阜県","example":"これ、もういらんからほかっておいて。"},
+  {"standard":"じてんしゃ（自転車）","dialect":"ケッタ","prefecture":"愛知県","example":"駅までケッタで行くでね。"},
+  {"standard":"つかれた／しんどい（疲れた、しんどい）","dialect":"えらい","prefecture":"愛知県","example":"この仕事はえらいな。"},
+  {"standard":"ひさしぶり（久しぶり）","dialect":"やっとかめ","prefecture":"愛知県","example":"やっとかめやなも。"},
+  {"standard":"だよね／だよ（確認）","dialect":"〜やお","prefecture":"岐阜県","example":"これ、おいしいやお。"},
+  {"standard":"おまえさん","dialect":"おまはん","prefecture":"岐阜県","example":"おまはん、えか。"},
+  {"standard":"はらがたつ（腹が立つ）","dialect":"ごがわく","prefecture":"岐阜県","example":"そんなこと言われたら、ごがわいてくるわ。"},
+  {"standard":"あおあざ（青あざ）","dialect":"くろにえ","prefecture":"岐阜県","example":"転んでくろにえだらけだわ。"},
+  {"standard":"いっぱいだ（お腹がいっぱい）","dialect":"づつない","prefecture":"岐阜県","example":"食べ過ぎてづつないわ。"},
+  {"standard":"きゅうに（急に）","dialect":"つっと","prefecture":"岐阜県","example":"そんな事つっと言わしても。"},
+  {"standard":"している（進行形）","dialect":"〜ちょる","prefecture":"岐阜県","example":"ずっと待っちょるよ。"},
+  {"standard":"している（進行形）","dialect":"〜しとる","prefecture":"岐阜県","example":"ずっと待っしとるよ。"},
+  {"standard":"だろう","dialect":"〜だら / 〜ら","prefecture":"静岡県","example":"あれは富士山だら"},
+  {"standard":"でしょ","dialect":"〜じゃんね","prefecture":"静岡県","example":"これ、おいしいじゃんね"},
+  {"standard":"だから","dialect":"〜だもんで","prefecture":"静岡県","example":"雨が降ってきただもんで、洗濯物を取り込んだ"},
+  {"standard":"しょうがない","dialect":"しょんない","prefecture":"静岡県","example":"しょんないね、明日も頑張ろう"},
+  {"standard":"だよ","dialect":"〜さー","prefecture":"静岡県","example":"これ、おいしいさー"},
+  {"standard":"でしょう","dialect":"〜だに","prefecture":"静岡県","example":"このお菓子、おいしいだに"},
+  {"standard":"しないか","dialect":"やらまいか","prefecture":"静岡県","example":"お茶でもやらまいか"},
+  {"standard":"やればいいじゃない","dialect":"やりない","prefecture":"静岡県","example":"好きならやりない"},
+  {"standard":"とても","dialect":"えらい","prefecture":"静岡県","example":"えらい疲れた"},
+  {"standard":"じゃないか","dialect":"〜じゃんか","prefecture":"静岡県","example":"この景色、きれいじゃんか"},
+  {"standard":"いいよ","dialect":"いいらぁ","prefecture":"静岡県","example":"もういいらぁ"},
+  {"standard":"もういいでしょう","dialect":"もうええでしょう","prefecture":"静岡県","example":"もうええでしょう、やめときなよ"},
+  {"standard":"とても（非常に）","dialect":"でら","prefecture":"愛知県","example":"でら忙しいだがや。"},
+  {"standard":"だめだよ（いけない）","dialect":"いかんて","prefecture":"愛知県","example":"そんなことしたら、いかんて。"},
+  {"standard":"なくなった（失くなった）","dialect":"ないなった","prefecture":"愛知県","example":"消しゴムがないなってもーた。"},
+  {"standard":"してちょうだい（して下さい）","dialect":"してちょー","prefecture":"愛知県","example":"早く宿題やってちょー。"},
+  {"standard":"そうだね","dialect":"だがや","prefecture":"愛知県","example":"今日は暑いがね。"},
+  {"standard":"して","dialect":"やっとかまい","prefecture":"愛知県","example":"早く支度やっとかまい。"},
+  {"standard":"だよね（確認）","dialect":"〜じゃん","prefecture":"愛知県","example":"ほだら、この道を行けばいいじゃん。"},
+  {"standard":"でしょう（推量）","dialect":"〜だら","prefecture":"愛知県","example":"明日雨降るだら？"},
+  {"standard":"しなさい（命令）","dialect":"〜りん","prefecture":"愛知県","example":"早く食べりん。"},
+  {"standard":"だから〜しなくてはいけない（原因・義務）","dialect":"〜だで、〜しんといかん","prefecture":"愛知県","example":"風邪引いただで、寝とかんといかん。"},
+  {"standard":"そうでしょう（確認）","dialect":"そうだら","prefecture":"愛知県","example":"あの人、もう帰ったそうだら？"},
+  {"standard":"すてる（捨てる）","dialect":"ほる","prefecture":"三重県","example":"このゴミ、ほっといてー。"},
+  {"standard":"こむ（混む）","dialect":"つむ","prefecture":"三重県","example":"道路がめっちゃつんどるやん。"},
+  {"standard":"つかれた／しんどい（疲れた、しんどい）","dialect":"えらい","prefecture":"三重県","example":"今日はよう歩いたでえらい。"},
+  {"standard":"いらっしゃい（いらっしゃい）","dialect":"おいない","prefecture":"三重県","example":"ようおいないました。"},
+  {"standard":"かたづける／しまう（片付ける、しまう）","dialect":"なおす","prefecture":"三重県","example":"この道具、なおしといて。"},
+  {"standard":"ありがとう","dialect":"おおきん","prefecture":"三重県","example":"今日はおおきんなぁ。"},
+  {"standard":"たくあん","dialect":"おこおこ","prefecture":"三重県","example":"ご飯におこおこをつけて食べる。"},
+  {"standard":"あたたかい（温かい、暖かい）","dialect":"ぬくとい／ぬくたい","prefecture":"三重県","example":"まだ3月やのに、今日はむっちゃぬくといなぁ。"},
+  {"standard":"きたない（汚い、汚らしい）","dialect":"ばばい／ばばちい","prefecture":"三重県","example":"なにー、そのばばい靴。"},
+  {"standard":"でしょ／〜じゃん（確認）","dialect":"〜やん","prefecture":"三重県","example":"この服、ええやん。"},
+  {"standard":"だよ（断定）","dialect":"〜やに","prefecture":"三重県","example":"あんただけやに、そんなことすんの。"},
+  {"standard":"カメムシ","dialect":"どんがめ","prefecture":"三重県","example":"窓にどんがめがとまっとる。"},
+  {"standard":"てください（依頼）","dialect":"〜てだーこ","prefecture":"三重県","example":"ちょっとここに座ってだーこ。"},
+  {"standard":"いらっしゃいませ","dialect":"おいでやす／おこしやす","prefecture":"京都府","example":"おいでやす（気軽な挨拶）／おこしやす（より丁寧な挨拶）"},
+  {"standard":"ありがとうございます","dialect":"おおきに","prefecture":"大阪府","example":"おおきに（感謝を伝える言葉）"},
+  {"standard":"おはようございます","dialect":"おはようさんどす","prefecture":"京都府","example":"おはようさんどす（朝の挨拶）"},
+  {"standard":"そうですね","dialect":"ほっこりしますね","prefecture":"京都府","example":"ほっこりしますね（優しい気持ちを表す）"},
+  {"standard":"しなやかでじょうひんだ（しなやかで上品だ）","dialect":"はんなりとして","prefecture":"京都府","example":"はんなりとして（上品な様子）"},
+  {"standard":"ごめんなさい","dialect":"かんにん","prefecture":"京都府","example":"かんにん（謝罪の言葉）"},
+  {"standard":"よいとけいをしていますね（良い時計をしていますね）","dialect":"ええ時計してはりますな","prefecture":"京都府","example":"ええ時計してはりますな"},
+  {"standard":"おいしいですね（美味しいですね）","dialect":"おいしおすなぁ","prefecture":"京都府","example":"おいしおすなぁ（やわらかい表現）"},
+  {"standard":"だれもいません（誰もいません）","dialect":"誰もおりまへん","prefecture":"京都府","example":"誰もおりまへん（否定形の丁寧表現）"},
+  {"standard":"すててください（捨ててください）","dialect":"ほかして","prefecture":"京都府","example":"ほかして（ほかす＝捨てる）"},
+  {"standard":"とてもつかれた（とても疲れた）","dialect":"えらいしんどい","prefecture":"京都府","example":"えらいしんどい（とても疲れた）"},
+  {"standard":"ありがとう（感謝）","dialect":"おおきに","prefecture":"大阪府","example":"標準語: 本当にありがとう。／大阪弁: ほんまにおおきに"},
+  {"standard":"つかれた（疲れた）つらい","dialect":"しんどい","prefecture":"大阪府","example":"標準語: 仕事で疲れた。／大阪弁: 仕事でしんどいわ"},
+  {"standard":"だめ（禁止・否定）","dialect":"〜あかん","prefecture":"大阪府","example":"標準語: そんなことしたらだめだよ。／大阪弁: そんなことしたらあかんで"},
+  {"standard":"ほんとう（本当）","dialect":"ほんま","prefecture":"大阪府","example":"標準語: それ、本当？／大阪弁: それ、ほんま？"},
+  {"standard":"しないといけない（義務）","dialect":"〜せなあかん","prefecture":"大阪府","example":"標準語: 明日までに宿題をしないといけない。／大阪弁: 明日までに宿題せなあかん"},
+  {"standard":"いくら？（金額の問い）","dialect":"なんぼ？","prefecture":"大阪府","example":"標準語: このカバン、いくら？／大阪弁: このカバン、なんぼ？"},
+  {"standard":"おもしろくない（面白くない）","dialect":"おもんない","prefecture":"大阪府","example":"標準語: あの番組、面白くないね。／大阪弁: あの番組、おもんないな"},
+  {"standard":"かまわない（問題ない）","dialect":"かまへん","prefecture":"大阪府","example":"標準語: 気にしなくてかまわないよ。／大阪弁: 気にせんとかまへんで"},
+  {"standard":"いけたらいく（行けたら行く）","dialect":"行けたら行くわ","prefecture":"大阪府","example":"標準語: 次のお誘い、行けたら行きます。／大阪弁: 次、行けたら行くわ"},
+  {"standard":"ちゅうしゃじょう（駐車場）","dialect":"モータープール","prefecture":"大阪府","example":"標準語: この駐車場は満車です。／大阪弁: このモータープールは満車や"},
+  {"standard":"ほんとうに（本当に）","dialect":"ほんま","prefecture":"大阪府","example":"ほんまに、これおいしいなぁ。"},
+  {"standard":"とても、すごく（とても、凄く）","dialect":"めっちゃ、ばり","prefecture":"福岡県","example":"めっちゃきれいやん、この景色。"},
+  {"standard":"いい、よい（良い）","dialect":"ええ","prefecture":"大阪府","example":"そら、ええことやな。"},
+  {"standard":"ちがう（違う）","dialect":"ちゃう","prefecture":"大阪府","example":"それはちゃうで。"},
+  {"standard":"だめ（駄目）","dialect":"あかん","prefecture":"大阪府","example":"それはあかんわ。"},
+  {"standard":"ありがとう（有難う）","dialect":"おおきに","prefecture":"大阪府","example":"おおきに。"},
+  {"standard":"こんにちは（今日は）","dialect":"まいど","prefecture":"大阪府","example":"まいど。"},
+  {"standard":"さようなら","dialect":"ほな","prefecture":"大阪府","example":"ほな、また明日。"},
+  {"standard":"だいじょうぶ（大丈夫）","dialect":"べっちょない","prefecture":"兵庫県","example":"けがべっちょないか？"},
+  {"standard":"はらがたつ（腹が立つ）","dialect":"ごうわく","prefecture":"兵庫県","example":"そんなことでごうわくな。"},
+  {"standard":"ちいさい（小さい）","dialect":"こまい","prefecture":"兵庫県","example":"この魚こまいのう。"},
+  {"standard":"かえる（帰る）","dialect":"いぬ","prefecture":"兵庫県","example":"もう遅いからいぬわ。"},
+  {"standard":"こわす（壊す）","dialect":"めぐ","prefecture":"兵庫県","example":"おもちゃめぐっとった。"},
+  {"standard":"つかれた、しんどい（疲れた、しんどい）","dialect":"えらい","prefecture":"兵庫県","example":"ずっと歩いてえらいわ。"},
+  {"standard":"している（〜している）","dialect":"〜しとう","prefecture":"兵庫県","example":"今、何しとう？"},
+  {"standard":"しようかな（〜しようかな）","dialect":"〜しよかな","prefecture":"兵庫県","example":"晩ご飯、何しよかな。"},
+  {"standard":"でしょう？（〜でしょう？）","dialect":"〜やん","prefecture":"兵庫県","example":"この服、かわいいやん。"},
+  {"standard":"きにさわる（気に障る）","dialect":"せからしい","prefecture":"兵庫県","example":"せからしゅうて、なんだか落ち着かへん。"},
+  {"standard":"して（〜して）","dialect":"〜してな","prefecture":"兵庫県","example":"これ、捨ててな。"},
+  {"standard":"あたらしい（新しい）","dialect":"さらぴん","prefecture":"兵庫県","example":"さらぴんの服を買った。"},
+  {"standard":"すてる（捨てる）","dialect":"ほかす","prefecture":"兵庫県","example":"ごみほかしてきて。"},
+  {"standard":"いじわる、ずるい（意地悪、ずるい）","dialect":"ずっこい","prefecture":"大阪府","example":"ずっこいことすんなや。"},
+  {"standard":"つきあたり（突き当たり）","dialect":"どんつき","prefecture":"大阪府","example":"どん突きを右に曲がって。"},
+  {"standard":"おはよう（お早う）","dialect":"おはようさん","prefecture":"奈良県","example":"おはようさん。"},
+  {"standard":"こんにちは（今日は）","dialect":"こんにちは","prefecture":"奈良県","example":"こんにちは。"},
+  {"standard":"おやすみ（お休み）","dialect":"おやすみ","prefecture":"奈良県","example":"おやすみ。"},
+  {"standard":"ありがとう（有難う）","dialect":"おおきに","prefecture":"奈良県","example":"おおきに。"},
+  {"standard":"ごめんなさい（ごめんなさい）","dialect":"ごめんやで、堪忍な","prefecture":"奈良県","example":"ごめんやで、堪忍な。"},
+  {"standard":"いいよ（良いよ）","dialect":"ええよ、かまへん","prefecture":"奈良県","example":"ええよ、かまへんで。"},
+  {"standard":"ではない（ではない）","dialect":"ちゃう","prefecture":"奈良県","example":"それはそうちゃうで。"},
+  {"standard":"だ","dialect":"や","prefecture":"奈良県","example":"そうや。"},
+  {"standard":"ない","dialect":"へん","prefecture":"奈良県","example":"行かへん。"},
+  {"standard":"だから","dialect":"やさかい","prefecture":"奈良県","example":"忙しいやさかい、行かれへん。"},
+  {"standard":"ですか","dialect":"でっか、やろ","prefecture":"奈良県","example":"ほんまに行くでっか。"},
+  {"standard":"しましょう","dialect":"しまひょか","prefecture":"奈良県","example":"行きまひょか。"},
+  {"standard":"ですか？","dialect":"かいな？","prefecture":"奈良県","example":"何してんのかいな？"},
+  {"standard":"なさい","dialect":"しなはれ","prefecture":"奈良県","example":"早よしなはれ。"},
+  {"standard":"だよね","dialect":"やろ","prefecture":"奈良県","example":"そうやろ。"},
+  {"standard":"だよね？","dialect":"やろ？","prefecture":"奈良県","example":"楽しかったやろ？"},
+  {"standard":"だなぁ","dialect":"やなぁ","prefecture":"奈良県","example":"いい天気やなぁ。"},
+  {"standard":"これはなんですか（これは何ですか？）","dialect":"これ、なんや？","prefecture":"奈良県","example":"これ、なんや？"},
+  {"standard":"なにしてるの（何してるの？）","dialect":"なにしとん？","prefecture":"奈良県","example":"なにしとん？"},
+  {"standard":"どこへいくの（どこへ行くの？）","dialect":"どこへ行くん？","prefecture":"奈良県","example":"どこへ行くん？"},
+  {"standard":"はやくしなさい（早くしなさい）","dialect":"はよしーや","prefecture":"奈良県","example":"はよしーや。"},
+  {"standard":"しちゃいけない","dialect":"したらいけへん","prefecture":"奈良県","example":"そんなことしたらいけへんで。"},
+  {"standard":"しなきゃ","dialect":"せなあかん","prefecture":"奈良県","example":"明日までにせなあかん。"},
+  {"standard":"ありがとう（有難う）","dialect":"おおきに","prefecture":"和歌山県","example":"おおきに。"},
+  {"standard":"いいえ、けっこうです（いいえ、結構です）","dialect":"ええわ","prefecture":"和歌山県","example":"もうええわ。"},
+  {"standard":"だめだ、いけない（だめだ、いけない）","dialect":"あかん","prefecture":"和歌山県","example":"そんなに食べたらあかんよ。"},
+  {"standard":"すてておく（捨てておく）","dialect":"ほかす","prefecture":"和歌山県","example":"それ、もうほかしておいて。"},
+  {"standard":"いく（行く）","dialect":"いこか","prefecture":"和歌山県","example":"もう帰ろか、いこか。"},
+  {"standard":"とても、すごく（凄く）","dialect":"めっちゃ","prefecture":"和歌山県","example":"最近、めっちゃ暑いなあ。"},
+  {"standard":"いくら（幾ら）","dialect":"なんぼ","prefecture":"和歌山県","example":"この服、なんぼなん？"},
+  {"standard":"している","dialect":"〜しとる","prefecture":"和歌山県","example":"あんた今、何しとるん？"},
+  {"standard":"そうだ","dialect":"そうじゃ","prefecture":"和歌山県","example":"そうじゃ、それでええ。"},
+  {"standard":"やんちゃ","dialect":"いらんこと","prefecture":"和歌山県","example":"いらんことせんといて。"},
+  {"standard":"はやい（早い）","dialect":"はよ","prefecture":"和歌山県","example":"はよ起きんと遅刻するで。"},
+  {"standard":"よい（良い）","dialect":"ええ","prefecture":"和歌山県","example":"その靴、ええやん。"},
+  {"standard":"ありがとう（有難う）","dialect":"だんだん","prefecture":"鳥取県","example":"親切にしてくれて、だんだん。"},
+  {"standard":"こんにちは（今日は）","dialect":"晩なりました（ばん・なりました）","prefecture":"宮崎県","example":"晩なりました、お久しぶりです。"},
+  {"standard":"はい","dialect":"ほー、ほーだ","prefecture":"広島県","example":"ほー、ほーだ。"},
+  {"standard":"いいえ","dialect":"そうじゃなか","prefecture":"長崎県","example":"そうじゃなか。"},
+  {"standard":"どういたしまして","dialect":"どういたしまして","prefecture":"山口県","example":"どういたしまして。"},
+  {"standard":"つかれた、だるい（疲れた）","dialect":"たいぎい","prefecture":"広島県","example":"仕事でたいぎい。"},
+  {"standard":"ばか、あほ","dialect":"だらず","prefecture":"山口県","example":"あの人はだらずだ。"},
+  {"standard":"きのどくな、かわいそうな（気の毒な、可哀想な）","dialect":"きのどくな","prefecture":"鹿児島県","example":"それはきのどくな。"},
+  {"standard":"こわい、おそろしい（怖い、恐ろしい）","dialect":"きょうてー","prefecture":"広島県","example":"暗い夜道はきょうてー。"},
+  {"standard":"たくさん、非常に（たくさん、非常に）","dialect":"がいな","prefecture":"岡山県","example":"がいな食べた。"},
+  {"standard":"たいだな、めんどうくさい（怠惰な、面倒くさい）","dialect":"よだきい","prefecture":"福岡県","example":"宿題がよだきい。"},
+  {"standard":"でしょう（〜でしょう？）","dialect":"〜だら、〜だー","prefecture":"鹿児島県","example":"明日は雨だー？"},
+  {"standard":"なさい","dialect":"〜さいな","prefecture":"山口県","example":"早く寝さいな。"},
+  {"standard":"して","dialect":"〜してな","prefecture":"山口県","example":"早くしてな。"},
+  {"standard":"だよね","dialect":"〜だに","prefecture":"島根県","example":"そうだに。"},
+  {"standard":"だから","dialect":"〜けー、〜けん","prefecture":"熊本県","example":"雨が降ったけー中止になった。"},
+  {"standard":"いこう（行こう）","dialect":"いなや、こーかいや","prefecture":"鹿児島県","example":"そろそろいなや。"},
+  {"standard":"〜してくれる","dialect":"〜してごす","prefecture":"佐賀県","example":"荷物を運んでごす。"},
+  {"standard":"仲間（仲間）","dialect":"あや","prefecture":"長崎県","example":"あいつはあやだ。"},
+  {"standard":"もってきて（持ってきて）","dialect":"持ってこーへ","prefecture":"熊本県","example":"あれを持ってこーへ。"},
+  {"standard":"こわれている（壊れている）","dialect":"やんだ","prefecture":"宮崎県","example":"テレビがやんだ。"},
+  {"standard":"だね","dialect":"だら、だわ","prefecture":"島根県","example":"それ、ほんとだら。"},
+  {"standard":"でしょう","dialect":"ずら","prefecture":"島根県","example":"あしたは晴れるずら。"},
+  {"standard":"ありがとう（有難う）","dialect":"だんだん","prefecture":"島根県","example":"手伝ってごして、だんだん。"},
+  {"standard":"つかれた（疲れた）","dialect":"えらい","prefecture":"島根県","example":"今日は一日中歩いてえらかった。"},
+  {"standard":"つらい、たいへんだ（辛い、大変だ）","dialect":"たいぎい","prefecture":"島根県","example":"毎日通勤するのがたいぎい。"},
+  {"standard":"してください（して下さい）","dialect":"してごさんせ","prefecture":"島根県","example":"ちょっと待ってごさんせ。"},
+  {"standard":"やわらかい（柔らかい）","dialect":"やくっとした","prefecture":"島根県","example":"このパン、えらくやくっとしとるね。"},
+  {"standard":"なさい","dialect":"しなはれ","prefecture":"島根県","example":"はよ寝なはれ。"},
+  {"standard":"しないで","dialect":"するな、すんな","prefecture":"島根県","example":"そんなことするな。"},
+  {"standard":"そうだよ","dialect":"そうじゃ","prefecture":"島根県","example":"それ、そうじゃ。"},
+  {"standard":"なんです","dialect":"だけん","prefecture":"島根県","example":"疲れただけん。"},
+  {"standard":"なの？","dialect":"だかね？","prefecture":"島根県","example":"もう帰るだかね？"},
+  {"standard":"でしょう","dialect":"けんね","prefecture":"島根県","example":"行くけんね？"},
+  {"standard":"すごい（凄い）","dialect":"でーれー、ぼっけー、もんげー","prefecture":"岡山県","example":"でーれー旨いもん食ったが。"},
+  {"standard":"かえる（帰る）","dialect":"いぬる","prefecture":"岡山県","example":"もう遅いけぇ、いぬるわ。"},
+  {"standard":"たくさん（沢山）","dialect":"ぎょうさん","prefecture":"京都府","example":"ぎょうさんお菓子もろうた。"},
+  {"standard":"いらっしゃい","dialect":"おいでんせぇ","prefecture":"岡山県","example":"ようこそ、おいでんせぇ。"},
+  {"standard":"なさい","dialect":"しねー","prefecture":"広島県","example":"はよしねー。"},
+  {"standard":"だめ（駄目）","dialect":"おえん","prefecture":"広島県","example":"そんなことしたらおえんで。"},
+  {"standard":"ふざけるな","dialect":"ちばけな","prefecture":"広島県","example":"ちばけな。"},
+  {"standard":"さむい（寒い）","dialect":"さびー","prefecture":"岡山県","example":"さびーなぁ。"},
+  {"standard":"あたたかい（暖かい）","dialect":"あったけー","prefecture":"広島県","example":"あったけーなぁ。"},
+  {"standard":"うらやましい（羨ましい）","dialect":"けなりー","prefecture":"岡山県","example":"その服、けなりーなぁ。"},
+  {"standard":"ころげおちる（転げ落ちる）","dialect":"あだくれる","prefecture":"広島県","example":"こけそうになってあだくれた。"},
+  {"standard":"だよ","dialect":"じゃ","prefecture":"岡山県","example":"そうじゃ。"},
+  {"standard":"だから","dialect":"じゃけぇ","prefecture":"広島県","example":"眠たいじゃけぇ、もう寝るわ。"},
+  {"standard":"とても、すごく（凄く）","dialect":"ぶち、ばり","prefecture":"広島県","example":"あの店、ぶちうまいんよ。"},
+  {"standard":"だから","dialect":"じゃけぇ、じゃけん","prefecture":"広島県","example":"雨が降るじゃけぇ、行かん。"},
+  {"standard":"おっくうな、めんどうくさい（面倒くさい）","dialect":"たいぎい","prefecture":"岡山県","example":"宿題がたいぎい。"},
+  {"standard":"なにしているの（何しているの）","dialect":"なにしよん","prefecture":"広島県","example":"のう、なにしよん？"},
+  {"standard":"いいよ、だいじょうぶ（大丈夫）","dialect":"ええよ","prefecture":"岡山県","example":"これでええよ。"},
+  {"standard":"いけない、だめ（ダメ、駄目）","dialect":"いけん","prefecture":"広島県","example":"これは触ったらいけん。"},
+  {"standard":"かえる（帰る）","dialect":"いぬる","prefecture":"岡山県","example":"そろそろいぬるわ。"},
+  {"standard":"さわる（触る）","dialect":"いらう","prefecture":"広島県","example":"そこをいらうな。"},
+  {"standard":"とどく（届く）","dialect":"たう","prefecture":"岡山県","example":"手がたうかのう。"},
+  {"standard":"とどかない（届かない）","dialect":"たわん","prefecture":"広島県","example":"手がたわん。"},
+  {"standard":"あおあざ（青あざ）","dialect":"あおじ","prefecture":"岡山県","example":"こけて、あおじができた。"},
+  {"standard":"ふざける","dialect":"つばえる","prefecture":"広島県","example":"つばえちゃいけんよ。"},
+  {"standard":"している","dialect":"ちょる、しよる","prefecture":"広島県","example":"今、ご飯食べちょるんよ。"},
+  {"standard":"だ、だから","dialect":"じゃ、じゃけえ","prefecture":"山口県","example":"そうじゃけえ、言ったじゃろ。"},
+  {"standard":"だよ","dialect":"っちゃ","prefecture":"中国地方（山口県）","example":"それ、いいっちゃ。"},
+  {"standard":"だよ","dialect":"そ、ほ","prefecture":"中国地方（広島県）","example":"そうなんそ。"},
+  {"standard":"ね","dialect":"ね、でね","prefecture":"中国地方（山口県）","example":"そうでね。"},
+  {"standard":"だから","dialect":"けえ","prefecture":"広島県、山口県","example":"雨が降りよるけえ、行けん。"},
+  {"standard":"とても、すごく（凄く）","dialect":"ぶち","prefecture":"広島県","example":"ぶちおいしい！"},
+  {"standard":"不機嫌になる、すねる（不機嫌になる、すねる）","dialect":"はぶてる","prefecture":"山口県","example":"妹がはぶてちょる。"},
+  {"standard":"いじる、さわる（触る）","dialect":"いらう","prefecture":"岡山県","example":"その機械いらうちゃいけんよ。"},
+  {"standard":"てこずる、こまる（手こずる、困る）","dialect":"あずる","prefecture":"広島県","example":"宿題にぶちあずった。"},
+  {"standard":"めちゃくちゃ（滅茶苦茶）","dialect":"わや","prefecture":"岡山県","example":"部屋の中がわやじゃ。"},
+  {"standard":"いらっしゃいませ","dialect":"おいでませ","prefecture":"山口県","example":"おいでませ、山口へ。"},
+  {"standard":"かんたん、たやすい（簡単、容易い）","dialect":"みやすい","prefecture":"山口県","example":"この問題はみやすいけえ、すぐ終わる。"},
+  {"standard":"しんどい、つかれた（疲れた）","dialect":"えらい","prefecture":"岡山県","example":"今日はえらかったね。"},
+  {"standard":"ばか、まぬけ（馬鹿、間抜け）","dialect":"あんごう","prefecture":"山口県","example":"あんごうなことばっかしちょる。"},
+  {"standard":"たくさん","dialect":"えっと","prefecture":"広島県","example":"みかんがえっとある。"},
+  {"standard":"すわる（座る）","dialect":"かしこまる","prefecture":"山口県","example":"かしこまりんさい。"},
+  {"standard":"ずぶぬれ（ずぶ濡れ）","dialect":"びっしゃこ","prefecture":"山口県","example":"雨でびっしゃこになった。"},
+  {"standard":"おうへいな、なまいきな（横柄な、生意気な）","dialect":"おっちゃく","prefecture":"広島県","example":"あいつ、おっちゃくな態度じゃね。"},
+  {"standard":"めんどうくさい（面倒くさい）","dialect":"たいそい","prefecture":"島根県","example":"今日はたいそいけん、やめとこ。"},
+  {"standard":"さけぶ（叫ぶ）","dialect":"おらぶ","prefecture":"島根県","example":"何おらびよんな？"},
+  {"standard":"かえる（帰る）","dialect":"いぬ","prefecture":"島根県","example":"もう時間やけん、いぬわ。"},
+  {"standard":"あたらしい（新しい）","dialect":"さら","prefecture":"島根県","example":"さらな服こうたけん、見てみい。"},
+  {"standard":"たくさん（沢山）","dialect":"えっと","prefecture":"島根県","example":"えっと、あんたが持っていき。"},
+  {"standard":"しめる（閉める）","dialect":"たてる","prefecture":"島根県","example":"戸をたててくれんかな。"},
+  {"standard":"つかれた、しんどい（疲れた）","dialect":"せこい","prefecture":"島根県","example":"もう走られん、せこい。"},
+  {"standard":"おもしろい（面白い）","dialect":"おもっしょい","prefecture":"島根県","example":"あん人ば話はおもっしょい。"},
+  {"standard":"いっぱいになる（一杯になる）","dialect":"おきる","prefecture":"島根県","example":"お腹がおきたけん、もう食べられん。"},
+  {"standard":"とても","dialect":"がいに","prefecture":"島根県","example":"がいな雨が降っとるな。"},
+  {"standard":"だめだ、いけない（駄目だ）","dialect":"ごじゃ","prefecture":"島根県","example":"ごじゃしられんの。"},
+  {"standard":"だよ","dialect":"〜じゃ、〜じょ","prefecture":"島根県","example":"これじゃ。"},
+  {"standard":"だから、なので","dialect":"〜けん","prefecture":"島根県","example":"雨が降りよるけん、傘を持って行き。"},
+  {"standard":"なにしているの（何しているの）","dialect":"どっしょんな？","prefecture":"島根県","example":"えらい遅いけど、どっしょんな？"},
+  {"standard":"どういたしまして","dialect":"とんでもない","prefecture":"島根県","example":"礼を言うでない、とんでもないわ。"},
+  {"standard":"ちょうだい（頂戴）","dialect":"かあよ","prefecture":"島根県","example":"それ、かあよ。"},
+  {"standard":"おなかがいっぱい（お腹がいっぱい）","dialect":"おなかがおきる","prefecture":"島根県","example":"お腹がおきたけん、もう食べられん。"},
+  {"standard":"すてておく（捨てておく）","dialect":"ほかす","prefecture":"島根県","example":"そのごみ、そこにほかしておいて。"},
+  {"standard":"はやくしなさい（早くしなさい）","dialect":"はよし","prefecture":"島根県","example":"遅れるけん、はよし。"},
+  {"standard":"こぼれる","dialect":"まける","prefecture":"島根県","example":"ジュースが床にまけた。"},
+  {"standard":"ぐずぐずする","dialect":"よもよもする","prefecture":"島根県","example":"よもよもせんと、はよ行きまい。"},
+  {"standard":"つかれた（疲れた）","dialect":"えらい","prefecture":"島根県","example":"1日中働いて、えらいわ。"},
+  {"standard":"だろう","dialect":"じゃろ","prefecture":"島根県","example":"明日は晴れじゃろ。"},
+  {"standard":"だから","dialect":"けん","prefecture":"島根県","example":"寒いけん、上着を着まい。"},
+  {"standard":"してください（して下さい）","dialect":"してまい","prefecture":"島根県","example":"その荷物、持ってきてまい。"},
+  {"standard":"さいごに（最後に）","dialect":"へっとこ","prefecture":"島根県","example":"かけっこで、いつも私がへっとこだ。"},
+  {"standard":"かってくる（買ってくる）","dialect":"こうてくる","prefecture":"島根県","example":"コンビニで牛乳をこうてくる。"},
+  {"standard":"いたい（痛い）","dialect":"しわい","prefecture":"島根県","example":"転んで膝を擦りむいて、しわい。"},
+  {"standard":"そうですよ","dialect":"そうじゃけん","prefecture":"島根県","example":"それ、違うんじゃないん？　そうじゃけん。"},
+  {"standard":"めんどうくさい（面倒くさい）","dialect":"むつこい","prefecture":"島根県","example":"この仕事、むつこいわあ。"},
+  {"standard":"かぶれる","dialect":"まける","prefecture":"島根県","example":"漆にまけてしもた。"},
+  {"standard":"うるさい、そうぞうしい（騒々しい）","dialect":"あきろし","prefecture":"島根県","example":"隣の部屋があきろしい。"},
+  {"standard":"どうしよう","dialect":"どうしょう","prefecture":"島根県","example":"この状況、どうしょう。"},
+  {"standard":"だから","dialect":"けん","prefecture":"愛媛県","example":"雨が降りよるけん、傘を持って行きまい。"},
+  {"standard":"いい、よい（良い）","dialect":"ええ","prefecture":"愛媛県","example":"そりゃ、ええことじゃが。"},
+  {"standard":"だめだ、いけない（駄目だ）","dialect":"いけん","prefecture":"愛媛県","example":"そがいなことをしとったら、いけんがね。"},
+  {"standard":"あたたかい（温かい）","dialect":"ぬくい","prefecture":"愛媛県","example":"今日は、よいよぬくいわい。"},
+  {"standard":"かえる、もどる（帰る、戻る）","dialect":"もんてくる","prefecture":"愛媛県","example":"そろそろ家にもんてくわい。"},
+  {"standard":"している","dialect":"しよる、しとる","prefecture":"愛媛県","example":"テレビを見よるんか？"},
+  {"standard":"でしょう","dialect":"じゃろ、わい","prefecture":"愛媛県","example":"明日は休みじゃろ？"},
+  {"standard":"どうにもならない、たいへんだ（大変だ）","dialect":"わや","prefecture":"愛媛県","example":"大雨で道路がわやになったわい。"},
+  {"standard":"からかう、いじる","dialect":"いろう","prefecture":"愛媛県","example":"他人の身体をいろうなや。"},
+  {"standard":"ふざける","dialect":"ぞえる","prefecture":"愛媛県","example":"いつまでぞえとるんぞ。"},
+  {"standard":"こうろんする（口論する）","dialect":"いいやいこ","prefecture":"愛媛県","example":"あんまりいいやいこせんと、仲ようなりまい。"},
+  {"standard":"なんで、どうして","dialect":"なして","prefecture":"愛媛県","example":"なして宿題をせんかったんぞ？"},
+  {"standard":"かってくる（買ってくる）","dialect":"こうてくる","prefecture":"愛媛県","example":"スーパーで牛乳をこうてきて。"},
+  {"standard":"している","dialect":"しゆう、しちゅう","prefecture":"高知県","example":"今、テレビ見ゆうき。"},
+  {"standard":"だから","dialect":"やき、き","prefecture":"高知県","example":"雨が降りゆうやき、傘持っていこ。"},
+  {"standard":"ほんとうに（本当に）","dialect":"まっこと","prefecture":"高知県","example":"まっこと、この仕事はこたうなあ。"},
+  {"standard":"たくさん","dialect":"こじゃんと","prefecture":"高知県","example":"今日はこじゃんと買い物した。"},
+  {"standard":"とても、すごい（凄い）","dialect":"がいに","prefecture":"高知県","example":"今日はがいに疲れた。"},
+  {"standard":"しんどい","dialect":"えらい","prefecture":"高知県","example":"ああ、えらいのう。"},
+  {"standard":"おなかがすいた（お腹が空いた）","dialect":"ひだりい","prefecture":"高知県","example":"もうひだりい。"},
+  {"standard":"おおさわぎする（大騒ぎする）","dialect":"ほたえる","prefecture":"高知県","example":"子どもらがほたえちゅう。"},
+  {"standard":"かえる（帰る）","dialect":"いぬる","prefecture":"高知県","example":"もういぬるわ。"},
+  {"standard":"すぐに","dialect":"ざんじ","prefecture":"高知県","example":"ざんじそこへ行く。"},
+  {"standard":"ぐあいがわるい（具合が悪い）","dialect":"のうがわるい","prefecture":"高知県","example":"今日はちょっとのうがわるい。"},
+  {"standard":"だめになった（駄目になった）","dialect":"わやになった","prefecture":"高知県","example":"計画がわやになった。"},
+  {"standard":"いっていた（行っていた）","dialect":"いちょった","prefecture":"高知県","example":"昨日、どこへいちょった？"},
+  {"standard":"ちいさい（小さい）","dialect":"こんまい","prefecture":"高知県","example":"これはこんまいね。"},
+  {"standard":"だめだね（駄目だね）","dialect":"いかんねえ","prefecture":"高知県","example":"おまんはいかんねえ。"},
+  {"standard":"だよ","dialect":"ちや","prefecture":"高知県","example":"そうちや。"},
+  {"standard":"いっている（言っている）","dialect":"いいよる","prefecture":"福岡県","example":"あの人、なんかいいよるばい。"},
+  {"standard":"いちばん（一番）","dialect":"いっちゃん","prefecture":"福岡県","example":"あそこの店が、いっちゃんおいしいと。"},
+  {"standard":"さんかする（参加する）","dialect":"おっしょい","prefecture":"福岡県","example":"祭りにみんなでおっしょい！"},
+  {"standard":"おじさん、おばさん（叔父さん、叔母さん）","dialect":"おいしゃん、おばしゃん","prefecture":"福岡県","example":"おいしゃん、これどこにあると？"},
+  {"standard":"〜なのと","dialect":"がと","prefecture":"福岡県","example":"今日は休みやったと？"},
+  {"standard":"せおう（背負う）","dialect":"からう","prefecture":"福岡県","example":"この荷物ばからって！"},
+  {"standard":"なぐる（殴る）","dialect":"くらす","prefecture":"福岡県","example":"悪いことしたら、くらすけんね。"},
+  {"standard":"〜だから","dialect":"けん","prefecture":"福岡県","example":"もう宿題終わったけん、遊びに行こう。"},
+  {"standard":"うしろ（後ろ）","dialect":"ごて","prefecture":"福岡県","example":"自転車のごてに乗って帰りー。"},
+  {"standard":"うるさい、わずらわしい（煩わしい）","dialect":"しゃーしい","prefecture":"福岡県","example":"しゃーしいけん、ちょっと静かにして。"},
+  {"standard":"そんな","dialect":"そげな","prefecture":"福岡県","example":"そげなこと言わんで、こっちきんしゃい。"},
+  {"standard":"すき（好き）","dialect":"すいとー、すいとる","prefecture":"福岡県","example":"あんたのこと、ほんとはすいとうよ。"},
+  {"standard":"かたづける、しまう（片付ける）","dialect":"なおす","prefecture":"福岡県","example":"使ったおもちゃはちゃんと直しんしゃい。"},
+  {"standard":"〜なんだよ","dialect":"たい","prefecture":"福岡県","example":"それは本当のことったい。"},
+  {"standard":"〜の？","dialect":"と？","prefecture":"福岡県","example":"今、なんしよっと？"},
+  {"standard":"とっているの？（取っているの？）","dialect":"とっとーと？","prefecture":"福岡県","example":"この席、とっとーと？"},
+  {"standard":"なにをしているの？（何をしているの？）","dialect":"なんしよーと？","prefecture":"福岡県","example":"えっ、今なんしよーと？"},
+  {"standard":"あつい（暑い）","dialect":"ぬっか","prefecture":"福岡県","example":"今日はぬっかー。"},
+  {"standard":"はらをたてる、おこる（腹を立てる、怒る）","dialect":"はらかく","prefecture":"福岡県","example":"そんなことで、はらかきやんな。"},
+  {"standard":"はく（掃く）","dialect":"はわく","prefecture":"福岡県","example":"ほうきではわいちゃって。"},
+  {"standard":"〜だよ","dialect":"ばい","prefecture":"福岡県","example":"もうすぐ着くけん、待っときーばい。"},
+  {"standard":"〜だけれど","dialect":"ばってん","prefecture":"福岡県","example":"おいしいばってん、ちょっと高いね。"},
+  {"standard":"とても","dialect":"ばり","prefecture":"福岡県","example":"あの人、ばりかっこよかね。"},
+  {"standard":"かわいそう、ふびん（不憫）","dialect":"みじか","prefecture":"福岡県","example":"お母さんに怒られて、みじかかー。"},
+  {"standard":"よい、だいじょうぶ（良い、大丈夫）","dialect":"よか","prefecture":"福岡県","example":"よかよ、気にせんで。"},
+  {"standard":"いいだろう、そうだろ","dialect":"よかろうもん","prefecture":"福岡県","example":"これでよかろうもん？"},
+  {"standard":"〜だからね","dialect":"やけんね","prefecture":"福岡県","example":"今日は仕事やけんね。"},
+  {"standard":"なかまにいれる（仲間に入れる）","dialect":"わりこむ","prefecture":"福岡県","example":"僕もわりこんで一緒に遊ぼう。"},
+  {"standard":"とても、すごく（凄く）","dialect":"がばい","prefecture":"佐賀県","example":"今日はがばい暑かね。"},
+  {"standard":"かわいい（可愛い）","dialect":"やーらしか","prefecture":"佐賀県","example":"こん子、やーらしかね。"},
+  {"standard":"うるさい（煩い）","dialect":"せからしか","prefecture":"佐賀県","example":"テレビの音がせからしかばい。"},
+  {"standard":"はずかしい（恥ずかしい）","dialect":"ちゃーがつか","prefecture":"佐賀県","example":"みんなん前で話すとはちゃーがつか。"},
+  {"standard":"さびしい、たいくつだ（寂しい、退屈だ）","dialect":"とぜんなか","prefecture":"佐賀県","example":"今日は何もなかでとぜんなかね。"},
+  {"standard":"とっておく（取っておく）","dialect":"とっとっと","prefecture":"佐賀県","example":"こん席、とっとっと？"},
+  {"standard":"ぜんぜんすきじゃない（全然好きじゃない）","dialect":"いっちょんすかん","prefecture":"佐賀県","example":"いっちょんすかん。"},
+  {"standard":"そうだね","dialect":"そやんね","prefecture":"佐賀県","example":"そやんね。"},
+  {"standard":"じゃあね","dialect":"そいぎー","prefecture":"佐賀県","example":"そいぎー、また明日。"},
+  {"standard":"ありがとう（有難う）","dialect":"どーも","prefecture":"長崎県","example":"どーも。"},
+  {"standard":"どうして（何して）","dialect":"なして","prefecture":"長崎県","example":"なして、そがんふとか声で、おめいとっとね？"},
+  {"standard":"なおす（直す、しまう）","dialect":"しまう","prefecture":"長崎県","example":"それ、なおしとってね。"},
+  {"standard":"ささる（刺さる）","dialect":"ぬかる","prefecture":"長崎県","example":"トゲが指にぬかった。"},
+  {"standard":"おおきい（大きい）","dialect":"ふとか","prefecture":"長崎県","example":"ふっとさ〜（大きいなあ）。"},
+  {"standard":"こわい（怖い）","dialect":"おそろしか","prefecture":"長崎県","example":"夜道はおそろしか。"},
+  {"standard":"なまいきな、きがあらい（生意気な、気が荒い）","dialect":"おーどか","prefecture":"長崎県","example":"あの人はちょっとおーどかもんやけん、気ーつけとかんばね。"},
+  {"standard":"つかれた（疲れた）","dialect":"やんなる","prefecture":"長崎県","example":"やんなったけん、もう休んでよか？"},
+  {"standard":"おまえ（お前）","dialect":"わい","prefecture":"長崎県","example":"わい、どがんち言うたと？"},
+  {"standard":"おれ（俺）","dialect":"おい","prefecture":"長崎県","example":"おい、そいでよか？"},
+  {"standard":"じもとのひと（地元の人）","dialect":"じげもん","prefecture":"長崎県","example":"あの店はじげもんしか知らんとよ。"},
+  {"standard":"さわぐ（騒ぐ）","dialect":"おめく","prefecture":"長崎県","example":"あの子らがようおめいよる。"},
+  {"standard":"せおう（背負う）","dialect":"からう","prefecture":"長崎県","example":"この荷物ばからって！"},
+  {"standard":"なぐる（殴る）","dialect":"くらす","prefecture":"長崎県","example":"悪いことしたら、くらすけんね。"},
+  {"standard":"だから","dialect":"けん","prefecture":"長崎県","example":"もう宿題終わったけん、遊びに行こう。"},
+  {"standard":"うしろ（後ろ）","dialect":"ごて","prefecture":"長崎県","example":"自転車のごてに乗って帰りー。"},
+  {"standard":"うるさい、わずらわしい（煩わしい）","dialect":"しゃーしい","prefecture":"長崎県","example":"しゃーしいけん、ちょっと静かにして。"},
+  {"standard":"そんな","dialect":"そげな","prefecture":"長崎県","example":"そげなこと言わんで、こっちきんしゃい。"},
+  {"standard":"すき（好き）","dialect":"すいとー、すいとる","prefecture":"長崎県","example":"あんたのこと、すいとうよ。"},
+  {"standard":"かたづける、しまう（片付ける）","dialect":"なおす","prefecture":"長崎県","example":"使ったおもちゃはちゃんと直しんしゃい。"},
+  {"standard":"なんだよ","dialect":"たい","prefecture":"長崎県","example":"それは本当のことったい。"},
+  {"standard":"の？","dialect":"と？","prefecture":"長崎県","example":"今、なんしよっと？"},
+  {"standard":"とっているの？（取っているの？）","dialect":"とっとーと？","prefecture":"長崎県","example":"この席、とっとーと？"},
+  {"standard":"なにをしているの？（何をしているの？）","dialect":"なんしよーと？","prefecture":"長崎県","example":"えっ、今なんしよーと？"},
+  {"standard":"あつい（暑い）","dialect":"ぬっか","prefecture":"長崎県","example":"今日はぬっかー。"},
+  {"standard":"はらをたてる、おこる（腹を立てる、怒る）","dialect":"はらかく","prefecture":"長崎県","example":"そんなことで、はらかきやんな。"},
+  {"standard":"はく（掃く）","dialect":"はわく","prefecture":"長崎県","example":"ほうきではわいちゃって。"},
+  {"standard":"だよ","dialect":"ばい","prefecture":"長崎県","example":"もうすぐ着くけん、待っときーばい。"},
+  {"standard":"だけれど","dialect":"ばってん","prefecture":"長崎県","example":"おいしいばってん、ちょっと高いね。"},
+  {"standard":"とても","dialect":"ばり","prefecture":"長崎県","example":"今日はばりよか天気やね。"},
+  {"standard":"している","dialect":"しよる","prefecture":"熊本県","example":"今、テレビ見よる。"},
+  {"standard":"してある","dialect":"しちょる","prefecture":"熊本県","example":"もう、宿題しちょるよ。"},
+  {"standard":"たいへんだ、めんどうだ（大変だ、面倒だ）","dialect":"よだきい","prefecture":"熊本県","example":"ああ、宿題するん、よだきい。"},
+  {"standard":"とても、すごく（凄く）","dialect":"しんけん","prefecture":"熊本県","example":"今日はしんけん暑いのお。"},
+  {"standard":"かわいそう、きのどく（気の毒）","dialect":"むげねえ","prefecture":"熊本県","example":"財布ば忘れたん？そりゃむげねえ。"},
+  {"standard":"だめだ（駄目だ）","dialect":"わりい、つまらん","prefecture":"熊本県","example":"そげなことしたら、わりい。"},
+  {"standard":"すてる（捨てる）","dialect":"ほる","prefecture":"熊本県","example":"ゴミをほってきて。"},
+  {"standard":"かんたんだ（簡単だ）","dialect":"どうさねえ","prefecture":"熊本県","example":"この問題は、どうさねえ。"},
+  {"standard":"つかれる（疲れる）","dialect":"だるい","prefecture":"熊本県","example":"遊びすぎてだるくなった。"},
+  {"standard":"そうだね","dialect":"そうたい","prefecture":"熊本県","example":"明日は雨らしいのお。そうたい。"},
+  {"standard":"きてください（来てください）","dialect":"来ちみちょくれ","prefecture":"熊本県","example":"また遊びに来ちみちょくれ。"},
+  {"standard":"いいよ","dialect":"いいちゃ","prefecture":"熊本県","example":"これ使っていいん？いいちゃ。"},
+  {"standard":"なにをしているの（何をしているの）","dialect":"なんしょっと？","prefecture":"熊本県","example":"今、なんしょっと？"},
+  {"standard":"なんていっているの（何て言っているの）","dialect":"なんち言いよるの？","prefecture":"熊本県","example":"お母さんは、なんち言いよるの？"},
+  {"standard":"だよね","dialect":"な","prefecture":"熊本県","example":"明日は晴れやな。"},
+  {"standard":"しめる（閉める）","dialect":"あとぜき","prefecture":"熊本県","example":"トイレの後は、あとぜきせんばいかん。"},
+  {"standard":"すごく、とても","dialect":"だご","prefecture":"熊本県","example":"今日はだご暑かばい。"},
+  {"standard":"しかし、けれども","dialect":"ばってん","prefecture":"熊本県","example":"行きたかばってん、用事のあっとたい。"},
+  {"standard":"あたらしいものずき（新しいもの好き）","dialect":"わさもん","prefecture":"熊本県","example":"あいつは新しいもんが好っぎ、わさもんたい。"},
+  {"standard":"かたづける、しまう（片付ける）","dialect":"なおす","prefecture":"熊本県","example":"出したもんは、ちゃんとなおしとけ。"},
+  {"standard":"おなかがすいた（お腹が空いた）","dialect":"ひだるか","prefecture":"熊本県","example":"だごひだるかけん、なんか食べに行こうか。"},
+  {"standard":"かっこいい","dialect":"むしゃんよか","prefecture":"熊本県","example":"あの人、むしゃんよか男ばい。"},
+  {"standard":"あつい、あたたかい（暑い、暖かい）","dialect":"ぬっか","prefecture":"熊本県","example":"今日はぬっかぁ。"},
+  {"standard":"ぜんぜん、まったく（全然）","dialect":"いっちょん","prefecture":"熊本県","example":"いっちょんわからんばい。"},
+  {"standard":"うんざりする、こまりはてる（困り果てる）","dialect":"あくしゃうつ","prefecture":"熊本県","example":"宿題ばっかで、あくしゃうつわ。"},
+  {"standard":"うるさい、わずらわしい","dialect":"せからしか","prefecture":"熊本県","example":"せからしかけん、ちょっと静かにしとけ。"},
+  {"standard":"から","dialect":"〜けん","prefecture":"熊本県","example":"もう宿題終わったけん、遊びに行こう。"},
+  {"standard":"だよ、だね","dialect":"〜ばい、〜たい","prefecture":"熊本県","example":"今日はよかばい。"},
+  {"standard":"よい、うまい","dialect":"よか、うまか","prefecture":"熊本県","example":"こいはよか／それはうまか。"},
+  {"standard":"ない","dialect":"こん","prefecture":"熊本県","example":"まだ来ん、来んばい。"},
+  {"standard":"なにをしているの（何をしているの？）","dialect":"なんばしよっと？","prefecture":"熊本県","example":"今、なんばしよっと？"},
+  {"standard":"それはダメだよ","dialect":"そぎゃんと、でけんばい","prefecture":"熊本県","example":"そげなことしたら、そぎゃんとでけんばい。"},
+  {"standard":"すわってください（座って下さい）","dialect":"すわんなっせ","prefecture":"熊本県","example":"どうぞ、すわんなっせ。"},
+  {"standard":"ごはんをあたためて（ご飯を温めて）","dialect":"ごはんばぬくめて","prefecture":"熊本県","example":"ごはんば、ぬくめてくれんね。"},
+  {"standard":"とてもつかれた（とても疲れた）","dialect":"だご、なえた","prefecture":"熊本県","example":"今日はだご、なえた。"},
+  {"standard":"めんどうくさい（面倒くさい）","dialect":"よだきー","prefecture":"宮崎県","example":"よだきーなあ、この仕事は。"},
+  {"standard":"つかれた（疲れた）","dialect":"だれたー","prefecture":"宮崎県","example":"今日は一日中動き回ってだれたー。"},
+  {"standard":"たいへんだ（大変だ）","dialect":"えれこっちゃ","prefecture":"宮崎県","example":"雨がすごくて、えれこっちゃ。"},
+  {"standard":"こわい（怖い）","dialect":"おじー","prefecture":"宮崎県","example":"その話はおじーが。"},
+  {"standard":"かわいそう","dialect":"もぞなぎ","prefecture":"宮崎県","example":"あの子は一人でいるから、もぞなぎね。"},
+  {"standard":"ずるい","dialect":"ずりー","prefecture":"宮崎県","example":"ひとりで全部食べるとか、ずりー。"},
+  {"standard":"ぜんぶ（全部）","dialect":"ぼど","prefecture":"宮崎県","example":"おかずをぼど食べちゃった。"},
+  {"standard":"どう（どうした）","dialect":"どんげ","prefecture":"宮崎県","example":"どんげしたの？顔色が悪いよ。"},
+  {"standard":"かわいい","dialect":"もぞらしい","prefecture":"宮崎県","example":"あの赤ちゃん、もぞらしい顔しちょんね。"},
+  {"standard":"びっくりした","dialect":"ひったまがった","prefecture":"宮崎県","example":"雷の音にひったまがった。"},
+  {"standard":"さけぶ（叫ぶ）","dialect":"おらぶ","prefecture":"宮崎県","example":"危ないからっておらんだが。"},
+  {"standard":"うすめる（薄める）","dialect":"うべる","prefecture":"宮崎県","example":"お湯が熱いからうべなさい。"},
+  {"standard":"ですか？","dialect":"〜け？","prefecture":"宮崎県","example":"どこに行くけ？"},
+  {"standard":"でしょう？","dialect":"〜じゃろ？","prefecture":"宮崎県","example":"明日も雨が降るじゃろ？"},
+  {"standard":"ですよ","dialect":"〜とよ","prefecture":"宮崎県","example":"それは私の傘とよ。"},
+  {"standard":"だそうですよ","dialect":"〜げな","prefecture":"宮崎県","example":"彼は東京に行ったげな。"},
+  {"standard":"ですよ？","dialect":"〜つや？、〜つね？","prefecture":"宮崎県","example":"本当に大丈夫たつや？"},
+  {"standard":"だよね？","dialect":"〜と？、〜とか？","prefecture":"宮崎県","example":"今日は暑いと？"},
+  {"standard":"そうそう","dialect":"じゃっどじゃっど","prefecture":"宮崎県","example":"「あの話、本当だったんだね」「じゃっどじゃっど！」"},
+  {"standard":"ほら、ごらん","dialect":"ほが","prefecture":"宮崎県","example":"ほが、やっぱり言った通りだ。"},
+  {"standard":"いらっしゃいませ（いらっしゃいませ）","dialect":"ゆくさ おじゃった もした","prefecture":"鹿児島県","example":"ゆくさ おじゃった もした。"},
+  {"standard":"ありがとう（ありがとう）","dialect":"あいがとごあす、あいがとさげもす","prefecture":"鹿児島県","example":"あいがとごあす。"},
+  {"standard":"おやまあ（おやまあ）","dialect":"んだもしたん","prefecture":"鹿児島県","example":"んだもしたん、わっぜのさんこっじゃった。"},
+  {"standard":"そうだよね（そうだよね）","dialect":"じゃっど","prefecture":"鹿児島県","example":"じゃっど。"},
+  {"standard":"すごい（すごい）","dialect":"わっぜ","prefecture":"鹿児島県","example":"わっぜ ひんだれた。"},
+  {"standard":"つらい、きつい（つらい、きつい）","dialect":"のさん","prefecture":"鹿児島県","example":"こい しごとわ のさん。"},
+  {"standard":"あつい、いたい（熱い、痛い）","dialect":"いてっ","prefecture":"鹿児島県","example":"いてっ！すとーぶさ たけんに やっせん。"},
+  {"standard":"だるい","dialect":"こえ","prefecture":"鹿児島県","example":"からだが こえとーなー。"},
+  {"standard":"つかれた（疲れた）","dialect":"ひんだれた","prefecture":"鹿児島県","example":"きゅうは わっぜ ひんだれた。"},
+  {"standard":"かわいそう","dialect":"むいなか","prefecture":"鹿児島県","example":"あー、むいなか。"},
+  {"standard":"ほどほどに","dialect":"てげてげに","prefecture":"鹿児島県","example":"てげてげに しとけば えーや。"},
+  {"standard":"いいよ、していい","dialect":"よか","prefecture":"鹿児島県","example":"よか、きにすんな。"},
+  {"standard":"ひっかく（引っかく）","dialect":"かかじる","prefecture":"鹿児島県","example":"ねこにかかじられた。"},
+  {"standard":"あおむけ（仰向け）","dialect":"おなけ","prefecture":"鹿児島県","example":"おなけにねる。"},
+  {"standard":"おだてる","dialect":"たゆ","prefecture":"鹿児島県","example":"すぐたゆにのるひと。"},
+  {"standard":"しかられる（叱られる）","dialect":"がらゆっ","prefecture":"鹿児島県","example":"あばえばっかいしとっとがらゆっどね。"},
+  {"standard":"ばんしゃく（晩酌）","dialect":"だいやめ","prefecture":"鹿児島県","example":"だいやめのじかんがたのしみじゃ。"},
+  {"standard":"らっかせい（落花生）","dialect":"だっきしょ","prefecture":"鹿児島県","example":"だっきしょをたべる。"},
+  {"standard":"さしみ（刺身）","dialect":"さしん","prefecture":"鹿児島県","example":"さしんがたべたか。"},
+  {"standard":"かご","dialect":"かご","prefecture":"鹿児島県","example":"そのかごはどこあ？"},
+  {"standard":"せんぎょ（鮮魚）","dialect":"ぶえん","prefecture":"鹿児島県","example":"ぶえんのさかな。"},
+  {"standard":"すみっこ","dialect":"すんくじら","prefecture":"鹿児島県","example":"すんくじらに あるんじゃない？"},
+  {"standard":"〜だ、〜だよ","dialect":"〜じゃ、〜じゃい","prefecture":"鹿児島県","example":"よかじゃい。"},
+  {"standard":"ね（念押し）","dialect":"なー","prefecture":"鹿児島県","example":"さみなー。"},
+  {"standard":"しないで（するな）","dialect":"すんな","prefecture":"鹿児島県","example":"はしらんすんな。"},
+  {"standard":"こんにちは（今日は）","dialect":"はいさい（男性） / はいたい（女性）","prefecture":"沖縄県","example":"はいさい／はいたい。"},
+  {"standard":"いらっしゃいませ","dialect":"めんそーれ","prefecture":"沖縄県","example":"めんそーれー、うきみそーち。"},
+  {"standard":"さようなら","dialect":"ぐぶりーさびら","prefecture":"沖縄県","example":"ぐぶりーさびら。"},
+  {"standard":"ありがとう（有難う）","dialect":"にふぇーでーびる","prefecture":"沖縄県","example":"にふぇーでーびる。"},
+  {"standard":"どういたしまして（どう致しまして）","dialect":"くわっちーさびら","prefecture":"沖縄県","example":"くわっちーさびら。"},
+  {"standard":"ごめんなさい","dialect":"わっさいびーん","prefecture":"沖縄県","example":"わっさいびーん。"},
+  {"standard":"おげんきですか（お元気ですか）","dialect":"ちゃーびらさい","prefecture":"沖縄県","example":"ちゃーびらさい？"},
+  {"standard":"かんぱい（乾杯）","dialect":"かりー","prefecture":"沖縄県","example":"かりー！"},
+  {"standard":"むねがどきどきする（胸がドキドキする）","dialect":"ちむどんどん","prefecture":"沖縄県","example":"ちむどんどんするさー。"},
+  {"standard":"なんとかなるさ（何とかなるさ）","dialect":"なんくるないさ","prefecture":"沖縄県","example":"なんくるないさ。"},
+  {"standard":"おいしい（美味しい）","dialect":"まーさん","prefecture":"沖縄県","example":"これはまーさん！"},
+  {"standard":"はらぺこ（腹ペコ）","dialect":"がちまやー","prefecture":"沖縄県","example":"がちまやーだから、ご飯食べたい。"},
+  {"standard":"めずらしい（珍しい）","dialect":"きむちむ","prefecture":"沖縄県","example":"きむちむなものが売られている。"},
+  {"standard":"ゆるして（許して）","dialect":"ゆるちくーい","prefecture":"沖縄県","example":"ゆるちくーい、わからんかった。"},
+  {"standard":"かわいい（可愛い）","dialect":"ちゅらかーぎー","prefecture":"沖縄県","example":"あの女の子はちゅらかーぎーだね。"},
+  {"standard":"びっくりした","dialect":"あきさみよー","prefecture":"沖縄県","example":"あきさみよー。"},
+  {"standard":"おとうさん（お父さん）","dialect":"おとう、たーりー","prefecture":"沖縄県","example":"おとう。たーりー。"},
+  {"standard":"おかあさん（お母さん）","dialect":"あーみ、あーま","prefecture":"沖縄県","example":"あーみ。あーま。"},
+  {"standard":"ごはん（御飯）","dialect":"いーばん","prefecture":"沖縄県","example":"いーばんを食べよう。"},
+  {"standard":"ようこそ（歓迎）","dialect":"めんそーれー、ちゅらさん旅行してぃーきみそーれー","prefecture":"沖縄県","example":"めんそーれー、うきみそーち。"},
+  {"standard":"ごちそうさま・かんしゃ（感謝）","dialect":"くわっちーさびら、にふぇーでーびる","prefecture":"沖縄県","example":"まーさんいーばん、くわっちーさびら。にふぇーでーびる。"},
+  {"standard":"だいじょうぶ、はげまし（大丈夫、励まし）","dialect":"でーじ、なんくるないさ","prefecture":"沖縄県","example":"でーじ、なんくるないさ。"},
+  {"standard":"ん（名詞化・縮約）","dialect":"ん（～ん）","prefecture":"全国各地（口語）","example":"やるん（やること／やるの）"}
+]
+  </script>
+  <section class="description"><h2>日本全国方言比較辞典について</h2><p>日本全国47都道府県の方言を、標準語から簡単に検索・比較できるオンライン辞典です。本サイトは方言を「標準語の頭文字」「都道府県別」で検索でき、旅行者、研究者、教育関係者、地域文化に関心のあるすべての方が簡単に操作できます。</p>
+<h3>特徴</h3><ul><li><strong>都道府県別の網羅性</strong> — 北海道から沖縄まで、地域ごとの言い回しと例文を一覧表示します。</li><li><strong>見やすい検索・比較機能</strong> — 頭文字（あ行〜わ行）と都道府県フィルターで表現の一覧にたどり着けます。</li><li><strong>学習と保存に便利</strong> — 例文つきで実用的、PNG保存や共有機能で教材作成やSNSでの方言の紹介もできます。</li></ul>
+<h3>利用シーン</h3><ul><li>方言を学びたい学生や教師の教材作成</li><li>旅行先の言葉を事前にチェックしたい観光客</li><li>地域研究や言語学のフィールドワークの参考資料</li><li>SNSやブログで地域の言葉を紹介したい方</li></ul>
+<h3>方言は都道府県をまたがっています</h3><p>方言は地域に広がっていたり、遠く離れた他県でも使用されています。<strong>方言辞典は日本の方言を扱っています。各都道府県をまたいで広く使われている方言も多数あります。</strong>サイトの検索システム上、他県も使用されている言葉でも、代表して一つの県を掲載しています。ご了承くださいませ。</p>
+<h3>使い方</h3><ol><li>上部の「あ行〜わ行」ボタンで調べたい標準語の頭文字を選ぶ。</li><li>もしくは都道府県ボタンで地域の言葉を確認する。</li><li>例文を参照して実際の使い方を学び、PNGや共有ボタンで保存することも可能です。</li></ol>
+<h3>運営と協力のお願い</h3><p>当サイトは無料で役立つコンテンツを製作しています。サイトへのリンクを貼っていただけるとありがたいです。ホームページ・ブログ・SNSから自由に貼って下さいませ、特にご連絡も不要です。よろしくお願いいたします。</p></section>
+  <div class="footer-link">
+<h4>関連コンテンツ・ことば</h4>
+<p><a href="https://memoc.pages.dev/y983/" target="_blank">気分で探す名言 — 今の気持ちで最適な一言を</a></p>
+<p><a href="https://memoc.pages.dev/y994/" target="_blank">退職者へのメッセージジェネレーター上司・同僚・後輩・一言にも対応</a></p>
+<p><a href="https://memoc.pages.dev/y987/" target="_blank">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></p>
+<p>英語</p>
+<p><a href="https://memoc.pages.dev/y10k2/" target="_blank">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
+<p><a href="https://memoc.pages.dev/y11m/" target="_blank">英語ことわざおしゃれなクイズゲーム</a></p>
+<p>カレンダー</p>
+<p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p>
+<p><a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月 無料で書き込みダウンロード保存も</a></p>
+<p><a href="https://memoc.pages.dev/y991/" target="_blank">ゴミ収集カレンダー</a></p>
+<p>スケジュール</p>
+<p><a href="https://memoc.pages.dev/y992/" target="_blank">スケジュール帳ブラウザアプリ</a></p>
+<p><a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a></p>
+<p>貯金</p>
+<p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
+<p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
+<p>生活</p>
+<p><a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p>
+<p><a href="https://memoc.pages.dev/y986/" target="_blank">非常食データベースと保存年数ランキング</a></p>
+<p><a href="https://memoc.pages.dev/y989/" target="_blank">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p>
+<p>便利ツール</p>
+<p><a href="https://memoc.pages.dev/y985/" target="_blank">アナログ時計webアプリ表示切替機能付き</a></p>
+<p><a href="https://memoc.pages.dev/y981/" target="_blank">日付換算ツール 年齢計算と時間単位変換</a></p>
+<p><a href="https://memoc.pages.dev/y993/" target="_blank">くじ引きツール</a></p>
+<p>イラスト</p>
+<p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p>
+<p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト無料おすすめブラウザアプリ</a></p>
+<p><a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a></p>
+  </div>
+  <script src="/js/y984.js"></script>
+</body>
+</html>

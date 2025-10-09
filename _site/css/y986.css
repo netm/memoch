@@ -1,0 +1,176 @@
+/* styles.css */
+:root {
+  --font: 'Noto Sans JP', sans-serif;
+  --text: #333;
+  --bg: #fafafa;
+  --primary: #346751;
+  --btn-radius: 6px;
+  --transition: .3s ease;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  padding: 10px;
+}
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+header h1 {
+  color: var(--primary);
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+nav button {
+  padding: 10px 14px;
+  color: #fff;
+  border: none;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform .2s, opacity var(--transition);
+}
+nav button:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+.controls button {
+  padding: 8px 12px;
+  font-size: .9rem;
+  color: #fff;
+  border: none;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: transform .2s, opacity var(--transition);
+}
+#btnPrint   { background: #6c5ce7; }
+#btnCopy    { background: #0984e3; }
+#btnReset   { background: #d63031; }
+#btnSavePng { background: #fd79a8; }
+#shareX     { background: #1da1f2; }
+#shareFB    { background: #1877f2; }
+#shareLINE  { background: #00c300; }
+.controls button:hover {
+  transform: translateY(-1px);
+  opacity: .9;
+}
+main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+main ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+main li {
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  line-height: 1.4;
+}
+main li strong {
+  display: inline-block;
+  width: 80px;
+  color: var(--primary);
+}
+#cache {
+  display: none;
+}
+.description {
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.6;
+  color: #555;
+}
+.footer-link {
+  text-align: center;
+  margin: 30px 0;
+}
+.footer-link a {
+  color: #0984e3;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color var(--transition);
+}
+.footer-link a:hover {
+  color: #065a9e;
+}
+
+/* --- h2 / h3 / p の装飾（維持） --- */
+
+/* h2 */
+h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.45rem 0;
+  padding-left: 0.6rem;
+  color: #274f42;
+  position: relative;
+}
+/* h3 */
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.8rem 0 0.35rem 0;
+  padding-left: 0.45rem;
+  color: #2f5d4f;
+  position: relative;
+}
+
+/* h3 下線アクセント */
+h3::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: rgba(52,103,81,0.18);
+  margin-top: 6px;
+  border-radius: 3px;
+  transition: background var(--transition), transform var(--transition);
+}
+h3:hover::after {
+  background: rgba(52,103,81,0.95);
+  transform: translateX(4px);
+}
+/* p */
+p {
+  font-size: 0.98rem;
+  color: #4b4b4b;
+  margin: 0 0 0.9rem 0;
+  padding-left: 0.6rem; /* ← h2と同じ左スペース */
+  line-height: 1.6;
+}
+
+@media (orientation: landscape) {
+  body {
+    padding: 0;
+  }
+  header, nav, .controls, main {
+    width: 100vw;
+    margin: 0;
+    padding: 0 10px;
+  }
+}

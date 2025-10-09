@@ -1,60 +1,142 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="メモ付き電卓と分数計算 ルート累乗 長さ重さ単位換算 消費税計算機能付きです。">
-    <meta name="keywords" content="メモ付き,電卓">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-    <title>メモ付き電卓</title>
-    <link rel="stylesheet" href="/css/z999.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<meta charset="UTF-8">
+<meta name="description" content="メモ付き電卓は、計算と同時にテキストメモを残せる無料のシンプルなウェブ電卓です。使い方ガイド、活用例、よくある質問をまとめて見やすくしています。">
+<meta name="keywords" content="メモ付き電卓,メモ電卓,ウェブ電卓,ブラウザ電卓,計算機,無料ツール">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-3701488620779249">
+<title>メモ付き電卓 — 計算＋メモの無料ウェブツール</title>
+<link rel="stylesheet" href="/css/z999.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "メモ付き電卓",
+  "url": "https://memoc.pages.dev/",
+  "description": "計算しながらメモを書けるシンプルで使いやすい無料のブラウザ電卓。家計や学習、仕事メモに便利です。"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "この電卓は無料で使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。ブラウザ上で無料でご利用いただけます。インストール不要でPCやスマホに対応しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "メモは保存できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現在はブラウザ上で入力・編集でき、PNGで出力して保存でき便利です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "計算履歴や複利計算などの応用はできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "シンプル設計のため高度な投資計算は別ツールを併用してください。関連リンクで複利計算や家計テンプレートなどあります。"
+      }
+    }
+  ]
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <div id="capture-area">
-        <div class="app-container">
-            <div id="memo-display"></div>
-            <div id="display">0</div>
-            <div class="calculator">
-                <div class="calculator-keys">
-                    <button class="control-btn" data-action="clear-all">AC</button>
-                    <button class="control-btn" data-action="undo">⌫</button>              
-                    <button data-action="operator" data-value="÷">÷</button>
-                    <button data-action="operator" data-value="×">×</button>
-                    <button data-action="number" data-value="7">7</button>
-                    <button data-action="number" data-value="8">8</button>
-                    <button data-action="number" data-value="9">9</button>
-                    <button data-action="operator" data-value="-">-</button>
-                    <button data-action="number" data-value="4">4</button>
-                    <button data-action="number" data-value="5">5</button>
-                    <button data-action="number" data-value="6">6</button>
-                    <button data-action="operator" data-value="+">+</button>
-                    <button data-action="number" data-value="1">1</button>
-                    <button data-action="number" data-value="2">2</button>
-                    <button data-action="number" data-value="3">3</button>
-                    <button data-action="number" data-value="0" style="grid-column: span 2;">0</button>
-                    <button data-action="decimal" data-value=".">.</button>
-                    <button data-action="equals" data-value="=" style="grid-row: span 2;">=</button>
-                </div>
-            </div>
-             <textarea id="notes" placeholder="ここにメモを追加できます..."></textarea>
-             <button id="save-png" class="control-btn">PNG画像で保存</button>
-        </div>
+<div id="capture-area">
+  <div class="app-container">
+    <!-- 追加した説明文 -->
+    <header class="page-header" style="padding:16px 12px;">
+      <h1 class="site-title" style="margin:0 0 8px;font-size:1.4rem;">メモ付き電卓 — 計算とメモを同時に使える無料ツール</h1>
+      <p class="site-summary" style="margin:0;color:#444;">
+        シンプルで直感的なブラウザ電卓です。計算結果を見ながらメモを書き留められるため、家計管理、学習ノート、仕事のメモに便利です。PC・スマホどちらでも動作します。
+      </p>
+    </header>
+    <!-- 機能を箇条書きで明確に示す -->
+    <section class="features" aria-labelledby="features-heading" style="padding:12px;">
+      <h2 id="features-heading" style="font-size:1.1rem;margin:0 0 8px;">主な機能</h2>
+      <ul style="margin:0 0 12px;padding-left:18px;color:#333;">
+        <li><strong>計算機能</strong>：四則演算、小数対応、クリア・戻る操作</li>
+        <li><strong>メモ欄</strong>：自由に書き込めるテキストエリアで作業メモや家計メモを記録</li>
+        <li><strong>PNGで保存</strong>：画面をPNGで保存して共有・保存が可能</li>
+        <li><strong>モバイル対応</strong>：レスポンシブでスマホ・タブレットでも使いやすい</li>
+      </ul>
+      <p style="margin:0 0 12px;color:#444;">
+        使い方：計算を行いながら下のメモエリアにテキストを入力できます。必要に応じて「PNG画像で保存」ボタンで画面を保存できます。
+      </p>
+    </section>
+    <!-- 既存のUI要素はそのまま配置 -->
+    <div id="memo-display" aria-hidden="true"></div>
+    <div id="display" aria-live="polite">0</div>
+    <div class="calculator">
+      <div class="calculator-keys">
+        <button class="control-btn" data-action="clear-all">AC</button>
+        <button class="control-btn" data-action="undo">⌫</button>
+        <button data-action="operator" data-value="÷">÷</button>
+        <button data-action="operator" data-value="×">×</button>
+        <button data-action="number" data-value="7">7</button>
+        <button data-action="number" data-value="8">8</button>
+        <button data-action="number" data-value="9">9</button>
+        <button data-action="operator" data-value="-">-</button>
+        <button data-action="number" data-value="4">4</button>
+        <button data-action="number" data-value="5">5</button>
+        <button data-action="number" data-value="6">6</button>
+        <button data-action="operator" data-value="+">+</button>
+        <button data-action="number" data-value="1">1</button>
+        <button data-action="number" data-value="2">2</button>
+        <button data-action="number" data-value="3">3</button>
+        <button data-action="number" data-value="0" style="grid-column: span 2;">0</button>
+        <button data-action="decimal" data-value=".">.</button>
+        <button data-action="equals" data-value="=" style="grid-row: span 2;">=</button>
+      </div>
     </div>
-    <div class="footer-link">
-    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
-    <p><a href="https://memoc.pages.dev/muden/" target="_blank">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
-    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
-    <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank">複利電卓・積立NISAの金額再投資計算機</a></p>
-    <p><a href="https://memoc.pages.dev/toushi/" target="_blank">投資メモ電卓webブラウザ無料サイト</a></p>
-    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
-    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p><br>
-    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
-    </div>
+    <textarea id="notes" placeholder="メモ帳としてここに文章を入力できます..." aria-label="メモ欄"></textarea>
+    <button id="save-png" class="control-btn">PNG画像で保存</button>
+    <!-- 検索ユーザーの疑問に答えるFAQの表示 -->
+    <section class="faq" aria-labelledby="faq-heading" style="padding:12px;">
+      <h2 id="faq-heading" style="font-size:1.1rem;margin:0 0 8px;">よくある質問</h2>
+      <div class="faq-item" style="margin:0 0 8px;">
+        <h3 style="margin:0 0 4px;font-size:1rem;">メモを保存できますか？</h3>
+        <p style="margin:0;color:#444;">このページでは入力したメモをブラウザ上で編集できます。画面をPNGで保存して外部に保存するか、ブラウザの機能でコピーしてください。</p>
+      </div>
+      <div class="faq-item" style="margin:0 0 8px;">
+        <h3 style="margin:0 0 4px;font-size:1rem;">家計や学習ノートとしての使い方は？</h3>
+        <p style="margin:0;color:#444;">日々の支出や勉強のメモを計算結果と合わせて残すと便利です。計算結果をメモ欄に貼り付けて整理できます。</p>
+      </div>
+    </section>
+    <!-- 内部リンクをわかりやすく示すことで関連ページの巡回を促進 -->
+    <nav class="related-links" aria-label="関連リンク" style="padding:12px;">
+      <h2 style="font-size:1.1rem;margin:0 0 8px;">関連ツール</h2>
+      <ul style="margin:0;padding-left:18px;">
+        <li><a href="https://memoc.pages.dev/muden/" target="_blank" rel="noopener">電卓無料サイト 生活に役立つ便利なリンク集</a></li>
+        <li><a href="https://memoc.pages.dev/interestcalculation/" target="_blank" rel="noopener">複利電卓・積立NISAの金額再投資計算機</a></li>
+        <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></li>
+        <li><a href="https://memoc.pages.dev/y981/" target="_blank" rel="noopener">日付換算ツール 年齢計算と時間単位変換</a></li>
+        <li><a href="https://memoc.pages.dev/toushi/" target="_blank" rel="noopener">投資メモ電卓webブラウザ無料サイト</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- フッターリンク群は元の内容を維持 -->
+<div class="footer-link">
+  <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
+  <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+  <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
+  <p><a href="https://memoc.pages.dev/y985/" target="_blank">アナログ時計webアプリ表示切替機能付き</a></p><br>
+  <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
+  <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p><br>
+  <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
+  <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+</div>
 <script src="/js/z999.js"></script>
 </body>
 </html>
