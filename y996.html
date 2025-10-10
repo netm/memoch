@@ -2,12 +2,28 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="クロッキー帳デジタルサイト無料おすすめブラウザアプリ 画像のダウンロード保存もできるPCスマホタブレット対応サイトです。">
-  <meta name="keywords" content="クロッキー,デジタル,サイト,無料">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <title>クロッキー帳デジタルサイト無料おすすめブラウザアプリ</title>
+  <meta name="description" content="無料のクロッキー帳デジタルサイト。PC・スマホ・タブレット対応のオンラインお絵描きアプリ。タイマー・消しゴム・色選択・画像保存（PNG）機能付きで初心者からプロまでおすすめ。ダウンロード可能でオフライン保存も簡単。">
+  <meta name="keywords" content="クロッキー,クロッキー帳,デジタル,お絵描き,無料お絵描きアプリ,ブラウザ絵,タイマー,スマホ対応">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://your-site.example.com/">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <link rel="stylesheet" href="/css/y996.css">
+  <!-- JSON-LD 構造化データ（FAQ） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question","name":"このサイトは無料ですか？","acceptedAnswer":{"@type":"Answer","text":"はい、クロッキー帳デジタルは無料で使えます。追加機能や保存はブラウザのローカルストレージに保存されます。"}},
+      {"@type": "Question","name":"スマホでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"はい。スマホ・タブレット・PCに対応したレスポンシブデザインで、タッチ操作やペン入力に対応しています。"}},
+      {"@type": "Question","name":"保存はできますか？","acceptedAnswer":{"@type":"Answer","text":"描いた画像はPNGでダウンロードできます。ローカルストレージへ自動保存も行います。"}}
+    ]
+  }
+  </script>
+</head>
+<link rel="stylesheet" href="/css/y996.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
   <script>
@@ -16,13 +32,15 @@
     gtag('js', new Date());
     gtag('config', 'G-5D799GZERM');
   </script>
-</head>
 <body>
   <h1>クロッキー帳デジタルサイト無料おすすめブラウザアプリ</h1>
-  <p>クロッキー帳デジタルサイト無料おすすめブラウザアプリは、画像のダウンロード保存もできるPCスマホタブレット対応サイトです。</p>
+    <p class="lead">シンプルで高速、PC・スマホ・タブレット対応。タイマー・色選択・ブラシサイズ・消しゴム・PNG保存機能を備えた無料のブラウザアプリです。</p>
   <div id="controls">
     <div class="control-group">
+      <!-- provide a few sound mode buttons: flash (visual), pipipi, pi -->
       <button class="sound-btn" data-mode="flash">0秒で画面点滅</button>
+      <button class="sound-btn" data-mode="pipipi">ピピピ音</button>
+      <button class="sound-btn" data-mode="pi">ピー音</button>
       <span id="timer-display">01:00</span>
       <button id="start-btn">クロッキー スタート</button>
     </div>
@@ -68,27 +86,78 @@
       <button id="save-btn">png画像で保存</button>
     </div>
   </div>
-  <canvas id="draw-canvas"></canvas>
+  <canvas id="draw-canvas" aria-label="描画キャンバス"></canvas>
+    <section id="intro">
+      <h2>オンラインで使えるデジタルクロッキー帳</h2>
+      <p>本サイトは、短時間でスケッチ練習ができる「デジタルクロッキー帳」です。クロッキー練習やラフスケッチ、アイデアメモ、スケッチ練習のためのタイマー機能を搭載し、すぐに保存できるPNG出力に対応しています。ブラウザだけで動作するため、アプリのインストールは不要です。</p>
+      <ul>
+        <li><strong>対応端末:</strong> PC・スマホ・タブレット（レスポンシブ）</li>
+        <li><strong>主な機能:</strong> タイマー設定、色選択、ブラシ太さ、消しゴム、Undo、キャンバスサイズ変更、PNG保存</li>
+        <li><strong>保存方法:</strong> 自動ローカル保存と手動ダウンロード</li>
+      </ul>
+    </section>
+    <section id="how-to-use">
+      <h2>使い方（はじめての方へ）</h2>
+      <ol>
+        <li>キャンバスの「よこ」「たて」を設定して描画サイズを決めます。</li>
+        <li>色ボタンまたはカラーピッカーで描画色を選択します。</li>
+        <li>太さスライダーでブラシの太さを調整します。</li>
+        <li>タイマーを選び「クロッキー スタート」を押すと練習開始。時間が来ると画面が点滅または音で通知されます。</li>
+        <li>描いた作品は「png画像で保存」でダウンロードできます。</li>
+      </ol>
+    </section>
+    <section id="features">
+      <h2>おすすめポイント</h2>
+      <p>短時間で繰り返し練習したい方向けに最適化されており、動作が軽く画面上でそのまま描けるため、クロッキーの効率を上げることができます。以下の用途で特に便利です。</p>
+      <ul>
+        <li>デッサン・クロッキーの反復練習</li>
+        <li>アイデアの素早いメモ取り、ラフスケッチ</li>
+        <li>スマホで場所を選ばずスケッチ練習</li>
+      </ul>
+    </section>
+    <section id="seo-content">
+      <h2>クロッキー 練習に関する情報とコツ</h2>
+      <p>クロッキーは短時間で対象の形や動きを捉える練習です。デジタルクロッキーでは、タイマーを1〜3分に設定して、素早く線で表現することを繰り返すのがおすすめです。描くたびにPNGで保存して比較すると上達が早くなります。</p>
+      <h3>練習の進め方</h3>
+      <p>1. まず短い時間（1分）を数回行い、形を捉える練習をする。 2. 次に2〜5分で全体のバランスを取る練習を行う。 3. 定期的に作品を見返して改善点をメモする。</p>
+    </section>
+    <section id="faq">
+      <h2>よくある質問（FAQ）</h2>
+      <dl>
+        <dt>Q: スマホで保存できますか？</dt>
+        <dd>A: はい。PNG形式でダウンロードできます。スマホのブラウザで保存先を選択してください。</dd>
+        <dt>Q: ブラシや消しゴムの使い方は？</dt>
+        <dd>A: 太さスライダーでブラシサイズを調整。消しゴムボタンで消しゴムモードに切替えられます。</dd>
+        <dt>Q: 履歴（Undo）は何回戻せますか？</dt>
+        <dd>A: デフォルトは最大20ステップ分の履歴が保存されます。必要に応じてブラウザ内の履歴数を増やすことも可能です。</dd>
+      </dl>
+    </section>
+    <section id="links">
+      <h2>関連リンク</h2>
+      <p>便利なブラウザツールや同作者のアプリへのリンクを下にまとめています。クロッキーやお絵描きの参考にどうぞ。</p>
+      <ul>
+        <li><a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイト</a></li>
+        <li><a href="https://memoc.pages.dev/y999/" target="_blank" rel="noopener">お絵描きデジタルペイント無料サイト</a></li>
+        <li><a href="https://memoc.pages.dev/y995/" target="_blank" rel="noopener">イラストお題ルーレット</a></li>
+      </ul>
+    </section>
   <footer>
-    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
-    <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
-    <p><a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/y993/" target="_blank">くじ引きツール</a></p><br>
-    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
-    <p><a href="https://memoc.pages.dev/y992/" target="_blank">スケジュール帳ブラウザアプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
-    <p><a href="https://memoc.pages.dev/y987/" target="_blank">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></p><br>
-    <p><a href="https://memoc.pages.dev/y984/" target="_blank">日本全国方言比較辞典</a></p><br>
-    <p><a href="https://memoc.pages.dev/y989/" target="_blank">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p><br>
-    <p><a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
-    <p><a href="https://memoc.pages.dev/y986/" target="_blank">非常食データベースと保存年数ランキング</a></p><br>
-    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a></p><br>
-    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+    <p><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
+    <p><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y990/" target="_blank" rel="noopener">時間割ブラウザアプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
+    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank" rel="noopener">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></p><br>
+    <p><a href="https://memoc.pages.dev/y987/" target="_blank" rel="noopener">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></p><br>
+    <p><a href="https://memoc.pages.dev/y984/" target="_blank" rel="noopener">日本全国方言比較辞典</a></p><br>
+    <p><a href="https://memoc.pages.dev/y989/" target="_blank" rel="noopener">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p><br>
+    <p><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p><br>
+    <p><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
+    <p><a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a></p><br>
+    <p><a href="https://memoc.pages.dev/y993/" target="_blank" rel="noopener">くじ引きツール</a></p><br>
+    <p><a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener">TVerティーバーの検索用リンク集</a></p><br>
+    <p><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
+    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank" rel="noopener">英語中学からやり直すサイト高校生も大人も</a></p>
   </footer>
   <script src="/js/y996.js"></script>
 </body>

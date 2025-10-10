@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerBtns      = document.querySelectorAll('.timer-set-btn');
   const soundBtns      = document.querySelectorAll('.sound-btn');
 
-  // 音声ファイルをあらかじめ読み込む
+  // Sounds (preload)
   const pipipiSound = new Audio('https://raw.githubusercontent.com/google/WebFundamentals/master/src/site/voice/sounds/notification.mp3');
   const piSound     = new Audio('https://raw.githubusercontent.com/google/WebFundamentals/master/src/site/voice/sounds/notification-2.mp3');
   pipipiSound.preload = 'auto';
@@ -26,32 +26,46 @@ document.addEventListener('DOMContentLoaded', () => {
   pipipiSound.load();
   piSound.load();
 
-  // ブラウザのオーディオロックを解除
+  // Unlock audio on first user interaction (click or touch)
   function unlockAudio() {
     pipipiSound.play().then(() => { pipipiSound.pause(); pipipiSound.currentTime = 0; }).catch(()=>{});
     piSound.play().then(()    => { piSound.pause();    piSound.currentTime     = 0; }).catch(()=>{});
     document.body.removeEventListener('click', unlockAudio);
+    document.body.removeEventListener('touchstart', unlockAudio);
   }
   document.body.addEventListener('click', unlockAudio);
+  document.body.addEventListener('touchstart', unlockAudio, { once: true });
 
   let isDrawing        = false;
   let lastX            = 0;
   let lastY            = 0;
+  const MAX_HISTORY    = 20;
   let history          = [];
   let isErasing        = false;
   let timerInterval;
   let totalSeconds     = 60;
-  // デフォルトは最初のボタン（画面点滅）に合わせる
-  let currentSoundMode = soundBtns[0].dataset.mode;
+  // default sound mode
+  let currentSoundMode = 'pipipi';
+
+  // Ensure canvas has CSS pixel size for responsiveness and proper drawing scale
+  function setCanvasDisplaySize() {
+    // Keep logical canvas pixel size from inputs, but make it scale responsively on screen
+    const cssMaxWidth = Math.min(window.innerWidth - 20, 1000);
+    canvas.style.maxWidth = cssMaxWidth + 'px';
+    canvas.style.width = canvas.width + 'px';
+    canvas.style.height = canvas.height + 'px';
+    canvas.style.display = 'block';
+  }
 
   function initializeCanvas() {
     const savedDrawing = localStorage.getItem('savedDrawing');
-    const savedW       = localStorage.getItem('canvasWidth')  || '500';
-    const savedH       = localStorage.getItem('canvasHeight') || '400';
+    const savedW       = parseInt(localStorage.getItem('canvasWidth'))  || 500;
+    const savedH       = parseInt(localStorage.getItem('canvasHeight')) || 400;
     widthInput.value   = savedW;
     heightInput.value  = savedH;
     canvas.width       = savedW;
     canvas.height      = savedH;
+    // fill white background to avoid transparency after resize or on fresh load
     ctx.fillStyle      = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     saveState();
@@ -61,30 +75,37 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
         saveState();
+        saveToLocalStorage();
       };
       img.src = savedDrawing;
     }
+    setCanvasDisplaySize();
   }
 
   function getCoords(e) {
     const rect = canvas.getBoundingClientRect();
-    if (e.touches) {
+    if (e.touches && e.touches.length > 0) {
       return [e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top];
     }
     return [e.clientX - rect.left, e.clientY - rect.top];
   }
 
   function startDrawing(e) {
+    // Only start drawing when pointer/touch is on canvas
     isDrawing = true;
     [lastX, lastY] = getCoords(e);
+    // ensure current stroke settings applied
+    ctx.lineWidth = parseFloat(penWidthSlider.value) || 1;
+    ctx.strokeStyle = isErasing ? 'rgba(0,0,0,1)' : colorPicker.value || '#000';
   }
 
   function draw(e) {
     if (!isDrawing) return;
     e.preventDefault();
     const [x, y] = getCoords(e);
-    ctx.lineCap                   = 'round';
-    ctx.lineJoin                  = 'round';
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = isErasing ? parseFloat(penWidthSlider.value) * 2 : parseFloat(penWidthSlider.value);
     ctx.globalCompositeOperation = isErasing ? 'destination-out' : 'source-over';
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -101,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveState() {
-    if (history.length > 20) history.shift();
+    if (history.length >= MAX_HISTORY) history.shift();
     history.push(canvas.toDataURL());
   }
 
@@ -133,14 +154,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function resizeCanvas() {
+    // snapshot current drawing, set new size, clear to white then redraw snapshot
     const snapshot = canvas.toDataURL();
-    canvas.width   = widthInput.value  || 500;
-    canvas.height  = heightInput.value || 400;
+    const newW = parseInt(widthInput.value) || 500;
+    const newH = parseInt(heightInput.value) || 400;
+    canvas.width  = newW;
+    canvas.height = newH;
+    // fill white background first
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     const img = new Image();
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
       saveState();
       saveToLocalStorage();
+      setCanvasDisplaySize();
     };
     img.src = snapshot;
   }
@@ -168,19 +196,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleTimerEnd() {
-    // 秒数0到達で必ず画面点滅
+    // visual flash
     document.body.classList.add('flash');
     setTimeout(() => document.body.classList.remove('flash'), 1000);
+    // play selected sound mode
+    if (currentSoundMode === 'pipipi') {
+      pipipiSound.currentTime = 0;
+      pipipiSound.play().catch(()=>{});
+    } else if (currentSoundMode === 'pi') {
+      piSound.currentTime = 0;
+      piSound.play().catch(()=>{});
+    } else if (currentSoundMode === 'flash') {
+      // no sound, only flash
+    }
   }
 
-  // イベントバインド
-  canvas.addEventListener('mousedown', startDrawing);
-  canvas.addEventListener('mousemove', draw);
-  canvas.addEventListener('mouseup', stopDrawing);
-  canvas.addEventListener('mouseout', stopDrawing);
-  canvas.addEventListener('touchstart', startDrawing, { passive: false });
-  canvas.addEventListener('touchmove', draw,      { passive: false });
-  canvas.addEventListener('touchend',  stopDrawing);
+  // Canvas pointer / touch handling
+  // Use pointer events if supported for simpler cross-device handling
+  if (window.PointerEvent) {
+    canvas.addEventListener('pointerdown', e => { if (e.isPrimary) startDrawing(e); }, { passive: false });
+    canvas.addEventListener('pointermove',  e => { if (e.isPrimary) draw(e); }, { passive: false });
+    canvas.addEventListener('pointerup',    e => { if (e.isPrimary) stopDrawing(); });
+    canvas.addEventListener('pointercancel', e => { if (e.isPrimary) stopDrawing(); });
+    canvas.addEventListener('pointerout',    e => { if (e.isPrimary) stopDrawing(); });
+  } else {
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+    canvas.addEventListener('touchstart', startDrawing, { passive: false });
+    canvas.addEventListener('touchmove', draw,      { passive: false });
+    canvas.addEventListener('touchend',  stopDrawing);
+  }
 
   widthInput.addEventListener('change', resizeCanvas);
   heightInput.addEventListener('change', resizeCanvas);
@@ -188,8 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
   colorButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       isErasing         = false;
-      ctx.strokeStyle   = btn.dataset.color;
-      colorPicker.value = btn.dataset.color;
+      const color = btn.dataset.color;
+      ctx.strokeStyle   = color;
+      colorPicker.value = color;
     });
   });
 
@@ -199,7 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   penWidthSlider.addEventListener('input', e => ctx.lineWidth = e.target.value);
-  eraserBtn.addEventListener('click', () => isErasing = true);
+  eraserBtn.addEventListener('click', () => {
+    isErasing = true;
+  });
   undoBtn.addEventListener('click', undo);
   clearBtn.addEventListener('click', clearCanvas);
 
@@ -207,13 +257,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const link = document.createElement('a');
     link.download = 'drawing.png';
     link.href     = canvas.toDataURL('image/png');
+    // for browsers that require the link to be in the DOM
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   });
 
   timerBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       clearInterval(timerInterval);
-      totalSeconds = parseInt(btn.dataset.time) * 60;
+      totalSeconds = parseInt(btn.dataset.time, 10) * 60;
       updateTimerDisplay();
     });
   });
@@ -222,16 +275,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   soundBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      currentSoundMode = btn.dataset.mode;
+      currentSoundMode = btn.dataset.mode || 'pipipi';
       soundBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     });
   });
 
-  // 初期化
+  // handle window resize to adjust CSS sizing of canvas area
+  window.addEventListener('resize', setCanvasDisplaySize);
+
+  // initialize
   initializeCanvas();
   ctx.lineWidth     = penWidthSlider.value;
   ctx.strokeStyle   = colorPicker.value;
-  soundBtns[0].classList.add('active');
+  // select default sound button if present
+  const firstSound = Array.from(soundBtns).find(b => b.dataset.mode === currentSoundMode);
+  if (firstSound) firstSound.classList.add('active');
   updateTimerDisplay();
 });
