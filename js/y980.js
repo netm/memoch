@@ -1,4 +1,4 @@
-/* /js/y980.js - 完全版（面接質問ジェネレーター） */
+/* /js/y980.js -（面接質問ジェネレーター） */
 (() => {
   'use strict';
   const QUESTIONS = [
@@ -122,14 +122,14 @@
     return "背景や実例を引き出すフォロー質問を用意する。";
   }
 
-  // Render dynamic list
-  function renderList(list){
+  // Render generated block (these are the dynamic results users request)
+  function renderGeneratedBlock(list){
     const html = list.map((q,i)=>`
-      <section class="q" role="article" aria-labelledby="q-${i+1}">
-        <h3 id="q-${i+1}"><span class="num">${i+1}.</span> ${escapeHtml(q)}</h3>
+      <section class="q" role="article" aria-labelledby="g-q-${i+1}">
+        <h3 id="g-q-${i+1}"><span class="num">${i+1}.</span> ${escapeHtml(q)}</h3>
         <p class="hint">使いどころと応用例：${escapeHtml(makeHint(q))}</p>
       </section>`).join("");
-    $(OUT_ID).innerHTML = renderStaticPreRendered() + `<div class="list">${html}</div>`;
+    return `<div class="generated"><h2>生成結果（上に表示）</h2><div class="list">${html}</div></div>`;
   }
 
   function makeHint(q){
@@ -153,7 +153,7 @@
 
   // Copy text
   function handleCopy(){
-    const text = $("gen-output").innerText.trim();
+    const text = $(OUT_ID).innerText.trim();
     if(!navigator.clipboard){
       const ta = document.createElement("textarea");
       ta.value = text; document.body.appendChild(ta); ta.select();
@@ -200,20 +200,13 @@
 
   // SNS share
   function handleShare(platform){
-    const text = $("gen-output").innerText.trim().slice(0,300);
+    const text = $(OUT_ID).innerText.trim().slice(0,300);
     const pageUrl = location.href;
     let url = "";
     if(platform==="x") url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
     if(platform==="facebook") url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
     if(platform==="line") url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(text)}`;
     window.open(url,"_blank","noopener");
-  }
-
-  // JSON preview (human readable)
-  function setJsonPreview(list){
-    const preview = { title:"面接で使える質問テンプレ集（生成結果）", generatedAt:new Date().toISOString(), count:list.length, questions:list };
-    const el = $("json-preview");
-    if(el) el.textContent = JSON.stringify(preview,null,2);
   }
 
   // Toast
@@ -225,9 +218,32 @@
 
   // Init
   document.addEventListener("DOMContentLoaded", ()=>{
-    const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"), bPng = $("btn-png"), bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line");
-    if(bGen) bGen.addEventListener("click", ()=> { const n = parseInt($("num").value,10)||5; renderList(generateRandom(n)); setJsonPreview(generateRandom(0)); });
-    if(bAll) bAll.addEventListener("click", ()=> { renderList(QUESTIONS); setJsonPreview(QUESTIONS); });
+    const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"), bPng = $("btn-png"), bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
+
+    // Initial render: only pre-rendered (20) shown; input default value remains 5
+    const out = $(OUT_ID);
+    if(out) out.innerHTML = renderStaticPreRendered();
+
+    if(bGen) bGen.addEventListener("click", ()=> {
+      const n = parseInt($("num").value,10) || 5;
+      const generated = generateRandom(n);
+      // Show generated block ABOVE the pre-rendered block
+      out.innerHTML = renderGeneratedBlock(generated) + renderStaticPreRendered();
+    });
+
+    // "全表示" shows full list (all QUESTIONS) without duplicating pre-rendered block
+    function renderFullList(list){
+      const html = list.map((q,i)=>`
+        <section class="q" role="article" aria-labelledby="all-q-${i+1}">
+          <h3 id="all-q-${i+1}"><span class="num">${i+1}.</span> ${escapeHtml(q)}</h3>
+          <p class="hint">使いどころ：${escapeHtml(simpleHint(q))}</p>
+        </section>`).join("");
+      out.innerHTML = `<div class="all-list"><h2>全テンプレ（${list.length}件）</h2><div class="list">${html}</div></div>`;
+    }
+
+    if(bAll) bAll.addEventListener("click", ()=> { renderFullList(QUESTIONS); });
+    if(bAllBottom) bAllBottom.addEventListener("click", ()=> { renderFullList(QUESTIONS); });
+
     if(bCopy) bCopy.addEventListener("click", handleCopy);
     if(bPrint) bPrint.addEventListener("click", handlePrint);
     if(bPng) bPng.addEventListener("click", handleSavePNG);
@@ -235,9 +251,6 @@
     if(bFb) bFb.addEventListener("click", ()=> handleShare("facebook"));
     if(bLine) bLine.addEventListener("click", ()=> handleShare("line"));
 
-    // initial render: render pre-rendered + 5 random
-    renderList(QUESTIONS.slice(0,5));
-    setJsonPreview(QUESTIONS.slice(0,5));
   });
 
   // expose debug

@@ -1,4 +1,4 @@
-/* /css/y980.css - 面接質問テンプレ100 用スタイル */
+/* /css/y980.css - 修正版（面接質問テンプレ100 用スタイル） */
 :root{
   --bg:#ffffff;
   --surface:#f7f9fc;
@@ -71,6 +71,9 @@ body{
 .hint{margin:0;color:var(--muted);font-size:0.92rem}
 .num{color:var(--accent);font-weight:700;margin-right:6px}
 
+/* 生成結果見出し */
+.generated > h2, .all-list > h2{margin:0 0 8px 0;font-size:1rem;color:var(--accent)}
+
 /* 関連コンテンツ */
 .related {
   margin-top:18px;
@@ -88,9 +91,6 @@ body{
   display:inline-block;
 }
 .related .meta{color:var(--muted);font-size:0.9rem;margin-left:8px;font-weight:400}
-
-/* JSON表示 */
-.json-card{margin-top:14px;background:#0b1220;color:#e6f0ff;padding:12px;border-radius:10px;overflow:auto;max-height:320px;font-family:monospace;font-size:0.86rem}
 
 /* 操作群・フッター */
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
