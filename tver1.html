@@ -12,15 +12,56 @@
   {"@context":"https://schema.org","@type":"WebPage","name":"TVerランキングトップ30｜2025年5月","url":"https://memoc.pages.dev/tver1/","description":"TVerの人気ランキングトップ30位（2025年5月1日集計）。注目のドラマ、バラエティ、情報番組を番組別に掲載。"}
   </script>
   <style>
-    /* 最低限のレスポンシブ調整 */
-    #container{max-width:1100px;margin:0 auto;padding:12px;font-family:system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;}
+    /* 基本レイアウト */
+    #container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:12px;
+      font-family:system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    }
     #banner h1 a{color:inherit;text-decoration:none;}
-    #links-left{float:left;width:300px;padding:8px;box-sizing:border-box;}
-    #content{margin-left:320px;padding:8px;box-sizing:border-box;}
+    /* デスクトップ：サイドを左に固定 */
+    #links-left{
+      float:left;
+      width:300px;
+      padding:8px;
+      box-sizing:border-box;
+    }
+    #content{
+      margin-left:320px;
+      padding:8px;
+      box-sizing:border-box;
+    }
     .rank-item{margin-bottom:8px;}
+    /* モバイル：本文を先に、サイドを後ろに表示 */
     @media (max-width:900px){
-      #links-left{float:none;width:100%;}
-      #content{margin-left:0;}
+      /* スタック表示に切替え、DOM順をCSSで制御 */
+      #container{
+        display:flex;
+        flex-direction:column;
+      }
+      /* bannerは最上部にしておく */
+      #banner{order:0;}
+      /* content を先に表示 */
+      #content{
+        order:1;
+        margin-left:0;
+        padding:8px 0;
+        width:100%;
+      }
+      /* links-left を後ろに表示し浮動解除 */
+      #links-left{
+        order:2;
+        float:none;
+        width:100%;
+        padding:8px 0;
+        box-sizing:border-box;
+      }
+    }
+    /* 小さめ電卓等のレスポンシブ補助（任意） */
+    #calculator{max-width:320px;}
+    @media (max-width:420px){
+      #calculator{max-width:100%;}
     }
   </style>
 </head>
@@ -37,29 +78,33 @@
   <div id="banner">
     <h1><a href="https://memoc.pages.dev/tver1/" rel="noopener noreferrer">TVerティーバーの人気ランキングトップ30位 2025年5月</a></h1>
     <div class="blockbody">
-      <p>このページは2025年5月1日時点のTVer人気ランキングトップ30をまとめた一覧です。見逃し配信で話題のドラマ・バラエティを番組別に確認できます。<a href="https://memoc.pages.dev/" target="_blank" rel="noopener noreferrer">メモ帳代わりwebブラウザ便利サイト</a></p>
+      <p>このページは2025年5月1日時点のTVer人気ランキングトップ30をまとめた一覧です。見逃し配信で話題のドラマ・バラエティを番組別に確認できます。</p>
     </div>
   </div>
   <nav id="links-left" aria-label="サイドナビゲーション">
-    <div class="sidetitle">人気順コンテンツ</div>
+    <div class="sidetitle">時計・タイマーツール</div>
     <div class="side">
-      <p>1 <a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener noreferrer">無料ブラウザゲーム</a></p>
-      <p>2 <a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener noreferrer">現在時刻リアルタイム</a></p>
-      <p>3 <a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener noreferrer">TVer検索用リンク集</a></p>
-      <p>4 <a href="https://memoc.pages.dev/naniwa/" target="_blank" rel="noopener noreferrer">なにわ男子 イラストとプロフィール</a></p>
-      <p>5 <a href="https://memoc.pages.dev/rank2/" target="_blank" rel="noopener noreferrer">肩こり解消グッズランキング</a></p>
+      <p><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener noreferrer">現在時刻リアルタイム秒時計Web表示</a></p>
+      <p><a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener noreferrer">アナログ時計webアプリ表示切替機能付き</a></p>
+      <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener noreferrer">タイマーおしゃれサイトの解説 簡単3タッチ</a></p>
     </div>
-    <div class="sidetitle">カテゴリ</div>
+    <div class="sidetitle">スケジュール・カレンダー</div>
     <div class="side">
-      <p><a href="https://memoc.pages.dev/memode/" target="_blank" rel="noopener noreferrer">メモ付き電卓</a></p>
-      <p><a href="https://memoc.pages.dev/muden/" target="_blank" rel="noopener noreferrer">電卓・計算機</a></p>
-      <p><a href="https://memoc.pages.dev/toushi/" target="_blank" rel="noopener noreferrer">投資メモと電卓</a></p>
+      <p><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener noreferrer">スケジュール帳ブラウザアプリ</a></p>
+      <p><a href="https://memoc.pages.dev/y990/" target="_blank" rel="noopener noreferrer">時間割ブラウザアプリ</a></p>
+      <p><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener noreferrer">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p>
     </div>
-    <div class="sidetitle">その他リンク</div>
+    <div class="sidetitle">家計・家電ツール</div>
     <div class="side">
-      <p><a href="https://www.post.japanpost.jp/index/" target="_blank" rel="noopener noreferrer">郵便局</a></p>
-      <p><a href="https://www.kuronekoyamato.co.jp/" target="_blank" rel="noopener noreferrer">ヤマト運輸</a></p>
-      <p><img alt="サイトのQRコード" src="https://memoc.pages.dev/images/memochou.png" width="220" height="220"></p>
+      <p><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener noreferrer">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p>
+      <p><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener noreferrer">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p>
+      <p><a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener noreferrer">非常食データベースと保存年数ランキング</a></p>
+    </div>
+    <div class="sidetitle">ランキング・レビュー</div>
+    <div class="side">
+      <p><a href="https://memoc.pages.dev/yuenchi/" target="_blank" rel="noopener noreferrer">遊園地などの入場者ランキングトップ20 レジャー施設</a></p>
+      <p><a href="https://memoc.pages.dev/rank2/" target="_blank" rel="noopener noreferrer">肩こり解消グッズの売れ筋ランキング</a></p>
+      <p><a href="https://memoc.pages.dev/rank/" target="_blank" rel="noopener noreferrer">何でもランキング｜人気ランキングと注目リストまとめ</a></p>
     </div>
   </nav>
   <main id="content" role="main">
@@ -73,13 +118,13 @@
     </section>
     <section aria-labelledby="top10">
       <h3 id="top10">4位〜10位（注目の配信番組）</h3>
-      <div class="rank-item"><strong>4位</strong> 生き返った、モラハラ夫</div>
-      <div class="rank-item"><strong>5位</strong> あなたを奪ったその日から — #2 誘拐した女との秘密の生活に…迫る捜査網</div>
+      <div class="rank-item"><strong>4位</strong> 生き返った、問題のある夫</div>
+      <div class="rank-item"><strong>5位</strong> あなたを奪ったその日から — #2 ある女との秘密の生活に…迫る捜査網</div>
       <div class="rank-item"><strong>6位</strong> 人事の人見 — 第4話 人見、営業部へ異動？昭和体質と令和社員の激突</div>
       <div class="rank-item"><strong>7位</strong> Dr.アシュラ — 第3話 大量搬送！朱羅VSゴッドハンド！！</div>
       <div class="rank-item"><strong>8位</strong> 恋は闇 — #03 彼の秘密、彼女の決意</div>
       <div class="rank-item"><strong>9位</strong> あやしいパートナー — #1《ドラマイズム》</div>
-      <div class="rank-item"><strong>10位</strong> 水曜日のダウンタウン — 電気イスゲームトーナメント決勝戦 ほか</div>
+      <div class="rank-item"><strong>10位</strong> 水曜日のダウンタウン — ゲームトーナメント決勝戦 ほか</div>
     </section>
     <section aria-labelledby="11-20">
       <h3 id="11-20">11位〜20位</h3>
@@ -87,7 +132,7 @@
       <div class="rank-item"><strong>12位</strong> キャスター — 第3話 美しき科学者の罠～新細胞は存在します！</div>
       <div class="rank-item"><strong>13位</strong> 月曜から夜ふかし — 上京した人のその後を調査してみた件</div>
       <div class="rank-item"><strong>14位</strong> パラレル夫婦　死んだ“僕と妻”の真実 — #5 Aの行動がズレてる!? </div>
-      <div class="rank-item"><strong>15位</strong> ジョフウ — #05 女性の×欲って変ですか？</div>
+      <div class="rank-item"><strong>15位</strong> ジョ フ ウ — #05 女性の 欲って変ですか？</div>
       <div class="rank-item"><strong>16位</strong> なんで私が神説教 — 第3話 教師が生徒をリストラ！？</div>
       <div class="rank-item"><strong>17位</strong> 波うららかに、めおと日和 — 第1話 昭和11年を舞台にピュアな二人の新婚ラブコメ</div>
       <div class="rank-item"><strong>18位</strong> 上田と女が吠える夜 — お得なホテルに目がない女VS亀梨和也!</div>
@@ -99,20 +144,15 @@
       <div class="rank-item"><strong>21位</strong> 特捜9 final season — 第4話「罪の村」</div>
       <div class="rank-item"><strong>22位</strong> 有吉の壁 — 人気企画復活 ご本人登場選手権</div>
       <div class="rank-item"><strong>23位</strong> ツマミになる話 — ゲスト: 勝地涼・角田夏実・えなこ・ベッキー</div>
-      <div class="rank-item"><strong>24位</strong> 夫が寝たあとに — 「母乳外来」密着SP</div>
+      <div class="rank-item"><strong>24位</strong> 夫が寝たあとに — 育児ケア密着SP</div>
       <div class="rank-item"><strong>25位</strong> ロンドンハーツ — 芸能人取扱説明書</div>
       <div class="rank-item"><strong>26位</strong> マツコの知らない世界 — 前編「バリスタコーヒーの世界」</div>
       <div class="rank-item"><strong>27位</strong> ダメマネ！ — 第2話 態度サイアク新人の才能、発掘せよ！</div>
       <div class="rank-item"><strong>28位</strong> CDTV ライブ! ライブ! — Part.1 出演: ミセス・timelesz・WEST.ほか</div>
       <div class="rank-item"><strong>29位</strong> あちこちオードリー — 新企画をお届け</div>
-      <div class="rank-item"><strong>30位</strong> イグナイト -法の無法者- — Episode2 強豪校に潜む闇</div>
+      <div class="rank-item"><strong>30位</strong> イグナイト -法の問題- — Episode2 学校を巡る課題を描く物語</div>
     </section>
     <hr>
-    <section aria-labelledby="summary">
-      <h3 id="summary">ページの使い方と補足情報</h3>
-      <p>この一覧は2025年5月1日時点のTVer内での人気ランキングに基づく情報です。番組の配信状況や順位は随時変動します。最新の視聴はTVer公式サイトや各放送局の配信ページでご確認ください。</p>
-      <p>気になる番組はタイトルを検索するか、当サイトの <a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener noreferrer">TVer検索用リンク集</a> をご利用ください。</p>
-    </section>
     <section aria-labelledby="faq">
       <h3 id="faq">よくある質問（FAQ）</h3>
       <dl>
@@ -124,12 +164,16 @@
         <dd>はい。TVerは無料で閲覧できます。</dd>
       </dl>
     </section>
-    <hr>
+    <section aria-labelledby="summary">
+      <h3 id="summary">ページの使い方と補足情報</h3>
+      <p>この一覧は2025年5月1日時点のTVer内での人気ランキングに基づく情報です。番組の配信状況や順位は随時変動します。最新の視聴はTVer公式サイトや各放送局の配信ページでご確認ください。</p>
+      <p>気になる番組はタイトルを検索するか、当サイトの <a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener noreferrer">TVer検索用リンク集</a> をご利用ください。</p>
+    </section>
     <section aria-labelledby="more-links">
-      <h3 id="more-links">関連コンテンツ（サイト内）</h3>
+      <h3 id="more-links">エンタメ関連コンテンツ</h3>
       <p><a href="https://memoc.pages.dev/tver2anime/" target="_blank" rel="noopener noreferrer">アニメ無料動画ホラー系のおすすめ人気トップ5</a></p>
-      <p><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener noreferrer">無料ブラウザゲーム PC/スマホ対応</a></p>
-      <p><a href="https://memoc.pages.dev/" target="_blank" rel="noopener noreferrer">メモ帳代わりwebブラウザ便利サイト</a></p>
+      <p><a href="https://memoc.pages.dev/naniwa/" target="_blank" rel="noopener noreferrer">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></p>
+      <p><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener noreferrer">無料ブラウザゲームPCスマホタブレット対応</a></p>
     </section>
   </main>
   <div style="clear:both"></div>

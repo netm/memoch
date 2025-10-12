@@ -1,0 +1,50 @@
+:root{
+  --bg:#fff; --text:#111; --muted:#666; --accent:#0077cc; --card:#f9f9fb;
+  --radius:10px; --gap:12px;
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Segoe UI", "Yu Gothic", "Noto Sans JP", "Arial";
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text); line-height:1.5;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  padding:24px; display:flex; flex-direction:column; gap:20px;
+}
+.site-header{max-width:980px; margin:0 auto}
+.site-title{margin:0; font-size:1.6rem}
+.lead{margin:6px 0 0; color:var(--muted); font-size:0.95rem}
+
+.controls{max-width:980px; margin:0 auto; display:grid; gap:12px}
+.gen-area{background:var(--card); padding:12px; border-radius:var(--radius)}
+.gen-row{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+#emotion{padding:8px; border-radius:8px; border:1px solid #ddd; background:white}
+.btn{padding:8px 12px; border-radius:8px; border:0; background:var(--accent); color:white; cursor:pointer}
+.btn.secondary{background:#666}
+.generated{margin-top:12px; font-size:1.1rem; font-weight:700; color:var(--accent)}
+
+.search-area{display:flex; gap:8px; align-items:center}
+#q{flex:1; padding:10px 12px; border-radius:10px; border:1px solid #ddd; font-size:0.95rem}
+.stats{font-size:0.9rem; color:var(--muted)}
+
+.kana-index{max-width:980px; margin:0 auto; display:flex; gap:6px; flex-wrap:wrap}
+.kana-btn{padding:6px 10px; border-radius:8px; border:1px solid #eee; background:white; cursor:pointer}
+
+.list{max-width:980px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+.card{background:white; border-radius:10px; padding:12px; border:1px solid #eee; box-shadow:0 1px 0 rgba(0,0,0,0.03)}
+.card h3{margin:0; font-size:1.05rem}
+.card .yomi{color:var(--muted); font-size:0.9rem}
+.card p{margin:8px 0 0; font-size:0.9rem; color:var(--muted)}
+.card .tags{margin-top:10px; display:flex; gap:6px; flex-wrap:wrap}
+.tag{background:#f1f6ff; color:var(--accent); padding:4px 8px; border-radius:999px; font-size:0.8rem}
+
+.highlight{background:linear-gradient(90deg,#fff7c5,#ffd59e); padding:0 2px}
+
+.sr-only{position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden}
+
+.site-footer{max-width:980px; margin:0 auto; color:var(--muted); text-align:left; font-size:0.85rem}
+
+/* responsive tweaks */
+@media (max-width:540px){
+  body{padding:14px}
+  .site-title{font-size:1.25rem}
+}

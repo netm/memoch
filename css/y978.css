@@ -1,0 +1,120 @@
+/* /css/y978.css - 営業 発見質問ジェネレーター（スタイル） */
+:root{
+  --bg:#ffffff;
+  --surface:#f7f9fc;
+  --accent:#0b5cff;
+  --text:#071428;
+  --muted:#556575;
+  --radius:10px;
+  --max-width:980px;
+  --content-width:760px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  color:var(--text);
+  background:linear-gradient(180deg,#fbfdff 0%,var(--surface) 100%);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+  padding:24px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+/* ページコンテナ */
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  background:var(--bg);
+  border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(11,23,38,0.06);
+  padding:20px;
+  margin:12px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* 横向きスマホで両端が画面端になる */
+@media (orientation: landscape) and (max-width:1024px){
+  body{padding:0}
+  .container{border-radius:0;max-width:100vw;width:100vw;padding:16px;margin:0}
+}
+
+/* ヘッダー */
+.header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.title{display:flex;flex-direction:column;gap:6px}
+.title h1{margin:0;font-size:1.125rem}
+.title p{margin:0;color:var(--muted);font-size:0.95rem}
+
+/* コントロール */
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.controls input[type="number"]{width:84px;padding:8px;border:1px solid #e6eef9;border-radius:8px}
+.btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(11,92,255,0.12)}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center}
+
+/* レイアウト */
+.content{display:flex;gap:18px;align-items:flex-start;width:100%}
+.main{width:100%;max-width:var(--content-width)}
+.aside{min-width:220px;background:#fbfcff;border:1px solid #eef6ff;padding:12px;border-radius:10px;height:fit-content}
+
+/* 出力 */
+#gen-output{margin-top:6px;padding:18px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef6ff;border-radius:12px}
+.pre-rendered h2{margin-top:0}
+.pre-rendered .q, .list .q{padding:12px 0;border-bottom:1px dashed #eef6ff}
+.pre-rendered .q:last-child, .list .q:last-child{border-bottom:none}
+.list h3, .pre-rendered h2, .pre-rendered h2 + .q h2{margin:0 0 6px 0;font-size:1rem}
+.hint{margin:0;color:var(--muted);font-size:0.92rem}
+.num{color:var(--accent);font-weight:700;margin-right:6px}
+
+/* 関連コンテンツ */
+.related {
+  margin-top:18px;
+  padding:12px;
+  background:#f6fbff;
+  border:1px solid #e6f2ff;
+  border-radius:10px;
+}
+.related h3{margin:0 0 8px 0;font-size:1rem}
+.related ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.related a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+  display:inline-block;
+}
+.related .meta{color:var(--muted);font-size:0.9rem;margin-left:8px;font-weight:400}
+
+/* JSON表示 */
+.json-card{margin-top:14px;background:#0b1220;color:#e6f0ff;padding:12px;border-radius:10px;overflow:auto;max-height:320px;font-family:monospace;font-size:0.86rem}
+
+/* 操作群・フッター */
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:18px;flex-wrap:wrap}
+.footer a{color:var(--accent);text-decoration:none;font-weight:700}
+
+/* トースト */
+.toast{position:fixed;left:50%;transform:translateX(-50%) translateY(10px);bottom:30px;background:#081435;color:#fff;padding:10px 14px;border-radius:8px;opacity:0;transition:all .25s ease;z-index:9999;pointer-events:none}
+.toast.visible{opacity:0.98;transform:translateX(-50%) translateY(0)}
+
+/* 印刷最適化 */
+@media print{
+  body{background:#fff;padding:0}
+  .container{box-shadow:none;border:none;border-radius:0;padding:8px}
+  .controls,.actions,.aside,.footer{display:none}
+  #gen-output{border:none;padding:0}
+}
+
+/* スモールスクリーン */
+@media (max-width:700px){
+  .header{flex-direction:column;align-items:flex-start}
+  .content{flex-direction:column}
+  .aside{order:2;width:100%}
+}
+
+/* 補助 */
+.sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
