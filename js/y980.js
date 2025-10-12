@@ -151,24 +151,31 @@
     return "背景や具体例を深掘りするために続けてフォロー質問を用意してください。";
   }
 
-  // Generate random unique items
+  // Generate random unique items (Fisher–Yates shuffle, safe validation)
   function generateRandom(n=1){
     const pool = QUESTIONS.slice();
-    const out = [];
-    n = clamp(n,1,pool.length);
-    while(out.length < n){
-      const idx = Math.floor(Math.random()*pool.length);
-      out.push(pool.splice(idx,1)[0]);
+    n = clamp(Math.floor(Number(n) || 1), 1, pool.length);
+    // Fisher–Yates shuffle
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
     }
-    return out;
+    return pool.slice(0, n);
   }
 
   // Copy text
   function handleCopy(){
-    const text = $(OUT_ID).innerText.trim();
+    const out = $(OUT_ID);
+    if(!out) return alert("出力エリアが見つかりません");
+    const text = out.innerText.trim();
     if(!navigator.clipboard){
       const ta = document.createElement("textarea");
-      ta.value = text; document.body.appendChild(ta); ta.select();
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '0';
+      document.body.appendChild(ta);
+      ta.select();
       try{ document.execCommand("copy"); showToast("コピーしました"); } catch(e){ alert("コピーに失敗しました"); }
       ta.remove();
       return;
@@ -179,40 +186,95 @@
   // Print
   function handlePrint(){ window.print(); }
 
-  // PNG save (SVG foreignObject)
+  // PNG save (SVG foreignObject) — improved: attach clone offscreen to measure, inline basic CSS, robust cleanup
   async function handleSavePNG(){
-    const node = document.getElementById(OUT_ID);
+    const node = $(OUT_ID);
     if(!node) return alert("出力エリアが見つかりません");
-    const clone = node.cloneNode(true);
-    clone.style.padding = "20px";
-    clone.style.maxWidth = "1200px";
-    const serialized = new XMLSerializer().serializeToString(clone);
-    const width = Math.min(document.documentElement.clientWidth, 1200);
-    const height = clone.scrollHeight + 40;
-    const svg = `<?xml version="1.0" encoding="utf-8"?><svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'><foreignObject width='100%' height='100%'><div xmlns="http://www.w3.org/1999/xhtml" style="font-family: system-ui, -apple-system, 'Noto Sans JP';">${serialized}</div></foreignObject></svg>`;
-    const blob = new Blob([svg],{type:"image/svg+xml;charset=utf-8"});
-    const url = URL.createObjectURL(blob);
     try{
+      // Clone node and prepare a measuring container offscreen
+      const clone = node.cloneNode(true);
+      // Inline minimal CSS to stabilize rendering in SVG foreignObject
+      const style = `
+        *{box-sizing:border-box}
+        body{margin:0;font-family:system-ui,-apple-system,'Noto Sans JP','Hiragino Kaku Gothic ProN',Segoe UI,Roboto,Arial;color:#071428;line-height:1.6}
+        .generated h2,.all-list h2{color:#0b5cff}
+        .num{color:#0b5cff;font-weight:700;margin-right:6px}
+      `;
+      // Create an offscreen wrapper so layout measurements are accurate
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.left = '-99999px';
+      wrapper.style.top = '0';
+      wrapper.style.width = Math.min(document.documentElement.clientWidth, 1200) + 'px';
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      // Force reflow and measure
+      await new Promise(requestAnimationFrame);
+      const width = Math.min(document.documentElement.clientWidth, 1200);
+      const height = Math.max(clone.scrollHeight + 40, 200);
+
+      // Build SVG with foreignObject and inlined style
+      const serialized = new XMLSerializer().serializeToString(clone);
+      const svg = `<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'>
+  <foreignObject width='100%' height='100%'>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>${style}</style>
+      ${serialized}
+    </div>
+  </foreignObject>
+</svg>`;
+
+      // Cleanup the offscreen wrapper early
+      wrapper.remove();
+
+      const blob = new Blob([svg],{type:"image/svg+xml;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+
       const img = new Image();
+      // Ensure image is loaded without crossOrigin issues (we only use same-origin blob)
       img.onload = () => {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.width; canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.drawImage(img,0,0);
-        const dataUrl = canvas.toDataURL("image/png");
-        const a = document.createElement("a"); a.href = dataUrl; a.download = "questions.png"; a.click();
-        URL.revokeObjectURL(url);
-        showToast("PNGを保存しました");
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = width * (window.devicePixelRatio || 1);
+          canvas.height = height * (window.devicePixelRatio || 1);
+          const ctx = canvas.getContext("2d");
+          ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+          // white background
+          ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,canvas.width,canvas.height);
+          ctx.drawImage(img, 0, 0, width, height);
+          // Trigger download
+          canvas.toBlob((blobOut) => {
+            if (!blobOut) { URL.revokeObjectURL(url); return alert("PNG生成に失敗しました"); }
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blobOut);
+            a.download = "questions.png";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            showToast("PNGを保存しました");
+          }, "image/png");
+        } catch (err) {
+          URL.revokeObjectURL(url);
+          console.error(err);
+          alert("PNG生成に失敗しました");
+        }
       };
-      img.onerror = ()=> { URL.revokeObjectURL(url); alert("画像化に失敗しました"); };
+      img.onerror = () => { URL.revokeObjectURL(url); alert("画像化に失敗しました"); };
       img.src = url;
-    }catch(e){ URL.revokeObjectURL(url); alert("PNG生成に失敗しました"); console.error(e); }
+    }catch(e){
+      console.error(e);
+      alert("PNG生成に失敗しました");
+    }
   }
 
   // SNS share
   function handleShare(platform){
-    const text = $(OUT_ID).innerText.trim().slice(0,300);
+    const out = $(OUT_ID);
+    if(!out) return alert("出力エリアが見つかりません");
+    const text = out.innerText.trim().slice(0,300);
     const pageUrl = location.href;
     let url = "";
     if(platform==="x") url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
@@ -230,7 +292,8 @@
 
   // Init
   document.addEventListener("DOMContentLoaded", ()=>{
-    const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"), bPng = $("btn-png"), bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
+    const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"),
+          bPng = $("btn-png"), bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
 
     // Initial render: only pre-rendered (20) shown; input default value remains 5
     const out = $(OUT_ID);
@@ -240,7 +303,7 @@
       const n = parseInt($("num").value,10) || 5;
       const generated = generateRandom(n);
       // Show generated block ABOVE the pre-rendered block
-      out.innerHTML = renderGeneratedBlock(generated) + renderStaticPreRendered();
+      if(out) out.innerHTML = renderGeneratedBlock(generated) + renderStaticPreRendered();
     });
 
     // "全表示" shows full list (all QUESTIONS) without duplicating pre-rendered block
@@ -250,7 +313,7 @@
           <h3 id="all-q-${i+1}"><span class="num">${i+1}.</span> ${escapeHtml(q)}</h3>
           <p class="hint">使いどころ：${escapeHtml(simpleHint(q))}</p>
         </section>`).join("");
-      out.innerHTML = `<div class="all-list"><h2>全テンプレ（${list.length}件）</h2><div class="list">${html}</div></div>`;
+      if(out) out.innerHTML = `<div class="all-list"><h2>全テンプレ（${list.length}件）</h2><div class="list">${html}</div></div>`;
     }
 
     if(bAll) bAll.addEventListener("click", ()=> { renderFullList(QUESTIONS); });
@@ -265,6 +328,6 @@
 
   });
 
-  // expose debug
+  // expose debug (keep minimal)
   window.QA_GENERATOR = { QUESTIONS, generateRandom };
 })();
