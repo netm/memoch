@@ -169,7 +169,7 @@
     if(!out) return alert("出力エリアが見つかりません");
     const text = out.innerText.trim();
     if(!navigator.clipboard){
-      const ta = document.createElement("textarea");
+      const ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
       ta.style.left = '-9999px';
@@ -186,21 +186,17 @@
   // Print
   function handlePrint(){ window.print(); }
 
-  // PNG save (SVG foreignObject) — improved: attach clone offscreen to measure, inline basic CSS, robust cleanup
+  // handleSavePNG - safer export; removes/blocks external resources and waits for fonts
   async function handleSavePNG(){
     const node = $(OUT_ID);
     if(!node) return alert("出力エリアが見つかりません");
+
     try{
-      // Clone node and prepare a measuring container offscreen
+      // wait for fonts to be ready to reduce layout mismatch
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+      // Clone node into an offscreen wrapper for measurement
       const clone = node.cloneNode(true);
-      // Inline minimal CSS to stabilize rendering in SVG foreignObject
-      const style = `
-        *{box-sizing:border-box}
-        body{margin:0;font-family:system-ui,-apple-system,'Noto Sans JP','Hiragino Kaku Gothic ProN',Segoe UI,Roboto,Arial;color:#071428;line-height:1.6}
-        .generated h2,.all-list h2{color:#0b5cff}
-        .num{color:#0b5cff;font-weight:700;margin-right:6px}
-      `;
-      // Create an offscreen wrapper so layout measurements are accurate
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
       wrapper.style.left = '-99999px';
@@ -208,65 +204,116 @@
       wrapper.style.width = Math.min(document.documentElement.clientWidth, 1200) + 'px';
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
-
-      // Force reflow and measure
       await new Promise(requestAnimationFrame);
+
+      // Detect external <img> and try to inline; fail early if cannot inline
+      const imgs = Array.from(clone.querySelectorAll('img'));
+      for (const im of imgs){
+        const src = im.getAttribute('src') || '';
+        if (!src) continue;
+        if (src.startsWith('data:')) continue;
+        try{
+          const url = new URL(src, location.href).href;
+          const origin = new URL(url).origin;
+          if (origin !== location.origin){
+            // attempt to fetch and inline (CORS will fail if not allowed)
+            const resp = await fetch(url, { mode: 'cors' });
+            if (!resp.ok) throw new Error('fetch failed');
+            const blob = await resp.blob();
+            const reader = new FileReader();
+            const dataUrl = await new Promise((res, rej) => {
+              reader.onload = () => res(reader.result);
+              reader.onerror = rej;
+              reader.readAsDataURL(blob);
+            });
+            im.setAttribute('src', dataUrl);
+          }
+        }catch(e){
+          wrapper.remove();
+          return alert('PNG生成を中止しました。出力領域に外部画像が含まれています。外部画像はCORS制約によりエクスポートできません。');
+        }
+      }
+
+      // Detect external stylesheets or fonts that could taint the canvas
+      const sheets = Array.from(document.styleSheets || []);
+      for (const ss of sheets){
+        if (!ss.href) continue;
+        try{
+          const hrefOrigin = new URL(ss.href, location.href).origin;
+          if (hrefOrigin !== location.origin){
+            wrapper.remove();
+            return alert('PNG生成を中止しました。外部CSSまたは外部フォントが出力領域に影響しています。外部リソースを除いて再試行してください。');
+          }
+        }catch(e){
+          wrapper.remove();
+          return alert('PNG生成を中止しました。外部CSSまたはフォントが原因でエクスポートできません。');
+        }
+      }
+
+      // Measurements after inlining imgs
       const width = Math.min(document.documentElement.clientWidth, 1200);
       const height = Math.max(clone.scrollHeight + 40, 200);
 
-      // Build SVG with foreignObject and inlined style
+      // Inline minimal CSS to stabilize rendering in SVG foreignObject
+      const inlineStyle = `
+        *{box-sizing:border-box}
+        body{margin:0;font-family:system-ui,-apple-system,'Noto Sans JP','Hiragino Kaku Gothic ProN',Segoe UI,Roboto,Arial;color:#071428;line-height:1.6}
+        .num{color:#0b5cff;font-weight:700;margin-right:6px}
+        .generated h2,.all-list h2{color:#0b5cff}
+      `;
+
       const serialized = new XMLSerializer().serializeToString(clone);
+      wrapper.remove();
+
+      // Build SVG
       const svg = `<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'>
   <foreignObject width='100%' height='100%'>
     <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>${style}</style>
+      <style>${inlineStyle}</style>
       ${serialized}
     </div>
   </foreignObject>
 </svg>`;
 
-      // Cleanup the offscreen wrapper early
-      wrapper.remove();
-
-      const blob = new Blob([svg],{type:"image/svg+xml;charset=utf-8"});
+      const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(blob);
-
       const img = new Image();
-      // Ensure image is loaded without crossOrigin issues (we only use same-origin blob)
+
       img.onload = () => {
-        try {
-          const canvas = document.createElement("canvas");
-          canvas.width = width * (window.devicePixelRatio || 1);
-          canvas.height = height * (window.devicePixelRatio || 1);
-          const ctx = canvas.getContext("2d");
-          ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-          // white background
-          ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,canvas.width,canvas.height);
+        try{
+          const ratio = window.devicePixelRatio || 1;
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.round(width * ratio);
+          canvas.height = Math.round(height * ratio);
+          const ctx = canvas.getContext('2d');
+          ctx.scale(ratio, ratio);
+          ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,width,height);
           ctx.drawImage(img, 0, 0, width, height);
-          // Trigger download
-          canvas.toBlob((blobOut) => {
-            if (!blobOut) { URL.revokeObjectURL(url); return alert("PNG生成に失敗しました"); }
-            const a = document.createElement("a");
-            a.href = URL.createObjectURL(blobOut);
-            a.download = "questions.png";
+
+          canvas.toBlob((outBlob) => {
+            if (!outBlob) { URL.revokeObjectURL(url); return alert('PNG生成に失敗しました'); }
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(outBlob);
+            a.download = 'questions.png';
             document.body.appendChild(a);
             a.click();
             a.remove();
             URL.revokeObjectURL(url);
-            showToast("PNGを保存しました");
-          }, "image/png");
-        } catch (err) {
+            showToast('PNGを保存しました');
+          }, 'image/png');
+        }catch(err){
           URL.revokeObjectURL(url);
-          console.error(err);
-          alert("PNG生成に失敗しました");
+          console.error('canvas export error:', err);
+          alert('PNG生成に失敗しました。外部リソースによる汚染が疑われます。コンソールのエラーを確認してください。');
         }
       };
-      img.onerror = () => { URL.revokeObjectURL(url); alert("画像化に失敗しました"); };
+      img.onerror = (e) => { URL.revokeObjectURL(url); console.error('image load error', e); alert('画像化に失敗しました'); };
       img.src = url;
+
     }catch(e){
-      console.error(e);
-      alert("PNG生成に失敗しました");
+      console.error('handleSavePNG error:', e);
+      alert('PNG生成に失敗しました。コンソールを確認してください。');
     }
   }
 
