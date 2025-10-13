@@ -107,14 +107,12 @@
 "従業員の声を集めるために使っているツールや仕組みは何ですか"
   ];
 
-  // DOM helpers
   const $ = id => document.getElementById(id);
   const OUT_ID = "gen-output";
 
   function escapeHtml(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
   function clamp(n,a,b){ return Math.max(a,Math.min(b,n)); }
 
-  // Pre-render: include the first 20 questions as static HTML content for SEO
   const PRE_RENDERED = QUESTIONS.slice(0,20);
 
   function renderStaticPreRendered(){
@@ -123,8 +121,7 @@
         <h2 id="pre-q-${i+1}"><span class="num">${i+1}.</span> ${escapeHtml(q)}</h2>
         <p class="hint">使いどころ：${escapeHtml(simpleHint(q))}</p>
       </section>`).join("");
-    const wrapper = `<div class="pre-rendered"><h2>代表的なテンプレ（例 1〜20）</h2>${html}</div>`;
-    return wrapper;
+    return `<div class="pre-rendered"><h2>代表的なテンプレ（例 1〜20）</h2>${html}</div>`;
   }
 
   function simpleHint(q){
@@ -134,7 +131,6 @@
     return "背景や実例を引き出すフォロー質問を用意する。";
   }
 
-  // Render generated block (these are the dynamic results users request)
   function renderGeneratedBlock(list){
     const html = list.map((q,i)=>`
       <section class="q" role="article" aria-labelledby="g-q-${i+1}">
@@ -151,11 +147,9 @@
     return "背景や具体例を深掘りするために続けてフォロー質問を用意してください。";
   }
 
-  // Generate random unique items (Fisher–Yates shuffle, safe validation)
   function generateRandom(n=1){
     const pool = QUESTIONS.slice();
     n = clamp(Math.floor(Number(n) || 1), 1, pool.length);
-    // Fisher–Yates shuffle
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -163,7 +157,6 @@
     return pool.slice(0, n);
   }
 
-  // Copy text
   function handleCopy(){
     const out = $(OUT_ID);
     if(!out) return alert("出力エリアが見つかりません");
@@ -183,90 +176,77 @@
     navigator.clipboard.writeText(text).then(()=> showToast("コピーしました")).catch(()=> alert("コピーに失敗しました"));
   }
 
-  // Print
   function handlePrint(){ window.print(); }
 
-  // handleSavePNG - safer export; removes/blocks external resources and waits for fonts
-  async function handleSavePNG(){
+  // foreignObject-based exporter (may fail if external resources exist)
+  async function handleSavePNG_ForeignObject(){
     const node = $(OUT_ID);
-    if(!node) return alert("出力エリアが見つかりません");
+    if(!node) throw new Error("no-output");
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    const clone = node.cloneNode(true);
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'fixed';
+    wrapper.style.left = '-99999px';
+    wrapper.style.top = '0';
+    wrapper.style.width = Math.min(document.documentElement.clientWidth, 1200) + 'px';
+    wrapper.appendChild(clone);
+    document.body.appendChild(wrapper);
+    await new Promise(requestAnimationFrame);
 
-    try{
-      // wait for fonts to be ready to reduce layout mismatch
-      if (document.fonts && document.fonts.ready) await document.fonts.ready;
-
-      // Clone node into an offscreen wrapper for measurement
-      const clone = node.cloneNode(true);
-      const wrapper = document.createElement('div');
-      wrapper.style.position = 'fixed';
-      wrapper.style.left = '-99999px';
-      wrapper.style.top = '0';
-      wrapper.style.width = Math.min(document.documentElement.clientWidth, 1200) + 'px';
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-      await new Promise(requestAnimationFrame);
-
-      // Detect external <img> and try to inline; fail early if cannot inline
-      const imgs = Array.from(clone.querySelectorAll('img'));
-      for (const im of imgs){
-        const src = im.getAttribute('src') || '';
-        if (!src) continue;
-        if (src.startsWith('data:')) continue;
-        try{
-          const url = new URL(src, location.href).href;
-          const origin = new URL(url).origin;
-          if (origin !== location.origin){
-            // attempt to fetch and inline (CORS will fail if not allowed)
-            const resp = await fetch(url, { mode: 'cors' });
-            if (!resp.ok) throw new Error('fetch failed');
-            const blob = await resp.blob();
-            const reader = new FileReader();
-            const dataUrl = await new Promise((res, rej) => {
-              reader.onload = () => res(reader.result);
-              reader.onerror = rej;
-              reader.readAsDataURL(blob);
-            });
-            im.setAttribute('src', dataUrl);
-          }
-        }catch(e){
+    // fail early if external styles or fonts exist
+    const sheets = Array.from(document.styleSheets || []);
+    for (const ss of sheets){
+      if (!ss.href) continue;
+      try{
+        const hrefOrigin = new URL(ss.href, location.href).origin;
+        if (hrefOrigin !== location.origin){
           wrapper.remove();
-          return alert('PNG生成を中止しました。出力領域に外部画像が含まれています。外部画像はCORS制約によりエクスポートできません。');
+          throw new Error("external-styles");
         }
+      }catch(e){
+        wrapper.remove();
+        throw new Error("external-styles");
       }
+    }
 
-      // Detect external stylesheets or fonts that could taint the canvas
-      const sheets = Array.from(document.styleSheets || []);
-      for (const ss of sheets){
-        if (!ss.href) continue;
-        try{
-          const hrefOrigin = new URL(ss.href, location.href).origin;
-          if (hrefOrigin !== location.origin){
-            wrapper.remove();
-            return alert('PNG生成を中止しました。外部CSSまたは外部フォントが出力領域に影響しています。外部リソースを除いて再試行してください。');
-          }
-        }catch(e){
-          wrapper.remove();
-          return alert('PNG生成を中止しました。外部CSSまたはフォントが原因でエクスポートできません。');
+    const imgs = Array.from(clone.querySelectorAll('img'));
+    for (const im of imgs){
+      const src = im.getAttribute('src') || '';
+      if (!src || src.startsWith('data:')) continue;
+      try{
+        const url = new URL(src, location.href).href;
+        const origin = new URL(url).origin;
+        if (origin !== location.origin){
+          // try to fetch and inline (CORS must allow)
+          const resp = await fetch(url, { mode: 'cors' });
+          if (!resp.ok) throw new Error('fetch-failed');
+          const blob = await resp.blob();
+          const reader = new FileReader();
+          const dataUrl = await new Promise((res, rej) => {
+            reader.onload = () => res(reader.result);
+            reader.onerror = rej;
+            reader.readAsDataURL(blob);
+          });
+          im.setAttribute('src', dataUrl);
         }
+      }catch(e){
+        wrapper.remove();
+        throw new Error("external-images");
       }
+    }
 
-      // Measurements after inlining imgs
-      const width = Math.min(document.documentElement.clientWidth, 1200);
-      const height = Math.max(clone.scrollHeight + 40, 200);
+    const width = Math.min(document.documentElement.clientWidth, 1200);
+    const height = Math.max(clone.scrollHeight + 40, 200);
+    const inlineStyle = `
+      *{box-sizing:border-box}
+      body{margin:0;font-family:system-ui,-apple-system,'Noto Sans JP','Hiragino Kaku Gothic ProN',Segoe UI,Roboto,Arial;color:#071428;line-height:1.6}
+      .num{color:#0b5cff;font-weight:700;margin-right:6px}
+      .generated h2,.all-list h2{color:#0b5cff}
+    `;
+    const serialized = new XMLSerializer().serializeToString(clone);
+    wrapper.remove();
 
-      // Inline minimal CSS to stabilize rendering in SVG foreignObject
-      const inlineStyle = `
-        *{box-sizing:border-box}
-        body{margin:0;font-family:system-ui,-apple-system,'Noto Sans JP','Hiragino Kaku Gothic ProN',Segoe UI,Roboto,Arial;color:#071428;line-height:1.6}
-        .num{color:#0b5cff;font-weight:700;margin-right:6px}
-        .generated h2,.all-list h2{color:#0b5cff}
-      `;
-
-      const serialized = new XMLSerializer().serializeToString(clone);
-      wrapper.remove();
-
-      // Build SVG
-      const svg = `<?xml version="1.0" encoding="utf-8"?>
+    const svg = `<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'>
   <foreignObject width='100%' height='100%'>
     <div xmlns="http://www.w3.org/1999/xhtml">
@@ -276,48 +256,117 @@
   </foreignObject>
 </svg>`;
 
-      const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const img = new Image();
-
-      img.onload = () => {
-        try{
-          const ratio = window.devicePixelRatio || 1;
-          const canvas = document.createElement('canvas');
-          canvas.width = Math.round(width * ratio);
-          canvas.height = Math.round(height * ratio);
-          const ctx = canvas.getContext('2d');
-          ctx.scale(ratio, ratio);
-          ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,width,height);
-          ctx.drawImage(img, 0, 0, width, height);
-
-          canvas.toBlob((outBlob) => {
-            if (!outBlob) { URL.revokeObjectURL(url); return alert('PNG生成に失敗しました'); }
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(outBlob);
-            a.download = 'questions.png';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-            showToast('PNGを保存しました');
-          }, 'image/png');
-        }catch(err){
+    const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => {
+      try{
+        const ratio = window.devicePixelRatio || 1;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(width * ratio);
+        canvas.height = Math.round(height * ratio);
+        const ctx = canvas.getContext('2d');
+        ctx.scale(ratio, ratio);
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,width,height);
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob((outBlob) => {
+          if (!outBlob) { URL.revokeObjectURL(url); throw new Error("toBlob-failed"); }
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(outBlob);
+          a.download = 'questions.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
           URL.revokeObjectURL(url);
-          console.error('canvas export error:', err);
-          alert('PNG生成に失敗しました。外部リソースによる汚染が疑われます。コンソールのエラーを確認してください。');
-        }
-      };
-      img.onerror = (e) => { URL.revokeObjectURL(url); console.error('image load error', e); alert('画像化に失敗しました'); };
-      img.src = url;
+          showToast('PNGを保存しました');
+        }, 'image/png');
+      }catch(err){
+        URL.revokeObjectURL(url);
+        throw err;
+      }
+    };
+    img.onerror = (e) => { URL.revokeObjectURL(url); throw new Error("image-load"); };
+    img.src = url;
+  }
 
+  // fallback: draw plain text directly to canvas (robust, no external resources)
+  async function handleSavePNG_Fallback(){
+    const node = $(OUT_ID);
+    if(!node) return alert("出力エリアが見つかりません");
+    const text = node.innerText.trim();
+    if(!text) return alert("出力内容が空です");
+
+    const maxWidth = Math.min(document.documentElement.clientWidth, 1200);
+    const fontSize = 16;
+    const lineHeight = Math.round(fontSize * 1.6);
+    const padding = 20;
+    const fontFamily = "Noto Sans JP, system-ui, -apple-system, 'Segoe UI', Roboto, Arial";
+    const tempCanvas = document.createElement("canvas");
+    const tctx = tempCanvas.getContext("2d");
+    tctx.font = `${fontSize}px ${fontFamily}`;
+
+    const rawLines = text.split('\n');
+    const lines = [];
+    for (const rl of rawLines){
+      let remaining = rl;
+      while (remaining.length){
+        let fit = remaining;
+        while (tctx.measureText(fit).width > (maxWidth - padding * 2) && fit.length > 1) fit = fit.slice(0, -1);
+        if (!fit.length) { fit = remaining.slice(0,1); }
+        lines.push(fit);
+        remaining = remaining.slice(fit.length);
+      }
+    }
+
+    const contentWidth = Math.min(maxWidth, Math.max(400, Math.ceil(Math.max(...lines.map(l => tctx.measureText(l).width)) + padding * 2)));
+    const contentHeight = lines.length * lineHeight + padding * 2;
+    const ratio = window.devicePixelRatio || 1;
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(contentWidth * ratio);
+    canvas.height = Math.round(contentHeight * ratio);
+    canvas.style.width = contentWidth + "px";
+    canvas.style.height = contentHeight + "px";
+    const ctx = canvas.getContext("2d");
+    ctx.scale(ratio, ratio);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0,0,contentWidth,contentHeight);
+    ctx.fillStyle = "#071428";
+    ctx.font = `${fontSize}px ${fontFamily}`;
+    ctx.textBaseline = "top";
+    let y = padding;
+    for (const line of lines){
+      ctx.fillText(line, padding, y);
+      y += lineHeight;
+      if (y > 20000) break;
+    }
+    canvas.toBlob((blob) => {
+      if (!blob) return alert("PNG生成に失敗しました");
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "questions.png";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+      showToast("PNGを保存しました");
+    }, "image/png");
+  }
+
+  // orchestrator: try foreignObject first, fallback on any error
+  async function handleSavePNG(){
+    try{
+      await handleSavePNG_ForeignObject();
     }catch(e){
-      console.error('handleSavePNG error:', e);
-      alert('PNG生成に失敗しました。コンソールを確認してください。');
+      console.warn("foreignObject export failed, falling back:", e);
+      try{
+        await handleSavePNG_Fallback();
+      }catch(err){
+        console.error("fallback export failed:", err);
+        alert("PNG生成に失敗しました。コンソールのエラーを確認してください。");
+      }
     }
   }
 
-  // SNS share
   function handleShare(platform){
     const out = $(OUT_ID);
     if(!out) return alert("出力エリアが見つかりません");
@@ -330,30 +379,24 @@
     window.open(url,"_blank","noopener");
   }
 
-  // Toast
   function showToast(msg){
     const t = document.createElement("div"); t.className="toast"; t.textContent=msg; document.body.appendChild(t);
     requestAnimationFrame(()=> t.classList.add("visible"));
     setTimeout(()=> { t.classList.remove("visible"); setTimeout(()=> t.remove(),300); },1600);
   }
 
-  // Init
   document.addEventListener("DOMContentLoaded", ()=>{
     const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"),
           bPng = $("btn-png"), bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
-
-    // Initial render: only pre-rendered (20) shown; input default value remains 5
     const out = $(OUT_ID);
     if(out) out.innerHTML = renderStaticPreRendered();
 
     if(bGen) bGen.addEventListener("click", ()=> {
       const n = parseInt($("num").value,10) || 5;
       const generated = generateRandom(n);
-      // Show generated block ABOVE the pre-rendered block
       if(out) out.innerHTML = renderGeneratedBlock(generated) + renderStaticPreRendered();
     });
 
-    // "全表示" shows full list (all QUESTIONS) without duplicating pre-rendered block
     function renderFullList(list){
       const html = list.map((q,i)=>`
         <section class="q" role="article" aria-labelledby="all-q-${i+1}">
@@ -372,9 +415,7 @@
     if(bX) bX.addEventListener("click", ()=> handleShare("x"));
     if(bFb) bFb.addEventListener("click", ()=> handleShare("facebook"));
     if(bLine) bLine.addEventListener("click", ()=> handleShare("line"));
-
   });
 
-  // expose debug (keep minimal)
   window.QA_GENERATOR = { QUESTIONS, generateRandom };
 })();
