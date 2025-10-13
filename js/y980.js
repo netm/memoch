@@ -178,24 +178,98 @@
 
   function handlePrint(){ window.print(); }
 
-  // Share handler - fixed LINE share URL and robust encoding
-  function handleShare(platform){
+  // share chooser UI
+  function createShareModal(){
+    // if already present, return it
+    let modal = document.getElementById('share-modal');
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.id = 'share-modal';
+    modal.className = 'share-modal';
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.setAttribute('aria-labelledby','share-modal-title');
+    modal.innerHTML = `
+      <div class="share-panel" role="document">
+        <header class="share-header">
+          <h2 id="share-modal-title">共有する</h2>
+          <button class="share-close" aria-label="閉じる">&times;</button>
+        </header>
+        <div class="share-body">
+          <button data-share="x" class="share-option">X（Twitterで共有）</button>
+          <button data-share="facebook" class="share-option">Facebookで共有</button>
+          <button data-share="email" class="share-option">メールで共有</button>
+          <button data-share="copylink" class="share-option">リンクをコピー</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // event bindings
+    modal.querySelector('.share-close').addEventListener('click', ()=> closeShareModal());
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeShareModal(); });
+    modal.querySelectorAll('.share-option').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const mode = btn.getAttribute('data-share');
+        handleShareChoice(mode);
+        closeShareModal();
+      });
+    });
+    // keyboard: close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeShareModal();
+    });
+    return modal;
+  }
+
+  function openShareModal(){
+    const modal = createShareModal();
+    modal.classList.add('open');
+    // focus first actionable button
+    const first = modal.querySelector('.share-option');
+    if (first) first.focus();
+  }
+
+  function closeShareModal(){
+    const modal = document.getElementById('share-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    // return focus to share chooser button if exists
+    const chooser = document.getElementById('btn-share-chooser');
+    if (chooser) chooser.focus();
+  }
+
+  // handle each share action
+  function handleShareChoice(mode){
     const out = $(OUT_ID);
     if(!out) return alert("出力エリアが見つかりません");
     const text = out.innerText.trim().slice(0,300);
     const pageUrl = location.href;
-    let url = "";
-    if(platform==="x") {
-      url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
-    } else if(platform==="facebook") {
-      url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-    } else if(platform==="line") {
-      // LINE official share endpoint: pass url and text; ensures proper encoding
-      const u = encodeURIComponent(pageUrl);
-      const t = encodeURIComponent(text);
-      url = `https://social-plugins.line.me/lineit/share?url=${u}&text=${t}`;
+    if (mode === 'x') {
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
+      window.open(url, '_blank', 'noopener');
+    } else if (mode === 'facebook') {
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+      window.open(url, '_blank', 'noopener');
+    } else if (mode === 'email') {
+      const subject = encodeURIComponent('面接の質問テンプレ');
+      const body = encodeURIComponent(text + '\n\n' + pageUrl);
+      location.href = `mailto:?subject=${subject}&body=${body}`;
+    } else if (mode === 'copylink') {
+      const link = pageUrl;
+      if (!navigator.clipboard) {
+        const ta = document.createElement('textarea');
+        ta.value = link;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast('リンクをコピーしました'); } catch(e) { alert('コピーに失敗しました'); }
+        ta.remove();
+        return;
+      }
+      navigator.clipboard.writeText(link).then(()=> showToast('リンクをコピーしました')).catch(()=> alert('コピーに失敗しました'));
     }
-    window.open(url, "_blank", "noopener");
   }
 
   function showToast(msg){
@@ -206,7 +280,7 @@
 
   document.addEventListener("DOMContentLoaded", ()=>{
     const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"),
-          bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
+          bShareChooser = $("btn-share-chooser"), bX = $("btn-x"), bFb = $("btn-fb"), bAllBottom = $("btn-all-bottom");
     const out = $(OUT_ID);
     if(out) out.innerHTML = renderStaticPreRendered();
 
@@ -230,9 +304,11 @@
 
     if(bCopy) bCopy.addEventListener("click", handleCopy);
     if(bPrint) bPrint.addEventListener("click", handlePrint);
-    if(bX) bX.addEventListener("click", ()=> handleShare("x"));
-    if(bFb) bFb.addEventListener("click", ()=> handleShare("facebook"));
-    if(bLine) bLine.addEventListener("click", ()=> handleShare("line"));
+    if(bShareChooser) bShareChooser.addEventListener("click", openShareModal);
+
+    // keep quick platform buttons working too
+    if(bX) bX.addEventListener("click", ()=> handleShareChoice("x"));
+    if(bFb) bFb.addEventListener("click", ()=> handleShareChoice("facebook"));
   });
 
   window.QA_GENERATOR = { QUESTIONS, generateRandom };

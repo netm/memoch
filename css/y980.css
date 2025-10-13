@@ -100,11 +100,22 @@ body{
 .toast{position:fixed;left:50%;transform:translateX(-50%) translateY(10px);bottom:30px;background:#081435;color:#fff;padding:10px 14px;border-radius:8px;opacity:0;transition:all .25s ease;z-index:9999;pointer-events:none}
 .toast.visible{opacity:0.98;transform:translateX(-50%) translateY(0)}
 
+/* Share modal */
+.share-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:10000;background:rgba(6,10,20,0.45)}
+.share-modal.open{display:flex}
+.share-panel{background:#fff;border-radius:12px;max-width:420px;width:92%;box-shadow:0 10px 30px rgba(6,10,20,0.12);overflow:hidden}
+.share-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0f5ff}
+.share-header h2{margin:0;font-size:1rem;color:var(--text)}
+.share-close{background:transparent;border:none;font-size:20px;line-height:1;color:#556575;cursor:pointer}
+.share-body{display:flex;flex-wrap:wrap;gap:8px;padding:16px}
+.share-option{flex:1 1 45%;padding:10px;border-radius:8px;border:1px solid #eef6ff;background:#fbfdff;color:var(--accent);font-weight:700;cursor:pointer}
+.share-option:focus{outline:3px solid rgba(11,92,255,0.18);}
+
 /* 印刷最適化 */
 @media print{
   body{background:#fff;padding:0}
   .container{box-shadow:none;border:none;border-radius:0;padding:8px}
-  .controls,.actions,.aside,.footer{display:none}
+  .controls,.actions,.aside,.footer,.share-modal{display:none}
   #gen-output{border:none;padding:0}
 }
 

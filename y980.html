@@ -21,7 +21,7 @@ eleventyExcludeFromCollections: false
     "@type":"FAQPage",
     "mainEntity":[
       {"@type":"Question","name":"面接で使える質問テンプレはありますか","acceptedAnswer":{"@type":"Answer","text":"このページでは面接で使える質問テンプレ100件を収録し、代表的な項目はソースにプリレンダ済みです。"}},
-      {"@type":"Question","name":"生成した質問は保存や共有できますか","acceptedAnswer":{"@type":"Answer","text":"コピー、印刷、X、Facebook、LINEで共有できます。"}}
+      {"@type":"Question","name":"生成した質問は保存や共有できますか","acceptedAnswer":{"@type":"Answer","text":"コピー、印刷、X、Facebook、メールで共有できます。"}}
     ]
   }
   </script>
@@ -62,13 +62,13 @@ eleventyExcludeFromCollections: false
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
           <button id="btn-copy" class="btn">文章をコピー</button>
           <button id="btn-print" class="btn">印刷</button>
-          <!-- PNG 保存は削除しました -->
+          <!-- PNG 保存は削除済み -->
         </div>
         <h3 style="margin-top:12px">共有</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button id="btn-share-chooser" class="btn ghost" aria-haspopup="dialog">共有する</button>
           <button id="btn-x" class="btn ghost">X</button>
           <button id="btn-fb" class="btn ghost">Facebook</button>
-          <button id="btn-line" class="btn ghost">LINE</button>
         </div>
       </aside>
     </div>
