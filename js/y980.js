@@ -178,205 +178,24 @@
 
   function handlePrint(){ window.print(); }
 
-  // foreignObject-based exporter (may fail if external resources exist)
-  async function handleSavePNG_ForeignObject(){
-    const node = $(OUT_ID);
-    if(!node) throw new Error("no-output");
-    if (document.fonts && document.fonts.ready) await document.fonts.ready;
-    const clone = node.cloneNode(true);
-    const wrapper = document.createElement('div');
-    wrapper.style.position = 'fixed';
-    wrapper.style.left = '-99999px';
-    wrapper.style.top = '0';
-    wrapper.style.width = Math.min(document.documentElement.clientWidth, 1200) + 'px';
-    wrapper.appendChild(clone);
-    document.body.appendChild(wrapper);
-    await new Promise(requestAnimationFrame);
-
-    // fail early if external styles or fonts exist
-    const sheets = Array.from(document.styleSheets || []);
-    for (const ss of sheets){
-      if (!ss.href) continue;
-      try{
-        const hrefOrigin = new URL(ss.href, location.href).origin;
-        if (hrefOrigin !== location.origin){
-          wrapper.remove();
-          throw new Error("external-styles");
-        }
-      }catch(e){
-        wrapper.remove();
-        throw new Error("external-styles");
-      }
-    }
-
-    const imgs = Array.from(clone.querySelectorAll('img'));
-    for (const im of imgs){
-      const src = im.getAttribute('src') || '';
-      if (!src || src.startsWith('data:')) continue;
-      try{
-        const url = new URL(src, location.href).href;
-        const origin = new URL(url).origin;
-        if (origin !== location.origin){
-          // try to fetch and inline (CORS must allow)
-          const resp = await fetch(url, { mode: 'cors' });
-          if (!resp.ok) throw new Error('fetch-failed');
-          const blob = await resp.blob();
-          const reader = new FileReader();
-          const dataUrl = await new Promise((res, rej) => {
-            reader.onload = () => res(reader.result);
-            reader.onerror = rej;
-            reader.readAsDataURL(blob);
-          });
-          im.setAttribute('src', dataUrl);
-        }
-      }catch(e){
-        wrapper.remove();
-        throw new Error("external-images");
-      }
-    }
-
-    const width = Math.min(document.documentElement.clientWidth, 1200);
-    const height = Math.max(clone.scrollHeight + 40, 200);
-    const inlineStyle = `
-      *{box-sizing:border-box}
-      body{margin:0;font-family:system-ui,-apple-system,'Noto Sans JP','Hiragino Kaku Gothic ProN',Segoe UI,Roboto,Arial;color:#071428;line-height:1.6}
-      .num{color:#0b5cff;font-weight:700;margin-right:6px}
-      .generated h2,.all-list h2{color:#0b5cff}
-    `;
-    const serialized = new XMLSerializer().serializeToString(clone);
-    wrapper.remove();
-
-    const svg = `<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'>
-  <foreignObject width='100%' height='100%'>
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>${inlineStyle}</style>
-      ${serialized}
-    </div>
-  </foreignObject>
-</svg>`;
-
-    const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const img = new Image();
-    img.onload = () => {
-      try{
-        const ratio = window.devicePixelRatio || 1;
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.round(width * ratio);
-        canvas.height = Math.round(height * ratio);
-        const ctx = canvas.getContext('2d');
-        ctx.scale(ratio, ratio);
-        ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,width,height);
-        ctx.drawImage(img, 0, 0, width, height);
-        canvas.toBlob((outBlob) => {
-          if (!outBlob) { URL.revokeObjectURL(url); throw new Error("toBlob-failed"); }
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(outBlob);
-          a.download = 'questions.png';
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          URL.revokeObjectURL(url);
-          showToast('PNGを保存しました');
-        }, 'image/png');
-      }catch(err){
-        URL.revokeObjectURL(url);
-        throw err;
-      }
-    };
-    img.onerror = (e) => { URL.revokeObjectURL(url); throw new Error("image-load"); };
-    img.src = url;
-  }
-
-  // fallback: draw plain text directly to canvas (robust, no external resources)
-  async function handleSavePNG_Fallback(){
-    const node = $(OUT_ID);
-    if(!node) return alert("出力エリアが見つかりません");
-    const text = node.innerText.trim();
-    if(!text) return alert("出力内容が空です");
-
-    const maxWidth = Math.min(document.documentElement.clientWidth, 1200);
-    const fontSize = 16;
-    const lineHeight = Math.round(fontSize * 1.6);
-    const padding = 20;
-    const fontFamily = "Noto Sans JP, system-ui, -apple-system, 'Segoe UI', Roboto, Arial";
-    const tempCanvas = document.createElement("canvas");
-    const tctx = tempCanvas.getContext("2d");
-    tctx.font = `${fontSize}px ${fontFamily}`;
-
-    const rawLines = text.split('\n');
-    const lines = [];
-    for (const rl of rawLines){
-      let remaining = rl;
-      while (remaining.length){
-        let fit = remaining;
-        while (tctx.measureText(fit).width > (maxWidth - padding * 2) && fit.length > 1) fit = fit.slice(0, -1);
-        if (!fit.length) { fit = remaining.slice(0,1); }
-        lines.push(fit);
-        remaining = remaining.slice(fit.length);
-      }
-    }
-
-    const contentWidth = Math.min(maxWidth, Math.max(400, Math.ceil(Math.max(...lines.map(l => tctx.measureText(l).width)) + padding * 2)));
-    const contentHeight = lines.length * lineHeight + padding * 2;
-    const ratio = window.devicePixelRatio || 1;
-    const canvas = document.createElement("canvas");
-    canvas.width = Math.round(contentWidth * ratio);
-    canvas.height = Math.round(contentHeight * ratio);
-    canvas.style.width = contentWidth + "px";
-    canvas.style.height = contentHeight + "px";
-    const ctx = canvas.getContext("2d");
-    ctx.scale(ratio, ratio);
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,contentWidth,contentHeight);
-    ctx.fillStyle = "#071428";
-    ctx.font = `${fontSize}px ${fontFamily}`;
-    ctx.textBaseline = "top";
-    let y = padding;
-    for (const line of lines){
-      ctx.fillText(line, padding, y);
-      y += lineHeight;
-      if (y > 20000) break;
-    }
-    canvas.toBlob((blob) => {
-      if (!blob) return alert("PNG生成に失敗しました");
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "questions.png";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(a.href);
-      showToast("PNGを保存しました");
-    }, "image/png");
-  }
-
-  // orchestrator: try foreignObject first, fallback on any error
-  async function handleSavePNG(){
-    try{
-      await handleSavePNG_ForeignObject();
-    }catch(e){
-      console.warn("foreignObject export failed, falling back:", e);
-      try{
-        await handleSavePNG_Fallback();
-      }catch(err){
-        console.error("fallback export failed:", err);
-        alert("PNG生成に失敗しました。コンソールのエラーを確認してください。");
-      }
-    }
-  }
-
+  // Share handler - fixed LINE share URL and robust encoding
   function handleShare(platform){
     const out = $(OUT_ID);
     if(!out) return alert("出力エリアが見つかりません");
     const text = out.innerText.trim().slice(0,300);
     const pageUrl = location.href;
     let url = "";
-    if(platform==="x") url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
-    if(platform==="facebook") url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-    if(platform==="line") url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(text)}`;
-    window.open(url,"_blank","noopener");
+    if(platform==="x") {
+      url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
+    } else if(platform==="facebook") {
+      url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+    } else if(platform==="line") {
+      // LINE official share endpoint: pass url and text; ensures proper encoding
+      const u = encodeURIComponent(pageUrl);
+      const t = encodeURIComponent(text);
+      url = `https://social-plugins.line.me/lineit/share?url=${u}&text=${t}`;
+    }
+    window.open(url, "_blank", "noopener");
   }
 
   function showToast(msg){
@@ -387,7 +206,7 @@
 
   document.addEventListener("DOMContentLoaded", ()=>{
     const bGen = $("btn-generate"), bAll = $("btn-all"), bCopy = $("btn-copy"), bPrint = $("btn-print"),
-          bPng = $("btn-png"), bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
+          bX = $("btn-x"), bFb = $("btn-fb"), bLine = $("btn-line"), bAllBottom = $("btn-all-bottom");
     const out = $(OUT_ID);
     if(out) out.innerHTML = renderStaticPreRendered();
 
@@ -411,7 +230,6 @@
 
     if(bCopy) bCopy.addEventListener("click", handleCopy);
     if(bPrint) bPrint.addEventListener("click", handlePrint);
-    if(bPng) bPng.addEventListener("click", handleSavePNG);
     if(bX) bX.addEventListener("click", ()=> handleShare("x"));
     if(bFb) bFb.addEventListener("click", ()=> handleShare("facebook"));
     if(bLine) bLine.addEventListener("click", ()=> handleShare("line"));
