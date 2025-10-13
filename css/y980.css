@@ -109,7 +109,7 @@ body{
 .share-close{background:transparent;border:none;font-size:20px;line-height:1;color:#556575;cursor:pointer}
 .share-body{display:flex;flex-wrap:wrap;gap:8px;padding:16px}
 .share-option{flex:1 1 45%;padding:10px;border-radius:8px;border:1px solid #eef6ff;background:#fbfdff;color:var(--accent);font-weight:700;cursor:pointer}
-.share-option:focus{outline:3px solid rgba(11,92,255,0.18);}
+.share-option:focus{outline:3px solid rgba(11,92,255,0.18)}
 
 /* 印刷最適化 */
 @media print{
@@ -132,3 +132,8 @@ body{
 /* Ensure foreignObject-friendly text wrapping */
 #gen-output { word-break: break-word; white-space: normal; line-height:1.6; }
 #gen-output * { -webkit-font-smoothing:antialiased; }
+
+/* Optional: make this CSS safe to preload if you do so by indicating it's used immediately */
+/* If you previously used <link rel="preload" href="/css/c.css">, prefer:
+   <link rel="preload" href="/css/c.css" as="style" onload="this.rel='stylesheet'">
+   or simply <link rel="stylesheet" href="/css/c.css"> in the document head. */
