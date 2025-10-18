@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>料理・生活の感覚単位換算チャート — ひとつまみからカップまで</title>
+  <meta name="description" content="ひとつまみ、小さじ、大さじ、カップなど料理で使う曖昧な単位をml・g換算で一目でわかる1ページリファレンス。印刷用A4にも適した即席チャート。">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta property="og:title" content="料理・生活の感覚単位換算チャート">
+  <meta property="og:description" content="ひとつまみからカップまで。砂糖・薄力粉・水での換算目安を1ページで。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/og-image.png">
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index,follow">
+  <script defer src="script.js"></script>
+  <style>/* Critical inline CSS for faster LCP handled by linked file fallback */</style>
+</head>
+<body>
+  <main class="container" role="main">
+    <header class="hero" id="top">
+      <div class="title">料理・生活の感覚単位換算チャート</div>
+      <div class="lead">ひとつまみ、小さじ、大さじ、カップなどの目安をml・gで即参照。印刷・保存用の1ページリファレンス。</div>
+      <form id="anchor-form" class="search-row no-print">
+        <input id="anchor-search" type="search" placeholder="例: 大さじは何ml？ / ひとつまみ 何g？" aria-label="ページ内検索">
+        <button class="btn" type="submit">ページ内検索</button>
+        <button id="print-btn" type="button" class="btn" style="background:#254b6b">印刷</button>
+      </form>
+      <div class="meta">注: 値は一般的な目安です。材料や計量方法により差が出ます。</div>
+    </header>
+    <section aria-labelledby="chart-heading">
+      <h2 id="chart-heading">即席換算チャート（代表値）</h2>
+      <div class="table-wrap" role="table" aria-label="換算チャート">
+        <table>
+          <thead>
+            <tr>
+              <th>単位</th>
+              <th>体積 (ml)</th>
+              <th>水換算 (g)</th>
+              <th>砂糖換算 (g)</th>
+              <th>薄力粉換算 (g)</th>
+            </tr>
+          </thead>
+          <tbody id="chart-body">
+            <!-- JS will populate -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="controls-wrap">
+      <h2 id="convert-heading">即時変換ツール</h2>
+      <form id="convert-form" class="no-print" aria-labelledby="convert-heading">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <label class="kv"><input type="radio" name="mode" id="mode-volume" checked> 容量→容量</label>
+          <label class="kv"><input type="radio" name="mode" id="mode-weight"> 容量↔重量</label>
+        </div>
+        <div class="controls" style="margin-top:12px">
+          <div>
+            <label class="small">値</label>
+            <input id="conv-value" type="number" step="any" value="1" aria-label="変換する値">
+          </div>
+          <div>
+            <label class="small">材料（重量変換時）</label>
+            <select id="conv-ingredient" aria-label="材料選択">
+              <option value="water">water</option>
+              <option value="granulated_sugar">granulated_sugar</option>
+              <option value="brown_sugar_packed">brown_sugar_packed</option>
+              <option value="all_purpose_flour">all_purpose_flour</option>
+              <option value="butter">butter</option>
+              <option value="olive_oil">olive_oil</option>
+            </select>
+          </div>
+          <div>
+            <label class="small">From</label>
+            <select id="conv-from">
+              <option value="pinch">pinch (ひとつまみ)</option>
+              <option value="smidge">smidge (ひとつまみ大め)</option>
+              <option value="teaspoon">teaspoon (小さじ)</option>
+              <option value="tablespoon">tablespoon (大さじ)</option>
+              <option value="cup_us">cup (カップ)</option>
+              <option value="ml">ml</option>
+            </select>
+          </div>
+          <div>
+            <label class="small">To</label>
+            <select id="conv-to">
+              <option value="teaspoon">teaspoon (小さじ)</option>
+              <option value="tablespoon">tablespoon (大さじ)</option>
+              <option value="cup_us">cup (カップ)</option>
+              <option value="ml">ml</option>
+              <option value="fluid_ounce">fl oz</option>
+            </select>
+          </div>
+        </div>
+        <div id="vol-mode-controls" style="margin-top:10px">
+          <small class="small">モード: 容量変換</small>
+        </div>
+        <div id="wt-mode-controls" hidden style="margin-top:10px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <label><input type="radio" name="dir" id="direction-vol2g" checked> 容量→g</label>
+            <label><input type="radio" name="dir" id="direction-g2vol"> g→容量</label>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+          <button class="btn" type="submit">変換</button>
+          <div id="conv-result" class="result" aria-live="polite"></div>
+        </div>
+      </form>
+    </section>
+    <section class="faq" id="faq">
+      <h2 id="q1">よくある質問: 「ひとつまみ」は何gですか</h2>
+      <p>一般的に「ひとつまみ」は約0.3〜0.5 ml、食塩であれば約0.5 g未満のことが多いです。当チャートでは<b>0.36 ml</b>を代表値として掲載しています。密度の違いによって実際の重さは変わります。</p>
+      <h2 id="q2">小さじ・大さじのmlは固定ですか</h2>
+      <p>はい。料理で使う小さじは一般的に5 ml、大さじは15 mlとして扱われます。国や計量カップの規格で微差が出ることがあります。</p>
+      <h2 id="q3">砂糖や薄力粉の換算が違いますがなぜですか</h2>
+      <p>材料ごとの詰まり具合（密度）で同じ体積でも重さが変わります。表中の数値は代表的な詰まり具合を想定した目安です。</p>
+      <h2 id="q4">印刷してレシピに貼れますか</h2>
+      <p>はい。画面上部の「印刷」ボタンでA4にフレンドリーなレイアウトで出力できます。印刷用CSSを用意しているため不要な要素は除去されます。</p>
+      <h2 id="q5">このページは更新が必要ですか</h2>
+      <p>目安データなので更新は不要です。必要ならば将来的に他の材料密度を追加できますが、基本的な換算表は長期間有効です。</p>
+    </section>
+    <section class="related-links" aria-labelledby="related-heading">
+      <h3 id="related-heading">関連コンテンツ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener noreferrer">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></li>
+        <li><a href="https://memoc.pages.dev/memode/" target="_blank" rel="noopener noreferrer">メモ付き電卓webブラウザ無料サイト</a></li>
+        <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener noreferrer">家計簿項目表のブラウザアプリ</a></li>
+        <li><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener noreferrer">タイマーおしゃれサイトの解説</a></li>
+        <li><a href="https://memoc.pages.dev/restau/" target="_blank" rel="noopener noreferrer">レストラン ランキング</a></li>
+      </ul>
+    </section>
+    <footer style="margin-top:20px;color:#6b7785;font-size:13px">
+      <div>ソース: 表は一般的な換算値・料理書の代表値に基づく目安です。</div>
+      <div style="margin-top:6px" class="meta">最終更新: 初回公開</div>
+    </footer>
+  </main>
+</body>
+</html>
