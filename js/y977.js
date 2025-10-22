@@ -1,5 +1,4 @@
 // y977.js - シンプル単一ページ四字熟語ジェネレーター + 検索 + あいうえお一覧
-// データはここに直接書く（外部ファイルを使わない要望に合わせる）
 const YOJI = [
 {word:"安穏無事", yomi:"あんのんぶじ", mean:"落ち着いて平穏無事であること", tags:["安心"], kanaHead:"あ"},
 {word:"暗中模索", yomi:"あんちゅうもさく", mean:"手掛かりがない中であれこれ試みること", tags:["困惑"], kanaHead:"あ"},
@@ -47,7 +46,7 @@ const YOJI = [
 {word:"公私混同", yomi:"こうしこんどう", mean:"公的なことと私的なことを区別しないこと", tags:["不安"], kanaHead:"こ"},
 {word:"郊外閑静", yomi:"こうがいかんせい", mean:"郊外で静かで落ち着いていること", tags:["安心"], kanaHead:"こ"},
 {word:"高論卓説", yomi:"こうろんたくせつ", mean:"優れた議論や立派な説明", tags:["感動"], kanaHead:"こ"},
-{word:"孤立無援", yomi:"こりつむえん", mean:"助けがなく孤立していること", tags:["不安","不安"], kanaHead:"こ"},
+{word:"孤立無援", yomi:"こりつむえん", mean:"助けがなく孤立していること", tags:["不安"], kanaHead:"こ"},
 {word:"功利主義", yomi:"こうりしゅぎ", mean:"利益や効用を重視する考え方", tags:["安心"], kanaHead:"こ"},
 {word:"刻苦勉励", yomi:"こっくべんれい", mean:"苦労しながら熱心に励むこと", tags:["感動"], kanaHead:"こ"},
 {word:"根源深遠", yomi:"こんげんしんえん", mean:"物事の根本が深く奥が深いこと", tags:["感動"], kanaHead:"こ"},
@@ -357,7 +356,6 @@ shareBtn.addEventListener('click', ()=>{
     prompt('共有リンク（コピーして貼る）', u);
   }
 });
-
 // 五十音ボタンでフィルタ
 kanaBtns.forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -368,7 +366,6 @@ kanaBtns.forEach(btn=>{
     statsEl.textContent = `${arr.length} 件（頭文字 ${k}）`;
   });
 });
-
 // ページ読み込み時に ?word=漢字 の場合はそのカードを表示してスクロール
 function openFromQuery(){
   const params = new URLSearchParams(location.search);
@@ -384,7 +381,6 @@ function openFromQuery(){
   },200);
 }
 openFromQuery();
-
 // ヘルパー関数
 function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
 function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
