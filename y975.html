@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>生活ハック百科</title>
+<link rel="canonical" href="https://memoc.pages.dev/y975/">
+<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="stylesheet" href="/css/y975.css">
+  <meta name="theme-color" content="#0b84ff">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <header class="site-header" role="banner">
+    <div class="title-wrap">
+      <h1 class="site-title">生活ハック百科</h1>
+      <p class="site-sub">短くて使える日常のコツをカードで素早く確認</p>
+    </div>
+    <div class="controls" aria-hidden="false">
+      <input id="search" type="search" placeholder="検索する（例：カビ、靴、脱臭）" aria-label="検索">
+      <select id="tagFilter" aria-label="カテゴリフィルタ">
+        <option value="">全てのカテゴリ</option>
+      </select>
+      <button id="toggleTheme" class="btn small" aria-pressed="false">テーマ</button>
+      <button id="showFav" class="btn small">お気に入り</button>
+    </div>
+  </header>
+  <main id="main" class="container" role="main">
+    <section id="content" class="grid" aria-live="polite"></section>
+    <aside id="sidebar" class="sidebar" aria-label="サイドバー">
+      <h2>目次</h2>
+      <ul id="toc" class="toc"></ul>
+      <hr>
+      <h3>操作ヒント</h3>
+      <ul>
+        <li>矢印でカード移動、Enterで展開</li>
+        <li>印刷ボタンでそのカードのみ印刷</li>
+        <li>お気に入りはブラウザに保存</li>
+      </ul>
+      <div class="related-links" aria-label="関連リンク">
+        <h3>関連リンク</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立メーカー（1週間）</a></li>
+          <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
+          <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らし 1週間献立メーカー</a></li>
+        </ul>
+        <a class="return-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりwebブラウザ便利サイトに戻る</a>
+      </div>
+    </aside>
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <small>作成: 生活ハック百科 — 静的ワンページ</small>
+  </footer>
+  <template id="cardTpl">
+    <article class="card" tabindex="0" role="article" aria-expanded="false">
+      <header>
+        <h3 class="card-title"></h3>
+        <div class="meta"></div>
+      </header>
+      <div class="card-body">
+        <ol class="steps"></ol>
+        <p class="materials"><strong>材料:</strong> <span></span></p>
+        <p class="tip"><em></em></p>
+      </div>
+      <footer class="card-footer">
+        <div class="tags"></div>
+        <div class="actions">
+          <button class="btn fav">お気に入り</button>
+          <button class="btn print">印刷</button>
+          <button class="btn copy">コピー</button>
+        </div>
+      </footer>
+    </article>
+  </template>
+  <script src="/js/y975.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* styles.css
+   シンプルでモバイルファーストなスタイル（関連リンクとサイト戻るボタンを下部に追加）
+*/
+
+:root{
+  --bg:#fafafa;
+  --card:#ffffff;
+  --accent:#2874A6;
+  --muted:#666;
+  --glass: rgba(0,0,0,0.04);
+  --maxw:900px;
+  --radius:8px;
+  font-family: "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", Arial, sans-serif;
+  color-scheme: light;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#111;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.45;
+  padding:24px 12px;
+  display:flex;
+  justify-content:center;
+}
+
+.container{
+  width:100%;
+  max-width:var(--maxw);
+}
+
+header{
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+h1{font-size:1.25rem;margin:0}
+.lead{color:var(--muted);font-size:0.95rem;margin-top:6px}
+
+.controls{
+  display:grid;
+  gap:8px;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom:12px;
+}
+@media(min-width:700px){ .controls{grid-template-columns: 120px 1fr 120px 1fr} }
+
+label{display:flex;flex-direction:column;font-size:0.85rem}
+select,input{padding:8px 10px;border-radius:6px;border:1px solid #ddd;background:linear-gradient(white, #fbfbfb);font-size:0.95rem}
+button{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+button.secondary{
+  background:#eee;color:#111;border:1px solid #ddd;font-weight:600;
+}
+.controls .wide{grid-column:span 2}
+
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  padding:14px;
+  margin-bottom:12px;
+}
+
+.summary .meta{color:var(--muted);margin:6px 0;font-size:0.95rem}
+.week{display:grid;gap:10px}
+.day{border-radius:8px;background:linear-gradient(white,var(--glass));padding:10px;border:1px solid #f0f0f0}
+.day h3{margin:0 0 8px 0;font-size:1rem}
+.recipe h4{margin:0;font-size:0.98rem}
+.recipe .small{color:var(--muted);font-size:0.85rem;margin:6px 0}
+.ingredients{font-size:0.9rem;color:#222;margin:6px 0}
+
+/* 買い物リスト */
+.shopping-list{display:flex;flex-direction:column;gap:6px}
+.item{display:flex;gap:12px;align-items:center;border-radius:6px;padding:6px;background:linear-gradient(white,#fff);border:1px solid #f5f5f5}
+.iname{flex:1;font-weight:600}
+.iqty{min-width:80px;text-align:right;color:var(--muted)}
+.icat{min-width:80px;text-align:right;font-size:0.82rem;color:#999}
+
+/* actions */
+#actions{display:flex;gap:8px;margin-top:12px}
+#actions button{padding:8px 10px;border-radius:6px}
+
+/* related links area at bottom */
+.related-links{
+  margin-top:12px;
+  padding:12px;
+  border-radius:8px;
+  background:linear-gradient(white,var(--glass));
+  border:1px solid #f0f0f0;
+}
+.related-links h3{
+  margin:0 0 8px 0;
+  font-size:1rem;
+}
+.related-links ul{
+  list-style:none;
+  padding:0;
+  margin:0 0 10px 0;
+}
+.related-links li{margin:6px 0}
+.related-links a{color:var(--accent);text-decoration:none;font-weight:600}
+.related-links a:hover{text-decoration:underline}
+
+/* return to site link */
+.return-link{
+  display:inline-block;
+  width:100%;
+  box-sizing:border-box;
+  margin-top:6px;
+  padding:10px 12px;
+  border-radius:8px;
+  background:transparent;
+  color:var(--accent);
+  text-decoration:none;
+  text-align:center;
+  border:1px solid rgba(40,116,166,0.12);
+  font-weight:700;
+}
+.return-link:hover{
+  background:rgba(40,116,166,0.04);
+}
+
+/* small screens: stack actions */
+@media(max-width:699px){
+  .controls{grid-template-columns: 1fr}
+  .controls .wide{grid-column:unset}
+  #actions{flex-direction:column}
+}
+
+/* 印刷用 */
+@media print{
+  body{padding:0}
+  header, .controls, #actions, .lead{display:none}
+  .container{max-width:none;padding:0}
+  .day{page-break-inside:avoid}
+}

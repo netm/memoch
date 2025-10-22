@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>一週間の夕食献立メーカー</title>
+  <meta name="description" content="人数・予算・調理時間で選べる一週間分の夕食献立と買い物リストを即時生成するブラウザアプリ。">
+<link rel="canonical" href="https://memoc.pages.dev/y973/">
+<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="stylesheet" href="/css/y973.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <div class="container">
+    <header>
+      <h1>一週間の夕食献立メーカー</h1>
+      <p class="lead">人数・予算・調理時間を選ぶだけで1週間分の夕食と買い物リストを生成します</p>
+    </header>
+    <section class="card controls" aria-label="操作">
+      <label>
+        人数
+        <select id="people" aria-label="人数">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </label>
+      <label>
+        予算
+        <select id="budget" aria-label="予算"></select>
+      </label>
+      <label>
+        調理時間
+        <select id="timePref" aria-label="調理時間">
+          <option value="short">時短</option>
+          <option value="normal">標準</option>
+          <option value="any">指定なし</option>
+        </select>
+      </label>
+      <label class="wide">
+        開始曜日
+        <select id="startDay" aria-label="開始曜日">
+          <option value="Mon">月曜日</option>
+          <option value="Sun">日曜日</option>
+        </select>
+      </label>
+      <div class="wide actions-row">
+        <button id="generate">生成する</button>
+        <button id="sample3000" class="secondary">サンプル: 1人 〜3000円</button>
+        <button id="download-recipes" class="secondary">recipes.json をダウンロード</button>
+      </div>
+    </section>
+    <main id="result-area">
+      <section id="summary" class="card" aria-live="polite"></section>
+      <section id="result" class="card"></section>
+      <section id="shopping" class="card">
+        <h3>買い物リスト</h3>
+        <div id="shopping-list"></div>
+        <p id="estimated-cost" class="estimate"></p>
+      </section>
+      <div id="bottom-actions" class="card"></div>
+      <div class="related-links card" aria-label="関連リンク">
+        <h3>関連リンク</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立メーカー（1週間）</a></li>
+          <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らし 1週間献立メーカー</a></li>
+          <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+        </ul>
+        <a class="return-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりのweb便利サイトに戻る</a>
+      </div>
+    </main>
+    <footer class="muted small">
+      このMVPは静的サイトとしてそのまま公開できます。JSONはページ内に埋め込まれています。
+    </footer>
+  </div>
+  <!-- Method B: JSON を HTML に埋め込む -->
+  <script id="recipes-data" type="application/json">
+{
+  "recipes": [
+    {"id":"r001","title":"鶏そぼろ丼","servings_base":1,"cost_per_serving":220,"time_minutes":20,"tags":["主菜","時短","作り置き"],"preserve_days":3,"ingredients":[{"name":"鶏ひき肉","qty":150,"unit":"g","category":"肉"},{"name":"玉ねぎ","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"},{"name":"砂糖","qty":8,"unit":"g","category":"調味料"}],"seo_slug":"torisoboro-don"},
+    {"id":"r002","title":"納豆卵かけご飯","servings_base":1,"cost_per_serving":120,"time_minutes":5,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"納豆","qty":1,"unit":"パック","category":"発酵食品"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"natto-tkg"},
+    {"id":"r003","title":"ツナとキャベツのパスタ","servings_base":1,"cost_per_serving":260,"time_minutes":25,"tags":["主菜","時短","洋風"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"tuna-cabbage-pasta"},
+    {"id":"r004","title":"鮭の塩焼き","servings_base":1,"cost_per_serving":300,"time_minutes":15,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"塩","qty":2,"unit":"g","category":"調味料"}],"seo_slug":"sake-shioyaki"},
+    {"id":"r005","title":"ほうれん草のおひたし","servings_base":1,"cost_per_serving":80,"time_minutes":10,"tags":["副菜","和食","時短"],"preserve_days":2,"ingredients":[{"name":"ほうれん草","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"},{"name":"かつお節","qty":1,"unit":"g","category":"乾物"}],"seo_slug":"ohitashi"},
+    {"id":"r006","title":"味噌汁（豆腐とわかめ）","servings_base":1,"cost_per_serving":60,"time_minutes":10,"tags":["汁物","和食","時短"],"preserve_days":1,"ingredients":[{"name":"出汁","qty":200,"unit":"ml","category":"調味料"},{"name":"豆腐","qty":50,"unit":"g","category":"豆腐"},{"name":"乾燥わかめ","qty":2,"unit":"g","category":"乾物"},{"name":"味噌","qty":10,"unit":"g","category":"調味料"}],"seo_slug":"miso-soup"},
+    {"id":"r007","title":"鶏の照り焼き","servings_base":1,"cost_per_serving":250,"time_minutes":25,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"醤油","qty":20,"unit":"ml","category":"調味料"},{"name":"みりん","qty":10,"unit":"ml","category":"調味料"},{"name":"砂糖","qty":5,"unit":"g","category":"調味料"}],"seo_slug":"torinoteriyaki"},
+    {"id":"r008","title":"麻婆豆腐（時短）","servings_base":1,"cost_per_serving":250,"time_minutes":20,"tags":["主菜","時短","中華"],"preserve_days":2,"ingredients":[{"name":"木綿豆腐","qty":200,"unit":"g","category":"豆腐"},{"name":"豚ひき肉","qty":80,"unit":"g","category":"肉"},{"name":"麻婆の素","qty":20,"unit":"g","category":"調味料"},{"name":"片栗粉","qty":5,"unit":"g","category":"調味料"}],"seo_slug":"mabo-tofu"},
+    {"id":"r009","title":"じゃがいもとベーコンのソテー","servings_base":1,"cost_per_serving":160,"time_minutes":20,"tags":["副菜","洋風","時短"],"preserve_days":2,"ingredients":[{"name":"じゃがいも","qty":150,"unit":"g","category":"野菜"},{"name":"ベーコン","qty":30,"unit":"g","category":"肉"},{"name":"塩","qty":2,"unit":"g","category":"調味料"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"potato-bacon"},
+    {"id":"r010","title":"鯖の味噌煮（缶詰活用）","servings_base":1,"cost_per_serving":200,"time_minutes":15,"tags":["主菜","缶詰","時短"],"preserve_days":3,"ingredients":[{"name":"鯖味噌缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"生姜","qty":5,"unit":"g","category":"野菜"}],"seo_slug":"saba-misoni"},
+    {"id":"r011","title":"親子丼","servings_base":1,"cost_per_serving":280,"time_minutes":20,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"鶏もも肉","qty":100,"unit":"g","category":"肉"},{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"玉ねぎ","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"}],"seo_slug":"oyakodon"},
+    {"id":"r012","title":"冷やしトマトとツナのサラダ","servings_base":1,"cost_per_serving":140,"time_minutes":5,"tags":["副菜","時短","洋風"],"preserve_days":1,"ingredients":[{"name":"トマト","qty":100,"unit":"g","category":"野菜"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"塩","qty":1,"unit":"g","category":"調味料"},{"name":"オリーブオイル","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"tomato-tuna-salad"},
+    {"id":"r013","title":"オムレツ（野菜入り）","servings_base":1,"cost_per_serving":180,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"玉ねぎ","qty":30,"unit":"g","category":"野菜"},{"name":"ピーマン","qty":20,"unit":"g","category":"野菜"},{"name":"牛乳","qty":10,"unit":"ml","category":"乳製品"}],"seo_slug":"veg-omelette"},
+    {"id":"r014","title":"豆腐ステーキ","servings_base":1,"cost_per_serving":150,"time_minutes":15,"tags":["主菜","時短","ヘルシー"],"preserve_days":1,"ingredients":[{"name":"木綿豆腐","qty":200,"unit":"g","category":"豆腐"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"},{"name":"ごま油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"tofu-steak"},
+    {"id":"r015","title":"鮭フレークおにぎり","servings_base":1,"cost_per_serving":120,"time_minutes":10,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"鮭フレーク","qty":15,"unit":"g","category":"加工品"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"のり","qty":1,"unit":"枚","category":"乾物"}],"seo_slug":"salmon-onigiri"},
+    {"id":"r016","title":"きんぴらごぼう（常備菜）","servings_base":1,"cost_per_serving":90,"time_minutes":20,"tags":["副菜","作り置き","和食"],"preserve_days":5,"ingredients":[{"name":"ごぼう","qty":80,"unit":"g","category":"野菜"},{"name":"人参","qty":40,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"},{"name":"みりん","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"kinpira-gobou"},
+    {"id":"r017","title":"ツナマヨトースト","servings_base":1,"cost_per_serving":130,"time_minutes":8,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"食パン","qty":1,"unit":"枚","category":"主食"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"マヨネーズ","qty":10,"unit":"g","category":"調味料"}],"seo_slug":"tuna-toast"},
+    {"id":"r018","title":"野菜炒め（豚肉入り）","servings_base":1,"cost_per_serving":240,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":2,"ingredients":[{"name":"豚こま切れ","qty":100,"unit":"g","category":"肉"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"},{"name":"もやし","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"stirfry-pork-veg"},
+    {"id":"r019","title":"カレー（レトルト＋野菜）","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":2,"ingredients":[{"name":"レトルトカレー","qty":1,"unit":"袋","category":"加工品"},{"name":"玉ねぎ","qty":50,"unit":"g","category":"野菜"},{"name":"人参","qty":40,"unit":"g","category":"野菜"}],"seo_slug":"retort-curry"},
+    {"id":"r020","title":"冷やし中華風サラダ","servings_base":1,"cost_per_serving":200,"time_minutes":10,"tags":["主菜","時短","中華"],"preserve_days":1,"ingredients":[{"name":"中華麺","qty":100,"unit":"g","category":"主食"},{"name":"きゅうり","qty":50,"unit":"g","category":"野菜"},{"name":"ハム","qty":30,"unit":"g","category":"肉"},{"name":"中華ドレッシング","qty":15,"unit":"ml","category":"調味料"}],"seo_slug":"hiyashi-chuka-salad"},
+    {"id":"r021","title":"ツナご飯（炊き込み）","servings_base":1,"cost_per_serving":180,"time_minutes":30,"tags":["主食","作り置き"],"preserve_days":2,"ingredients":[{"name":"米","qty":180,"unit":"g","category":"主食"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"tuna-rice"},
+    {"id":"r022","title":"ベーコンエッグ","servings_base":1,"cost_per_serving":150,"time_minutes":10,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"ベーコン","qty":40,"unit":"g","category":"肉"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"塩","qty":1,"unit":"g","category":"調味料"}],"seo_slug":"bacon-egg"},
+    {"id":"r023","title":"納豆パスタ（和風）","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"納豆","qty":1,"unit":"パック","category":"発酵食品"},{"name":"刻み海苔","qty":1,"unit":"g","category":"乾物"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"natto-pasta"},
+    {"id":"r024","title":"じゃこおろし冷奴","servings_base":1,"cost_per_serving":120,"time_minutes":5,"tags":["副菜","時短","和食"],"preserve_days":1,"ingredients":[{"name":"木綿豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"大根おろし","qty":50,"unit":"g","category":"野菜"},{"name":"じゃこ","qty":10,"unit":"g","category":"乾物"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"jako-hiyayakko"},
+    {"id":"r025","title":"オートミールおじや","servings_base":1,"cost_per_serving":140,"time_minutes":10,"tags":["主食","時短","ヘルシー"],"preserve_days":1,"ingredients":[{"name":"オートミール","qty":40,"unit":"g","category":"穀物"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"出汁","qty":200,"unit":"ml","category":"調味料"}],"seo_slug":"oat-porridge"},
+    {"id":"r026","title":"鮭とブロッコリーの蒸し物","servings_base":1,"cost_per_serving":320,"time_minutes":20,"tags":["主菜","ヘルシー"],"preserve_days":2,"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"ブロッコリー","qty":80,"unit":"g","category":"野菜"},{"name":"塩","qty":2,"unit":"g","category":"調味料"}],"seo_slug":"salmon-broccoli-steam"},
+    {"id":"r027","title":"豚の生姜焼き","servings_base":1,"cost_per_serving":280,"time_minutes":20,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"豚ロース薄切り","qty":120,"unit":"g","category":"肉"},{"name":"生姜","qty":5,"unit":"g","category":"野菜"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"}],"seo_slug":"buta-shogayaki"},
+    {"id":"r028","title":"揚げ出し豆腐（簡易）","servings_base":1,"cost_per_serving":200,"time_minutes":20,"tags":["副菜","和食"],"preserve_days":1,"ingredients":[{"name":"木綿豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"片栗粉","qty":10,"unit":"g","category":"調味料"},{"name":"めんつゆ","qty":20,"unit":"ml","category":"調味料"}],"seo_slug":"agedashi-tofu"},
+    {"id":"r029","title":"ミニハンバーグ","servings_base":1,"cost_per_serving":320,"time_minutes":30,"tags":["主菜","洋風"],"preserve_days":2,"ingredients":[{"name":"合いびき肉","qty":120,"unit":"g","category":"肉"},{"name":"パン粉","qty":10,"unit":"g","category":"調味料"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"玉ねぎ","qty":30,"unit":"g","category":"野菜"}],"seo_slug":"mini-hamburg"},
+    {"id":"r030","title":"トマト卵炒め（中華）","servings_base":1,"cost_per_serving":180,"time_minutes":12,"tags":["主菜","時短","中華"],"preserve_days":1,"ingredients":[{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"トマト","qty":100,"unit":"g","category":"野菜"},{"name":"塩","qty":2,"unit":"g","category":"調味料"},{"name":"砂糖","qty":3,"unit":"g","category":"調味料"}],"seo_slug":"tomato-egg-stir"},
+    {"id":"r031","title":"ツナサンドイッチ","servings_base":1,"cost_per_serving":200,"time_minutes":10,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"食パン","qty":2,"unit":"枚","category":"主食"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"マヨネーズ","qty":10,"unit":"g","category":"調味料"}],"seo_slug":"tuna-sandwich"},
+    {"id":"r032","title":"きのこピラフ（簡易）","servings_base":1,"cost_per_serving":240,"time_minutes":30,"tags":["主食","洋風","作り置き"],"preserve_days":2,"ingredients":[{"name":"米","qty":180,"unit":"g","category":"主食"},{"name":"きのこミックス","qty":80,"unit":"g","category":"野菜"},{"name":"コンソメ","qty":5,"unit":"g","category":"調味料"}],"seo_slug":"mushroom-pilaf"},
+    {"id":"r033","title":"しらす冷奴","servings_base":1,"cost_per_serving":120,"time_minutes":5,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"絹ごし豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"しらす","qty":15,"unit":"g","category":"乾物"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"shirasu-hiyayakko"},
+    {"id":"r034","title":"さば缶と大根の煮物","servings_base":1,"cost_per_serving":180,"time_minutes":20,"tags":["主菜","缶詰","作り置き"],"preserve_days":3,"ingredients":[{"name":"鯖水煮缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"大根","qty":100,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"saba-radish-simmer"},
+    {"id":"r035","title":"鶏むね肉の塩麹焼き","servings_base":1,"cost_per_serving":220,"time_minutes":25,"tags":["主菜","ヘルシー"],"preserve_days":2,"ingredients":[{"name":"鶏むね肉","qty":150,"unit":"g","category":"肉"},{"name":"塩麹","qty":15,"unit":"g","category":"調味料"},{"name":"塩","qty":1,"unit":"g","category":"調味料"}],"seo_slug":"salt-koji-chicken"},
+    {"id":"r036","title":"豆とひじきのサラダ","servings_base":1,"cost_per_serving":160,"time_minutes":10,"tags":["副菜","作り置き","ヘルシー"],"preserve_days":3,"ingredients":[{"name":"ミックスビーンズ","qty":80,"unit":"g","category":"豆類"},{"name":"乾燥ひじき","qty":5,"unit":"g","category":"乾物"},{"name":"酢","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"beans-hijiki-salad"},
+    {"id":"r037","title":"ホットサンド（チーズ＆ハム）","servings_base":1,"cost_per_serving":240,"time_minutes":10,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"食パン","qty":2,"unit":"枚","category":"主食"},{"name":"ハム","qty":30,"unit":"g","category":"肉"},{"name":"スライスチーズ","qty":1,"unit":"枚","category":"乳製品"}],"seo_slug":"hot-sandwich"},
+    {"id":"r038","title":"中華風卵スープ","servings_base":1,"cost_per_serving":120,"time_minutes":10,"tags":["汁物","時短","中華"],"preserve_days":1,"ingredients":[{"name":"鶏がらスープ","qty":250,"unit":"ml","category":"調味料"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"万能ねぎ","qty":5,"unit":"g","category":"野菜"}],"seo_slug":"chinese-egg-soup"},
+    {"id":"r039","title":"鮭チャーハン（簡易）","servings_base":1,"cost_per_serving":260,"time_minutes":15,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"鮭フレーク","qty":15,"unit":"g","category":"加工品"},{"name":"卵","qty":1,"unit":"個","category":"卵"}],"seo_slug":"salmon-fried-rice"},
+    {"id":"r040","title":"お好み焼き（簡易）","servings_base":1,"cost_per_serving":300,"time_minutes":30,"tags":["主菜","粉物"],"preserve_days":1,"ingredients":[{"name":"お好み焼き粉","qty":80,"unit":"g","category":"加工品"},{"name":"キャベツ","qty":100,"unit":"g","category":"野菜"},{"name":"豚バラ","qty":50,"unit":"g","category":"肉"},{"name":"ソース","qty":10,"unit":"g","category":"調味料"}],"seo_slug":"okonomiyaki-simple"},
+    {"id":"r041","title":"冷製パスタ（オリーブ＆トマト）","servings_base":1,"cost_per_serving":260,"time_minutes":20,"tags":["主菜","洋風","時短"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"ミニトマト","qty":80,"unit":"g","category":"野菜"},{"name":"オリーブ","qty":10,"unit":"g","category":"加工品"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"cold-pasta-tomato"},
+    {"id":"r042","title":"鶏つくね（焼き）","servings_base":1,"cost_per_serving":260,"time_minutes":25,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"鶏ひき肉","qty":150,"unit":"g","category":"肉"},{"name":"パン粉","qty":10,"unit":"g","category":"調味料"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"chicken-tsukune"},
+    {"id":"r043","title":"焼きそば（簡易）","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"焼きそば麺","qty":1,"unit":"玉","category":"主食"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"},{"name":"ソース","qty":15,"unit":"g","category":"調味料"}],"seo_slug":"yakisoba-simple"},
+    {"id":"r044","title":"ポテトサラダ（簡易）","servings_base":1,"cost_per_serving":150,"time_minutes":20,"tags":["副菜","作り置き"],"preserve_days":3,"ingredients":[{"name":"じゃがいも","qty":150,"unit":"g","category":"野菜"},{"name":"人参","qty":30,"unit":"g","category":"野菜"},{"name":"マヨネーズ","qty":20,"unit":"g","category":"調味料"}],"seo_slug":"potato-salad"},
+    {"id":"r045","title":"きのこのバターソテー","servings_base":1,"cost_per_serving":160,"time_minutes":10,"tags":["副菜","時短","洋風"],"preserve_days":1,"ingredients":[{"name":"きのこミックス","qty":100,"unit":"g","category":"野菜"},{"name":"バター","qty":10,"unit":"g","category":"乳製品"},{"name":"塩","qty":1,"unit":"g","category":"調味料"}],"seo_slug":"mushroom-butter"},
+    {"id":"r046","title":"照り焼きサバ丼（缶詰活用）","servings_base":1,"cost_per_serving":200,"time_minutes":10,"tags":["主菜","缶詰","時短"],"preserve_days":2,"ingredients":[{"name":"鯖味噌缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"青ねぎ","qty":5,"unit":"g","category":"野菜"}],"seo_slug":"saba-don"},
+    {"id":"r047","title":"ミニサラダ（レタスとコーン）","servings_base":1,"cost_per_serving":120,"time_minutes":5,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"レタス","qty":50,"unit":"g","category":"野菜"},{"name":"コーン缶","qty":30,"unit":"g","category":"缶詰"},{"name":"ドレッシング","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"mini-salad"},
+    {"id":"r048","title":"チャーシュー丼（簡易）","servings_base":1,"cost_per_serving":320,"time_minutes":30,"tags":["主菜","作り置き"],"preserve_days":3,"ingredients":[{"name":"チャーシュー既製品","qty":80,"unit":"g","category":"加工品"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"刻みねぎ","qty":5,"unit":"g","category":"野菜"}],"seo_slug":"char-siu-don"},
+    {"id":"r049","title":"和風ツナ大根サラダ","servings_base":1,"cost_per_serving":140,"time_minutes":8,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"大根","qty":80,"unit":"g","category":"野菜"},{"name":"ポン酢","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"tuna-daikon-salad"},
+    {"id":"r050","title":"目玉焼きのせご飯（シンプル）","servings_base":1,"cost_per_serving":100,"time_minutes":7,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"fried-egg-rice"},
+    {"id":"r051","title":"豆腐とツナのサラダ","servings_base":1,"cost_per_serving":150,"time_minutes":8,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"木綿豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"ポン酢","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"tofu-tuna-salad"},
+    {"id":"r052","title":"キャベツと卵の中華炒め","servings_base":1,"cost_per_serving":140,"time_minutes":12,"tags":["主菜","時短","中華"],"preserve_days":1,"ingredients":[{"name":"キャベツ","qty":100,"unit":"g","category":"野菜"},{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"塩","qty":1,"unit":"g","category":"調味料"},{"name":"ごま油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"cabbage-egg-stir"},
+    {"id":"r053","title":"簡単ガーリックライス","servings_base":1,"cost_per_serving":180,"time_minutes":15,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"にんにく","qty":3,"unit":"g","category":"野菜"},{"name":"バター","qty":10,"unit":"g","category":"乳製品"}],"seo_slug":"garlic-rice"},
+    {"id":"r054","title":"トマトスープとパン","servings_base":1,"cost_per_serving":220,"time_minutes":20,"tags":["主菜","洋風"],"preserve_days":2,"ingredients":[{"name":"トマト缶","qty":200,"unit":"g","category":"缶詰"},{"name":"玉ねぎ","qty":50,"unit":"g","category":"野菜"},{"name":"パン","qty":1,"unit":"枚","category":"主食"},{"name":"コンソメ","qty":5,"unit":"g","category":"調味料"}],"seo_slug":"tomato-soup-bread"},
+    {"id":"r055","title":"ピーマンの肉詰め（簡易）","servings_base":1,"cost_per_serving":260,"time_minutes":25,"tags":["主菜","和洋折衷"],"preserve_days":2,"ingredients":[{"name":"ピーマン","qty":2,"unit":"個","category":"野菜"},{"name":"合いびき肉","qty":100,"unit":"g","category":"肉"},{"name":"パン粉","qty":10,"unit":"g","category":"調味料"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"stuffed-pepper-simple"},
+    {"id":"r056","title":"おろしポン酢の鶏肉ソテー","servings_base":1,"cost_per_serving":240,"time_minutes":20,"tags":["主菜","和風"],"preserve_days":2,"ingredients":[{"name":"鶏むね肉","qty":150,"unit":"g","category":"肉"},{"name":"大根おろし","qty":50,"unit":"g","category":"野菜"},{"name":"ポン酢","qty":15,"unit":"ml","category":"調味料"}],"seo_slug":"grilled-chicken-oroshi"},
+    {"id":"r057","title":"簡単ラタトゥイユ","servings_base":1,"cost_per_serving":200,"time_minutes":35,"tags":["副菜","作り置き","洋風"],"preserve_days":3,"ingredients":[{"name":"ナス","qty":80,"unit":"g","category":"野菜"},{"name":"ズッキーニ","qty":80,"unit":"g","category":"野菜"},{"name":"トマト缶","qty":200,"unit":"g","category":"缶詰"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"ratatouille-simple"},
+    {"id":"r058","title":"ツナチャーハン","servings_base":1,"cost_per_serving":200,"time_minutes":12,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"tuna-fried-rice"},
+    {"id":"r059","title":"簡単カルボナーラ（クリーム少なめ）","servings_base":1,"cost_per_serving":320,"time_minutes":20,"tags":["主菜","洋風"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"ベーコン","qty":40,"unit":"g","category":"肉"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"粉チーズ","qty":10,"unit":"g","category":"乳製品"}],"seo_slug":"simple-carbonara"},
+    {"id":"r060","title":"サバ缶のマリネ","servings_base":1,"cost_per_serving":160,"time_minutes":10,"tags":["副菜","缶詰","作り置き"],"preserve_days":3,"ingredients":[{"name":"鯖水煮缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"玉ねぎ","qty":30,"unit":"g","category":"野菜"},{"name":"酢","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"saba-marine"},
+    {"id":"r061","title":"コーンスープ（缶＋牛乳）","servings_base":1,"cost_per_serving":140,"time_minutes":8,"tags":["汁物","時短"],"preserve_days":1,"ingredients":[{"name":"コーン缶","qty":100,"unit":"g","category":"缶詰"},{"name":"牛乳","qty":150,"unit":"ml","category":"乳製品"},{"name":"コンソメ","qty":5,"unit":"g","category":"調味料"}],"seo_slug":"corn-soup"},
+    {"id":"r062","title":"照り焼きチキン丼","servings_base":1,"cost_per_serving":260,"time_minutes":20,"tags":["主菜","時短"],"preserve_days":2,"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"},{"name":"みりん","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"teriyaki-chicken-don"},
+    {"id":"r063","title":"豚汁（簡易）","servings_base":1,"cost_per_serving":200,"time_minutes":30,"tags":["汁物","作り置き","和食"],"preserve_days":3,"ingredients":[{"name":"豚こま切れ","qty":50,"unit":"g","category":"肉"},{"name":"大根","qty":50,"unit":"g","category":"野菜"},{"name":"人参","qty":30,"unit":"g","category":"野菜"},{"name":"味噌","qty":12,"unit":"g","category":"調味料"}],"seo_slug":"tonjiru-simple"},
+    {"id":"r064","title":"焼き魚定食風（塩サバ）","servings_base":1,"cost_per_serving":280,"time_minutes":15,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"塩サバ切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"味噌汁","qty":1,"unit":"椀","category":"汁物"}],"seo_slug":"grilled-mackerel-set"},
+    {"id":"r065","title":"ガパオ風鶏そぼろ丼（簡易）","servings_base":1,"cost_per_serving":260,"time_minutes":20,"tags":["主菜","時短","エスニック"],"preserve_days":1,"ingredients":[{"name":"鶏ひき肉","qty":150,"unit":"g","category":"肉"},{"name":"バジル","qty":5,"unit":"g","category":"野菜"},{"name":"ナンプラー","qty":10,"unit":"ml","category":"調味料"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"}],"seo_slug":"gapao-style"},
+    {"id":"r066","title":"冷凍餃子とサラダ","servings_base":1,"cost_per_serving":240,"time_minutes":12,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"冷凍餃子","qty":6,"unit":"個","category":"冷凍食品"},{"name":"レタス","qty":50,"unit":"g","category":"野菜"},{"name":"酢","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"frozen-gyoza-salad"},
+    {"id":"r067","title":"鶏むね肉のバジルソテー","servings_base":1,"cost_per_serving":240,"time_minutes":20,"tags":["主菜","洋風","ヘルシー"],"preserve_days":2,"ingredients":[{"name":"鶏むね肉","qty":150,"unit":"g","category":"肉"},{"name":"バジル","qty":5,"unit":"g","category":"野菜"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"basil-chicken"},
+    {"id":"r068","title":"野菜たっぷりオムライス（簡易）","servings_base":1,"cost_per_serving":300,"time_minutes":25,"tags":["主菜","洋風"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":180,"unit":"g","category":"主食"},{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"玉ねぎ","qty":40,"unit":"g","category":"野菜"},{"name":"ケチャップ","qty":20,"unit":"g","category":"調味料"}],"seo_slug":"veggie-omelette-rice"},
+    {"id":"r069","title":"簡単ビビンバ風丼","servings_base":1,"cost_per_serving":280,"time_minutes":20,"tags":["主菜","時短","韓国風"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"牛ひき肉","qty":80,"unit":"g","category":"肉"},{"name":"ほうれん草","qty":50,"unit":"g","category":"野菜"},{"name":"コチュジャン","qty":10,"unit":"g","category":"調味料"}],"seo_slug":"simple-bibimbap"},
+    {"id":"r070","title":"和風きのこパスタ","servings_base":1,"cost_per_serving":260,"time_minutes":20,"tags":["主菜","和風","洋風"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"きのこミックス","qty":80,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"},{"name":"バター","qty":10,"unit":"g","category":"乳製品"}],"seo_slug":"japanese-mushroom-pasta"},
+    {"id":"r071","title":"鮭のホイル焼き（簡易）","servings_base":1,"cost_per_serving":320,"time_minutes":20,"tags":["主菜","洋風","ヘルシー"],"preserve_days":2,"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"玉ねぎ","qty":30,"unit":"g","category":"野菜"},{"name":"バター","qty":5,"unit":"g","category":"乳製品"}],"seo_slug":"salmon-foil"},
+    {"id":"r072","title":"ひじき煮（常備菜）","servings_base":1,"cost_per_serving":100,"time_minutes":25,"tags":["副菜","作り置き","和食"],"preserve_days":5,"ingredients":[{"name":"乾燥ひじき","qty":10,"unit":"g","category":"乾物"},{"name":"人参","qty":30,"unit":"g","category":"野菜"},{"name":"油揚げ","qty":20,"unit":"g","category":"加工品"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"hijiki-ni"},
+    {"id":"r073","title":"エビとブロッコリーの炒め物","servings_base":1,"cost_per_serving":360,"time_minutes":20,"tags":["主菜","洋中"],"preserve_days":1,"ingredients":[{"name":"冷凍エビ","qty":80,"unit":"g","category":"魚介"},{"name":"ブロッコリー","qty":80,"unit":"g","category":"野菜"},{"name":"塩","qty":1,"unit":"g","category":"調味料"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"shrimp-broccoli-stir"},
+    {"id":"r074","title":"卵とじうどん（簡易）","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主食","時短","和食"],"preserve_days":1,"ingredients":[{"name":"冷凍うどん","qty":1,"unit":"玉","category":"主食"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"出汁","qty":300,"unit":"ml","category":"調味料"}],"seo_slug":"egg-udon"},
+    {"id":"r075","title":"ナポリタン（簡易）","servings_base":1,"cost_per_serving":300,"time_minutes":25,"tags":["主菜","洋風"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"玉ねぎ","qty":40,"unit":"g","category":"野菜"},{"name":"ウインナー","qty":40,"unit":"g","category":"肉"},{"name":"ケチャップ","qty":30,"unit":"g","category":"調味料"}],"seo_slug":"napolitan-simple"},
+    {"id":"r076","title":"かぼちゃの煮物（簡易）","servings_base":1,"cost_per_serving":120,"time_minutes":25,"tags":["副菜","作り置き","和食"],"preserve_days":3,"ingredients":[{"name":"かぼちゃ","qty":150,"unit":"g","category":"野菜"},{"name":"砂糖","qty":10,"unit":"g","category":"調味料"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"pumpkin-simmer"},
+    {"id":"r077","title":"豚キムチ炒め","servings_base":1,"cost_per_serving":260,"time_minutes":12,"tags":["主菜","時短","韓国風"],"preserve_days":1,"ingredients":[{"name":"豚こま切れ","qty":100,"unit":"g","category":"肉"},{"name":"キムチ","qty":50,"unit":"g","category":"漬物"},{"name":"ごま油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"pork-kimchi-stir"},
+    {"id":"r078","title":"オクラと納豆の和え物","servings_base":1,"cost_per_serving":120,"time_minutes":5,"tags":["副菜","時短","ヘルシー"],"preserve_days":1,"ingredients":[{"name":"オクラ","qty":50,"unit":"g","category":"野菜"},{"name":"納豆","qty":1,"unit":"パック","category":"発酵食品"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"okra-natto"},
+    {"id":"r079","title":"サバの塩焼き定食（簡易）","servings_base":1,"cost_per_serving":260,"time_minutes":15,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"鯖切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"味噌汁","qty":1,"unit":"椀","category":"汁物"}],"seo_slug":"saba-set"},
+    {"id":"r080","title":"トマトと卵の中華スープ","servings_base":1,"cost_per_serving":140,"time_minutes":10,"tags":["汁物","時短","中華"],"preserve_days":1,"ingredients":[{"name":"トマト","qty":80,"unit":"g","category":"野菜"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"鶏がらスープ","qty":250,"unit":"ml","category":"調味料"}],"seo_slug":"tomato-egg-soup"},
+    {"id":"r081","title":"焼き鮭と大根おろし","servings_base":1,"cost_per_serving":320,"time_minutes":15,"tags":["主菜","和食"],"preserve_days":2,"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"大根おろし","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"grilled-salmon-oroshi"},
+    {"id":"r082","title":"簡単チーズリゾット","servings_base":1,"cost_per_serving":260,"time_minutes":25,"tags":["主食","洋風"],"preserve_days":1,"ingredients":[{"name":"米","qty":120,"unit":"g","category":"主食"},{"name":"チーズ","qty":20,"unit":"g","category":"乳製品"},{"name":"コンソメ","qty":5,"unit":"g","category":"調味料"}],"seo_slug":"cheesy-risotto"},
+    {"id":"r083","title":"鶏胸肉のカレー風味焼き","servings_base":1,"cost_per_serving":240,"time_minutes":20,"tags":["主菜","時短"],"preserve_days":2,"ingredients":[{"name":"鶏むね肉","qty":150,"unit":"g","category":"肉"},{"name":"カレー粉","qty":5,"unit":"g","category":"調味料"},{"name":"塩","qty":1,"unit":"g","category":"調味料"}],"seo_slug":"curry-chicken"},
+    {"id":"r084","title":"サラダチキンと野菜のサラダ","servings_base":1,"cost_per_serving":300,"time_minutes":8,"tags":["副菜","時短","ヘルシー"],"preserve_days":1,"ingredients":[{"name":"サラダチキン","qty":80,"unit":"g","category":"加工品"},{"name":"レタス","qty":50,"unit":"g","category":"野菜"},{"name":"ミニトマト","qty":50,"unit":"g","category":"野菜"},{"name":"ドレッシング","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"salad-chicken"},
+    {"id":"r085","title":"牛丼（簡易）","servings_base":1,"cost_per_serving":350,"time_minutes":20,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"牛こま切れ","qty":120,"unit":"g","category":"肉"},{"name":"玉ねぎ","qty":50,"unit":"g","category":"野菜"},{"name":"砂糖","qty":5,"unit":"g","category":"調味料"},{"name":"醤油","qty":20,"unit":"ml","category":"調味料"}],"seo_slug":"gyudon-simple"},
+    {"id":"r086","title":"冷やし豆腐サラダ","servings_base":1,"cost_per_serving":120,"time_minutes":5,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"絹ごし豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"きゅうり","qty":50,"unit":"g","category":"野菜"},{"name":"ごまドレッシング","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"cold-tofu-salad"},
+    {"id":"r087","title":"鯖缶カレー（簡易）","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主菜","缶詰","時短"],"preserve_days":2,"ingredients":[{"name":"鯖水煮缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"レトルトカレー","qty":1,"unit":"袋","category":"加工品"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"}],"seo_slug":"saba-curry"},
+    {"id":"r088","title":"簡単タコライス風","servings_base":1,"cost_per_serving":300,"time_minutes":20,"tags":["主菜","洋風","時短"],"preserve_days":1,"ingredients":[{"name":"ご飯","qty":200,"unit":"g","category":"主食"},{"name":"牛ひき肉","qty":80,"unit":"g","category":"肉"},{"name":"レタス","qty":30,"unit":"g","category":"野菜"},{"name":"タコスソース","qty":20,"unit":"g","category":"調味料"}],"seo_slug":"taco-rice-simple"},
+    {"id":"r089","title":"にら玉（中華風）","servings_base":1,"cost_per_serving":140,"time_minutes":10,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"にら","qty":50,"unit":"g","category":"野菜"},{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"塩","qty":1,"unit":"g","category":"調味料"}],"seo_slug":"nira-tama"},
+    {"id":"r090","title":"青椒肉絲風（簡易）","servings_base":1,"cost_per_serving":300,"time_minutes":20,"tags":["主菜","中華"],"preserve_days":1,"ingredients":[{"name":"豚こま切れ","qty":100,"unit":"g","category":"肉"},{"name":"ピーマン","qty":60,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"},{"name":"オイスターソース","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"chinjao-simple"},
+    {"id":"r091","title":"ツナとほうれん草の和え物","servings_base":1,"cost_per_serving":150,"time_minutes":8,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"ほうれん草","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"tuna-spinach-ae"},
+    {"id":"r092","title":"簡単ガパオ（目玉焼きのせ）","servings_base":1,"cost_per_serving":280,"time_minutes":20,"tags":["主菜","時短","エスニック"],"preserve_days":1,"ingredients":[{"name":"鶏ひき肉","qty":120,"unit":"g","category":"肉"},{"name":"バジル","qty":5,"unit":"g","category":"野菜"},{"name":"目玉焼き","qty":1,"unit":"個","category":"卵"},{"name":"ナンプラー","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"gapao-simple"},
+    {"id":"r093","title":"簡単しらすパスタ","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"しらす","qty":15,"unit":"g","category":"乾物"},{"name":"大葉","qty":3,"unit":"枚","category":"野菜"},{"name":"オリーブオイル","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"shirasu-pasta"},
+    {"id":"r094","title":"簡単チキンナゲット（冷凍利用）","servings_base":1,"cost_per_serving":220,"time_minutes":12,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"冷凍ナゲット","qty":6,"unit":"個","category":"冷凍食品"},{"name":"ケチャップ","qty":10,"unit":"g","category":"調味料"},{"name":"サラダ","qty":50,"unit":"g","category":"野菜"}],"seo_slug":"frozen-nuggets"},
+    {"id":"r095","title":"鶏肉とキャベツの塩だれ炒め","servings_base":1,"cost_per_serving":240,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"鶏もも肉","qty":120,"unit":"g","category":"肉"},{"name":"キャベツ","qty":100,"unit":"g","category":"野菜"},{"name":"塩だれ","qty":15,"unit":"ml","category":"調味料"}],"seo_slug":"chicken-cabbage-salt"},
+    {"id":"r096","title":"エリンギとベーコンのソテー","servings_base":1,"cost_per_serving":160,"time_minutes":10,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"エリンギ","qty":80,"unit":"g","category":"野菜"},{"name":"ベーコン","qty":30,"unit":"g","category":"肉"},{"name":"バター","qty":10,"unit":"g","category":"乳製品"}],"seo_slug":"eringi-bacon"},
+    {"id":"r097","title":"冷凍ピザとサラダ","servings_base":1,"cost_per_serving":400,"time_minutes":12,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"冷凍ピザ","qty":1,"unit":"枚","category":"冷凍食品"},{"name":"サラダ","qty":80,"unit":"g","category":"野菜"},{"name":"ドレッシング","qty":10,"unit":"ml","category":"調味料"}],"seo_slug":"frozen-pizza-salad"},
+    {"id":"r098","title":"簡単コロッケとキャベツ","servings_base":1,"cost_per_serving":220,"time_minutes":15,"tags":["主菜","時短"],"preserve_days":1,"ingredients":[{"name":"冷凍コロッケ","qty":2,"unit":"個","category":"冷凍食品"},{"name":"キャベツ","qty":50,"unit":"g","category":"野菜"},{"name":"ソース","qty":10,"unit":"g","category":"調味料"}],"seo_slug":"croquette-cabbage"},
+    {"id":"r099","title":"ごま和え（ほうれん草）","servings_base":1,"cost_per_serving":110,"time_minutes":10,"tags":["副菜","時短"],"preserve_days":1,"ingredients":[{"name":"ほうれん草","qty":50,"unit":"g","category":"野菜"},{"name":"すりごま","qty":5,"unit":"g","category":"調味料"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}],"seo_slug":"goma-ae"},
+    {"id":"r100","title":"たまごサンド（簡易）","servings_base":1,"cost_per_serving":180,"time_minutes":10,"tags":["主食","時短"],"preserve_days":1,"ingredients":[{"name":"食パン","qty":2,"unit":"枚","category":"主食"},{"name":"卵","qty":2,"unit":"個","category":"卵"},{"name":"マヨネーズ","qty":15,"unit":"g","category":"調味料"}],"seo_slug":"egg-sandwich"}
+  ],
+  "week_templates": [
+    {"id":"wt_3000_short","label":"節約時短プラン 〜3000円","budget_max":3000,"time_pref":"short","structure":[{"day":"Mon","dishes":["r001","r005","r006"]},{"day":"Tue","dishes":["r002","r010"]},{"day":"Wed","dishes":["r003","r033"]},{"day":"Thu","dishes":["r004","r005"]},{"day":"Fri","dishes":["r011","r044"]},{"day":"Sat","dishes":["r017","r045"]},{"day":"Sun","dishes":["r019","r024"]}],"estimated_cost":2850,"notes":"時短中心で作り置き対応の副菜を多めに配置"},
+    {"id":"wt_5000_balanced","label":"バランス重視プラン 〜5000円","budget_max":5000,"time_pref":"normal","structure":[{"day":"Mon","dishes":["r002","r005","r006"]},{"day":"Tue","dishes":["r011","r010"]},{"day":"Wed","dishes":["r009","r032"]},{"day":"Thu","dishes":["r003","r044"]},{"day":"Fri","dishes":["r071","r036"]},{"day":"Sat","dishes":["r058","r046"]},{"day":"Sun","dishes":["r062","r057"]}],"estimated_cost":4600,"notes":"魚と野菜をバランスよく配置"},
+    {"id":"wt_8000_comfort","label":"ゆったり楽しむプラン 〜8000円","budget_max":8000,"time_pref":"any","structure":[{"day":"Mon","dishes":["r071","r036"]},{"day":"Tue","dishes":["r062","r045"]},{"day":"Wed","dishes":["r065","r032"]},{"day":"Thu","dishes":["r083","r082"]},{"day":"Fri","dishes":["r073","r033"]},{"day":"Sat","dishes":["r048","r054"]},{"day":"Sun","dishes":["r097","r044"]}],"estimated_cost":7200,"notes":"作り置きと手間を両立したゆったりプラン"}
+  ],
+  "budget_bands": [
+    {"id":"b3000","label":"〜3000円","max":3000},
+    {"id":"b5000","label":"〜5000円","max":5000},
+    {"id":"b8000","label":"〜8000円","max":8000}
+  ]
+}
+  </script>
+  <script src="/js/y973.js" defer></script>
+</body>
+</html>

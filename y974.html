@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>一人暮らし 1週間献立メーカー</title>
+  <meta name="description" content="一人暮らし向けに予算と時間で選べる1週間分の献立と買い物リストを即時生成します。時短・作り置き・節約向けテンプレ多数.">
+<link rel="canonical" href="https://memoc.pages.dev/y974/">
+<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="stylesheet" href="/css/y974.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>一人暮らし 1週間献立メーカー</h1>
+        <div class="lead">予算と調理時間を選んで「生成する」を押すだけで1週間分の献立と買い物リストが作れます</div>
+      </div>
+    </header>
+    <section class="card controls" aria-label="操作">
+      <label>
+        人数
+        <select id="people" aria-label="人数">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </label>
+      <label>
+        予算
+        <select id="budget" aria-label="予算">
+          <option value="1500">〜1500円</option>
+          <option value="3000">〜3000円</option>
+          <option value="5000">〜5000円</option>
+          <option value="any">指定なし</option>
+        </select>
+      </label>
+      <label>
+        調理時間
+        <select id="timePref" aria-label="調理時間">
+          <option value="short">時短</option>
+          <option value="normal">標準</option>
+          <option value="any">指定なし</option>
+        </select>
+      </label>
+      <div style="display:flex;gap:8px;align-items:end">
+        <button id="generate">生成する</button>
+        <button id="quick3000" class="secondary">サンプル 1人 〜3000円</button>
+      </div>
+    </section>
+    <main id="result-area">
+      <section id="result" class="card" aria-live="polite"></section>
+      <div id="actions" class="card"></div>
+      <div class="related-links card" aria-label="関連リンク">
+        <h3>関連リンク</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立メーカー（1週間）</a></li>
+          <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
+          <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+        </ul>
+        <a class="return-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりのブラウザ便利サイトに戻る</a>
+      </div>
+    </main>
+  </div>
+  <script src="/js/y974.js" defer></script>
+</body>
+</html>

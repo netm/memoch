@@ -1,0 +1,437 @@
+/* eslint-disable */
+const DATA = [
+{"id":"001","title":"生ゴミの簡易脱臭バッグ","tags":["キッチン","脱臭"],"time":"5分","materials":"重曹;新聞紙;小袋","steps":["袋に新聞紙を敷く","生ゴミに重曹を少量振る","口をしっかり閉じる"],"tip":"重曹は湿気に効く"},
+{"id":"002","title":"靴の簡易乾燥方法","tags":["洗濯","靴"],"time":"半日","materials":"新聞紙;風通しの良い場所","steps":["新聞紙を丸めて靴の中に入れる","風通しの良いところで半日置く"],"tip":"濡れがひどい場合は新聞を交換する"},
+{"id":"003","title":"小さな傷の応急止血","tags":["救急","衛生"],"time":"5分","materials":"ガーゼ;消毒液;絆創膏","steps":["傷を流水で洗う","ガーゼで圧迫して止血する","消毒して絆創膏を貼る"],"tip":"止血できない場合は医療機関へ"},
+{"id":"004","title":"電子レンジでスポンジ除菌","tags":["キッチン","掃除"],"time":"2分","materials":"濡れたスポンジ","steps":["スポンジを濡らして軽く絞る","電子レンジで1〜2分加熱する","冷めてから取り出す"],"tip":"金属は入れない"},
+{"id":"005","title":"窓ガラスの簡単汚れ落とし","tags":["掃除","窓"],"time":"10分","materials":"酢;水;新聞紙","steps":["酢と水を1:1で混ぜる","スプレーして新聞紙で拭く","仕上げに乾いた布で磨く"],"tip":"直射日光は避ける"},
+{"id":"006","title":"コーヒーの香り復活法","tags":["キッチン","嗜好"],"time":"1分","materials":"コーヒー豆;フライパン","steps":["弱火で乾煎りする","冷まして保存容器に戻す"],"tip":"湿気対策をする"},
+{"id":"007","title":"まな板の臭い取り","tags":["キッチン","掃除"],"time":"10分","materials":"塩;レモン","steps":["塩を振る","切ったレモンで擦る","水で洗って乾かす"],"tip":"竹のまな板にも有効"},
+{"id":"008","title":"ジャガイモの芽防止保存","tags":["保存","キッチン"],"time":"1分","materials":"りんご","steps":["ジャガイモと一緒に入れる","風通しの良い場所で保管する"],"tip":"エチレンで発芽を抑制"},
+{"id":"009","title":"缶詰の簡易開封補助","tags":["台所","便利"],"time":"1分","materials":"スプーン","steps":["スプーンの先で缶の内側を押す","簡単に開く"],"tip":"手を怪我しないよう注意"},
+{"id":"010","title":"調味料の固まりを戻す","tags":["キッチン","保存"],"time":"5分","materials":"湯煎用容器;湯","steps":["固まった調味料を容器に入れる","湯煎で温めて柔らかくする"],"tip":"直接火にかけない"},
+{"id":"011","title":"靴のにおい消しシート","tags":["靴","脱臭"],"time":"3分","materials":"重曹;ティッシュ;小袋","steps":["ティッシュに重曹を包む","小袋に入れて靴の中へ"],"tip":"使用後は風通しで干す"},
+{"id":"012","title":"簡易食べ残し密閉法","tags":["保存","キッチン"],"time":"1分","materials":"ラップ;クリップ","steps":["食べ残しをラップで包む","クリップで留めて冷蔵"],"tip":"空気を抜くと長持ちする"},
+{"id":"013","title":"鍋の焦げ落とし（重曹）","tags":["掃除","キッチン"],"time":"30分","materials":"重曹;お湯","steps":["焦げに重曹を振る","お湯を注いで数時間放置","スポンジで擦る"],"tip":"長時間浸けるほど効果的"},
+{"id":"014","title":"割れた卵殻の細片除去法","tags":["キッチン","料理"],"time":"1分","materials":"卵殻の大きな欠片","steps":["スプーンより卵殻で触れると細片がまとまる","取り除く"],"tip":"卵殻は磁石のように働く"},
+{"id":"015","title":"ワイングラスの曇り防止","tags":["生活","手入れ"],"time":"2分","materials":"お湯;食器用洗剤","steps":["お湯に少量洗剤を入れる","グラスを軽く洗って乾かす"],"tip":"拭き上げは柔らかい布で"},
+{"id":"016","title":"缶のプルタブで鍵穴目隠し","tags":["防犯","便利"],"time":"1分","materials":"空き缶のプルタブ","steps":["プルタブを折って鍵穴に差し込む","外出時だけ取り付ける"],"tip":"外し忘れに注意"},
+{"id":"017","title":"スマホ画面の指紋落とし","tags":["掃除","電子機器"],"time":"1分","materials":"マイクロファイバー布;水少量","steps":["布を軽く湿らせる","円を描くように拭く"],"tip":"アルコールはコーティングに注意"},
+{"id":"018","title":"レタスのシャキッと復活法","tags":["保存","野菜"],"time":"10分","materials":"冷水;氷","steps":["レタスを冷水に浸す","氷を入れて10分ほど冷やす","水切りして保存する"],"tip":"すぐに使わない場合はキッチンペーパーで包む"},
+{"id":"019","title":"鏡の曇り止め簡易法","tags":["浴室","掃除"],"time":"1分","materials":"シャンプー少量;布","steps":["鏡に薄くシャンプーを塗る","乾いた布で拭き取る"],"tip":"シャンプーは少量で十分"},
+{"id":"020","title":"ペットボトルで水やりタイマー","tags":["ガーデニング","便利"],"time":"5分","materials":"ペットボトル;針","steps":["底に小さな穴を開ける","逆さにして土に差す"],"tip":"長期不在時の水やりに便利"},
+{"id":"021","title":"お茶パックで靴の湿気取り","tags":["靴","脱臭"],"time":"1分","materials":"乾燥剤;お茶パック","steps":["乾燥剤をお茶パックに入れる","靴に入れておく"],"tip":"乾燥剤は再利用可能"},
+{"id":"022","title":"輪ゴムで瓶の蓋開け補助","tags":["台所","便利"],"time":"30秒","materials":"太めの輪ゴム","steps":["蓋に輪ゴムを巻く","滑りにくくして回す"],"tip":"滑り止め効果抜群"},
+{"id":"023","title":"カビの初期抑制（浴室の換気）","tags":["浴室","衛生"],"time":"1分","materials":"換気扇;水切りワイパー","steps":["シャワー後に水切りで壁を拭く","換気扇を一定時間回す"],"tip":"窓があるなら開ける"},
+{"id":"024","title":"ペン跡の消し方（布地）","tags":["衣類","掃除"],"time":"5分","materials":"アルコール消毒液;布","steps":["布に消毒液をつける","ペン跡をたたくように拭く"],"tip":"目立たない部分で試す"},
+{"id":"025","title":"ジャムの残り簡単取り出し","tags":["キッチン","便利"],"time":"1分","materials":"スプーン;熱湯","steps":["スプーンを熱湯で温める","温めたスプーンで取り出す"],"tip":"粘度の高い食品に有効"},
+{"id":"026","title":"ネジが固いときの潤滑法","tags":["修理","便利"],"time":"2分","materials":"食用油少量;布","steps":["少量の油を塗る","しばらく置いてから回す"],"tip":"最後は拭き取る"},
+{"id":"027","title":"ドアのきしみ簡易改善","tags":["住居","修理"],"time":"5分","materials":"石鹸;布","steps":["蝶番周りに石鹸を擦り込む","ドアを開け閉めして馴染ませる"],"tip":"次第に静かになる"},
+{"id":"028","title":"アイロンの焦げ付き防止（布）","tags":["洗濯","手入れ"],"time":"2分","materials":"薄手の布;低温設定","steps":["焦げ付きやすい布に薄手の布を当てる","低温で滑らせる"],"tip":"先に目立たない場所でテスト"},
+{"id":"029","title":"バナナの熟成を遅らせる方法","tags":["保存","食材"],"time":"1分","materials":"ラップ","steps":["ヘタをラップで包む","室温で保存する"],"tip":"冷蔵庫は皮が黒くなるが中身は保つ"},
+{"id":"030","title":"こぼした汁の吸い取り法（布製ソファ）","tags":["掃除","家具"],"time":"10分","materials":"キッチンペーパー;重曹","steps":["まずペーパーで押さえるように吸い取る","湿った部分に重曹を振って吸収させる","掃除機で吸い取る"],"tip":"擦るとシミが広がる"},
+{"id":"031","title":"割れたガラス片の細片回収法","tags":["掃除","安全"],"time":"5分","materials":"湿った紙;粘着テープ","steps":["大きな破片を慎重に除去","湿った紙で細片を集める","粘着テープで残りを取る"],"tip":"手袋着用推奨"},
+{"id":"032","title":"キッチンの油はね防止カバー","tags":["料理","便利"],"time":"1分","materials":"アルミホイル;鍋蓋","steps":["鍋の周りにアルミを敷く","掃除が楽になる"],"tip":"使い捨てで衛生的"},
+{"id":"033","title":"果物の早期熟成（りんご活用）","tags":["保存","食材"],"time":"1分","materials":"りんご","steps":["熟したりんごを一緒に入れる","エチレンで他が熟す"],"tip":"熟成させたい場合に利用"},
+{"id":"034","title":"クッションのへたり復活法","tags":["家具","手入れ"],"time":"10分","materials":"乾いたタオル;叩く棒","steps":["クッションを叩いて中身をほぐす","形を整えて日陰で干す"],"tip":"定期的に行うと持ちがいい"},
+{"id":"035","title":"浴室の排水口の髪の毛簡易撤去","tags":["掃除","浴室"],"time":"3分","materials":"フック状のワイヤー;手袋","steps":["ワイヤーで髪を引き出す","処分して洗浄する"],"tip":"重曹＋お湯で仕上げ洗浄"},
+{"id":"036","title":"冷蔵庫のにおい分離方法","tags":["保存","衛生"],"time":"1分","materials":"木炭片;小皿","steps":["小皿に木炭を置いて冷蔵庫内へ","数週間で交換する"],"tip":"コーヒーかすでも代用可"},
+{"id":"037","title":"ボールペンインクの応急消し（皮膚）","tags":["応急","便利"],"time":"1分","materials":"消毒アルコール;ティッシュ","steps":["アルコールで拭く","水で洗い流す"],"tip":"皮膚に合わない場合は中止"},
+{"id":"038","title":"荷物の梱包で隙間埋める素材","tags":["引越し","便利"],"time":"3分","materials":"新聞紙;タオル","steps":["丸めて隙間に詰める","緩衝材として使用"],"tip":"壊れ物の保護に有効"},
+{"id":"039","title":"ハンガーの跡を直す方法（衣類）","tags":["衣類","手入れ"],"time":"5分","materials":"スチームアイロン;当て布","steps":["当て布をして軽くスチーム","形を整える"],"tip":"素材に合わせて熱設定を"},
+{"id":"040","title":"缶ジュースの冷却早める方法","tags":["飲み物","便利"],"time":"5分","materials":"濡れたタオル;冷凍庫","steps":["濡れタオルで缶を包む","冷凍庫に入れて数分冷やす"],"tip":"長時間は凍結の恐れ"},
+{"id":"041","title":"靴ひもの結び目をほどきやすくする","tags":["靴","便利"],"time":"1分","materials":"ワックス;ロウ","steps":["ひもに少量塗る","滑りがよくなり結びやすくなる"],"tip":"塗りすぎ注意"},
+{"id":"042","title":"洗濯槽の黒ずみ予防法","tags":["洗濯","掃除"],"time":"30分","materials":"重曹;酢","steps":["空槽で重曹を入れて回す","酢で仕上げ洗浄する"],"tip":"月1回の実施が目安"},
+{"id":"043","title":"PCキーボードの簡易清掃","tags":["電子機器","掃除"],"time":"5分","materials":"エアダスター;綿棒","steps":["空気でほこりを吹き飛ばす","綿棒で隙間を拭く"],"tip":"電源を切ってから行う"},
+{"id":"044","title":"粘着テープ跡の除去（プラスチック）","tags":["掃除","便利"],"time":"3分","materials":"ベビーオイル;布","steps":["布にオイルを含ませる","跡を擦って拭き取る"],"tip":"素材で試してから使用"},
+{"id":"045","title":"電子機器の小ネジ紛失防止箱","tags":["修理","整理"],"time":"2分","materials":"小さな製氷皿;仕切りケース","steps":["ネジを仕切りに入れて管理","作業後は元に戻す"],"tip":"ネジごとにラベルを付ける"},
+{"id":"046","title":"サラダの葉を長持ちさせる方法","tags":["保存","野菜"],"time":"5分","materials":"キッチンペーパー;ジップ袋","steps":["葉を洗ってよく乾かす","キッチンペーパーで包み袋に入れる"],"tip":"空気を抜いて冷蔵保存"},
+{"id":"047","title":"枕のふわふわ回復法","tags":["寝具","手入れ"],"time":"10分","materials":"干せるスペース;叩く布","steps":["日光の当たらない場所で干す","枕を叩いて中身をほぐす"],"tip":"直射日光は避ける"},
+{"id":"048","title":"衣類の静電気防止","tags":["衣類","便利"],"time":"1分","materials":"金属ハンガー;乾燥機シート","steps":["乾燥機シートを衣類に擦る","ハンガーに金属を加えて放電"],"tip":"天然素材の使用を増やす"},
+{"id":"049","title":"ペットの毛の掃除方法（布製品）","tags":["掃除","ペット"],"time":"5分","materials":"ゴム手袋;掃除機","steps":["濡らしたゴム手袋でこする","掃除機で吸い取る"],"tip":"粘着ローラーも有効"},
+{"id":"050","title":"電子レンジの臭い消し（レモン）","tags":["掃除","キッチン"],"time":"5分","materials":"レモン;水","steps":["レモンを半分に切り水を入れた容器に入れる","レンジで数分加熱し蒸気で拭く"],"tip":"香りを残したい時に有効"},
+{"id":"051","title":"ヘアブラシの髪取り除き","tags":["美容","掃除"],"time":"3分","materials":"針金;ハサミ","steps":["毛をまとめて切る","針金で根元から引き抜く"],"tip":"定期的に洗う"},
+{"id":"052","title":"鏡のうろこ状水垢除去法","tags":["掃除","浴室"],"time":"30分","materials":"クエン酸;布","steps":["クエン酸を溶かして塗る","ラップで密封して放置後擦る"],"tip":"頑固な汚れに有効"},
+{"id":"053","title":"輪ゴムでズレ防止（カーペット）","tags":["生活","便利"],"time":"1分","materials":"輪ゴム;両面テープ","steps":["輪ゴムを端に縫い付けるか貼る","ズレを軽減する"],"tip":"目立たない場所に配置"},
+{"id":"054","title":"ペット用玩具の消毒（布製）","tags":["ペット","衛生"],"time":"15分","materials":"重曹;洗濯機","steps":["重曹水で浸け置き","洗濯機で通常洗い"],"tip":"乾燥は日陰で"},
+{"id":"055","title":"取り外し可能な家具の傷防止","tags":["住居","家具"],"time":"5分","materials":"フェルト;両面テープ","steps":["フェルトを貼る","家具を戻す"],"tip":"定期的に張替え"},
+{"id":"056","title":"急な雨で濡れた靴の対処","tags":["靴","便利"],"time":"30分","materials":"新聞紙;扇風機","steps":["新聞を詰めて形を保つ","扇風機で風を当てる"],"tip":"直射の熱は避ける"},
+{"id":"057","title":"炊飯器のにおい取り","tags":["キッチン","掃除"],"time":"20分","materials":"酢;水","steps":["酢と水を1:1入れて炊く","冷ましてから洗う"],"tip":"内釜の取扱説明を確認"},
+{"id":"058","title":"割れた器の一時保管法","tags":["台所","便利"],"time":"1分","materials":"ガムテープ;箱","steps":["破片をガムテープでまとめる","箱に入れて廃棄場所へ"],"tip":"大きな破片は厚手に包む"},
+{"id":"059","title":"植物の葉のほこり落とし","tags":["ガーデニング","掃除"],"time":"3分","materials":"水;柔らかい布","steps":["布を湿らせて葉を優しく拭く","裏も忘れずに"],"tip":"室内植物は定期的に行う"},
+{"id":"060","title":"蚊よけ簡易スプレー（屋外）","tags":["アウトドア","健康"],"time":"3分","materials":"水;エッセンシャルオイル","steps":["水に数滴オイルを混ぜる","肌や衣類に吹きかける"],"tip":"直接肌に強い濃度は避ける"},
+{"id":"061","title":"鍋の蓋のくもり防止（蒸気）","tags":["料理","便利"],"time":"1分","materials":"少量の油;布","steps":["蓋の縁に薄く油を塗る","曇りにくくなる"],"tip":"食材に触れないよう注意"},
+{"id":"062","title":"傘の簡易乾燥術","tags":["生活","便利"],"time":"5分","materials":"ハンガー;風通しの良い場所","steps":["開いた状態でハンガーにかける","風通しの良い場所で乾かす"],"tip":"完全に乾かすと臭い防止"},
+{"id":"063","title":"冷凍食品の即席解凍（電子レンジ）","tags":["キッチン","時短"],"time":"3分","materials":"電子レンジ;ラップ","steps":["部分的に加熱して解凍","必要に応じて裏返す"],"tip":"周囲が温まらないよう注意"},
+{"id":"064","title":"油汚れの前処理（衣類）","tags":["洗濯","掃除"],"time":"5分","materials":"食器用洗剤;歯ブラシ","steps":["洗剤を汚れに塗る","歯ブラシで揉み込む","通常洗濯する"],"tip":"放置せず早めに処理"},
+{"id":"065","title":"カーテンの埃取り（簡易）","tags":["掃除","家事"],"time":"10分","materials":"掃除機;シーツ用ノズル","steps":["ノズルで上→下に吸う","洗濯可能なら洗う"],"tip":"頻度は季節で調整"},
+{"id":"066","title":"ペットボトルで即席じょうろ","tags":["ガーデニング","便利"],"time":"2分","materials":"ペットボトル;針","steps":["蓋に小さく穴を開ける","逆さにして優しく水を注ぐ"],"tip":"幼児の水やりにも安心"},
+{"id":"067","title":"洗面台の水垢防止（予防）","tags":["掃除","浴室"],"time":"1分","materials":"水切りワイパー;クロス","steps":["使用後に水を拭き取る","こまめに乾燥させる"],"tip":"放置が汚れの元"},
+{"id":"068","title":"フライパンの油はじき防止（調理前）","tags":["料理","時短"],"time":"1分","materials":"キッチンペーパー;油","steps":["薄く油を敷いて余分を拭き取る","食材を入れる"],"tip":"くっつきにくくなる"},
+{"id":"069","title":"家具の小キズ目立たなくするワックス","tags":["家具","手入れ"],"time":"5分","materials":"蜜蝋ワックス;布","steps":["ワックスを少量塗る","柔らかい布で磨く"],"tip":"色むらに注意"},
+{"id":"070","title":"携帯充電器のコネクタ掃除","tags":["電子機器","掃除"],"time":"2分","materials":"綿棒;アルコール少量","steps":["電源を切る","綿棒で端子周りを掃除する"],"tip":"強く擦りすぎない"},
+{"id":"071","title":"卵の新鮮度簡易チェック法","tags":["料理","知識"],"time":"1分","materials":"水;容器","steps":["水に入れる","浮くと古い、沈むと新しい"],"tip":"殻にヒビがないか確認"},
+{"id":"072","title":"電子機器の熱対策（即席）","tags":["電子機器","便利"],"time":"1分","materials":"風通し台;扇風機","steps":["機器を高く置く","扇風機で外気を当てる"],"tip":"閉塞を避ける"},
+{"id":"073","title":"コップの水滴跡防止（テーブル）","tags":["テーブル","便利"],"time":"1分","materials":"コースター;紙ナプキン","steps":["コースターを敷く","紙ナプキンで代用可"],"tip":"吸水性の良い素材が望ましい"},
+{"id":"074","title":"葉物野菜の茎部分からの水切り","tags":["料理","保存"],"time":"2分","materials":"ボウル;水切りネット","steps":["葉を逆さまにして茎を下に向ける","水切りする"],"tip":"細かい土を落とす"},
+{"id":"075","title":"家具の移動時の床保護（即席）","tags":["住居","便利"],"time":"2分","materials":"布;ダンボール","steps":["家具の脚に布やダンボールを噛ませる","滑らせて移動"],"tip":"重い物は人手を増やす"},
+{"id":"076","title":"シール跡の剥がし方（紙）","tags":["掃除","便利"],"time":"2分","materials":"ドライヤー;指先","steps":["温風で温める","ゆっくり剥がす"],"tip":"紙が薄い場合は慎重に"},
+{"id":"077","title":"乾燥肌の簡易保湿（手荒れ）","tags":["健康","美容"],"time":"1分","materials":"ワセリン;手袋","steps":["ワセリンを薄く塗る","綿手袋で覆うと効果的"],"tip":"就寝時に行うと良い"},
+{"id":"078","title":"水筒のにおい取り（重曹）","tags":["キッチン","洗浄"],"time":"1時間","materials":"重曹;お湯","steps":["重曹を入れてお湯を注ぐ","一晩放置して洗う"],"tip":"蓋のパッキンも洗う"},
+{"id":"079","title":"耐水ラベルの簡易作り方","tags":["ラベル","便利"],"time":"5分","materials":"透明テープ;紙ラベル","steps":["紙ラベルを作る","透明テープで表面を覆う"],"tip":"水濡れ対策に有効"},
+{"id":"080","title":"短時間で洗濯物のシワ伸ばし（ハンガー乾燥）","tags":["洗濯","時短"],"time":"5分","materials":"ハンガー;スチーム","steps":["濡れたままハンガーにかける","スチームやシャワーの蒸気で伸ばす"],"tip":"襟元は形を整える"},
+{"id":"081","title":"殻付きナッツの割り方（簡易）","tags":["料理","便利"],"time":"1分","materials":"鍋の端;布","steps":["ナッツを布で包む","鍋の端で軽く叩く"],"tip":"破片に注意"},
+{"id":"082","title":"古い財布の臭い対策","tags":["生活","便利"],"time":"1日","materials":"木炭;袋","steps":["財布に木炭を入れて封筒に入れる","一晩置く"],"tip":"過度の湿気は避ける"},
+{"id":"083","title":"メガネの曇り防止簡易法","tags":["生活","便利"],"time":"1分","materials":"石鹸;布","steps":["微量の石鹸を薄く塗る","布で薄く拭き取る"],"tip":"視界に残らないよう調整"},
+{"id":"084","title":"寝付きが悪いときの即席リラックス法","tags":["健康","睡眠"],"time":"10分","materials":"深呼吸;暗い環境","steps":["深くゆっくり呼吸する","目を閉じて暗く静かにする"],"tip":"スマホは避ける"},
+{"id":"085","title":"段ボールで作る即席収納仕切り","tags":["整理","便利"],"time":"10分","materials":"段ボール;カッター;両面テープ","steps":["サイズを測る","仕切りを切って組み立てる"],"tip":"軽い物の整理に最適"},
+{"id":"086","title":"鍋の蓋の水滴を防ぐ小技","tags":["料理","便利"],"time":"1分","materials":"布;蓋","steps":["蓋の縁に布をかける","滴が落ちにくくなる"],"tip":"布は清潔に保つ"},
+{"id":"087","title":"靴底の滑り止めの即席補修","tags":["靴","修理"],"time":"10分","materials":"接着剤;滑り止めテープ","steps":["接着剤で剥がれを補修","滑り止めテープを貼る"],"tip":"乾燥時間を守る"},
+{"id":"088","title":"ペットの食器の水垢取り","tags":["ペット","掃除"],"time":"10分","materials":"酢;スポンジ","steps":["酢を薄めて浸ける","スポンジでこする"],"tip":"よく洗い流す"},
+{"id":"089","title":"新聞紙で窓の拭き跡軽減","tags":["掃除","窓"],"time":"5分","materials":"新聞紙;水","steps":["水で濡らした新聞紙で拭く","乾いた新聞紙で仕上げる"],"tip":"新聞のインクが手に付くことがある"},
+{"id":"090","title":"簡易パッキングで皺を避ける衣類畳み方","tags":["旅行","整理"],"time":"3分","materials":"衣類;ジップ袋","steps":["重ねて丸めるように畳む","ジップ袋で空気を抜く"],"tip":"シャツはハンガーに掛ける"},
+{"id":"091","title":"ペットの毛で作るコンポスト活用","tags":["ガーデニング","循環"],"time":"1分","materials":"ペットの抜け毛;堆肥箱","steps":["抜け毛を堆肥箱に入れる","他の有機物と混ぜる"],"tip":"量は控えめに"},
+{"id":"092","title":"麦茶パックで冷蔵庫の消臭","tags":["キッチン","脱臭"],"time":"1分","materials":"麦茶パック;小皿","steps":["パックを開けて小皿に入れる","冷蔵庫に置く"],"tip":"こまめに交換する"},
+{"id":"093","title":"携帯の指紋防止（布カバー）","tags":["電子機器","便利"],"time":"1分","materials":"柔らかい布;カバー","steps":["携帯カバーに布を敷く","指紋を目立たなくする"],"tip":"通気性に注意"},
+{"id":"094","title":"コップの曇り取り（重曹）","tags":["掃除","台所"],"time":"5分","materials":"重曹;水","steps":["重曹ペーストを塗る","柔らかく擦って洗い流す"],"tip":"スポンジで優しく擦る"},
+{"id":"095","title":"アイスの簡易早く柔らかくする方法","tags":["料理","便利"],"time":"3分","materials":"室温;ナイフ","steps":["室温で数分置く","表面をナイフで軽く削る"],"tip":"溶けすぎに注意"},
+{"id":"096","title":"ティッシュで花瓶の掃除","tags":["掃除","インテリア"],"time":"3分","materials":"ティッシュ;酢","steps":["酢で湿らせたティッシュで拭く","内側の水垢を取る"],"tip":"細い部分は割り箸で補助"},
+{"id":"097","title":"引き出しの滑り改善（紙）","tags":["家具","便利"],"time":"5分","materials":"パラフィン紙;カッター","steps":["引き出しの底に紙を敷く","滑りが良くなる"],"tip":"サイズに合わせて切る"},
+{"id":"098","title":"簡易ハンドソープの泡立ち向上","tags":["衛生","便利"],"time":"1分","materials":"ポンプ;水少量","steps":["水を少量混ぜる","軽く振って泡を作る"],"tip":"希釈しすぎ注意"},
+{"id":"099","title":"アルミホイルで即席緑茶用のこし","tags":["キッチン","便利"],"time":"1分","materials":"アルミホイル;茶葉","steps":["小さく折って茶葉を包む","熱湯を注ぐ"],"tip":"金属臭が気になる場合は短時間抽出"},
+{"id":"100","title":"バスルームのタオル乾燥小技","tags":["浴室","洗濯"],"time":"30分","materials":"タオル;ハンガー","steps":["タオルを広げて風通しの良い場所で干す","乾いたらたたむ"],"tip":"湿気が多い日は屋内で干す"},
+{"id":"101","title":"バスタオルの即席乾燥法","tags":["洗濯","時短"],"time":"10分","materials":"風通しの良い場所;ハンガー","steps":["ハンガーに広げて干す","風通しの良い場所で乾かす"],"tip":"重ねず広げる"},
+{"id":"102","title":"冷蔵庫の霜取り簡易法","tags":["掃除","キッチン"],"time":"30分","materials":"ボウルに熱湯;タオル","steps":["扉を開けて霜を温める","溶けた水はタオルで拭く"],"tip":"電源を切ってから行う"},
+{"id":"103","title":"割れた傘の一時補修","tags":["雨具","修理"],"time":"5分","materials":"テープ;針金","steps":["破れをテープで補修","折れた骨を針金で補強"],"tip":"本格修理は専門へ"},
+{"id":"104","title":"埃取りにヘアドライヤーを活用","tags":["掃除","家事"],"time":"5分","materials":"ドライヤー;ブラシ","steps":["低温でホコリを吹き飛ばす","ブラシで拭き取る"],"tip":"電子機器は冷風で"},
+{"id":"105","title":"スパゲッティの茹で加減目安","tags":["料理","知識"],"time":"1分","materials":"タイマー","steps":["袋の表示通り茹でる","試食して好みで調整"],"tip":"アルデンテが基本"},
+{"id":"106","title":"靴の紐をほどけにくくする結び方","tags":["靴","便利"],"time":"1分","materials":"なし","steps":["二重の蝶結びをする","余った紐を内側に隠す"],"tip":"運動時は二重推奨"},
+{"id":"107","title":"カップ麺のスープこぼれ防止","tags":["料理","便利"],"time":"1分","materials":"割り箸","steps":["割り箸でフタを軽く押さえる","蒸気でフタが開かないようにする"],"tip":"やけどに注意"},
+{"id":"108","title":"靴に防水スプレー代用法","tags":["靴","手入れ"],"time":"2分","materials":"ろうそくのろう;布","steps":["布に少量のろうを塗る","靴の表面を薄く擦る"],"tip":"目立たない部分で試す"},
+{"id":"109","title":"パソコンの小さな音鳴り対処","tags":["電子機器","便利"],"time":"2分","materials":"電源再起動;ケーブル確認","steps":["再起動する","ケーブルの接続を確認する"],"tip":"改善しない場合は点検"},
+{"id":"110","title":"簡易ワインセーバー（空気遮断）","tags":["嗜好","保存"],"time":"1分","materials":"ラップ;ゴムバンド","steps":["ボトル口にラップを被せる","ゴムで留める"],"tip":"短期間の保存に有効"},
+{"id":"111","title":"スニーカーの白さ復活（消しゴム）","tags":["靴","掃除"],"time":"5分","materials":"普通の消しゴム","steps":["汚れた部分を消しゴムで擦る","汚れを拭き取る"],"tip":"汚れが深い場合はブラシ併用"},
+{"id":"112","title":"料理中の塩の加減修正法","tags":["料理","知識"],"time":"1分","materials":"砂糖か酢少量","steps":["塩辛いと感じたら砂糖や酢を少量加える","味を見て調整する"],"tip":"少量ずつ加える"},
+{"id":"113","title":"排水口の臭い予防に重曹","tags":["掃除","衛生"],"time":"1分","materials":"重曹;お湯","steps":["排水口に重曹を入れる","熱湯を流す"],"tip":"定期的に行う"},
+{"id":"114","title":"洗面所の鏡曇りを防ぐ簡易法","tags":["浴室","便利"],"time":"1分","materials":"洗剤の薄め液;布","steps":["薄めた洗剤で薄く拭く","布で均一に伸ばす"],"tip":"目に入らないよう注意"},
+{"id":"115","title":"鍋の蓋の噴きこぼれ防止","tags":["料理","便利"],"time":"1分","materials":"木べら","steps":["鍋の縁に木べらを置く","蒸気穴を作ることで噴きこぼれを抑制"],"tip":"鍋のタイプで調整"},
+{"id":"116","title":"鍵の油切れ防止に鉛筆の芯","tags":["防犯","便利"],"time":"1分","materials":"鉛筆の芯","steps":["鍵の溝に芯を擦る","滑りがよくなる"],"tip":"定期的に少量行う"},
+{"id":"117","title":"ビニール床の傷目立たなくする方法","tags":["住居","手入れ"],"time":"5分","materials":"アイロン;当て布","steps":["当て布をして軽く温める","形を整える"],"tip":"過度の熱は避ける"},
+{"id":"118","title":"紙封筒をテープ無しで閉じる方法","tags":["便利","生活"],"time":"30秒","materials":"スチーム;湿った布","steps":["封を湿らせる","軽く押さえて乾かす"],"tip":"書類は別に保護"},
+{"id":"119","title":"野菜の泥落とし（根菜）","tags":["料理","掃除"],"time":"5分","materials":"ブラシ;流水","steps":["ブラシでこすり洗う","流水で泥を落とす"],"tip":"皮は傷つけないよう注意"},
+{"id":"120","title":"レシートの色あせ防止保管法","tags":["整理","便利"],"time":"1分","materials":"紙封筒;暗所","steps":["レシートを封筒に入れる","光の当たらない場所で保管"],"tip":"重要なものはスキャンを推奨"},
+{"id":"121","title":"缶詰の保存反対（開封後）","tags":["キッチン","保存"],"time":"1分","materials":"別容器;ラップ","steps":["開封後は中身を別容器に移す","ラップや蓋で密閉する"],"tip":"缶のまま長期保存は避ける"},
+{"id":"122","title":"電子レンジ庫内の頑固汚れ除去","tags":["掃除","キッチン"],"time":"10分","materials":"レモン汁;水","steps":["水にレモン汁を入れて加熱","蒸気で汚れを緩めて拭く"],"tip":"取り外せるパーツは洗う"},
+{"id":"123","title":"ハサミの切れ味回復（紙やすり）","tags":["工具","手入れ"],"time":"2分","materials":"紙やすり","steps":["紙やすりを数回切って研ぐ","切れ味を確認する"],"tip":"刃を傷めないように注意"},
+{"id":"124","title":"服の色移りを防ぐ洗い方","tags":["洗濯","衣類"],"time":"10分","materials":"冷水;塩少々","steps":["色落ちしやすい衣類は単独で洗う","初回は塩を入れると固定する場合あり"],"tip":"洗剤の種類も影響"},
+{"id":"125","title":"ヘアアイロンの焦げ付き除去","tags":["美容","手入れ"],"time":"5分","materials":"アルコール;布","steps":["冷めてから布にアルコールを含ませ拭く","焦げが落ちるまで繰り返す"],"tip":"高熱は肌や髪に注意"},
+{"id":"126","title":"目覚ましの聞き取りやすい位置","tags":["生活","睡眠"],"time":"1分","materials":"スマホ・目覚まし","steps":["出し忘れ防止のため枕から少し離す","届きやすい場所に置く"],"tip":"明るさも調整"},
+{"id":"127","title":"缶詰の中身を均一に混ぜる方法","tags":["料理","便利"],"time":"30秒","materials":"フォーク;容器","steps":["開封後に容器でよくかき混ぜる","均一にする"],"tip":"調理前に味見を"},
+{"id":"128","title":"クッションのカバーを簡単に付ける裏技","tags":["家事","便利"],"time":"2分","materials":"枕カバー式にする","steps":["カバーを裏返して角を入れる","表に返して整える"],"tip":"ジッパー付きは楽"},
+{"id":"129","title":"洗面所のぬめり予防（重曹使用）","tags":["掃除","衛生"],"time":"5分","materials":"重曹;ブラシ","steps":["重曹を振ってブラシでこする","水で流す"],"tip":"定期的な清掃が効果的"},
+{"id":"130","title":"換気扇の簡易フィルター自作","tags":["掃除","DIY"],"time":"10分","materials":"不織布;紐","steps":["不織布をカットしてフィルターを作る","紐で固定する"],"tip":"定期交換を忘れずに"},
+{"id":"131","title":"コーヒーの油膜除去法","tags":["キッチン","掃除"],"time":"2分","materials":"湯;ペーパータオル","steps":["表面をペーパーで軽く拭く","油膜が取れる"],"tip":"飲む前の仕上げに"},
+{"id":"132","title":"赤ワインの染み応急処理（塩）","tags":["掃除","応急"],"time":"5分","materials":"塩;水","steps":["塩を染みへ振る","吸わせてから洗う"],"tip":"早めの処理が鍵"},
+{"id":"133","title":"プラスチック容器の匂い取り（重曹）","tags":["キッチン","保存"],"time":"一晩","materials":"重曹;水","steps":["重曹水に浸けて一晩置く","洗って乾かす"],"tip":"蓋も洗う"},
+{"id":"134","title":"本のしおり代わりの即席アイテム","tags":["生活","便利"],"time":"10秒","materials":"レシート;紙片","steps":["ページ間に差し込む","折り返して使う"],"tip":"厚いカードも可"},
+{"id":"135","title":"衣類の匂いリセット（乾燥機シート）","tags":["洗濯","便利"],"time":"5分","materials":"乾燥機シート","steps":["衣類と一緒に数分回す","匂いがリフレッシュされる"],"tip":"長時間は避ける"},
+{"id":"136","title":"鍋の湯漏れ防止にアルミホイル","tags":["料理","便利"],"time":"1分","materials":"アルミホイル","steps":["鍋の隙間にアルミを挟む","蒸気の漏れを軽減"],"tip":"安全に配慮"},
+{"id":"137","title":"レモンでまな板の漂白と除菌","tags":["掃除","キッチン"],"time":"10分","materials":"レモン;塩","steps":["塩を振りレモンで擦る","水で洗って乾かす"],"tip":"天然の漂白効果あり"},
+{"id":"138","title":"電子レンジのターンテーブル掃除簡単法","tags":["掃除","キッチン"],"time":"5分","materials":"中性洗剤;スポンジ","steps":["取り出して洗う","乾かして戻す"],"tip":"定期的な洗浄で臭い防止"},
+{"id":"139","title":"冷蔵庫の食品ラベルの即席作り","tags":["整理","便利"],"time":"2分","materials":"マスキングテープ;ペン","steps":["日付と内容を書いて貼る","管理しやすくする"],"tip":"賞味期限を明記"},
+{"id":"140","title":"紙コップでの即席分別箱","tags":["整理","便利"],"time":"1分","materials":"紙コップ;テープ","steps":["複数の紙コップをくっつける","小物分別に使う"],"tip":"軽量物向け"},
+{"id":"141","title":"ガス台の焦げ付きを簡易除去","tags":["掃除","台所"],"time":"30分","materials":"重曹;お湯","steps":["重曹を振りお湯を注ぐ","しばらく置いて擦る"],"tip":"傷つけないようスポンジで"},
+{"id":"142","title":"トマトの湯むきの簡単手順","tags":["料理","時短"],"time":"5分","materials":"熱湯;氷水","steps":["切り込みを入れて熱湯に数秒浸す","氷水で冷やして皮を剥く"],"tip":"加熱時間に注意"},
+{"id":"143","title":"ネクタイのシワ伸ばし（シャワー蒸気）","tags":["衣類","手入れ"],"time":"5分","materials":"ハンガー;シャワー蒸気","steps":["ハンガーに掛けてシャワー蒸気を当てる","形を整える"],"tip":"素材によって注意"},
+{"id":"144","title":"鏡やガラスの指紋取り（酢水）","tags":["掃除","便利"],"time":"3分","materials":"酢;水;布","steps":["酢水を吹きかけ拭く","乾いた布で仕上げる"],"tip":"換気を良くする"},
+{"id":"145","title":"カーテンの取り外し簡便メモ","tags":["家事","便利"],"time":"2分","materials":"フック確認;写真スマホ","steps":["外す前にフック位置を写真に撮る","戻すときに迷わない"],"tip":"一つずつ外す"},
+{"id":"146","title":"お弁当の汁漏れ防止（ラップ活用）","tags":["キッチン","便利"],"time":"1分","materials":"ラップ;小容器","steps":["汁物は小容器に入れる","容器の口をラップで覆う"],"tip":"容器の蓋も確認"},
+{"id":"147","title":"冷蔵庫の野菜室整理の簡易ルール","tags":["整理","保存"],"time":"3分","materials":"ラベル;箱","steps":["種類ごとに箱や袋で分ける","ラベルで一目瞭然にする"],"tip":"定期チェックを習慣化"},
+{"id":"148","title":"傘の骨折れ応急結束","tags":["雨具","修理"],"time":"5分","materials":"紐;テープ","steps":["骨を結束して固定する","破れはテープで補修"],"tip":"長期使用は交換を"},
+{"id":"149","title":"靴下の片方失くし対策","tags":["整理","便利"],"time":"1分","materials":"洗濯ネット;クリップ","steps":["洗濯ネットで一対をまとめる","干すときはセットで扱う"],"tip":"ポケットに収納する"},
+{"id":"150","title":"野菜の鮮度チェック（葉物）","tags":["食材","知識"],"time":"30秒","materials":"なし","steps":["葉の色や張りを確認する","茎の切り口が新しいか見る"],"tip":"匂いも確認"},
+{"id":"151","title":"紙袋を再利用する収納術","tags":["整理","エコ"],"time":"5分","materials":"紙袋;ハサミ","steps":["紙袋を折って仕切りにする","引き出しなどに入れる"],"tip":"軽い物向け"},
+{"id":"152","title":"洗い物の効率化（予洗い分担）","tags":["家事","効率"],"time":"2分","materials":"スポンジ;ぬるま湯","steps":["油物は先に予洗いする","つけ置きで時間短縮"],"tip":"順序を決めて作業"},
+{"id":"153","title":"割れ物のラッピングで隙間埋める方法","tags":["引越し","便利"],"time":"10分","materials":"タオル;新聞紙","steps":["割れ物をタオルで包む","隙間に新聞を詰める"],"tip":"ラベルを付ける"},
+{"id":"154","title":"切った野菜を変色させない保管","tags":["保存","食材"],"time":"5分","materials":"レモン汁;ラップ","steps":["切った断面に少量のレモン汁を塗る","ラップで密封する"],"tip":"すぐ使う分だけ処理"},
+{"id":"155","title":"窓の網戸の簡易掃除","tags":["掃除","家事"],"time":"10分","materials":"掃除機;湿った布","steps":["掃除機でほこりを吸う","湿った布で拭く"],"tip":"細かい網目はブラシで"},
+{"id":"156","title":"暑さ対策に濡れタオルの活用","tags":["健康","夏"],"time":"1分","materials":"タオル;水","steps":["タオルを濡らして首に巻く","風通しを良くする"],"tip":"熱中症予防の補助に"},
+{"id":"157","title":"冷凍庫の霜防止小技","tags":["保存","キッチン"],"time":"5分","materials":"ラップ;袋","steps":["食材は密封して保存する","扉の開閉を最小限にする"],"tip":"定期的に霜取り"},
+{"id":"158","title":"金属の小さなサビ取り（酢利用）","tags":["掃除","手入れ"],"time":"10分","materials":"酢;布","steps":["酢を浸して擦る","水で洗い拭く"],"tip":"塗装面は避ける"},
+{"id":"159","title":"キッチンタイマーの音が小さいときの工夫","tags":["便利","生活"],"time":"1分","materials":"容器;反射板","steps":["タイマーを小皿や容器に置く","音が反射して聞こえやすくなる"],"tip":"振動タイプも便利"},
+{"id":"160","title":"掃除のルーチン化メモ","tags":["家事","効率"],"time":"5分","materials":"チェックリスト;カレンダー","steps":["毎日の短時間タスクを決める","週次で重点箇所を掃除"],"tip":"無理なく続ける"},
+{"id":"161","title":"プランターの水はけ改善（底石）","tags":["ガーデニング","便利"],"time":"5分","materials":"小石;鉢底ネット","steps":["小石を底に敷く","鉢底ネットで土の流出防止"],"tip":"過湿を避ける"},
+{"id":"162","title":"紙のしわ伸ばし（アイロン代用）","tags":["衣類","便利"],"time":"1分","materials":"重し;平らな面","steps":["紙を平らにして重しを置く","時間を置くと伸びる"],"tip":"高価な紙は注意"},
+{"id":"163","title":"ペットの抜け毛を掃除しやすくするコツ","tags":["ペット","掃除"],"time":"5分","materials":"ゴム手袋;掃除機","steps":["ゴム手袋でこすって毛を集める","掃除機で吸う"],"tip":"粘着ローラーも併用"},
+{"id":"164","title":"湯船の水をすばやく温める方法","tags":["入浴","便利"],"time":"10分","materials":"蓋;湯気対策","steps":["湯船に蓋をする","保温効果で温度低下を防ぐ"],"tip":"追い焚きがある場合は併用"},
+{"id":"165","title":"自転車タイヤの小さな穴応急補修","tags":["修理","アウトドア"],"time":"15分","materials":"パンク修理キット;接着剤","steps":["穴を特定してパッチを貼る","しっかり乾かす"],"tip":"安全第一で確認"},
+{"id":"166","title":"ビニール手袋の保存で破れ防止","tags":["衛生","便利"],"time":"1分","materials":"涼しい場所;箱","steps":["直射日光を避け涼しい場所で保管","圧をかけない"],"tip":"湿度も避ける"},
+{"id":"167","title":"爪の割れ防止に保湿","tags":["美容","健康"],"time":"1分","materials":"ハンドクリーム;オイル","steps":["爪周りにオイルを塗る","保湿を習慣化する"],"tip":"栄養バランスも重要"},
+{"id":"168","title":"郵便物の整理簡易レール","tags":["整理","便利"],"time":"5分","materials":"マガジンラック;ラベル","steps":["重要度で仕分けする","ラベルで日付管理"],"tip":"定期的に処理"},
+{"id":"169","title":"鍋の取っ手の保護（滑り止め）","tags":["台所","便利"],"time":"1分","materials":"布;輪ゴム","steps":["布を巻いて輪ゴムで固定","滑りにくくする"],"tip":"熱に注意"},
+{"id":"170","title":"封筒を速く開けるコツ","tags":["生活","便利"],"time":"10秒","materials":"カードの角","steps":["カードを封筒の端に差し入れる","スライドして開ける"],"tip":"中身を傷付けないよう注意"},
+{"id":"171","title":"靴の消臭用コーヒーかす利用","tags":["靴","脱臭"],"time":"1分","materials":"コーヒーかす;小袋","steps":["かすを小袋に入れる","靴の中に入れておく"],"tip":"湿り気があると逆効果"},
+{"id":"172","title":"キーの目立たせ方（色付け）","tags":["整理","便利"],"time":"2分","materials":"ネイルポリッシュ;ラベル","steps":["先端に色を塗る","識別しやすくする"],"tip":"乾かしてから使用"},
+{"id":"173","title":"コップの水垢予防（使い終わり拭き）","tags":["台所","習慣"],"time":"10秒","materials":"布","steps":["使用後に軽く拭く","乾燥させる"],"tip":"小さな習慣が効果的"},
+{"id":"174","title":"野菜の根を利用した再生栽培","tags":["ガーデニング","エコ"],"time":"数日","materials":"水;容器","steps":["根元を水に浸す","発根してから土に植える"],"tip":"種によって向き不向きあり"},
+{"id":"175","title":"使い捨て手袋で掃除時の衛生維持","tags":["掃除","衛生"],"time":"1分","materials":"使い捨て手袋","steps":["掃除前に着用する","終わったら廃棄する"],"tip":"二次汚染に注意"},
+{"id":"176","title":"冷凍保存で食材の使い切り管理","tags":["保存","時短"],"time":"5分","materials":"ラベル;ジップ袋","steps":["日付を書いて保存","使う順に管理する"],"tip":"小分けで保存"},
+{"id":"177","title":"シャツの襟汚れ応急処置","tags":["衣類","掃除"],"time":"5分","materials":"洗剤;歯ブラシ","steps":["洗剤を塗って歯ブラシでこする","洗濯機で通常洗い"],"tip":"漂白剤は素材注意"},
+{"id":"178","title":"レジ袋を再利用する折り畳み術","tags":["整理","エコ"],"time":"2分","materials":"レジ袋","steps":["空気を抜いて小さく折る","まとめて保管する"],"tip":"ゴミ袋として再利用"},
+{"id":"179","title":"簡易アイスノンの作り方","tags":["健康","便利"],"time":"5分","materials":"ジップ袋;水;布","steps":["水を袋に入れ凍らせる","布で包んで使用"],"tip":"直接肌に当てない"},
+{"id":"180","title":"フライ返しがない時の代用","tags":["料理","便利"],"time":"10秒","materials":"皿の角;箸","steps":["皿の角や箸を使って裏返す","慎重に扱う"],"tip":"熱に注意"},
+{"id":"181","title":"着物やデリケート服の保管方法","tags":["衣類","保存"],"time":"10分","materials":"防虫剤;桐箱や布袋","steps":["通気性のある袋に入れる","防虫剤を入れて湿気を避ける"],"tip":"直射日光を避ける"},
+{"id":"182","title":"スマホを音量で判断しやすくする設定","tags":["電子機器","便利"],"time":"1分","materials":"設定操作","steps":["通知ごとに音を変える","重要な通知は大きめに設定"],"tip":"振動も合わせて利用"},
+{"id":"183","title":"布の食べこぼしの予備処理","tags":["掃除","衣類"],"time":"1分","materials":"キッチンペーパー;冷水","steps":["余分な汚れを押さえる","冷水で薄め拭き取る"],"tip":"擦らず押す"},
+{"id":"184","title":"玄関の靴並べ簡易ルール","tags":["整理","生活"],"time":"2分","materials":"ラインテープ;ラベル","steps":["左右の列を決める","子供と分かりやすく表示"],"tip":"習慣化が肝心"},
+{"id":"185","title":"電子レンジでの温めムラ軽減","tags":["キッチン","便利"],"time":"30秒","materials":"容器の配置","steps":["中央を空けて配置する","途中でかき混ぜる"],"tip":"蓋で蒸気を逃がさない"},
+{"id":"186","title":"薬パッケージの整理法","tags":["整理","健康"],"time":"5分","materials":"小箱;ラベル","steps":["使用期限順に並べる","外箱を処分して小箱に移す"],"tip":"期限切れは廃棄"},
+{"id":"187","title":"タオルのふわふわ回復（酢）","tags":["洗濯","手入れ"],"time":"30分","materials":"酢;洗濯機","steps":["酢を少量入れて一度回す","柔軟剤を減らす"],"tip":"匂いは乾燥で飛ぶ"},
+{"id":"188","title":"プラスチック容器の蓋の閉まり改善","tags":["台所","便利"],"time":"1分","materials":"布テープ;調整","steps":["隙間に薄いテープを貼る","密閉性を高める"],"tip":"耐熱容器は注意"},
+{"id":"189","title":"引越し時の段取りメモ","tags":["引越し","整理"],"time":"10分","materials":"チェックリスト;箱","steps":["大きさで箱分けする","必需品は別箱に"],"tip":"早めの準備が楽"},
+{"id":"190","title":"爪切りの使い分け簡易ルール","tags":["衛生","便利"],"time":"1分","materials":"爪切り;やすり","steps":["足は大きめ、手は小さめを使う","やすりで仕上げる"],"tip":"清潔に保つ"},
+{"id":"191","title":"チーズの保存でカビ防止","tags":["保存","食材"],"time":"1日","materials":"ラップ;紙","steps":["ラップで包み紙で覆う","冷蔵庫で保存"],"tip":"カビが出たら切り取る"},
+{"id":"192","title":"ミニドライヤーで小物乾燥","tags":["掃除","便利"],"time":"2分","materials":"小型ドライヤー","steps":["低温で短時間乾かす","布で仕上げる"],"tip":"過熱に注意"},
+{"id":"193","title":"カーペットの小さな焦げ跡応急処置","tags":["掃除","修理"],"time":"10分","materials":"はさみ;接着剤","steps":["焦げた繊維を切る","部分に接着で補修する"],"tip":"目立つ場合は張替え検討"},
+{"id":"194","title":"テーブル脚のぐらつき応急固定","tags":["家具","修理"],"time":"5分","materials":"くさび;ネジ","steps":["ぐらつきを確認してくさびを入れる","必要ならネジを締める"],"tip":"大きな損傷は修理"},
+{"id":"195","title":"紙おしぼりの作り置き保存法","tags":["保存","便利"],"time":"1日","materials":"湿らせた布;密閉容器","steps":["清潔な布を湿らせ容器に入れる","使う直前に取り出す"],"tip":"長期保存は避ける"},
+{"id":"196","title":"ペットのトイレ臭を抑える砂の混合","tags":["ペット","衛生"],"time":"5分","materials":"木酢;砂","steps":["少量を混ぜて消臭効果を高める","様子を見て調整"],"tip":"動物に安全な物を使う"},
+{"id":"197","title":"衣類の色あせを防ぐ洗濯ルール","tags":["洗濯","衣類"],"time":"5分","materials":"洗剤;洗濯ネット","steps":["裏返して洗う","ネットでの洗濯を推奨"],"tip":"干すときも裏返し"},
+{"id":"198","title":"革靴の光沢回復（布とワックス）","tags":["靴","手入れ"],"time":"5分","materials":"布;ワックス","steps":["布で汚れを拭く","薄くワックスを塗って磨く"],"tip":"定期的なケアで長持ち"},
+{"id":"199","title":"ゴミ袋が破れにくい詰め方","tags":["生活","便利"],"time":"1分","materials":"二重袋;注意深く詰める","steps":["重いものは小分けにする","尖った物は包んでから捨てる"],"tip":"蓋をしっかり閉める"},
+{"id":"200","title":"非常時の簡易ライト（携帯利用）","tags":["防災","便利"],"time":"1分","materials":"スマホ;懐中電灯アプリ","steps":["スマホのライトを最大にする","予備バッテリーを用意する"],"tip":"定期的に充電を確認する"}
+];
+
+const content = document.getElementById('content');
+const search = document.getElementById('search');
+const tagFilter = document.getElementById('tagFilter');
+const toggleTheme = document.getElementById('toggleTheme');
+const showFav = document.getElementById('showFav');
+const toc = document.getElementById('toc');
+const cardTpl = document.getElementById('cardTpl');
+
+let filtered = DATA.slice();
+let favs = new Set(JSON.parse(localStorage.getItem('favs')||'[]'));
+let currentIndex = 0;
+
+function init(){
+  populateTags();
+  renderCards(filtered);
+  renderTOC();
+  bindControls();
+  restoreTheme();
+  tryRegisterSW();
+}
+
+function populateTags(){
+  const tags = [...new Set(DATA.flatMap(d=>d.tags))].sort();
+  tags.forEach(t=>{
+    const opt = document.createElement('option');
+    opt.value = t; opt.textContent = t;
+    tagFilter.appendChild(opt);
+  });
+}
+
+function renderCards(list){
+  content.innerHTML = '';
+  list.forEach((item, idx)=>{
+    const node = cardTpl.content.cloneNode(true);
+    const article = node.querySelector('article');
+    article.dataset.id = item.id;
+    article.setAttribute('tabindex','0');
+    article.querySelector('.card-title').textContent = item.title;
+    article.querySelector('.meta').textContent = `${item.tags.join('・')} ・ ${item.time}`;
+    const steps = article.querySelector('.steps');
+    item.steps.forEach(s=>{
+      const li = document.createElement('li'); li.textContent = s; steps.appendChild(li);
+    });
+    article.querySelector('.materials span').textContent = item.materials.replace(/;/g,', ');
+    article.querySelector('.tip em').textContent = item.tip;
+    const tagsEl = article.querySelector('.tags');
+    item.tags.forEach(t=>{
+      const span = document.createElement('span');
+      span.className = 'tag'; span.textContent = t;
+      tagsEl.appendChild(span);
+    });
+    // actions
+    const favBtn = article.querySelector('.fav');
+    favBtn.textContent = favs.has(item.id) ? '解除' : 'お気に入り';
+    favBtn.addEventListener('click', e=>{ e.stopPropagation(); toggleFav(item.id, favBtn); });
+    article.querySelector('.print').addEventListener('click', e=>{ e.stopPropagation(); printItem(item); });
+    article.querySelector('.copy').addEventListener('click', e=>{ e.stopPropagation(); copyItem(item); });
+
+    // keyboard/expand
+    article.addEventListener('click', ()=> toggleExpand(article));
+    article.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Enter') toggleExpand(article);
+      if(ev.key === 'ArrowDown') focusNext(idx);
+      if(ev.key === 'ArrowUp') focusPrev(idx);
+    });
+
+    content.appendChild(article);
+  });
+  // reset focus index
+  currentIndex = 0;
+  focusCard(0);
+}
+
+function toggleExpand(article){
+  const expanded = article.getAttribute('aria-expanded') === 'true';
+  article.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+}
+
+function focusCard(i){
+  const nodes = Array.from(content.querySelectorAll('.card'));
+  if(nodes.length===0) return;
+  const clamped = Math.max(0, Math.min(i, nodes.length-1));
+  nodes[clamped].focus();
+  currentIndex = clamped;
+}
+
+function focusNext(i){ focusCard(i+1) }
+function focusPrev(i){ focusCard(i-1) }
+
+function onFilter(){
+  const q = search.value.trim().toLowerCase();
+  const tag = tagFilter.value;
+  filtered = DATA.filter(d=>{
+    const hay = (d.title + ' ' + d.steps.join(' ') + ' ' + d.tags.join(' ')).toLowerCase();
+    const inText = hay.includes(q);
+    const inTag = tag ? d.tags.includes(tag) : true;
+    return inText && inTag;
+  });
+  renderCards(filtered);
+  renderTOC();
+}
+
+function toggleFav(id, btn){
+  if(favs.has(id)){ favs.delete(id); btn.textContent = 'お気に入り'; }
+  else { favs.add(id); btn.textContent = '解除'; }
+  localStorage.setItem('favs', JSON.stringify([...favs]));
+}
+
+function showFavorites(){
+  const favList = DATA.filter(d=>favs.has(d.id));
+  if(favList.length===0){
+    alert('お気に入りはまだありません');
+    return;
+  }
+  filtered = favList;
+  renderCards(filtered);
+  renderTOC();
+}
+
+function printItem(item){
+  const w = window.open('', '_blank', 'noopener');
+  const html = `
+  <html><head><title>${escapeHtml(item.title)}</title>
+  <style>
+    body{font-family: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;padding:18px;color:#111}
+    h1{font-size:20px;margin-bottom:6px}
+    ol{margin-top:8px}
+  </style>
+  </head><body>
+  <h1>${escapeHtml(item.title)}</h1>
+  <p><strong>材料:</strong> ${escapeHtml(item.materials.replace(/;/g,', '))}</p>
+  <ol>${item.steps.map(s=>`<li>${escapeHtml(s)}</li>`).join('')}</ol>
+  <p><em>${escapeHtml(item.tip)}</em></p>
+  </body></html>`;
+  w.document.write(html);
+  w.document.close();
+  w.focus();
+  w.print();
+  w.close();
+}
+
+function copyItem(item){
+  const text = `${item.title}\n材料: ${item.materials.replace(/;/g,', ')}\n${item.steps.join('\n')}\n${item.tip}`;
+  navigator.clipboard?.writeText(text).then(()=> {
+    flashMessage('クリップボードにコピーしました');
+  },()=> {
+    flashMessage('コピーに失敗しました');
+  });
+}
+
+function renderTOC(){
+  toc.innerHTML = '';
+  filtered.forEach(item=>{
+    const li = document.createElement('li');
+    const a = document.createElement('button');
+    a.className = 'toc-link';
+    a.textContent = item.title;
+    a.addEventListener('click', ()=> {
+      const node = Array.from(content.querySelectorAll('.card')).find(n=>n.dataset.id===item.id);
+      if(node){ node.scrollIntoView({behavior:'smooth',block:'center'}); node.focus(); }
+    });
+    li.appendChild(a);
+    toc.appendChild(li);
+  });
+}
+
+function bindControls(){
+  search.addEventListener('input', debounce(onFilter, 240));
+  tagFilter.addEventListener('change', onFilter);
+  toggleTheme.addEventListener('click', toggleThemeFn);
+  showFav.addEventListener('click', showFavorites);
+
+  // keyboard shortcuts
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+      e.preventDefault(); search.focus(); return;
+    }
+    if(e.key === 'f' && (e.ctrlKey || e.metaKey)){
+      e.preventDefault(); showFavorites();
+    }
+  });
+}
+
+// small UI flash
+function flashMessage(msg){
+  const el = document.createElement('div');
+  el.textContent = msg;
+  el.style.position = 'fixed';
+  el.style.right = '18px';
+  el.style.bottom = '18px';
+  el.style.background = 'rgba(0,0,0,0.8)';
+  el.style.color = 'white';
+  el.style.padding = '8px 12px';
+  el.style.borderRadius = '8px';
+  el.style.zIndex = 9999;
+  document.body.appendChild(el);
+  setTimeout(()=> el.style.opacity = '0', 1400);
+  setTimeout(()=> el.remove(), 2000);
+}
+
+function toggleThemeFn(){
+  const now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  const next = now === 'dark' ? 'light' : 'dark';
+  if(next === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  else document.documentElement.removeAttribute('data-theme');
+  localStorage.setItem('theme', next);
+  toggleTheme.setAttribute('aria-pressed', next === 'dark');
+}
+
+function restoreTheme(){
+  if(localStorage.getItem('theme') === 'dark') {
+    document.documentElement.setAttribute('data-theme','dark');
+    toggleTheme.setAttribute('aria-pressed','true');
+  }
+}
+
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function debounce(fn, ms){
+  let t;
+  return (...args)=>{ clearTimeout(t); t = setTimeout(()=>fn(...args), ms); };
+}
+
+/* Service Worker registration */
+function tryRegisterSW(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').then(()=> {
+      // registered
+    }).catch(()=>{ /* ignore */ });
+  }
+}
+
+init();
