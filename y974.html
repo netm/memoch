@@ -1,12 +1,22 @@
+---
+title: "一人暮らしの1週間献立メーカー｜単品メニュー料理表示"
+date: 2025-10-24
+permalink: "/y974/"
+draft: false
+sitemap: true
+eleventyExcludeFromCollections: false
+---
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>一人暮らし 1週間献立メーカー</title>
-  <meta name="description" content="一人暮らし向けに予算と時間で選べる1週間分の献立と買い物リストを即時生成します。時短・作り置き・節約向けテンプレ多数.">
-<link rel="canonical" href="https://memoc.pages.dev/y974/">
-<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <title>一人暮らしの1週間献立メーカー｜単品メニュー料理表示</title>
+  <meta name="description" content="一人暮らし向けの1週間献立メーカー。単品メニュー（お米・うどん・パスタ・パン・そば）の料理名を自動選出。コピー・PNG保存・印刷・SNS共有対応の簡単操作で毎日の献立決めを時短します。">
+  <meta name="keywords" content="一人暮らし,献立,1週間,献立メーカー">
+  <meta name="adsense_account" content="ca-pub-3701488620779249">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://memoc.pages.dev/y974/">
   <link rel="stylesheet" href="/css/y974.css">
 </head>
 <!-- Google tag (gtag.js) -->
@@ -18,57 +28,105 @@ gtag('js', new Date());
 gtag('config', 'G-5D799GZERM');
 </script>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>一人暮らし 1週間献立メーカー</h1>
-        <div class="lead">予算と調理時間を選んで「生成する」を押すだけで1週間分の献立と買い物リストが作れます</div>
+  <div class="container" id="main">
+    <header class="topbar" role="banner" aria-label="操作バー">
+      <div class="controls" aria-hidden="false">
+        <button id="generateBtn" class="btn" title="1週間の献立を生成">献立作成</button>
+        <button id="copyBtn" class="btn ghost" title="テキストをクリップボードへコピー">文章コピー</button>
+        <button id="savePngBtn" class="btn" title="PNGで保存">PNG保存</button>
+        <button id="printBtn" class="btn ghost" title="印刷">印刷</button>
+        <select id="colorSelect" class="color-select" title="背景色を変更">
+          <option value="default">背景色: 標準</option>
+          <option value="gray">灰色</option>
+          <option value="pink">ピンク</option>
+          <option value="lightblue">水色</option>
+          <option value="lightgreen">黄緑</option>
+          <option value="yellow">黄色</option>
+          <option value="orange">オレンジ</option>
+          <option value="purple">紫</option>
+        </select>
       </div>
+      <nav class="socials" aria-label="共有ボタン">
+        <a id="shareX" href="#" title="Xで共有">x</a>
+        <a id="shareFB" href="#" title="Facebookで共有">facebook</a>
+        <a id="shareLINE" href="#" title="LINEで共有">LINE</a>
+      </nav>
     </header>
-    <section class="card controls" aria-label="操作">
-      <label>
-        人数
-        <select id="people" aria-label="人数">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-      </label>
-      <label>
-        予算
-        <select id="budget" aria-label="予算">
-          <option value="1500">〜1500円</option>
-          <option value="3000">〜3000円</option>
-          <option value="5000">〜5000円</option>
-          <option value="any">指定なし</option>
-        </select>
-      </label>
-      <label>
-        調理時間
-        <select id="timePref" aria-label="調理時間">
-          <option value="short">時短</option>
-          <option value="normal">標準</option>
-          <option value="any">指定なし</option>
-        </select>
-      </label>
-      <div style="display:flex;gap:8px;align-items:end">
-        <button id="generate">生成する</button>
-        <button id="quick3000" class="secondary">サンプル 1人 〜3000円</button>
-      </div>
-    </section>
-    <main id="result-area">
-      <section id="result" class="card" aria-live="polite"></section>
-      <div id="actions" class="card"></div>
-      <div class="related-links card" aria-label="関連リンク">
-        <h3>関連リンク</h3>
+    <main>
+      <h1>一人暮らしの1週間献立メーカー</h1>
+      <p class="note">単品メニュー（お米・うどん・パスタ・パン・そば）の料理を自動選出。保存・印刷・共有が簡単で、毎日の献立を短時間で決められます。</p>
+      <section class="card" aria-labelledby="autoTitle">
+        <h2 id="autoTitle">1週分間分の献立自動作成</h2>
+        <p>
+          <span class="keyword-badge">お米</span>
+          <span class="keyword-badge">うどん</span>
+          <span class="keyword-badge">パスタ</span>
+          <span class="keyword-badge">パン</span>
+          <span class="keyword-badge">そば</span>
+        </p>
+        <div id="menuContainer" aria-live="polite" aria-atomic="true">
+          <!-- 献立がここに表示されます -->
+        </div>
+        <textarea id="menuText" aria-hidden="true"></textarea>
+        <h3>使い方</h3>
         <ul>
-          <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立メーカー（1週間）</a></li>
-          <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
-          <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+          <li>「献立作成」を押すと、日ごとに単品メニューの料理名が表示されます。</li>
+          <li>例: 親子丼・炊き込みご飯・チャーハン・納豆ご飯・オムライス、肉うどん・カレーうどん等。</li>
+          <li>「文章コピー」「PNG保存」「印刷」でメニューを保存・共有できます。背景色は切替可能。</li>
         </ul>
-        <a class="return-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりのブラウザ便利サイトに戻る</a>
-      </div>
+      </section>
+      <section class="card" aria-labelledby="seoTitle">
+        <h2 id="seoTitle">1週間献立メーカーによるメニュー料理表示の説明</h2>
+        <p>
+          このブラウザアプリは一人暮らしで献立に悩んでいる方や1週間分のメニューに困っている方のお役に立ちます。献立メーカーとしてお米のレシピやうどんアレンジ料理などをご紹介しています。具体的な料理名（親子丼、チャーハン、肉うどん、カレーうどん、ミートソース、サンドイッチ、ざるそばなど）を表示して献立の内容を把握しやすくしています。
+        </p>
+        <p>
+          サイトのデザイン設計はスマホ・タブレット・PCに対応。共有ボタンでSNSシェアしやすく、PNG保存・印刷でオフライン利用や掲示も可能です。
+        </p>
+      </section>
+      <section class="related card" aria-labelledby="relatedTitle">
+        <h2 id="relatedTitle">関連リンク</h2>
+        <nav>
+          <a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立一週間分ブラウザアプリ 副菜2つ</a>
+          <a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の献立メーカーと副菜1つ</a>
+          <a href="https://memoc.pages.dev/y976/" target="_blank" rel="noopener">料理・生活の感覚単位換算チャート ひとつまみ</a>
+        </nav>
+      </section>
+      <section class="life card" aria-labelledby="lifeTitle">
+        <h3 id="lifeTitle">生活リンク</h3>
+        <nav>
+          <a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー 食品ロス消費期限管理アプリ</a>
+          <a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ 無料フォーマット</a>
+          <a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a>
+        </nav>
+      </section>
+      <section class="schedule card" aria-labelledby="scheduleTitle">
+        <h3 id="scheduleTitle">スケジュール</h3>
+        <nav>
+          <a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a>
+          <a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚子どもも簡単</a>
+          <a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a>
+        </nav>
+      </section>
+      <section class="schedule card" aria-labelledby="scheduleTitle">
+        <h3 id="scheduleTitle">時計・タイマー</h3>
+        <nav>
+          <a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a>
+          <a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener">アナログ時計webアプリ表示切替機能付き</a>
+          <a href="https://memoc.pages.dev/yzp/" target="_blank" rel="noopener">勉強タイマーおすすめwebサイト</a>
+        </nav>
+      </section>
+      <section class="enjoy card" aria-labelledby="enjoyTitle">
+        <h3 id="enjoyTitle">暮らしを楽しむ</h3>
+        <nav>
+          <a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener">TVerティーバーの検索用リンク集 ジャンル俳優別</a>
+          <a href="https://memoc.pages.dev/yuenchi/" target="_blank" rel="noopener">遊園地などの入場者ランキング</a>
+          <a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集 PCスマホタブレット</a>
+        </nav>
+      </section>
+      <footer class="footer">
+        <a class="backtop-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりの便利サイトに戻る</a>
+      </footer>
     </main>
   </div>
   <script src="/js/y974.js" defer></script>

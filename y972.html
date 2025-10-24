@@ -1,12 +1,30 @@
+---
+title: "栄養バランス献立一週間分ブラウザアプリ"
+date: 2025-10-24
+permalink: "/y972/"
+draft: false
+sitemap: true
+eleventyExcludeFromCollections: false
+---
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>栄養バランス献立メーカー（1週間）</title>
-  <meta name="description" content="栄養バランスを意識した1週間の夕食献立をブラウザで即時生成。人数・調理時間・アレルギーを指定して買い物リストと栄養要約を作成します.">
-<link rel="canonical" href="https://memoc.pages.dev/y972/">
-<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <title>栄養バランス献立一週間分ブラウザアプリ</title>
+  <meta name="description" content="一週間分の栄養バランスを意識した献立をワンクリックで自動作成。スマホ対応、PNG保存・印刷・コピー・色変更・SNS共有対応の使いやすいブラウザアプリです。">
+  <meta name="robots" content="index,follow">
+  <meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y972/">
+  <!-- Open Graph -->
+  <meta property="og:title" content="栄養バランス献立一週間分ブラウザアプリ">
+  <meta property="og:description" content="一週間分の栄養バランスを意識した献立を作成。保存・印刷・SNS共有も簡単。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <!-- Structured data (simple) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"栄養バランス献立一週間分ブラウザアプリ","url":"https://◆","description":"一週間分の栄養バランスを意識した献立を自動作成するツール。PNG保存・印刷・コピー・色変更・SNS共有対応。"}
+  </script>
   <link rel="stylesheet" href="/css/y972.css">
 </head>
 <!-- Google tag (gtag.js) -->
@@ -18,172 +36,98 @@ gtag('js', new Date());
 gtag('config', 'G-5D799GZERM');
 </script>
 <body>
-  <div class="container">
-    <header>
-      <h1>栄養バランス献立メーカー（1週間）</h1>
-      <p class="lead">人数・調理時間・アレルギーを選ぶだけで栄養バランスを考慮した1週間の献立と買い物リストを生成します</p>
-    </header>
-    <section class="card controls" aria-label="操作">
-      <div class="row">
-        <label>人数
-          <select id="people"><option>1</option><option>2</option><option>3</option><option>4</option></select>
-        </label>
-        <label>調理時間
-          <select id="timePref"><option value="short">時短</option><option value="normal" selected>標準</option><option value="any">指定なし</option></select>
-        </label>
-        <label>アレルギー（カンマ区切り）
-          <input id="allergy" placeholder="例: 乳,甲殻類" />
-        </label>
+  <header class="topbar" role="banner">
+    <div class="controls">
+      <button id="generateBtn" aria-label="献立作成">献立作成</button>
+      <button id="copyBtn" aria-label="文章をコピー">文章コピーボタン</button>
+      <button id="savePngBtn" aria-label="PNG保存">PNGで保存</button>
+      <button id="printBtn" aria-label="印刷">印刷</button>
+      <div class="color-group">
+        <label for="colorBtn" class="sr-only">背景色切替</label>
+        <button id="colorBtn" aria-label="カラー変更">カラー変更</button>
       </div>
-      <div class="actions">
-        <button id="generate">1週間を生成</button>
-        <button id="randomize" class="secondary">差し替え（ランダム）</button>
-        <button id="download" class="secondary">買い物リストを保存</button>
+      <div class="sns">
+        <button id="xBtn" title="Xで共有">x</button>
+        <button id="fbBtn" title="Facebookで共有">f</button>
+        <button id="lineBtn" title="LINEで共有">LINE</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section id="menuFrame" class="menu-frame" aria-labelledby="menuHeading">
+      <h1 id="menuHeading">栄養バランス献立一週間分ブラウザアプリ</h1>
+      <p class="lead">「献立作成」を押すと、副菜が2品ある一週間分（7日分）の栄養バランスが良いメニューを作成します。</p>
+      <div id="menuContainer" class="menu-container" role="region" aria-live="polite">
+        <!-- ここに7日分の献立が挿入される -->
+      </div>
+      <div class="notes">
+        <h2>栄養バランスブラウザアプリの使い方</h2>
+        <h3>操作</h3>
+        <ul>
+          <li>献立作成：一週間分の献立を表示します。主食が1品と副菜が2品</li>
+          <li>文章コピーボタン：献立をテキストとしてコピーします。</li>
+          <li>PNGで保存：表示中の献立を画像保存します。</li>
+          <li>印刷：印刷プレビューを開きます。</li>
+          <li>カラー変更：背景色を切り替えます。</li>
+        </ul>
+        <h3>アレンジメニュー</h3>
+        <ul>
+          <li>献立を作成後、野菜やお肉を足したり変更してアレンジメニューも楽しめます。</li>
+          <li>組み合わせがしっくりこない場合は、他の日や翌日の副菜と入れ替えてもよいです。</li>
+          <li>献立作成ボタンをもう一回押すと、違う組み合わせになります。</li>
+          <li>毎日の献立の悩みから解放される無料のサイトです☆</li>
+          <li>スマホの右上を押して、「ホーム画面に追加する」と便利です。</li>
+          <li>SNSに画像を掲載したりご活用できます。このページへのリンクをお願いします。</li>
+        </ul>
       </div>
     </section>
-    <main id="result-area">
-      <section id="nutrition-summary" class="card" aria-live="polite"></section>
-      <section id="week" class="card"></section>
-      <section id="shopping" class="card">
-        <h3>買い物リスト</h3>
-        <div id="shopping-list"></div>
-      </section>
-      <div id="bottom" class="card"></div>
-      <div class="related-links card" aria-label="関連リンク">
-        <h3>関連リンク</h3>
-        <ul>
+    <aside class="related" aria-labelledby="relatedHeading">
+      <h2 id="relatedHeading">関連リンク</h2>
+      <ul>
           <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
-          <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らし 1週間献立メーカー</a></li>
+          <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らしの1週間献立メーカー｜単品メニュー料理</a></li>
+          <li><a href="https://memoc.pages.dev/y976/" target="_blank" rel="noopener">料理・生活の感覚単位換算チャート ひとつまみからカップ</a></li>
+      </ul>
+    </aside>
+    <aside class="life" aria-labelledby="lifeHeading">
+      <h3 id="lifeHeading">生活リンク</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></li>
+          <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></li>
           <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
-        </ul>
-        <a class="return-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりの便利サイトに戻る</a>
-      </div>
-    </main>
-    <footer class="muted small">このアプリは静的ページで動くMVPです。レシピや栄養基準は簡易モデルを使用しています。</footer>
-  </div>
-  <!-- 埋め込みJSON: recipes, week_templates, nutrition_guidelines -->
-  <script id="recipes-data" type="application/json">
-{ 
-  "recipes":[
-    {"id":"r1","title":"鶏の照り焼き","servings_base":1,"time_minutes":25,"tags":["主菜","肉","蛋白質"],"nutrients":{"protein":28,"veg":1,"carb":10,"fat":12},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"},{"name":"みりん","qty":10,"unit":"ml","category":"調味料"}]},
-    {"id":"r2","title":"鮭の塩焼き","servings_base":1,"time_minutes":15,"tags":["主菜","魚","蛋白質"],"nutrients":{"protein":26,"veg":0,"carb":0,"fat":14},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"塩","qty":2,"unit":"g","category":"調味料"}]},
-    {"id":"r3","title":"麻婆豆腐（時短）","servings_base":1,"time_minutes":20,"tags":["主菜","豆腐","蛋白質"],"nutrients":{"protein":18,"veg":1,"carb":8,"fat":10},"ingredients":[{"name":"木綿豆腐","qty":200,"unit":"g","category":"豆腐"},{"name":"豚ひき肉","qty":60,"unit":"g","category":"肉"},{"name":"麻婆の素","qty":20,"unit":"g","category":"調味料"}]},
-    {"id":"r4","title":"野菜たっぷりの鶏スープ","servings_base":1,"time_minutes":30,"tags":["汁物","野菜"],"nutrients":{"protein":12,"veg":3,"carb":6,"fat":6},"ingredients":[{"name":"鶏むね肉","qty":100,"unit":"g","category":"肉"},{"name":"にんじん","qty":50,"unit":"g","category":"野菜"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"}]},
-    {"id":"r5","title":"ほうれん草のおひたし","servings_base":1,"time_minutes":8,"tags":["副菜","野菜"],"nutrients":{"protein":3,"veg":2,"carb":1,"fat":0},"ingredients":[{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"醤油","qty":5,"unit":"ml","category":"調味料"}]},
-    {"id":"r6","title":"納豆ご飯（卵あり）","servings_base":1,"time_minutes":6,"tags":["主食","発酵食品"],"nutrients":{"protein":12,"veg":0,"carb":60,"fat":8},"ingredients":[{"name":"納豆","qty":1,"unit":"パック","category":"発酵食品"},{"name":"卵","qty":1,"unit":"個","category":"卵"},{"name":"ご飯","qty":200,"unit":"g","category":"主食"}]},
-    {"id":"r7","title":"ツナとブロッコリーのパスタ","servings_base":1,"time_minutes":25,"tags":["主食","洋風"],"nutrients":{"protein":18,"veg":1,"carb":70,"fat":15},"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"ツナ缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"ブロッコリー","qty":80,"unit":"g","category":"野菜"}]},
-    {"id":"r8","title":"豆腐とわかめの味噌汁","servings_base":1,"time_minutes":10,"tags":["汁物"],"nutrients":{"protein":4,"veg":1,"carb":4,"fat":1},"ingredients":[{"name":"豆腐","qty":80,"unit":"g","category":"豆腐"},{"name":"乾燥わかめ","qty":2,"unit":"g","category":"乾物"},{"name":"味噌","qty":10,"unit":"g","category":"調味料"}]},
-    {"id":"r9","title":"豚の生姜焼き","servings_base":1,"time_minutes":20,"tags":["主菜","肉"],"nutrients":{"protein":26,"veg":0,"carb":12,"fat":18},"ingredients":[{"name":"豚ロース","qty":120,"unit":"g","category":"肉"},{"name":"生姜","qty":5,"unit":"g","category":"野菜"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"}]},
-    {"id":"r10","title":"きのこピラフ（簡易）","servings_base":1,"time_minutes":30,"tags":["主食","野菜"],"nutrients":{"protein":6,"veg":1,"carb":70,"fat":8},"ingredients":[{"name":"米","qty":180,"unit":"g","category":"主食"},{"name":"きのこミックス","qty":80,"unit":"g","category":"野菜"},{"name":"コンソメ","qty":5,"unit":"g","category":"調味料"}]}
-  ],
-  "week_templates":[
-  {"id":"r001","title":"鶏の照り焼き","servings_base":1,"time_minutes":25,"tags":["主菜","肉","蛋白質"],"nutrients":{"protein":28,"veg":1,"carb":10,"fat":12},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"醤油","qty":15,"unit":"ml","category":"調味料"},{"name":"みりん","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r002","title":"鮭の塩焼きと蒸しブロッコリー","servings_base":1,"time_minutes":20,"tags":["主菜","魚","ヘルシー"],"nutrients":{"protein":30,"veg":2,"carb":2,"fat":14},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"ブロッコリー","qty":100,"unit":"g","category":"野菜"},{"name":"塩","qty":2,"unit":"g","category":"調味料"}]},
-  {"id":"r003","title":"豆腐とひき肉のヘルシースタミナ炒め","servings_base":1,"time_minutes":18,"tags":["主菜","豆腐","蛋白質"],"nutrients":{"protein":22,"veg":1,"carb":6,"fat":10},"ingredients":[{"name":"木綿豆腐","qty":200,"unit":"g","category":"豆腐"},{"name":"豚ひき肉","qty":80,"unit":"g","category":"肉"},{"name":"生姜","qty":5,"unit":"g","category":"野菜"}]},
-  {"id":"r004","title":"チキングリルと雑穀サラダ","servings_base":1,"time_minutes":30,"tags":["主菜","肉","ヘルシー"],"nutrients":{"protein":35,"veg":3,"carb":25,"fat":12},"ingredients":[{"name":"鶏胸肉","qty":150,"unit":"g","category":"肉"},{"name":"雑穀米","qty":60,"unit":"g","category":"主食"},{"name":"サラダミックス","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r005","title":"鮭とほうれん草のクリーム煮（軽め）","servings_base":1,"time_minutes":22,"tags":["主菜","魚","乳製品"],"nutrients":{"protein":26,"veg":2,"carb":8,"fat":14},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"牛乳","qty":50,"unit":"ml","category":"乳製品"}]},
-  {"id":"r006","title":"和風ツナと大根のサラダ","servings_base":1,"time_minutes":10,"tags":["副菜","缶詰","ヘルシー"],"nutrients":{"protein":12,"veg":2,"carb":6,"fat":8},"ingredients":[{"name":"ツナ缶（水煮）","qty":1,"unit":"缶","category":"缶詰"},{"name":"大根","qty":100,"unit":"g","category":"野菜"},{"name":"ポン酢","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r007","title":"鯖の味噌煮と根菜の煮物","servings_base":1,"time_minutes":25,"tags":["主菜","魚","作り置き"],"nutrients":{"protein":28,"veg":2,"carb":18,"fat":16},"ingredients":[{"name":"鯖切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"大根","qty":80,"unit":"g","category":"野菜"},{"name":"人参","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r008","title":"納豆と野菜の栄養ボウル","servings_base":1,"time_minutes":8,"tags":["主食","発酵食品","ヘルシー"],"nutrients":{"protein":16,"veg":3,"carb":50,"fat":10},"ingredients":[{"name":"納豆","qty":1,"unit":"パック","category":"発酵食品"},{"name":"ご飯（雑穀）","qty":180,"unit":"g","category":"主食"},{"name":"ほうれん草","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r009","title":"白身魚の蒸し物とトマトサラダ","servings_base":1,"time_minutes":18,"tags":["主菜","魚","低脂肪"],"nutrients":{"protein":24,"veg":2,"carb":4,"fat":6},"ingredients":[{"name":"白身魚切り身","qty":120,"unit":"g","category":"魚"},{"name":"トマト","qty":80,"unit":"g","category":"野菜"},{"name":"レモン","qty":5,"unit":"ml","category":"調味料"}]},
-  {"id":"r010","title":"豆と野菜のチリコンカン（ライト）","servings_base":1,"time_minutes":35,"tags":["主菜","豆類","洋風"],"nutrients":{"protein":18,"veg":3,"carb":40,"fat":10},"ingredients":[{"name":"ミックスビーンズ","qty":120,"unit":"g","category":"豆類"},{"name":"トマト缶","qty":150,"unit":"g","category":"缶詰"},{"name":"玉ねぎ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r011","title":"牛肉ときのこのスタミナ炒め","servings_base":1,"time_minutes":20,"tags":["主菜","肉","鉄分"],"nutrients":{"protein":30,"veg":1,"carb":8,"fat":18},"ingredients":[{"name":"牛こま切れ","qty":120,"unit":"g","category":"肉"},{"name":"きのこミックス","qty":80,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r012","title":"ささみの香草焼きと温野菜","servings_base":1,"time_minutes":18,"tags":["主菜","低脂肪","蛋白質"],"nutrients":{"protein":33,"veg":2,"carb":6,"fat":4},"ingredients":[{"name":"鶏ささみ","qty":150,"unit":"g","category":"肉"},{"name":"ブロッコリー","qty":80,"unit":"g","category":"野菜"},{"name":"パセリ","qty":5,"unit":"g","category":"野菜"}]},
-  {"id":"r013","title":"鮭とアボカドの和風ポキ","servings_base":1,"time_minutes":12,"tags":["主菜","魚","良質脂質"],"nutrients":{"protein":26,"veg":1,"carb":8,"fat":18},"ingredients":[{"name":"鮭","qty":80,"unit":"g","category":"魚"},{"name":"アボカド","qty":50,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r014","title":"鶏むねの生姜焼きとほうれん草のお浸し","servings_base":1,"time_minutes":20,"tags":["主菜","肉","ヘルシー"],"nutrients":{"protein":32,"veg":2,"carb":10,"fat":8},"ingredients":[{"name":"鶏むね肉","qty":150,"unit":"g","category":"肉"},{"name":"生姜","qty":6,"unit":"g","category":"野菜"},{"name":"ほうれん草","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r015","title":"豆腐ハンバーグと温野菜添え","servings_base":1,"time_minutes":25,"tags":["主菜","豆腐","低カロリー"],"nutrients":{"protein":20,"veg":2,"carb":6,"fat":12},"ingredients":[{"name":"木綿豆腐","qty":200,"unit":"g","category":"豆腐"},{"name":"合いびき肉","qty":80,"unit":"g","category":"肉"},{"name":"玉ねぎ","qty":40,"unit":"g","category":"野菜"}]},
-  {"id":"r016","title":"エビとブロッコリーのガーリック炒め","servings_base":1,"time_minutes":15,"tags":["主菜","魚介","ビタミン"],"nutrients":{"protein":22,"veg":2,"carb":4,"fat":8},"ingredients":[{"name":"エビ（剥き）","qty":100,"unit":"g","category":"魚介"},{"name":"ブロッコリー","qty":80,"unit":"g","category":"野菜"},{"name":"にんにく","qty":3,"unit":"g","category":"野菜"}]},
-  {"id":"r017","title":"赤魚の照り煮とキャベツの浅漬け","servings_base":1,"time_minutes":20,"tags":["主菜","魚","和風"],"nutrients":{"protein":28,"veg":1,"carb":6,"fat":10},"ingredients":[{"name":"赤魚切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r018","title":"鶏そぼろ丼（雑穀ご飯）と小松菜のお浸し","servings_base":1,"time_minutes":20,"tags":["主食","肉","作り置き"],"nutrients":{"protein":26,"veg":2,"carb":60,"fat":10},"ingredients":[{"name":"鶏ひき肉","qty":120,"unit":"g","category":"肉"},{"name":"雑穀米","qty":180,"unit":"g","category":"主食"},{"name":"小松菜","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r019","title":"レンズ豆と野菜のカレー（低脂肪）","servings_base":1,"time_minutes":40,"tags":["主菜","豆類","ベジタリアン"],"nutrients":{"protein":18,"veg":3,"carb":60,"fat":6},"ingredients":[{"name":"レンズ豆","qty":120,"unit":"g","category":"豆類"},{"name":"玉ねぎ","qty":80,"unit":"g","category":"野菜"},{"name":"トマト缶","qty":150,"unit":"g","category":"缶詰"}]},
-  {"id":"r020","title":"ホキのムニエルとほうれん草ソテー","servings_base":1,"time_minutes":18,"tags":["主菜","魚","軽食"],"nutrients":{"protein":24,"veg":2,"carb":4,"fat":10},"ingredients":[{"name":"ホキ切り身","qty":120,"unit":"g","category":"魚"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"バター","qty":6,"unit":"g","category":"乳製品"}]},
-  {"id":"r021","title":"豚ロースと根菜の生姜煮","servings_base":1,"time_minutes":30,"tags":["主菜","肉","栄養"],"nutrients":{"protein":28,"veg":2,"carb":20,"fat":14},"ingredients":[{"name":"豚ロース","qty":120,"unit":"g","category":"肉"},{"name":"大根","qty":80,"unit":"g","category":"野菜"},{"name":"人参","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r022","title":"サバの塩焼きとなめこの味噌汁","servings_base":1,"time_minutes":15,"tags":["主菜","魚","和食"],"nutrients":{"protein":28,"veg":1,"carb":6,"fat":16},"ingredients":[{"name":"サバ切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"なめこ","qty":50,"unit":"g","category":"野菜"},{"name":"味噌","qty":10,"unit":"g","category":"調味料"}]},
-  {"id":"r023","title":"チキンと彩り野菜のトマト煮","servings_base":1,"time_minutes":35,"tags":["主菜","肉","ビタミン"],"nutrients":{"protein":30,"veg":3,"carb":12,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"トマト缶","qty":200,"unit":"g","category":"缶詰"},{"name":"パプリカ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r024","title":"ひじきと大豆の和え物（常備菜）","servings_base":1,"time_minutes":20,"tags":["副菜","作り置き","海藻"],"nutrients":{"protein":8,"veg":1,"carb":6,"fat":4},"ingredients":[{"name":"乾燥ひじき","qty":10,"unit":"g","category":"乾物"},{"name":"水煮大豆","qty":80,"unit":"g","category":"豆類"},{"name":"人参","qty":30,"unit":"g","category":"野菜"}]},
-  {"id":"r025","title":"鮭のちゃんちゃん焼き風（野菜たっぷり）","servings_base":1,"time_minutes":25,"tags":["主菜","魚","野菜多め"],"nutrients":{"protein":28,"veg":3,"carb":10,"fat":14},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"キャベツ","qty":100,"unit":"g","category":"野菜"},{"name":"味噌","qty":10,"unit":"g","category":"調味料"}]},
-  {"id":"r026","title":"鶏とブロッコリーの中華風炒め","servings_base":1,"time_minutes":15,"tags":["主菜","肉","時短"],"nutrients":{"protein":30,"veg":2,"carb":6,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":140,"unit":"g","category":"肉"},{"name":"ブロッコリー","qty":100,"unit":"g","category":"野菜"},{"name":"にんにく","qty":3,"unit":"g","category":"野菜"}]},
-  {"id":"r027","title":"白身魚と豆の南蛮漬け","servings_base":1,"time_minutes":25,"tags":["主菜","魚","酸味"],"nutrients":{"protein":24,"veg":2,"carb":12,"fat":8},"ingredients":[{"name":"白身魚切り身","qty":120,"unit":"g","category":"魚"},{"name":"ミックスビーンズ","qty":80,"unit":"g","category":"豆類"},{"name":"酢","qty":15,"unit":"ml","category":"調味料"}]},
-  {"id":"r028","title":"牛肉とほうれん草のオイスター炒め","servings_base":1,"time_minutes":18,"tags":["主菜","肉","鉄分"],"nutrients":{"protein":32,"veg":2,"carb":8,"fat":16},"ingredients":[{"name":"牛肉薄切り","qty":120,"unit":"g","category":"肉"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"オイスターソース","qty":8,"unit":"ml","category":"調味料"}]},
-  {"id":"r029","title":"鶏胸とアスパラのレモングリル","servings_base":1,"time_minutes":20,"tags":["主菜","低脂肪","さっぱり"],"nutrients":{"protein":34,"veg":1,"carb":4,"fat":6},"ingredients":[{"name":"鶏胸肉","qty":160,"unit":"g","category":"肉"},{"name":"アスパラガス","qty":60,"unit":"g","category":"野菜"},{"name":"レモン","qty":8,"unit":"ml","category":"調味料"}]},
-  {"id":"r030","title":"豆腐とトマトのさっぱりサラダ","servings_base":1,"time_minutes":8,"tags":["副菜","豆腐","ヘルシー"],"nutrients":{"protein":10,"veg":1,"carb":4,"fat":6},"ingredients":[{"name":"絹ごし豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"トマト","qty":80,"unit":"g","category":"野菜"},{"name":"酢","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r031","title":"鮭と根菜の味噌煮込み","servings_base":1,"time_minutes":35,"tags":["主菜","魚","栄養"],"nutrients":{"protein":30,"veg":3,"carb":22,"fat":16},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"大根","qty":80,"unit":"g","category":"野菜"},{"name":"さつまいも","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r032","title":"鶏ときのこのクリーム煮（低脂肪版）","servings_base":1,"time_minutes":30,"tags":["主菜","乳製品","きのこ"],"nutrients":{"protein":28,"veg":1,"carb":10,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":140,"unit":"g","category":"肉"},{"name":"きのこミックス","qty":100,"unit":"g","category":"野菜"},{"name":"牛乳","qty":60,"unit":"ml","category":"乳製品"}]},
-  {"id":"r033","title":"豚しゃぶサラダと玄米ご飯","servings_base":1,"time_minutes":15,"tags":["主菜","肉","ヘルシー"],"nutrients":{"protein":30,"veg":3,"carb":60,"fat":10},"ingredients":[{"name":"豚薄切り","qty":120,"unit":"g","category":"肉"},{"name":"玄米","qty":180,"unit":"g","category":"主食"},{"name":"レタス","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r034","title":"鰯の生姜煮と小松菜のお浸し","servings_base":1,"time_minutes":25,"tags":["主菜","魚","青菜"],"nutrients":{"protein":26,"veg":2,"carb":8,"fat":12},"ingredients":[{"name":"鰯","qty":2,"unit":"尾","category":"魚"},{"name":"小松菜","qty":80,"unit":"g","category":"野菜"},{"name":"生姜","qty":6,"unit":"g","category":"野菜"}]},
-  {"id":"r035","title":"鶏の梅しそロールと根菜のグリル","servings_base":1,"time_minutes":28,"tags":["主菜","魚介なし","和風"],"nutrients":{"protein":32,"veg":2,"carb":14,"fat":8},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"梅干し","qty":10,"unit":"g","category":"調味料"},{"name":"しそ","qty":5,"unit":"g","category":"野菜"}]},
-  {"id":"r036","title":"サーモンとほうれん草の和風パスタ","servings_base":1,"time_minutes":22,"tags":["主食","魚","洋和折衷"],"nutrients":{"protein":26,"veg":2,"carb":70,"fat":14},"ingredients":[{"name":"スパゲッティ","qty":100,"unit":"g","category":"主食"},{"name":"鮭フレーク","qty":20,"unit":"g","category":"加工品"},{"name":"ほうれん草","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r037","title":"鶏団子と野菜のスープ鍋","servings_base":1,"time_minutes":30,"tags":["主菜","スープ","作り置き"],"nutrients":{"protein":28,"veg":3,"carb":10,"fat":8},"ingredients":[{"name":"鶏団子","qty":150,"unit":"g","category":"肉"},{"name":"白菜","qty":100,"unit":"g","category":"野菜"},{"name":"しめじ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r038","title":"鰤の照り焼きと根菜サラダ","servings_base":1,"time_minutes":20,"tags":["主菜","魚","脂質良好"],"nutrients":{"protein":30,"veg":2,"carb":12,"fat":18},"ingredients":[{"name":"鰤切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"人参","qty":50,"unit":"g","category":"野菜"},{"name":"ごぼう","qty":40,"unit":"g","category":"野菜"}]},
-  {"id":"r039","title":"マグロとアボカドのサラダ丼","servings_base":1,"time_minutes":12,"tags":["主食","魚","良質脂質"],"nutrients":{"protein":28,"veg":1,"carb":55,"fat":20},"ingredients":[{"name":"マグロ刺身","qty":80,"unit":"g","category":"魚"},{"name":"アボカド","qty":60,"unit":"g","category":"野菜"},{"name":"ご飯","qty":180,"unit":"g","category":"主食"}]},
-  {"id":"r040","title":"豆腐チャンプルーともずく酢","servings_base":1,"time_minutes":18,"tags":["主菜","豆腐","沖縄料理"],"nutrients":{"protein":20,"veg":2,"carb":10,"fat":12},"ingredients":[{"name":"木綿豆腐","qty":200,"unit":"g","category":"豆腐"},{"name":"もやし","qty":80,"unit":"g","category":"野菜"},{"name":"もずく","qty":50,"unit":"g","category":"海藻"}]},
-  {"id":"r041","title":"鶏のレモンハーブ焼きとサラダ","servings_base":1,"time_minutes":25,"tags":["主菜","肉","ビタミン"],"nutrients":{"protein":34,"veg":2,"carb":6,"fat":8},"ingredients":[{"name":"鶏もも肉","qty":160,"unit":"g","category":"肉"},{"name":"レモン","qty":10,"unit":"ml","category":"調味料"},{"name":"サラダミックス","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r042","title":"白身魚の味噌バター焼きときゅうりの酢の物","servings_base":1,"time_minutes":20,"tags":["主菜","魚","和洋折衷"],"nutrients":{"protein":24,"veg":1,"carb":6,"fat":12},"ingredients":[{"name":"白身魚切り身","qty":120,"unit":"g","category":"魚"},{"name":"味噌","qty":8,"unit":"g","category":"調味料"},{"name":"きゅうり","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r043","title":"豚の角煮風（さっぱり）と青菜の炒め物","servings_base":1,"time_minutes":60,"tags":["主菜","肉","煮物"],"nutrients":{"protein":28,"veg":2,"carb":18,"fat":22},"ingredients":[{"name":"豚バラ塊","qty":150,"unit":"g","category":"肉"},{"name":"大根","qty":80,"unit":"g","category":"野菜"},{"name":"青菜","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r044","title":"鮭の味噌炊き込みご飯と小松菜のお浸し","servings_base":1,"time_minutes":40,"tags":["主食","魚","作り置き"],"nutrients":{"protein":24,"veg":2,"carb":70,"fat":10},"ingredients":[{"name":"鮭ほぐし","qty":30,"unit":"g","category":"魚"},{"name":"米","qty":180,"unit":"g","category":"主食"},{"name":"小松菜","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r045","title":"チキンと豆の地中海風煮込み","servings_base":1,"time_minutes":40,"tags":["主菜","豆類","洋風"],"nutrients":{"protein":32,"veg":3,"carb":28,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"ヒヨコ豆缶","qty":120,"unit":"g","category":"豆類"},{"name":"トマト缶","qty":150,"unit":"g","category":"缶詰"}]},
-  {"id":"r046","title":"さばの南蛮漬けと大根サラダ","servings_base":1,"time_minutes":30,"tags":["主菜","魚","酢の物"],"nutrients":{"protein":26,"veg":2,"carb":14,"fat":14},"ingredients":[{"name":"さば切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"玉ねぎ","qty":60,"unit":"g","category":"野菜"},{"name":"酢","qty":15,"unit":"ml","category":"調味料"}]},
-  {"id":"r047","title":"豆腐と野菜のミネストローネ","servings_base":1,"time_minutes":30,"tags":["汁物","ベジタリアン","野菜多め"],"nutrients":{"protein":12,"veg":4,"carb":30,"fat":6},"ingredients":[{"name":"豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"トマト缶","qty":200,"unit":"g","category":"缶詰"},{"name":"人参","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r048","title":"鮭のポワレとさつまいものロースト","servings_base":1,"time_minutes":30,"tags":["主菜","魚","根菜"],"nutrients":{"protein":28,"veg":1,"carb":30,"fat":14},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"さつまいも","qty":100,"unit":"g","category":"野菜"},{"name":"オリーブオイル","qty":8,"unit":"ml","category":"調味料"}]},
-  {"id":"r049","title":"鶏のトマト煮とズッキーニグリル","servings_base":1,"time_minutes":35,"tags":["主菜","肉","地中海風"],"nutrients":{"protein":30,"veg":3,"carb":10,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"トマト缶","qty":200,"unit":"g","category":"缶詰"},{"name":"ズッキーニ","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r050","title":"豆乳入りのきのこリゾット（軽め）","servings_base":1,"time_minutes":30,"tags":["主食","乳製品代替","きのこ"],"nutrients":{"protein":12,"veg":1,"carb":50,"fat":8},"ingredients":[{"name":"米（リゾット用）","qty":120,"unit":"g","category":"主食"},{"name":"豆乳","qty":100,"unit":"ml","category":"乳製品"},{"name":"きのこミックス","qty":100,"unit":"g","category":"野菜"}]},
-  {"id":"r051","title":"和風鶏カレー（野菜ごろごろ）","servings_base":1,"time_minutes":45,"tags":["主菜","カレー","野菜多め"],"nutrients":{"protein":28,"veg":3,"carb":50,"fat":12},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"じゃがいも","qty":80,"unit":"g","category":"野菜"},{"name":"人参","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r052","title":"鯛の昆布締めときのこのおろし和え","servings_base":1,"time_minutes":20,"tags":["主菜","魚","和食"],"nutrients":{"protein":26,"veg":1,"carb":4,"fat":6},"ingredients":[{"name":"鯛刺身","qty":80,"unit":"g","category":"魚"},{"name":"昆布","qty":2,"unit":"g","category":"乾物"},{"name":"しめじ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r053","title":"豚ロースのハーブ焼きとカボチャ煮","servings_base":1,"time_minutes":30,"tags":["主菜","肉","ビタミン"],"nutrients":{"protein":30,"veg":1,"carb":20,"fat":18},"ingredients":[{"name":"豚ロース","qty":140,"unit":"g","category":"肉"},{"name":"かぼちゃ","qty":120,"unit":"g","category":"野菜"},{"name":"オリーブオイル","qty":8,"unit":"ml","category":"調味料"}]},
-  {"id":"r054","title":"チリビーンズと雑穀パン","servings_base":1,"time_minutes":40,"tags":["主菜","豆類","洋風"],"nutrients":{"protein":24,"veg":2,"carb":60,"fat":12},"ingredients":[{"name":"牛ひき肉","qty":80,"unit":"g","category":"肉"},{"name":"ミックスビーンズ","qty":120,"unit":"g","category":"豆類"},{"name":"トマト缶","qty":150,"unit":"g","category":"缶詰"}]},
-  {"id":"r055","title":"鶏と豆腐のアジアン蒸し","servings_base":1,"time_minutes":20,"tags":["主菜","蒸し物","アジアン"],"nutrients":{"protein":30,"veg":2,"carb":6,"fat":6},"ingredients":[{"name":"鶏ひき肉","qty":120,"unit":"g","category":"肉"},{"name":"木綿豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"長ねぎ","qty":30,"unit":"g","category":"野菜"}]},
-  {"id":"r056","title":"サーモンのグリルとオーブン野菜","servings_base":1,"time_minutes":28,"tags":["主菜","魚","オーブン料理"],"nutrients":{"protein":30,"veg":3,"carb":18,"fat":16},"ingredients":[{"name":"サーモン切り身","qty":120,"unit":"g","category":"魚"},{"name":"パプリカ","qty":60,"unit":"g","category":"野菜"},{"name":"なす","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r057","title":"ひよこ豆のサラダと全粒パン","servings_base":1,"time_minutes":12,"tags":["副菜","豆類","ベジタリアン"],"nutrients":{"protein":14,"veg":2,"carb":50,"fat":8},"ingredients":[{"name":"ヒヨコ豆水煮","qty":100,"unit":"g","category":"豆類"},{"name":"全粒パン","qty":50,"unit":"g","category":"主食"},{"name":"きゅうり","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r058","title":"アジの南蛮漬けとキャベツ千切り","servings_base":1,"time_minutes":25,"tags":["主菜","魚","さっぱり"],"nutrients":{"protein":22,"veg":2,"carb":12,"fat":10},"ingredients":[{"name":"あじ","qty":2,"unit":"尾","category":"魚"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"},{"name":"酢","qty":15,"unit":"ml","category":"調味料"}]},
-  {"id":"r059","title":"鶏と長芋の梅風味炒め","servings_base":1,"time_minutes":18,"tags":["主菜","肉","消化に良い"],"nutrients":{"protein":30,"veg":1,"carb":12,"fat":8},"ingredients":[{"name":"鶏もも肉","qty":140,"unit":"g","category":"肉"},{"name":"長芋","qty":80,"unit":"g","category":"野菜"},{"name":"梅干し","qty":8,"unit":"g","category":"調味料"}]},
-  {"id":"r060","title":"あさりの酒蒸しと青菜のごま和え","servings_base":1,"time_minutes":15,"tags":["主菜","魚介","ミネラル"],"nutrients":{"protein":20,"veg":2,"carb":4,"fat":4},"ingredients":[{"name":"あさり","qty":120,"unit":"g","category":"魚介"},{"name":"小松菜","qty":80,"unit":"g","category":"野菜"},{"name":"酒","qty":15,"unit":"ml","category":"調味料"}]},
-  {"id":"r061","title":"鶏の五香粉焼きと春菊サラダ","servings_base":1,"time_minutes":25,"tags":["主菜","香辛料","エスニック"],"nutrients":{"protein":34,"veg":2,"carb":6,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":160,"unit":"g","category":"肉"},{"name":"五香粉","qty":2,"unit":"g","category":"調味料"},{"name":"春菊","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r062","title":"たらと豆のトマト煮込み","servings_base":1,"time_minutes":30,"tags":["主菜","魚","豆類"],"nutrients":{"protein":26,"veg":2,"carb":20,"fat":8},"ingredients":[{"name":"たら切り身","qty":120,"unit":"g","category":"魚"},{"name":"白いんげん豆缶","qty":120,"unit":"g","category":"豆類"},{"name":"トマト缶","qty":150,"unit":"g","category":"缶詰"}]},
-  {"id":"r063","title":"牛すじと根菜の赤ワイン煮（ライト）","servings_base":1,"time_minutes":120,"tags":["主菜","肉","滋養"],"nutrients":{"protein":36,"veg":2,"carb":20,"fat":18},"ingredients":[{"name":"牛すじ","qty":150,"unit":"g","category":"肉"},{"name":"人参","qty":60,"unit":"g","category":"野菜"},{"name":"玉ねぎ","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r064","title":"鮭と彩り野菜のちゃんちゃん風ホイル焼き","servings_base":1,"time_minutes":22,"tags":["主菜","魚","簡単"],"nutrients":{"protein":28,"veg":3,"carb":10,"fat":12},"ingredients":[{"name":"鮭切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"キャベツ","qty":80,"unit":"g","category":"野菜"},{"name":"ピーマン","qty":40,"unit":"g","category":"野菜"}]},
-  {"id":"r065","title":"鶏とカブのシチュー（豆乳ベース）","servings_base":1,"time_minutes":40,"tags":["主菜","乳製品代替","根菜"],"nutrients":{"protein":30,"veg":2,"carb":18,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"かぶ","qty":100,"unit":"g","category":"野菜"},{"name":"豆乳","qty":150,"unit":"ml","category":"乳製品"}]},
-  {"id":"r066","title":"イワシの蒲焼き丼（雑穀）と青菜のナムル","servings_base":1,"time_minutes":20,"tags":["主食","魚","和食"],"nutrients":{"protein":30,"veg":2,"carb":65,"fat":18},"ingredients":[{"name":"いわし蒲焼缶","qty":1,"unit":"缶","category":"加工品"},{"name":"雑穀米","qty":180,"unit":"g","category":"主食"},{"name":"ほうれん草","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r067","title":"鶏むねのバジルソテーとトマトのマリネ","servings_base":1,"time_minutes":18,"tags":["主菜","低脂肪","香草"],"nutrients":{"protein":34,"veg":2,"carb":6,"fat":8},"ingredients":[{"name":"鶏むね肉","qty":160,"unit":"g","category":"肉"},{"name":"バジル","qty":5,"unit":"g","category":"野菜"},{"name":"トマト","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r068","title":"鯛のアクアパッツァ風（あっさり）","servings_base":1,"time_minutes":30,"tags":["主菜","魚","洋風"],"nutrients":{"protein":28,"veg":3,"carb":10,"fat":8},"ingredients":[{"name":"鯛切り身","qty":120,"unit":"g","category":"魚"},{"name":"トマト","qty":80,"unit":"g","category":"野菜"},{"name":"あさり","qty":60,"unit":"g","category":"魚介"}]},
-  {"id":"r069","title":"レバーとほうれん草の甘辛炒め（鉄分補給）","servings_base":1,"time_minutes":15,"tags":["主菜","鉄分","内臓肉"],"nutrients":{"protein":28,"veg":2,"carb":8,"fat":12},"ingredients":[{"name":"鶏レバー","qty":100,"unit":"g","category":"肉"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"醤油","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r070","title":"鮭と豆のサラダ（オメガ3強化）","servings_base":1,"time_minutes":12,"tags":["副菜","魚","サラダ"],"nutrients":{"protein":22,"veg":2,"carb":12,"fat":18},"ingredients":[{"name":"鮭ほぐし","qty":30,"unit":"g","category":"魚"},{"name":"ミックスビーンズ","qty":80,"unit":"g","category":"豆類"},{"name":"ベビーリーフ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r071","title":"鶏とレンコンの照り焼きと小松菜のごま和え","servings_base":1,"time_minutes":25,"tags":["主菜","根菜","和食"],"nutrients":{"protein":32,"veg":2,"carb":18,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"れんこん","qty":80,"unit":"g","category":"野菜"},{"name":"小松菜","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r072","title":"まぐろの漬け丼と味噌汁","servings_base":1,"time_minutes":15,"tags":["主食","魚","簡単"],"nutrients":{"protein":32,"veg":1,"carb":65,"fat":10},"ingredients":[{"name":"まぐろ刺身","qty":100,"unit":"g","category":"魚"},{"name":"ご飯","qty":180,"unit":"g","category":"主食"},{"name":"味噌","qty":10,"unit":"g","category":"調味料"}]},
-  {"id":"r073","title":"鶏のスパイスローストとレンズ豆サラダ","servings_base":1,"time_minutes":40,"tags":["主菜","豆類","スパイス"],"nutrients":{"protein":36,"veg":2,"carb":28,"fat":14},"ingredients":[{"name":"鶏もも肉","qty":180,"unit":"g","category":"肉"},{"name":"レンズ豆","qty":100,"unit":"g","category":"豆類"},{"name":"ズッキーニ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r074","title":"さんまの塩焼きとほうれん草の胡麻和え","servings_base":1,"time_minutes":18,"tags":["主菜","魚","秋の味覚"],"nutrients":{"protein":28,"veg":2,"carb":6,"fat":18},"ingredients":[{"name":"さんま","qty":1,"unit":"尾","category":"魚"},{"name":"ほうれん草","qty":60,"unit":"g","category":"野菜"},{"name":"すりごま","qty":6,"unit":"g","category":"調味料"}]},
-  {"id":"r075","title":"鶏のグリーンカレー（ココナッツ少なめ）","servings_base":1,"time_minutes":35,"tags":["主菜","エスニック","スパイシー"],"nutrients":{"protein":30,"veg":3,"carb":40,"fat":12},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"ナス","qty":60,"unit":"g","category":"野菜"},{"name":"ココナッツミルク","qty":60,"unit":"ml","category":"乳製品"}]},
-  {"id":"r076","title":"鯛の酒蒸しと野菜のポン酢和え","servings_base":1,"time_minutes":18,"tags":["主菜","魚","さっぱり"],"nutrients":{"protein":26,"veg":2,"carb":4,"fat":6},"ingredients":[{"name":"鯛切り身","qty":120,"unit":"g","category":"魚"},{"name":"えのき","qty":60,"unit":"g","category":"野菜"},{"name":"ポン酢","qty":10,"unit":"ml","category":"調味料"}]},
-  {"id":"r077","title":"牛肉とブロッコリーの中華炒め","servings_base":1,"time_minutes":18,"tags":["主菜","肉","中華"],"nutrients":{"protein":34,"veg":2,"carb":8,"fat":18},"ingredients":[{"name":"牛肉薄切り","qty":140,"unit":"g","category":"肉"},{"name":"ブロッコリー","qty":100,"unit":"g","category":"野菜"},{"name":"オイスターソース","qty":8,"unit":"ml","category":"調味料"}]},
-  {"id":"r078","title":"鶏の香味ソースがけと春雨サラダ","servings_base":1,"time_minutes":22,"tags":["主菜","アジアン","軽め"],"nutrients":{"protein":30,"veg":1,"carb":30,"fat":10},"ingredients":[{"name":"鶏胸肉","qty":150,"unit":"g","category":"肉"},{"name":"春雨","qty":40,"unit":"g","category":"主食"},{"name":"ねぎ","qty":20,"unit":"g","category":"野菜"}]},
-  {"id":"r079","title":"鮭と豆のチリトマト煮込み","servings_base":1,"time_minutes":35,"tags":["主菜","魚","豆類"],"nutrients":{"protein":28,"veg":2,"carb":24,"fat":12},"ingredients":[{"name":"鮭切り身","qty":100,"unit":"g","category":"魚"},{"name":"ミックスビーンズ","qty":100,"unit":"g","category":"豆類"},{"name":"トマト缶","qty":150,"unit":"g","category":"缶詰"}]},
-  {"id":"r080","title":"鶏とオクラの梅和えと雑穀ご飯","servings_base":1,"time_minutes":15,"tags":["主菜","和風","夏向け"],"nutrients":{"protein":30,"veg":2,"carb":60,"fat":6},"ingredients":[{"name":"鶏むね肉","qty":150,"unit":"g","category":"肉"},{"name":"オクラ","qty":60,"unit":"g","category":"野菜"},{"name":"雑穀米","qty":180,"unit":"g","category":"主食"}]},
-  {"id":"r081","title":"鯵の干物と野菜の浅漬け定食","servings_base":1,"time_minutes":20,"tags":["主菜","魚","和食"],"nutrients":{"protein":28,"veg":1,"carb":6,"fat":12},"ingredients":[{"name":"あじ干物","qty":1,"unit":"尾","category":"魚"},{"name":"きゅうり","qty":60,"unit":"g","category":"野菜"},{"name":"塩","qty":2,"unit":"g","category":"調味料"}]},
-  {"id":"r082","title":"鶏とカシューナッツの中華炒め（ヘルシー）","servings_base":1,"time_minutes":18,"tags":["主菜","ナッツ","中華"],"nutrients":{"protein":30,"veg":1,"carb":12,"fat":18},"ingredients":[{"name":"鶏もも肉","qty":140,"unit":"g","category":"肉"},{"name":"カシューナッツ","qty":20,"unit":"g","category":"ナッツ"},{"name":"ピーマン","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r083","title":"サバ缶とほうれん草のカレー風味炒め","servings_base":1,"time_minutes":12,"tags":["主菜","缶詰","時短"],"nutrients":{"protein":24,"veg":2,"carb":8,"fat":12},"ingredients":[{"name":"鯖水煮缶","qty":1,"unit":"缶","category":"缶詰"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"カレー粉","qty":4,"unit":"g","category":"調味料"}]},
-  {"id":"r084","title":"チキンとほうれん草のトマトクリーム煮","servings_base":1,"time_minutes":30,"tags":["主菜","乳製品","洋風"],"nutrients":{"protein":34,"veg":2,"carb":12,"fat":14},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"生クリーム","qty":30,"unit":"ml","category":"乳製品"}]},
-  {"id":"r085","title":"鮭とアスパラのバター醤油炒め","servings_base":1,"time_minutes":15,"tags":["主菜","魚","時短"],"nutrients":{"protein":28,"veg":2,"carb":4,"fat":14},"ingredients":[{"name":"鮭切り身","qty":100,"unit":"g","category":"魚"},{"name":"アスパラガス","qty":80,"unit":"g","category":"野菜"},{"name":"バター","qty":8,"unit":"g","category":"乳製品"}]},
-  {"id":"r086","title":"鶏ときのこのおろしポン酢がけ","servings_base":1,"time_minutes":15,"tags":["主菜","さっぱり","時短"],"nutrients":{"protein":30,"veg":1,"carb":6,"fat":6},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"大根おろし","qty":80,"unit":"g","category":"野菜"},{"name":"しめじ","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r087","title":"鶏レモンソテーとビーンズサラダ","servings_base":1,"time_minutes":18,"tags":["主菜","肉","サラダ"],"nutrients":{"protein":34,"veg":2,"carb":18,"fat":10},"ingredients":[{"name":"鶏胸肉","qty":160,"unit":"g","category":"肉"},{"name":"ミックスビーンズ","qty":80,"unit":"g","category":"豆類"},{"name":"レモン","qty":8,"unit":"ml","category":"調味料"}]},
-  {"id":"r088","title":"豆腐とエビのチリソース（やや控えめ）","servings_base":1,"time_minutes":25,"tags":["主菜","魚介","中華"],"nutrients":{"protein":22,"veg":1,"carb":28,"fat":10},"ingredients":[{"name":"木綿豆腐","qty":150,"unit":"g","category":"豆腐"},{"name":"エビ","qty":100,"unit":"g","category":"魚介"},{"name":"トマトケチャップ","qty":20,"unit":"g","category":"調味料"}]},
-  {"id":"r089","title":"ポークソテーとりんごのサラダ","servings_base":1,"time_minutes":22,"tags":["主菜","肉","フルーツ"],"nutrients":{"protein":30,"veg":1,"carb":18,"fat":16},"ingredients":[{"name":"豚ロース","qty":140,"unit":"g","category":"肉"},{"name":"りんご","qty":80,"unit":"g","category":"果物"},{"name":"サラダミックス","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r090","title":"ささみの梅おろしがけときゅうりの酢の物","servings_base":1,"time_minutes":12,"tags":["主菜","低脂肪","和風"],"nutrients":{"protein":34,"veg":1,"carb":6,"fat":3},"ingredients":[{"name":"鶏ささみ","qty":150,"unit":"g","category":"肉"},{"name":"大根おろし","qty":80,"unit":"g","category":"野菜"},{"name":"梅干し","qty":8,"unit":"g","category":"調味料"}]},
-  {"id":"r091","title":"タラとほうれん草のクリーム煮（軽め）","servings_base":1,"time_minutes":28,"tags":["主菜","魚","乳製品"],"nutrients":{"protein":26,"veg":2,"carb":12,"fat":10},"ingredients":[{"name":"タラ切り身","qty":120,"unit":"g","category":"魚"},{"name":"ほうれん草","qty":80,"unit":"g","category":"野菜"},{"name":"牛乳","qty":80,"unit":"ml","category":"乳製品"}]},
-  {"id":"r092","title":"鶏の黒酢あんと白菜の浅漬け","servings_base":1,"time_minutes":22,"tags":["主菜","中華","酸味"],"nutrients":{"protein":30,"veg":2,"carb":18,"fat":12},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"黒酢","qty":10,"unit":"ml","category":"調味料"},{"name":"白菜","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r093","title":"サーモンと春菊のサラダ丼","servings_base":1,"time_minutes":12,"tags":["主食","魚","葉物野菜"],"nutrients":{"protein":28,"veg":2,"carb":55,"fat":18},"ingredients":[{"name":"サーモン刺身","qty":80,"unit":"g","category":"魚"},{"name":"春菊","qty":60,"unit":"g","category":"野菜"},{"name":"ご飯","qty":180,"unit":"g","category":"主食"}]},
-  {"id":"r094","title":"豚とキャベツの味噌炒め（発酵調味料使用）","servings_base":1,"time_minutes":18,"tags":["主菜","発酵食品","簡単"],"nutrients":{"protein":30,"veg":2,"carb":10,"fat":16},"ingredients":[{"name":"豚薄切り","qty":140,"unit":"g","category":"肉"},{"name":"キャベツ","qty":100,"unit":"g","category":"野菜"},{"name":"味噌","qty":10,"unit":"g","category":"調味料"}]},
-  {"id":"r095","title":"鶏の香り焼きと根菜のマリネ","servings_base":1,"time_minutes":30,"tags":["主菜","香草","作り置き"],"nutrients":{"protein":34,"veg":2,"carb":18,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":160,"unit":"g","category":"肉"},{"name":"ごぼう","qty":60,"unit":"g","category":"野菜"},{"name":"人参","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r096","title":"さばのみぞれ煮とほうれん草のお浸し","servings_base":1,"time_minutes":20,"tags":["主菜","魚","さっぱり"],"nutrients":{"protein":26,"veg":2,"carb":8,"fat":12},"ingredients":[{"name":"さば切り身","qty":1,"unit":"切れ","category":"魚"},{"name":"大根おろし","qty":80,"unit":"g","category":"野菜"},{"name":"ほうれん草","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r097","title":"鶏の豆乳グラタンと野菜ロースト","servings_base":1,"time_minutes":40,"tags":["主菜","乳製品代替","洋風"],"nutrients":{"protein":34,"veg":2,"carb":30,"fat":14},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"豆乳","qty":120,"unit":"ml","category":"乳製品"},{"name":"じゃがいも","qty":80,"unit":"g","category":"野菜"}]},
-  {"id":"r098","title":"鶏とニラの四川風炒め（辛味控えめ）","servings_base":1,"time_minutes":18,"tags":["主菜","中華","スタミナ"],"nutrients":{"protein":32,"veg":2,"carb":8,"fat":12},"ingredients":[{"name":"鶏もも肉","qty":150,"unit":"g","category":"肉"},{"name":"にら","qty":60,"unit":"g","category":"野菜"},{"name":"豆板醤","qty":2,"unit":"g","category":"調味料"}]},
-  {"id":"r099","title":"白身魚の香味ソースがけと根菜サラダ","servings_base":1,"time_minutes":22,"tags":["主菜","魚","香味"],"nutrients":{"protein":24,"veg":2,"carb":12,"fat":8},"ingredients":[{"name":"白身魚切り身","qty":120,"unit":"g","category":"魚"},{"name":"ごぼう","qty":60,"unit":"g","category":"野菜"},{"name":"れんこん","qty":60,"unit":"g","category":"野菜"}]},
-  {"id":"r100","title":"チキンと彩り野菜のバルサミコソテー","servings_base":1,"time_minutes":25,"tags":["主菜","洋風","ビネガー"],"nutrients":{"protein":34,"veg":3,"carb":10,"fat":10},"ingredients":[{"name":"鶏もも肉","qty":160,"unit":"g","category":"肉"},{"name":"パプリカ","qty":60,"unit":"g","category":"野菜"},{"name":"ズッキーニ","qty":60,"unit":"g","category":"野菜"}]}
-],
-  "nutrition_guidelines": {
-    "per_day": {"protein":20,"veg":3,"carb":200,"fat":20},
-    "week_tolerance_percent": 30
-  }
-}
-  </script>
+      </ul>
+    </aside>
+    <aside class="schedule" aria-labelledby="scheduleHeading">
+      <h3 id="scheduleHeading">スケジュール</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></li>
+          <li><a href="https://memoc.pages.dev/y998/" target="_blank" rel="noopener">カレンダー今月 無料で書き込みダウンロード保存も</a></li>
+          <li><a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a></li>
+      </ul>
+    </aside>
+    <aside class="timer" aria-labelledby="timerHeading">
+      <h3 id="timerHeading">時計・タイマー</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></li>
+          <li><a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener">アナログ時計webアプリ表示切替機能付き</a></li>
+          <li><a href="https://memoc.pages.dev/yzpa/" target="_blank" rel="noopener">タイマーおしゃれサイト</a></li>
+      </ul>
+    </aside>
+    <aside class="enjoy" aria-labelledby="enjoyHeading">
+      <h3 id="enjoyHeading">暮らしを楽しむ</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener">TVerティーバーの検索用リンク集</a></li>
+          <li><a href="https://memoc.pages.dev/yuenchi/" target="_blank" rel="noopener">遊園地などの入場者ランキング</a></li>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集 PCスマホタブレット</a></li>
+      </ul>
+    </aside>
+    <nav class="backtop">
+        <a class="backtop-link" href="https://memoc.pages.dev/" rel="noopener">メモ帳代わりの便利サイトに戻る</a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <small>© メモ帳代わりwebブラウザ便利サイト https://memoc.pages.dev/</small>
+  </footer>
   <script src="/js/y972.js" defer></script>
 </body>
 </html>
