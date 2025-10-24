@@ -1,88 +1,166 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-　<meta name="description" content="お絵描きデジタルペイント無料サイト メモ帳にも使える、ダウンロード保存できるPCスマホタブレット対応でアプリいらずpdfワード不要。">
-<meta name="keywords" content="お絵描き,デジタル,ペイント,無料">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-3701488620779249">
-<title>お絵描きデジタルペイント無料サイト メモ帳にも</title>
-    <link rel="canonical" href="https://memoc.pages.dev/y999/">
-<link rel="stylesheet" href="/css/y999.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>お絵描きデジタルペイント — 無料のブラウザ描画ツール</title>
+  <meta name="description" content="PC・スマホ・タブレットで使える無料のお絵描きキャンバス。保存・印刷・PNG出力に対応。アプリ不要でメモ帳代わりにも使えます。">
+  <meta name="keywords" content="お絵描き,デジタル,ペイント,無料">
+  <link rel="canonical" href="https://memoc.pages.dev/y999/">
+  <link rel="stylesheet" href="/css/y999.css">
+  <style>
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+      border: 0; padding: 0; margin: -1px;
+    }
+    :focus-visible { outline: 3px solid #0a84ff; outline-offset: 2px; }
+    nav.related-links ul { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+    nav.related-links li { margin: 0.25rem 0; }
+    .link-category { margin-bottom: 1.25rem; }
+    .link-category h3 { margin: 0 0 0.5rem 0; font-size: 1rem; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5D799GZERM', { 'anonymize_ip': true });
+  </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-5D799GZERM');
-</script>
 <body>
-<h1><a href="https://memoc.pages.dev/y999/">お絵描きデジタルペイント無料サイト メモ帳にも</a></h1>
-<p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a>　　<a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタルサイト</a>　　<a href="https://memoc.pages.dev/y995/" target="_blank">イラストお題ルーレットブラウザアプリ</a>　　<a href="https://memoc.pages.dev/y998/" target="_blank">カレンダー今月 無料で書き込み</a></p>
-<div id="controls">
-<div class="control-group">
-<label for="height-input">たて</label>
-<input type="number" id="height-input" min="100"><span>px</span>
-<label for="width-input">よこ</label>
-<input type="number" id="width-input" min="100"><span>px</span>
-</div>
-<div class="control-group">
-<button class="color-btn" data-color="#000000" style="background-color: #000000;"></button>
-<button class="color-btn" data-color="#FF0000" style="background-color: #FF0000;"></button>
-<button class="color-btn" data-color="#0000FF" style="background-color: #0000FF;"></button>
-<button class="color-btn" data-color="#008000" style="background-color: #008000;"></button>
-<button class="color-btn" data-color="#FFA500" style="background-color: #FFA500;"></button>
-<input type="color" id="color-picker" value="#000000">
-</div>
-<div class="control-group">
-<span>太さ</span>
-<input type="range" id="thickness-slider" min="1" max="50" value="5">
-</div>
-<button id="pen-btn">ペン</button>
-<button id="eraser-btn">消しゴム</button>
-<button id="undo-btn">一つ戻す</button>
-<button id="fill-btn">すべて塗る</button>
-<button id="clear-btn">全消去</button>
-<button id="save-btn">png画像で保存</button>
-</div>
-<canvas id="draw-canvas"></canvas>
-<script src="/js/y999.js"></script>
-        <h2>お絵描きデジタルペイント無料サイトの使い方は自由</h2>
-        <p>自分好みに、お絵描きデジタルペイント無料サイトをお使い下さい。</p><br>
-        <p>たて250px よこ330px などサイズを自由に変更できます。</p><br>
-            <h3>ペンの色と太さ</h3>
-        <p>ペンの色を、好きな色に変更できます。</p>
-        <p>太さもクリックするだけの簡単設定。</p><br>
-            <h3>消しゴム・一つ戻す</h3>
-        <p>「消しゴム」は、消したい部分を消去することができます。</p>
-        <p>「一つ戻す」を押すと、一筆分だけ消せて便利です。</p><br>
-            <h3>すべて塗る・全消去</h3>
-        <p>「すべて塗る」ボタンは、全体を塗りつぶす事ができます。</p>
-        <p>「全消去」を押すと、初期状態に戻ります。</p><br>
-            <h3>png画像で保存</h3>
-        <p>クリップボードにコピー、印刷、PNG画像で保存、PDFで保存も可能です。</p><br>
-            <h3>無料のPCスマホタブレット対応サイト</h3>
-        <p>無料で使えるPCスマホタブレット対応サイトです。</p><br>
-        <p>SNSでシェアされるとうれしいです。</p>
-        <p>ブログやホームページからのリンクも、ご自由にどうぞ。</p><br>
-    <p><a href="https://memoc.pages.dev/" target="_blank">メモ帳代わりwebブラウザ便利サイト</a></p><br>
-    <p><a href="https://memoc.pages.dev/y999/" target="_blank">お絵描きデジタルペイント無料サイト メモ帳にも</a></p><br>
-    <p><a href="https://memoc.pages.dev/y996/" target="_blank">クロッキー帳デジタル</a></p><br>
-    <p><a href="https://memoc.pages.dev/y998s/" target="_blank">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p><br>
-    <p><a href="https://memoc.pages.dev/y992/" target="_blank">スケジュール帳ブラウザアプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p><br>
-    <p><a href="https://memoc.pages.dev/yzp1/" target="_blank">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/tokei/" target="_blank">現在時刻リアルタイム秒時計Web表示</a></p><br>
-    <p><a href="https://memoc.pages.dev/y990/" target="_blank">時間割ブラウザアプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/y987/" target="_blank">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></p><br>
-    <p><a href="https://memoc.pages.dev/y984/" target="_blank">日本全国方言比較辞典</a></p><br>
-    <p><a href="https://memoc.pages.dev/y989/" target="_blank">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p><br>
-    <p><a href="https://memoc.pages.dev/y988/" target="_blank">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p><br>
-    <p><a href="https://memoc.pages.dev/y997/" target="_blank">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></p><br>
-    <p><a href="https://memoc.pages.dev/tver/" target="_blank">TVerティーバーの検索用リンク集</a></p><br>
-    <p><a href="https://memoc.pages.dev/game1/" target="_blank">無料ブラウザゲームPCスマホタブレット対応</a></p><br>
-    <p><a href="https://memoc.pages.dev/y8h2/" target="_blank">英語中学からやり直すサイト高校生も大人も</a></p>
+  <header>
+    <h1><a href="https://memoc.pages.dev/y999/">お絵描きデジタルペイント</a></h1>
+  </header>
+  <main>
+    <section aria-labelledby="controls-heading">
+      <h2 id="controls-heading">描画コントロール</h2>
+      <form id="controls" role="region" aria-label="描画コントロール">
+        <fieldset>
+          <legend>キャンバスサイズ</legend>
+          <label for="height-input">たて</label>
+          <input type="number" id="height-input" name="height" min="100" value="500" aria-describedby="size-help"> <span>px</span>
+          <label for="width-input">よこ</label>
+          <input type="number" id="width-input" name="width" min="100" value="800" aria-describedby="size-help"> <span>px</span>
+          <div id="size-help" class="visually-hidden">たてとよこの値を入力してから Enter を押すかキャンバスをリサイズしてください</div>
+        </fieldset>
+        <fieldset>
+          <legend>色</legend>
+          <div class="preset-colors" role="list" aria-label="プリセットカラー">
+            <button type="button" class="color-btn" data-color="#000000" aria-label="黒" style="background:#000000;"></button>
+            <button type="button" class="color-btn" data-color="#FF0000" aria-label="赤" style="background:#FF0000;"></button>
+            <button type="button" class="color-btn" data-color="#0000FF" aria-label="青" style="background:#0000FF;"></button>
+            <button type="button" class="color-btn" data-color="#008000" aria-label="緑" style="background:#008000;"></button>
+            <button type="button" class="color-btn" data-color="#FFA500" aria-label="オレンジ" style="background:#FFA500;"></button>
+          </div>
+          <label for="color-picker" class="visually-hidden">色を選ぶ</label>
+          <input type="color" id="color-picker" value="#000000" aria-label="色選択">
+        </fieldset>
+        <fieldset>
+          <legend>ツール</legend>
+          <label for="thickness-slider">太さ</label>
+          <input type="range" id="thickness-slider" min="1" max="50" value="5" aria-valuemin="1" aria-valuemax="50" aria-valuenow="5" aria-label="ペンの太さ">
+          <div class="tool-buttons" role="group" aria-label="ツール切替">
+            <button type="button" id="pen-btn" aria-pressed="true">ペン</button>
+            <button type="button" id="eraser-btn" aria-pressed="false">消しゴム</button>
+            <button type="button" id="undo-btn">一つ戻す</button>
+            <button type="button" id="fill-btn">すべて塗る</button>
+            <button type="button" id="clear-btn">全消去</button>
+            <button type="button" id="save-btn">png画像で保存</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+    <section aria-labelledby="canvas-heading">
+      <h2 id="canvas-heading">描画キャンバス</h2>
+      <p class="visually-hidden" id="canvas-desc">タッチやマウスで描画できます。ツールや色、太さを選んで描いてください。</p>
+      <canvas id="draw-canvas" width="800" height="500" role="img" aria-labelledby="canvas-desc" aria-describedby="controls-heading" tabindex="0"></canvas>
+    </section>
+    <section aria-labelledby="usage-heading">
+      <h2 id="usage-heading">使い方</h2>
+      <h3>自由に使えるキャンバス</h3>
+      <p>自分好みにサイズを変更してお使いください。たて250px よこ330px など任意のピクセル値が設定できます。</p>
+      <h3>ペンの色と太さ</h3>
+      <p>プリセットカラーまたはカラーピッカーで色を選択し、スライダーで太さを調整します。</p>
+      <h3>消しゴム・一つ戻す</h3>
+      <p>消しゴムはドラッグで部分消去します。一つ戻すは直前の一筆を取り消します。</p>
+      <h3>すべて塗る・全消去</h3>
+      <p>すべて塗るはキャンバス全体を現在の色で塗りつぶします。全消去で初期状態に戻ります。</p>
+      <h3>PNGで保存とその他</h3>
+      <p>PNGで保存が可能です。印刷やクリップボードへのコピーもブラウザの機能を使って行えます。</p>
+      <p>PC・スマホ・タブレット対応。SNSやブログでの共有はご自由にどうぞ。</p>
+    </section>
+    <nav class="related-links" aria-label="関連リンク">
+      <h2 class="visually-hidden">関連リンク</h2>
+      <div class="link-category" aria-labelledby="cat-tools">
+        <h3 id="cat-tools">イラストツール</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y996/" target="_blank" rel="noopener noreferrer">クロッキー帳デジタル</a></li>
+          <li><a href="https://memoc.pages.dev/y995/" target="_blank" rel="noopener noreferrer">イラストお題ルーレットブラウザアプリ</a></li>
+          <li><a href="https://memoc.pages.dev/illust/" target="_blank" rel="noopener noreferrer">イラスト無料おしゃれでポップなフリー素材画像</a></li>
+        </ul>
+      </div>
+      <div class="link-category" aria-labelledby="cat-time">
+        <h3 id="cat-time">時間ツール</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener noreferrer">現在時刻リアルタイム秒時計Web表示</a></li>
+          <li><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener noreferrer">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></li>
+          <li><a href="https://memoc.pages.dev/yzp1/" target="_blank" rel="noopener noreferrer">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></li>
+          <li><a href="https://memoc.pages.dev/y990/" target="_blank" rel="noopener noreferrer">時間割ブラウザアプリ</a></li>
+        </ul>
+      </div>
+      <div class="link-category" aria-labelledby="cat-schedule">
+        <h3 id="cat-schedule">スケジュール</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener noreferrer">書き込みカレンダー無料で手作り感覚</a></li>
+          <li><a href="https://memoc.pages.dev/y998/" target="_blank" rel="noopener noreferrer">カレンダー今月 無料で書き込み</a></li>
+          <li><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener noreferrer">スケジュール帳ブラウザアプリ</a></li>
+        </ul>
+      </div>
+      <div class="link-category" aria-labelledby="cat-education">
+        <h3 id="cat-education">学習・リファレンス</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y8h2/" target="_blank" rel="noopener noreferrer">英語中学からやり直すサイト高校生も大人も</a></li>
+          <li><a href="https://memoc.pages.dev/y987/" target="_blank" rel="noopener noreferrer">オノマトペ一覧と英語訳辞典 擬音語・擬態語の使い方</a></li>
+          <li><a href="https://memoc.pages.dev/y984/" target="_blank" rel="noopener noreferrer">日本全国方言比較辞典</a></li>
+        </ul>
+      </div>
+      <div class="link-category" aria-labelledby="cat-lifestyle">
+        <h3 id="cat-lifestyle">暮らし・家事</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y989/" target="_blank" rel="noopener noreferrer">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></li>
+          <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener noreferrer">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></li>
+          <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener noreferrer">家計簿項目表のブラウザアプリ おすすめ無料フォーマット付</a></li>
+        </ul>
+      </div>
+      <div class="link-category" aria-labelledby="cat-media">
+        <h3 id="cat-media">メディア・娯楽</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener noreferrer">TVerティーバーの検索用リンク集</a></li>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener noreferrer">無料ブラウザゲームPCスマホタブレット対応</a></li>
+        </ul>
+      </div>
+      <div class="link-category" aria-labelledby="cat-illustrations">
+        <h3 id="cat-illustrations">イラスト・フリー素材</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/naniwa/" target="_blank" rel="noopener noreferrer">なにわ男子のイラストと人気ランキングや年齢や身長と血液型</a></li>
+          <li><a href="https://memoc.pages.dev/panda/" target="_blank" rel="noopener noreferrer">パンダのイラスト無料フリー素材かわいいかっこいい画像</a></li>
+          <li><a href="https://memoc.pages.dev/guitar/" target="_blank" rel="noopener noreferrer">ギターのイラスト無料おしゃれでかっこいい画像シンプル</a></li>
+          <li><a href="https://memoc.pages.dev/piano/" target="_blank" rel="noopener noreferrer">ピアノと鍵盤のイラスト無料おしゃれでかわいいフリー画像</a></li>
+          <li><a href="https://memoc.pages.dev/peace/" target="_blank" rel="noopener noreferrer">ピースのイラストおしゃれでかわいい着物姿など画像</a></li>
+          <li><a href="https://memoc.pages.dev/xbuta/" target="_blank" rel="noopener noreferrer">豚のイラストかわいい物リアルとシルエット無料フリー画像</a></li>
+          <li><a href="https://memoc.pages.dev/xakushu/" target="_blank" rel="noopener noreferrer">握手のイラストかわいい無料フリー画像</a></li>
+          <li><a href="https://memoc.pages.dev/xstar/" target="_blank" rel="noopener noreferrer">星のイラストかっこいい無料フリー画像</a></li>
+        </ul>
+      </div>
+    </nav>
+  </main>
+  <footer>
+    <p><a href="https://memoc.pages.dev/" target="_blank" rel="noopener noreferrer">メモ帳代わりwebブラウザ便利サイト</a></p>
+  </footer>
+  <script src="/js/y999.js" defer></script>
 </body>
 </html>
