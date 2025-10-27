@@ -29,11 +29,12 @@ gtag('config', 'G-5D799GZERM');
         <div style="font-size:12px; color:var(--muted)">簡単・ヘルシー・栄養満点の卵料理集</div>
       </div>
     </div>
+    <!-- タイトルの下に並ぶボタン群（色を付けるため accent-* クラスを適用） -->
     <nav class="header-buttons" role="navigation" aria-label="カテゴリ">
-      <button id="btn-today" class="btn large active" aria-pressed="true">今日の卵ヘルシーレシピ</button>
-      <button id="btn-salad" class="btn" aria-pressed="false">サラダ</button>
-      <button id="btn-soup" class="btn" aria-pressed="false">スープ</button>
-      <button id="btn-okazu" class="btn" aria-pressed="false">おかず</button>
+      <button id="btn-today" class="btn large active accent-1" aria-pressed="true">今日の卵ヘルシーレシピ</button>
+      <button id="btn-salad" class="btn accent-2" aria-pressed="false">サラダ</button>
+      <button id="btn-soup" class="btn accent-3" aria-pressed="false">スープ</button>
+      <button id="btn-okazu" class="btn accent-4" aria-pressed="false">おかず</button>
     </nav>
   </header>
   <main class="container" role="main">
@@ -42,19 +43,37 @@ gtag('config', 'G-5D799GZERM');
       <h3 id="recipe-title">読み込み中...</h3>
       <p id="recipe-instructions">レシピはここに表示されます。</p>
       <div class="share-row" aria-label="共有オプション">
-        <button id="btn-copy" title="文章をコピーする">文章コピー</button>
-        <button id="btn-png" title="PNG画像で保存する">PNGで保存</button>
+        <button id="btn-copy" class="btn" title="文章をコピーする">文章コピー</button>
+        <button id="btn-png" class="btn" title="PNG画像で保存する">PNGで保存</button>
         <a id="btn-x" class="btn" title="Xでシェアする" target="_blank" rel="noopener noreferrer">x</a>
         <a id="btn-fb" class="btn" title="Facebookでシェアする" target="_blank" rel="noopener noreferrer">facebook</a>
         <a id="btn-line" class="btn" title="LINEでシェアする" target="_blank" rel="noopener noreferrer">LINE</a>
         <a id="btn-mail" class="btn" title="メールで共有" target="_blank" rel="noopener noreferrer">メールでシェア</a>
       </div>
-      <div class="related" id="related-links" aria-live="polite">
-    <ul>
-      <li><a href="https://memoc.pages.dev/y970/" rel="noopener">野菜の作り置きレシピジェネレーター</a></li>
-      <li><a href="https://memoc.pages.dev/y971/" rel="noopener">野菜炒め味付けジェネレーター 簡単で人気の種類別</a></li>
-    </ul>
-      </div>
+      <h3>関連コンテンツ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y970/" target="_blank" rel="noopener">野菜の作り置きレシピジェネレーター</a></li>
+        <li><a href="https://memoc.pages.dev/y971/" target="_blank" rel="noopener">野菜炒め味付けジェネレーター 簡単で人気の種類別</a></li>
+        <li><a href="https://memoc.pages.dev/y976/" target="_blank" rel="noopener">料理・生活の感覚単位換算チャート ひとつまみ</a></li>
+      </ul>
+      <h3>献立コンテンツ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らしの1週間献立メーカー｜単品メニュー料理</a></li>
+        <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
+        <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立一週間分ブラウザアプリ 副菜2つ</a></li>
+      </ul>
+      <h3>生活リンク</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></li>
+        <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+        <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ おすすめ無料フォーマット</a></li>
+      </ul>
+      <h3>時計・タイマー</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></li>
+        <li><a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener">アナログ時計webアプリ表示切替機能付き</a></li>
+        <li><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener">タイマーおしゃれサイトの解説</a></li>
+      </ul>
     </section>
     <section aria-labelledby="many-heading">
       <h2 id="many-heading" style="color:#8e44ad">もっと見る — 関連レシピ</h2>
