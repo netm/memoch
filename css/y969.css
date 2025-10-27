@@ -1,0 +1,177 @@
+/* styles.css - 全文 */
+/* ベーシックでカラフル、レスポンシブ設計 */
+:root{
+  --accent-1:#ff7f50;
+  --accent-2:#6ac6d5;
+  --accent-3:#ffd54f;
+  --accent-4:#8bc34a;
+  --text:#2b3a55;
+  --muted:#6b7280;
+  --bg:#fffaf6;
+  --card:#ffffff;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", Roboto, sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg, var(--bg) 0%, #ffffff 100%);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+}
+
+/* レイアウト */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:16px;
+}
+
+/* ヘッダー */
+.header{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-title{
+  font-size:20px;
+  font-weight:800;
+  background: linear-gradient(90deg,var(--accent-1), var(--accent-2));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.header-buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.btn{
+  border:0;
+  padding:10px 14px;
+  border-radius:10px;
+  background:#fff;
+  color:var(--text);
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 2px 6px rgba(43,58,85,0.06);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.large{padding:12px 18px}
+
+/* アクティブボタン */
+.btn.active{
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  transform:none;
+}
+
+/* レシピ枠 */
+.recipe-wrap{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:0 6px 18px rgba(43,58,85,0.05);
+  margin-bottom:12px;
+}
+#recipe-title{
+  font-size:22px;
+  font-weight:900;
+  color:var(--accent-1);
+  margin:0 0 12px 0;
+}
+#recipe-instructions{
+  font-size:16px;
+  font-weight:800;
+  color:#333;
+  margin:0 0 16px 0;
+}
+
+/* シェアボタン群 */
+.share-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.share-row a, .share-row button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:700;
+  border:0;
+}
+#btn-copy{background:linear-gradient(90deg,var(--accent-2),var(--accent-3)); color:#1b2430}
+#btn-png{background:linear-gradient(90deg,var(--accent-3),var(--accent-4)); color:#1b2430}
+#btn-x{background:#1da1f2}
+#btn-fb{background:#1877f2}
+#btn-line{background:#00b900}
+#btn-mail{background:#6c5ce7}
+
+/* 関連リンク */
+.related{
+  background:transparent;
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:16px;
+}
+.related a{color:var(--accent-2); text-decoration:none; font-weight:700}
+
+/* レシピリスト */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+  margin-bottom:24px;
+}
+.card{
+  padding:12px;
+  border-radius:12px;
+  background:linear-gradient(180deg,#ffffff, #fffdf9);
+  box-shadow:0 6px 12px rgba(43,58,85,0.04);
+}
+.list-title{color:var(--accent-4); margin:0 0 6px 0; font-weight:800}
+.list-cat{color:var(--muted); margin:0 0 8px 0; font-size:13px}
+.list-instr{color:#444; margin:0 0 10px 0; font-size:14px}
+.btn-ghost{
+  background:transparent;
+  border:1px dashed #ddd;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* トップに戻るリンク */
+.back-top{display:inline-block; margin:8px 0; color:var(--accent-2); font-weight:800; text-decoration:none}
+
+/* レスポンシブ: スマホ横向きで両端が画面端にくるようにする */
+@media (max-width:900px) and (orientation:landscape){
+  .container{ padding-left:6px; padding-right:6px; }
+  .grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:600px){
+  .header{ flex-direction:column; align-items:stretch; gap:10px; }
+  .grid{ grid-template-columns:1fr; }
+  .site-title{ font-size:18px; }
+  #recipe-title{ font-size:20px; }
+}
+
+/* カラフルな見出し（h2/h3） */
+h2{ color:var(--accent-2); font-size:20px; margin:16px 0 8px 0 }
+h3{ color:var(--accent-3); font-size:18px; margin:12px 0 6px 0 }
+
+/* アクセシビリティ微調整 */
+a:focus, button:focus{outline:3px solid rgba(100,150,200,0.25); outline-offset:2px}
