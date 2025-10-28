@@ -1,15 +1,16 @@
-/* 全面CSS：やさしいパステル系（薄い黄緑・薄いピンク・薄い黄色・薄いオレンジ等） */
+/* 全面CSS：やさしいパステル系 + h1/h2/h3 をカラフルにする（全文） */
+
 :root{
   /* パレット（用途ごとに変数を分ける） */
-  --bg: #f8fff7;            /* 薄い黄緑ベース */
-  --card-bg: #ffffff;       /* カード背景（白） */
-  --accent-1: #dff7e6;      /* 薄い黄緑（サブ背景） */
-  --accent-2: #fff0f5;      /* 薄いピンク（サブ背景） */
-  --accent-3: #fffbe6;      /* 薄い黄色（サブ背景） */
-  --accent-4: #fff6ee;      /* 薄いオレンジ（サブ背景） */
-  --muted: #667077;         /* 補助テキスト */
-  --text: #21303a;          /* メインテキスト */
-  --accent: #4a9a6a;        /* 強調色（リンク、見出しのアクセント） */
+  --bg: #f8fff7;
+  --card-bg: #ffffff;
+  --accent-1: #dff7e6;
+  --accent-2: #fff0f5;
+  --accent-3: #fffbe6;
+  --accent-4: #fff6ee;
+  --muted: #667077;
+  --text: #21303a;
+  --accent: #4a9a6a;
   --border: rgba(34,50,60,0.06);
   --shadow: 0 6px 18px rgba(34,50,60,0.06);
   --radius: 10px;
@@ -17,9 +18,28 @@
   --max-width: 1100px;
   font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color-scheme: light;
+
+  /* 見出し用カラーパレット（薄色背景＋文字色） */
+  --h1-color: #b03a3a;       /* 深めの赤 */
+  --h1-bg: linear-gradient(90deg, rgba(240,128,128,0.06), rgba(255,240,240,0.02));
+  --h1-bar: rgba(176,58,58,0.12);
+
+  --h2-color: #b06622;       /* 深めのオレンジ */
+  --h2-bg: linear-gradient(90deg, rgba(245,183,77,0.06), rgba(255,245,230,0.02));
+  --h2-bar: rgba(176,102,34,0.12);
+
+  --h3-color: #2e8f63;       /* 深めの緑 */
+  --h3-bg: linear-gradient(90deg, rgba(144,238,144,0.06), rgba(240,255,240,0.02));
+  --h3-bar: rgba(46,143,99,0.12);
+
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.02em;
+  --heading-accent-width: 48px;
+  --heading-accent-height: 6px;
+  --heading-radius: 6px;
 }
 
-/* テーマ切替との親和性（data-theme 属性で上書き）*/
+/* テーマ切替との親和性 */
 [data-theme="lightgray"]{ --bg:#f7f7f7; --accent-1:#eef2f5; --accent-2:#fff7fb; --accent-3:#fffdf2; --accent-4:#fff9f2; }
 [data-theme="lightpink"]{ --bg:#fff6f8; --accent-1:#fff0f5; --accent-2:#fff0f5; --accent-3:#fff9f2; --accent-4:#fff6f0; --accent:#c85a7a; }
 [data-theme="lightblue"]{ --bg:#f3fbff; --accent-1:#eaf8ff; --accent-2:#fff7fb; --accent-3:#fffdf2; --accent-4:#fff6f0; --accent:#2b88d8; }
@@ -55,7 +75,7 @@ button:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
 button:active{transform:translateY(0)}
 button[aria-pressed="true"]{outline:2px solid rgba(74,154,106,0.18)}
 
-/* SNS ボタンをさりげなく色分け */
+/* SNS ボタン */
 .sns button{width:40px;height:40px;padding:0;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-weight:600}
 #xBtn{background:linear-gradient(180deg,var(--accent-2),#fff);color:#1da1f2;border:1px solid rgba(29,161,242,0.12)}
 #fbBtn{background:linear-gradient(180deg,var(--accent-1),#fff);color:#1877f2;border:1px solid rgba(24,119,242,0.08)}
@@ -80,9 +100,7 @@ article.day:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(34,50,6
 article.day h3{margin:0;font-size:1rem;color:var(--accent);font-weight:700}
 .cat{font-size:0.85rem;color:var(--text);background:var(--accent-1);padding:6px 8px;border-radius:8px;display:inline-block;align-self:flex-start}
 .dish{margin:0;font-weight:700;font-size:1rem;color:var(--text)}
-.side{margin:0;color:var(--muted);font-size:0.95rem;
-  font-weight:700; /* 追加：副菜を太字にする */
-}
+.side{margin:0;color:var(--muted);font-size:0.95rem;font-weight:700}
 
 /* notes / related / footer */
 .notes{margin-top:14px;color:var(--muted);font-size:0.95rem}
@@ -117,5 +135,92 @@ article.day h3{margin:0;font-size:1rem;color:var(--accent);font-weight:700}
 .small{font-size:0.88rem;color:var(--muted)}
 .kicker{font-size:0.82rem;color:var(--accent);font-weight:700}
 
-/* SVG/PNG 出力時に視認性を保つためのフォールバック背景 */
+/* SVG/PNG 出力時のフォールバック背景 */
 #menuContainer{background:transparent}
+
+/* ---------------------------
+   見出しスタイル カラフル化
+   --------------------------- */
+h1, h2, h3 {
+  margin: 0 0 .5rem 0;
+  font-weight: var(--heading-weight);
+  letter-spacing: var(--heading-letter-spacing);
+  line-height: 1.15;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+/* H1 */
+h1 {
+  color: var(--h1-color);
+  font-size: 1.6rem;
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--h1-bg);
+  display: inline-block;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.01);
+}
+h1::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: 6px;
+  height: var(--heading-accent-height);
+  width: calc(var(--heading-accent-width) + 32px);
+  background: var(--h1-bar);
+  border-radius: var(--heading-radius);
+}
+
+/* H2 */
+h2 {
+  color: var(--h2-color);
+  font-size: 1.2rem;
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--h2-bg);
+  display: inline-block;
+}
+h2::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  bottom: 5px;
+  height: 5px;
+  width: calc(var(--heading-accent-width) + 8px);
+  background: var(--h2-bar);
+  border-radius: var(--heading-radius);
+}
+
+/* H3 */
+h3 {
+  color: var(--h3-color);
+  font-size: 1rem;
+  position: relative;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--h3-bg);
+  display: inline-block;
+}
+h3::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  bottom: 4px;
+  height: 4px;
+  width: var(--heading-accent-width);
+  background: var(--h3-bar);
+  border-radius: var(--heading-radius);
+}
+
+/* 見出しホバー効果（控えめ） */
+h1:hover, h1:focus { transform: translateY(-3px); filter: brightness(1.02); }
+h2:hover, h2:focus { transform: translateY(-2px); filter: brightness(1.03); }
+h3:hover, h3:focus { transform: translateY(-1px); filter: brightness(1.04); }
+
+/* 印刷時の見出し調整 */
+@media print {
+  h1, h2, h3 { background: transparent; color: #000; -webkit-print-color-adjust: exact; }
+}

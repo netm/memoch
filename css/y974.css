@@ -1,4 +1,5 @@
-/* style.css - 一人暮らしの1週間献立メーカー (CSS全文) */
+/* style.css - 一人暮らしの1週間献立メーカー (カラフル見出し付き) */
+
 :root{
   --accent:#2b6cb0;
   --muted:#666;
@@ -6,6 +7,17 @@
   --shadow: 0 6px 18px rgba(0,0,0,0.06);
   --radius:12px;
   --max-width:980px;
+
+  /* 見出しカラーパレット */
+  --h1-color: #ef4444;    /* 赤系 */
+  --h2-color: #f59e0b;    /* オレンジ系 */
+  --h3-color: #10b981;    /* 緑系 */
+  --h4-color: #06b6d4;    /* シアン系（必要なら h4 に適用） */
+  --h1-accent: rgba(239,68,68,0.12);
+  --h2-accent: rgba(245,158,11,0.12);
+  --h3-accent: rgba(16,185,129,0.12);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.02em;
 }
 
 *{box-sizing:border-box}
@@ -65,6 +77,7 @@ a{color:var(--accent); text-decoration:none}
   background:#fff;
 }
 
+/* カード */
 .card{
   margin-top:16px;
   background:var(--card-bg);
@@ -74,6 +87,7 @@ a{color:var(--accent); text-decoration:none}
   backdrop-filter: blur(4px);
 }
 
+/* 週間リスト */
 .week-list{
   padding-left:18px;
   margin:8px 0;
@@ -102,6 +116,7 @@ a{color:var(--accent); text-decoration:none}
   color:#111;
 }
 
+/* スクリーンリーダー用の非表示領域 */
 #menuText{
   position:absolute;
   left:-9999px;
@@ -122,6 +137,95 @@ a{color:var(--accent); text-decoration:none}
   color:var(--muted);
 }
 
+/* 見出し共通 */
+h1,h2,h3,h4{
+  margin:0 0 .5rem 0;
+  font-weight:var(--heading-weight);
+  letter-spacing:var(--heading-letter-spacing);
+  line-height:1.15;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:transform 140ms ease, filter 140ms ease;
+}
+
+/* 個別見出しカラーとアクセント（下線風・背景風） */
+h1{
+  color:var(--h1-color);
+  font-size:22px;
+  position:relative;
+  padding:6px 10px;
+  border-radius:10px;
+  background:linear-gradient(90deg, rgba(239,68,68,0.04), rgba(239,68,68,0.02));
+  box-shadow:0 1px 0 rgba(0,0,0,0.02) inset;
+}
+h1::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  bottom:6px;
+  height:6px;
+  width:64px;
+  background:var(--h1-accent);
+  border-radius:6px;
+  opacity:0.95;
+}
+
+h2{
+  color:var(--h2-color);
+  font-size:18px;
+  position:relative;
+  padding:4px 8px;
+  border-radius:8px;
+  background:linear-gradient(90deg, rgba(245,158,11,0.04), rgba(245,158,11,0.02));
+}
+h2::after{
+  content:"";
+  position:absolute;
+  left:10px;
+  bottom:6px;
+  height:5px;
+  width:46px;
+  background:var(--h2-accent);
+  border-radius:6px;
+  opacity:0.95;
+}
+
+h3{
+  color:var(--h3-color);
+  font-size:16px;
+  position:relative;
+  padding:3px 6px;
+  border-radius:6px;
+  background:linear-gradient(90deg, rgba(16,185,129,0.04), rgba(16,185,129,0.02));
+}
+h3::after{
+  content:"";
+  position:absolute;
+  left:8px;
+  bottom:5px;
+  height:4px;
+  width:32px;
+  background:var(--h3-accent);
+  border-radius:6px;
+  opacity:0.95;
+}
+
+/* 小見出し用の薄色 (任意) */
+h4{
+  color:var(--h4-color);
+  font-size:14px;
+  position:relative;
+  padding:2px 6px;
+  border-radius:6px;
+  background:linear-gradient(90deg, rgba(6,182,212,0.04), rgba(6,182,212,0.02));
+}
+
+/* 見出しホバー効果（アクセシビリティを保った軽微な動き） */
+h1:hover, h1:focus{ transform:translateY(-2px); filter:brightness(1.02) }
+h2:hover, h2:focus{ transform:translateY(-1.5px); filter:brightness(1.03) }
+h3:hover, h3:focus{ transform:translateY(-1px); filter:brightness(1.04) }
+
+/* レスポンシブでサイズ調整 */
 @media (max-width:820px) and (orientation: landscape) {
   .container{
     padding-left:8px;
@@ -138,14 +242,17 @@ a{color:var(--accent); text-decoration:none}
   .controls{ justify-content:flex-start }
 }
 
+/* キーボードフォーカス可視化 */
 .btn:focus, .icon-btn:focus, .color-select:focus { outline:3px solid rgba(43,108,176,0.14); outline-offset:2px }
 
+/* ソーシャルボタン */
 .socials{ display:flex; gap:8px; align-items:center }
 .socials a{ display:inline-flex; padding:8px 10px; background:#fff; border-radius:8px; border:1px solid #eee; box-shadow:var(--shadow); color:#333; font-weight:600 }
 
-h1{ margin:0 0 8px 0; font-size:22px }
-h2{ font-size:18px; margin:18px 0 8px 0 }
-h3{ font-size:16px; margin:12px 0 6px 0 }
+/* 元の見出しサイズ維持（必要なら上書き可能） */
+h1{ margin:0 0 8px 0 }
+h2{ margin:18px 0 8px 0 }
+h3{ margin:12px 0 6px 0 }
 
 .note{ color:var(--muted); font-size:13px }
 
@@ -159,4 +266,11 @@ h3{ font-size:16px; margin:12px 0 6px 0 }
   font-weight:700;
   margin-right:8px;
   font-size:13px;
+}
+
+/* 印刷時の調整 */
+@media print{
+  body{ background:#fff; color:#000; }
+  .card, .btn, .topbar, .controls, .socials{ box-shadow:none; background:transparent }
+  h1,h2,h3,h4{ background:transparent; color:#000; -webkit-print-color-adjust:exact }
 }

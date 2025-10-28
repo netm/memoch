@@ -8,7 +8,18 @@
   --gap:14px;
   --shadow: 0 4px 12px rgba(16,24,40,0.06);
   --print-font: "Hiragino Kaku Gothic Pro","Yu Gothic","Noto Sans JP",sans-serif;
+
+  /* カラフル見出しカラー */
+  --h1-color: #ef4444;   /* red-500 */
+  --h2-color: #f59e0b;   /* amber-500 */
+  --h3-color: #10b981;   /* emerald-500 */
+  --h1-accent: #fca5a5;  /* soft red for underline */
+  --h2-accent: #fde68a;  /* soft amber for underline */
+  --h3-accent: #6ee7b7;  /* soft green for underline */
+  --heading-font-weight: 700;
+  --heading-letter-spacing: -0.02em;
 }
+
 [data-theme="dark"]{
   --bg:#0b0c0e;
   --card:#0f1720;
@@ -16,17 +27,123 @@
   --muted:#9aa6b2;
   --accent:#3aa0ff;
   --shadow: none;
+
+  /* ダークテーマ用見出しカラー（明るめに調整）  */
+  --h1-color: #ff7b7b;
+  --h2-color: #ffd16b;
+  --h3-color: #5ef2b2;
+  --h1-accent: rgba(255,123,123,0.12);
+  --h2-accent: rgba(255,209,107,0.12);
+  --h3-accent: rgba(94,242,178,0.12);
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
-  background:var(--bg);color:var(--text);padding:18px;line-height:1.4;
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding:18px;
+  line-height:1.4;
 }
 
+/* 見出し共通スタイル */
+h1,h2,h3{
+  margin:0 0 0.5rem 0;
+  font-weight:var(--heading-font-weight);
+  letter-spacing:var(--heading-letter-spacing);
+  line-height:1.15;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* 個別カラーとアクセント（下線風） */
+h1{
+  color:var(--h1-color);
+  font-size:1.8rem;
+  position:relative;
+  padding-bottom:0.375rem;
+}
+h1::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:6px;
+  width:48px;
+  background:var(--h1-accent);
+  border-radius:4px;
+  opacity:0.95;
+}
+
+/* グラデーション文字（オプションで有効化する場合は class="gradient" を追加） */
+h1.gradient{
+  background: linear-gradient(90deg,#ff7b7b 0%, #f97316 40%, #f59e0b 60%, #ef4444 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* H2 */
+h2{
+  color:var(--h2-color);
+  font-size:1.3rem;
+  position:relative;
+  padding-bottom:0.375rem;
+}
+h2::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:5px;
+  width:36px;
+  background:var(--h2-accent);
+  border-radius:4px;
+  opacity:0.95;
+}
+h2.small{font-size:1.1rem}
+
+/* H3 */
+h3{
+  color:var(--h3-color);
+  font-size:1.05rem;
+  position:relative;
+  padding-bottom:0.25rem;
+}
+h3::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:4px;
+  width:28px;
+  background:var(--h3-accent);
+  border-radius:4px;
+  opacity:0.95;
+}
+h3.muted{opacity:0.92; font-weight:600}
+
+/* hover focus のアクセント効果（アクセシビリティ考慮） */
+h1:hover, h1:focus{ filter:brightness(1.02); transform:translateY(-1px); transition:transform 120ms ease, filter 120ms ease; }
+h2:hover, h2:focus{ filter:brightness(1.03); transform:translateY(-0.5px); transition:transform 120ms ease, filter 120ms ease; }
+h3:hover, h3:focus{ filter:brightness(1.04); transform:translateY(-0.3px); transition:transform 120ms ease, filter 120ms ease; }
+
+/* レスポンシブでサイズ調整 */
+@media (max-width:720px){
+  h1{font-size:1.5rem}
+  h2{font-size:1.15rem}
+  h3{font-size:1rem}
+}
+
+/* 以下は元のレイアウトとコンポーネントスタイル（見出し以外は元のまま） */
 .site-header{
-  display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
 }
 .title-wrap{max-width:60%}
 .site-title{margin:0;font-size:1.2rem}

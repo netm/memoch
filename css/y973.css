@@ -1,4 +1,5 @@
-/* style.css - カラフルな薄色パレットを追加 */
+/* style.css - カラフルな薄色パレットを追加 + h1/h2/h3 をカラフルにする（全文） */
+
 :root{
   --accent:#2b6cb0;
   --muted:#666;
@@ -19,9 +20,21 @@
   --pastel-yellow: #fffbe6;
   --pastel-peach: #fff6ee;
   --pastel-pearl: #fbfbfd;
+
+  /* 見出しカラーバリアブル */
+  --h1-color: #ef4444;
+  --h2-color: #f59e0b;
+  --h3-color: #10b981;
+  --h1-bg: linear-gradient(90deg, rgba(239,68,68,0.06), rgba(239,68,68,0.02));
+  --h2-bg: linear-gradient(90deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+  --h3-bg: linear-gradient(90deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));
+  --heading-weight:700;
+  --heading-letter-spacing:-0.02em;
+  --heading-accent-width:40px;
+  --heading-accent-height:6px;
+  --heading-radius:6px;
 }
 
-/* 基本スタイル（既存部分はそのまま） */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;font-family:"Hiragino Kaku Gothic Pro",Meiryo,sans-serif;color:#222;background:#ffffff;-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}
@@ -64,12 +77,7 @@ a{color:var(--accent);text-decoration:none}
 .week-list .week-item:nth-child(7n+7){ background: linear-gradient(90deg, var(--pastel-mint), rgba(255,255,255,0.6)); }
 
 /* 日付 / タグ */
-.day-label{
-  width:84px;
-  color:var(--muted);
-  font-weight:700;
-  text-align:left;
-}
+.day-label{ width:84px; color:var(--muted); font-weight:700; text-align:left; }
 
 /* カテゴリバッジ にも淡色背景を割り当ててカラフルに */
 .cat-label{
@@ -146,7 +154,7 @@ a{color:var(--accent);text-decoration:none}
   box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
-/* テキストエリアは隠す */
+/* 非表示テキスト領域 */
 #menuText{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 
 /* 関連リンクとフッター */
@@ -180,3 +188,91 @@ a{color:var(--accent);text-decoration:none}
 
 /* SEO用キーワードバッジ */
 .keyword-badge{display:inline-block;padding:6px 10px;background:linear-gradient(90deg,rgba(43,108,176,0.08),rgba(43,108,176,0.03));border-radius:999px;color:var(--accent);font-weight:700;margin-right:8px;font-size:13px}
+
+/* ---------------------------
+   見出しスタイル（h1/h2/h3 をカラフルに）
+   --------------------------- */
+h1,h2,h3{
+  margin:0 0 .5rem 0;
+  font-weight:var(--heading-weight);
+  letter-spacing:var(--heading-letter-spacing);
+  line-height:1.15;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:transform 140ms ease, filter 140ms ease;
+}
+
+/* H1: 赤系（パステル背景と下線アクセント） */
+h1{
+  color:var(--h1-color);
+  font-size:22px;
+  position:relative;
+  padding:8px 12px;
+  border-radius:10px;
+  background:var(--h1-bg);
+  display:inline-block;
+}
+h1::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  bottom:6px;
+  height:var(--heading-accent-height);
+  width:calc(var(--heading-accent-width) + 28px);
+  background:rgba(239,68,68,0.12);
+  border-radius:var(--heading-radius);
+}
+
+/* H2: オレンジ系 */
+h2{
+  color:var(--h2-color);
+  font-size:18px;
+  position:relative;
+  padding:6px 10px;
+  border-radius:8px;
+  background:var(--h2-bg);
+  display:inline-block;
+}
+h2::after{
+  content:"";
+  position:absolute;
+  left:10px;
+  bottom:5px;
+  height:5px;
+  width:calc(var(--heading-accent-width) + 6px);
+  background:rgba(245,158,11,0.12);
+  border-radius:var(--heading-radius);
+}
+
+/* H3: 緑系 */
+h3{
+  color:var(--h3-color);
+  font-size:16px;
+  position:relative;
+  padding:4px 8px;
+  border-radius:6px;
+  background:var(--h3-bg);
+  display:inline-block;
+}
+h3::after{
+  content:"";
+  position:absolute;
+  left:8px;
+  bottom:4px;
+  height:4px;
+  width:var(--heading-accent-width);
+  background:rgba(16,185,129,0.12);
+  border-radius:var(--heading-radius);
+}
+
+/* 見出しホバー効果（控えめ） */
+h1:hover,h1:focus{ transform:translateY(-3px); filter:brightness(1.02) }
+h2:hover,h2:focus{ transform:translateY(-2px); filter:brightness(1.03) }
+h3:hover,h3:focus{ transform:translateY(-1px); filter:brightness(1.04) }
+
+/* 印刷時の見出し調整 */
+@media print{
+  body{ background:#fff; color:#000; }
+  .card, .btn, .topbar, .controls, .socials{ box-shadow:none; background:transparent }
+  h1,h2,h3{ background:transparent; color:#000; -webkit-print-color-adjust:exact }
+}

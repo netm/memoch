@@ -325,5 +325,5 @@ function updateShareLinks(recipe){
 
 (function init(){
   const r = pickRandomAny();
-  displayRecipe({ name: "準備OK - ボタンを押してランダム表示", ingredientsText: "ボタンを押すとランダムに味付けが表示されます" });
+  displayRecipe({ name: "上記の「ボタン」を押して下さい", ingredientsText: "比率が表示されます" });
 })();
