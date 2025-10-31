@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>大掃除チェックリスト</title>
+  <meta name="description" content="大掃除チェックリスト - 部屋数や色を変えてスマホでもPCでも使える、ブラウザ保存・PNG保存・SNSシェア対応の使いやすいチェックリスト。">
+  <meta name="keywords" content="大掃除,チェックリスト,片付け,掃除の順番,掃除のコツ">
+  <meta name="robots" content="index,follow">
+  <meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y968/">
+  <link rel="stylesheet" href="/css/y968.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <header>
+    <h1 id="site-title">大掃除チェックリスト</h1>
+    <p id="intro-short">スマホでもパソコンでも使いやすいシンプルな大掃除チェックリスト。部屋数・色を変えて、自分の家仕様にカスタマイズできます。</p>
+  </header>
+  <main id="app" class="app">
+    <section id="controls" class="controls" aria-label="設定">
+      <div class="control-row">
+        <label for="room-count">部屋数</label>
+        <select id="room-count" aria-label="部屋数を選択">
+          <!-- JS will populate 1..10 -->
+        </select>
+      </div>
+      <div class="control-row">
+        <label for="nice-color">きれいカラー</label>
+        <input id="nice-color" type="color" value="#2d9cdb" />
+        <button id="apply-color" class="btn">適用</button>
+      </div>
+      <div class="control-row">
+        <button id="copy-text" class="btn">文章コピーボタン</button>
+        <button id="save-png" class="btn">PNG画像で保存</button>
+      </div>
+      <div class="control-row social-row">
+        <button id="share-x" class="btn social">x</button>
+        <button id="share-fb" class="btn social">facebook</button>
+        <button id="share-line" class="btn social">LINE</button>
+        <button id="share-mail" class="btn social">Eメールシェア</button>
+      </div>
+    </section>
+    <hr />
+    <section id="description" class="description">
+      <h2>サイトの説明</h2>
+      <p>
+        この大掃除チェックリストは、年末や引越し前などの本格的な掃除作業に最適化されたツールです。部屋数を選ぶだけで、その家に合わせた項目が自動で配置され、各項目には「場所」「掃除箇所」「掃除方法」「目安時間」を明記しています。スマホ・タブレット・PCでも使いやすいよう設計したレイアウトになっています。
+      </p>
+      <p>
+        ブラウザ保存機能により一度設定した部屋数や色、チェックの状態は端末に保存されます。チェックした項目はいつでもやり直し可能で、大掃除がすべて終了すると完了メッセージが表示されます。画像で保存すれば家族や共有相手に送ることも簡単です。SNSボタンやメール共有により、計画の共有や進捗報告もスムーズに行えます。
+      </p>
+      <p>
+        掃除の効率を上げるため、各項目に目安時間を入れて作業を把握しやすくしています。デザインを好きな色に変えると視認性が高まり、家族で分担して進めるときにも便利です。
+      </p>
+      <p>
+        当サイトはブラウザだけで完結するため、アプリをインストールする手間がありません。いつでもどこでもアクセスして大掃除プランを確認し編集しながら共有できます。
+      </p>
+    </section>
+    <hr />
+    <section id="checklist-area" class="checklist-area" aria-label="チェックリスト">
+      <h2>チェックリスト</h2>
+      <div id="checklist" class="checklist">
+        <!-- JS will render items here -->
+      </div>
+    </section>
+    <hr />
+    <section id="tips-osouji" class="tips">
+      <h2>大掃除の秘訣</h2>
+      <p>大掃除を効率よく終わらせるには「計画」「道具準備」「作業の分割」が鍵です。まずエリアを優先順位付けしてスケジュール化し、必要な洗剤や道具を一式揃えます。</p>
+      <h3>作業を細かく設定</h3>
+      <p>作業は「捨てる→整える→拭く・磨く→仕上げ」の順で進めます。各項目に短い目安時間を設定すると挫折しにくくなり捗ります。</p>
+      <h3>短時間の作業と時間がかかる作業</h3>
+      <p>短時間で終わる作業と時間を要する作業を明確にしておくと、実作業が格段にやりやすくなります。家族で分担する場合は担当や優先度を決めて、目安時間を明記したチェックリストを共有することもおすすめです。</p>
+      <h3>無駄な時間を無くして有効活用</h3>
+      <p>部屋を片付けている間に、他の場所の時間がかかるクリーニングの準備をしておくとスムーズです。時間がかかる作業は先に用意し、空き時間で他の作業を進めると無駄な時間を無くして有効活用できます。例えば「換気扇についた油汚れ拭き取りのための漬け置き 20分」などは先に準備してつけておき、その間に他の部屋の掃除機をかけると時短になります。
+      </p>
+    </section>
+    <section id="order-tips" class="tips">
+      <h2>掃除の順番</h2>
+      <p>効率の良い基本の順番は「上から下へ、奥から手前へ、乾いた作業→濡れた作業」です。天井や照明のホコリ落とし、カーテンや窓枠の掃除、収納の整理、家具移動、最後に床掃除の流れを守ると二度手間を防げます。</p>
+      <h3>油汚れと水汚れ</h3>
+      <p>キッチンや浴室のような油汚れ・水汚れが強い場所は換気と漬け置き処理を先に行い、その後で擦り洗いすると短時間で効果が出ます。忙しい場合は「1日1箇所方式」「重点3箇所方式」などで計画を分割しましょう。
+      </p>
+    </section>
+    <section id="cleaning-hacks" class="tips">
+      <h2>きれいにするコツ</h2>
+      <p>
+        見違えるようにきれいにするには「洗剤の使い分け」「適切な濃度と放置時間」「道具の選択」が重要です。ガラスはアルコールやクエン酸水、油汚れは重曹や中性洗剤、カビには用途に応じて希釈した塩素系漂白剤を使い分けます。マイクロファイバークロスはホコリ取りと仕上げ拭きに有効で、古い歯ブラシは溝や目地の細かい汚れに便利です。作業中は小分けしたごみ袋を持ち歩き、その場で不要品を分別すると最後の片付けが楽になります。
+      </p>
+    </section>
+    <section id="stubborn-stains" class="tips">
+      <h2>頑固な汚れの対策方法</h2>
+      <p>
+        頑固な汚れは段階的アプローチが有効です。表面のホコリや油を除去した後、専用洗剤で浸け置きし、最後にこするかスクレーパーで落とすのが基本です。</p>
+      <h3>油汚れ</h3>
+      <p>キッチンの油汚れは重曹ペーストを塗って10〜20分放置してから洗浄します。焦げ付きは重曹と水で加熱してから冷まして擦ります。</p>
+      <h3>カビ</h3>
+      <p>浴室の黒カビは希釈した塩素系漂白剤を使用します。必ず換気扇をまわしながら、ドアや窓を開けて空気が滞留しないようにして下さい。</p>
+      <h3>窓</h3>
+      <p>窓のウロコ汚れはクエン酸湿布の後に研磨する。薬剤は混ぜない、手袋と換気を徹底するなど安全対策を必ず行ってください。短時間で落ちない場合は浸け置き時間を延ばすか専門業者に相談することを検討しましょう。
+      </p>
+    </section>
+    <hr />
+    <section id="related-links" class="related-links">
+      <h3>関連リンク</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y966/" target="_blank" rel="noopener">埃を除去する方法100 乾燥・水分・家電・予防</a></li>
+          <li><a href="https://memoc.pages.dev/y967/" target="_blank" rel="noopener">大掃除リスト | どこから始めると効率がいいか解説</a></li>
+        　<li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+        </ul>
+      <h3>食品・食材</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></li>
+        <li><a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a></li>
+          <li><a href="https://memoc.pages.dev/y989/" target="_blank" rel="noopener">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></li>
+      </ul>
+      <h3>献立メニュー</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らしの1週間献立メーカー｜単品メニュー料理</a></li>
+        <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
+        <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立一週間分ブラウザアプリ 副菜2つ</a></li>
+      </ul>
+        <h3>料理レシピ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y970/" target="_blank" rel="noopener">野菜の作り置きレシピジェネレーター</a></li>
+        <li><a href="https://memoc.pages.dev/y971/" target="_blank" rel="noopener">野菜炒め味付けジェネレーター 簡単で人気の種類別</a></li>
+        <li><a href="https://memoc.pages.dev/y969/" target="_blank" rel="noopener">卵ヘルシーレシピ｜簡単で栄養たっぷりの卵料理</a></li>
+        <li><a href="https://memoc.pages.dev/y976/" target="_blank" rel="noopener">料理・生活の感覚単位換算チャート ひとつまみ</a></li>
+      </ul>
+      <h3>時計・タイマー</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></li>
+        <li><a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener">アナログ時計webアプリ表示切替機能付き</a></li>
+        <li><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener">タイマーおしゃれサイトの解説</a></li>
+      </ul>
+      <h3>スケジュール</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></li>
+          <li><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚</a></li>
+          <li><a href="https://memoc.pages.dev/y991/" target="_blank" rel="noopener">ゴミ収集カレンダー</a></li>
+      </ul>
+      <h3>暮らしを楽しむ</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener">TVerティーバーの検索用リンク集</a></li>
+          <li><a href="https://memoc.pages.dev/yuenchi/" target="_blank" rel="noopener">遊園地などの入場者ランキング</a></li>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集 PCスマホタブレット</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p><a href="https://memoc.pages.dev/" id="footer-home">メモ帳代わりの便利サイトに戻る</a></p>
+  </footer>
+  <script src="/js/y968.js"></script>
+</body>
+</html>

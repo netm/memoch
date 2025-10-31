@@ -1,0 +1,141 @@
+/* 全体リセットとベース */
+* {box-sizing: border-box; margin:0; padding:0; font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Segoe UI", system-ui, -apple-system, sans-serif;}
+html,body {height:100%;}
+body {background: linear-gradient(180deg,#fffafc 0%, #f7fbff 100%); color:#222; line-height:1.6; padding:20px;}
+
+/* カラーパレット（使いやすいパステル） */
+:root{
+  --pink:#ff7fbf;
+  --blue:#6fb3ff;
+  --mint:#7ee6c3;
+  --peach:#ffc49b;
+  --lavender:#c394ff;
+  --lemon:#fff07a;
+  --btn-text:#3b2b4b;
+  --btn-shadow: rgba(59,43,75,0.08);
+  --nice-color: #7cc4ff;
+}
+
+/* コンテナ */
+.app {max-width:1100px; margin:0 auto; background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.95)); border-radius:20px; box-shadow:0 8px 30px rgba(99,102,241,0.08); padding:18px;}
+
+/* ヘッダー */
+header {text-align:center; margin-bottom:14px;}
+#site-title {font-size:clamp(1.6rem,4.2vw,2.8rem); color:#9b5cf6; letter-spacing:0.6px; margin-bottom:6px;}
+#intro-short {margin-top:6px; color:#5b5b63; font-size:0.98rem;}
+
+/* コントロール周り（カード風、丸み） */
+.controls {display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-start; align-items:center; margin-bottom:14px; padding:10px; background:linear-gradient(90deg, rgba(255,255,255,0.7), rgba(250,250,255,0.6)); border-radius:14px; border:1px solid rgba(155, 92, 246, 0.08);}
+.control-row {display:flex; gap:8px; align-items:center;}
+label {font-weight:700; color:#423a57;}
+select, input[type="color"] {padding:8px 10px; border-radius:10px; border:1px solid #e6e1f7; background:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);}
+select:focus, input[type="color"]:focus {outline:3px solid rgba(155,92,246,0.12);}
+
+/* 共通ボタンスタイル（基礎） */
+.btn {padding:9px 12px; border-radius:12px; cursor:pointer; box-shadow:0 6px 18px var(--btn-shadow); font-weight:800; color:var(--btn-text); border:1px solid rgba(0,0,0,0.06); transition:transform 140ms, box-shadow 140ms, opacity 120ms;}
+.btn:active{transform:translateY(1px) scale(0.998);}
+
+/* 個別カラフルボタン — 上部の主要操作ボタン */
+#apply-color {
+  background: linear-gradient(180deg, var(--pink), #ff6fb8);
+  color:#fff;
+  border-color: rgba(255,111,184,0.25);
+  box-shadow:0 8px 20px rgba(255,127,191,0.15);
+}
+#apply-color:hover {transform:translateY(-3px); box-shadow:0 12px 30px rgba(255,127,191,0.2);}
+
+#copy-text {
+  background: linear-gradient(180deg, var(--blue), #4ea9ff);
+  color:#fff;
+  border-color: rgba(79,169,255,0.18);
+  box-shadow:0 8px 20px rgba(79,169,255,0.12);
+}
+#copy-text:hover {transform:translateY(-3px); box-shadow:0 12px 30px rgba(79,169,255,0.14);}
+
+#save-png {
+  background: linear-gradient(180deg, var(--mint), #45d9a2);
+  color:#fff;
+  border-color: rgba(72,216,163,0.18);
+  box-shadow:0 8px 20px rgba(72,216,163,0.12);
+}
+#save-png:hover {transform:translateY(-3px); box-shadow:0 12px 30px rgba(72,216,163,0.14);}
+
+/* SNSボタン群を個別カラーで目立たせる */
+#share-x { background: linear-gradient(180deg, var(--lavender), #b07bff); color:#fff; border-color: rgba(179,123,255,0.12); box-shadow:0 8px 20px rgba(179,123,255,0.12);}
+#share-fb { background: linear-gradient(180deg, var(--blue), #4ea9ff); color:#fff; border-color: rgba(79,169,255,0.12); box-shadow:0 8px 20px rgba(79,169,255,0.12);}
+#share-line { background: linear-gradient(180deg, var(--mint), #45d9a2); color:#fff; border-color: rgba(72,216,163,0.12); box-shadow:0 8px 20px rgba(72,216,163,0.12);}
+#share-mail { background: linear-gradient(180deg, var(--peach), #ffb97a); color:#fff; border-color: rgba(255,185,122,0.12); box-shadow:0 8px 20px rgba(255,185,122,0.12);}
+
+/* SNS hover */
+#share-x:hover, #share-fb:hover, #share-line:hover, #share-mail:hover {transform:translateY(-3px);}
+
+/* 代替：未指定ボタンはパステルグラデ */
+.btn:not(#apply-color):not(#copy-text):not(#save-png):not(#share-x):not(#share-fb):not(#share-line):not(#share-mail) {
+  background: linear-gradient(180deg,#fff,#f6f3ff);
+}
+
+/* チェックリスト全体 */
+.checklist {display:flex; flex-direction:column; gap:12px; margin-top:12px;}
+
+/* 各アイテム（パネル風） */
+.item {display:flex; align-items:center; gap:14px; padding:14px; border-radius:14px; min-height:72px; box-shadow:0 6px 18px rgba(16,24,40,0.04); border:1px solid rgba(16,24,40,0.03);}
+
+/* 左余白の調整で文字が端に寄りすぎないように */
+.item .number {min-width:44px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-weight:800; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(0,0,0,0.04)); box-shadow:0 2px 6px rgba(16,24,40,0.06); color:#4b367c; margin-left:6px; margin-right:6px;}
+
+/* OKボタンを大きく分かりやすく */
+.ok {padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,0.06); background:linear-gradient(180deg,#ffffff,#fff8fb); cursor:pointer; font-weight:800; color:#5b4a6f; box-shadow:0 6px 18px rgba(99,102,241,0.05);}
+.ok:hover {transform:translateY(-2px); transition:transform 120ms;}
+.ok.done {background:linear-gradient(180deg,var(--nice-color), #4fb7ff); color:#fff; border-color:transparent;}
+
+/* アイテム本文の余白確保 */
+.title {flex:1; padding-right:8px;}
+
+/* 見出しと説明のデザイン */
+.item-info {display:flex; flex-direction:column; gap:6px;}
+.item-info p {font-size:0.98rem; color:#2f2b38; margin:0;}
+.item-info .small-desc {font-weight:700; color:#6b587f;}
+
+/* メタ情報 */
+.meta {display:flex; gap:10px; color:#6b6775; font-size:0.92rem;}
+
+/* ステータスの強調（きれいになりました！等） */
+.status {font-weight:900; margin-left:8px; min-width:180px; text-align:right;}
+
+/* 見出しカラーの可愛さ調整 */
+h1, h2, h3 {margin-bottom:8px;}
+h2 {color:#ff6fa3;}
+h3 {color:#42a5f5;}
+
+/* 項目ごとの薄色背景（パステル系で多数） */
+.item[data-bg="0"] {background:linear-gradient(180deg, rgba(255,244,245,0.9), rgba(255,250,250,0.9));}
+.item[data-bg="1"] {background:linear-gradient(180deg, rgba(242,249,255,0.95), rgba(248,253,255,0.95));}
+.item[data-bg="2"] {background:linear-gradient(180deg, rgba(245,255,247,0.95), rgba(250,255,251,0.95));}
+.item[data-bg="3"] {background:linear-gradient(180deg, rgba(253,245,255,0.95), rgba(255,250,255,0.95));}
+.item[data-bg="4"] {background:linear-gradient(180deg, rgba(255,252,240,0.95), rgba(255,253,245,0.95));}
+.item[data-bg="5"] {background:linear-gradient(180deg, rgba(240,250,255,0.95), rgba(245,252,255,0.95));}
+.item[data-bg="6"] {background:linear-gradient(180deg, rgba(255,243,245,0.95), rgba(255,248,250,0.95));}
+.item[data-bg="7"] {background:linear-gradient(180deg, rgba(245,240,255,0.95), rgba(250,245,255,0.95));}
+.item[data-bg="8"] {background:linear-gradient(180deg, rgba(255,250,240,0.95), rgba(255,252,245,0.95));}
+.item[data-bg="9"] {background:linear-gradient(180deg, rgba(240,255,250,0.95), rgba(245,255,253,0.95));}
+
+/* レスポンシブ: スマホ横向きは両端を使う */
+@media (orientation: landscape) and (max-width:900px) {
+  body {padding:10px;}
+  .app {width:100%; margin:0; border-radius:0; padding:12px;}
+  .item {padding:12px; border-radius:6px;}
+  header, footer {padding:6px 8px;}
+}
+
+/* モバイル縦 */
+@media (max-width:600px) {
+  .controls {flex-direction:column; align-items:flex-start;}
+  .control-row {width:100%;}
+  .social-row {display:flex; gap:8px; overflow:auto;}
+  .item {flex-direction:column; align-items:flex-start; gap:10px;}
+  .number {width:48px; height:48px; font-size:1.1rem;}
+  .status {margin-left:0; margin-top:6px; text-align:left; width:100%;}
+}
+
+/* アクセシビリティ小調整 */
+.ok:focus, .btn:focus, select:focus {outline:3px solid rgba(155,92,246,0.14); outline-offset:2px;}

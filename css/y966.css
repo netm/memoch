@@ -1,0 +1,151 @@
+:root{
+  --bg:#f7fbff;
+  --card:#ffffff;
+  --accent1:#ff6b6b;
+  --accent2:#4dabf7;
+  --accent3:#ffd93d;
+  --accent4:#9b59b6;
+  --text:#222;
+  --link:#0066cc;
+  --radius:10px;
+}
+
+/* ページ自体は標準スクロール */
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  font-family:"Yu Gothic UI","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  color:var(--text);
+  overflow:auto;
+}
+
+.container{
+  max-width:1100px;
+  margin:16px auto;
+  padding:16px;
+  box-sizing:border-box;
+}
+
+/* ヘッダー */
+header{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+h1{
+  margin:0;
+  font-size:1.6rem;
+  background:linear-gradient(90deg,var(--accent4),var(--accent2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* 操作ボタン群 */
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+}
+.btn{
+  padding:8px 12px;
+  border-radius:8px;
+  border:0;
+  color:#fff;
+  cursor:pointer;
+  font-weight:700;
+  font-size:0.95rem;
+}
+#btnToday{background:var(--accent1)}
+#btnDry{background:#ff8fa3}
+#btnWet{background:var(--accent2)}
+#btnAppliance{background:#63c76a}
+#btnPrevent{background:#ffd166;color:#222}
+#btnCopy{background:#8ecae6;color:#023047}
+#btnPNG{background:#b892ff;color:#fff}
+.sns{display:flex;gap:6px}
+.sns button{padding:6px 8px;background:#eee;border-radius:8px;border:0}
+
+/* 自動作成枠（内部スクロールを発生させない） */
+.autoArea{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:0 6px 18px rgba(20,30,50,0.06);
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.autoArea h2{margin:0;font-size:1rem;color:var(--accent2)}
+#autoText{
+  margin:0;
+  font-weight:800;
+  font-size:1.5rem;
+  line-height:1.2;
+  color:var(--text);
+  word-break:break-word;
+  white-space:normal;
+  overflow:visible; /* 内部スクロールを起こさない */
+  text-overflow:clip;
+}
+
+/* サイト説明 + 100項目（ページスクロールで表示させる） */
+.contentBlock{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:0 6px 18px rgba(20,30,50,0.04);
+}
+
+/* 見出し・本文 */
+.contentBlock h2{margin:0 0 8px 0;color:#2f9e63}
+.contentBlock p{margin:0 0 10px 0;line-height:1.5}
+
+/* 「100のホコリを取る方法と予防」 見出しとカテゴリボタン行 */
+.contentBlock h3{margin:12px 0 8px 0;color:var(--accent4)}
+.catRow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.catButton{
+  padding:6px 10px;background:#f0f5ff;border-radius:8px;border:1px solid #e6eeff;
+  font-size:0.92rem;cursor:pointer;
+}
+
+/* 100項目リストはページ全体のスクロール対象にして省略や内部スクロールをしない */
+#methodsList{
+  list-style:decimal;
+  padding-left:20px;
+  margin:6px 0 0 0;
+  display:block;
+  font-size:0.95rem;
+  line-height:1.45;
+}
+#methodsList li{
+  margin:6px 0;
+}
+
+/* 関連リンク・フッター */
+.links{margin-top:14px;font-size:0.95rem}
+.links a{color:var(--link);text-decoration:none}
+.links a:hover{text-decoration:underline}
+a{color:var(--link)}
+
+/* レスポンシブ調整（スマホ横向き重視） */
+@media (orientation: landscape) and (max-width:900px){
+  .container{padding:10px}
+  #autoText{font-size:1.35rem}
+}
+
+/* モバイル縦向け調整 */
+@media (max-width:600px) and (orientation: portrait){
+  h1{font-size:1.2rem}
+  #autoText{font-size:1.15rem}
+  .controls{gap:6px}
+}
+
+/* タッチ操作向け */
+button{touch-action:manipulation}
