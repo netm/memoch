@@ -31,10 +31,10 @@
   // sample cleaning details to fill location entries (reused cyclically)
   const detailPool = [
     {place:'床', part:'掃除機掛け・拭き掃除', method:'ほこりを取ってから拭く', time:'15分'},
-    {place:'窓', part:'ガラス拭き', method:'拭きムラを防ぐ', time:'20分'},
+    {place:'窓', part:'ガラス拭き', method:'拭きムラを防ぐ', time:'15分'},
     {place:'棚', part:'整理と拭き掃除', method:'中身を出して拭く', time:'15分'},
-    {place:'照明', part:'ホコリ取り', method:'柔らかい布で拭く', time:'10分'},
-    {place:'家具', part:'裏側清掃', method:'移動して掃除機', time:'25分'}
+    {place:'照明', part:'ホコリ取り', method:'柔らかい布で拭く', time:'15分'},
+    {place:'家具', part:'裏側清掃', method:'移動して掃除機', time:'15分'}
   ];
 
   // ui state and localStorage keys
