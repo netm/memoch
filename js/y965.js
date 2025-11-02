@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const HOLE_RADIUS_MIN = 14;
     const HOLE_RADIUS_MAX = 40;
 
-    const FRICTION = 0.955; // 摩擦
+    const FRICTION = 0.950; // 摩擦
     const MIN_SPEED = 0.1;   // 停止とみなす速度
-    const SHOT_POWER = 0.95; // ショットの強さの係数（少し小さくした）
+    const SHOT_POWER = 0.91; // ショットの強さの係数（少し小さくした）
 
     let canvasWidth, canvasHeight;
     let stageWidth, stageHeight; // 内側のプレイ可能領域
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
-        ctx.fillStyle = '#cccccc'; //薄い灰色
+        ctx.fillStyle = '#ffe1aaff'; //薄い色
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
         // 穴を描画
