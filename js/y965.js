@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 敵を作成 (ステージ数)
             for (let i = 0; i < stage; i++) {
                 let pos = getSafePosition(BR);
-                enemies.push(new Ball(pos.x, pos.y, BR, 'orange'));
+                enemies.push(new Ball(pos.x, pos.y, BR, '#800093ff'));
             }
             allBalls.push(...enemies);
 
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (gameMode === '2p') {
             // プレイヤー2作成
-            player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, 'purple');
+            player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, '#800093ff');
             allBalls.push(player2);
 
             // 穴を作成 (ランダム 1〜7個)
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
-        ctx.fillStyle = '#7b4a00ff'; //薄い色
+        ctx.fillStyle = '#6e4200ff'; //薄い色
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
         // 穴を描画
@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(activeBall.x, activeBall.y);
             ctx.lineTo(dragEnd.x, dragEnd.y);
-            ctx.strokeStyle = 'rgba(255, 220, 145, 1)';
+            ctx.strokeStyle = 'rgba(254, 162, 199, 1)';
             ctx.lineWidth = 9;
             ctx.stroke();
             ctx.closePath();
