@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 描画処理 ---
     function draw() {
         // 全体を黒でクリア (外枠)
-        ctx.fillStyle = '#855d00ff';
+        ctx.fillStyle = '#855d00e4';
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(activeBall.x, activeBall.y);
             ctx.lineTo(dragEnd.x, dragEnd.y);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.strokeStyle = 'rgba(207, 188, 94, 0.97)';
             ctx.lineWidth = 9;
             ctx.stroke();
             ctx.closePath();
