@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (gameMode === '2p') {
             // プレイヤー2作成
-            player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, 'orange');
+            player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, 'purple');
             allBalls.push(player2);
 
             // 穴を作成 (ランダム 1〜7個)
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
-        ctx.fillStyle = '#9e7900ff'; //薄い色
+        ctx.fillStyle = '#7b4a00ff'; //薄い色
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
         // 穴を描画
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.moveTo(activeBall.x, activeBall.y);
             ctx.lineTo(dragEnd.x, dragEnd.y);
             ctx.strokeStyle = 'rgba(255, 220, 145, 1)';
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 9;
             ctx.stroke();
             ctx.closePath();
         }
