@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const HR = window.COMPUTED_HOLE_RADIUS || 25;
 
         // プレイヤー1作成
-        player = new Ball(canvasWidth * 0.25, canvasHeight / 2, BR, 'blue');
+        player = new Ball(canvasWidth * 0.25, canvasHeight / 2, BR, 'pink');
         allBalls.push(player);
 
         if (gameMode === '1p') {
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
-        ctx.fillStyle = '#978037ff'; //薄い色
+        ctx.fillStyle = '#9e7900ff'; //薄い色
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
         // 穴を描画
@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(activeBall.x, activeBall.y);
             ctx.lineTo(dragEnd.x, dragEnd.y);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.strokeStyle = 'rgba(255, 220, 145, 1)';
             ctx.lineWidth = 3;
             ctx.stroke();
             ctx.closePath();
