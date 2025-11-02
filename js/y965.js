@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const FRICTION = 0.950; // 摩擦
     const MIN_SPEED = 0.1;   // 停止とみなす速度
-    const SHOT_POWER = 0.91; // ショットの強さの係数（少し小さくした）
+    const SHOT_POWER = 0.09; // ショットの強さの係数（少し小さくした）
 
     let canvasWidth, canvasHeight;
     let stageWidth, stageHeight; // 内側のプレイ可能領域
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
-        ctx.fillStyle = '#ffe1aaff'; //薄い色
+        ctx.fillStyle = '#978037ff'; //薄い色
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
         // 穴を描画
