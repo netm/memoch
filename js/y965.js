@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // ステージ内側を描画
-        ctx.fillStyle = '#c0c5a2ff'; //ステージ色
+        ctx.fillStyle = '#c5c4a2ff'; //ステージ色
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
         // 穴を描画
