@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const HR = window.COMPUTED_HOLE_RADIUS || 25;
 
         // プレイヤー1作成
-        player = new Ball(canvasWidth * 0.25, canvasHeight / 2, BR, 'blue');
+        player = new Ball(canvasWidth * 0.25, canvasHeight / 2, BR, 'white');
         allBalls.push(player);
 
         if (gameMode === '1p') {
