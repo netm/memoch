@@ -1,3 +1,4 @@
+/* 基本レイアウト */
 body, html {
     margin: 0;
     padding: 0;
@@ -32,6 +33,7 @@ canvas {
     touch-action: none; /* スマホでのスワイプスクロールを防ぐ */
 }
 
+/* ボタン共通 */
 button {
     font-size: 1.2rem;
     padding: 10px 20px;
@@ -41,12 +43,120 @@ button {
     border-radius: 5px;
     background-color: #4CAF50;
     color: white;
+    -webkit-tap-highlight-color: transparent;
 }
 
+/* 見出し */
 h1 {
     font-size: 2.5rem;
 }
 
 h2 {
     font-size: 2rem;
+}
+
+/* ゲームキャンバス周りのレスポンシブ余白 */
+#game-screen {
+    align-items: center;
+    justify-content: center;
+}
+
+/* モーダル（画像選択）共通スタイル */
+.image-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+}
+
+.image-modal .image-box {
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    max-width: 92%;
+    box-sizing: border-box;
+    text-align: center;
+    color: #000;
+}
+
+/* 画像サムネイル行 */
+.image-modal .thumb-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* サムネイル */
+.image-modal .image-thumb {
+    width: 96px;
+    height: 96px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    transition: transform .12s ease, box-shadow .12s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.image-modal .image-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* タップ/ホバー時の視覚フィードバック */
+.image-modal .image-thumb:active,
+.image-modal .image-thumb:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+}
+
+/* キャンセルボタンの小さなラップ */
+.image-modal .cancel-wrap {
+    margin-top: 12px;
+}
+
+/* ゲームオーバー画面をクリックしても見やすいように余白調整 */
+#game-over-screen {
+    padding: 24px;
+}
+
+/* ステージクリア画面のボタン余白 */
+#stage-clear-screen {
+    padding: 24px;
+}
+
+/* 小さな画面向け調整 */
+@media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    button { font-size: 1rem; padding: 8px 14px; margin: 8px; }
+    .image-modal .image-box { padding: 12px; }
+    .image-modal .image-thumb { width: 72px; height: 72px; border-radius: 8px; }
+}
+
+/* 大きな画面向け */
+@media (min-width: 1200px) {
+    .image-modal .image-thumb { width: 128px; height: 128px; }
+}
+
+/* アクセシビリティ補助 (フォーカス時に見やすく) */
+button:focus,
+.image-modal .image-thumb:focus {
+    outline: 3px solid rgba(76,175,80,0.35);
+    outline-offset: 2px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
