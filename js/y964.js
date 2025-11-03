@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
 
-    // --- ゲーム設定（動的半径用の閾値含む） ---
+    // --- ゲーム設定 ---
     const BORDER_WIDTH = 20;
     const BALL_RADIUS_MIN = 8;
     const BALL_RADIUS_MAX = 24;
@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.COMPUTED_HOLE_RADIUS = 25;
 
     // --- ゲーム状態 ---
-    let player;
-    let player2;
+    let player = null;
+    let player2 = null;
     let enemies = [];
     let holes = [];
     let allBalls = [];
@@ -42,14 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameMode = null; // '1p' or '2p'
     let stage = 1;
     let gameOver = false;
-    let playerTurn = true; // 1P用（1Pモードでのプレイヤーのターンか）
-    let currentPlayer = 1; // 2P用：1 または 2
+    let playerTurn = true; // 1p用（AIターン管理）
+    let currentPlayer = 1; // 2p用（1 または 2）
     let isDragging = false;
     let dragStart = { x: 0, y: 0 };
     let dragEnd = { x: 0, y: 0 };
     let activeBall = null;
+    let waitingForStop = false; // 2P: ショット後に全停止を待つ
 
-    // --- resize & radius recalculation ---
+    // --- リサイズと半径再計算 ---
     function resizeCanvas() {
         const aspectRatio = 4 / 3;
         const screenWidth = window.innerWidth;
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         screen.classList.add('active');
     }
 
-    // --- Ball class ---
+    // --- Ball & Hole classes ---
     class Ball {
         constructor(x, y, radius, color) {
             this.x = x;
@@ -149,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.x += this.vx;
             this.y += this.vy;
 
+            // 端は跳ね返る
             if (this.x - this.radius < BORDER_WIDTH) {
                 this.x = BORDER_WIDTH + this.radius;
                 this.vx *= -1;
@@ -170,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Hole class ---
     class Hole {
         constructor(x, y, radius) {
             this.x = x;
@@ -194,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerTurn = true;
         currentPlayer = 1;
         isDragging = false;
+        waitingForStop = false;
         enemies = [];
         holes = [];
         allBalls = [];
@@ -204,32 +206,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const BR = window.COMPUTED_BALL_RADIUS || 15;
         const HR = window.COMPUTED_HOLE_RADIUS || 25;
 
-        // プレイヤー1作成
+        // プレイヤー1
         player = new Ball(canvasWidth * 0.25, canvasHeight / 2, BR, 'white');
         allBalls.push(player);
 
         if (gameMode === '1p') {
             for (let i = 0; i < stage; i++) {
-                let pos = getSafePosition(BR);
+                const pos = getSafePosition(BR);
                 const e = new Ball(pos.x, pos.y, BR, 'orange');
                 enemies.push(e);
                 allBalls.push(e);
             }
-
             for (let i = 0; i < stage; i++) {
-                let pos = getSafePosition(HR);
-                const h = new Hole(pos.x, pos.y, HR);
-                holes.push(h);
+                const pos = getSafePosition(HR);
+                holes.push(new Hole(pos.x, pos.y, HR));
             }
         } else if (gameMode === '2p') {
-            // プレイヤー2作成
+            // プレイヤー2
             player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, 'orange');
             allBalls.push(player2);
 
             // 穴をランダム（1〜7個）
             let holeCount = Math.floor(Math.random() * 7) + 1;
             for (let i = 0; i < holeCount; i++) {
-                let pos = getSafePosition(HR);
+                const pos = getSafePosition(HR);
                 holes.push(new Hole(pos.x, pos.y, HR));
             }
         }
@@ -238,7 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allBalls.forEach(b => clampBallPosition(b));
         holes.forEach(h => clampHolePosition(h));
 
-        gameLoop();
+        // ゲームループ開始（既に動いている場合は二重起動は避ける）
+        gameOver = false;
+        requestAnimationFrame(gameLoop);
     }
 
     // --- 安全な位置取得 ---
@@ -249,8 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
         do {
             tries++;
             safe = true;
-            x = BORDER_WIDTH + radius + Math.random() * (stageWidth - radius * 2);
-            y = BORDER_WIDTH + radius + Math.random() * (stageHeight - radius * 2);
+            x = BORDER_WIDTH + radius + Math.random() * Math.max(0, stageWidth - radius * 2);
+            y = BORDER_WIDTH + radius + Math.random() * Math.max(0, stageHeight - radius * 2);
 
             for (const ball of allBalls) {
                 const dist = Math.hypot(x - ball.x, y - ball.y);
@@ -270,8 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (tries > maxTries) {
-                x = BORDER_WIDTH + radius + (stageWidth - radius * 2) * 0.5;
-                y = BORDER_WIDTH + radius + (stageHeight - radius * 2) * 0.5;
+                // フォールバック：それでも見つからなければ中央寄せで決める
+                x = BORDER_WIDTH + radius + Math.max(0, stageWidth - radius * 2) * 0.5;
+                y = BORDER_WIDTH + radius + Math.max(0, stageHeight - radius * 2) * 0.5;
                 safe = true;
             }
         } while (!safe);
@@ -288,36 +291,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 更新 ---
     function update() {
-        let allStopped = areAllBallsStopped();
-
-        if (gameMode === '1p' && !playerTurn && allStopped) {
-            moveEnemies();
-            playerTurn = true;
-        }
-
-        if (gameMode === '2p' && allStopped) {
-            // 2P: ターン切り替えはショット後の停止確認で行う
-            if (activeBall === null) {
-                // 何もしない。次のプレイヤーが選択できる状態
-            } else {
-                // activeBall があるが全停止なら activeBall はすでに null のはずだが念のためリセット
-                activeBall = null;
-            }
-        }
-
+        // 物理更新（先に位置を更新）
         allBalls.forEach(ball => ball.update());
 
+        // 衝突判定
         for (let i = 0; i < allBalls.length; i++) {
             for (let j = i + 1; j < allBalls.length; j++) {
                 checkBallCollision(allBalls[i], allBalls[j]);
             }
         }
 
+        // 落下判定
         allBalls.forEach(ball => {
             if (!ball.active) return;
             checkFalling(ball);
         });
 
+        // 全停止判定
+        const allStopped = areAllBallsStopped();
+
+        // 1P: 敵のターン管理
+        if (gameMode === '1p' && !playerTurn && allStopped) {
+            moveEnemies();
+            playerTurn = true;
+        }
+
+        // 2P: waitingForStop フラグを使ってターンを切り替える
+        if (gameMode === '2p' && waitingForStop && allStopped) {
+            waitingForStop = false;
+            currentPlayer = (currentPlayer === 1) ? 2 : 1;
+            activeBall = null;
+        }
+
+        // 勝敗判定
         checkGameState();
     }
 
@@ -327,12 +333,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = 'rgba(133,93,0,0.89)';
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-        ctx.fillStyle = '#168500ff';
+        ctx.fillStyle = '#168500';
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
-        holes.forEach(hole => hole.draw());
-
-        allBalls.forEach(ball => ball.draw());
+        holes.forEach(h => h.draw());
+        allBalls.forEach(b => b.draw());
 
         if (isDragging && activeBall) {
             ctx.beginPath();
@@ -364,23 +369,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const randomOffset = (Math.random() - 0.5) * Math.PI * 0.6;
                 const angle = baseAngle + randomOffset;
                 const force = 3 + Math.random() * 2;
-
                 const vx = Math.cos(angle) * force;
                 const vy = Math.sin(angle) * force;
 
+                // 簡易予測
                 const predictSteps = 12;
                 let px = enemy.x;
                 let py = enemy.y;
-                let safe = true;
                 let pvx = vx;
                 let pvy = vy;
+                let safe = true;
 
                 for (let s = 0; s < predictSteps; s++) {
                     pvx *= FRICTION;
                     pvy *= FRICTION;
                     px += pvx;
                     py += pvy;
-
                     if (px - enemy.radius < BORDER_WIDTH || px + enemy.radius > canvasWidth - BORDER_WIDTH ||
                         py - enemy.radius < BORDER_WIDTH || py + enemy.radius > canvasHeight - BORDER_WIDTH) {
                         safe = false;
@@ -393,7 +397,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     chosenVy = vy;
                     break;
                 }
-
                 attempts++;
             }
 
@@ -414,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return allBalls.every(ball => !ball.active || ball.isStopped());
     }
 
-    // --- 衝突 ---
+    // --- 衝突処理（簡易） ---
     function checkBallCollision(ball1, ball2) {
         if (!ball1.active || !ball2.active) return;
 
@@ -450,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 落下判定 ---
+    // --- 落下判定（穴） ---
     function checkFalling(ball) {
         if (!ball.active) return;
         for (const hole of holes) {
@@ -462,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- ゲーム状態チェック ---
+    // --- 勝敗判定 ---
     function checkGameState() {
         if (gameOver) return;
 
@@ -473,19 +476,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 showScreen(gameOverScreen);
                 return;
             }
-            const allEnemiesDown = enemies.every(enemy => !enemy.active);
+            const allEnemiesDown = enemies.length === 0 || enemies.every(e => !e.active);
             if (allEnemiesDown) {
                 gameOver = true;
                 showScreen(stageClearScreen);
                 return;
             }
         } else if (gameMode === '2p') {
-            if (!player.active) {
+            if (player && !player.active) {
                 gameOver = true;
                 gameOverMessage.textContent = 'プレイヤー2の勝ち！ 再戦する';
                 showScreen(gameOverScreen);
                 return;
-            } else if (!player2.active) {
+            } else if (player2 && !player2.active) {
                 gameOver = true;
                 gameOverMessage.textContent = 'プレイヤー1の勝ち！ 再戦する';
                 showScreen(gameOverScreen);
@@ -519,27 +522,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ドラッグ開始 ---
     function handleDragStart(evt) {
         evt.preventDefault();
-        if (!areAllBallsStopped()) return;
+        if (!areAllBallsStopped()) return; // 移動中は引けない
 
         const pos = getMousePos(evt);
         activeBall = null;
 
-        if (gameMode === '1p' && playerTurn) {
+        if (gameMode === '1p' && playerTurn && player && player.active) {
             const dist = Math.hypot(pos.x - player.x, pos.y - player.y);
-            if (dist <= player.radius) {
-                activeBall = player;
-            }
+            if (dist <= player.radius) activeBall = player;
         } else if (gameMode === '2p') {
-            if (currentPlayer === 1) {
+            if (currentPlayer === 1 && player && player.active) {
                 const dist = Math.hypot(pos.x - player.x, pos.y - player.y);
-                if (dist <= player.radius) {
-                    activeBall = player;
-                }
-            } else {
+                if (dist <= player.radius) activeBall = player;
+            } else if (currentPlayer === 2 && player2 && player2.active) {
                 const dist = Math.hypot(pos.x - player2.x, pos.y - player2.y);
-                if (dist <= player2.radius) {
-                    activeBall = player2;
-                }
+                if (dist <= player2.radius) activeBall = player2;
             }
         }
 
@@ -571,31 +568,11 @@ document.addEventListener('DOMContentLoaded', () => {
         activeBall.vy = dy * SHOT_POWER;
 
         if (gameMode === '1p') {
-            playerTurn = false;
+            playerTurn = false; // 敵のターンへ
         } else if (gameMode === '2p') {
-            // 2P: ショットを放ったら当該ボールをアクティブ状態として保持し、
-            // 全ボールが停止したらターンを切り替える
-            // ここで activeBall を一時的に保持し、update 内の areAllBallsStopped 判定で切替を行う。
-            // 実際には全停止後 activeBall を null にして currentPlayer をトグルする。
-            // ここでは投げたボールを記録しておく。
-            const thrown = activeBall;
-            activeBall = thrown;
-            // currentPlayer は update() の停止判定後に切り替え
-            // ただし安全のため、投げた瞬間に currentPlayer の次の値を予備で計算しておく
-            // （切り替え実行は全停止確認後に以下の短いタイミングで行う）
-            setTimeout(() => {
-                // ポーリングで全停止確認してから切り替える
-                const checkAndToggle = () => {
-                    if (gameOver) return;
-                    if (areAllBallsStopped()) {
-                        currentPlayer = (currentPlayer === 1) ? 2 : 1;
-                        activeBall = null;
-                    } else {
-                        requestAnimationFrame(checkAndToggle);
-                    }
-                };
-                requestAnimationFrame(checkAndToggle);
-            }, 0);
+            // 投げたら全停止を待ってターン交代
+            waitingForStop = true;
+            // activeBall を残しておく必要はない（update 側で切替）
         }
     }
 
@@ -608,11 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('touchend', handleDragEnd, { passive: false });
 
     window.addEventListener('resize', () => {
-        if (!gameOver) {
-            resizeCanvas();
-        } else {
-            resizeCanvas();
-        }
+        resizeCanvas();
     });
 
     // --- ボタンリスナー ---
@@ -644,14 +617,14 @@ document.addEventListener('DOMContentLoaded', () => {
         initGame();
     });
 
-    // --- GameOver 画面をタップしたら再戦（2P の勝利表示はここで再戦に繋げる） ---
+    // --- GameOver 画面をタップしたら再戦（同モードで再初期化） ---
     gameOverScreen.addEventListener('click', () => {
         if (!gameMode) return;
-        // 再戦（同じモードで再初期化）
         showScreen(gameScreen);
         initGame();
     });
 
     // --- 初期表示 ---
     showScreen(startScreen);
+    resizeCanvas();
 });
