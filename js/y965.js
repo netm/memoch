@@ -58,9 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedImageKeyP1 = null;
   let selectedImageKeyP2 = null;
 
-  // keep reference to any open modal to ensure it can be removed
-  let currentModal = null;
-
   // --- preload images ---
   function preloadImages(keys, callback) {
     let loaded = 0;
@@ -81,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
       img.onerror = () => {
-        // fallback 64x64 white
         const fallback = document.createElement('canvas');
         fallback.width = fallback.height = 64;
         const fctx = fallback.getContext('2d');
@@ -146,8 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 画面切り替え ---
   function showScreen(screen) {
-    // ensure any modal is removed when switching screens
-    removeCurrentModal();
     startScreen.classList.remove('active');
     gameScreen.classList.remove('active');
     gameOverScreen.classList.remove('active');
@@ -321,17 +315,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- ゲームループ ---
-  let rafId = null;
   function gameLoop() {
     if (gameOver) return;
     update();
     draw();
-    rafId = requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);
   }
 
   // --- 更新処理 ---
   function update() {
     const allStopped = areAllBallsStopped();
+
+    // 1P: 敵の自動発射はプレイヤーのショット後にトリガーされる。
+    // playerTurn はショット直後 false にして、敵の即時小移動は handleDragEnd で行う。
+    // ここでは敵が発射される（vx/vyがセットされる）まで待つ。
 
     allBalls.forEach(ball => ball.update());
 
@@ -346,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
       checkFalling(ball);
     });
 
-    // 1P: 敵の移動終了でプレイヤーにターンを戻す
+    // 敵がすべて停止したら 1P のターン許可（既存の挙動）
     if (gameMode === '1p' && !playerTurn && areAllBallsStopped()) {
       playerTurn = true;
     }
@@ -359,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    ctx.fillStyle = '#c5b2a2ff';
+    ctx.fillStyle = '#c5baa2ff';
     ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
     holes.forEach(h => h.draw());
@@ -376,7 +373,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 敵の移動 (1P) 安全発射ロジック（補助） ---
+  // --- 敵の移動 (1P) ---
+  // 既存の比較的安全な射出ロジック（呼び出しは任意）
   function moveEnemiesSafely() {
     const centerX = canvasWidth / 2;
     const centerY = canvasHeight / 2;
@@ -423,16 +421,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- プレイヤーが打った直後に全COMを少し動かす（即時挙動） ---
+  // --- プレイヤーが打った直後に全COMを少し動かす（要求に応じた即時挙動） ---
   function nudgeEnemiesTowardCenterSmall() {
     const centerX = canvasWidth / 2;
     const centerY = canvasHeight / 2;
     enemies.forEach(enemy => {
       if (!enemy.active) return;
+      // 常に短いランダム力を与える（中心方向ベースに小さなバラつき）
       const baseAngle = Math.atan2(centerY - enemy.y, centerX - enemy.x);
-      const randomOffset = (Math.random() - 0.5) * Math.PI * 0.4;
+      const randomOffset = (Math.random() - 0.5) * Math.PI * 0.4; // ±0.2π
       const angle = baseAngle + randomOffset;
-      const force = 1 + Math.random() * 1.2;
+      const force = 1 + Math.random() * 1.2; // 1.0〜2.2 の小さな力
       enemy.vx += Math.cos(angle) * force;
       enemy.vy += Math.sin(angle) * force;
     });
@@ -576,15 +575,22 @@ document.addEventListener('DOMContentLoaded', () => {
     activeBall.vx = dx * SHOT_POWER;
     activeBall.vy = dy * SHOT_POWER;
 
+    // ショット直後は activeBall を null にして入力切替トリガーに
     activeBall = null;
 
     if (gameMode === '1p') {
+      // 1P: プレイヤーがショットしたら playerTurn を false にして
+      // 同時に全COMをわずかに中心方向へ動かす（即時の小移動）
       playerTurn = false;
-      // immediate small nudge for all enemies toward center
       nudgeEnemiesTowardCenterSmall();
-      // then try safe enemy moves shortly after for natural feel
-      setTimeout(() => moveEnemiesSafely(), 60);
+      // そのあと安全な自動発射も試みる（補助）: moveEnemiesSafely をキュー
+      // ただし即時のnudgeが優先で、moveEnemiesSafely は次更新で使われる状況に応じて効果がある
+      setTimeout(() => {
+        // 追加で安全な発射を与えておく（非同期に設定することで自然な挙動に）
+        moveEnemiesSafely();
+      }, 60);
     } else if (gameMode === '2p') {
+      // 2P: ショットごとにターンを交代
       currentPlayer = (currentPlayer === 1) ? 2 : 1;
     }
   }
@@ -597,19 +603,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => { if (!gameOver) resizeCanvas(); });
 
   // --- 画像選択UI ---
-  function removeCurrentModal() {
-    if (currentModal && currentModal.parentNode) {
-      currentModal.parentNode.removeChild(currentModal);
-      currentModal = null;
-    }
-  }
-
   function showImagePicker(forMode) {
-    removeCurrentModal();
-
-    // forMode: '1p-single', '2p-choose-p1', '2p-choose-p2'
     const modal = document.createElement('div');
-    currentModal = modal;
     modal.className = 'image-modal';
     modal.style.position = 'fixed';
     modal.style.left = 0;
@@ -633,9 +628,9 @@ document.addEventListener('DOMContentLoaded', () => {
     box.style.color = '#000';
 
     let titleText = '';
-    if (forMode === '1p-single') titleText = '1Pを選んでください';
-    else if (forMode === '2p-choose-p1') titleText = '1Pをえらぶ';
-    else if (forMode === '2p-choose-p2') titleText = '2Pもえらんでね';
+    if (forMode === '1p-single') titleText = '1Pの画像を選んでください';
+    else if (forMode === '2p-choose-p1') titleText = 'プレイヤー1を選んでください';
+    else if (forMode === '2p-choose-p2') titleText = 'プレイヤー2を選んでください';
 
     const title = document.createElement('div');
     title.style.marginBottom = '12px';
@@ -672,7 +667,8 @@ document.addEventListener('DOMContentLoaded', () => {
       thumb.appendChild(img);
 
       thumb.addEventListener('click', () => {
-        removeCurrentModal();
+        document.body.removeChild(modal);
+
         if (forMode === '1p-single') {
           selectedImageKeyP1 = key;
           showScreen(gameScreen);
@@ -698,8 +694,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelBtn.textContent = 'キャンセル';
     cancelBtn.style.padding = '8px 12px';
     cancelBtn.addEventListener('click', () => {
-      removeCurrentModal();
-      // when cancelling selection return to start screen
+      document.body.removeChild(modal);
       showScreen(startScreen);
     });
     cancelWrap.appendChild(cancelBtn);
@@ -725,39 +720,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // リスタート（終了画面の「リスタート」）
   restartButton.addEventListener('click', () => {
     gameOver = false;
     showScreen(gameScreen);
     initGame();
   });
 
-  // 修正: メニューに戻るボタン — 「最初の画面」に確実に戻るようにする
   menuButton.addEventListener('click', () => {
-    // stop game loop and mark as over so animation won't continue in background
-    gameOver = true;
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
-
-    // clear runtime state that shouldn't persist when returning to menu
-    isDragging = false;
-    activeBall = null;
-    enemies = [];
-    holes = [];
-    allBalls = [];
-    player = null;
-    player2 = null;
-
-    // remove any modal overlays if present
-    removeCurrentModal();
-
-    // show the very first start screen
     showScreen(startScreen);
   });
 
-  // 次のステージ（ステージクリア画面）
   nextStageButton.addEventListener('click', () => {
     stage = Math.max(1, stage) + 1;
     gameOver = false;
@@ -765,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGame();
   });
 
-  // 初期表示
+  // 初期表示 / 画像先読み
   showScreen(startScreen);
   preloadImages(IMAGE_KEYS, () => { /* preload done */ });
 
