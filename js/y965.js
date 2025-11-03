@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     stageHeight = canvasHeight - BORDER_WIDTH * 2;
 
     const shortSide = Math.min(stageWidth, stageHeight);
-    const computedBall = Math.round(shortSide * 0.04);
+    const computedBall = Math.round(shortSide * 0.05);
     const computedHole = Math.round(shortSide * 0.06);
 
     window.COMPUTED_BALL_RADIUS = Math.max(BALL_RADIUS_MIN, Math.min(BALL_RADIUS_MAX, computedBall || 15));
@@ -633,9 +633,9 @@ document.addEventListener('DOMContentLoaded', () => {
     box.style.color = '#000';
 
     let titleText = '';
-    if (forMode === '1p-single') titleText = '1Pの画像を選んでください';
-    else if (forMode === '2p-choose-p1') titleText = 'プレイヤー1を選んでください';
-    else if (forMode === '2p-choose-p2') titleText = 'プレイヤー2を選んでください';
+    if (forMode === '1p-single') titleText = '1Pをえらんでね';
+    else if (forMode === '2p-choose-p1') titleText = '1Pをえらんでください';
+    else if (forMode === '2p-choose-p2') titleText = '2Pもえらんでね';
 
     const title = document.createElement('div');
     title.style.marginBottom = '12px';
