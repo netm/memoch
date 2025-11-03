@@ -633,9 +633,9 @@ document.addEventListener('DOMContentLoaded', () => {
     box.style.color = '#000';
 
     let titleText = '';
-    if (forMode === '1p-single') titleText = '1Pの画像を選んでください';
-    else if (forMode === '2p-choose-p1') titleText = 'プレイヤー1を選んでください';
-    else if (forMode === '2p-choose-p2') titleText = 'プレイヤー2を選んでください';
+    if (forMode === '1p-single') titleText = '1Pを選んでください';
+    else if (forMode === '2p-choose-p1') titleText = '1Pをえらぶ';
+    else if (forMode === '2p-choose-p2') titleText = '2Pもえらんでね';
 
     const title = document.createElement('div');
     title.style.marginBottom = '12px';
