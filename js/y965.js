@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     stageHeight = canvasHeight - BORDER_WIDTH * 2;
 
     const shortSide = Math.min(stageWidth, stageHeight);
-    const computedBall = Math.round(shortSide * 0.05);
-    const computedHole = Math.round(shortSide * 0.06);
+    const computedBall = Math.round(shortSide * 0.06);
+    const computedHole = Math.round(shortSide * 0.07);
 
     window.COMPUTED_BALL_RADIUS = Math.max(BALL_RADIUS_MIN, Math.min(BALL_RADIUS_MAX, computedBall || 15));
     window.COMPUTED_HOLE_RADIUS = Math.max(HOLE_RADIUS_MIN, Math.min(HOLE_RADIUS_MAX, computedHole || 25));
