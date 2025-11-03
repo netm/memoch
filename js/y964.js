@@ -16,20 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
 
     // --- ゲーム設定（動的半径用の閾値含む） ---
-    const BORDER_WIDTH = 20; // 外側の黒い領域の幅（px）
+    const BORDER_WIDTH = 20;
     const BALL_RADIUS_MIN = 8;
     const BALL_RADIUS_MAX = 24;
     const HOLE_RADIUS_MIN = 14;
     const HOLE_RADIUS_MAX = 40;
 
-    const FRICTION = 0.977; // 摩擦
-    const MIN_SPEED = 0.1;   // 停止とみなす速度
-    const SHOT_POWER = 0.10; // ショットの強さの係数（少し小さくした）
+    const FRICTION = 0.977;
+    const MIN_SPEED = 0.1;
+    const SHOT_POWER = 0.10;
 
     let canvasWidth, canvasHeight;
-    let stageWidth, stageHeight; // 内側のプレイ可能領域
+    let stageWidth, stageHeight;
 
-    // --- 動的決定される半径（resizeCanvasで設定） ---
     window.COMPUTED_BALL_RADIUS = 15;
     window.COMPUTED_HOLE_RADIUS = 25;
 
@@ -43,14 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameMode = null; // '1p' or '2p'
     let stage = 1;
     let gameOver = false;
-    let playerTurn = true; // 1Pモード用
-    let currentPlayer = 1; // 2Pモード用
+    let playerTurn = true; // 1P用（1Pモードでのプレイヤーのターンか）
+    let currentPlayer = 1; // 2P用：1 または 2
     let isDragging = false;
     let dragStart = { x: 0, y: 0 };
     let dragEnd = { x: 0, y: 0 };
-    let activeBall = null; // 現在操作中のボール
+    let activeBall = null;
 
-    // --- 画面リサイズ対応（半径再計算、位置補正） ---
+    // --- resize & radius recalculation ---
     function resizeCanvas() {
         const aspectRatio = 4 / 3;
         const screenWidth = window.innerWidth;
@@ -70,15 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
         stageWidth = canvasWidth - BORDER_WIDTH * 2;
         stageHeight = canvasHeight - BORDER_WIDTH * 2;
 
-        // --- 動的半径計算（短辺基準の割合） ---
         const shortSide = Math.min(stageWidth, stageHeight);
-        const computedBall = Math.round(shortSide * 0.03); // 例: 3%
-        const computedHole = Math.round(shortSide * 0.06); // 例: 6%
+        const computedBall = Math.round(shortSide * 0.03);
+        const computedHole = Math.round(shortSide * 0.06);
 
         window.COMPUTED_BALL_RADIUS = Math.max(BALL_RADIUS_MIN, Math.min(BALL_RADIUS_MAX, computedBall || 15));
         window.COMPUTED_HOLE_RADIUS = Math.max(HOLE_RADIUS_MIN, Math.min(HOLE_RADIUS_MAX, computedHole || 25));
 
-        // 既存オブジェクトの半径を更新し、位置がステージ内に収まるよう補正
         const br = window.COMPUTED_BALL_RADIUS;
         const hr = window.COMPUTED_HOLE_RADIUS;
 
@@ -110,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hole.y = Math.max(BORDER_WIDTH + hole.radius, Math.min(canvasHeight - BORDER_WIDTH - hole.radius, hole.y));
     }
 
-    // --- 画面切り替え ---
+    // --- 画面切替 ---
     function showScreen(screen) {
         startScreen.classList.remove('active');
         gameScreen.classList.remove('active');
@@ -119,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         screen.classList.add('active');
     }
 
-    // --- ボールクラス ---
+    // --- Ball class ---
     class Ball {
         constructor(x, y, radius, color) {
             this.x = x;
@@ -128,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.vy = 0;
             this.radius = radius;
             this.color = color;
-            this.active = true; // 落ちたらfalse
+            this.active = true;
         }
 
         draw() {
@@ -143,19 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
         update() {
             if (!this.active) return;
 
-            // 摩擦
             this.vx *= FRICTION;
             this.vy *= FRICTION;
 
-            // 速度が小さければ停止
             if (Math.abs(this.vx) < MIN_SPEED) this.vx = 0;
             if (Math.abs(this.vy) < MIN_SPEED) this.vy = 0;
 
-            // 位置更新
             this.x += this.vx;
             this.y += this.vy;
 
-            // ステージ内壁との反発（端は跳ね返る壁にする）
             if (this.x - this.radius < BORDER_WIDTH) {
                 this.x = BORDER_WIDTH + this.radius;
                 this.vx *= -1;
@@ -177,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 穴クラス ---
+    // --- Hole class ---
     class Hole {
         constructor(x, y, radius) {
             this.x = x;
@@ -204,6 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
         enemies = [];
         holes = [];
         allBalls = [];
+        player = null;
+        player2 = null;
+        activeBall = null;
 
         const BR = window.COMPUTED_BALL_RADIUS || 15;
         const HR = window.COMPUTED_HOLE_RADIUS || 25;
@@ -213,24 +209,24 @@ document.addEventListener('DOMContentLoaded', () => {
         allBalls.push(player);
 
         if (gameMode === '1p') {
-            // 敵を作成 (ステージ数)
             for (let i = 0; i < stage; i++) {
                 let pos = getSafePosition(BR);
-                enemies.push(new Ball(pos.x, pos.y, BR, 'orange'));
+                const e = new Ball(pos.x, pos.y, BR, 'orange');
+                enemies.push(e);
+                allBalls.push(e);
             }
-            allBalls.push(...enemies);
 
-            // 穴を作成 (ステージ数)
             for (let i = 0; i < stage; i++) {
                 let pos = getSafePosition(HR);
-                holes.push(new Hole(pos.x, pos.y, HR));
+                const h = new Hole(pos.x, pos.y, HR);
+                holes.push(h);
             }
         } else if (gameMode === '2p') {
             // プレイヤー2作成
             player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, 'orange');
             allBalls.push(player2);
 
-            // 穴を作成 (ランダム 1〜7個)
+            // 穴をランダム（1〜7個）
             let holeCount = Math.floor(Math.random() * 7) + 1;
             for (let i = 0; i < holeCount; i++) {
                 let pos = getSafePosition(HR);
@@ -238,38 +234,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 衝突重なりリスク回避のため初期位置補正
+        // 初期位置補正
         allBalls.forEach(b => clampBallPosition(b));
         holes.forEach(h => clampHolePosition(h));
 
         gameLoop();
     }
 
-    // --- 安全な位置を取得 (他のボールや穴と重ならない) ---
+    // --- 安全な位置取得 ---
     function getSafePosition(radius) {
         let x, y, safe;
+        let tries = 0;
+        const maxTries = 300;
         do {
+            tries++;
             safe = true;
             x = BORDER_WIDTH + radius + Math.random() * (stageWidth - radius * 2);
             y = BORDER_WIDTH + radius + Math.random() * (stageHeight - radius * 2);
 
-            // 他のボールとチェック
             for (const ball of allBalls) {
                 const dist = Math.hypot(x - ball.x, y - ball.y);
-                if (dist < radius + ball.radius + 10) { // 10はマージン
+                if (dist < radius + ball.radius + 10) {
                     safe = false;
                     break;
                 }
             }
             if (!safe) continue;
 
-            // 他の穴とチェック
             for (const hole of holes) {
                 const dist = Math.hypot(x - hole.x, y - hole.y);
                 if (dist < radius + hole.radius + 10) {
                     safe = false;
                     break;
                 }
+            }
+
+            if (tries > maxTries) {
+                x = BORDER_WIDTH + radius + (stageWidth - radius * 2) * 0.5;
+                y = BORDER_WIDTH + radius + (stageHeight - radius * 2) * 0.5;
+                safe = true;
             }
         } while (!safe);
         return { x, y };
@@ -278,108 +281,93 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ゲームループ ---
     function gameLoop() {
         if (gameOver) return;
-
         update();
         draw();
         requestAnimationFrame(gameLoop);
     }
 
-    // --- 更新処理 ---
+    // --- 更新 ---
     function update() {
         let allStopped = areAllBallsStopped();
 
-        // 1Pモードで敵のターン処理
         if (gameMode === '1p' && !playerTurn && allStopped) {
             moveEnemies();
-            playerTurn = true; // 敵が動き始めたら、次はプレイヤーのターン（止まったら）
+            playerTurn = true;
         }
 
-        // 2Pモードでターン切り替え
-        if (gameMode === '2p' && allStopped && activeBall) {
-            currentPlayer = (currentPlayer === 1) ? 2 : 1;
-            activeBall = null; // ターンリセット
+        if (gameMode === '2p' && allStopped) {
+            // 2P: ターン切り替えはショット後の停止確認で行う
+            if (activeBall === null) {
+                // 何もしない。次のプレイヤーが選択できる状態
+            } else {
+                // activeBall があるが全停止なら activeBall はすでに null のはずだが念のためリセット
+                activeBall = null;
+            }
         }
 
-        // 全ボールの更新
         allBalls.forEach(ball => ball.update());
 
-        // ボール同士の衝突判定
         for (let i = 0; i < allBalls.length; i++) {
             for (let j = i + 1; j < allBalls.length; j++) {
                 checkBallCollision(allBalls[i], allBalls[j]);
             }
         }
 
-        // 穴と落下判定（端は跳ね返るため穴のみで落とす）
         allBalls.forEach(ball => {
             if (!ball.active) return;
             checkFalling(ball);
         });
 
-        // ゲーム状態チェック
         checkGameState();
     }
 
-    // --- 描画処理 ---
+    // --- 描画 ---
     function draw() {
-        // 全体を黒でクリア (外枠)
-        ctx.fillStyle = '#855d00e4';
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.fillStyle = 'rgba(133,93,0,0.89)';
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-        // ステージ内側を描画
-        ctx.fillStyle = '#168500ff'; //みどり色
+        ctx.fillStyle = '#168500ff';
         ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
-        // 穴を描画
         holes.forEach(hole => hole.draw());
 
-        // ボールを描画
         allBalls.forEach(ball => ball.draw());
 
-        // ドラッグ線を描画
         if (isDragging && activeBall) {
             ctx.beginPath();
             ctx.moveTo(activeBall.x, activeBall.y);
             ctx.lineTo(dragEnd.x, dragEnd.y);
-            ctx.strokeStyle = 'rgba(207, 188, 94, 0.97)';
-            ctx.lineWidth = 9;
+            ctx.strokeStyle = 'rgba(207,188,94,0.97)';
+            ctx.lineWidth = Math.max(4, canvasWidth * 0.01);
             ctx.stroke();
             ctx.closePath();
         }
     }
 
     // --- 敵の移動 (1P) ---
-    // 停止中のCOMだけを動かす。移動方向はステージ中心方向にバイアスして
-    // 直接ステージ端に落ちないように複数回試行して安全なベクトルを選ぶ。
     function moveEnemies() {
         const centerX = canvasWidth / 2;
         const centerY = canvasHeight / 2;
 
         enemies.forEach(enemy => {
             if (!enemy.active) return;
-
-            // すでに動いている（プレイヤーに弾かれている等）のは変更しない
             if (!enemy.isStopped()) return;
 
-            // 試行して安全な方向を探す
             let chosenVx = 0;
             let chosenVy = 0;
             let attempts = 0;
             const maxAttempts = 10;
 
             while (attempts < maxAttempts) {
-                // 中心方向へのベース角度にランダムオフセットを足す（オフセットは狭め）
                 const baseAngle = Math.atan2(centerY - enemy.y, centerX - enemy.x);
-                const randomOffset = (Math.random() - 0.5) * Math.PI * 0.6; // ±0.3π程度のばらつき
+                const randomOffset = (Math.random() - 0.5) * Math.PI * 0.6;
                 const angle = baseAngle + randomOffset;
-
-                // 力は小さめに（自爆を防ぐため）
-                const force = 3 + Math.random() * 2; // 3〜5 の範囲で短め
+                const force = 3 + Math.random() * 2;
 
                 const vx = Math.cos(angle) * force;
                 const vy = Math.sin(angle) * force;
 
-                // 予測位置（短めの時間ステップで安全か判定）
                 const predictSteps = 12;
                 let px = enemy.x;
                 let py = enemy.y;
@@ -388,13 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 let pvy = vy;
 
                 for (let s = 0; s < predictSteps; s++) {
-                    // 摩擦を簡易適用して予測
                     pvx *= FRICTION;
                     pvy *= FRICTION;
                     px += pvx;
                     py += pvy;
 
-                    // ボール半径を考慮してステージ外に出るかを判定
                     if (px - enemy.radius < BORDER_WIDTH || px + enemy.radius > canvasWidth - BORDER_WIDTH ||
                         py - enemy.radius < BORDER_WIDTH || py + enemy.radius > canvasHeight - BORDER_WIDTH) {
                         safe = false;
@@ -411,41 +397,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 attempts++;
             }
 
-            // 安全な方向が見つかったらセット。見つからなければ中心方向へ小さめに押す
             if (attempts < maxAttempts) {
                 enemy.vx = chosenVx;
                 enemy.vy = chosenVy;
             } else {
-                // それでも見つからないときは中心方向へ非常に小さな力を与える（落下リスク低）
                 const fallbackAngle = Math.atan2(centerY - enemy.y, centerX - enemy.x);
-                const fallbackForce = 2; // ごく小さい力
+                const fallbackForce = 2;
                 enemy.vx = Math.cos(fallbackAngle) * fallbackForce;
                 enemy.vy = Math.sin(fallbackAngle) * fallbackForce;
             }
         });
     }
 
-    // --- 全ボール停止チェック ---
+    // --- 停止チェック ---
     function areAllBallsStopped() {
         return allBalls.every(ball => !ball.active || ball.isStopped());
     }
 
-    // --- ボール同士の衝突 ---
+    // --- 衝突 ---
     function checkBallCollision(ball1, ball2) {
         if (!ball1.active || !ball2.active) return;
 
-        const dist = Math.hypot(ball1.x - ball2.x, ball1.y - ball2.y);
+        let dx = ball2.x - ball1.x;
+        let dy = ball2.y - ball1.y;
+        let dist = Math.hypot(dx, dy);
+
+        if (dist === 0) {
+            const angle = Math.random() * Math.PI * 2;
+            dx = Math.cos(angle) * 0.01;
+            dy = Math.sin(angle) * 0.01;
+            dist = Math.hypot(dx, dy);
+        }
+
         if (dist < ball1.radius + ball2.radius) {
-            // 簡単な反発処理（正確な物理計算ではない）
-            const angle = Math.atan2(ball2.y - ball1.y, ball2.x - ball1.x);
-            const totalSpeed = Math.hypot(ball1.vx, ball1.vy) + Math.hypot(ball2.vx, ball2.vy);
+            const angle = Math.atan2(dy, dx);
+            const speed1 = Math.hypot(ball1.vx, ball1.vy);
+            const speed2 = Math.hypot(ball2.vx, ball2.vy);
+            const totalSpeed = speed1 + speed2;
 
             ball1.vx = -Math.cos(angle) * totalSpeed * 0.5;
             ball1.vy = -Math.sin(angle) * totalSpeed * 0.5;
             ball2.vx = Math.cos(angle) * totalSpeed * 0.5;
             ball2.vy = Math.sin(angle) * totalSpeed * 0.5;
 
-            // 重なりを解消
             const overlap = (ball1.radius + ball2.radius) - dist;
             const adjustX = (overlap / 2) * Math.cos(angle);
             const adjustY = (overlap / 2) * Math.sin(angle);
@@ -456,15 +450,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 落下判定（端は跳ね返る壁に変更） ---
-    // 穴のみで落ちる仕様。ステージ端は跳ね返るため中心判定は行わない。
+    // --- 落下判定 ---
     function checkFalling(ball) {
         if (!ball.active) return;
-
-        // 穴（hole）の判定は従来どおり、中心同士の距離で判定
         for (const hole of holes) {
             const d = Math.hypot(ball.x - hole.x, ball.y - hole.y);
-            if (d < hole.radius) {
+            if (d < Math.max(1, hole.radius - ball.radius * 0.5)) {
                 ball.active = false;
                 return;
             }
@@ -476,42 +467,48 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameOver) return;
 
         if (gameMode === '1p') {
-            // プレイヤーが落ちた
             if (!player.active) {
                 gameOver = true;
                 gameOverMessage.textContent = 'ゲームオーバー';
                 showScreen(gameOverScreen);
                 return;
             }
-            // 敵を全て倒した
             const allEnemiesDown = enemies.every(enemy => !enemy.active);
             if (allEnemiesDown) {
-                gameOver = true; // 一時停止
+                gameOver = true;
                 showScreen(stageClearScreen);
                 return;
             }
         } else if (gameMode === '2p') {
-            // どちらかが落ちた
             if (!player.active) {
                 gameOver = true;
-                gameOverMessage.textContent = 'プレイヤー2の勝ち！';
+                gameOverMessage.textContent = 'プレイヤー2の勝ち！ 再戦する';
                 showScreen(gameOverScreen);
+                return;
             } else if (!player2.active) {
                 gameOver = true;
-                gameOverMessage.textContent = 'プレイヤー1の勝ち！';
+                gameOverMessage.textContent = 'プレイヤー1の勝ち！ 再戦する';
                 showScreen(gameOverScreen);
+                return;
             }
         }
     }
 
-    // --- 入力イベント ---
+    // --- 入力ヘルパー ---
     function getMousePos(evt) {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
         const scaleY = canvas.height / rect.height;
 
-        const clientX = evt.clientX || (evt.touches && evt.touches[0].clientX);
-        const clientY = evt.clientY || (evt.touches && evt.touches[0].clientY);
+        let clientX = evt.clientX;
+        let clientY = evt.clientY;
+        if (evt.touches && evt.touches.length > 0) {
+            clientX = evt.touches[0].clientX;
+            clientY = evt.touches[0].clientY;
+        } else if (evt.changedTouches && evt.changedTouches.length > 0) {
+            clientX = evt.changedTouches[0].clientX;
+            clientY = evt.changedTouches[0].clientY;
+        }
 
         return {
             x: (clientX - rect.left) * scaleX,
@@ -519,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // --- ドラッグ開始 ---
     function handleDragStart(evt) {
         evt.preventDefault();
         if (!areAllBallsStopped()) return;
@@ -537,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (dist <= player.radius) {
                     activeBall = player;
                 }
-            } else { // currentPlayer === 2
+            } else {
                 const dist = Math.hypot(pos.x - player2.x, pos.y - player2.y);
                 if (dist <= player2.radius) {
                     activeBall = player2;
@@ -552,12 +550,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- ドラッグ移動 ---
     function handleDragMove(evt) {
         evt.preventDefault();
         if (!isDragging || !activeBall) return;
         dragEnd = getMousePos(evt);
     }
 
+    // --- ドラッグ終了（ショット） ---
     function handleDragEnd(evt) {
         evt.preventDefault();
         if (!isDragging || !activeBall) return;
@@ -567,25 +567,50 @@ document.addEventListener('DOMContentLoaded', () => {
         const dx = dragStart.x - dragEnd.x;
         const dy = dragStart.y - dragEnd.y;
 
-        // 速度を少し短くするためSHOT_POWERは小さめに設定済み
         activeBall.vx = dx * SHOT_POWER;
         activeBall.vy = dy * SHOT_POWER;
 
         if (gameMode === '1p') {
             playerTurn = false;
+        } else if (gameMode === '2p') {
+            // 2P: ショットを放ったら当該ボールをアクティブ状態として保持し、
+            // 全ボールが停止したらターンを切り替える
+            // ここで activeBall を一時的に保持し、update 内の areAllBallsStopped 判定で切替を行う。
+            // 実際には全停止後 activeBall を null にして currentPlayer をトグルする。
+            // ここでは投げたボールを記録しておく。
+            const thrown = activeBall;
+            activeBall = thrown;
+            // currentPlayer は update() の停止判定後に切り替え
+            // ただし安全のため、投げた瞬間に currentPlayer の次の値を予備で計算しておく
+            // （切り替え実行は全停止確認後に以下の短いタイミングで行う）
+            setTimeout(() => {
+                // ポーリングで全停止確認してから切り替える
+                const checkAndToggle = () => {
+                    if (gameOver) return;
+                    if (areAllBallsStopped()) {
+                        currentPlayer = (currentPlayer === 1) ? 2 : 1;
+                        activeBall = null;
+                    } else {
+                        requestAnimationFrame(checkAndToggle);
+                    }
+                };
+                requestAnimationFrame(checkAndToggle);
+            }, 0);
         }
-        // 2Pモードのターン切り替えは update() 内の allStopped 判定で行う
     }
 
-    // --- イベントリスナー登録 ---
+    // --- イベント登録 ---
     canvas.addEventListener('mousedown', handleDragStart);
     canvas.addEventListener('mousemove', handleDragMove);
     canvas.addEventListener('mouseup', handleDragEnd);
     canvas.addEventListener('touchstart', handleDragStart, { passive: false });
     canvas.addEventListener('touchmove', handleDragMove, { passive: false });
     canvas.addEventListener('touchend', handleDragEnd, { passive: false });
+
     window.addEventListener('resize', () => {
         if (!gameOver) {
+            resizeCanvas();
+        } else {
             resizeCanvas();
         }
     });
@@ -606,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     restartButton.addEventListener('click', () => {
         showScreen(gameScreen);
-        initGame(); // 現在のモードとステージで再初期化
+        initGame();
     });
 
     menuButton.addEventListener('click', () => {
@@ -619,6 +644,14 @@ document.addEventListener('DOMContentLoaded', () => {
         initGame();
     });
 
-    // --- 初期起動 ---
+    // --- GameOver 画面をタップしたら再戦（2P の勝利表示はここで再戦に繋げる） ---
+    gameOverScreen.addEventListener('click', () => {
+        if (!gameMode) return;
+        // 再戦（同じモードで再初期化）
+        showScreen(gameScreen);
+        initGame();
+    });
+
+    // --- 初期表示 ---
     showScreen(startScreen);
 });
