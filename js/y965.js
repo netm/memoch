@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.COMPUTED_HOLE_RADIUS = 25;
 
   // --- 画像リソース ---
-  const IMAGE_KEYS = ['oha1.png', 'oha2.png', 'oha3.png', 'oha4.png'];
+  const IMAGE_KEYS = ['/images/oha1.png', '/images/oha2.png', '/images/oha3.png', '/images/oha4.png'];
   const IMAGES = {}; // key -> HTMLImageElement
   let imagesLoaded = false;
 
