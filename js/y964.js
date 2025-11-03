@@ -226,9 +226,15 @@ document.addEventListener('DOMContentLoaded', () => {
             player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, 'orange');
             allBalls.push(player2);
 
-            // 穴をランダム（1〜7個）
-            let holeCount = Math.floor(Math.random() * 7) + 1;
-            for (let i = 0; i < holeCount; i++) {
+            // まずプレイヤー間の中間点に1つの穴を設置
+            const midX = (player.x + player2.x) / 2;
+            const midY = (player.y + player2.y) / 2;
+            holes.push(new Hole(midX, midY, HR));
+
+            // 他の穴は従来どおりランダム（合計1〜7個になるように調整）
+            // 既に1つ置いたので追加数は 0〜6 個
+            const additionalCount = Math.floor(Math.random() * 7); // 0..6
+            for (let i = 0; i < additionalCount; i++) {
                 const pos = getSafePosition(HR);
                 holes.push(new Hole(pos.x, pos.y, HR));
             }
@@ -238,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allBalls.forEach(b => clampBallPosition(b));
         holes.forEach(h => clampHolePosition(h));
 
-        // ゲームループ開始（既に動いている場合は二重起動は避ける）
+        // ゲームループ開始（既に動いている場合は二重起動を避ける）
         gameOver = false;
         requestAnimationFrame(gameLoop);
     }
@@ -572,7 +578,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (gameMode === '2p') {
             // 投げたら全停止を待ってターン交代
             waitingForStop = true;
-            // activeBall を残しておく必要はない（update 側で切替）
         }
     }
 
