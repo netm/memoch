@@ -1,4 +1,4 @@
-// y965.js
+// y965.js (修正版)
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM要素 ---
   const startScreen = document.getElementById('start-screen');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('game-canvas');
   const ctx = canvas.getContext('2d');
 
-  // --- ゲーム設定（動的半径用の閾値含む） ---
+  // --- ゲーム設定 ---
   const BORDER_WIDTH = 20;
   const BALL_RADIUS_MIN = 8;
   const BALL_RADIUS_MAX = 24;
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.COMPUTED_HOLE_RADIUS = 25;
 
   // --- 画像リソース ---
-  const IMAGE_KEYS = ['/images/oha1.png', '/images/oha2.png', '/images/oha3.png', '/images/oha4.png'];
-  const IMAGES = {}; // key -> HTMLImageElement
+  const IMAGE_KEYS = ['oha1.png', 'oha2.png', 'oha3.png', 'oha4.png'];
+  const IMAGES = {};
   let imagesLoaded = false;
 
   // --- ゲーム状態 ---
@@ -48,14 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameMode = null; // '1p' or '2p'
   let stage = 1;
   let gameOver = false;
-  let playerTurn = true; // 1Pモード用（プレイヤーの入力許可）
-  let currentPlayer = 1; // 2Pモード用: 1 or 2
+  let playerTurn = true;
+  let currentPlayer = 1;
   let isDragging = false;
   let dragStart = { x: 0, y: 0 };
   let dragEnd = { x: 0, y: 0 };
   let activeBall = null;
 
-  // 選択された画像キー
   let selectedImageKeyP1 = null;
   let selectedImageKeyP2 = null;
 
@@ -73,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
       img.onerror = () => {
-        // ローカル開発時にパスが変わるときの保険: 透明な1x1で代替
+        // フォールバックの白画像
         const fallback = document.createElement('canvas');
         fallback.width = fallback.height = 64;
         const fctx = fallback.getContext('2d');
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 画面リサイズ対応 ---
+  // --- リサイズ ---
   function resizeCanvas() {
     const aspectRatio = 4 / 3;
     const screenWidth = window.innerWidth;
@@ -136,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hole.y = Math.max(BORDER_WIDTH + hole.radius, Math.min(canvasHeight - BORDER_WIDTH - hole.radius, hole.y));
   }
 
-  // --- 画面切り替え ---
+  // --- 画面切替 ---
   function showScreen(screen) {
     startScreen.classList.remove('active');
     gameScreen.classList.remove('active');
@@ -145,19 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
     screen.classList.add('active');
   }
 
-  // --- ボールクラス（イメージ描画対応） ---
+  // --- Ball / Hole クラス ---
   class Ball {
     constructor(x, y, radius, color, imageKey = null) {
-      this.x = x;
-      this.y = y;
-      this.vx = 0;
-      this.vy = 0;
+      this.x = x; this.y = y;
+      this.vx = 0; this.vy = 0;
       this.radius = radius;
       this.color = color;
       this.active = true;
       this.imageKey = imageKey;
     }
-
     draw() {
       if (!this.active) return;
       ctx.save();
@@ -168,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fill();
       ctx.closePath();
 
-      // 画像があれば円形にクリップして描画
+      // クリップ円で描画
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.closePath();
@@ -176,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (this.imageKey && IMAGES[this.imageKey]) {
         const img = IMAGES[this.imageKey];
-        // 画像をボールにフィットさせて描画
         const size = this.radius * 2;
         ctx.drawImage(img, this.x - this.radius, this.y - this.radius, size, size);
       } else {
@@ -185,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       ctx.restore();
 
-      // 外周ライン
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.strokeStyle = 'rgba(0,0,0,0.25)';
@@ -193,39 +187,24 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.stroke();
       ctx.closePath();
     }
-
     update() {
       if (!this.active) return;
-      this.vx *= FRICTION;
-      this.vy *= FRICTION;
+      this.vx *= FRICTION; this.vy *= FRICTION;
       if (Math.abs(this.vx) < MIN_SPEED) this.vx = 0;
       if (Math.abs(this.vy) < MIN_SPEED) this.vy = 0;
-      this.x += this.vx;
-      this.y += this.vy;
+      this.x += this.vx; this.y += this.vy;
     }
-
-    isStopped() {
-      return this.vx === 0 && this.vy === 0;
-    }
+    isStopped() { return this.vx === 0 && this.vy === 0; }
   }
 
   class Hole {
-    constructor(x, y, radius) {
-      this.x = x;
-      this.y = y;
-      this.radius = radius;
-    }
-
+    constructor(x, y, radius) { this.x = x; this.y = y; this.radius = radius; }
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      // 中央は真っ黒、ふちに少しグラデーション
       const g = ctx.createRadialGradient(this.x, this.y, this.radius * 0.2, this.x, this.y, this.radius);
-      g.addColorStop(0, '#000000');
-      g.addColorStop(1, '#000000');
-      ctx.fillStyle = g;
-      ctx.fill();
-      ctx.closePath();
+      g.addColorStop(0, '#000000'); g.addColorStop(1, '#000000');
+      ctx.fillStyle = g; ctx.fill(); ctx.closePath();
     }
   }
 
@@ -248,29 +227,35 @@ document.addEventListener('DOMContentLoaded', () => {
     player2 = null;
 
     if (gameMode === '1p') {
-      // 敵（COM）は stage 個。COMのイメージはランダムで選ぶ（選ばれなかった画像を使う）
-      const available = IMAGE_KEYS.filter(k => k !== selectedImageKeyP1);
+      // 1P仕様を「ステージ数 = 敵数 = 穴数」に戻す
       for (let i = 0; i < stage; i++) {
         const pos = getSafePosition(BR);
+        // COMの画像は player の選択を除いた中からランダムに選ぶ
+        const available = IMAGE_KEYS.filter(k => k !== selectedImageKeyP1);
         const key = available[Math.floor(Math.random() * available.length)];
         const e = new Ball(pos.x, pos.y, BR, '#800093ff', key);
         enemies.push(e);
       }
       allBalls = [player, ...enemies];
+
+      // 穴はステージ数だけ作成（中央必須ではない — 仕様に合わせて順番に配置）
+      for (let i = 0; i < stage; i++) {
+        const pos = getSafePosition(HR);
+        holes.push(new Hole(pos.x, pos.y, HR));
+      }
     } else {
-      // 2p: player2 を作成（選択済み image）
+      // 2P: player2 を指定画像で作成
       player2 = new Ball(canvasWidth * 0.75, canvasHeight / 2, BR, '#800093ff', selectedImageKeyP2);
       allBalls = [player, player2];
-    }
 
-    // 穴設定: 中央に必ず1つ。中間以外に 1〜6 個のランダム穴
-    const centerHole = new Hole(canvasWidth / 2, canvasHeight / 2, window.COMPUTED_HOLE_RADIUS);
-    holes.push(centerHole);
-
-    const extraCount = Math.floor(Math.random() * 6) + 1; // 1..6
-    for (let i = 0; i < extraCount; i++) {
-      const pos = getSafePosition(window.COMPUTED_HOLE_RADIUS);
-      holes.push(new Hole(pos.x, pos.y, window.COMPUTED_HOLE_RADIUS));
+      // 穴: 中央に1つ必須、さらに 1〜6 個の追加（中央は中間にあるという要求を尊重）
+      const centerHole = new Hole(canvasWidth / 2, canvasHeight / 2, HR);
+      holes.push(centerHole);
+      const extraCount = Math.floor(Math.random() * 6) + 1;
+      for (let i = 0; i < extraCount; i++) {
+        const pos = getSafePosition(HR);
+        holes.push(new Hole(pos.x, pos.y, HR));
+      }
     }
 
     // 補正
@@ -280,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gameLoop();
   }
 
-  // --- 安全な位置を取得 ---
+  // --- 安全位置取得 ---
   function getSafePosition(radius) {
     let x, y, safe;
     let attempts = 0;
@@ -290,32 +275,23 @@ document.addEventListener('DOMContentLoaded', () => {
       x = BORDER_WIDTH + radius + Math.random() * (stageWidth - radius * 2);
       y = BORDER_WIDTH + radius + Math.random() * (stageHeight - radius * 2);
 
-      // 他のボールとチェック
       for (const ball of allBalls) {
         const dist = Math.hypot(x - ball.x, y - ball.y);
-        if (dist < radius + ball.radius + 10) {
-          safe = false;
-          break;
-        }
+        if (dist < radius + ball.radius + 10) { safe = false; break; }
       }
       if (!safe) continue;
 
-      // 他の穴とチェック
       for (const hole of holes) {
         const dist = Math.hypot(x - hole.x, y - hole.y);
-        if (dist < radius + hole.radius + 10) {
-          safe = false;
-          break;
-        }
+        if (dist < radius + hole.radius + 10) { safe = false; break; }
       }
 
-      // 無限ループ保護: 試行回数が多ければ妥協して返す
       if (attempts > 200) break;
     } while (!safe);
     return { x, y };
   }
 
-  // --- ゲームループ ---
+  // --- ゲームループ / 更新 / 描画 ---
   function gameLoop() {
     if (gameOver) return;
     update();
@@ -323,25 +299,16 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(gameLoop);
   }
 
-  // --- 更新処理 ---
   function update() {
-    let allStopped = areAllBallsStopped();
+    const allStopped = areAllBallsStopped();
 
-    // 1P: COM の移動
     if (gameMode === '1p' && !playerTurn && allStopped) {
       moveEnemies();
-      playerTurn = true; // 敵が動き始めたらプレイヤーの入力を再び許可するのは停止後判定で行う
+      playerTurn = true;
     }
 
-    // 2P: ターン切替（入力後、すべて停止していれば切替）
-    if (gameMode === '2p' && allStopped && !isDragging && activeBall === null) {
-      // 切替はプレイヤーがショットを終えた時に発生するようにするため、
-      // activeBallはショット時に null にされるのでここで currentPlayer を切替
-      // （ただし初期状態では player1）
-      // 実装上、handleShot で activeBall を null にしているためここでは安全に切替れる
-    }
-
-    allBalls.forEach(ball => ball.update());
+    // 2P: ターンは入力と停止で順次切替（handleDragEndで currentPlayer を切替済み）
+    allBalls.forEach(b => b.update());
 
     for (let i = 0; i < allBalls.length; i++) {
       for (let j = i + 1; j < allBalls.length; j++) {
@@ -349,15 +316,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    allBalls.forEach(ball => {
-      if (!ball.active) return;
-      checkFalling(ball);
-    });
+    allBalls.forEach(ball => { if (!ball.active) return; checkFalling(ball); });
 
     checkGameState();
   }
 
-  // --- 描画処理 ---
   function draw() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
@@ -379,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 敵の移動 (1P) ---
+  // --- 敵移動 (1P) ---
   function moveEnemies() {
     const centerX = canvasWidth / 2;
     const centerY = canvasHeight / 2;
@@ -403,11 +366,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let px = enemy.x, py = enemy.y, pvx = vx, pvy = vy;
         let safe = true;
         for (let s = 0; s < predictSteps; s++) {
-          pvx *= FRICTION;
-          pvy *= FRICTION;
+          pvx *= FRICTION; pvy *= FRICTION;
           px += pvx; py += pvy;
           if (px - enemy.radius < BORDER_WIDTH || px + enemy.radius > canvasWidth - BORDER_WIDTH ||
-            py - enemy.radius < BORDER_WIDTH || py + enemy.radius > canvasHeight - BORDER_WIDTH) {
+              py - enemy.radius < BORDER_WIDTH || py + enemy.radius > canvasHeight - BORDER_WIDTH) {
             safe = false; break;
           }
         }
@@ -453,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 落下判定（ボール半径考慮） ---
+  // --- 落下判定（半径を考慮） ---
   function checkFalling(ball) {
     if (!ball.active) return;
     const left = BORDER_WIDTH + ball.radius;
@@ -462,16 +424,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const bottom = canvasHeight - BORDER_WIDTH - ball.radius;
 
     if (ball.x < left || ball.x > right || ball.y < top || ball.y > bottom) {
-      ball.active = false;
-      return;
+      ball.active = false; return;
     }
 
     for (const hole of holes) {
       const d = Math.hypot(ball.x - hole.x, ball.y - hole.y);
-      if (d < hole.radius) {
-        ball.active = false;
-        return;
-      }
+      if (d < hole.radius) { ball.active = false; return; }
     }
   }
 
@@ -483,34 +441,26 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!player.active) {
         gameOver = true;
         gameOverMessage.textContent = 'COMの勝利　再戦する';
-        showScreen(gameOverScreen);
-        return;
+        showScreen(gameOverScreen); return;
       }
       const allEnemiesDown = enemies.every(e => !e.active);
       if (allEnemiesDown) {
         gameOver = true;
         gameOverMessage.textContent = '1Pの勝利　再戦する';
-        showScreen(gameOverScreen);
-        return;
+        showScreen(gameOverScreen); return;
       }
     } else if (gameMode === '2p') {
       if (!player.active && !player2.active) {
-        gameOver = true;
-        gameOverMessage.textContent = '引き分け　再戦する';
-        showScreen(gameOverScreen);
+        gameOver = true; gameOverMessage.textContent = '引き分け　再戦する'; showScreen(gameOverScreen);
       } else if (!player.active) {
-        gameOver = true;
-        gameOverMessage.textContent = '2Pの勝利　再戦する';
-        showScreen(gameOverScreen);
+        gameOver = true; gameOverMessage.textContent = '2Pの勝利　再戦する'; showScreen(gameOverScreen);
       } else if (!player2.active) {
-        gameOver = true;
-        gameOverMessage.textContent = '1Pの勝利　再戦する';
-        showScreen(gameOverScreen);
+        gameOver = true; gameOverMessage.textContent = '1Pの勝利　再戦する'; showScreen(gameOverScreen);
       }
     }
   }
 
-  // --- 入力イベント（pointer events 使用） ---
+  // --- 入力（pointer events）---
   function getPointerPos(evt) {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
@@ -525,21 +475,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (gameOver) return;
     evt.preventDefault();
     if (!areAllBallsStopped()) return;
-
     const pos = getPointerPos(evt);
     activeBall = null;
 
     if (gameMode === '1p') {
       if (!playerTurn) return;
-      const dist = Math.hypot(pos.x - player.x, pos.y - player.y);
-      if (dist <= player.radius) activeBall = player;
+      if (Math.hypot(pos.x - player.x, pos.y - player.y) <= player.radius) activeBall = player;
     } else if (gameMode === '2p') {
       if (currentPlayer === 1) {
-        const dist = Math.hypot(pos.x - player.x, pos.y - player.y);
-        if (dist <= player.radius) activeBall = player;
+        if (Math.hypot(pos.x - player.x, pos.y - player.y) <= player.radius) activeBall = player;
       } else {
-        const dist = Math.hypot(pos.x - player2.x, pos.y - player2.y);
-        if (dist <= player2.radius) activeBall = player2;
+        if (Math.hypot(pos.x - player2.x, pos.y - player2.y) <= player2.radius) activeBall = player2;
       }
     }
 
@@ -563,109 +509,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dx = dragStart.x - dragEnd.x;
     const dy = dragStart.y - dragEnd.y;
-
     activeBall.vx = dx * SHOT_POWER;
     activeBall.vy = dy * SHOT_POWER;
 
-    // ショット直後は activeBall を null にして入力を切り替えのトリガーに
+    // ショット直後は activeBall を null にして入力切替のトリガーにする
     activeBall = null;
 
     if (gameMode === '1p') {
       playerTurn = false;
     } else if (gameMode === '2p') {
-      // 2P はターン制: 相手のターンにする（ただし相手が落ちるまで動作）
       currentPlayer = (currentPlayer === 1) ? 2 : 1;
     }
   }
 
-  // --- イベントリスナー登録 ---
   canvas.addEventListener('pointerdown', handleDragStart);
   canvas.addEventListener('pointermove', handleDragMove);
   canvas.addEventListener('pointerup', handleDragEnd);
   canvas.addEventListener('pointercancel', handleDragEnd);
-  window.addEventListener('resize', () => {
-    if (!gameOver) resizeCanvas();
-  });
+  window.addEventListener('resize', () => { if (!gameOver) resizeCanvas(); });
 
-  // --- ボタンリスナー / 画像選択UI ---
-  // 画像選択用オーバーレイを作る（動的）
+  // --- 画像選択モーダル ---
   function showImagePicker(forMode) {
-    // forMode: '1p-single' (1p selects, rest go to COM) or '2p-choose' (p1 then p2)
-    // モーダル要素作成
+    // forMode: '1p-single', '2p-choose-p1', '2p-choose-p2'
     const modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.left = 0;
-    modal.style.top = 0;
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.background = 'rgba(0,0,0,0.6)';
+    modal.className = 'image-modal';
     modal.style.zIndex = 9999;
 
     const box = document.createElement('div');
-    box.style.background = '#fff';
-    box.style.padding = '16px';
-    box.style.borderRadius = '8px';
-    box.style.maxWidth = '90%';
-    box.style.boxSizing = 'border-box';
-    box.style.textAlign = 'center';
-    box.style.color = '#000';
+    box.className = 'image-box';
 
+    // タイトル文言を調整（要望どおり）
+    let titleText = '';
+    if (forMode === '1p-single') titleText = '1Pの画像を選んでください';
+    else if (forMode === '2p-choose-p1') titleText = 'プレイヤー1を選んでください';
+    else if (forMode === '2p-choose-p2') titleText = 'プレイヤー2を選んでください';
     const title = document.createElement('div');
     title.style.marginBottom = '12px';
     title.style.fontSize = '18px';
-    title.textContent = (forMode === '1p-single') ? '1Pの画像を選んでください' : 'プレイヤー1の画像を選んでください';
+    title.textContent = titleText;
     box.appendChild(title);
 
     const row = document.createElement('div');
-    row.style.display = 'flex';
-    row.style.gap = '12px';
-    row.style.flexWrap = 'wrap';
-    row.style.justifyContent = 'center';
+    row.className = 'thumb-row';
 
-    // 画像サムネイルを作る
+    // サムネイル表示（クリックで選択）
     IMAGE_KEYS.forEach(key => {
       const thumb = document.createElement('div');
-      thumb.style.width = '96px';
-      thumb.style.height = '96px';
-      thumb.style.borderRadius = '8px';
-      thumb.style.overflow = 'hidden';
-      thumb.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
-      thumb.style.cursor = 'pointer';
-      thumb.style.display = 'flex';
-      thumb.style.alignItems = 'center';
-      thumb.style.justifyContent = 'center';
-      thumb.style.background = '#eee';
-
+      thumb.className = 'image-thumb';
       const img = IMAGES[key] || new Image();
       img.src = key;
-      img.style.width = '100%';
-      img.style.height = '100%';
-      img.style.objectFit = 'cover';
       img.alt = key;
-
       thumb.appendChild(img);
+
       thumb.addEventListener('click', () => {
         document.body.removeChild(modal);
+
         if (forMode === '1p-single') {
           selectedImageKeyP1 = key;
-          // 1P の他の画像はランダムで COM に割り当てられる（initGame 内で処理）
           showScreen(gameScreen);
           initGame();
         } else if (forMode === '2p-choose-p1') {
+          // P1の画像を選ぶ（文言は「プレイヤー1を選んでください」→選択後に次はP2）
           selectedImageKeyP1 = key;
-          // 次はプレイヤー2に選ばせる（選べるのは残りの画像）
+          // 次に P2 を選ばせる
           showImagePicker('2p-choose-p2');
         } else if (forMode === '2p-choose-p2') {
-          // player2 は選択肢から player1 の画像を除いたものにする
+          // P2はP1と同じ画像でもOKにするか排除するかは任意。ここでは同一不可にしないが
+          // 同じにしたくない場合は下記コメントを有効にして弾ける。
+          /*
           if (key === selectedImageKeyP1) {
-            // 同じ画像を選ばれた場合は許可しない（ユーザビリティ）
-            // 代わりに無視して再表示（シンプル）
+            // 同じ画像は選べない扱いにしたい場合は再表示
             showImagePicker('2p-choose-p2');
             return;
           }
+          */
           selectedImageKeyP2 = key;
           showScreen(gameScreen);
           initGame();
@@ -677,40 +594,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     box.appendChild(row);
 
-    const cancel = document.createElement('div');
-    cancel.style.marginTop = '12px';
+    const cancelWrap = document.createElement('div');
+    cancelWrap.className = 'cancel-wrap';
     const cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'キャンセル';
-    cancelBtn.style.padding = '8px 12px';
     cancelBtn.addEventListener('click', () => {
       document.body.removeChild(modal);
       showScreen(startScreen);
     });
-    cancel.appendChild(cancelBtn);
-    box.appendChild(cancel);
+    cancelWrap.appendChild(cancelBtn);
+    box.appendChild(cancelWrap);
 
     modal.appendChild(box);
     document.body.appendChild(modal);
   }
 
+  // --- スタート / ボタン動作 ---
   start1PButton.addEventListener('click', () => {
     gameMode = '1p';
-    // 1Pを選んだら1Pの画像選択を促す
-    preloadImages(IMAGE_KEYS, () => {
-      showImagePicker('1p-single');
-    });
+    preloadImages(IMAGE_KEYS, () => { showImagePicker('1p-single'); });
   });
 
   start2PButton.addEventListener('click', () => {
     gameMode = '2p';
-    preloadImages(IMAGE_KEYS, () => {
-      // 2P: まず P1 を選択 -> 次に P2 を選択（残りから）
-      showImagePicker('2p-choose-p1');
-    });
+    preloadImages(IMAGE_KEYS, () => { showImagePicker('2p-choose-p1'); });
   });
 
   restartButton.addEventListener('click', () => {
-    // 同じモードで再挑戦。2Pは両者の画像をそのまま使う。1Pは同じ選択を使用
     showScreen(gameScreen);
     initGame();
   });
@@ -725,20 +635,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initGame();
   });
 
-  // --- 初期起動 ---
+  // --- 初期化 / 画像先読み ---
   showScreen(startScreen);
-  preloadImages(IMAGE_KEYS, () => {
-    // 画像だけ先に読み込んでおく（選択画面で使う）
-  });
+  preloadImages(IMAGE_KEYS, () => { /* 先読みだけ */ });
 
-  // --- イベント: 終了画面をクリックで再戦 ---
+  // --- 終了画面のクリックで再戦 ---
   gameOverScreen.addEventListener('click', () => {
-    // 再戦：同じモードで画像選択はスキップしてそのまま initGame
     gameOver = false;
     showScreen(gameScreen);
     initGame();
   });
 
-  // --- ウィンドウリサイズ初期呼び出し ---
+  // --- 初回リサイズ ---
   resizeCanvas();
 });
