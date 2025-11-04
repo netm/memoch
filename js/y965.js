@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    ctx.fillStyle = '#814e2fff';
+    ctx.fillStyle = '#947663ff';
     ctx.fillRect(BORDER_WIDTH, BORDER_WIDTH, stageWidth, stageHeight);
 
     holes.forEach(h => h.draw());
