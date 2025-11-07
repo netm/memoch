@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>算数一年生ブラウザゲーム</title>
+  <meta name="description" content=" 一年生で習う算数をブラウザゲームにしました。子どもが算数好きになるきっかけのサイト。足し算と引き算を使ってコンピューターと対戦や二人対戦もできます。無料でPC・スマホ対応です。">
+  <meta name="keywords" content=" 算数,一年生,ブラウザゲーム">
+<meta name="adsense_account" content="ca-pub-3701488620779249">
+<link rel="canonical" href="https://memoc.pages.dev/y962/">
+  <link rel="stylesheet" href=" /css/y962.css  ">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <div class="container" role="application" aria-label="算数一年生ゲーム">
+    <div id="title">算数一年生</div>
+    <div id="start-screen">
+      <button id="start-1p" class="start-btn" aria-label="1人用">1人用</button>
+      <button id="start-2p" class="start-btn" aria-label="2人対戦">2人対戦</button>
+    </div>
+    <div id="game-screen">
+      <div id="row-1P" class="row">
+        <div class="label" id="1P-label">1P</div>
+        <div class="slots" aria-hidden="false">
+          <div class="slot" id="1P-s0">□</div>
+          <div class="slot" id="1P-s1">□</div>
+          <div class="slot" id="1P-s2">□</div>
+          <div class="slot" id="1P-s3">□</div>
+        </div>
+        <div class="formula"><span id="1P-formula">□＋□＋□－□＝得点</span></div>
+        <div class="formula" style="margin-left:8px;">＝<span class="score" id="1P-score">-</span></div>
+      </div>
+      <div id="row-COM" class="row">
+        <div class="label" id="COM-label">COM</div>
+        <div class="slots" aria-hidden="false">
+          <div class="slot" id="COM-s0">□</div>
+          <div class="slot" id="COM-s1">□</div>
+          <div class="slot" id="COM-s2">□</div>
+          <div class="slot" id="COM-s3">□</div>
+        </div>
+        <div class="formula"><span id="COM-formula">□＋□＋□－□＝得点</span></div>
+        <div class="formula" style="margin-left:8px;">＝<span class="score" id="COM-score">-</span></div>
+      </div>
+      <div id="controls">
+        <button id="big-button" aria-live="polite">すうじ</button>
+        <button id="reset-button">はじめから</button>
+      </div>
+      <div id="message" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+  <script src=" /js/y962.js"></script>
+</body>
+</html>

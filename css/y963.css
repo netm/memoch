@@ -1,0 +1,197 @@
+/* style.css - 全文 */
+:root{
+  --accent-1:#ff6b6b;
+  --accent-2:#4ecdc4;
+  --accent-3:#ffe66d;
+  --accent-4:#5b5fc7;
+  --accent-5:#ff8fab;
+  --link-blue:#0b66ff;
+  --bg:#ffffff;
+  --text:#222222;
+  --muted:#555555;
+  --max-width:1100px;
+  --radius:10px;
+  --gap:16px;
+  --padding:18px;
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#f7fbff 0%, #fff 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  padding:24px;
+}
+
+.container{
+  max-width:var(--max-width);
+  margin:0 auto;
+  background:var(--bg);
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(20,30,50,0.08);
+  padding:var(--padding);
+}
+
+/* Header */
+.header{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.brand h1{
+  margin:0;
+  font-size:1.25rem;
+  color:var(--accent-4);
+}
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+/* Colorful buttons */
+.btn{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:8px;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  font-weight:600;
+  font-size:0.95rem;
+  text-decoration:none;
+}
+.btn:focus{outline:3px solid rgba(11,102,255,0.15)}
+.btn.today{background:linear-gradient(90deg,var(--accent-1),#ff9a8b)}
+.btn.copy{background:linear-gradient(90deg,var(--accent-2),#2ec4b6); color:#072a2f}
+.btn.png{background:linear-gradient(90deg,var(--accent-3),#ffec99); color:#3b2f00}
+.btn.x{background:linear-gradient(90deg,#00acee,#0077b5)}
+.btn.fb{background:linear-gradient(90deg,#1877f2,#145dbf)}
+.btn.line{background:linear-gradient(90deg,#00c300,#008f00)}
+.btn.mail{background:linear-gradient(90deg,#8b5cf6,#5b21b6)}
+.icon{width:18px;height:18px;display:inline-block}
+
+/* Tip frame */
+.tip-frame{
+  margin-top:12px;
+  padding:18px;
+  border-radius:10px;
+  background:linear-gradient(180deg,rgba(94,162,255,0.08),rgba(94,162,255,0.03));
+  border:1px solid rgba(11,102,255,0.08);
+  font-size:1.05rem;
+  color:var(--text);
+  min-height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* Search and description */
+.search-row{
+  display:flex;
+  gap:12px;
+  margin-top:18px;
+  align-items:center;
+}
+#site-search{
+  flex:1;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #e6eefb;
+  background:linear-gradient(180deg,#fff,#fbfdff);
+  font-size:1rem;
+}
+.description{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:0.98rem;
+  line-height:1.8;
+}
+
+/* Links section */
+.related-links{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.related-links a{
+  color:var(--link-blue);
+  text-decoration:underline;
+}
+
+/* Tips list */
+.tips-section{
+  margin-top:18px;
+}
+.tips-section h2{color:var(--accent-4)}
+#tips{
+  columns:2;
+  column-gap:28px;
+  padding-left:0;
+  margin-top:12px;
+  list-style:decimal;
+}
+#tips li{
+  break-inside:avoid;
+  margin:6px 0;
+  padding:6px 8px;
+  background:linear-gradient(90deg, rgba(90,200,255,0.03), transparent);
+  border-radius:6px;
+  font-size:0.95rem;
+}
+
+/* Footer links */
+.footer{
+  margin-top:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer a{color:var(--link-blue); text-decoration:underline}
+
+/* Make links blue explicitly */
+a{color:var(--link-blue)}
+
+/* Responsive */
+@media (max-width:900px){
+  .container{padding:14px}
+  #tips{columns:1}
+  .header{flex-direction:column;align-items:stretch}
+  .controls{justify-content:flex-start}
+}
+
+/* Landscape mobile fits edges */
+.landscape-mobile body, .landscape-mobile .container{
+  padding-left:6px;
+  padding-right:6px;
+  border-radius:6px;
+}
+
+/* Print-friendly */
+@media print{
+  .controls, .search-row, .related-links, .footer{display:none}
+  body{background:white}
+}
+
+/* Small helpers */
+.small-muted{color:var(--muted); font-size:0.9rem}
