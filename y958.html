@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title>中学一年生の漢字問題ブラウザゲーム｜読みを当てよう</title>
+  <meta name="description" content="中学一年生レベルの漢字をランダム出題する無料ブラウザゲーム。スマホ横向きでも見やすく、漢字の読みをひらがなで入力して学べます。正解時には「正解」が1秒表示され次の問題へ。タイマー不要で反復学習に最適です。">
+  <meta name="keywords" content="漢字,中学一年生,漢字練習,読み方,よみがな,国語,学習ゲーム,無料,ブラウザ">
+  <meta name="author" content="中学一年生の漢字問題ブラウザゲーム">
+<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y958/">
+  <link rel="stylesheet" href="/css/y958.css"> 
+  <meta property="og:title" content="中学一年生の漢字問題ブラウザゲーム">
+  <meta property="og:description" content="中学1年生レベルの漢字を出題。スマホ横表示対応のシンプルな学習ゲーム。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:,">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <div class="container" role="main">
+    <header>
+      <h1>中学一年生の漢字問題ブラウザゲーム</h1>
+      <p class="lead">漢字の読みをひらがなで入力して学べるシンプルな学習ゲーム。スマホでもパソコンでも簡単操作。</p>
+    </header>
+    <section class="game" aria-labelledby="game-heading">
+      <h2 id="game-heading" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;">問題エリア</h2>
+      <div class="kanji-box" aria-live="polite">
+        <div id="kanji" class="kanji" aria-hidden="false">漢字</div>
+      </div>
+      <div class="input-area">
+        <div class="input-row">
+          <label for="yomi" style="display:none">よみがな</label>
+          <input id="yomi" type="text" inputmode="hiragana" autocomplete="off" placeholder="ひらがなで入力してください" aria-label="漢字のよみがなをひらがなで入力" />
+          <button id="submitBtn" class="btn" aria-label="回答ボタン">回答</button>
+        </div>
+        <div class="status" aria-hidden="false">
+          <div class="item">出題数 <strong id="counter">0/0</strong></div>
+          <div class="item">正解数 <strong id="correctTotal">0</strong></div>
+          <div style="margin-left:auto;display:flex;gap:8px;">
+            <button class="btn share" data-share aria-label="この問題を共有">シェア</button>
+            <button class="btn clear" id="nextBtn" onclick="window._kanjiGame && window._kanjiGame.nextQuestion && window._kanjiGame.nextQuestion()">次へ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="message" role="status" aria-live="assertive"></div>
+    <main class="description" id="seo-description">
+      <h2>このサイトについて</h2>
+      <p>中学一年生で学ぶ漢字を中心に、学校の復習やテスト対策に使えるシンプルな漢字読み上げクイズです。漢字が表示されるので、対応する読みをひらがなで入力してください。正解すると「正解」と1秒間表示されて次の問題に移ります。わからないときは何度でも入力して挑戦できます。</p>
+      <h3>特徴</h3>
+      <p>スマートフォンでもパソコンでも操作しやすい設計です。スマホを横向きにしたとき、ゲーム画面の両端が画面の端に近くなるようにレイアウトを配慮しています。音声は使わず視覚中心なので静かな場所でも学習可能です。</p>
+      <h3>使い方</h3>
+      <p>1. 表示された漢字を見ます。 2. よみがな(ひらがな)を入力欄に入力します。 3. Enterキーまたは「回答」ボタンで判定します。正誤フィードバックが即座に表示され、正解なら次の問題が表示されます。</p>
+      <h3>学習への活用方法</h3>
+      <p>通学時間や休み時間の短い時間学習に最適です。複数回繰り返すことで記憶が定着します。学校のワークやテスト範囲と照らし合わせながら活用してください。</p>
+      <h3>SEO を意識した説明を多めに</h3>
+      <p>このページは「中学一年生 漢字 練習」「漢字 読み方 練習」「中1 漢字 テスト 対策」などの検索からアクセスされやすいよう、解説・使い方・特徴を詳しく掲載しています。教師、保護者、学習者がすぐに使えるように、使い方や学習のコツをわかりやすくまとめています。</p>
+      <p>さらに、よく検索される関連ワードとして「漢字練習 無料」「漢字 クイズ スマホ」「国語 漢字 読み方」などを含む説明を用意しており、検索エンジンにおける発見性を高めています。実際の学習現場でも使えるように、出題内容は中学一年生の教科書レベルを想定しています。</p>
+      <h3>対象</h3>
+      <p>中学一年生の生徒、保護者、学習支援を行う教師や塾の講師。中学進学前の小学生の復習にも適しています。</p>
+      <h3>注意事項</h3>
+      <p>入力はひらがなで行ってください。カタカナで入力しても自動でひらがなに変換されますが、漢字の意味や熟語としての読み分けが必要な問題は今後追加予定です。</p>
+    </main>
+    <nav class="links" aria-label="関連リンク">
+      <h3>関連リンク</h3>
+      <a href="#" title="漢字学習のコツ">漢字学習のコツ</a>
+      <a href="#" title="中学国語の基礎">中学国語の基礎</a>
+      <a href="#" title="漢字練習問題集">漢字練習問題集</a>
+    </nav>
+    <footer>
+      <div>
+        <a href="/" title="トップページに戻る">トップページへ</a>
+        &nbsp;|&nbsp;
+        <a href="/sitemap" title="サイトマップ">サイトマップ</a>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <a href="#" style="color:#ff6b6b">利用規約</a>
+        <a href="#" style="color:#6b6bff">プライバシー</a>
+      </div>
+    </footer>
+  </div>
+  <script src=" /js/y958.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>漢字問題 小学生で習うクイズ — よみがなを入力して練習</title>
+  <meta name="description" content="小学生向けの漢字読みクイズ。スマホでもパソコンでも簡単に遊べる。ひらがなを入力して正解を確認。シンプルで学習に最適な漢字練習サイトです。">
+  <meta name="keywords" content="漢字, クイズ, 小学生, ひらがな, 学習, 日本語, 読み方">
+<meta name="adsense_account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y959/">
+   <link rel="stylesheet" href="/css/y959.css"> 
+   <meta name="robots" content="index,follow">
+  <meta property="og:title" content="漢字問題 小学生で習うクイズ">
+  <meta property="og:description" content="ひらがなを入力して遊ぶ漢字クイズ。学校でも家庭学習でも使えるシンプルな学習ツール。">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <main class="container" role="main">
+    <header>
+      <h1>漢字問題 小学生で習うクイズ</h1>
+      <p class="lead">ひらがなを入力して答えるだけの簡単漢字クイズ。スマホ横向きでも見やすく、タッチ操作・キーボード入力どちらにも対応しています。</p>
+    </header>
+    <section class="quiz" aria-labelledby="quiz-heading">
+      <div class="card" role="group" aria-label="問題表示">
+        <div class="q-kanji" id="q-kanji" aria-live="polite" aria-atomic="true">読み込み中</div>
+        <div class="q-input-wrap" aria-hidden="false">
+          <label for="q-input" class="visually-hidden">よみがな入力欄</label>
+          <input id="q-input" type="text" inputmode="kana" autocomplete="off" placeholder="ひらがなで入力してEnterで答える" aria-label="よみがな入力欄">
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:8px;min-width:160px;">
+        <div class="controls" role="toolbar" aria-label="操作ボタン">
+          <button id="next-btn" class="btn" title="次の問題" aria-label="次の問題ボタン">次の問題</button>
+          <div id="share-buttons" style="display:flex;gap:8px;align-items:center;">
+            <button type="button" class="btn share-native" data-share="native" title="共有" aria-label="共有(ネイティブ)">共有</button>
+            <button type="button" class="btn share-twitter" data-share="twitter" title="Twitterでシェア" aria-label="Twitterでシェア">Twitter</button>
+            <button type="button" class="btn share-copy" data-share="copy" title="URLをコピー" aria-label="URLをコピー">コピー</button>
+          </div>
+        </div>
+        <div id="result-message" role="status" aria-live="polite"></div>
+        <div class="meta" aria-hidden="false">
+          <div class="progress" id="progress">0 / 0</div>
+          <div class="score">正解数: <strong id="correct-count">0</strong></div>
+        </div>
+      </div>
+    </section>
+    <article class="article" id="description">
+      <h2>サイトについて</h2>
+      <p>このサイトは小学生が学ぶ漢字の読みを楽しく練習できるように設計された無料のオンラインクイズです。出題される漢字に対して、ひらがなで読みを入力するだけで、正解かどうかが即座にわかります。学習を続けやすいシンプルなUIと、スマートフォン・タブレット・パソコンどれでも使えるレスポンシブ設計を採用しています。</p>
+      <h3>特徴</h3>
+      <ul>
+        <li>シンプルな入力方式: ひらがな入力でEnterを押すだけで判定。</li>
+        <li>即時フィードバック: 正解なら「正解」と1秒表示して次の問題へ。</li>
+        <li>ランダム出題: 毎回出題順がシャッフルされ、繰り返し学習に最適。</li>
+        <li>スマホ横向き対応: 横向きにした時にも両端が画面端に揃う表示を実現。</li>
+        <li>アクセシビリティ配慮: キーボードやスクリーンリーダーでも使いやすい設計。</li>
+      </ul>
+      <h3>使い方</h3>
+      <ol>
+        <li>表示される漢字を見て、下の入力欄にひらがなで読みを入力します。</li>
+        <li>Enterキーを押すと判定が行われます。正解なら「正解」と表示され次の問題へ移動します。</li>
+        <li>「次の問題」ボタンで手動で問題を進めることもできます。</li>
+      </ol>
+      <h3>学習におすすめのポイント</h3>
+      <p>短時間で集中して取り組めるので、毎日の学習ルーティンに組み込みやすいです。通学時間や就寝前の5分間など、短い時間でも続けることで漢字の読みの定着が期待できます。問題のバリエーションは小学生で習う漢字を中心に構成しているため、学校の復習にも役立ちます。</p>
+      <h3>保護者・先生向け</h3>
+      <p>授業の導入や家庭学習のサポートツールとして活用できます。表示の大きさや色合いは視認性を高めるために工夫しており、低学年の児童でも使いやすいデザインにしています。クラスや家庭での漢字確認テストにも適しています。</p>
+      <h3>FAQ</h3>
+      <p>読みの入力に迷った場合は、まず思いつく通りにひらがなで入力してください。濁音や半濁音、小さな「っ」など正確に入力すると正答判定されます。テストの目的に合わせて、入力の許容範囲を今後拡張する計画があります。</p>
+      <p>このページは検索エンジン最適化（SEO）を意識して、学習関連ワードや使い方、特徴をわかりやすく説明しています。漢字学習、読み方、ひらがな、クイズ形式などで検索されやすい構成です。</p>
+    </article>
+    <nav class="links" aria-label="関連リンク">
+      <h3>関連リンク</h3>
+      <div class="footer-links">
+        <a href="#" title="学習リソース">漢字一覧ページ</a>
+        <a href="#" title="ドリル">読みドリル集</a>
+        <a href="#" title="教育ブログ">教育コラム</a>
+        <a href="#" title="家庭学習">家庭学習のすすめ</a>
+      </div>
+    </nav>
+    <footer style="margin-top:18px;">
+      <div class="footer-links" role="contentinfo">
+        <a href="#" title="トップページへ戻る">トップページへ戻る</a>
+        <a href="#" title="サイトマップ">サイトマップ</a>
+      </div>
+    </footer>
+  </main>
+  <script src=" /js/y959.js"></script>
+</body>
+</html>

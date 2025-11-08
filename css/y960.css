@@ -1,0 +1,43 @@
+/* style.css - 全CSS全文 */
+/* ベースリセット */
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,Arial,sans-serif;line-height:1.6}
+body{background:#fff;color:#222;padding:24px}
+
+/* レイアウト */
+.container{max-width:980px;margin:0 auto;padding:20px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{display:flex;flex-direction:column}
+h1{font-size:1.8rem;color:#0b75c9}
+.lead{color:#444;margin-top:6px}
+
+/* カラフル見出し */
+h2{background:linear-gradient(90deg,#ffd166,#ef476f);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.25rem;margin:18px 0}
+h3{background:linear-gradient(90deg,#06d6a0,#118ab2);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.05rem;margin:12px 0}
+
+/* 説明ブロック */
+.card{border:1px solid #eee;border-radius:10px;padding:14px;margin-bottom:12px;background:#fafafa}
+.card p{margin-bottom:10px;color:#333}
+
+/* リンクと色 */
+a.resource{color:#0b66ff;text-decoration:underline}
+.links-list{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:720px){ .links-list{grid-template-columns:1fr 1fr} }
+
+/* シェアボタンと操作ボタン */
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.share-btn{padding:8px 12px;border-radius:8px;border:0;color:#fff;cursor:pointer;font-weight:600}
+.share-btn.facebook{background:#1877f2}
+.share-btn.twitter{background:#1da1f2}
+.share-btn.copy{background:#6a1b9a}
+
+/* Footerのリンク */
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.footer a{color:#0b66ff;text-decoration:underline}
+
+/* サイトマップ */
+#sitemap{margin-top:12px;padding:12px;background:#fffbe6;border:1px dashed #ffd166;border-radius:8px}
+.toggle-btn{background:#ffd166;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+
+/* 小さなアクセシビリティ調整 */
+.visually-hidden{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}

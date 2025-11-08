@@ -1,0 +1,185 @@
+    /* 全文: 中学一年生の漢字問題ブラウザゲーム - css (埋め込み版) */
+    /* リセットに近い基本スタイル */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #222; background: linear-gradient(180deg,#f7fbff,#ffffff); }
+
+    /* コンテナ: 幅はデバイス幅、スマホ横向きでも両端が画面端にくるようにパディングを調整 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 6vw; /* 両端が画面端に近く見える工夫 */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 見出し */
+    header h1 { font-size: 1.8rem; color: #0b6efd; margin-bottom: 8px; }
+    header p.lead { color: #444; margin-bottom: 16px; }
+
+    /* ゲームエリア */
+    .game {
+      background: linear-gradient(180deg,#ffffff, #f1fbff);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(7, 50, 100, 0.06);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    /* 出題漢字 */
+    .kanji-box {
+      flex: 1 1 40%;
+      min-width: 260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(90deg,#fff7f0,#fff);
+      border-radius: 10px;
+      padding: 18px;
+      margin-right: 8px;
+    }
+    .kanji {
+      font-size: clamp(40px, 8vw, 96px);
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 2px;
+    }
+
+    /* 入力エリア */
+    .input-area {
+      flex: 1 1 50%;
+      min-width: 260px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .input-row {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    input[type="text"] {
+      flex:1;
+      padding: 12px 14px;
+      font-size: 1.05rem;
+      border-radius: 8px;
+      border: 2px solid #e6eefc;
+      outline: none;
+      transition: border-color .18s, box-shadow .18s;
+      background: #fff;
+    }
+    input[type="text"]:focus {
+      border-color: #7bb3ff;
+      box-shadow: 0 6px 18px rgba(37, 97, 255, 0.08);
+    }
+
+    /* ボタン: カラフルに */
+    button.btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    #submitBtn { background: linear-gradient(180deg,#ff8a00,#ff5a00); }
+    button.share { background: linear-gradient(180deg,#00c853,#00bfa5); }
+    button.clear { background: linear-gradient(180deg,#7c4dff,#536dfe); }
+
+    /* ステータス */
+    .status {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:12px;
+    }
+    .status .item { background:#fff; padding:8px 10px; border-radius:8px; border:1px solid #f0f6ff; color:#333; font-weight:700; }
+
+    /* ページ下部の説明(SEO用テキスト)、たくさん書く領域 */
+    .description {
+      margin-top:18px;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 10px;
+      line-height: 1.8;
+      color: #222;
+      box-shadow: 0 6px 18px rgba(11, 20, 50, 0.03);
+    }
+    .description h2, .description h3 { color: #0b6efd; margin-bottom: 8px; }
+    .description p { margin-bottom: 10px; }
+
+    /* 関連リンク・サイトマップ */
+    .links {
+      margin-top: 14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .links a { color: #0b6efd; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+
+    /* フッター */
+    footer { margin-top: 22px; color: #666; font-size: 0.95rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+
+    /* レスポンシブ: 小さい画面では縦積み中心 */
+    @media (max-width: 720px) {
+      .game { flex-direction: column; align-items: stretch; }
+      .kanji-box, .input-area { min-width: auto; }
+      .container { padding: 18px 4vw; }
+    }
+
+    /* 横向きスマホ想定: 高さに余裕ある時は中央に寄せる */
+    @media (orientation: landscape) and (max-width:900px) {
+      .container { padding-left: 3vw; padding-right: 3vw; }
+    }
+
+    /* リンク色(指定) */
+    a { color: #0b6efd; }
+
+    /* アクセシビリティ補助: フォーカス可視化 */
+    button:focus, input:focus, a:focus { outline: 3px solid rgba(11,110,255,0.12); outline-offset: 3px; }
+
+    /* メッセージ表示（調整: 文字を大きく・可変・視認性向上） */
+    #message {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18vh;
+      z-index: 999;
+      padding: 12px 22px;
+      border-radius: 999px;
+      color: white;
+      font-weight: 900;
+      opacity: 0;
+      transition: opacity .12s ease, transform .12s ease;
+      pointer-events: none;
+      text-align: center;
+      /* ここで最大表示幅を制限して長い文の時に折り返す */
+      max-width: 92vw;
+      box-shadow: 0 8px 30px rgba(11,20,50,0.12);
+      /* 大きなテキストサイズ: デスクトップ基準 */
+      font-size: 2.25rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    /* 表示クラス */
+    #message.show { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+    #message.ok { background: linear-gradient(90deg,#38d39f,#03a87c); }
+    #message.ng { background: linear-gradient(90deg,#ff6b6b,#ff4d4d); }
+
+    /* 小さい画面向けに文字サイズを調整 */
+    @media (max-width: 720px) {
+      #message { font-size: 1.6rem; padding: 10px 16px; bottom: 20vh; }
+    }
+    @media (max-width: 420px) {
+      #message { font-size: 1.35rem; padding: 8px 12px; bottom: 22vh; }
+    }
+    /* 補助: 短いラベルを小さな丸で表示したい時のスタイル（未使用だが保守用に残す） */
+    .msg-small { font-size: 1rem; padding: 6px 10px; border-radius: 999px; }
