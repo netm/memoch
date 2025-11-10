@@ -1,0 +1,224 @@
+/* style.css - 全文 */
+/* リセットとベース */
+:root{
+  --bg:#fffef9;
+  --accent1:#ff8a65;
+  --accent2:#4db6ac;
+  --accent3:#90caf9;
+  --text:#222;
+  --muted:#666;
+  --card:#ffffff;
+  --radius:12px;
+  --max-width:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background:linear-gradient(180deg,var(--bg),#f7f7fb);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:18px;
+  display:flex;
+  justify-content:center;
+}
+
+/* コンテナ */
+.site{
+  width:100%;
+  max-width:var(--max-width);
+  background:transparent;
+}
+
+/* ヘッダー: サイト名を一番上 */
+.site-header{
+  margin-bottom:12px;
+}
+.site-header h1{
+  margin:0 0 10px 0;
+  font-size:24px;
+  font-weight:900;
+  color:#6a1b9a;
+}
+
+/* 上部ボタン群（サイト名の下） */
+.top-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:14px;
+}
+.top-actions .action-btn{
+  border: none;
+  padding:12px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  color:#fff;
+}
+#btn-random{ background:linear-gradient(90deg,var(--accent1),#ffb74d); box-shadow:0 6px 18px rgba(255,138,101,0.14) }
+#btn-copy{ background:#7cb342 }
+#btn-png{ background:#5c6bc0 }
+
+/* レシピ表示枠 */
+.recipe-frame{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:0 6px 18px rgba(30,30,60,0.06);
+  margin-bottom:12px;
+  min-height:120px;
+}
+.recipe-frame h2{
+  margin:0 0 6px 0;
+  font-size:20px;
+  color:#2b2b2b;
+  font-weight:800;
+}
+.recipe-frame h2.title{
+  font-weight:900;
+  /* カラフルに見えるグラデーション文字 */
+  background:linear-gradient(90deg,var(--accent2),var(--accent3));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.recipe-frame p{
+  margin:6px 0 0 0;
+  font-weight:700;
+  color:#333;
+  line-height:1.6;
+}
+
+/* 下部SNSボタン群（レシピの下） */
+.social-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:10px 0 18px 0;
+}
+.social-actions .action-btn{
+  border: none;
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  color:#fff;
+}
+.social-actions .x{ background:#00acee }
+.social-actions .fb{ background:#1877f2 }
+.social-actions .line{ background:#00c300 }
+.social-actions .mail{ background:#6d4c41 }
+
+/* 検索と説明 */
+.search{
+  display:flex;
+  gap:8px;
+  margin-bottom:12px;
+}
+#search-input{
+  flex:1;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e6e6e9;
+  font-size:15px;
+}
+.description{
+  background:linear-gradient(180deg,#fff, #fffef6);
+  padding:16px;
+  border-radius:10px;
+  color:var(--muted);
+  margin-bottom:12px;
+  line-height:1.8;
+}
+
+/* 関連リンク */
+.related{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.related a{
+  padding:8px 10px;
+  background:#fff;
+  border-radius:8px;
+  border:1px solid #f0f0f2;
+  color:#333;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* レシピ一覧グリッド */
+#recipes-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px;
+  margin-bottom:18px;
+}
+.recipe-card{
+  background:#fff;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #f0f0f2;
+}
+.recipe-card .card-title{
+  margin:0 0 6px 0;
+  font-size:16px;
+  color:#2e7d32; /* カラフルに */
+}
+.recipe-card .card-steps{ margin:0 0 10px 0; color:var(--muted); font-size:13px; }
+.recipe-card .card-use{
+  background:linear-gradient(90deg,#ffd54f,#ffb74d);
+  border:none;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* トップリンクとフッター */
+.top-link{
+  display:block;
+  text-align:center;
+  margin:14px 0;
+  color:#37474f;
+  font-weight:700;
+  text-decoration:none;
+}
+
+/* トースト */
+#toast{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  background:#333;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all .28s ease;
+  z-index:9999;
+}
+#toast.visible{ opacity:1; transform:none }
+
+/* レスポンシブ: スマホ横向きで両端を画面端に合わせる */
+@media (orientation: landscape) and (max-width:900px){
+  body{ padding:0; }
+  .site{ padding:0; }
+  .recipe-frame{ border-radius:0; box-shadow:none; margin-bottom:8px; }
+  .site-header{ padding:12px; }
+  .description{ border-radius:0; padding:12px; }
+}
+
+/* 色付き見出しサンプル */
+h2.colored-1{ color:#d32f2f }
+h2.colored-2{ color:#ff8a00 }
+h3.colored-1{ color:#1976d2 }
+h3.colored-2{ color:#388e3c }
+
+/* アクセシビリティ調整 */
+button:focus{ outline:3px solid rgba(33,150,243,0.18) }

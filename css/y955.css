@@ -1,0 +1,138 @@
+/* 節約ダイエット - style.css
+   「今日の節約ダイエット」ボタンを文章コピーの左横に配置するためのスタイル調整を含む
+*/
+:root{
+  --bg:#fffdf6;
+  --muted:#6b6b6b;
+  --card:#ffffff;
+  --radius:12px;
+  --gap:14px;
+  font-family: "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* ボタン単色カラー定義 */
+.btn-color-today { background:#ff7b7b; color:#fff; }
+.btn-color-copy { background:#4db6ac; color:#fff; }
+.btn-color-png { background:#ffb74d; color:#fff; }
+.btn-color-x { background:#1da1f2; color:#fff; }
+.btn-color-fb { background:#1877f2; color:#fff; }
+.btn-color-line { background:#00c300; color:#fff; }
+.btn-color-mail { background:#6a1b9a; color:#fff; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background: linear-gradient(180deg,var(--bg), #f7f7ff);
+  color:#222;
+  padding:18px;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+}
+
+/* ヘッダー */
+.siteHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.siteTitle{
+  font-size:1.8rem;
+  font-weight:800;
+  color:#d84315;
+  letter-spacing:0.6px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+.subtitle{
+  font-size:0.9rem;
+  color:var(--muted);
+}
+
+/* ボタン群 */
+.btnRow{display:flex;flex-wrap:wrap;gap:10px}
+.actionRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.btn{
+  border:0;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  min-width:48px;
+  transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+.btn:active{transform:translateY(2px)}
+.btn:focus{outline:3px solid rgba(0,0,0,0.08)}
+
+.socialBtn{padding:8px 10px;border-radius:10px;font-weight:700;box-shadow:0 4px 8px rgba(0,0,0,0.06)}
+
+/* 表示枠 */
+#methodWrap{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:0 6px 18px rgba(16,24,40,0.06);
+  border:1px solid rgba(0,0,0,0.04);
+}
+#methodTitle{font-size:1.3rem;color:#a67c00;font-weight:900;margin-bottom:8px}
+#methodBody{font-size:1rem;background:linear-gradient(180deg,#fff,#fffaf0);padding:12px;border-radius:10px;border:1px dashed rgba(0,0,0,0.04)}
+
+/* フラッシュ効果の短いスタイル */
+.flash{box-shadow:0 6px 20px rgba(0,0,0,0.08)}
+
+/* リンク */
+a { color: #1a73e8; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* SEO説明文 */
+.description{
+  background:linear-gradient(90deg,#fff,#f9fff9);
+  padding:18px;border-radius:10px;border:1px solid rgba(0,0,0,0.03);
+  color:#333;
+}
+.description p{margin-bottom:10px}
+
+/* 関連リンク */
+.relatedLinks{display:flex;flex-wrap:wrap;gap:10px}
+.relatedLinks a{padding:8px 10px;background:#fff;border-radius:8px;border:1px solid rgba(0,0,0,0.04);font-weight:700}
+
+/* 下部のリスト */
+.methodList{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:6px}
+.methodList li{background:linear-gradient(90deg,#fff,#fcfcff);padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);cursor:pointer}
+.methodList li:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,0.06);}
+
+/* フッターリンク */
+.topLink{display:inline-block;padding:8px 12px;background:#0288d1;color:#fff;font-weight:800;border-radius:10px; text-decoration:none}
+
+/* レスポンシブ調整（スマホ横優先） */
+@media (orientation:landscape) and (max-width:900px){
+  body{padding:8px}
+  .container{padding:4px}
+  .siteTitle{font-size:1.4rem}
+  #methodWrap{padding:14px}
+  #methodBody{font-size:0.95rem}
+  .actionRow{gap:6px}
+}
+
+/* 小さい画面向け（縦向き） */
+@media (max-width:560px){
+  .siteHeader{flex-direction:column;align-items:flex-start;gap:6px}
+  .btnRow{width:100%}
+  .actionRow{justify-content:flex-start}
+}
+
+/* a11y: 高コントラスト */
+@media (prefers-contrast: more){
+  :root{--bg:#fff}
+  .siteTitle{text-shadow:none}
+}
