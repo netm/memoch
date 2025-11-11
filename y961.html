@@ -18,14 +18,6 @@ eleventyExcludeFromCollections: false
   <link rel="canonical" href="https://memoc.pages.dev/y961/">
   <link rel="stylesheet" href="/css/y961.css">
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-5D799GZERM');
-</script>
 <body>
   <div class="container" role="application" aria-label="かけ算わり算ゲーム">
     <div id="title">かけ算わり算ゲーム</div>
@@ -33,7 +25,7 @@ gtag('config', 'G-5D799GZERM');
       <button id="start-1p" class="start-btn" aria-label="1人用">1人用</button>
       <button id="start-2p" class="start-btn" aria-label="2人対戦">2人対戦</button>
     </div>
-    <div id="game-screen">
+    <div id="game-screen" style="display:none;">
       <div id="row-1P" class="row">
         <div class="label" id="1P-label">1P</div>
         <div class="slots" aria-hidden="false">
