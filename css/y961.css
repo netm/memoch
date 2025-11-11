@@ -1,4 +1,3 @@
-/* style.css - 全文（3つのスロット、青色スロット、薄いオレンジ背景） */
 :root{
   --bg-stage: #ffe9d6;
   --box-blue: #2d8cff;
@@ -6,6 +5,9 @@
   --muted: #666;
   --accent: #ff7043;
   --btn-bg: #ffffff;
+  --try-again: #66bb6a;
+  --win-color: #ff7043;
+  --turn-color: #2d8cff;
 }
 
 *{box-sizing:border-box}
@@ -150,6 +152,23 @@ body{
   margin-top:8px;
 }
 
+/* 強調メッセージのスタイル */
+#message .big {
+  font-weight:800;
+  font-size:18px;
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+}
+#message .turn {
+  color:var(--turn-color);
+}
+#message .win {
+  color:var(--win-color);
+  background: rgba(255,112,67,0.08);
+}
+
+/* もういっかいボタン（勝敗が出た後に表示） */
 #reset-button{
   background:transparent;
   border:2px solid rgba(0,0,0,0.06);
@@ -159,6 +178,13 @@ body{
   font-weight:700;
   display:none;
 }
+#reset-button.try-again{
+  background:var(--try-again);
+  color:white;
+  border:none;
+  box-shadow: 0 6px 14px rgba(102,187,106,0.18);
+}
+#reset-button.try-again:active{transform:translateY(1px)}
 
 @media (max-width:420px){
   .container{padding:12px}
