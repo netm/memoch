@@ -1,9 +1,7 @@
-// game.js - 全文（不具合修正：どのスロットでも回転・停止できるように activeSlot を保持）
 (() => {
   const state = {
     mode: null,
     displayLabelSecond: 'COM',
-    // 各プレイヤーは内部IDで '1P' と 'COM'
     slots: {
       '1P': [null, null, null, null],
       'COM': [null, null, null, null]
@@ -14,7 +12,6 @@
     shuffleTimer: null,
     shuffleValue: 1,
     picksPerPlayer: 4,
-    // 現在回転中のスロット情報を保持（null または { playerId, slotIndex }）
     activeSlot: null
   };
 
@@ -26,7 +23,8 @@
     playerRows: {},
     bigBtn: null,
     msg: null,
-    resetBtn: null
+    resetBtn: null,
+    replayBtn: null
   };
 
   const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -39,11 +37,13 @@
     el.bigBtn = document.getElementById('big-button');
     el.msg = document.getElementById('message');
     el.resetBtn = document.getElementById('reset-button');
+    el.replayBtn = document.getElementById('replay-button');
 
     el.btn1p.addEventListener('click', () => startGame('1p'));
     el.btn2p.addEventListener('click', () => startGame('2p'));
     el.bigBtn.addEventListener('click', onBigButton);
     el.resetBtn.addEventListener('click', resetToStart);
+    el.replayBtn.addEventListener('click', replayGame);
 
     ['1P', 'COM'].forEach(id => {
       el.playerRows[id] = {
@@ -57,6 +57,7 @@
   }
 
   function startGame(mode) {
+    // mode: '1p' or '2p'
     state.mode = mode;
     state.displayLabelSecond = mode === '2p' ? '2P' : 'COM';
     state.slots = { '1P': [null, null, null, null], 'COM': [null, null, null, null] };
@@ -67,18 +68,41 @@
     el.screenStart.style.display = 'none';
     el.gameScreen.style.display = 'block';
     el.resetBtn.style.display = 'none';
+    el.replayBtn.style.display = 'none';
     el.playerRows['COM'].label.textContent = state.displayLabelSecond;
 
+    buildTurnOrder();
+    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`);
+    updateAllDisplays();
+    updateBigButtonState();
+    maybeAutoPlayForCOM();
+  }
+
+  function replayGame() {
+    // restart a game with same mode without returning to start screen
+    if (!state.mode) return;
+    stopShuffleImmediate();
+    state.slots = { '1P': [null, null, null, null], 'COM': [null, null, null, null] };
+    state.currentPickIndex = 0;
+    state.running = false;
+    state.activeSlot = null;
+    el.replayBtn.style.display = 'none';
+    el.resetBtn.style.display = 'none';
+    el.playerRows['COM'].label.textContent = state.displayLabelSecond;
+
+    buildTurnOrder();
+    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`);
+    updateAllDisplays();
+    updateBigButtonState();
+    maybeAutoPlayForCOM();
+  }
+
+  function buildTurnOrder() {
     state.turnOrder = [];
     for (let r = 0; r < state.picksPerPlayer; r++) {
       state.turnOrder.push('1P');
       state.turnOrder.push('COM');
     }
-
-    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`);
-    updateAllDisplays();
-    updateBigButtonState();
-    maybeAutoPlayForCOM();
   }
 
   function resetToStart() {
@@ -91,6 +115,8 @@
     state.activeSlot = null;
     el.gameScreen.style.display = 'none';
     el.screenStart.style.display = 'flex';
+    el.replayBtn.style.display = 'none';
+    el.resetBtn.style.display = 'none';
     setMessage('');
   }
 
@@ -100,7 +126,6 @@
     } else {
       if (state.currentPickIndex >= state.turnOrder.length) return;
       const currentPlayer = state.turnOrder[state.currentPickIndex];
-      // 再計算ではなく、そのターンで決めるべきスロットを直接決定（内部的には turn が順序を保証）
       const playerSlotIndex = getNextSlotIndex(currentPlayer);
       if (playerSlotIndex === null) return;
       startShuffle(currentPlayer, playerSlotIndex);
@@ -116,7 +141,6 @@
 
   // 回転を開始するときに activeSlot に固定しておく（ここが修正点の核）
   function startShuffle(playerId, slotIndex) {
-    // 複数回押せないように保護
     if (state.running) return;
     state.running = true;
     state.activeSlot = { playerId, slotIndex };
@@ -128,7 +152,6 @@
       renderShufflePreview(playerId, slotIndex, state.shuffleValue);
     }, 80);
 
-    // COM の自動停止（1人用モードのCOM）
     if (playerId === 'COM' && state.displayLabelSecond === 'COM') {
       const delay = randInt(600, 1400);
       setTimeout(() => {
@@ -141,7 +164,6 @@
   function renderShufflePreview(playerId, slotIndex, value) {
     const row = el.playerRows[playerId];
     if (!row) return;
-    // ターゲットスロットだけを一時更新
     row.slots[slotIndex].textContent = value;
     row.slots[slotIndex].classList.add('preview');
     updateFormulaDisplay(playerId);
@@ -159,7 +181,6 @@
     const active = state.activeSlot;
     if (active && commit) {
       const { playerId, slotIndex } = active;
-      // 念のためまだ空かを確認してコミット（重複コミットを避ける）
       if (state.slots[playerId][slotIndex] === null) {
         state.slots[playerId][slotIndex] = state.shuffleValue;
       }
@@ -255,20 +276,32 @@
     let message = '';
     if (s1 === null || s2 === null) {
       message = '結果を計算できません';
+      setMessage(message);
     } else if (s1 > s2) {
       message = `1P の勝ち！ ${s1} 対 ${s2}`;
+      setMessage(message, { big: true });
     } else if (s2 > s1) {
       message = `${state.displayLabelSecond} の勝ち！ ${s1} 対 ${s2}`;
+      setMessage(message, { big: true });
     } else {
       message = `引き分け ${s1} 対 ${s2}`;
+      setMessage(message, { big: true });
     }
-    setMessage(message);
     el.bigBtn.disabled = true;
     el.resetBtn.style.display = 'inline-block';
+    el.replayBtn.style.display = 'inline-block';
   }
 
-  function setMessage(txt) {
-    el.msg.textContent = txt;
+  function setMessage(txt, opts = {}) {
+    const big = opts.big || /の番です|勝ち|引き分け/.test(txt);
+    if (big) {
+      el.msg.innerHTML = `<strong class="big-msg-text">${txt}</strong>`;
+      el.msg.classList.add('big-msg');
+    } else {
+      el.msg.textContent = txt;
+      el.msg.classList.remove('big-msg');
+      el.msg.innerHTML = txt;
+    }
   }
 
   function updateBigButtonState() {
@@ -290,7 +323,6 @@
     if (next === 'COM' && state.displayLabelSecond === 'COM') {
       setTimeout(() => {
         if (!state.running && state.currentPickIndex < state.turnOrder.length) {
-          // 再度取得した next のスロットで開始（activeSlot を必ずセット）
           const playerSlotIndex = getNextSlotIndex('COM');
           if (playerSlotIndex !== null) startShuffle('COM', playerSlotIndex);
         }
@@ -302,6 +334,7 @@
     bind();
     el.gameScreen.style.display = 'none';
     el.resetBtn.style.display = 'none';
+    el.replayBtn.style.display = 'none';
     setMessage('');
   });
 
