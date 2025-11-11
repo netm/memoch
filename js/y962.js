@@ -23,7 +23,6 @@
     playerRows: {},
     bigBtn: null,
     msg: null,
-    resetBtn: null,
     replayBtn: null
   };
 
@@ -36,19 +35,17 @@
     el.gameScreen = document.getElementById('game-screen');
     el.bigBtn = document.getElementById('big-button');
     el.msg = document.getElementById('message');
-    el.resetBtn = document.getElementById('reset-button');
     el.replayBtn = document.getElementById('replay-button');
 
     el.btn1p.addEventListener('click', () => startGame('1p'));
     el.btn2p.addEventListener('click', () => startGame('2p'));
     el.bigBtn.addEventListener('click', onBigButton);
-    el.resetBtn.addEventListener('click', resetToStart);
     el.replayBtn.addEventListener('click', replayGame);
 
     ['1P', 'COM'].forEach(id => {
       el.playerRows[id] = {
         container: document.getElementById(`row-${id}`),
-        slots: Array.from({ length: 4 }, (_, i) => document.getElementById(`${id}-s${i}`)),
+        slots: Array.from({ length: 4 }, (_, i) => document.getElementById(`${id}-s{i}`.replace('{i}', i))),
         score: document.getElementById(`${id}-score`),
         label: document.getElementById(`${id}-label`),
         formulaText: document.getElementById(`${id}-formula`)
@@ -57,7 +54,6 @@
   }
 
   function startGame(mode) {
-    // mode: '1p' or '2p'
     state.mode = mode;
     state.displayLabelSecond = mode === '2p' ? '2P' : 'COM';
     state.slots = { '1P': [null, null, null, null], 'COM': [null, null, null, null] };
@@ -67,19 +63,17 @@
 
     el.screenStart.style.display = 'none';
     el.gameScreen.style.display = 'block';
-    el.resetBtn.style.display = 'none';
     el.replayBtn.style.display = 'none';
     el.playerRows['COM'].label.textContent = state.displayLabelSecond;
 
     buildTurnOrder();
-    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`);
+    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`, { big: true });
     updateAllDisplays();
     updateBigButtonState();
     maybeAutoPlayForCOM();
   }
 
   function replayGame() {
-    // restart a game with same mode without returning to start screen
     if (!state.mode) return;
     stopShuffleImmediate();
     state.slots = { '1P': [null, null, null, null], 'COM': [null, null, null, null] };
@@ -87,11 +81,10 @@
     state.running = false;
     state.activeSlot = null;
     el.replayBtn.style.display = 'none';
-    el.resetBtn.style.display = 'none';
     el.playerRows['COM'].label.textContent = state.displayLabelSecond;
 
     buildTurnOrder();
-    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`);
+    setMessage(`${displayLabelOf(state.turnOrder[0])} の番です`, { big: true });
     updateAllDisplays();
     updateBigButtonState();
     maybeAutoPlayForCOM();
@@ -105,27 +98,16 @@
     }
   }
 
-  function resetToStart() {
-    stopShuffleImmediate();
-    state.mode = null;
-    state.displayLabelSecond = 'COM';
-    state.slots = { '1P': [null, null, null, null], 'COM': [null, null, null, null] };
-    state.currentPickIndex = 0;
-    state.running = false;
-    state.activeSlot = null;
-    el.gameScreen.style.display = 'none';
-    el.screenStart.style.display = 'flex';
-    el.replayBtn.style.display = 'none';
-    el.resetBtn.style.display = 'none';
-    setMessage('');
-  }
-
   function onBigButton() {
+    // 無効化条件: ゲーム終了済 or 回転中以外で、かつ COM の番（1人用モード）の場合は無視
+    if (state.currentPickIndex >= state.turnOrder.length) return;
+    const currentPlayer = state.turnOrder[state.currentPickIndex];
+    if (currentPlayer === 'COM' && state.mode === '1p') return;
     if (state.running) {
+      // 回転中にボタン押下で停止（ただし COM の自動回転時にユーザー操作で止めさせない）
+      // COM の自動回転中は activeSlot.playerId === 'COM' だが mode が '1p' の場合は先に弾いているためここは安全
       stopShuffle(true);
     } else {
-      if (state.currentPickIndex >= state.turnOrder.length) return;
-      const currentPlayer = state.turnOrder[state.currentPickIndex];
       const playerSlotIndex = getNextSlotIndex(currentPlayer);
       if (playerSlotIndex === null) return;
       startShuffle(currentPlayer, playerSlotIndex);
@@ -139,9 +121,9 @@
     return null;
   }
 
-  // 回転を開始するときに activeSlot に固定しておく（ここが修正点の核）
   function startShuffle(playerId, slotIndex) {
     if (state.running) return;
+    // ユーザー操作での開始は COM のターンで 1人用モードならブロック済み
     state.running = true;
     state.activeSlot = { playerId, slotIndex };
     el.bigBtn.textContent = 'とめる';
@@ -152,6 +134,7 @@
       renderShufflePreview(playerId, slotIndex, state.shuffleValue);
     }, 80);
 
+    // COM の自動停止（1人用モードのCOM）
     if (playerId === 'COM' && state.displayLabelSecond === 'COM') {
       const delay = randInt(600, 1400);
       setTimeout(() => {
@@ -160,7 +143,6 @@
     }
   }
 
-  // プレビュー表示は activeSlot を使って正確にターゲットを書き換える
   function renderShufflePreview(playerId, slotIndex, value) {
     const row = el.playerRows[playerId];
     if (!row) return;
@@ -169,7 +151,6 @@
     updateFormulaDisplay(playerId);
   }
 
-  // 停止時は activeSlot に基づきコミットする（getNextSlotIndexを使わない）
   function stopShuffle(commit = true) {
     if (!state.running) return;
     clearInterval(state.shuffleTimer);
@@ -195,7 +176,7 @@
       if (state.currentPickIndex >= state.turnOrder.length) {
         finalizeGame();
       } else {
-        setMessage(`${displayLabelOf(state.turnOrder[state.currentPickIndex])} の番です`);
+        setMessage(`${displayLabelOf(state.turnOrder[state.currentPickIndex])} の番です`, { big: true });
         maybeAutoPlayForCOM();
       }
     } else {
@@ -204,7 +185,6 @@
     updateBigButtonState();
   }
 
-  // 即時停止（再描画やコミットなし、リセット系で使用）
   function stopShuffleImmediate() {
     if (state.shuffleTimer) {
       clearInterval(state.shuffleTimer);
@@ -240,7 +220,6 @@
     highlightNextPick();
   }
 
-  // 例: a＋b＋c－d＝得点（未確定は □、得点は未確定であれば "得点" 表示）
   function updateFormulaDisplay(playerId) {
     const row = el.playerRows[playerId];
     if (!row) return;
@@ -288,7 +267,6 @@
       setMessage(message, { big: true });
     }
     el.bigBtn.disabled = true;
-    el.resetBtn.style.display = 'inline-block';
     el.replayBtn.style.display = 'inline-block';
   }
 
@@ -309,7 +287,13 @@
       el.bigBtn.disabled = true;
       return;
     }
-    el.bigBtn.disabled = false;
+    const currentPlayer = state.turnOrder[state.currentPickIndex];
+    // COM の番で 1人用ならボタンを無効化
+    if (currentPlayer === 'COM' && state.mode === '1p') {
+      el.bigBtn.disabled = true;
+    } else {
+      el.bigBtn.disabled = false;
+    }
     if (!state.running) el.bigBtn.textContent = 'すうじ';
   }
 
@@ -321,6 +305,7 @@
     if (state.currentPickIndex >= state.turnOrder.length) return;
     const next = state.turnOrder[state.currentPickIndex];
     if (next === 'COM' && state.displayLabelSecond === 'COM') {
+      // COM の自動処理中はユーザーによるボタン反応を無効にしておく
       setTimeout(() => {
         if (!state.running && state.currentPickIndex < state.turnOrder.length) {
           const playerSlotIndex = getNextSlotIndex('COM');
@@ -328,15 +313,28 @@
         }
       }, randInt(400, 900));
     }
+    updateBigButtonState();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     bind();
     el.gameScreen.style.display = 'none';
-    el.resetBtn.style.display = 'none';
     el.replayBtn.style.display = 'none';
     setMessage('');
   });
 
-  window.__mathGameReset = resetToStart;
+  window.__mathGameReset = () => {
+    // 互換用：常に最初のスタート画面に戻す
+    stopShuffleImmediate();
+    state.mode = null;
+    state.displayLabelSecond = 'COM';
+    state.slots = { '1P': [null, null, null, null], 'COM': [null, null, null, null] };
+    state.currentPickIndex = 0;
+    state.running = false;
+    state.activeSlot = null;
+    el.gameScreen.style.display = 'none';
+    el.screenStart.style.display = 'flex';
+    el.replayBtn.style.display = 'none';
+    setMessage('');
+  };
 })();
