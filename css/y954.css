@@ -4,6 +4,7 @@
   --accent-1:#ffa96b;
   --accent-2:#f0ff4d;
   --accent-3:#00d727;
+  --accent-4:#00d727;
   --muted:#6b7280;
   --link:#1a73e8;
   --container-padding:20px;
@@ -69,14 +70,14 @@ h1{
 h2{
   margin:10px 0 8px 0;
   font-size:1.1rem;
-  color:var(--accent-2);
+  color:var(--accent-3);
   font-weight:700;
 }
 
 h3{
   margin:8px 0 6px 0;
   font-size:1rem;
-  color:var(--accent-3);
+  color:var(--accent-4);
   font-weight:600;
 }
 
