@@ -1,0 +1,187 @@
+/* ===== 全体リセットとベース ===== */
+:root{
+  --bg:#ffffff;
+  --text:#222;
+  --accent-1:#FF6B6B; /* h1 */
+  --accent-2:#4D96FF; /* h2 */
+  --accent-3:#8AE29A; /* h3 */
+  --muted:#6b7280;
+  --link:#1a73e8; /* 青色リンク */
+  --container-padding:20px;
+  --max-width:980px;
+  --card-bg: #fbfdff;
+  --radius:12px;
+  --shadow: 0 6px 18px rgba(20,20,40,0.06);
+  --font-sans: "Noto Sans JP", system-ui, -apple-system, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  background:linear-gradient(180deg,#f7fbff 0%, #ffffff 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  padding:24px;
+  display:flex;
+  justify-content:center;
+}
+
+/* コンテナ */
+.site{
+  width:100%;
+  max-width:var(--max-width);
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:var(--container-padding);
+  margin:12px;
+  overflow:hidden;
+}
+
+/* レスポンシブで両端を使うレイアウト（スマホ横向き想定） */
+.header-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+/* タイトル装飾（カラフル） */
+h1{
+  margin:0;
+  font-size:clamp(1.3rem, 2.6vw, 2rem);
+  line-height:1.05;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:700;
+}
+
+h2{
+  margin:10px 0 8px 0;
+  font-size:1.1rem;
+  color:var(--accent-2);
+  font-weight:700;
+}
+
+h3{
+  margin:8px 0 6px 0;
+  font-size:1rem;
+  color:var(--accent-3);
+  font-weight:600;
+}
+
+/* 概要カード */
+.lead{
+  display:flex;
+  gap:18px;
+  align-items:stretch;
+  width:100%;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.lead .main{
+  flex:1 1 460px;
+  min-width:240px;
+}
+
+.lead .aside{
+  flex:0 0 260px;
+  min-width:200px;
+  background:linear-gradient(180deg,#ffffff,#f6fbff);
+  border-radius:10px;
+  padding:12px;
+  border:1px solid rgba(10,40,80,0.03);
+  box-shadow:0 4px 12px rgba(30,60,100,0.03);
+  align-self:flex-start;
+}
+
+/* ドメイン説明は右寄せ（aside内） */
+.domain{
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-start;
+  gap:8px;
+  font-size:0.95rem;
+  color:var(--muted);
+  word-break:break-word;
+}
+
+/* 価格表示 */
+.price{
+  margin-top:8px;
+  font-weight:800;
+  color:#0b3f64;
+  font-size:1.3rem;
+}
+
+/* 詳細説明 */
+.description{
+  background:transparent;
+  padding:12px 0 0 0;
+  color:var(--text);
+  font-size:0.98rem;
+}
+
+/* リンク群 */
+.links{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+a{
+  color:var(--link);
+  text-decoration:underline;
+}
+
+/* ナビ用（トップへ/サイトマップ） */
+.nav{
+  margin-top:18px;
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+/* 関連リンクボックス */
+.related{
+  margin-top:14px;
+  padding:10px;
+  border-radius:10px;
+  background:linear-gradient(180deg,#ffffff,#f8fbff);
+  border:1px solid rgba(20,60,120,0.03);
+}
+
+/* フッター */
+.footer{
+  margin-top:20px;
+  font-size:0.85rem;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* モバイルで両端を目いっぱい使う（スマホ横向き対策） */
+@media (max-width:700px){
+  body{padding:12px}
+  .site{border-radius:0; padding:14px}
+  .header-row{padding:0;margin:0}
+  /* 横向き時に幅いっぱいに見せる */
+  html,body,.site{width:100vw;max-width:100vw;overflow-x:hidden}
+  .lead .aside{order:2;width:100%}
+  .lead .main{order:1;width:100%}
+}
+
+/* アクセシビリティ */
+a:focus,button:focus{outline:3px solid rgba(26,115,232,0.18);outline-offset:2px}
