@@ -1,190 +1,272 @@
+/* y954.css — pastel / rounded / accessible style */
+
+/* ========== 規定 / カラーパレット ========== */
 :root{
-  --bg:#ffffff;
-  --text:#222;
-  --accent-1:#ffa96b;
-  --accent-2:#f0ff4d;
-  --accent-3:#00d727;
-  --accent-4:#00d727;
-  --muted:#6b7280;
-  --link:#1a73e8;
-  --container-padding:20px;
-  --max-width:980px;
-  --card-bg:#fbfdff;
-  --radius:12px;
-  --shadow:0 6px 18px rgba(20,20,40,0.06);
-  --font-sans:"Noto Sans JP", system-ui, -apple-system, "Helvetica Neue", Arial;
+  --bg: #fffafc;               /* ページ背景（薄ピンク寄り） */
+  --surface: #ffffff;          /* カード背景 */
+  --muted: #7b7b86;           /* 補助テキスト（十分なコントラストを想定） */
+  --text: #222033;            /* メインテキスト（濃いめで読みやすく） */
+  --accent: #8fb7ff;          /* メインアクセント（パステルブルー） */
+  --accent-2: #ffd1e6;        /* 二次アクセント（パステルピンク） */
+  --accent-3: #b8f0d0;        /* 三次アクセント（パステルミント） */
+  --link: #3766b0;            /* リンクカラー（アクセントより濃い） */
+  --shadow: rgba(34,34,34,0.06);
+  --radius: 14px;             /* 基本の丸み */
+  --radius-sm: 10px;
+  --max-width: 980px;
+  --content-gap: 20px;
+  --safe-font-stack: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  --focus-ring: 3px solid rgba(55,102,176,0.18);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+/* ベースリセット */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
 body{
-  margin:0;
-  font-family:var(--font-sans);
-  background:linear-gradient(180deg,#f7fbff 0%, #ffffff 100%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.6;
-  padding:24px;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  min-height:100vh;
-  overflow-y:auto;
+  margin: 0;
+  font-family: var(--safe-font-stack);
+  background: linear-gradient(180deg, var(--bg), #fffdfd);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* コンテナ */
+/* 主要コンテナ */
 .site{
-  width:100%;
-  max-width:var(--max-width);
-  background:var(--card-bg);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:var(--container-padding);
-  margin:12px;
-  /* ページ全体でスクロールさせるため overflow を削除 */
-  overflow:visible;
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 20px;
 }
 
-/* レスポンシブで両端を使うレイアウト（スマホ横向き想定） */
+/* ヘッダー */
 .header-row{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  justify-content:space-between;
-  flex-wrap:wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.header-row h1{
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  background: linear-gradient(90deg, rgba(139,170,255,0.12), rgba(255,209,230,0.06));
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px var(--shadow);
+}
+.header-row p{
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-/* タイトル装飾（カラフル） */
-h1{
-  margin:0;
-  font-size:clamp(1.3rem, 2.6vw, 2rem);
-  line-height:1.05;
-  background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  font-weight:700;
-}
-
-h2{
-  margin:10px 0 8px 0;
-  font-size:1.1rem;
-  color:var(--accent-3);
-  font-weight:700;
-}
-
-h3{
-  margin:8px 0 6px 0;
-  font-size:1rem;
-  color:var(--accent-4);
-  font-weight:600;
-}
-
-/* 概要カード */
+/* レイアウト：メイン + サイド */
 .lead{
-  display:flex;
-  gap:18px;
-  align-items:stretch;
-  width:100%;
-  margin-top:12px;
-  flex-wrap:wrap;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--content-gap);
+  align-items: start;
+}
+@media (max-width: 840px){
+  .lead{ grid-template-columns: 1fr; }
 }
 
-.lead .main{
-  flex:1 1 460px;
-  min-width:240px;
+/* メインカード */
+.main, .main-content{
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 10px 30px var(--shadow);
+  border: 1px solid rgba(136,153,180,0.04);
 }
 
-.lead .aside{
-  flex:0 0 260px;
-  min-width:200px;
-  background:linear-gradient(180deg,#ffffff,#f6fbff);
-  border-radius:10px;
-  padding:12px;
-  border:1px solid rgba(10,40,80,0.03);
-  box-shadow:0 4px 12px rgba(30,60,100,0.03);
-  align-self:flex-start;
+/* アサイド（右カラム） */
+.aside{
+  background: linear-gradient(180deg, #ffffff, #fffbfe);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: 0 8px 22px var(--shadow);
+  border: 1px solid rgba(136,153,180,0.03);
 }
 
-/* ドメイン説明は右寄せ（aside内） */
-.domain{
-  display:flex;
-  justify-content:flex-end;
-  align-items:flex-start;
-  gap:8px;
-  font-size:0.95rem;
-  color:var(--muted);
-  word-break:break-word;
+/* 見出しスタイル */
+h2{
+  margin: 0 0 10px 0;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+h3{
+  margin: 16px 0 8px 0;
+  font-size: 0.98rem;
+  color: var(--text);
 }
 
-/* 価格表示 */
-.price{
-  margin-top:8px;
-  font-weight:800;
-  color:#0b3f64;
-  font-size:1.3rem;
-}
-
-/* 詳細説明 */
+/* 説明テキスト */
 .description{
-  background:transparent;
-  padding:12px 0 0 0;
-  color:var(--text);
-  font-size:0.98rem;
+  margin: 0 0 12px 0;
+  color: var(--text);
+  opacity: 0.95;
 }
 
-/* リンク群 */
-.links{
-  margin-top:16px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
+/* リスト */
+ul{
+  margin: 8px 0 0 18px;
+  padding: 0;
+  color: var(--text);
+}
+li{ margin: 8px 0; }
+
+/* 価格ブロック（強調） */
+.price{
+  display: inline-block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(143,183,255,0.08), rgba(184,240,208,0.04));
+  border: 1px dashed rgba(143,183,255,0.16);
+  color: #10315a;
+  font-weight: 700;
+  margin: 10px 0;
+  box-shadow: 0 6px 16px rgba(141,160,200,0.06);
 }
 
-a{
-  color:var(--link);
-  text-decoration:underline;
+/* ナビ */
+.nav ul{ list-style: none; padding: 0; margin: 10px 0 0 0; display:flex; flex-direction:column; gap:8px; }
+.nav a{
+  color: var(--link);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  display: inline-block;
+  transition: all 180ms ease;
+}
+.nav a:hover, .nav a:focus{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(55,102,176,0.08);
+  outline: none;
+  background: rgba(139,170,255,0.06);
 }
 
-/* ナビ用（トップへ/サイトマップ） */
-.nav{
-  margin-top:18px;
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-/* 関連リンクボックス */
-.related{
-  margin-top:14px;
-  padding:10px;
-  border-radius:10px;
-  background:linear-gradient(180deg,#ffffff,#f8fbff);
-  border:1px solid rgba(20,60,120,0.03);
-}
+/* ドメイン説明 */
+.domain{ font-size: 0.95rem; color: var(--muted); margin: 6px 0; }
+.aside p[style] { margin: 6px 0; }
 
 /* フッター */
 .footer{
-  margin-top:20px;
-  font-size:0.85rem;
-  color:var(--muted);
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,209,230,0.03), rgba(143,183,255,0.02));
+  border: 1px solid rgba(136,153,180,0.03);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.footer div:first-child{ font-weight:600; color: #3b3b50; }
+@media (max-width:780px){
+  .footer{ flex-direction:column; align-items:flex-start; }
 }
 
-/* モバイルで両端を目いっぱい使う（スマホ横向き対策） */
-@media (max-width:700px){
-  body{padding:12px}
-  .site{border-radius:0; padding:14px}
-  .header-row{padding:0;margin:0}
-  html,body,.site{width:100vw;max-width:100vw;overflow-x:hidden}
-  .lead .aside{order:2;width:100%}
-  .lead .main{order:1;width:100%}
+/* メールアドレス表記部分（読みやすく） */
+.footer div[style]{
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
-/* アクセシビリティ */
-a:focus,button:focus{outline:3px solid rgba(26,115,232,0.18);outline-offset:2px}
+/* アクセシビリティ：フォーカス可視化 */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 8px;
+}
+
+/* ボタン風リンク（もし追加する場合） */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, var(--accent), #6fa5ff);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(55,102,176,0.16);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.btn:hover{ transform: translateY(-3px); box-shadow: 0 14px 30px rgba(55,102,176,0.18); }
+
+/* 小さな装飾とアイコン用の丸いバッジ */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  background: linear-gradient(180deg,var(--accent-2),#ffddee);
+  color:#442a3a;
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(255,183,210,0.08);
+}
+
+/* テキストの可読性向上 */
+p, li, span { font-size: 0.98rem; }
+
+/* 画像（将来的に入れる場合） */
+img{ max-width:100%; height:auto; border-radius:8px; display:block }
+
+/* 小さなトランジション効果 */
+*{ transition: background-color 160ms ease, color 160ms ease; }
+
+/* モバイル調整：ヘッダーをコンパクトに */
+@media (max-width:600px){
+  .header-row h1{ font-size:1.05rem; padding:8px 10px; border-radius:10px; }
+  .aside{ padding:14px; border-radius:12px; }
+  .main, .main-content{ padding:16px; border-radius:12px; }
+}
+
+/* コントラストの確認的な微調整（小さな画面での読みやすさ） */
+@media (prefers-contrast: high){
+  :root{
+    --muted: #505063;
+    --text: #0e0e18;
+    --link: #154086;
+  }
+}
+
+/* 小さな装飾：見出し下の軽い飾り */
+h2::after{
+  content: "";
+  display:block;
+  width:44px;
+  height:6px;
+  border-radius:4px;
+  margin-top:10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity:0.9;
+}
+
+/* テーブルやコードが入る可能性に備えたスタイル（将来用） */
+table{ border-collapse: collapse; width:100%; margin:12px 0; }
+th, td{ padding:10px; border-bottom:1px solid rgba(32,32,43,0.04); text-align:left; }
+
+/* 小さなアニメーション：ページ内で注目したい要素に .float を付与 */
+@keyframes floaty {
+  0%{ transform: translateY(0px) }
+  50%{ transform: translateY(-6px) }
+  100%{ transform: translateY(0px) }
+}
+.float{ animation: floaty 4s ease-in-out infinite; }
+
+/* フォントサイズの使い分け（アクセシビリティのために相対単位も使えるように） */
+html { font-size: 16px; }
+@media (max-width:420px){ html { font-size: 15px; } }
