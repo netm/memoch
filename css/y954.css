@@ -45,7 +45,7 @@
     border-radius:18px;
     font-size:1.6rem;
     font-weight:800;
-    background:linear-gradient(90deg, #ffe6f0 0%, #e8f2ff 50%, #e6fff2 100%);
+    background:linear-gradient(90deg, #ffe6f0 0%, #e8f2ff 50%, #edfff6 100%);
     box-shadow:0 8px 30px var(--shadow-1);
     position:relative;
     color:#2a2330;
@@ -60,7 +60,7 @@
   border-radius: 18px;
   font-size: 1.6rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #dcffdf 0%, #f2ffe8 50%, #c1ffdf 100%);
+  background: linear-gradient(90deg, #dcffdf 0%, #f6ffef 50%, #e2fff0 100%);
   box-shadow: 0 8px 30px var(--shadow-1);
   position: relative;
   color: #7e4e01;
@@ -116,7 +116,7 @@
   /* ピーチ系 */
   h2.peach{
     padding:8px 12px;border-radius:12px;
-    background:linear-gradient(90deg, #ffe6ed, #fffaee);
+    background:linear-gradient(90deg, #ffe6ed, #fffcf7);
     color:#503040;box-shadow:0 8px 22px rgba(200,110,140,0.04);
   }
   h2.peach::after{content:"♡";margin-left:10px;color:#ffb6d6;font-size:1rem;}
