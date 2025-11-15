@@ -1,4 +1,3 @@
-// y965.js
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM要素 ---
   const startScreen = document.getElementById('start-screen');
@@ -524,23 +523,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 入力イベント（pointer events） ---
   function getPointerPos(evt) {
+    // support both mouse/pointer and touch events safely
     const rect = canvas.getBoundingClientRect();
+    let clientX, clientY;
+
+    if (evt.touches && evt.touches[0]) {
+      clientX = evt.touches[0].clientX;
+      clientY = evt.touches[0].clientY;
+    } else if (typeof evt.clientX === 'number' && typeof evt.clientY === 'number') {
+      clientX = evt.clientX;
+      clientY = evt.clientY;
+    } else if (evt.pageX && evt.pageY) {
+      clientX = evt.pageX;
+      clientY = evt.pageY;
+    } else {
+      clientX = rect.left;
+      clientY = rect.top;
+    }
+
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    return {
-      x: (evt.clientX - rect.left) * scaleX,
-      y: (evt.clientY - rect.top) * scaleY
-    };
+    // compute raw pos (may be outside canvas if pointer is outside)
+    let x = (clientX - rect.left) * scaleX;
+    let y = (clientY - rect.top) * scaleY;
+    // clamp to canvas bounds so positions outside still map to nearest edge
+    x = Math.max(0, Math.min(canvas.width, x));
+    y = Math.max(0, Math.min(canvas.height, y));
+    return { x, y };
   }
 
-  function handleDragStart(evt) {
+  function handleDragStart(evt, allowOutsideCanvasStart = true) {
     if (gameOver) return;
-    evt.preventDefault();
+    // prevent default for pointer/touch interactions
+    evt.preventDefault && evt.preventDefault();
     if (!areAllBallsStopped()) return;
 
+    // get pointer position mapped to canvas (clamped)
     const pos = getPointerPos(evt);
     activeBall = null;
 
+    // Allow starting drag even when the pointer is outside the stage area,
+    // as long as it is within the ball's visual region (we already clamp pos to canvas edges).
     if (gameMode === '1p') {
       if (!playerTurn) return;
       if (Math.hypot(pos.x - player.x, pos.y - player.y) <= player.radius) activeBall = player;
@@ -549,6 +572,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Math.hypot(pos.x - player.x, pos.y - player.y) <= player.radius) activeBall = player;
       } else {
         if (Math.hypot(pos.x - player2.x, pos.y - player2.y) <= player2.radius) activeBall = player2;
+      }
+    }
+
+    // If not clicked exactly on the ball but close to it (tolerance), allow drag as well.
+    // This helps with desktop mouse where initial press might be slightly off-screen edges.
+    if (!activeBall) {
+      const TOLERANCE = 6; // pixels tolerance in canvas coordinates
+      if (gameMode === '1p') {
+        if (Math.hypot(pos.x - player.x, pos.y - player.y) <= player.radius + TOLERANCE) activeBall = player;
+      } else if (gameMode === '2p') {
+        if (currentPlayer === 1) {
+          if (Math.hypot(pos.x - player.x, pos.y - player.y) <= player.radius + TOLERANCE) activeBall = player;
+        } else {
+          if (Math.hypot(pos.x - player2.x, pos.y - player2.y) <= player2.radius + TOLERANCE) activeBall = player2;
+        }
       }
     }
 
@@ -561,13 +599,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleDragMove(evt) {
     if (!isDragging || !activeBall) return;
-    evt.preventDefault();
+    evt.preventDefault && evt.preventDefault();
     dragEnd = getPointerPos(evt);
   }
 
   function handleDragEnd(evt) {
     if (!isDragging || !activeBall) return;
-    evt.preventDefault();
+    evt.preventDefault && evt.preventDefault();
     isDragging = false;
 
     const dx = dragStart.x - dragEnd.x;
@@ -590,10 +628,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- イベントリスナー登録 ---
+  // keep existing canvas pointer listeners
   canvas.addEventListener('pointerdown', handleDragStart);
   canvas.addEventListener('pointermove', handleDragMove);
   canvas.addEventListener('pointerup', handleDragEnd);
   canvas.addEventListener('pointercancel', handleDragEnd);
+
+  // Add fallback global pointerdown listener for desktop mouse so that
+  // clicks that start slightly outside the stage area (but within canvas bounds or edges)
+  // still initiate dragging if they're effectively on the ball.
+  // This listener is careful not to interfere with other targets: it only reacts
+  // when the game is active and the start screen is not showing.
+  window.addEventListener('pointerdown', (evt) => {
+    // only activate global handling when the game screen is visible and game is running
+    if (gameOver) return;
+    if (!gameScreen.classList.contains('active')) return;
+    // If the pointerdown hit the canvas already, the canvas listener will handle it.
+    // But when pointerdown happens outside the canvas element (rare for this use-case),
+    // compute position and allow starting if it's close enough to a ball (clamped).
+    const rect = canvas.getBoundingClientRect();
+    const withinWindow = evt.clientX >= rect.left - 40 && evt.clientX <= rect.right + 40 &&
+                         evt.clientY >= rect.top - 40 && evt.clientY <= rect.bottom + 40;
+    if (!withinWindow) return;
+    // call handleDragStart with the event; getPointerPos will clamp coordinates to canvas
+    handleDragStart(evt, true);
+  });
+
   window.addEventListener('resize', () => { if (!gameOver) resizeCanvas(); });
 
   // --- 画像選択UI ---
@@ -605,8 +665,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showImagePicker(forMode) {
-    removeCurrentModal();
-
     // forMode: '1p-single', '2p-choose-p1', '2p-choose-p2'
     const modal = document.createElement('div');
     currentModal = modal;
