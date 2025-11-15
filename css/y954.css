@@ -100,7 +100,7 @@
   /* ラベンダー系 */
   h2.lavender{
     padding:8px 12px;border-radius:12px;
-    background:linear-gradient(90deg, #eadaff, #e1eafe);
+    background:linear-gradient(90deg, #eadaff, #f3f7ff);
     color:#422c48;box-shadow:0 8px 22px rgba(109,88,138,0.06);
   }
   h2.lavender::after{content:"✦";margin-left:10px;color:#caa6ff;text-shadow:0 6px 14px rgba(202,166,255,0.12);}
@@ -108,7 +108,7 @@
   /* ミント系 */
   h2.mint{
     padding:8px 12px;border-radius:12px;
-    background:linear-gradient(90deg, #e0ffeb, #e2f6ff);
+    background:linear-gradient(90deg, #e0ffeb, #eefaff);
     color:#1a3c32;box-shadow:0 8px 22px rgba(60,120,90,0.04);
   }
   h2.mint::before{content:"•";display:inline-block;margin-right:8px;color:#6ee2b6;font-weight:900;}
@@ -146,13 +146,13 @@
   h3.underline{padding-bottom:6px}
   h3.underline::after{
     content:"";display:block;height:6px;border-radius:6px;margin-top:6px;
-    background:linear-gradient(90deg,#d9ffe9,#e7efff);opacity:0.18;
+    background:linear-gradient(90deg,#d9ffe9,#eff4fe);opacity:0.18;
   }
 
   /* バッジ左 */
   h3.badge-left::before{
     content:"";width:28px;height:28px;border-radius:999px;
-    background:linear-gradient(180deg,#ffeec8,#ffe1ee);
+    background:linear-gradient(180deg,#ffeec8,#ffedf5);
     display:inline-block;margin-right:8px;box-shadow:0 8px 18px rgba(255,168,120,0.06);
   }
 
