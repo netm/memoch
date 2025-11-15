@@ -1,0 +1,79 @@
+:root{
+  --bg:#fff9f2;
+  --container-bg:#ffffff;
+  --accent:#ff7a7a;
+  --blue:#0077cc;
+  --muted:#666;
+  --card-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  --radius:10px;
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 全体 */
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#222;}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:16px;box-sizing:border-box;}
+
+/* ヘッダー修正：タイトルを中央に配置して崩れを防ぐ */
+.header{
+  width:100%;
+  box-sizing:border-box;
+  padding:18px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  background:transparent;
+}
+.header-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  width:100%;
+}
+h1{font-size:28px;margin:0;color:var(--accent);line-height:1.1;}
+h1 .sub{display:block;font-size:14px;color:var(--muted);font-weight:600;margin-top:6px;}
+
+/* ツールボタン群 */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:18px 0;}
+.btn{border:0;padding:10px 12px;border-radius:8px;color:#fff;cursor:pointer;font-weight:600;box-shadow:var(--card-shadow);}
+.btn-today{background:linear-gradient(90deg,#ff9a9e,#ff7a7a);}
+.btn-copy{background:linear-gradient(90deg,#7ad3ff,#3aa0ff);}
+.btn-png{background:linear-gradient(90deg,#ffd86b,#ffb347);color:#222;}
+.btn-share-x{background:#1da1f2;}
+.btn-share-fb{background:#1877f2;}
+.btn-share-line{background:#2ecf4a;color:#fff;}
+.btn-share-mail{background:#6f42c1;}
+
+/* 自動作成枠 */
+.auto-box{background:var(--container-bg);padding:18px;border-radius:12px;box-shadow:var(--card-shadow);margin-bottom:16px;min-height:120px;display:flex;flex-direction:column;justify-content:center;}
+.auto-box .recipe-title{font-size:22px;font-weight:900;margin:0 0 8px 0;text-align:left;}
+.auto-box .meta{color:var(--muted);margin:0 0 8px 0;}
+.auto-box .steps{background:#f7f7f9;padding:10px;border-radius:6px;white-space:pre-wrap;margin-top:8px;}
+
+/* 検索 */
+.search-row{display:flex;gap:10px;margin:18px 0 10px 0;align-items:center;justify-content:center;}
+.search-row input[type="search"]{flex:1;max-width:720px;padding:10px;border-radius:10px;border:1px solid #e6e6e6;font-size:16px;}
+
+/* 説明・リンク */
+.description{margin-top:18px;line-height:1.9;color:#333;font-size:15px;}
+.links{margin-top:18px;}
+.links a{color:var(--blue);text-decoration:underline;}
+
+/* フッター */
+.footer{margin-top:28px;padding:18px 0;border-top:1px dashed #eee;color:#666;text-align:center;}
+.footer a{color:var(--blue);}
+
+/* モバイル横向き対応：コンテナが画面の両端に広がるようパディングを調整 */
+@media (orientation: landscape) and (max-width:1200px){
+  .container{padding:8px;}
+  .header{padding:12px 8px;}
+  .toolbar{margin:12px 0;}
+}
+
+/* フラッシュ効果 */
+.flash{animation:flash .8s ease;}
+@keyframes flash{0%{transform:translateY(-6px);box-shadow:0 6px 30px rgba(0,0,0,0.12);}100%{transform:none;box-shadow:var(--card-shadow);}}
+
+button:focus,input:focus{outline:3px solid rgba(0,119,204,0.12);outline-offset:2px;}

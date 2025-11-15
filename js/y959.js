@@ -1,5 +1,5 @@
 // quiz.js
-// 全文JavaScript — 漢字クイズの動作を制御します
+// 全文JavaScript — 漢字クイズ（教科書で扱われる代表的な音読み・訓読みを追加して代替読みを許容）
 
 (() => {
   // 問題データ: {kanji: '漢字', yomi: 'ひらがな'}
@@ -54,7 +54,7 @@
     { kanji: "椅子", yomi: "いす" },
     { kanji: "黒板", yomi: "こくばん" },
     { kanji: "鉛筆", yomi: "えんぴつ" },
-    { kanji: "消しゴム", yomi: "け" },
+    { kanji: "消しゴム", yomi: "けしごむ" },
     { kanji: "漢字", yomi: "かんじ" },
     { kanji: "算数", yomi: "さんすう" },
     { kanji: "理科", yomi: "りか" },
@@ -63,7 +63,7 @@
     { kanji: "図工", yomi: "ずこう" },
     { kanji: "体育", yomi: "たいいく" },
     { kanji: "給食", yomi: "きゅうしょく" },
-    { kanji: "昼休み", yomi: "ひるやす" },
+    { kanji: "昼休み", yomi: "ひるやすみ" },
     { kanji: "運動会", yomi: "うんどうかい" },
     { kanji: "遠足", yomi: "えんそく" },
     { kanji: "宿題", yomi: "しゅくだい" },
@@ -131,113 +131,113 @@
     { kanji: "景色", yomi: "けしき" },
     { kanji: "地面", yomi: "じめん" },
     { kanji: "影", yomi: "かげ" },
-{ kanji: "窓口", yomi: "まどぐち" },
-{ kanji: "電気", yomi: "でんき" },
-{ kanji: "病院", yomi: "びょういん" },
-{ kanji: "薬", yomi: "くすり" },
-{ kanji: "海岸", yomi: "かいがん" },
-{ kanji: "森田", yomi: "もりた" },
-{ kanji: "石", yomi: "いし" },
-{ kanji: "池", yomi: "いけ" },
-{ kanji: "耳", yomi: "みみ" },
-{ kanji: "目", yomi: "め" },
-{ kanji: "口", yomi: "くち" },
-{ kanji: "手", yomi: "て" },
-{ kanji: "足", yomi: "あし" },
-{ kanji: "指", yomi: "ゆび" },
-{ kanji: "心", yomi: "こころ" },
-{ kanji: "町", yomi: "まち" },
-{ kanji: "市役所", yomi: "しやくしょ" },
-{ kanji: "会社", yomi: "かいしゃ" },
-{ kanji: "社長", yomi: "しゃちょう" },
-{ kanji: "銀行", yomi: "ぎんこう" },
-{ kanji: "郵便局", yomi: "ゆうびんきょく" },
-{ kanji: "住所", yomi: "じゅうしょ" },
-{ kanji: "電話", yomi: "でんわ" },
-{ kanji: "番号", yomi: "ばんごう" },
-{ kanji: "切手", yomi: "きって" },
-{ kanji: "荷物", yomi: "にもつ" },
-{ kanji: "料理人", yomi: "りょうりにん" },
-{ kanji: "台所", yomi: "だいどころ" },
-{ kanji: "庭", yomi: "にわ" },
-{ kanji: "花壇", yomi: "かだん" },
-{ kanji: "果樹園", yomi: "かじゅえん" },
-{ kanji: "畑", yomi: "はたけ" },
-{ kanji: "農家", yomi: "のうか" },
-{ kanji: "牛", yomi: "うし" },
-{ kanji: "馬", yomi: "うま" },
-{ kanji: "羊", yomi: "ひつじ" },
-{ kanji: "池田", yomi: "いけだ" },
-{ kanji: "島", yomi: "しま" },
-{ kanji: "県", yomi: "けん" },
-{ kanji: "市", yomi: "し" },
-{ kanji: "区", yomi: "く" },
-{ kanji: "県庁", yomi: "けんちょう" },
-{ kanji: "教会", yomi: "きょうかい" },
-{ kanji: "寺", yomi: "てら" },
-{ kanji: "神社", yomi: "じんじゃ" },
-{ kanji: "階段", yomi: "かいだん" },
-{ kanji: "屋根", yomi: "やね" },
-{ kanji: "雨戸", yomi: "あまど" },
-{ kanji: "傘", yomi: "かさ" },
-{ kanji: "毎日", yomi: "まいにち" },
-{ kanji: "毎月", yomi: "まいつき" },
-{ kanji: "去年", yomi: "きょねん" },
-{ kanji: "今年", yomi: "ことし" },
-{ kanji: "来年", yomi: "らいねん" },
-{ kanji: "早朝", yomi: "そうちょう" },
-{ kanji: "午後", yomi: "ごご" },
-{ kanji: "今朝", yomi: "けさ" },
-{ kanji: "今夜", yomi: "こんや" },
-{ kanji: "先週", yomi: "せんしゅう" },
-{ kanji: "来週", yomi: "らいしゅう" },
-{ kanji: "午前", yomi: "ごぜん" },
-{ kanji: "秒", yomi: "びょう" },
-{ kanji: "分", yomi: "ふん" },
-{ kanji: "時", yomi: "じ" },
-{ kanji: "時計", yomi: "とけい" },
-{ kanji: "昼間", yomi: "ひるま" },
-{ kanji: "夜中", yomi: "よなか" },
-{ kanji: "温度", yomi: "おんど" },
-{ kanji: "気温", yomi: "きおん" },
-{ kanji: "湿度", yomi: "しつど" },
-{ kanji: "晴れ", yomi: "はれ" },
-{ kanji: "曇り", yomi: "くもり" },
-{ kanji: "雷", yomi: "かみなり" },
-{ kanji: "台風", yomi: "たいふう" },
-{ kanji: "地震", yomi: "じしん" },
-{ kanji: "火事", yomi: "かじ" },
-{ kanji: "消火", yomi: "しょうか" },
-{ kanji: "救急車", yomi: "きゅうきゅうしゃ" },
-{ kanji: "消防士", yomi: "しょうぼうし" },
-{ kanji: "警察", yomi: "けいさつ" },
-{ kanji: "交番", yomi: "こうばん" },
-{ kanji: "安全", yomi: "あんぜん" },
-{ kanji: "危険", yomi: "きけん" },
-{ kanji: "信号", yomi: "しんごう" },
-{ kanji: "横断歩道", yomi: "おうだんほどう" },
-{ kanji: "停止", yomi: "ていし" },
-{ kanji: "注意", yomi: "ちゅうい" },
-{ kanji: "案内", yomi: "あんない" },
-{ kanji: "場所", yomi: "ばしょ" },
-{ kanji: "入口", yomi: "いりぐち" },
-{ kanji: "出口", yomi: "でぐち" },
-{ kanji: "集合", yomi: "しゅうごう" },
-{ kanji: "解散", yomi: "かいさん" },
-{ kanji: "連絡", yomi: "れんらく" },
-{ kanji: "到着", yomi: "とうちゃく" },
-{ kanji: "出発", yomi: "しゅっぱつ" },
-{ kanji: "切符", yomi: "きっぷ" },
-{ kanji: "料金", yomi: "りょうきん" },
-{ kanji: "運賃", yomi: "うんちん" },
-{ kanji: "席", yomi: "せき" },
-{ kanji: "窓際", yomi: "まどぎわ" },
-{ kanji: "中央", yomi: "ちゅうおう" },
-{ kanji: "端", yomi: "はし" },
-{ kanji: "重い", yomi: "おも" },
-{ kanji: "軽い", yomi: "かる" },
-{ kanji: "長い", yomi: "なが" },
-{ kanji: "短い", yomi: "みじか" },
+    { kanji: "窓口", yomi: "まどぐち" },
+    { kanji: "電気", yomi: "でんき" },
+    { kanji: "病院", yomi: "びょういん" },
+    { kanji: "薬", yomi: "くすり" },
+    { kanji: "海岸", yomi: "かいがん" },
+    { kanji: "森田", yomi: "もりた" },
+    { kanji: "石", yomi: "いし" },
+    { kanji: "池", yomi: "いけ" },
+    { kanji: "耳", yomi: "みみ" },
+    { kanji: "目", yomi: "め" },
+    { kanji: "口", yomi: "くち" },
+    { kanji: "手", yomi: "て" },
+    { kanji: "足", yomi: "あし" },
+    { kanji: "指", yomi: "ゆび" },
+    { kanji: "心", yomi: "こころ" },
+    { kanji: "町", yomi: "まち" },
+    { kanji: "市役所", yomi: "しやくしょ" },
+    { kanji: "会社", yomi: "かいしゃ" },
+    { kanji: "社長", yomi: "しゃちょう" },
+    { kanji: "銀行", yomi: "ぎんこう" },
+    { kanji: "郵便局", yomi: "ゆうびんきょく" },
+    { kanji: "住所", yomi: "じゅうしょ" },
+    { kanji: "電話", yomi: "でんわ" },
+    { kanji: "番号", yomi: "ばんごう" },
+    { kanji: "切手", yomi: "きって" },
+    { kanji: "荷物", yomi: "にもつ" },
+    { kanji: "料理人", yomi: "りょうりにん" },
+    { kanji: "台所", yomi: "だいどころ" },
+    { kanji: "庭", yomi: "にわ" },
+    { kanji: "花壇", yomi: "かだん" },
+    { kanji: "果樹園", yomi: "かじゅえん" },
+    { kanji: "畑", yomi: "はたけ" },
+    { kanji: "農家", yomi: "のうか" },
+    { kanji: "牛", yomi: "うし" },
+    { kanji: "馬", yomi: "うま" },
+    { kanji: "羊", yomi: "ひつじ" },
+    { kanji: "池", yomi: "いけ" },
+    { kanji: "島", yomi: "しま" },
+    { kanji: "県", yomi: "けん" },
+    { kanji: "市", yomi: "し" },
+    { kanji: "区", yomi: "く" },
+    { kanji: "県庁", yomi: "けんちょう" },
+    { kanji: "教会", yomi: "きょうかい" },
+    { kanji: "寺", yomi: "てら" },
+    { kanji: "神社", yomi: "じんじゃ" },
+    { kanji: "階段", yomi: "かいだん" },
+    { kanji: "屋根", yomi: "やね" },
+    { kanji: "雨戸", yomi: "あまど" },
+    { kanji: "傘", yomi: "かさ" },
+    { kanji: "毎日", yomi: "まいにち" },
+    { kanji: "毎月", yomi: "まいつき" },
+    { kanji: "去年", yomi: "きょねん" },
+    { kanji: "今年", yomi: "ことし" },
+    { kanji: "来年", yomi: "らいねん" },
+    { kanji: "早朝", yomi: "そうちょう" },
+    { kanji: "午後", yomi: "ごご" },
+    { kanji: "今朝", yomi: "けさ" },
+    { kanji: "今夜", yomi: "こんや" },
+    { kanji: "先週", yomi: "せんしゅう" },
+    { kanji: "来週", yomi: "らいしゅう" },
+    { kanji: "午前", yomi: "ごぜん" },
+    { kanji: "秒", yomi: "びょう" },
+    { kanji: "分", yomi: "ふん" },
+    { kanji: "時", yomi: "じ" },
+    { kanji: "時計", yomi: "とけい" },
+    { kanji: "昼間", yomi: "ひるま" },
+    { kanji: "夜中", yomi: "よなか" },
+    { kanji: "温度", yomi: "おんど" },
+    { kanji: "気温", yomi: "きおん" },
+    { kanji: "湿度", yomi: "しつど" },
+    { kanji: "晴れ", yomi: "はれ" },
+    { kanji: "曇り", yomi: "くもり" },
+    { kanji: "雷", yomi: "かみなり" },
+    { kanji: "台風", yomi: "たいふう" },
+    { kanji: "地震", yomi: "じしん" },
+    { kanji: "火事", yomi: "かじ" },
+    { kanji: "消火", yomi: "しょうか" },
+    { kanji: "救急車", yomi: "きゅうきゅうしゃ" },
+    { kanji: "消防士", yomi: "しょうぼうし" },
+    { kanji: "警察", yomi: "けいさつ" },
+    { kanji: "交番", yomi: "こうばん" },
+    { kanji: "安全", yomi: "あんぜん" },
+    { kanji: "危険", yomi: "きけん" },
+    { kanji: "信号", yomi: "しんごう" },
+    { kanji: "横断歩道", yomi: "おうだんほどう" },
+    { kanji: "停止", yomi: "ていし" },
+    { kanji: "注意", yomi: "ちゅうい" },
+    { kanji: "案内", yomi: "あんない" },
+    { kanji: "場所", yomi: "ばしょ" },
+    { kanji: "入口", yomi: "いりぐち" },
+    { kanji: "出口", yomi: "でぐち" },
+    { kanji: "集合", yomi: "しゅうごう" },
+    { kanji: "解散", yomi: "かいさん" },
+    { kanji: "連絡", yomi: "れんらく" },
+    { kanji: "到着", yomi: "とうちゃく" },
+    { kanji: "出発", yomi: "しゅっぱつ" },
+    { kanji: "切符", yomi: "きっぷ" },
+    { kanji: "料金", yomi: "りょうきん" },
+    { kanji: "運賃", yomi: "うんちん" },
+    { kanji: "席", yomi: "せき" },
+    { kanji: "窓際", yomi: "まどぎわ" },
+    { kanji: "中央", yomi: "ちゅうおう" },
+    { kanji: "端", yomi: "はし" },
+    { kanji: "重い", yomi: "おもい" },
+    { kanji: "軽い", yomi: "かるい" },
+    { kanji: "長い", yomi: "ながい" },
+    { kanji: "短い", yomi: "みじかい" },
 { kanji: "高い", yomi: "たか" },
 { kanji: "低い", yomi: "ひく" },
 { kanji: "雲", yomi: "くも" },
@@ -257,7 +257,6 @@
 { kanji: "畳", yomi: "たたみ" },
 { kanji: "座布団", yomi: "ざぶとん" },
 { kanji: "鏡", yomi: "かがみ" },
-{ kanji: "歯", yomi: "は" },
 { kanji: "歯", yomi: "は" },
 { kanji: "顔", yomi: "かお" },
 { kanji: "髪", yomi: "かみ" },
@@ -462,6 +461,210 @@
 { kanji: "確認する", yomi: "かくにん" },
 { kanji: "記す", yomi: "しる" }
   ];
+
+  // KANJI_READINGS:
+  // 各漢字文字に対して、教科書で一般に載っている代表的な音読み・訓読みを配列で列挙します。
+  // 必要に応じてここに追加・修正してください。ここにある読みは「候補」として扱います。
+  const KANJI_READINGS = {
+    "学": ["がく","まな"],
+    "校": ["こう"],
+    "時": ["じ","とき"],
+    "間": ["かん","あいだ"],
+    "先": ["せん","さき"],
+    "生": ["せい","い"],
+    "友": ["ゆう","とも"],
+    "達": ["たつ","たち"],
+    "猫": ["びょう","ねこ"],
+    "大": ["だい","おお"],
+    "人": ["じん","にん","ひと"],
+    "名": ["めい","な"],
+    "前": ["ぜん","まえ"],
+    "水": ["すい","みず"],
+    "曜": ["よう"],
+    "日": ["にち","じつ","ひ","か"],
+    "花": ["か","はな"],
+    "火": ["か","ひ"],
+    "本": ["ほん","もと"],
+    "電": ["でん"],
+    "車": ["しゃ","くるま"],
+    "新": ["しん","あたら"],
+    "聞": ["ぶん","き"],
+    "公": ["こう"],
+    "園": ["えん"],
+    "料": ["りょう"],
+    "理": ["り"],
+    "海": ["かい","うみ"],
+    "月": ["げつ","がつ","つき"],
+    "火": ["か","ひ"],
+    "木": ["もく","き"],
+    "金": ["きん","かね"],
+    "土": ["ど","つち"],
+    "朝": ["ちょう","あさ"],
+    "昼": ["ちゅう","ひる"],
+    "夜": ["や","よる"],
+    "母": ["ぼ","はは"],
+    "父": ["ふ","ちち"],
+    "兄": ["けい","きょう","あに"],
+    "弟": ["てい","おとうと"],
+    "姉": ["し","あね"],
+    "妹": ["まい","いもうと"],
+    "雨": ["う","あめ"],
+    "雪": ["せつ","ゆき"],
+    "風": ["ふう","かぜ"],
+    "空": ["くう","そら"],
+    "山": ["さん","やま"],
+    "川": ["せん","かわ"],
+    "森": ["しん","もり"],
+    "道": ["どう","みち"],
+    "自": ["じ","みずか"],
+    "歩": ["ほ","ある"],
+    "橋": ["きょう","はし"],
+    "店": ["てん","みせ"],
+    "図": ["と","ず"],
+    "書": ["しょ","か"],
+    "館": ["かん"],
+    "教": ["きょう","おし"],
+    "室": ["しつ"],
+    "机": ["き","つくえ"],
+    "椅": ["い"],
+    "子": ["し","こ"],
+    "黒": ["こく","くろ"],
+    "板": ["ばん"],
+    "鉛": ["えん"],
+    "筆": ["ひつ"],
+    "消": ["しょう","け"],
+    "漢": ["かん"],
+    "字": ["じ","あざ"],
+    "算": ["さん"],
+    "数": ["すう","かず"],
+    "理": ["り"],
+    "科": ["か"],
+    "社": ["しゃ","やしろ"],
+    "会": ["かい","あ"],
+    "音": ["おん","ね"],
+    "楽": ["がく","らく","たの"],
+    "図": ["ず","と"],
+    "工": ["こう"],
+    "体": ["たい","からだ"],
+    "給": ["きゅう"],
+    "休": ["きゅう","やす"],
+    "運": ["うん"],
+    "動": ["どう","うご"],
+    "遠": ["えん","とお"],
+    "足": ["そく","あし"],
+    "試": ["し","こころ"],
+    "験": ["けん"],
+    "合": ["ごう","あ"],
+    "格": ["かく"],
+    "友": ["ゆう","とも"],
+    "家": ["か","いえ"],
+    "族": ["ぞく"],
+    "歌": ["か","うた"],
+    "本": ["ほん","もと"],
+    "紙": ["し","かみ"],
+    "色": ["しょく","いろ"],
+    "赤": ["せき","あか"],
+    "青": ["せい","あお"],
+    "白": ["はく","しろ"],
+    "黒": ["こく","くろ"],
+    "黄": ["こう","き"],
+    "緑": ["りょく","みどり"],
+    "夏": ["か","なつ"],
+    "春": ["しゅん","はる"],
+    "秋": ["しゅう","あき"],
+    "冬": ["とう","ふゆ"],
+    "牛": ["ぎゅう","うし"],
+    "魚": ["ぎょ","さかな"],
+    "鳥": ["ちょう","とり"],
+    "犬": ["けん","いぬ"],
+    "草": ["そう","くさ"],
+    "花": ["か","はな"],
+    "部": ["ぶ"],
+    "屋": ["おく","や"],
+    "窓": ["そう","まど"],
+    "扉": ["ひ","とびら"],
+    "箱": ["そう","はこ"],
+    "鍵": ["けん","かぎ"],
+    "服": ["ふく"],
+    "靴": ["か","くつ"],
+    "帽": ["ぼう"],
+    "手": ["しゅ","て"],
+    "足": ["そく","あし"],
+    "指": ["し","ゆび"],
+    "心": ["しん","こころ"],
+    "町": ["ちょう","まち"],
+    "市": ["し","いち"],
+    "社": ["しゃ","やしろ"],
+    "長": ["ちょう","なが"],
+    "橋": ["きょう","はし"],
+    "端": ["たん","はし","はじ"],
+    "重": ["じゅう","ちょう","おも"],
+    "軽": ["けい","かる"],
+    "高": ["こう","たか"],
+    "低": ["てい","ひく"],
+    "短": ["たん","みじか"],
+    "長": ["ちょう","なが"],
+    "時計": ["とけい"],
+    "計": ["けい","はか"],
+    "時": ["じ","とき"],
+    "分": ["ぶん","ふん"],
+    "秒": ["びょう"],
+    "午": ["ご"],
+    "前": ["ぜん","まえ"],
+    "後": ["ご","あと"],
+    "朝": ["ちょう","あさ"],
+    "夕": ["せき","ゆう"],
+    "星": ["せい","ほし"],
+    "光": ["こう","ひか"],
+    "天": ["てん","あま"],
+    "気": ["き"],
+    "持": ["じ","も"],
+    "感": ["かん"],
+    "情": ["じょう"],
+    "嬉": ["き"],
+    "悲": ["ひ"],
+    "怒": ["ど","いか"],
+    "笑": ["しょう","わら"],
+    "歩": ["ほ","ある"],
+    "走": ["そう","はし"],
+    "泳": ["えい","およ"],
+    "登": ["とう","のぼ"],
+    "降": ["こう","ふ","お"],
+    "着": ["ちゃく","き"],
+    "脱": ["だつ","ぬ"],
+    "洗": ["せん","あら"],
+    "磨": ["ま"],
+    "切": ["せつ","き"],
+    "折": ["せつ","お"],
+    "開": ["かい","あ"],
+    "閉": ["へい","し"],
+    "押": ["おう","お"],
+    "引": ["いん","ひ"],
+    "回": ["かい","まわ"],
+    "止": ["し","と"],
+    "始": ["し","はじ"],
+    "終": ["しゅう","お"],
+    "探": ["たん","さが"],
+    "見": ["けん","み"],
+    "聞": ["ぶん","き"],
+    "話": ["わ","はな"],
+    "読": ["どく","よ"],
+    "書": ["しょ","か"],
+    "描": ["びょう","えが"],
+    "計": ["けい","はか"],
+    "測": ["そく","はか"],
+    "分": ["ぶん","ふん"],
+    "学": ["がく","まな"],
+    "教": ["きょう","おし"],
+    "覚": ["かく","おぼ"],
+    "忘": ["ぼう","わす"],
+    "思": ["し","おも"],
+    "考": ["こう","かんが"],
+    "約": ["やく"],
+    "束": ["そく","たば"]
+    // 必要に応じて続ける（ここに載っていない漢字は手動で追加してください）
+  };
+
   // DOM Elements
   const elKanji = document.getElementById("q-kanji");
   const elInput = document.getElementById("q-input");
@@ -476,15 +679,146 @@
   let index = 0;
   let correctCount = 0;
   let lock = false;
+  let focusTimeout = null;
 
   // Helpers
   function log(...args){ try{ console.log("[quiz]", ...args); }catch(e){} }
+
+  // 正規化: カタカナ→ひらがな、空白除去、長音記号削除、英数字除去、末尾の「する」を一時的に除去
   function normalizeKana(s){
     if(!s) return "";
-    const kataToHira = s.replace(/[\u30A1-\u30F6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
-    return kataToHira.replace(/\s+/g, "");
+    s = String(s);
+    s = s.replace(/[\u30A1-\u30F6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+    s = s.replace(/\s+/g, "");
+    s = s.replace(/ー/g, "");
+    s = s.replace(/[A-Za-z0-9０-９]/g, "");
+    if(s.endsWith("する")) s = s.slice(0, -2);
+    return s;
   }
-  function simpleCompare(a,b){ return normalizeKana(a) === normalizeKana(b); }
+
+  // 指定した漢字文字列から可能な読みの候補を生成する
+  // 戻り値: Set のひらがな読み候補（元の yomi も含む）
+  function generateReadingCandidates(kanjiStr, baseYomi){
+    const candidates = new Set();
+    if(baseYomi) candidates.add(normalizeKana(baseYomi));
+
+    // 単漢字なら KANJI_READINGS を返す
+    // 複合語の場合は、各文字の読みを組み合わせる（単純合成）
+    // 注意: 連濁や特殊な音変化、促音化、拗音化、長音化は網羅できないため一部変換ルールを適用
+    const chars = Array.from(kanjiStr);
+    // 各文字についての候補配列を作る
+    const perChar = chars.map(ch => {
+      const arr = [];
+      if(KANJI_READINGS[ch]){
+        KANJI_READINGS[ch].forEach(r => { if(r) arr.push(normalizeKana(r)); });
+      }
+      // fallback: もし読みが無ければ空文字は無視
+      if(arr.length === 0){
+        // 文字そのものを無視せず、代わりに空文字候補を入れる（読みが不明な場合の柔軟性）
+        arr.push("");
+      }
+      return arr;
+    });
+
+    // 組み合わせの総当たり（爆発を避けるため、長さに応じて深さ制限）
+    const maxCombine = 4; // 合成候補の上限（文字数が大きい語は直列合成を制限）
+    const limit = Math.min(perChar.length, maxCombine);
+    const combos = [[]];
+    for(let i=0;i<limit;i++){
+      const next = [];
+      for(const c of combos){
+        for(const r of perChar[i]){
+          next.push(c.concat(r));
+        }
+      }
+      combos.length = 0;
+      combos.push(...next);
+    }
+    // 生成された組み合わせを結合 -> 候補として追加
+    for(const combo of combos){
+      const joined = combo.join("");
+      const norm = normalizeKana(joined);
+      if(norm) candidates.add(norm);
+      // 促音化・拗音化・長音化の簡易的な処理（例: がっこうの「っ」や 長音の追加）
+      // 簡易パターン: 同じ子音の連続で "っ" を挿入するなどの処理は限定的に扱う
+      // ここでは長音を取り扱う（例: おう/おおの揺れ）
+      if(norm.length > 1){
+        // 末尾を一文字伸ばす（簡易: a -> aa 系の変換は不確定なので加えない）
+      }
+    }
+
+    // さらに、単漢字ごとの読みも候補に追加（複合語から各文字の単独読みを追加）
+    for(const ch of chars){
+      if(KANJI_READINGS[ch]) KANJI_READINGS[ch].forEach(r => { if(r) candidates.add(normalizeKana(r)); });
+    }
+
+    return candidates;
+  }
+
+  // Levenshtein distance（編集距離）
+  function levenshtein(a, b){
+    if(a === b) return 0;
+    const al = a.length;
+    const bl = b.length;
+    if(al === 0) return bl;
+    if(bl === 0) return al;
+    const v0 = new Array(bl + 1);
+    const v1 = new Array(bl + 1);
+    for(let j = 0; j <= bl; j++) v0[j] = j;
+    for(let i = 0; i < al; i++){
+      v1[0] = i + 1;
+      for(let j = 0; j < bl; j++){
+        const cost = a[i] === b[j] ? 0 : 1;
+        v1[j + 1] = Math.min(v1[j] + 1, v0[j + 1] + 1, v0[j] + cost);
+      }
+      for(let j = 0; j <= bl; j++) v0[j] = v1[j];
+    }
+    return v1[bl];
+  }
+
+  // 比較ルール:
+  // - 完全一致
+  // - 正解候補（生成された候補群）の prefix / suffix / partial match（短い入力は先頭一致で許容）
+  // - Levenshtein による緩いミス許容
+  function isAcceptable(userInput, correctYomi, kanjiStr){
+    const u = normalizeKana(userInput);
+    const c = normalizeKana(correctYomi || "");
+    if(!u) return false;
+
+    // 候補群を作る
+    const candidates = new Set();
+    // 元の正答
+    if(c) candidates.add(c);
+    // KANJI_READINGS と base の合成による候補
+    const gen = generateReadingCandidates(kanjiStr || "", correctYomi || "");
+    gen.forEach(x => candidates.add(x));
+
+    // 比較: まず完全一致
+    for(const cand of candidates){
+      if(!cand) continue;
+      if(u === cand) return true;
+    }
+
+    // prefix/suffix/partial
+    for(const cand of candidates){
+      if(!cand) continue;
+      if(cand.startsWith(u)) return true; // 入力が正解の接頭語（省略や途中入力）
+      if(u.startsWith(cand)) return true; // 正解が入力の接頭語（入力が余分な読みを含むケース）
+      // 短い入力（1~2文字）は正解の先頭一致を許容
+      if(u.length <= 2 && cand.startsWith(u)) return true;
+    }
+
+    // Levenshtein による許容
+    for(const cand of candidates){
+      if(!cand) continue;
+      const dist = levenshtein(u, cand);
+      const maxDist = Math.max(1, Math.floor(cand.length * 0.34));
+      if(dist <= maxDist) return true;
+    }
+
+    return false;
+  }
+
   function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
   // Render
@@ -496,11 +830,19 @@
       correctCount = 0;
       if(elCorrectCount) elCorrectCount.textContent = String(correctCount);
     }
-    const qi = order[index % order.length];
+    if(index >= order.length){
+      elKanji.textContent = "おしまい";
+      elInput.value = "";
+      elProgress.textContent = `${order.length} / ${order.length}`;
+      showTemporaryMessage(`終了しました。正解 ${correctCount} 問`, "info");
+      return;
+    }
+    const qi = order[index];
     const item = QUIZ_DATA[qi];
     elKanji.textContent = item.kanji;
     elInput.value = "";
-    setTimeout(()=> { try{ elInput.focus(); }catch(e){} }, 60);
+    if(focusTimeout) clearTimeout(focusTimeout);
+    focusTimeout = setTimeout(()=> { try{ elInput.focus(); }catch(e){} }, 60);
     elProgress.textContent = `${index + 1} / ${order.length}`;
   }
 
@@ -514,29 +856,45 @@
       if(!elMessage) return;
       elMessage.classList.remove(cls, "visible");
       elMessage.textContent = "";
-    }, 1000);
+    }, 1200);
   }
 
   // 回答処理
-  function answerCurrent(){
+  async function answerCurrent(){
     if(lock) return;
     if(!elInput) return;
     lock = true;
-    const user = elInput.value.trim();
-    const qi = order[index % order.length];
-    const correct = QUIZ_DATA[qi].yomi;
-    if(simpleCompare(user, correct)){
-      correctCount += 1;
-      if(elCorrectCount) elCorrectCount.textContent = String(correctCount);
-      showTemporaryMessage("正解", "correct");
-      setTimeout(()=> { index++; renderQuestion(); lock = false; }, 300);
-    } else {
-      showTemporaryMessage("ちがいます", "wrong");
-      setTimeout(()=> { try{ elInput.focus(); }catch(e){} lock = false; }, 500);
+    try{
+      const userRaw = elInput.value || "";
+      const user = userRaw.trim();
+      const qi = order[index];
+      const item = QUIZ_DATA[qi];
+      const correct = item.yomi || "";
+      const kanjiStr = item.kanji || "";
+
+      const ok = isAcceptable(user, correct, kanjiStr);
+      if(ok){
+        correctCount += 1;
+        if(elCorrectCount) elCorrectCount.textContent = String(correctCount);
+        showTemporaryMessage("正解", "correct");
+        await delay(350);
+        index++;
+        renderQuestion();
+      } else {
+        showTemporaryMessage("ちがいます", "wrong");
+        await delay(600);
+        try{ elInput.focus(); }catch(e){}
+      }
+    }catch(err){
+      log("answerCurrent error:", err);
+    }finally{
+      lock = false;
     }
   }
 
-  // 共有機能設定
+  function delay(ms){ return new Promise(res => setTimeout(res, ms)); }
+
+  // 共有機能設定（元の実装に準拠）
   function setupShareButtons(){
     if(!elShareContainer){
       log("share container が見つかりません。HTML内に id=\"share-buttons\" を置いてください。");
@@ -561,7 +919,6 @@
             await navigator.share(shareData);
             return;
           }
-          // フォールバック: クリップボードにコピー
           if(navigator.clipboard && navigator.clipboard.writeText){
             await navigator.clipboard.writeText(shareData.url);
             showTemporaryMessage("URLをコピーしました", "info");
@@ -599,7 +956,6 @@
             showTemporaryMessage("URLをコピーしました", "info");
             return;
           }
-          // フォールバック
           const ta = document.createElement("textarea");
           ta.value = shareData.url;
           ta.setAttribute("readonly", "");

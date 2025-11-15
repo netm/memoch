@@ -1,0 +1,231 @@
+/* styles.css - 全文 */
+/* レイアウトの方針
+   - モバイルファーストでデザイン
+   - コンテナは横向きのスマホでも両端が画面端に届くよう幅100vw、パディング最小化
+   - ボタンはカラフルに、リンクは青色で統一
+*/
+
+:root{
+  --bg:#f9f9fb;
+  --card:#ffffff;
+  --accent-1:#ff6b6b; /* 赤系 */
+  --accent-2:#6bc1ff; /* 青系 */
+  --accent-3:#ffd36b; /* 黄系 */
+  --accent-4:#7affb0; /* 緑系 */
+  --link:#0b66ff;    /* リンク青 */
+  --text:#222;
+  --muted:#666;
+  --radius:12px;
+  --shadow: 0 6px 18px rgba(20,20,30,0.06);
+}
+
+*{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-text-size-adjust:100%;
+}
+
+/* 全幅で両端を画面端に合わせる */
+.container{
+  width:100vw;
+  max-width:100%;
+  padding:14px; /* スマホ横でも左右14pxにしてほぼ端まで */
+  margin:0 auto;
+}
+
+/* ヘッダー */
+.header{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:stretch;
+  margin-bottom:12px;
+}
+
+/* タイトル */
+.site-title{
+  display:block;
+  padding:10px 8px;
+  background:linear-gradient(90deg, rgba(255,107,107,0.12), rgba(107,193,255,0.08));
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+.site-title h1{
+  margin:0;
+  font-size:20px;
+  line-height:1.05;
+  color:var(--accent-1);
+  font-weight:800;
+}
+.site-title p{
+  margin:6px 0 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ボタン群 */
+.controls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.btn{
+  border:0;
+  cursor:pointer;
+  padding:10px 12px;
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+.btn:active{transform:translateY(1px)}
+.btn-random{background:linear-gradient(90deg,var(--accent-1),#ff9a6b)}
+.btn-copy{background:linear-gradient(90deg,var(--accent-3),#ffc97a)}
+.btn-png{background:linear-gradient(90deg,var(--accent-2),#7cc8ff)}
+.share-btn{
+  background:var(--accent-4);
+  color:#033;
+  padding:9px 10px;
+  font-weight:700;
+}
+
+/* ソーシャル群を右寄せ（横幅のあるとき） */
+.share-group{
+  display:flex;
+  gap:8px;
+  margin-left:auto;
+}
+
+/* 文章自動作成の枠（大きく太字で表示） */
+.auto-box{
+  margin-top:10px;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+  width:100%;
+}
+#auto-text{
+  font-weight:900;
+  font-size:20px;
+  line-height:1.4;
+  color:var(--text);
+  margin:0;
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  word-break:break-word;
+}
+
+/* フラッシュ効果 */
+#auto-text.flash{
+  outline:3px solid rgba(107,193,255,0.3);
+  transition:outline 0.4s ease;
+}
+
+/* 検索欄 */
+.search-area{
+  margin-top:14px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.search-input{
+  flex:1;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e6e9ee;
+  font-size:15px;
+  background:#fff;
+}
+.search-submit{
+  padding:10px 12px;
+  border-radius:10px;
+  border:0;
+  background:var(--link);
+  color:#fff;
+  font-weight:700;
+}
+
+/* SEO向けの長文エリア */
+.seo-card{
+  margin-top:18px;
+  background:linear-gradient(180deg, #fff, #fcfcff);
+  padding:18px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+.seo-card h2{
+  margin:0 0 8px 0;
+  font-size:18px;
+  color:var(--accent-2);
+}
+.seo-card p{
+  color:var(--muted);
+  line-height:1.75;
+  margin:10px 0;
+  font-size:14px;
+}
+
+/* 関連リンク */
+.related{
+  margin-top:14px;
+  padding:12px;
+  background:var(--card);
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+.related a{ color:var(--link); text-decoration:none; font-weight:700; }
+
+/* フッターリンク */
+.footer-links{
+  margin-top:14px;
+  padding:12px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer-links a{ color:var(--link); text-decoration:none; }
+
+/* リンク青を強調 */
+a{ color:var(--link) }
+
+/* マーク（ハイライト） */
+mark{
+  background:linear-gradient(90deg,#fff59d,#ffd36b);
+  padding:0 4px;
+  border-radius:4px;
+}
+
+/* トースト */
+#toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:28px;
+  background:rgba(20,20,30,0.9);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:20px;
+  font-weight:700;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+#toast.visible{ opacity:1; transform:translateX(-50%) translateY(-6px); }
+
+/* レスポンシブ調整 */
+@media(min-width:720px){
+  .header{ flex-direction:row; align-items:center }
+  .site-title{ flex:1 }
+  .controls{ flex:2; justify-content:flex-end }
+  #auto-text{ font-size:22px }
+}

@@ -1,0 +1,172 @@
+/* style.css - 全文 */
+/* ベースリセット */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; }
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #fff8fb 0%, #fffef6 100%);
+  color: #333;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px;
+}
+
+/* コンテナ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(99,88,122,0.08);
+  overflow: hidden;
+}
+
+/* ヘッダー */
+.header {
+  padding: 18px 22px;
+  background: linear-gradient(90deg,#ffe4f0 0%, #e9f7ff 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+h1.site-title {
+  font-size: 1.6rem;
+  color: #ff4da6;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+/* 操作パネル */
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus { outline: 3px solid rgba(0,0,0,0.08); }
+
+/* カラフルボタン */
+.btn-today { background: linear-gradient(90deg,#ff9db0,#ff6a9e); }
+.btn-light { background: linear-gradient(90deg,#6ee7b7,#34d399); }
+.btn-rich { background: linear-gradient(90deg,#ffd37a,#ff9f43); }
+.btn-copy { background: linear-gradient(90deg,#9f7aea,#7c3aed); }
+.btn-png { background: linear-gradient(90deg,#60a5fa,#3b82f6); }
+
+/* シェア系 */
+.share-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+}
+.share-link {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.share-x { background: #1da1f2; }
+.share-fb { background: #1877f2; }
+.share-line { background: #00c300; }
+.share-mail { background: #ff6bcb; }
+
+/* オート生成枠 */
+.auto-frame {
+  padding: 22px;
+  text-align: center;
+  border-top: 1px dashed rgba(0,0,0,0.04);
+  border-bottom: 1px dashed rgba(0,0,0,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9));
+}
+.auto-frame .big {
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #e11d48;
+  letter-spacing: -0.02em;
+}
+
+/* レシピカード（PNG保存対象） */
+#cardToSave {
+  margin: 18px;
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg,#fff,#fffefc);
+  box-shadow: 0 8px 22px rgba(162,138,195,0.06);
+  text-align: left;
+}
+.recipe-title { font-size: 1.2rem; font-weight:900; color:#ff4d8a; margin-bottom:6px; }
+.recipe-desc { font-size:0.96rem; color:#444; margin-bottom:10px; }
+.ingredients-heading, .howto-heading { font-size:0.95rem; color:#7b61ff; margin-top:8px; margin-bottom:6px; font-weight:800; }
+.ingredients-list li, .howto-list li { margin-bottom:6px; color:#333; }
+
+/* サイト説明（SEO向けテキスト） */
+.description {
+  padding: 18px;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.8;
+}
+.description p { margin-bottom: 12px; }
+
+/* カテゴリ一覧 */
+.categories {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap: 12px;
+}
+.cat-card {
+  background: linear-gradient(180deg,#fff,#fffefc);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(99,88,122,0.04);
+}
+.cat-card h4 { color:#2563eb; font-size:1rem; margin-bottom:6px; }
+.cat-card p { font-size:0.9rem; color:#555; }
+
+/* 関連リンクとフッター */
+.related, .footer-links {
+  padding: 14px 18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+a.site-link { color: #0066cc; text-decoration: none; font-weight:700; }
+a.site-link:hover { text-decoration: underline; }
+
+/* レスポンシブ調整 */
+@media (max-width: 720px) {
+  .header { padding: 14px; }
+  .controls { gap: 6px; }
+  .btn { padding: 8px 10px; font-size: 0.9rem; border-radius: 9px; }
+  .categories { grid-template-columns: 1fr; }
+}
+
+/* スマホ横向きで両端を画面端に合わせたい時用（使いやすさ確保） */
+@media (orientation: landscape) and (max-width: 900px) {
+  .container { margin: 0; border-radius: 0; }
+  body { padding: 0; background: linear-gradient(180deg, #fff8fb 0%, #fffef6 100%); }
+}

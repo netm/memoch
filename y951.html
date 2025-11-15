@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="時短パスタのメニューとレシピを自動作成。忙しい朝や夜にすぐ作れる、あっさり・こってりのわかりやすいレシピ集。レシピをコピーやPNGで保存してシェアも簡単。">
+  <meta name="keywords" content="時短,パスタ,メニュー,レシピ">
+  <title>時短パスタの作り方 メニューとレシピ</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y951/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="light">
+<link rel="stylesheet" href="/css/y951.css">
+  <meta property="og:title" content="時短パスタの作り方 メニューとレシピ">
+  <meta property="og:description" content="時短パスタのすぐ作れるメニューとレシピを短くわかりやすく紹介するサイトです。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:,">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+  <main class="container" role="main" aria-labelledby="mainTitle">
+    <header class="header">
+      <h1 id="mainTitle" class="site-title">時短パスタの作り方 メニューとレシピ</h1>
+      <div class="controls" aria-label="操作パネル">
+        <button id="todayBtn" class="btn btn-today" aria-pressed="false">今日の時短パスタ</button>
+        <button id="lightBtn" class="btn btn-light" aria-pressed="false">あっさり</button>
+        <button id="richBtn" class="btn btn-rich" aria-pressed="false">こってり</button>
+        <button id="copyBtn" class="btn btn-copy">レシピをコピー</button>
+        <button id="pngBtn" class="btn btn-png">PNG画像で保存</button>
+      </div>
+      <div class="share-row" aria-label="シェアボタン">
+        <a id="xBtn" class="share-link share-x" role="button" aria-label="シェア X">xでシェア</a>
+        <a id="fbBtn" class="share-link share-fb" role="button" aria-label="シェア Facebook">facebook</a>
+        <a id="lineBtn" class="share-link share-line" role="button" aria-label="シェア LINE">LINE</a>
+        <a id="mailBtn" class="share-link share-mail" role="button" aria-label="シェア メール">メールで共有</a>
+      </div>
+    </header>
+    <section class="auto-frame" aria-labelledby="autoFrameTitle">
+      <div id="autoFrame" aria-hidden="false">
+        <div class="big">時短パスタのメニューとレシピ自動作成の枠</div>
+      </div>
+    </section>
+    <!-- レシピカード（PNG化対象） -->
+    <article id="cardToSave" aria-labelledby="recipeHeading">
+      <h2 id="autoTitle" class="recipe-title">自動生成レシピ</h2>
+      <div id="recipeArea" class="recipe-area">
+        <!-- JSで内容が入ります -->
+      </div>
+    </article>
+    <section class="description" aria-labelledby="descHeading">
+      <h2 id="descHeading" style="color:#ff6b9f;">サイトの説明と使い方</h2>
+      <p>このサイトは忙しい毎日でも手早く作れる時短パスタのメニューとレシピを集めた専門サイトです。毎日の献立選びを簡単にするため、あっさり系からこってり系まで、素材別や調理時間別にすぐ使えるレシピを掲載しています。検索エンジンからの発見性を高めるために、具体的な材料名や調理方法、時短のコツを丁寧に説明しています。</p>
+      <p>ユーザーは「今日の時短パスタ」ボタンでワンクリックでレシピを自動生成できます。「あっさり」「こってり」ボタンで味の系統に合わせたレシピ候補を絞り込み表示します。気に入ったレシピはワンクリックでテキストをコピーしたり、PNG画像で保存してSNSやメッセージで共有できます。</p>
+      <p>すべてのレシピは調理時間を短くするポイントを明記しているため、忙しい朝の準備や帰宅後の短時間での調理に最適です。使用するパスタの茹で時間を短縮する方法、フライパンで仕上げる時の注意点、冷製にする際の冷やし方、乳製品を軽くするテクニックなど、説明を多めに入れてSEOを強化しています。</p>
+      <p>当サイトはモバイルファーストで設計されており、スマートフォンでもパソコンでも簡単に操作できます。スマホ横向きのときは左右が画面端に合わせて表示されるようレスポンシブ調整が入っており、片手でもボタンを押しやすいインターフェイスを心がけています。</p>
+      <p>さらに、材料や調理法、カロリーやアレルギー情報などをタグやカテゴリで整理しているため、目的に応じたレシピ検索がしやすいのが特徴です。例えば「納豆」「明太子」「クリーム系」「和風」「冷製」など、よく検索されるキーワードを文章中に自然に含め、検索数を増やす工夫をしています。</p>
+    </section>
+    <section class="categories" aria-labelledby="catHeading">
+      <h2 id="catHeading" style="grid-column: 1 / -1; color:#4f46e5;">時短パスタの代表メニュー（カテゴリ別）</h2>
+      <!-- 30個の代表的な時短パスタ -->
+      <div class="cat-card">
+        <h4>1. アーリオオーリオ</h4>
+        <p>にんにくとオリーブオイルで作る王道の時短パスタ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>2. トマトとバジルの冷製パスタ</h4>
+        <p>茹でて冷やすだけの簡単さっぱりレシピ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>3. 明太子バター</h4>
+        <p>明太子とバターで濃厚に仕上げる短時間メニュー。</p>
+      </div>
+      <div class="cat-card">
+        <h4>4. ツナとトマトの和えるパスタ</h4>
+        <p>缶詰を活用した即席ソースで時短。</p>
+      </div>
+      <div class="cat-card">
+        <h4>5. きのこクリーム（軽め）</h4>
+        <p>牛乳ときのこで作るヘルシークリームパスタ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>6. 納豆パスタ</h4>
+        <p>和風味の朝食に最適、混ぜるだけ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>7. レモンペッパーのさっぱりパスタ</h4>
+        <p>レモンで爽やかに仕上げる短時間メニュー。</p>
+      </div>
+      <div class="cat-card">
+        <h4>8. ペペロンチーノ（時短）</h4>
+        <p>にんにくと鷹の爪のシンプルスピードメニュー。</p>
+      </div>
+      <div class="cat-card">
+        <h4>9. ツナマヨパスタ</h4>
+        <p>ツナ＋マヨで子どもも喜ぶ簡単レシピ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>10. しらすと大葉の和風パスタ</h4>
+        <p>しらすの塩味で調味を省ける時短術。</p>
+      </div>
+      <div class="cat-card">
+        <h4>11. バジルトマトの冷製パスタ</h4>
+        <p>夏場にぴったりの時短冷製。</p>
+      </div>
+      <div class="cat-card">
+        <h4>12. カルボナーラ（簡易）</h4>
+        <p>卵とチーズで作る、フライパン1つで完成。</p>
+      </div>
+      <div class="cat-card">
+        <h4>13. 和風きのこ醤油パスタ</h4>
+        <p>和だしを活かした手早い一皿。</p>
+      </div>
+      <div class="cat-card">
+        <h4>14. 明太クリームパスタ</h4>
+        <p>明太子を牛乳でのばして短時間で濃厚に。</p>
+      </div>
+      <div class="cat-card">
+        <h4>15. アボカドと海苔の簡単パスタ</h4>
+        <p>アボカドを和えるだけのヘルシー時短。</p>
+      </div>
+      <div class="cat-card">
+        <h4>16. ベーコンとほうれん草のバター醤油</h4>
+        <p>フライパンで手早く炒めて和えるだけ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>17. シーフードトマトソース</h4>
+        <p>冷凍シーフードを使った短時間ソース。</p>
+      </div>
+      <div class="cat-card">
+        <h4>18. きゅうりとツナの冷やしパスタ</h4>
+        <p>シャキシャキ食感が楽しい時短メニュー。</p>
+      </div>
+      <div class="cat-card">
+        <h4>19. ピリ辛ナポリタン風</h4>
+        <p>ケチャップベースを少量の豆板醤でアクセント。</p>
+      </div>
+      <div class="cat-card">
+        <h4>20. クリームチーズとハーブの和えパスタ</h4>
+        <p>室温のクリームチーズでソース要らず。</p>
+      </div>
+      <div class="cat-card">
+        <h4>21. 焼きなすと鰹節の和風パスタ</h4>
+        <p>焼きなすを使って短時間で和風に。</p>
+      </div>
+      <div class="cat-card">
+        <h4>22. トマト缶で作るボロネーゼ風（簡易）</h4>
+        <p>ひき肉とトマト缶で短時間のミートソース。</p>
+      </div>
+      <div class="cat-card">
+        <h4>23. ほたてバター醤油</h4>
+        <p>缶詰や冷凍ほたてで素早く作れる海鮮系。</p>
+      </div>
+      <div class="cat-card">
+        <h4>24. 明太クリーム冷製パスタ</h4>
+        <p>冷やして食べる濃厚明太クリーム。</p>
+      </div>
+      <div class="cat-card">
+        <h4>25. たらこスパゲッティ</h4>
+        <p>たらこをほぐして醤油少々で和えるだけ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>26. なすとトマトのさっぱりパスタ</h4>
+        <p>夏野菜で作る短時間パスタ。</p>
+      </div>
+      <div class="cat-card">
+        <h4>27. ガーリックシュリンプ風パスタ</h4>
+        <p>冷凍エビで時短、にんにくの香りが効く。</p>
+      </div>
+      <div class="cat-card">
+        <h4>28. ペストジェノベーゼ（市販ペースト活用）</h4>
+        <p>市販のソースで時間を節約する定番。</p>
+      </div>
+      <div class="cat-card">
+        <h4>29. ツナとコーンのクリーム和え</h4>
+        <p>子供が喜ぶ簡単クリーミー系。</p>
+      </div>
+      <div class="cat-card">
+        <h4>30. もやしとベーコンの中華風パスタ</h4>
+        <p>中華調味料で短時間に味が決まる一皿。</p>
+      </div>
+        <p>他にも200個以上のメニューとレシピがあります。スマホのホーム画面に追加してお使い下さい。</p>
+    </section>
+    <section class="related" aria-labelledby="relatedHeading">
+      <h2 id="relatedHeading" style="margin-right:10px; color:#f97316;">関連リンク</h2>
+      <a class="site-link" href="#" title="パスタ茹で時間早見表">パスタ茹で時間早見表</a>
+      <a class="site-link" href="#" title="冷製パスタの作り方">冷製パスタの作り方</a>
+      <a class="site-link" href="#" title="時短調理のコツ">時短調理のコツ</a>
+    </section>
+    <footer class="footer-links" aria-label="フッター">
+      <a class="site-link" href="/" title="トップページに戻る">トップページに戻る</a>
+      <a class="site-link" href="/sitemap" title="サイトマップ">サイトマップ</a>
+    </footer>
+  </main>
+<script src="/js/y951.js"></script>
+</body>
+</html>
