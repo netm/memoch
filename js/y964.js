@@ -562,8 +562,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- ドラッグ終了（ショット） ---
     function handleDragEnd(evt) {
-        evt.preventDefault();
-        if (!isDragging || !activeBall) return;
+        // NOTE:
+        // マウス/タッチのアップがキャンバス外で発生した場合もここが呼ばれるように
+        // window に対して mouseup/touchend を登録しています。
+        // その際、evt が canvas 外から来るため getMousePos を使わずに
+        // 最後に記録した dragEnd を使ってショットを確定します。
+
+        if (!isDragging || !activeBall) {
+            // ドラッグしていないかアクティブなボールがないなら何もしない
+            isDragging = false;
+            activeBall = null;
+            return;
+        }
 
         isDragging = false;
 
@@ -584,9 +594,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- イベント登録 ---
     canvas.addEventListener('mousedown', handleDragStart);
     canvas.addEventListener('mousemove', handleDragMove);
+    // canvas 上の mouseup も登録しておく（冗長でも安全）
     canvas.addEventListener('mouseup', handleDragEnd);
+
+    // 重要: マウスアップ／タッチエンドがキャンバス外で発生した場合に対応するため
+    // window にもリスナーを登録する（これが今回の修正点）
+    window.addEventListener('mouseup', handleDragEnd);
+    window.addEventListener('touchend', handleDragEnd);
+
     canvas.addEventListener('touchstart', handleDragStart, { passive: false });
     canvas.addEventListener('touchmove', handleDragMove, { passive: false });
+    // canvas 上の touchend も登録（冗長でも安全）
     canvas.addEventListener('touchend', handleDragEnd, { passive: false });
 
     window.addEventListener('resize', () => {
