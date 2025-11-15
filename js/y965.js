@@ -654,6 +654,24 @@ document.addEventListener('DOMContentLoaded', () => {
     handleDragStart(evt, true);
   });
 
+  // NEW: global pointerup/pointercancel to ensure release outside canvas still triggers handleDragEnd
+  window.addEventListener('pointerup', (evt) => {
+    // only act when we are dragging and game is active and game screen visible
+    if (!isDragging || !activeBall) return;
+    if (gameOver) return;
+    if (!gameScreen.classList.contains('active')) return;
+    // update dragEnd from the global event (clamped to canvas) before ending
+    dragEnd = getPointerPos(evt);
+    handleDragEnd(evt);
+  });
+  window.addEventListener('pointercancel', (evt) => {
+    if (!isDragging || !activeBall) return;
+    if (gameOver) return;
+    if (!gameScreen.classList.contains('active')) return;
+    dragEnd = getPointerPos(evt);
+    handleDragEnd(evt);
+  });
+
   window.addEventListener('resize', () => { if (!gameOver) resizeCanvas(); });
 
   // --- 画像選択UI ---
