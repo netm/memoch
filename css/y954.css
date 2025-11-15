@@ -60,10 +60,10 @@
   border-radius: 18px;
   font-size: 1.6rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #ffcbe0 0%, #c1dcff 50%, #c1ffdf 100%);
+  background: linear-gradient(90deg, #cbffcf 0%, #c1dcff 50%, #c1ffdf 100%);
   box-shadow: 0 8px 30px var(--shadow-1);
   position: relative;
-  color: #ff9d00;
+  color: #7e4e01;
   transform: translateZ(0);
 }
   .header-row p{margin:0;font-size:0.9rem;color:var(--muted)}
@@ -100,7 +100,7 @@
   /* ラベンダー系 */
   h2.lavender{
     padding:8px 12px;border-radius:12px;
-    background:linear-gradient(90deg, #cda6ff, #b5ccfd);
+    background:linear-gradient(90deg, #dabffe, #c3d6fe);
     color:#422c48;box-shadow:0 8px 22px rgba(109,88,138,0.06);
   }
   h2.lavender::after{content:"✦";margin-left:10px;color:#caa6ff;text-shadow:0 6px 14px rgba(202,166,255,0.12);}
@@ -116,7 +116,7 @@
   /* ピーチ系 */
   h2.peach{
     padding:8px 12px;border-radius:12px;
-    background:linear-gradient(90deg, #ffcad8, #ffe8aa);
+    background:linear-gradient(90deg, #ffd6e1, #ffefc3);
     color:#503040;box-shadow:0 8px 22px rgba(200,110,140,0.04);
   }
   h2.peach::after{content:"♡";margin-left:10px;color:#ffb6d6;font-size:1rem;}
@@ -131,7 +131,7 @@
   /* リボン風 */
   h3.ribbon{
     position:relative;padding:6px 10px;border-radius:999px;
-    background:linear-gradient(90deg,#fdb3b3,#ffa5cd);
+    background:linear-gradient(90deg,#fdb3b3,#ffbad9);
     color:#5a2242;font-weight:800;
     box-shadow:0 8px 20px rgba(255,183,210,0.06);
   }
@@ -146,7 +146,7 @@
   h3.underline{padding-bottom:6px}
   h3.underline::after{
     content:"";display:block;height:6px;border-radius:6px;margin-top:6px;
-    background:linear-gradient(90deg,#b8f0d0,#8fb7ff);opacity:0.18;
+    background:linear-gradient(90deg,#b8f0d0,#aac8ff);opacity:0.18;
   }
 
   /* バッジ左 */
