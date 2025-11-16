@@ -1,11 +1,19 @@
+---
+title: "掛け算の暗算ブラウザゲーム"
+date: 2025-11-16
+permalink: "/y957/"
+draft: false
+sitemap: true
+eleventyExcludeFromCollections: false
+---
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="掛け算の暗算ブラウザゲーム。スマホ横向き対応。0から9の数字ボタンで答えを入力して瞬時に正解判定。子供から大人まで遊べる無料の学習ゲームです。">
+  <meta name="description" content="掛け算の暗算ブラウザゲーム。スマホ対応。0から9の数字ボタンで答えを入力して瞬時に正解判定。子供から大人まで遊べる無料の学習ゲームです。">
   <title>掛け算の暗算ブラウザゲーム</title>
-  <meta name="keywords" content="掛け算,暗算,学習ゲーム,無料">
+  <meta name="keywords" content="掛け算,暗算,ブラウザゲーム">
   <meta name="google-adsense-account" content="ca-pub-3701488620779249">
   <link rel="canonical" href="https://memoc.pages.dev/y957/">
    <link rel="stylesheet" href="/css/y957.css"> 
@@ -28,14 +36,14 @@ gtag('config', 'G-5D799GZERM');
         <div class="tagline">スマホでもパソコンでも簡単に操作できる暗算トレーニング</div>
       </div>
       <nav class="share-row" aria-label="シェア">
-        <a id="share-x" class="share-btn share-x" href="#" title="Xで共有" aria-label="Xで共有">X</a>
-        <a id="share-fb" class="share-btn share-fb" href="#" title="Facebookで共有" aria-label="Facebookで共有">f</a>
-        <a id="share-line" class="share-btn share-line" href="#" title="LINEで共有" aria-label="LINEで共有">LINE</a>
-        <a id="share-mail" class="share-btn share-mail" href="#" title="メールで共有" aria-label="メールで共有">@</a>
+        <a id="share-x" class="share-btn share-x" href="#" title="Xで共有" aria-label="Xで共有">Xでシェア</a>
+        <a id="share-fb" class="share-btn share-fb" href="#" title="Facebookで共有" aria-label="Facebookで共有">facebook</a>
+        <a id="share-line" class="share-btn share-line" href="#" title="LINEで共有" aria-label="LINEで共有">LINEで共有</a>
+        <a id="share-mail" class="share-btn share-mail" href="#" title="メールで共有" aria-label="メールで共有">メールで共有</a>
       </nav>
     </header>
     <section class="card" aria-labelledby="game-heading">
-      <h2 id="game-heading" class="visually-hidden">ゲーム</h2>
+      <h2 id="game-heading" class="visually-hidden">暗算ゲーム</h2>
       <div class="problem" role="group" aria-label="問題">
         <div id="num-left" class="slot" aria-hidden="false">0</div>
         <div class="symbol">×</div>
@@ -57,50 +65,86 @@ gtag('config', 'G-5D799GZERM');
         <button type="button" data-value="8">8</button>
         <button type="button" data-value="9">9</button>
         <button type="button" data-value="0">0</button>
-        <button id="btn-del" type="button" class="btn-del" data-value="del">消</button>
-        <button id="btn-submit" class="btn-submit" data-value="submit">送信</button>
+        <button id="btn-del" type="button" class="btn-del" data-value="del">消す</button>
+        <button id="btn-submit" class="btn-submit" data-value="submit">決定</button>
       </div>
       <div style="display:flex;gap:8px;width:100%;justify-content:center;margin-top:8px;">
         <button id="btn-clear" class="btn-clear" type="button">クリア</button>
-        <button id="btn-next" class="btn-clear" type="button" aria-hidden="true">次へ</button>
+        <button id="btn-next" class="btn-clear" type="button" aria-hidden="true">パス</button>
       </div>
       <div class="score-row" aria-live="polite">
         <div class="score">正解数: <strong id="score-count">0</strong></div>
-        <div class="score" style="font-size:0.9rem;color:var(--muted)">ヒント: キーボードの数字キーでも入力できます</div>
+        <div class="score" style="font-size:0.9rem;color:var(--muted)">パソコンのキーボードの【数字キー】と【エンター】でも操作できます</div>
       </div>
     </section>
     <section class="long-text" aria-labelledby="desc-title">
       <h2 id="desc-title">ゲーム説明と使い方</h2>
       <p>この「掛け算の暗算ブラウザゲーム」は、0から9の数字を3つ掛け合わせた問題を次々と解いていくシンプルな学習ゲームです。スマートフォンでもパソコンでも動作し、操作は画面上の数字ボタンを押すだけで完了します。早押しで瞬間的に計算力を鍛えるのに最適です。</p>
       <h3>特徴</h3>
-      <p>・スマホ横向き時に左右が画面端いっぱいになるよう最適化されています。スマホで横に持って遊ぶと視認性がさらに高まります。<br>
+      <p>・スマホ画面で見やすくなるようデザインされています。スマホを縦に持って遊ぶと視認性が高まります。<br>
       ・シングルプレイで何問正解できるかを数値で記録します。短時間のトレーニングに向いています。<br>
       ・年齢やレベルを問わず使える設計で、算数の基本力アップに貢献します。<br>
+      ・子どもから大人まで脳トレできて、痴呆症の予防やボケ防止にも効果的です。<br>
+      ・複数人の場合は、【5分間で何問正解できるか】などのゲームとしても楽しくご利用いただけます。<br>
       ・キーボード入力に対応しているため、パソコンでも素早くプレイ可能です。</p>
       <h3>遊び方</h3>
       <p>1. 表示された「□ × □ × □ =」の右側にある入力欄に答えを入力します。<br>
-      2. 画面下の数字ボタンまたはキーボードで数字を入力します。<br>
-      3. 「送信」ボタンを押すと正誤が判定されます。正解なら「正解」と表示され、不正解なら「不正解」と表示されます。<br>
+      2. 掛け算暗算問題の下にある数字ボタン、またはキーボードで数字を入力します。<br>
+      3. 「決定」ボタンを押すと正誤が判定されます。正解なら「正解」と表示され、不正解なら「不正解」と表示されます。<br>
       4. 判定後、次の問題が表示されます。何問正解できるかチャレンジしてください。</p>
       <h3>トレーニングのコツ</h3>
       <p>・まずはゆっくり正確に計算する習慣をつけ、慣れてきたら時間を意識して速く解く練習をしましょう。<br>
+      ・毎日少しづつ何回か計算していると、だんだん暗算が早くなります。<br>
       ・分配法則や掛け算の表（九九）を意識して解くと正解率が上がります。<br>
       ・日々の短時間のトレーニングを継続すると暗算力と集中力が向上します。</p>
       <h3>その他の利用シーン</h3>
       <p>・学校の休み時間や家庭学習での反復練習。<br>
       ・通勤・通学の合間にできる短時間学習。<br>
       ・算数教育の補助ツールとして教師や保護者が取り入れる際の補助教材。</p>
-      <p>このページはSEOを最適化した構造で作られており、適切な見出し（h1, h2, h3）と説明文、キーワードを含めています。検索エンジンからの流入を増やし、より多くの人に暗算の楽しさを届けることを目的としています。</p>
+      <p>このページは無料でスマホアプリいらず、更新ダウンロードなしでスマートフォンの容量を圧迫しないサイトです。より多くの人に暗算の楽しさを届けることを目的としています。リンクやシェア、学校や塾など教育機関や介護施設でのご利用などご自由にどうぞ。</p>
     </section>
     <aside class="links" aria-labelledby="related-title">
-      <h3 id="related-title">関連リンク</h3>
-      <a href="#" rel="noopener" aria-label="掛け算早押し">掛け算早押しモード</a>
-      <a href="#" rel="noopener" aria-label="九九練習">九九練習ページ</a>
-      <a href="#" rel="noopener" aria-label="算数学習リソース">算数学習リソース集</a>
+      <h3 id="related-title">関連コンテンツ</h3>
+<ul>
+          <li><a href="https://memoc.pages.dev/y961/" target="_blank" rel="noopener">かけ算わり算ブラウザゲーム</a></li>
+          <li><a href="https://memoc.pages.dev/y960/" target="_blank" rel="noopener">小学生勉強ゲーム集 無料パソコン・スマホ対応</a></li>
+          <li><a href="https://memoc.pages.dev/y962/" target="_blank" rel="noopener">算数一年生ブラウザゲーム</a></li>
+</ul>
+      <h3 id="kanji-title">漢字コンテンツ</h3>
+<ul>
+          <li><a href="https://memoc.pages.dev/y959/" target="_blank" rel="noopener">漢字問題 小学生で習うクイズ</a></li>
+          <li><a href="https://memoc.pages.dev/y958/" target="_blank" rel="noopener">中学一年生の漢字問題ブラウザゲーム</a></li>
+          <li><a href="https://memoc.pages.dev/y977/" target="_blank" rel="noopener">四字熟語ジェネレーター</a></li>
+</ul>
+      <h3 id="english-title">英語クイズゲーム</h3>
+<ul>
+<li><a href="https://memoc.pages.dev/y6f2/" target="_blank" rel="noopener">英語クイズ小学生向けゲームの説明 発音の読み上げネイティブ無料</a></li>
+<li><a href="https://memoc.pages.dev/y8h2/" target="_blank" rel="noopener">英語中学からやり直すサイト高校生も大人も</a></li>
+<li><a href="https://memoc.pages.dev/y10k2/" target="_blank" rel="noopener">英単語勉強法とクイズゲーム一覧</a></li>
+</ul>
+<h3 id="illust-title">美術イラスト</h3>
+<ul>
+<li><a href="https://memoc.pages.dev/y999/" target="_blank" rel="noopener">お絵描きデジタルペイント無料サイト</a></li>
+<li><a href="https://memoc.pages.dev/y995/" target="_blank" rel="noopener">イラストお題ルーレットブラウザアプリ</a></li>
+<li><a href="https://memoc.pages.dev/illust/" target="_blank" rel="noopener">イラスト無料おしゃれでポップなフリー素材画像</a></li>
+</ul>
+<h3 id="time-title">時計ツール</h3>
+<ul>
+<li><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></li>
+<li><a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener">アナログ時計webアプリ表示切替機能付き</a></li>
+<li><a href="https://memoc.pages.dev/yzp1/" target="_blank" rel="noopener">勉強タイマーおすすめwebサイトの説明</a></li>
+</ul>
+<h3 id="schedule-title">スケジュールツール</h3>
+<ul>
+<li><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></li>
+<li><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></li>
+<li><a href="https://memoc.pages.dev/y990/" target="_blank" rel="noopener">時間割ブラウザアプリ</a></li>
+</ul>
     </aside>
     <nav class="footer" aria-label="フッターナビ">
-      <a href="/" title="トップページへ戻る">トップに戻る</a>
-      <a href="/sitemap" title="サイトマップ">サイトマップ</a>
+        <a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイトに戻る</a>
+        <span> | </span>
+        <a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a>
     </nav>
   </main>
   <script src="/js/y957.js"></script>
