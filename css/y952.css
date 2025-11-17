@@ -2,7 +2,7 @@
   --bg:#f9f9fb;
   --card:#ffffff;
   --accent-1:#ff6b6b; /* 赤系 */
-  --accent-2:#ffd36b; /* 青系 */
+  --accent-2:#d6a127; /* 青系 */
   --accent-3:#28d436; /* 黄系 */
   --accent-4:#7affb0; /* 緑系 */
   --link:#0b66ff;    /* リンク青 */
@@ -11,7 +11,7 @@
   --radius:12px;
   --shadow: 0 6px 18px rgba(20,20,30,0.06);
   --cute-1: #ffdce6; /* pastel pink */
-  --cute-2: #e6f7ff; /* pastel sky */
+  --cute-2: #fff6e6; /* pastel  */
   --cute-3: #fff6e0; /* pastel cream */
   --cute-4: #eafff0; /* pastel mint */
   --heading-glow: 0 6px 18px rgba(107,193,255,0.12);
@@ -87,8 +87,8 @@ html,body{
 }
 .btn:active{transform:translateY(1px)}
 .btn-random{background:linear-gradient(90deg,var(--accent-1),#ff9a6b)}
-.btn-copy{background:linear-gradient(90deg,var(--accent-3),#ffc97a)}
-.btn-png{background:linear-gradient(90deg,var(--accent-2),#7cc8ff)}
+.btn-copy{background:linear-gradient(90deg,var(--accent-3),#32d164)}
+.btn-png{background:linear-gradient(90deg,var(--accent-2),#ffc07c)}
 .share-btn{
   background:var(--accent-4);
   color:#033;
@@ -288,10 +288,10 @@ h3{
   padding:8px 12px 8px 38px;
   background:linear-gradient(90deg, rgba(106,220,255,0.12), rgba(255,250,220,0.06));
   border:1px solid rgba(107,193,255,0.12);
-  color: #125e8a;
+  color: #128a2c;
 }
 h3::before{
-  background:linear-gradient(180deg, var(--accent-2), #7cc8ff);
+  background:linear-gradient(180deg, var(--accent-2), #c8ff7c);
   left:12px;
   width:10px;
   height:10px;
