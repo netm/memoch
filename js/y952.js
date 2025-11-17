@@ -231,7 +231,7 @@ const tips = [
   const searchInput = document.getElementById('search-input');
 
   // 初期表示
-  display.textContent = "ここに今日の料理が上達する方法が表示されます";
+  display.textContent = "上のボタンを押すとここに今日の料理が上達する方法を表示";
 
   btnRandom.addEventListener('click', () => {
     const idx = Math.floor(Math.random() * tips.length);
