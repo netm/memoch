@@ -2,7 +2,7 @@
   --bg:#f9f9fb;
   --card:#ffffff;
   --accent-1:#ff6b6b; /* 赤系 */
-  --accent-2:#d6a127; /* 青系 */
+  --accent-2:#b927d6; /* 青系 */
   --accent-3:#28d436; /* 黄系 */
   --accent-4:#7affb0; /* 緑系 */
   --link:#0b66ff;    /* リンク青 */
@@ -88,7 +88,7 @@ html,body{
 .btn:active{transform:translateY(1px)}
 .btn-random{background:linear-gradient(90deg,var(--accent-1),#ff9a6b)}
 .btn-copy{background:linear-gradient(90deg,var(--accent-3),#32d164)}
-.btn-png{background:linear-gradient(90deg,var(--accent-2),#ffc07c)}
+.btn-png{background:linear-gradient(90deg,var(--accent-2),#b927d6)}
 .share-btn{
   background:var(--accent-4);
   color:#033;
