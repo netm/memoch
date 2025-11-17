@@ -140,6 +140,11 @@ body{
   flex-wrap:wrap;
   margin-bottom:12px;
 }
+.related h3{ width:100%; margin:0 0 6px 0; font-size:16px; }
+.related ul{ margin:0 0 12px 0; padding:0 0 0 18px; }
+.related li{ margin:6px 0; list-style:disc; }
+
+/* 通常の .related a は背景付きのカード風リンク（既存デザイン） */
 .related a{
   padding:8px 10px;
   background:#fff;
@@ -148,17 +153,34 @@ body{
   color:#333;
   text-decoration:none;
   font-weight:600;
+  display:inline-block;
 }
 
-/* memoc.pages.dev だけを青にするためのスタイル */
-/* 方法: 専用クラス .memoc-link を付与することで他のリンクに影響を与えない */
-.memoc-link{
-  color:var(--memoc-link);
-  text-decoration:none;
+/* ----- memoc.pages.dev のリンクだけ青にする ----- */
+/* 属性セレクタでドメインを直接判定（キャッシュやクラス忘れにも対応） */
+/* より具体的にするため .related a[href^="https://memoc.pages.dev"] と限定 */
+.related a[href^="https://memoc.pages.dev"]{
+  color:var(--memoc-link) !important;
+  background:transparent !important;
+  border-color:transparent !important;
   font-weight:700;
+  text-decoration:none;
 }
-.memoc-link:hover,
-.memoc-link:focus{
+
+/* もし HTML 側で class="memoc-link" を付けている場合も対応（補完） */
+.related a.memoc-link{
+  color:var(--memoc-link);
+  background:transparent;
+  border-color:transparent;
+  font-weight:700;
+  text-decoration:none;
+}
+
+/* ホバーとフォーカス */
+.related a[href^="https://memoc.pages.dev"]:hover,
+.related a.memoc-link:hover,
+.related a[href^="https://memoc.pages.dev"]:focus,
+.related a.memoc-link:focus{
   text-decoration:underline;
   outline: none;
 }
@@ -179,7 +201,7 @@ body{
 .recipe-card .card-title{
   margin:0 0 6px 0;
   font-size:16px;
-  color:#2e7d32; /* カラフルに */
+  color:#2e7d32;
 }
 .recipe-card .card-steps{ margin:0 0 10px 0; color:var(--muted); font-size:13px; }
 .recipe-card .card-use{
