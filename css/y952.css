@@ -286,12 +286,12 @@ h2::before{
 h3{
   font-size:16px;
   padding:8px 12px 8px 38px;
-  background:linear-gradient(90deg, rgba(106,220,255,0.12), rgba(255,250,220,0.06));
-  border:1px solid rgba(107,193,255,0.12);
-  color: #ff9100;
+  background:linear-gradient(90deg, rgba(255, 106, 255, 0.12), rgba(254, 220, 255, 0.06));
+  border:1px solid rgba(255, 107, 245, 0.12);
+  color: #a40181;
 }
 h3::before{
-  background:linear-gradient(180deg, var(--accent-2), #ffce9b);
+  background:linear-gradient(180deg, var(--accent-2), #ff9bf8);
   left:12px;
   width:10px;
   height:10px;
