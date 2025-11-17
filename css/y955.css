@@ -80,7 +80,7 @@ body{
   padding:18px;
   box-shadow:0 6px 18px rgba(16,24,40,0.06);
   border:1px solid rgba(0,0,0,0.04);
-  overflow:visible; /* 重要：子要素の行端が切れないようにする */
+  overflow:visible; /* 子要素の切れを防ぐ */
 }
 #methodTitle{font-size:1.3rem;color:#a67c00;font-weight:900;margin-bottom:8px}
 #methodBody{font-size:1rem;background:linear-gradient(180deg,#fff,#fffaf0);padding:12px;border-radius:10px;border:1px dashed rgba(0,0,0,0.04);line-height:1.6}
@@ -88,19 +88,15 @@ body{
 /* フラッシュ効果の短いスタイル */
 .flash{box-shadow:0 6px 20px rgba(0,0,0,0.08)}
 
-/* リンク */
-a { color: #1a73e8; text-decoration:none; }
+/* リンク（既存のデフォルトスタイルは維持する）*/
+a { color: #1a73e8; text-decoration:none; } /* 全体のデフォルト青（必要に応じて上書き） */
 a:hover { text-decoration:underline; }
 
-/* SEO説明文 */
-.description{
-  background:linear-gradient(90deg,#fff,#f9fff9);
-  padding:18px;border-radius:10px;border:1px solid rgba(0,0,0,0.03);
-  color:#333;
-}
-.description p{margin-bottom:10px}
+/* 重要: ページ内で"今のまま"の色を維持したいリンクが多数あるので、 */
+/* 既存の配色を壊さない方法として、グローバル a の色はそのままにしておきつつ、 */
+/* 特定条件で上書き制御するためのルールを追加しています。 */
 
-/* 関連リンク（修正ポイント） */
+/* 関連リンク（スタイル調整とマーカー移動） */
 .relatedLinks{
   display:flex;
   flex-direction:column;
@@ -108,10 +104,10 @@ a:hover { text-decoration:underline; }
   flex-wrap:nowrap;
 }
 
-/* 見出し下の ul 全体の左余白を調整してリストマーカー（点）を少し右へ移動 */
+/* ul 全体の左余白を調整してリストマーカー（点）を少し右へ移動 */
 .relatedLinks ul{
   margin:0;
-  padding-left:1.4rem; /* ここでマーカー位置を右に移動（約一文字分） */
+  padding-left:1.4rem; /* マーカー位置を右に移動（約一文字分） */
   list-style-position:outside;
 }
 
@@ -121,7 +117,7 @@ a:hover { text-decoration:underline; }
   padding:6px 0;
   border-radius:8px;
   cursor:pointer;
-  line-height:1.6; /* テキストの下部が切れないよう行間を十分に */
+  line-height:1.6; /* テキストの下部が切れないように */
   min-height:auto;
   overflow:visible;
   display:list-item;
@@ -135,11 +131,18 @@ a:hover { text-decoration:underline; }
   border-radius:8px;
   border:1px solid rgba(0,0,0,0.04);
   font-weight:700;
-  color:inherit;
+  color:inherit; /* 基本は継承（下の特定リンクルールで必要なら上書き） */
   line-height:1.6;
   text-decoration:none;
-  white-space:normal; /* 折り返しを許可 */
+  white-space:normal;
   word-break:break-word;
+}
+
+/* ここが今回の追加ポイント
+   「https://memoc.pages.dev/」で始まるリンクだけ青にする（それ以外のリンクは変更しない）
+   href^="https://memoc.pages.dev/" は先頭一致セレクタで対象のリンクのみ色を指定 */
+.relatedLinks a[href^="https://memoc.pages.dev/"]{
+  color:#1a73e8; /* 青色を強制 */
 }
 
 /* 下部のリスト */
