@@ -2,8 +2,8 @@
   --bg:#f9f9fb;
   --card:#ffffff;
   --accent-1:#ff6b6b; /* 赤系 */
-  --accent-2:#6bc1ff; /* 青系 */
-  --accent-3:#ffd36b; /* 黄系 */
+  --accent-2:#ffd36b; /* 青系 */
+  --accent-3:#28d436; /* 黄系 */
   --accent-4:#7affb0; /* 緑系 */
   --link:#0b66ff;    /* リンク青 */
   --text:#222;
@@ -281,19 +281,6 @@ h2::before{
   border-radius:4px;
   box-shadow:0 6px 18px rgba(255,107,107,0.12);
 }
-/* small tag to the right */
-h2::after{
-  content:"";
-  position:absolute;
-  right:10px;
-  top:50%;
-  transform:translateY(-50%);
-  width:8px;
-  height:8px;
-  background:linear-gradient(180deg,var(--accent-3),#ffd36b);
-  border-radius:50%;
-  box-shadow:0 3px 8px rgba(255,211,107,0.12) inset;
-}
 
 /* Cute h3: compact, pastel underline and tiny star accent */
 h3{
@@ -310,16 +297,6 @@ h3::before{
   height:10px;
   border-radius:50%;
   box-shadow:0 6px 12px rgba(107,193,255,0.12);
-}
-h3::after{
-  content:"✦";
-  position:absolute;
-  right:12px;
-  top:50%;
-  transform:translateY(-50%) scale(0.9);
-  color:rgba(255,215,120,0.95);
-  font-size:12px;
-  text-shadow:0 2px 6px rgba(255,215,120,0.12);
 }
 
 /* Underline styles for both headings (cute dashed underline) */
