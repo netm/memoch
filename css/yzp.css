@@ -30,7 +30,7 @@ main {
 h1{font-size:1.8rem;color:#f5c70f}
 
 /* カラフル見出し */
-h2{background:linear-gradient(90deg,#ef4c4c,#f9ffd3);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.25rem;margin:18px 0}
+h2{background:linear-gradient(90deg,#c1ef4c,#e9ff97);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.25rem;margin:18px 0}
 h3{background:linear-gradient(90deg,#06d6a0,#b2eafd);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.05rem;margin:12px 0}
 
 /* Top Section: Digital Timer, Status, Analog Clock */
