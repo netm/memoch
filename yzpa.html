@@ -72,57 +72,68 @@
       <h1>タイマーおしゃれサイト</h1>
       <p class="left">シンプルでおしゃれ。ワンタップで時間をセットして集中を始められる無料の勉強タイマーです。</p>
     </header>
-    <section class="top-section" aria-labelledby="timer-title">
-      <h2 id="timer-title" class="visually-hidden">デジタルタイマーとアナログ表示</h2>
-      <div id="digital-timer" role="status" aria-live="polite" aria-atomic="true">
-        <span class="digit">00</span>:<span class="digit">00</span>:<span class="digit">00</span>
-      </div>
-      <div id="status" aria-live="assertive" aria-atomic="true">準備完了。時間を選んでスタートしてください。</div>
-      <canvas id="analog-clock" width="80" height="80" role="img" aria-label="アナログ時計"></canvas>
-    </section>
-    <nav class="middle-section" aria-label="タイマー時間プリセット">
-      <h2>時間プリセット</h2>
-      <p class="left">ワンタップで設定できる短時間〜長時間のプリセットを用意しています。学習、休憩、家事、料理など用途に合わせてお使いください。</p>
-      <ul>
-        <li><button type="button" class="duration-btn" data-seconds="10">10秒</button>　<button type="button" class="duration-btn" data-seconds="20">20秒</button>　<button type="button" class="duration-btn" data-seconds="30">30秒</button>　<button type="button" class="duration-btn" data-seconds="40">40秒</button>　<button type="button" class="duration-btn" data-seconds="50">50秒</button></li>
-        <li><button type="button" class="duration-btn" data-seconds="60">60秒</button>　<button type="button" class="duration-btn" data-seconds="90">1分30秒</button>　<button type="button" class="duration-btn" data-seconds="120">2分</button>　<button type="button" class="duration-btn" data-seconds="150">2分30秒</button>
-        <li><button type="button" class="duration-btn" data-seconds="180">3分</button>　<button type="button" class="duration-btn" data-seconds="210">3分30秒</button>　<button type="button" class="duration-btn" data-seconds="240">4分</button>　<button type="button" class="duration-btn" data-seconds="300">5分</button>　<button type="button" class="duration-btn" data-seconds="360">6分</button>　<button type="button" class="duration-btn" data-seconds="420">7分</button>　<button type="button" class="duration-btn" data-seconds="480">8分</button>　<button type="button" class="duration-btn" data-seconds="540">9分</button></li>
-        <li><button type="button" class="duration-btn" data-seconds="600">10分</button>　<button type="button" class="duration-btn" data-seconds="840">14分</button>　<button type="button" class="duration-btn" data-seconds="900">15分</button>　<button type="button" class="duration-btn" data-seconds="1200">20分</button>　<button type="button" class="duration-btn" data-seconds="1500">25分</button></li>
-        <li><button type="button" class="duration-btn" data-seconds="1800">30分</button>　<button type="button" class="duration-btn" data-seconds="2400">40分</button>　<button type="button" class="duration-btn" data-seconds="2700">45分</button>　<button type="button" class="duration-btn" data-seconds="3000">50分</button></li>
-        <li><button type="button" class="duration-btn" data-seconds="3600">60分</button>　<button type="button" class="duration-btn" data-seconds="5400">90分</button>　<button type="button" class="duration-btn" data-seconds="7200">2時間</button>　<button type="button" class="duration-btn" data-seconds="10800">3時間</button></li>
-      </ul>
-    </nav>
-    <section class="controls duration-section" aria-label="サウンドと操作">
-      <h2>サウンド設定と操作</h2>
-      <p class="left">終了時の通知方法は音と点滅から選べます。ブラウザの自動再生制限により音が出ない場合は、ページ内で一度タップして音の再生許可を与えてください。</p>
-      <div role="radiogroup" aria-label="サウンドと点滅の設定">
-        <button type="button" class="sound-btn" aria-pressed="false" data-sound="electronic" data-blink="true">ピピピ 点滅</button>
-        <button type="button" class="sound-btn" aria-pressed="false" data-sound="triangle" data-blink="true">単音 点滅</button>
-        <button type="button" class="sound-btn" aria-pressed="false" data-sound="electronic" data-blink="false">ピピピ</button>
-        <button type="button" class="sound-btn" aria-pressed="false" data-sound="triangle" data-blink="false">単音</button>
-        <button type="button" class="sound-btn" aria-pressed="false" data-sound="none" data-blink="true">点滅のみ</button>
-      </div>
-      <div class="controls">
-        <button type="button" id="start">スタート</button>
-        <button type="button" id="reset">リセット</button>
-        <label for="volume-slider" class="visually-hidden">音量</label>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="音量">
-      </div>
-      <p class="left">「ピピピ」または「単音」を選んだ場合、0秒で音が鳴ります。スリープ中は音が鳴らない可能性があるため、端末のスリープ設定を確認してください。</p>
-    </section>
-    <section aria-labelledby="about-seo">
-      <h2 id="about-seo">サイトの説明（検索流入を増やすための詳細説明）</h2>
+  <div class="top-section">
+    <div id="digital-timer">
+      <span class="digit">00</span>:<span class="digit">00</span>:<span class="digit">00</span>
+    </div>
+    <div id="status"></div>
+    <canvas id="analog-clock" width="80" height="80"></canvas>
+  </div>
+  <div class="middle-section">
+    <button class="duration-btn" data-study="10" data-unit="sec">10秒</button>
+    <button class="duration-btn" data-study="20" data-unit="sec">20秒</button>
+    <button class="duration-btn" data-study="30" data-unit="sec">30秒</button>
+    <button class="duration-btn" data-study="40" data-unit="sec">40秒</button>
+    <button class="duration-btn" data-study="50" data-unit="sec">50秒</button>
+    <button class="duration-btn" data-study="60" data-unit="sec">60秒</button>
+    <button class="duration-btn" data-study="90" data-unit="sec">1分30秒</button>
+    <button class="duration-btn" data-study="120" data-unit="sec">2分</button>
+    <button class="duration-btn" data-study="150" data-unit="sec">2分30秒</button>
+    <button class="duration-btn" data-study="180" data-unit="sec">3分</button>
+    <button class="duration-btn" data-study="210" data-unit="sec">3分30秒</button>
+    <button class="duration-btn" data-study="4" data-unit="min">4分</button>
+    <button class="duration-btn" data-study="5" data-unit="min">5分</button>
+    <button class="duration-btn" data-study="6" data-unit="min">6分</button>
+    <button class="duration-btn" data-study="7" data-unit="min">7分</button>
+    <button class="duration-btn" data-study="8" data-unit="min">8分</button>
+    <button class="duration-btn" data-study="9" data-unit="min">9分</button>
+    <button class="duration-btn" data-study="10" data-unit="min">10分</button>
+    <button class="duration-btn" data-study="14" data-unit="min">14分</button>
+    <button class="duration-btn" data-study="15" data-unit="min">15分</button>
+    <button class="duration-btn" data-study="20" data-unit="min">20分</button>
+    <button class="duration-btn" data-study="25" data-unit="min">25分</button>
+    <button class="duration-btn" data-study="30" data-unit="min">30分</button>
+    <button class="duration-btn" data-study="40" data-unit="min">40分</button>
+    <button class="duration-btn" data-study="45" data-unit="min">45分</button>
+    <button class="duration-btn" data-study="50" data-unit="min">50分</button>
+    <button class="duration-btn" data-study="60" data-unit="min">60分</button>
+    <button class="duration-btn" data-study="90" data-unit="min">90分</button>
+    <button class="duration-btn" data-study="120" data-unit="min">2時間</button>
+    <button class="duration-btn" data-study="180" data-unit="min">3時間</button>
+  </div>
+  <div class="duration-section">
+    <button class="sound-btn" data-sound="electronic" data-blink="true">ピピピ　点滅</button>
+    <button class="sound-btn" data-sound="triangle" data-blink="true">単音　点滅</button>
+    <button class="sound-btn" data-sound="electronic" data-blink="false">ピピピ</button>
+    <button class="sound-btn" data-sound="triangle" data-blink="false">単音</button>
+    <button class="sound-btn" data-sound="none" data-blink="true">点滅</button>
+    <button id="start">スタート</button>
+    <button id="reset">リセット</button>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+  </div>
+  <div class="bottom-section">
+  <p>「ピピピ」もしくは「単音」のボタンを押すと0秒になった時に音が鳴ります。</p>
+  <p>※画面スリープは解除推奨</p>
+  <p>スリープ中はタイマーが鳴らないので、設定を変更して下さい　　<a href="https://memoc.pages.dev/yzp/" target="_blank" rel="noopener">勉強タイマーおすすめwebサイト</a></p>
+  </div>
+      <h2>タイマーサイトの説明</h2>
       <h3>このタイマーの特徴</h3>
       <p>当サイトは「勉強に集中したい人」「作業の区切りを分かりやすくしたい人」を対象に、直感的な操作と安心できるデザインを両立しています。ワンタップでプリセット時間を設定でき、追加設定なしで即座にスタートできます。</p>
       <h3>複数の用途に対応</h3>
-      <p>勉強、ポモドーロ（25分学習＋5分休憩）、短時間の集中トレーニング、運動や料理のタイマー、睡眠前のストレッチ時間計測など、用途は多岐にわたります。プリセットは自由に選べ、必要ならカスタム入力にも対応できます。</p>
-      <h3>モバイルでの使い勝手</h3>
-      <p>スマホ・タブレット・PCすべてで見やすいレスポンシブデザインを採用。端末がスリープしても正確に終了時間を管理するため、内部ロジックは「終了時刻ベース」で動作します。これにより、スリープ中のズレを最小化します。</p>
-      <h3>アクセシビリティと使いやすさ</h3>
-      <p>スクリーンリーダー対応の aria-live 領域、キーボード操作でのフォーカス、明確なフォーカスリング、配色は視認性を重視して設計しています。テキストサイズ調整や拡大にも対応し、誰でも使える設計を目指しています。</p>
+      <p>勉強、ポモドーロ（25分学習＋5分休憩）、短時間の集中トレーニング、運動や料理のタイマー、睡眠前のストレッチ時間計測など、用途は多岐にわたります。ボタンをタップするだけで選べます。</p>
       <h3>音が鳴らないときの対策</h3>
       <p>ブラウザの自動再生制限により音が鳴らない場合は、画面を一度タップして音の再生を「許可」する仕組みを案内しています。さらに無音の短いバープレイで再生許可を取得するオプションを用意しています。</p>
-      <h3>よくある使い方の提案</h3>
+      <h3>よくある使い方</h3>
       <ul>
         <li>受験勉強：ポモドーロ法で25分学習＋5分休憩を繰り返す</li>
         <li>家事：短いサイクルで集中して片付けや料理を行う</li>
@@ -130,7 +141,6 @@
         <li>休憩リマインダー：長時間作業時の定期的な休憩通知</li>
       </ul>
       <p class="left">※下の関連リンクでは、当サイト内の便利ツールや解説ページへすぐ移動できます。目的に合わせてご利用ください。</p>
-    </section>
     <!-- ここから関連リンク群（説明文の直後） -->
     <section aria-labelledby="related-links">
       <h2 id="related-links">関連リンク</h2>
@@ -158,13 +168,13 @@
         <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー 副菜1つ</a></li>
         <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立一週間分ブラウザアプリ 副菜2つ</a></li>
     </ul>
-      <h3>節約ツール</h2>
+      <h3>節約ツール</h3>
 <ul>
         <li><a href="https://memoc.pages.dev/y956/" target="_blank" rel="noopener">節約できる栄養レシピ500 — 毎日使える簡単お料理</a></li>
         <li><a href="https://memoc.pages.dev/y963/" target="_blank" rel="noopener">節約一人暮らしの食費をおさえる300の方法</a></li>
         <li><a href="https://memoc.pages.dev/y955/" target="_blank" rel="noopener">節約ダイエット - 簡単で続く低コストダイエット方法のアイデア</a></li>
 </ul>
-      <h3>時短ツール</h2>
+      <h3>時短ツール</h3>
 <ul>
         <li><a href="https://memoc.pages.dev/y953/" target="_blank" rel="noopener">時短お菓子レシピ｜短時間で作れる簡単スイーツ集</a></li>
         <li><a href="https://memoc.pages.dev/y952/" target="_blank" rel="noopener">料理が上達する上手になる方法 腕を上げるには</a></li>
