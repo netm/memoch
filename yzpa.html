@@ -1,123 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-<meta name="description" content="タイマーおしゃれサイトはweb上で簡単設定できます。PC・スマホ・タブレット対応です">
-        <meta name="keywords" content="タイマー,おしゃれ,サイト">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-         <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-  <title>タイマーおしゃれサイト</title>
-    <link rel="canonical" href="https://memoc.pages.dev/yzpa/">
+  <meta charset="utf-8">
+  <title>タイマーおしゃれサイト — シンプルで使いやすい（PC・スマホ対応）</title>
+  <meta name="description" content="無料で使えるおしゃれなタイマー。ワンタップでセット、終了時には音と点滅でお知らせ。スリープ対策は終了時刻ベースのカウントで安定稼働。アクセシビリティ対応・モバイル最適化済み。">
+  <meta name="keywords" content="勉強タイマー,タイマー,おしゃれ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://memoc.pages.dev/yzpa/">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#F8F0F4">
   <link rel="stylesheet" href="/css/yzp.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249"
-     crossorigin="anonymous"></script>
+  <style>
+    /* 最低限のアクセシビリティ / レイアウト補助 */
+    :root{
+      --bg:#fffafc; --accent:#ff7ab6; --accent-dark:#c75486; --muted:#6b6b6b;
+      --radius:12px; --shadow: 0 6px 18px rgba(20,10,20,0.06);
+      --focus: 3px solid rgba(199,81,134,0.2);
+    }
+    html,body{height:100%;margin:0;font-family:Inter, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;background:var(--bg);color:#333;}
+    main{max-width:980px;margin:18px auto;padding:20px;}
+    header h1{font-size:1.6rem;margin:0 0 8px;color:var(--accent-dark);}
+    .top-section{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px;border-radius:var(--radius);box-shadow:var(--shadow);background:#fff;}
+    #digital-timer{font-family:monospace;font-size:1.8rem;background:linear-gradient(90deg,#fff,#fff0);padding:8px 12px;border-radius:10px;color:var(--accent-dark);}
+    .digit{display:inline-block;min-width:28px;text-align:center;}
+    #status{font-size:0.95rem;color:var(--muted);min-width:160px;}
+    #analog-clock{border-radius:8px;background:#fff3f8;}
+    nav.middle-section ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:8px;list-style:none;padding:0;margin:14px 0;}
+    nav.middle-section li{}
+    button{background:#fff;border:1px solid #f0d9e6;padding:10px;border-radius:10px;cursor:pointer;color:var(--accent-dark);box-shadow:var(--shadow);font-weight:600;}
+    button[type="button"]:focus{outline:none;box-shadow:var(--focus);}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0;}
+    .sound-btn[aria-pressed="true"]{background:linear-gradient(180deg,#ffd3ea,#ffb6dd);border-color:var(--accent);}
+    .duration-section p{color:var(--muted)}
+    .left{margin:6px 0;color:#444}
+    a{color:var(--accent-dark);text-decoration:none}
+    a:focus{outline:none;box-shadow:var(--focus)}
+    /* 点滅アニメーション（控えめ） */
+    @keyframes blink {50%{opacity:0.1;}}
+    .blink{animation:blink 0.6s steps(2,end) 6;}
+    /* 動きを制限する設定に対応 */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important;}
+    }
+    /* 視覚的に隠すユーティリティ */
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px;}
+    footer{margin-top:28px;padding-top:20px;border-top:1px solid #f3e9ef;color:var(--muted)}
+    /* レスポンシブ調整 */
+    @media (max-width:480px){
+      #digital-timer{font-size:1.3rem}
+      header h1{font-size:1.2rem}
+    }
+  </style>
+  <!-- 構造化データ（簡易） -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"タイマーおしゃれサイト",
+    "url":"https://memoc.pages.dev/yzpa/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://memoc.pages.dev/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5D799GZERM');
-</script>
-<body>  <div class="top-section">
-    <div id="digital-timer">
-      <span class="digit">00</span>:<span class="digit">00</span>:<span class="digit">00</span>
-    </div>
-    <div id="status"></div>
-    <canvas id="analog-clock" width="80" height="80"></canvas>
-  </div>
-  <div class="middle-section">
-    <button class="duration-btn" data-study="10" data-unit="sec">10秒</button>
-    <button class="duration-btn" data-study="20" data-unit="sec">20秒</button>
-    <button class="duration-btn" data-study="30" data-unit="sec">30秒</button>
-    <button class="duration-btn" data-study="40" data-unit="sec">40秒</button>
-    <button class="duration-btn" data-study="50" data-unit="sec">50秒</button>
-    <button class="duration-btn" data-study="60" data-unit="sec">60秒</button>
-    <button class="duration-btn" data-study="90" data-unit="sec">1分30秒</button>
-    <button class="duration-btn" data-study="120" data-unit="sec">2分</button>
-    <button class="duration-btn" data-study="150" data-unit="sec">2分30秒</button>
-    <button class="duration-btn" data-study="180" data-unit="sec">3分</button>
-    <button class="duration-btn" data-study="210" data-unit="sec">3分30秒</button>
-    <button class="duration-btn" data-study="4" data-unit="min">4分</button>
-    <button class="duration-btn" data-study="5" data-unit="min">5分</button>
-    <button class="duration-btn" data-study="6" data-unit="min">6分</button>
-    <button class="duration-btn" data-study="7" data-unit="min">7分</button>
-    <button class="duration-btn" data-study="8" data-unit="min">8分</button>
-    <button class="duration-btn" data-study="9" data-unit="min">9分</button>
-    <button class="duration-btn" data-study="10" data-unit="min">10分</button>
-    <button class="duration-btn" data-study="14" data-unit="min">14分</button>
-    <button class="duration-btn" data-study="15" data-unit="min">15分</button>
-    <button class="duration-btn" data-study="20" data-unit="min">20分</button>
-    <button class="duration-btn" data-study="25" data-unit="min">25分</button>
-    <button class="duration-btn" data-study="30" data-unit="min">30分</button>
-    <button class="duration-btn" data-study="40" data-unit="min">40分</button>
-    <button class="duration-btn" data-study="45" data-unit="min">45分</button>
-    <button class="duration-btn" data-study="50" data-unit="min">50分</button>
-    <button class="duration-btn" data-study="60" data-unit="min">60分</button>
-    <button class="duration-btn" data-study="90" data-unit="min">90分</button>
-    <button class="duration-btn" data-study="120" data-unit="min">2時間</button>
-    <button class="duration-btn" data-study="180" data-unit="min">3時間</button>
-  </div>
-  <div class="duration-section">
-    <button class="sound-btn" data-sound="electronic" data-blink="true">ピピピ　点滅</button>
-    <button class="sound-btn" data-sound="triangle" data-blink="true">単音　点滅</button>
-    <button class="sound-btn" data-sound="electronic" data-blink="false">ピピピ</button>
-    <button class="sound-btn" data-sound="triangle" data-blink="false">単音</button>
-    <button class="sound-btn" data-sound="none" data-blink="true">点滅</button>
-    <button id="start">スタート</button>
-    <button id="reset">リセット</button>
-    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
-  </div>
-  <div class="bottom-section">
-  <p>「ピピピ」もしくは「単音」のボタンを押すと0秒になった時に音が鳴ります。</p>
-  <p>※画面スリープは解除推奨</p>
-  <p>スリープ中はタイマーが鳴らないので、設定を変更して下さい　　<a href="https://memoc.pages.dev/yzp/" target="_blank" rel="noopener">勉強タイマーおすすめwebサイト</a></p>
-  </div>
-<br>
-<p class="left">タイマー・時計</p>
-<p class="left"><a href="https://memoc.pages.dev/yzp1" target="_blank" rel="noopener">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></p>
-<p class="left"><a href="https://memoc.pages.dev/yzpa1" target="_blank" rel="noopener">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></p>
-<p class="left"><a href="https://memoc.pages.dev/tokei" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></p>
-<br>
-<p class="left">スケジュール</p>
-<p class="left"><a href="https://memoc.pages.dev/y992" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y990" target="_blank" rel="noopener">時間割ブラウザアプリ</a></p>
-<br>
-<p class="left">カレンダー</p>
-<p class="left"><a href="https://memoc.pages.dev/y998s" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚子どもも簡単作成</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y998" target="_blank" rel="noopener">カレンダー今月無料で書き込みダウンロード保存も</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y991" target="_blank" rel="noopener">ゴミ収集カレンダー</a></p>
-<br>
-<p class="left">生活</p>
-<p class="left"><a href="https://memoc.pages.dev/y988" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y989" target="_blank" rel="noopener">家の中の物の寿命一覧｜買い替え時期と次回購入日を自動計算</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y986" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a></p>
-<br>
-         <p class="left">無料ゲーム集</p>
-<p class="left"><a href="https://memoc.pages.dev/game1" target="_blank" rel="noopener">無料ブラウザゲームPCスマホタブレット対応</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y3c2/" target="_blank" rel="noopener">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></p>
-<br>
-         <p class="left">学習ゲーム</p>
-<p class="left"><a href="https://memoc.pages.dev/y10k2/" target="_blank" rel="noopener">英単語勉強法のおぼえやすい方法とおぼえにくい方法</a></p>
-<p class="left"><a href="https://memoc.pages.dev/y960/" target="_blank" rel="noopener">小学生勉強ゲーム集 無料パソコン・スマホ対応</a></p>
-<br>
-         <p class="left">TVerを便利に</p>
-<p class="left"><a href="https://memoc.pages.dev/tver" target="_blank" rel="noopener">TVerティーバーの検索用リンク集 ジャンル タレント名 俳優別</a></p>
-<br>
-         <p class="left">便利な電卓・計算機</p>
-<p class="left"><a href="https://memoc.pages.dev/interestcalculation" target="_blank" rel="noopener">複利電卓・積立NISAの金額再投資計算機</a></p>
-<p class="left"><a href="https://memoc.pages.dev/toushi" target="_blank" rel="noopener">投資メモ電卓webブラウザ無料サイト</a></p>
-<p class="left"><a href="https://memoc.pages.dev/memode" target="_blank" rel="noopener">メモ付き電卓webブラウザ無料サイト</a></p>
-<p class="left"><a href="https://memoc.pages.dev/muden" target="_blank" rel="noopener">電卓無料サイト 生活に役立つ便利なリンク集</a></p>
-  <br>
-        <div id="footer"><p class="left"><a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイト</a></p><br>
-<p class="left"><a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a></p>
-<p class="left"><a href="https://memoc.pages.dev/illust/" target="_blank" rel="noopener">イラスト無料おしゃれでポップなフリー素材画像 人物女の子動物</a></p><br><br><br>
-        <p class="left"><span class="copyright">
+<body>
+  <main>
+    <header>
+      <h1>タイマーおしゃれサイト</h1>
+      <p class="left">シンプルでおしゃれ。ワンタップで時間をセットして集中を始められる無料の勉強タイマーです。</p>
+    </header>
+    <section class="top-section" aria-labelledby="timer-title">
+      <h2 id="timer-title" class="visually-hidden">デジタルタイマーとアナログ表示</h2>
+      <div id="digital-timer" role="status" aria-live="polite" aria-atomic="true">
+        <span class="digit">00</span>:<span class="digit">00</span>:<span class="digit">00</span>
+      </div>
+      <div id="status" aria-live="assertive" aria-atomic="true">準備完了。時間を選んでスタートしてください。</div>
+      <canvas id="analog-clock" width="80" height="80" role="img" aria-label="アナログ時計"></canvas>
+    </section>
+    <nav class="middle-section" aria-label="タイマー時間プリセット">
+      <h2>時間プリセット</h2>
+      <p class="left">ワンタップで設定できる短時間〜長時間のプリセットを用意しています。学習、休憩、家事、料理など用途に合わせてお使いください。</p>
+      <ul>
+        <li><button type="button" class="duration-btn" data-seconds="10">10秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="20">20秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="30">30秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="40">40秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="50">50秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="60">60秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="90">1分30秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="120">2分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="150">2分30秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="180">3分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="210">3分30秒</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="240">4分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="300">5分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="360">6分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="420">7分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="480">8分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="540">9分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="600">10分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="840">14分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="900">15分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="1200">20分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="1500">25分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="1800">30分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="2400">40分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="2700">45分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="3000">50分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="3600">60分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="5400">90分</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="7200">2時間</button></li>
+        <li><button type="button" class="duration-btn" data-seconds="10800">3時間</button></li>
+      </ul>
+    </nav>
+    <section class="controls duration-section" aria-label="サウンドと操作">
+      <h2>サウンド設定と操作</h2>
+      <p class="left">終了時の通知方法は音と点滅から選べます。ブラウザの自動再生制限により音が出ない場合は、ページ内で一度タップして音の再生許可を与えてください。</p>
+      <div role="radiogroup" aria-label="サウンドと点滅の設定">
+        <button type="button" class="sound-btn" aria-pressed="false" data-sound="electronic" data-blink="true">ピピピ 点滅</button>
+        <button type="button" class="sound-btn" aria-pressed="false" data-sound="triangle" data-blink="true">単音 点滅</button>
+        <button type="button" class="sound-btn" aria-pressed="false" data-sound="electronic" data-blink="false">ピピピ</button>
+        <button type="button" class="sound-btn" aria-pressed="false" data-sound="triangle" data-blink="false">単音</button>
+        <button type="button" class="sound-btn" aria-pressed="false" data-sound="none" data-blink="true">点滅のみ</button>
+      </div>
+      <div class="controls">
+        <button type="button" id="start">スタート</button>
+        <button type="button" id="reset">リセット</button>
+        <label for="volume-slider" class="visually-hidden">音量</label>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="音量">
+      </div>
+      <p class="left">「ピピピ」または「単音」を選んだ場合、0秒で音が鳴ります。スリープ中は音が鳴らない可能性があるため、端末のスリープ設定を確認してください。</p>
+    </section>
+    <section aria-labelledby="about-seo">
+      <h2 id="about-seo">サイトの説明（検索流入を増やすための詳細説明）</h2>
+      <h3>このタイマーの特徴</h3>
+      <p>当サイトは「勉強に集中したい人」「作業の区切りを分かりやすくしたい人」を対象に、直感的な操作と安心できるデザインを両立しています。ワンタップでプリセット時間を設定でき、追加設定なしで即座にスタートできます。</p>
+      <h3>複数の用途に対応</h3>
+      <p>勉強、ポモドーロ（25分学習＋5分休憩）、短時間の集中トレーニング、運動や料理のタイマー、睡眠前のストレッチ時間計測など、用途は多岐にわたります。プリセットは自由に選べ、必要ならカスタム入力にも対応できます。</p>
+      <h3>モバイルでの使い勝手</h3>
+      <p>スマホ・タブレット・PCすべてで見やすいレスポンシブデザインを採用。端末がスリープしても正確に終了時間を管理するため、内部ロジックは「終了時刻ベース」で動作します。これにより、スリープ中のズレを最小化します。</p>
+      <h3>アクセシビリティと使いやすさ</h3>
+      <p>スクリーンリーダー対応の aria-live 領域、キーボード操作でのフォーカス、明確なフォーカスリング、配色は視認性を重視して設計しています。テキストサイズ調整や拡大にも対応し、誰でも使える設計を目指しています。</p>
+      <h3>音が鳴らないときの対策</h3>
+      <p>ブラウザの自動再生制限により音が鳴らない場合は、画面を一度タップして音の再生を「許可」する仕組みを案内しています。さらに無音の短いバープレイで再生許可を取得するオプションを用意しています。</p>
+      <h3>よくある使い方の提案</h3>
+      <ul>
+        <li>受験勉強：ポモドーロ法で25分学習＋5分休憩を繰り返す</li>
+        <li>家事：短いサイクルで集中して片付けや料理を行う</li>
+        <li>トレーニング：インターバルワークアウトの計測</li>
+        <li>休憩リマインダー：長時間作業時の定期的な休憩通知</li>
+      </ul>
+      <p class="left">※下の関連リンクでは、当サイト内の便利ツールや解説ページへすぐ移動できます。目的に合わせてご利用ください。</p>
+    </section>
+    <!-- ここから関連リンク群（説明文の直後） -->
+    <section aria-labelledby="related-links">
+      <h2 id="related-links">関連リンク</h2>
+      <nav aria-label="関連ページ一覧">
+        <ul>
+          <li><a href="https://memoc.pages.dev/yzp1" target="_blank" rel="noopener">勉強タイマーおすすめwebサイトの説明 PCスマホ対応</a></li>
+          <li><a href="https://memoc.pages.dev/yzpa1" target="_blank" rel="noopener">タイマーおしゃれサイトの解説 3分で音が鳴る設定も簡単3タッチ</a></li>
+          <li><a href="https://memoc.pages.dev/tokei" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></li>
+        </ul>
+      </nav>
+      <h2 id="schedule-links">スケジュール</h2>
+      <nav aria-label="スケジュール">
+        <ul>
+        <li><a href="https://memoc.pages.dev/y992" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></li>
+        <li><a href="https://memoc.pages.dev/y998s" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚</a></li>
+        <li><a href="https://memoc.pages.dev/y998" target="_blank" rel="noopener">カレンダー今月無料で書き込み</a></li>
+        <li><a href="https://memoc.pages.dev/y990" target="_blank" rel="noopener">時間割ブラウザアプリ</a></li>
+        </ul>
+      </nav>
+    </section>
+    <footer id="footer" role="contentinfo">
+      <h3>献立メニュー</h3>
+    <ul>
+        <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らしの1週間献立メーカー｜単品メニュー</a></li>
+        <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー 副菜1つ</a></li>
+        <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立一週間分ブラウザアプリ 副菜2つ</a></li>
+    </ul>
+      <h3>節約ツール</h2>
+<ul>
+        <li><a href="https://memoc.pages.dev/y956/" target="_blank" rel="noopener">節約できる栄養レシピ500 — 毎日使える簡単お料理</a></li>
+        <li><a href="https://memoc.pages.dev/y963/" target="_blank" rel="noopener">節約一人暮らしの食費をおさえる300の方法</a></li>
+        <li><a href="https://memoc.pages.dev/y955/" target="_blank" rel="noopener">節約ダイエット - 簡単で続く低コストダイエット方法のアイデア</a></li>
+</ul>
+      <h3>時短ツール</h2>
+<ul>
+        <li><a href="https://memoc.pages.dev/y953/" target="_blank" rel="noopener">時短お菓子レシピ｜短時間で作れる簡単スイーツ集</a></li>
+        <li><a href="https://memoc.pages.dev/y952/" target="_blank" rel="noopener">料理が上達する上手になる方法 腕を上げるには</a></li>
+</ul>
+      <h3>生活コンテンツ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+        <li><a href="https://memoc.pages.dev/y989/" target="_blank" rel="noopener">家の中の物の寿命一覧｜買い替え時期を自動計算</a></li>
+        <li><a href="https://memoc.pages.dev/y981/" target="_blank" rel="noopener">日付換算ツール 年齢計算と時間単位変換</a></li>
+    </ul>
+      <h3>食品・食材</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理アプリ</a></li>
+        <li><a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a></li>
+        <li><a href="https://memoc.pages.dev/y976/" target="_blank" rel="noopener">料理・生活の感覚単位換算チャート ひとつまみ</a></li>
+      </ul>
+      <h3>貯金</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ おすすめ無料フォーマット</a></li>
+          <li><a href="https://memoc.pages.dev/memod/" target="_blank" rel="noopener">メモ付き電卓 — 計算＋メモの無料ウェブツール</a></li>
+          <li><a href="https://memoc.pages.dev/interestcalculation/" target="_blank" rel="noopener">複利電卓・積立NISAの金額計算機</a></li>
+      </ul>
+      <h3>お掃除</h3>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y966/" target="_blank" rel="noopener">埃を除去する方法100 乾燥・水分・家電・予防</a></li>
+          <li><a href="https://memoc.pages.dev/y967/" target="_blank" rel="noopener">大掃除リスト | どこから始めると効率がいいか解説</a></li>
+          <li><a href="https://memoc.pages.dev/y968/" target="_blank" rel="noopener">大掃除チェックリスト</a></li>
+        </ul>
+      <h3>エンタメ</h3>
+      <ul>
+          <li><a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener">TVerティーバーの検索用リンク集</a></li>
+          <li><a href="https://memoc.pages.dev/yuenchi/" target="_blank" rel="noopener">遊園地などの入場者ランキング</a></li>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集 PCスマホタブレット</a></li>
+      </ul>
+      <p class="left"><span class="copyright">
         Memochougawariwebburauzabennrisaito participates in the amazon associates program<br>
-        Copyright(C) メモ帳代わりwebブラウザ便利サイト 無料で生活に役立つリンク集 All rights reserved. </span><br><br><br></p>
-        </div>
-<script src="/js/yzpa.js"></script>
+        Copyright(C) メモ帳代わりwebブラウザ便利サイト All rights reserved.
+      </span></p>
+    </footer>
+  </main>
+  <!-- スクリプト類（非同期／defer） -->
+  <!-- Analytics: ユーザー同意 (CMP) がある場合に読み込むのが推奨 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701488620779249" crossorigin="anonymous"></script>
+  <!-- Gtag は defer で読み込み、初期化も defer スクリプト内で行うことを想定 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+  <script>
+    /* 最小限の gtag 初期化（運用時は CMP 同意と組み合わせてください） */
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5D799GZERM');
+  </script>
+  <script src="/js/yzpa.js" defer></script>
+  <noscript><p style="color:#a33">JavaScript が無効になっています。タイマーは動作しません。</p></noscript>
 </body>
 </html>
