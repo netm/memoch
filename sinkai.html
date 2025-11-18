@@ -14,23 +14,101 @@
   <meta property="og:url" content="https://memoc.pages.dev/sinkai/">
   <meta property="og:image" content="https://memoc.pages.dev/images/zsinkai1.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- JSON-LD: Article + Images + VideoObject (動画構造化データ) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "深海魚の不細工でかわいい画像まとめ! 食べるの?",
-    "description": "沼津港深海水族館で撮影した不細工でかわいい深海魚の写真と動画、食用可否、観察ポイントをまとめたガイド。",
-    "image": "https://memoc.pages.dev/images/zsinkai1.jpg",
-    "author": {
-      "@type": "Person",
-      "name": "メモ帳代わりwebブラウザ便利サイト"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "メモ帳代わりwebブラウザ便利サイト",
-      "url": "https://memoc.pages.dev/"
-    },
-    "mainEntityOfPage": "https://memoc.pages.dev/sinkai/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://memoc.pages.dev/#organization",
+        "name": "メモ帳代わりwebブラウザ便利サイト",
+        "url": "https://memoc.pages.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://memoc.pages.dev/images/logo.png",
+          "width": 600,
+          "height": 60
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://memoc.pages.dev/#author",
+        "name": "メモ帳代わりwebブラウザ便利サイト"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://memoc.pages.dev/images/zsinkai1.jpg",
+        "url": "https://memoc.pages.dev/images/zsinkai1.jpg",
+        "width": 1200,
+        "height": 675,
+        "caption": "アカグツ（沼津港深海水族館で撮影）"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://memoc.pages.dev/images/zsinkai3.jpg",
+        "url": "https://memoc.pages.dev/images/zsinkai3.jpg",
+        "width": 1200,
+        "height": 675,
+        "caption": "ミドリフサアンコウ（別名アカアンコウ）"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://memoc.pages.dev/images/zshinkai4.jpg",
+        "url": "https://memoc.pages.dev/images/zshinkai4.jpg",
+        "width": 1200,
+        "height": 675,
+        "caption": "ダイオウグソクムシ（撮影）"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://memoc.pages.dev/images/zshinkai5.jpg",
+        "url": "https://memoc.pages.dev/images/zshinkai5.jpg",
+        "width": 1200,
+        "height": 800,
+        "caption": "メンダコ（展示個体）"
+      },
+      {
+        "@type": "VideoObject",
+        "@id": "https://memoc.pages.dev/videos/kompeto-video",
+        "name": "コンペイトウの動画",
+        "description": "丸っこい体と突起が特徴のコンペイトウを水族館で撮影した動画。ヒレのゆったりした動きが観察できます。",
+        "thumbnailUrl": [
+          "https://i.ytimg.com/vi/nmMv17Nylt0/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/nmMv17Nylt0/hqdefault.jpg"
+        ],
+        "uploadDate": "2023-01-15T00:00:00+09:00",
+        "duration": "PT0M45S",
+        "contentUrl": "https://www.youtube.com/watch?v=nmMv17Nylt0",
+        "embedUrl": "https://www.youtube.com/embed/nmMv17Nylt0",
+        "interactionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": { "@type": "http://schema.org/WatchAction" },
+          "userInteractionCount": 12000
+        },
+        "publisher": { "@id": "https://memoc.pages.dev/#organization" },
+        "author": { "@id": "https://memoc.pages.dev/#author" }
+      },
+      {
+        "@type": "Article",
+        "@id": "https://memoc.pages.dev/sinkai/#article",
+        "headline": "深海魚の不細工でかわいい画像まとめ! 食べるの?",
+        "description": "沼津港深海水族館で撮影した不細工でかわいい深海魚の写真と動画、食用可否、観察ポイントをまとめたガイド。",
+        "datePublished": "2023-01-16T10:00:00+09:00",
+        "dateModified": "2025-11-18T09:00:00+09:00",
+        "mainEntityOfPage": "https://memoc.pages.dev/sinkai/",
+        "author": { "@id": "https://memoc.pages.dev/#author" },
+        "publisher": { "@id": "https://memoc.pages.dev/#organization" },
+        "image": [
+          { "@id": "https://memoc.pages.dev/images/zsinkai1.jpg" },
+          { "@id": "https://memoc.pages.dev/images/zsinkai3.jpg" },
+          { "@id": "https://memoc.pages.dev/images/zshinkai4.jpg" },
+          { "@id": "https://memoc.pages.dev/images/zshinkai5.jpg" }
+        ],
+        "video": { "@id": "https://memoc.pages.dev/videos/kompeto-video" },
+        "keywords": "深海魚,沼津港,アカグツ,メンダコ,ダイオウグソクムシ,食べる,画像"
+      }
+    ]
   }
   </script>
 </head>
@@ -59,7 +137,10 @@
         <p>食用について: 種によって扱いが異なりますが、一般的には市場流通は限られるため水族館で観察することが主です。</p>
         <div style="clear:left;"></div>
         <h2>コンペイトウ — 名前も見た目も金平糖そっくり</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/nmMv17Nylt0?si=t7hstJR9X6usouS8" title="コンペイトウの動画" frameborder="0" loading="lazy" allowfullscreen></iframe>
+        <figure>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/nmMv17Nylt0?si=t7hstJR9X6usouS8" title="コンペイトウの動画" frameborder="0" loading="lazy" allowfullscreen></iframe>
+          <figcaption>コンペイトウの動画（YouTube）</figcaption>
+        </figure>
         <p>丸っこい体と突起のある外見が金平糖を連想させる深海生物。泳ぐときのヒレの動きがゆったりで、ブサかわいい魅力があります。</p>
         <h2>ミドリフサアンコウ（アカアンコウ） — 食用にもなるアンコウ種</h2>
         <figure style="float:left; margin:0 1em 1em 0;">
