@@ -73,6 +73,20 @@ h4 {
   color: var(--accent-4);
   margin-top: 1.6em;
 }
+.sidetitle  {
+  padding: 0.5rem 1rem;
+  color: #414538;
+  border-radius: 2vh;
+  background-image: -webkit-gradient(linear, right top, left top, from(#9be15d), to(#00e3ae));
+  background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
+  background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
+}
+.sidetitle:before {
+  content: '★';
+  color: #eeff33;
+  margin-right: 8px;
+}
+
     /* 明示的に横書きを強制することで縦書き表示の不具合を防ぐ */
     body, #content, #container, #calculator, #links-left {
       writing-mode: horizontal-tb !important;
