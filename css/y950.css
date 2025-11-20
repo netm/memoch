@@ -1,0 +1,153 @@
+        /* CSS全文 */
+        :root {
+            --roulette-speed: 0.1s; /* ルーレットの回転速度 (初期値) */
+            --recipe-height: 5rem; /* レシピアイテムの高さ */
+        }
+       
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* スマホ横向き（ランドスケープ）対応 - 画面の端まで使う */
+        @media (orientation: landscape) and (max-width: 1023px) {
+            .container-main {
+                max-width: 100vw;
+                padding: 0.5rem;
+            }
+        }
+
+        /* タイトルのカラフルなグラデーション */
+        .colorful-title {
+            background-image: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* レシピボタンのカラフルなスタイル */
+        .recipe-btn {
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border: none;
+        }
+        .recipe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+       
+        /* ルーレットコンテナ */
+        #rouletteContainer {
+            height: calc(var(--recipe-height) * 3); /* 3アイテム分を表示 */
+            overflow: hidden;
+            position: relative;
+            border-radius: 1rem;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+        }
+       
+        /* ルーレットリスト */
+        #rouletteList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            width: 100%;
+            /* 初期状態ではアニメーションなし */
+        }
+
+        /* ルーレットアイテム */
+        .roulette-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--recipe-height);
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            border-bottom: 1px solid #eee;
+            background-color: #f7f7f7;
+            transition: background-color 0.3s;
+        }
+
+        /* ルーレットの中心線 (停止位置を示す) */
+        #rouletteContainer::before,
+        #rouletteContainer::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            height: 2px;
+            background-color: #ef4444; /* 赤 */
+            box-shadow: 0 0 5px #ef4444;
+        }
+       
+        /* 上の線 */
+        #rouletteContainer::before {
+            top: var(--recipe-height);
+        }
+
+        /* 下の線 */
+        #rouletteContainer::after {
+            bottom: var(--recipe-height);
+        }
+
+        /* 常に回転させるアニメーション */
+        .is-spinning {
+            animation: spin var(--roulette-speed) linear infinite;
+        }
+       
+        @keyframes spin {
+            from {
+                transform: translateY(0);
+            }
+            /* レシピの高さ分上に移動し、ループさせる */
+            to {
+                transform: translateY(calc(-1 * var(--recipe-height)));
+            }
+        }
+
+        /* シェアボタンのカラフルなホバーエフェクト */
+        .share-btn {
+            transition: transform 0.2s;
+            color: #1f2937; /* Default icon color */
+        }
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+        .x-btn:hover { color: #000000; }
+        .facebook-btn:hover { color: #1877f2; }
+        .line-btn:hover { color: #00c300; }
+        .email-btn:hover { color: #ef4444; }
+       
+        /* SEOテキストの装飾 */
+        .seo-section h2 {
+            border-left: 5px solid #3b82f6;
+            padding-left: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            color: #3b82f6;
+        }
+        .seo-section h3 {
+            color: #10b981;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+       
+        /* 関連リンクとフッターのリンク */
+        .footer-link, .related-link {
+            color: #3b82f6; /* 青色 */
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-link:hover, .related-link:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        /* CSS全文ここまで */

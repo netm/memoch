@@ -7,21 +7,22 @@
   <meta name="description" content="投資メモと電卓が無料で使えるWebツール。積立NISA・複利計算、家計管理テンプレート、株式リンク集をワンストップで提供します.">
   <meta name="keywords" content="投資,電卓,メモ,株式リンク集">
   <meta name="google-adsense-account" content="ca-pub-3701488620779249">
-    <link rel="canonical" href="https://memoc.pages.dev/toushi/">
-  <link rel="stylesheet" href="/css/c.css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"投資メモ電卓webブラウザ無料サイト","url":"https://memoc.pages.dev/toushi/","description":"投資メモと電卓が無料で使えるWebツール。積立NISAの複利計算や株式リンク集を提供します。","potentialAction":{"@type":"SearchAction","target":"https://memoc.pages.dev/toushi/?q={search_term_string}","query-input":"required name=search_term_string"}}
-  </script>
+  <link rel="canonical" href="https://memoc.pages.dev/toushi/">
+<link rel="stylesheet" href="/css/c.css">
   <style>
     /* 最低限のレスポンシブ調整 */
     #container{max-width:1100px;margin:0 auto;padding:12px;font-family:system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;}
     #banner h1 a{color:inherit;text-decoration:none;}
     /* デスクトップ：サイドを左に固定する既存スタイル */
     #links-left{float:left;width:280px;padding:8px;box-sizing:border-box;}
-    #content{margin-left:300px;padding:8px;box-sizing:border-box;}
+    #content{margin-left:300px;padding:8px;box-sizing:border-box; writing-mode: horizontal-tb;}
     #calculator{max-width:320px;}
     #calculator table{width:100%;border-collapse:collapse;}
     #calculator button{width:100%;padding:12px;font-size:1.05rem;}
+    /* メモ textarea の調整 */
+    textarea#memo { width:100%; box-sizing:border-box; max-width:100%; resize:vertical; min-height:180px; }
+    /* QR画像の安定表示 */
+    #links-left img { display:block; max-width:100%; height:auto; }
     /* モバイルでサイドを本文の下に配置するための調整
        DOM順は変更せず、CSSのorderで表示順を入れ替える */
     @media (max-width:800px){
@@ -47,6 +48,12 @@
       /* 小さい画面でのカルキュレータ幅調整 */
       #calculator{max-width:100%;}
     }
+
+    /* 明示的に横書きを強制することで縦書き表示の不具合を防ぐ */
+    body, #content, #container, #calculator, #links-left {
+      writing-mode: horizontal-tb !important;
+      -webkit-writing-mode: horizontal-tb !important;
+    }
   </style>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -63,7 +70,9 @@
     <h1><a href="https://memoc.pages.dev/toushi/" rel="noopener noreferrer">投資メモ電卓webブラウザ無料サイト</a></h1>
     <div class="blockbody">
       <p>投資メモと電卓が無料の便利サイトです</p>
+    </div>
   </div>
+
   <div id="links-left" aria-label="サイドナビゲーション">
     <div class="sidetitle">電卓ツール</div>
     <div class="side">
@@ -97,13 +106,13 @@
       <p><a href="https://memoc.pages.dev/y977/" target="_blank" rel="noopener noreferrer">四字熟語ジェネレーターとあいうえお一覧</a></p>
       <p><a href="https://memoc.pages.dev/y984/" target="_blank" rel="noopener noreferrer">日本全国方言比較辞典｜地域ごとの言葉の違い一覧</a></p>
     </div>
-        <div class="sidetitle">お仕事ジェネレーター</div>
+    <div class="sidetitle">お仕事ジェネレーター</div>
     <div class="side">
       <p><a href="https://memoc.pages.dev/y980/" target="_blank" rel="noopener">面接で使える質問テンプレ100｜ジェネレーター</a></p>
       <p><a href="https://memoc.pages.dev/y978/" target="_blank" rel="noopener">営業トークで使う発見質問50｜ジェネレーター</a></p>
       <p><a href="https://memoc.pages.dev/y979/" target="_blank" rel="noopener">カスタマー対応で使える質問例50｜ジェネレーター</a></p>
       <p><a href="https://memoc.pages.dev/y994/" target="_blank" rel="noopener">退職者へのメッセージジェネレーター上司・同僚・後輩・一言にも対応</a></p>
-        </ul>
+    </div>
     <div class="sidetitle">無料ゲーム</div>
     <div class="side">
       <p><a href="https://memoc.pages.dev/sensuikangame1/" target="_blank" rel="noopener noreferrer">潜水艦ゲーム 解説</a></p>
@@ -137,23 +146,25 @@
     </div>
     <div class="sidetitle">暮らし生活リンク</div>
     <div class="side">
-      <a href="https://www.post.japanpost.jp/index/" target="_blank" rel="noopener noreferrer">郵便局</a>
-      <a href="https://www.kuronekoyamato.co.jp/" target="_blank" rel="noopener noreferrer">ヤマト運輸</a>
+      <a href="https://www.post.japanpost.jp/index/" target="_blank" rel="noopener noreferrer">郵便局</a><br>
+      <a href="https://www.kuronekoyamato.co.jp/" target="_blank" rel="noopener noreferrer">ヤマト運輸</a><br>
       <a href="https://amzn.to/3RVk3jJ/" target="_blank" rel="noopener noreferrer">Amazon</a>
     </div>
     <div class="sidetitle">リンク</div>
     <div class="side">
-      <a href="https://slun.web.fc2.com/" target="_blank" rel="noopener noreferrer">新宿ランチ会 相席の社会人サークル</a>
-      <a href="https://katam.web.fc2.com/" target="_blank" rel="noopener noreferrer">肩にこり枕</a>
-      <a href="https://tuboli.web.fc2.com/" target="_blank" rel="noopener noreferrer">ツボの理屈</a>
+      <a href="https://slun.web.fc2.com/" target="_blank" rel="noopener noreferrer">新宿ランチ会 相席の社会人サークル</a><br>
+      <a href="https://katam.web.fc2.com/" target="_blank" rel="noopener noreferrer">肩にこり枕</a><br>
+      <a href="https://tuboli.web.fc2.com/" target="_blank" rel="noopener noreferrer">ツボの理屈</a><br>
       <a href="https://takra.web.fc2.com/" target="_blank" rel="noopener noreferrer">卓球中古ラケット 激安店</a>
     </div>
     <div class="sidetitle">ＱＲコード</div>
     <div class="side"><img alt="投資メモサイトのQRコード" src="https://memoc.pages.dev/images/memochou.png" width="220" height="220"></div>
   </div>
+
   <div id="content" role="main">
     <h2>投資メモ 株式リンク集</h2>
     <p>投資メモと電卓が無料で使える当サイトは、積立NISAや長期投資の金額シミュレーション、投資メモの保存、日々の株価チェック用リンク集をワンストップで提供します。初心者向けに「少額から始める投資」「複利の効果」「リスク管理の基本」も分かりやすく解説しています。</p>
+
     <!-- メモフォーム -->
     <section aria-labelledby="memo-heading">
       <h3 id="memo-heading">投資メモ 保存欄</h3>
@@ -168,17 +179,21 @@
         <p id="memoNotice" aria-live="polite"></p>
       </form>
     </section>
+
     <p><a href="https://memoc.pages.dev/interestcalculation/" target="_blank" rel="noopener noreferrer">複利電卓 無料 積立NISAの金額再投資計算機</a></p>
     <p>こちらの複利電卓 積立NISAの金額再投資計算機は、無料でお使いいただけます。</p>
+
     <p>投資用株式リンク集　
       <a href="https://finance.yahoo.co.jp/quote/998407.O/chart" target="_blank" rel="noopener noreferrer">日経平均チャート</a>
       <a href="https://finance.yahoo.co.jp/quote/%5EDJI/chart" target="_blank" rel="noopener noreferrer">NYダウチャート</a>
       <a href="https://finance.yahoo.co.jp/quote/%5EIXIC/chart" target="_blank" rel="noopener noreferrer">ナスダックチャート</a>
     </p>
+
     <p>
       <a href="https://nikkei225jp.com/chart/" target="_blank" rel="noopener noreferrer">日経平均リアルタイムチャート</a>
       <a href="https://nikkei225jp.com/nasdaq/" target="_blank" rel="noopener noreferrer">NYダウ平均株価リアルタイムチャート</a>
     </p>
+
     <p>
       <a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener noreferrer">ヤフーファイナンス</a>
       <a href="https://finance.yahoo.co.jp/stocks/ranking/up" target="_blank" rel="noopener noreferrer">値上がりランキング</a>
@@ -187,17 +202,22 @@
       <a href="https://finance.yahoo.co.jp/stocks/ranking/stopLow" target="_blank" rel="noopener noreferrer">ストップ安</a>
       <a href="https://finance.yahoo.co.jp/stocks/ranking/volume" target="_blank" rel="noopener noreferrer">出来高</a>
     </p>
+
     <p><a href="https://kabutan.jp/" target="_blank" rel="noopener noreferrer">株探</a>　　<a href="https://minkabu.jp/" target="_blank" rel="noopener noreferrer">みんかぶ</a></p>
     <p><a href="https://www.nikkei.com/" target="_blank" rel="noopener noreferrer">日本経済新聞</a></p>
+
     <h3>株初心者は何から始めるか まずは少額から NISA のすすめ</h3>
     <p>投資初心者におすすめのスタートは、少額投資と知識の習得です。まずは投資の入門書を読み、10万円程度の少額から実際に始め、積立NISAなど非課税枠を活用して長期分散投資を行いましょう。</p>
+
     <h4>信用取引とレバレッジの注意点</h4>
     <p>信用取引は高いリスクを伴い、暴落局面で損失が大きく膨らむ可能性があります。長期の資産形成を目指すなら現物中心の運用と資金管理を優先してください。</p>
+
     <h3>電卓 web ブラウザ 計算機とメモ帳</h3>
     <div id="calculator" aria-labelledby="calc-heading">
       <h4 id="calc-heading">簡易電卓</h4>
-      <input type="text" id="display" aria-label="電卓表示" disabled>
-      <table role="grid" aria-label="電卓キー">
+      <!-- disabled を readonly に変更して選択やコピーを可能にする -->
+      <input type="text" id="display" aria-label="電卓表示" readonly>
+      <table role="grid" aria-label="電卓キー" role="group" aria-roledescription="電卓">
         <tr>
           <td><button type="button" onclick="appendToDisplay('7')" aria-label="数字7">7</button></td>
           <td><button type="button" onclick="appendToDisplay('8')" aria-label="数字8">8</button></td>
@@ -231,6 +251,7 @@
       </table>
       <p id="calcNotice" aria-live="polite"></p>
     </div>
+
     <!-- FAQ for search snippets -->
     <section aria-labelledby="faq-heading">
       <h3 id="faq-heading">よくある質問</h3>
@@ -245,7 +266,9 @@
         <dd>はい。レスポンシブ対応でスマホ／タブレットでも使いやすく設計しています。</dd>
       </dl>
     </section>
+
     <hr>
+
     <h3>株式証券会社 銀行の便利リンク集</h3>
     <p>株式証券会社・NISA積み立て　
       <a href="https://www.nomura.co.jp/" target="_blank" rel="noopener noreferrer">野村證券</a>
@@ -271,93 +294,133 @@
       <a href="https://moneykit.net/" target="_blank" rel="noopener noreferrer">ソニー銀行</a>
     </p>
   </div> <!-- #content -->
+
   <div style="clear:both"></div>
 </div> <!-- #container -->
+
+<!-- ここで修正済みのJSを読み込む（ページ内で直接埋め込む場合は下に script を置く） -->
 <script>
-/* メモの自動保存と保存/読み込み処理 */
+/* 以下は上で提示した toushi-fix.js の中身をページ内に直接埋める場合の実行スニペットです。
+   サイト運用上は外部ファイルとして読み込むほうが望ましいです。 */
 (function(){
+
+  /* ---------- メモ機能 ---------- */
   const textarea = document.getElementById('memo');
   const saveBtn = document.getElementById('memoSave');
   const clearBtn = document.getElementById('memoClear');
   const notice = document.getElementById('memoNotice');
   const STORAGE_KEY = 'toushi_memo_v1';
-  // 初期読み込み
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if(saved) textarea.value = saved;
-  } catch(e) {
-    console.warn('localStorage unavailable', e);
+
+  function safeSetItem(key, value){
+    try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
   }
-  // 入力時にデバウンスで自動保存
+  function safeGetItem(key){
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function safeRemoveItem(key){
+    try { localStorage.removeItem(key); return true; } catch (e) { return false; }
+  }
+
+  const saved = safeGetItem(STORAGE_KEY);
+  if(saved) textarea.value = saved;
+
   let saveTimer = null;
   textarea.addEventListener('input', function(){
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function(){
-      try {
-        localStorage.setItem(STORAGE_KEY, textarea.value);
+      const ok = safeSetItem(STORAGE_KEY, textarea.value);
+      if(ok){
         notice.textContent = 'メモを自動保存しました';
-      } catch(e) {
-        notice.textContent = '自動保存に失敗しました';
+      } else {
+        notice.textContent = '自動保存に失敗しました。重要ならコピーして保存してください。';
       }
-      setTimeout(()=>{ notice.textContent = '' }, 1500);
+      setTimeout(()=>{ notice.textContent = '' }, 1800);
     }, 700);
   });
+
   saveBtn.addEventListener('click', function(){
-    try {
-      localStorage.setItem(STORAGE_KEY, textarea.value);
-      notice.textContent = 'メモを保存しました';
-    } catch(e) {
-      notice.textContent = '保存に失敗しました';
-    }
-    setTimeout(()=>{ notice.textContent = '' }, 1500);
+    const ok = safeSetItem(STORAGE_KEY, textarea.value);
+    if(ok){ notice.textContent = 'メモを保存しました'; }
+    else { notice.textContent = '保存に失敗しました。コピーして外部にバックアップしてください。'; }
+    setTimeout(()=>{ notice.textContent = '' }, 1800);
   });
+
   clearBtn.addEventListener('click', function(){
-    if(confirm('メモを消去しますか？')) {
+    if(confirm('メモを消去しますか？')){
       textarea.value = '';
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-      } catch(e) {}
+      safeRemoveItem(STORAGE_KEY);
       notice.textContent = 'メモを消去しました';
       setTimeout(()=>{ notice.textContent = '' }, 1500);
     }
   });
-})();
-/* 電卓機能 セキュアな式検証と評価 */
-(function(){
+
+  /* ---------- 電卓機能 ---------- */
   const display = document.getElementById('display');
   const calcNotice = document.getElementById('calcNotice');
+
+  (function ensureHorizontalWriting(){
+    if(display){ display.style.writingMode = 'horizontal-tb'; }
+    const content = document.getElementById('content');
+    if(content){ content.style.writingMode = 'horizontal-tb'; }
+  })();
+
+  function isUserTypingInField(){
+    const elem = document.activeElement;
+    if(!elem) return false;
+    const tag = elem.tagName;
+    if(tag === 'TEXTAREA' || tag === 'INPUT') return true;
+    if(elem.isContentEditable) return true;
+    return false;
+  }
+
   window.appendToDisplay = function(value){
     display.value = (display.value || '') + value;
   };
+
   window.clearDisplay = function(){
     display.value = '';
     calcNotice.textContent = '';
   };
+
   window.backspace = function(){
     display.value = (display.value || '').slice(0, -1);
   };
-  // 安全性: 許可文字だけを通す正規表現
-  const ALLOWED = /^[0-9+\-*/().\s%]+$/;
+
+  const ALLOWED_CHARS = /^[0-9+\-*/().\s%]+$/;
+
+  function balancedParentheses(s){
+    let depth = 0;
+    for(let i=0;i<s.length;i++){
+      const c = s[i];
+      if(c === '(') depth++;
+      if(c === ')'){
+        depth--;
+        if(depth < 0) return false;
+      }
+    }
+    return depth === 0;
+  }
+
+  function validateExpression(s){
+    if(!s || !s.trim()) { calcNotice.textContent = '式を入力してください'; return false; }
+    if(!ALLOWED_CHARS.test(s)){ calcNotice.textContent = '無効な文字が含まれています'; return false; }
+    if(!balancedParentheses(s)){ calcNotice.textContent = '括弧が整合していません'; return false; }
+    if(/[+\-*/]{2,}/.test(s.replace(/\s+/g,''))){ calcNotice.textContent = '演算子が連続しています'; return false; }
+    if(/^[+\/*)]|[+\-*/.]$/.test(s.trim())){ calcNotice.textContent = '式の先頭または末尾が不正です'; return false; }
+    if(/\.\.+/.test(s)){ calcNotice.textContent = '小数点の使い方が不正です'; return false; }
+    return true;
+  }
+
   window.calculateResult = function(){
-    const expr = (display.value || '').trim();
-    if(!expr){
-      calcNotice.textContent = '式を入力してください';
-      return;
-    }
-    // 小数やパーセントを許容するための前処理
-    // パーセントを扱う: 50% -> (50/100)
-    const replaced = expr.replace(/([0-9]+(?:\.[0-9]+)?)%/g, '($1/100)');
-    if(!ALLOWED.test(replaced)){
-      display.value = 'Error';
-      calcNotice.textContent = '無効な文字が含まれています';
-      return;
-    }
+    const exprRaw = (display.value || '').trim();
+    if(!exprRaw){ calcNotice.textContent = '式を入力してください'; return; }
+    if(!validateExpression(exprRaw)) { display.value = 'Error'; return; }
+    const replaced = exprRaw.replace(/([0-9]+(?:\.[0-9]+)?)%/g, '($1/100)');
+    if(!ALLOWED_CHARS.test(replaced)){ display.value = 'Error'; calcNotice.textContent = '無効な文字が含まれています'; return; }
     try {
-      // 評価は Function を用いるが事前に厳密な検証を実施しているため安全性を確保
-      // eslint-disable-next-line no-new-func
-      const fn = new Function('return ' + replaced + ';');
+      const fn = new Function('"use strict"; return (' + replaced + ');');
       const result = fn();
-      if(typeof result === 'number' && isFinite(result)) {
+      if(typeof result === 'number' && isFinite(result)){
         display.value = String(result);
         calcNotice.textContent = '';
       } else {
@@ -369,30 +432,16 @@
       calcNotice.textContent = '計算に失敗しました';
     }
   };
-  // キーボード操作対応
+
   document.addEventListener('keydown', function(e){
     const key = e.key;
-    if(/^[0-9+\-*/().%]$/.test(key)) {
-      // 数字や演算子はそのまま追加（入力フォーカスは電卓ボタンではないが許容）
-      // Prevent interfering with other inputs when textarea is focused
-      if(document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
-        appendToDisplay(key);
-        e.preventDefault();
-      }
-    } else if(key === 'Enter'){
-      if(document.activeElement.tagName !== 'TEXTAREA') {
-        calculateResult();
-        e.preventDefault();
-      }
-    } else if(key === 'Backspace'){
-      if(document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
-        backspace();
-        e.preventDefault();
-      }
-    } else if(key === 'Escape'){
-      clearDisplay();
-    }
+    if(isUserTypingInField()) return;
+    if(/^[0-9+\-*/().%]$/.test(key)) { appendToDisplay(key); e.preventDefault(); }
+    else if(key === 'Enter'){ calculateResult(); e.preventDefault(); }
+    else if(key === 'Backspace'){ backspace(); e.preventDefault(); }
+    else if(key === 'Escape'){ clearDisplay(); }
   }, false);
+
 })();
 </script>
 </body>

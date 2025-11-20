@@ -1,0 +1,232 @@
+---
+title: "晩御飯が決まらない時の料理レシピルーレット"
+date: 2025-11-20
+permalink: "/y950/"
+draft: false
+sitemap: true
+eleventyExcludeFromCollections: false
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>晩御飯が決まらない時の料理レシピルーレット</title>
+  <meta name="description" content="簡単操作でスマホ・PC対応。定番・こってり・あっさりのルーレットで今日の晩ごはんを即決。テキストコピー、PNG保存、SNSシェア対応のレシピルーレット。">
+  <meta name="keywords" content="晩御飯,決まらない,料理,レシピ">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y950/">
+  <meta name="robots" content="index,follow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/css/y950.css">
+  <style>
+    /* 最低限のルーレット用 CSS（外部 aaa.css があれば上書きされます） */
+    #rouletteContainer { height: 240px; overflow: hidden; position: relative; }
+    #rouletteList { list-style: none; padding: 0; margin: 0; position: absolute; left: 0; right: 0; }
+    .roulette-item {
+      height: 80px; /* RECIPE_HEIGHT と一致 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      background: white;
+    }
+    /* 高速回転用の CSS アニメーション（必要なら調整） */
+    .is-spinning {
+      animation: spinFast 0.6s linear infinite;
+    }
+    @keyframes spinFast {
+      0%   { transform: translateY(var(--tmp-pos, 0)); }
+      100% { transform: translateY(calc(var(--tmp-pos, 0) - 240px)); }
+    }
+    /* ハイライト見た目（Tailwind クラスが存在しない場合の保険） */
+    .bg-yellow-300 { background-color: #fcd34d !important; }
+    .ring-4 { box-shadow: 0 0 0 8px rgba(252,211,77,0.2) !important; }
+    .ring-yellow-500 { outline-color: #f59e0b !important; }
+  </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body class="p-4 md:p-8 lg:p-10">
+  <div class="container-main mx-auto max-w-4xl bg-white p-6 md:p-10 rounded-xl shadow-2xl">
+    <header>
+      <h1 id="mainTitle" class="colorful-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center mb-6">
+        晩御飯が決まらない時の料理レシピルーレット
+      </h1>
+    </header>
+    <section class="mb-8">
+      <h2 class="sr-only">レシピジャンル選択と便利機能</h2>
+      <div id="recipeButtons" class="grid grid-cols-3 gap-4 mb-6">
+        <button id="btnTeiban" data-genre="teiban" class="recipe-btn px-4 py-3 rounded-xl text-white font-bold bg-green-500 hover:bg-green-600">
+          定番レシピ
+        </button>
+        <button id="btnKotteri" data-genre="kotteri" class="recipe-btn px-4 py-3 rounded-xl text-white font-bold bg-red-500 hover:bg-red-600">
+          こってりレシピ
+        </button>
+        <button id="btnAssari" data-genre="assari" class="recipe-btn px-4 py-3 rounded-xl text-white font-bold bg-blue-500 hover:bg-blue-600">
+          あっさりレシピ
+        </button>
+      </div>
+      <div id="utilityButtons" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <button id="btnCopy" class="recipe-btn flex items-center justify-center px-4 py-3 rounded-xl bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold">
+          <i class="fas fa-copy mr-2"></i>文章コピー
+        </button>
+        <button id="btnSavePng" class="recipe-btn flex items-center justify-center px-4 py-3 rounded-xl bg-purple-400 hover:bg-purple-500 text-white font-bold">
+          <i class="fas fa-image mr-2"></i>PNG画像で保存
+        </button>
+      </div>
+      <div id="shareButtonContainer" class="flex justify-center space-x-4">
+        <h3 class="sr-only">レシピのシェア</h3>
+        <a href="#" id="shareX" class="share-btn x-btn p-3 rounded-full bg-gray-100 hover:bg-white transition-all" aria-label="X (旧Twitter)でシェア">
+          <i class="fab fa-twitter text-xl"></i>
+        </a>
+        <a href="#" id="shareFacebook" class="share-btn facebook-btn p-3 rounded-full bg-gray-100 hover:bg-white transition-all" aria-label="Facebookでシェア">
+          <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        <a href="#" id="shareLine" class="share-btn line-btn p-3 rounded-full bg-gray-100 hover:bg-white transition-all" aria-label="Lineでシェア">
+          <i class="fab fa-line text-xl"></i>
+        </a>
+        <a href="#" id="shareEmail" class="share-btn email-btn p-3 rounded-full bg-gray-100 hover:bg-white transition-all" aria-label="Eメールでシェア">
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+      </div>
+    </section>
+    <div id="recipeDisplayContainer" class="p-6 bg-yellow-50 border-4 border-yellow-300 rounded-xl shadow-lg mb-8">
+      <p class="text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-800 tracking-wider">
+        選択された献立：
+      </p>
+      <div id="recipeDisplay" class="text-center text-4xl sm:text-5xl lg:text-6xl font-black text-red-600 my-4 p-2">
+        ボタンを押してルーレット開始！
+      </div>
+    </div>
+    <div class="text-center mb-8">
+      <button id="stopButton" disabled class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xl font-bold rounded-full transition-all shadow-xl hover:shadow-2xl disabled:bg-gray-400 disabled:cursor-not-allowed">
+        ルーレットストップ！
+      </button>
+    </div>
+    <div id="rouletteContainerWrapper" class="relative">
+      <div id="rouletteContainer" class="relative w-full mx-auto">
+        <ul id="rouletteList">
+          <!-- li が JavaScript により挿入されます -->
+        </ul>
+      </div>
+    </div>
+    <div id="messageBox" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+      <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full text-center">
+        <p id="messageText" class="text-lg font-semibold mb-4"></p>
+        <button onclick="document.getElementById('messageBox').style.display='none';" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">閉じる</button>
+      </div>
+    </div>
+    <section class="seo-section mt-12 p-6 bg-gray-50 rounded-xl shadow-inner">
+      <h2 class="colorful-title">【迷う時間ゼロへ】究極の晩御飯献立決定ツール</h2>
+      <p class="mt-4 text-gray-700">
+        「今日の晩御飯、何にしよう」毎日の献立の悩みから解放されませんか？本サイトは、料理のプロも愛用する料理メニューをランダムに決定し、あなたが選んだジャンル（定番、こってり、あっさり）から気分に合う人気のレシピを瞬時に選び出します。夕食の準備を始める前のわずかな時間で、献立のモヤモヤをスッキリ解消できます。</p>
+      <h3>ルーレット機能で料理のレパートリーを無限に拡張</h3>
+      <p class="mt-2 text-gray-700">
+        マンネリ化しがちな食卓に、新鮮な風を吹き込みます。「定番レシピ」では、老若男女に愛される肉じゃがや生姜焼き、カレーライスなどの人気メニューを厳選。家族の誰もが笑顔になること間違いなしです。「こってりレシピ」は、疲れた日やがっつり食べたい日に最適な、とんかつや麻婆豆腐、スタミナ丼などがラインナップ。そして、「あっさりレシピ」は、健康志向の方や軽めに済ませたい日にぴったりの、冷製パスタや和え物、焼き魚などをご提案します。</p>
+      <h3>忙しい現代人のための時短・効率化レシピ選び</h3>
+      <p class="mt-2 text-gray-700">
+        共働き世帯や子育て中のご家庭にとって、献立決めは大きな負担です。このレシピルーレットは、ワンタップで数秒のうちに献立を提案し、そのレシピ名を即座にコピーしたり、PNG画像として保存・共有することが可能です。料理に悩む時間や献立を考える時間は減らしたい。そんなあなたのニーズに応えるために、無料でメニューを提供します。</p>
+      <h3>晩御飯の決め方や献立で迷うという方に</h3>
+      <p class="mt-2 text-gray-700">
+        本サイトは、晩御飯の決め方や献立で迷うという方に、レシピをランダムに夕食のおすすめ品として表示します。多くのユーザーに役立つ情報提供を継続します。毎日利用することで、あなたの食生活が豊かになることをお約束します。</p>
+      <section class="seo-desc" aria-label="サイト説明">
+        <h3 style="color:#7c4dff">サイトの説明</h3>
+        <p>晩御飯のメニューが決まらない時にすぐ使える「晩御飯レシピルーレット」です。
+          定番レシピ、こってりレシピ、あっさりレシピの3ジャンルから選んでボタンを押すだけで、
+          そのジャンルに合わせた料理候補がルーレットに並び、自動で回転します。</p>
+        <p>スマホとパソコン両方で快適に操作できるように設計されており、
+          スマートフォンでも画面の表示を見やすくしています。</p>
+        <p>ルーレットを止めると、3秒ほどかけて自然に速度が落ち、選ばれたレシピが上の大きな表示枠に表示されます。
+          表示されたレシピはボタン一つで文章コピーしたり、PNG画像として保存して保存・共有できます。</p>
+        <p>SNSシェアボタン（X、Facebook、LINE）、メールでの共有も用意しているため、
+          家族や友人と今日のメニューを簡単に共有できます。複数人で決められないときや献立を考える時間を節約したいときに最適です。</p>
+        <p>このページはSEOを考慮して、わかりやすい見出しと豊富な本文を含んでいます。
+          「晩御飯 レシピ 決め方」「献立 ルーレット」「今日の晩ごはん アイデア」などの検索キーワードで見つけやすく作られています。</p>
+        <p>さらに、好みに応じてレシピに材料を追加・アレンジ料理にするとよりいっそうメニューが楽しめます。
+          家族の好みやその日の冷蔵庫の食材に合わせてカスタマイズして使っていただけます。</p>
+        <p>見やすく簡単な操作性、SNS共有・保存機能を備え、料理のレパートリーを増やしたい方や、
+          毎日の献立に悩むすべての人に役立つツールとしてご活用ください。</p>
+      </section>
+      <h3 class="colorful-title">関連リンク</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+          <li><a href="https://memoc.pages.dev/y953/" target="_blank" rel="noopener">時短お菓子レシピ｜短時間で作れる簡単スイーツ集</a></li>
+        <li><a href="https://memoc.pages.dev/y952/" target="_blank" rel="noopener">料理が上達する上手になる方法 腕を上げるには</a></li>
+</ul>
+      <h3>献立メニュー</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+        <li><a href="https://memoc.pages.dev/y974/" target="_blank" rel="noopener">一人暮らしの1週間献立メーカー｜単品メニュー料理</a></li>
+        <li><a href="https://memoc.pages.dev/y973/" target="_blank" rel="noopener">一週間の夕食献立メーカー</a></li>
+        <li><a href="https://memoc.pages.dev/y972/" target="_blank" rel="noopener">栄養バランス献立一週間分ブラウザアプリ 副菜2つ</a></li>
+      </ul>
+      <h3>料理コンテンツ</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+        <li><a href="https://memoc.pages.dev/y970/" target="_blank" rel="noopener">野菜の作り置きレシピジェネレーター</a></li>
+        <li><a href="https://memoc.pages.dev/y971/" target="_blank" rel="noopener">野菜炒め味付けジェネレーター 簡単で人気の種類別</a></li>
+        <li><a href="https://memoc.pages.dev/y969/" target="_blank" rel="noopener">卵ヘルシーレシピ｜簡単で栄養たっぷりの卵料理</a></li>
+      </ul>
+      <h3>節約コンテンツ</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+          <li><a href="https://memoc.pages.dev/y956/" target="_blank" rel="noopener">節約できる栄養レシピ500 — 毎日使える簡単お料理</a></li>
+          <li><a href="https://memoc.pages.dev/y955/" target="_blank" rel="noopener">節約ダイエット - 簡単で続く低コストダイエット方法のアイデア</a></li>
+          <li><a href="https://memoc.pages.dev/y963/" target="_blank" rel="noopener">節約一人暮らしの食費をおさえる300の方法</a></li>
+</ul>
+      <h3>食品・食材</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+        <li><a href="https://memoc.pages.dev/y988/" target="_blank" rel="noopener">冷蔵庫ストッカー | 食品ロスを防ぐ消費期限管理</a></li>
+        <li><a href="https://memoc.pages.dev/y986/" target="_blank" rel="noopener">非常食データベースと保存年数ランキング</a></li>
+        <li><a href="https://memoc.pages.dev/y975/" target="_blank" rel="noopener">生活ハック百科</a></li>
+      </ul>
+      <h3>節約・貯金</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+          <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener">家計簿項目表のブラウザアプリ 無料フォーマット付</a></li>
+          <li><a href="https://memoc.pages.dev/memode/" target="_blank" rel="noopener">メモ付き電卓webブラウザ無料サイト</a></li>
+          <li><a href="https://memoc.pages.dev/interestcalculation/" target="_blank" rel="noopener">複利電卓・積立NISAの金額再投資計算機</a></li>
+      </ul>
+      <h3>時計・タイマー</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+        <li><a href="https://memoc.pages.dev/tokei/" target="_blank" rel="noopener">現在時刻リアルタイム秒時計Web表示</a></li>
+        <li><a href="https://memoc.pages.dev/y985/" target="_blank" rel="noopener">アナログ時計webアプリ表示切替機能付き</a></li>
+        <li><a href="https://memoc.pages.dev/yzpa1/" target="_blank" rel="noopener">タイマーおしゃれサイトの解説</a></li>
+      </ul>
+      <h3>スケジュール</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+          <li><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener">スケジュール帳ブラウザアプリ</a></li>
+          <li><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener">書き込みカレンダー無料で手作り感覚</a></li>
+          <li><a href="https://memoc.pages.dev/y990/" target="_blank" rel="noopener">時間割ブラウザアプリ</a></li>
+      </ul>
+      <h3>お掃除</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+          <li><a href="https://memoc.pages.dev/y966/" target="_blank" rel="noopener">埃を除去する方法100 乾燥・水分・家電・予防</a></li>
+          <li><a href="https://memoc.pages.dev/y967/" target="_blank" rel="noopener">大掃除リスト | どこから始めると効率がいい</a></li>
+          <li><a href="https://memoc.pages.dev/y968/" target="_blank" rel="noopener">大掃除チェックリスト</a></li>
+        </ul>
+      <h3>暮らしを楽しむ</h3>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+          <li><a href="https://memoc.pages.dev/tver/" target="_blank" rel="noopener">TVerティーバーの検索用リンク集</a></li>
+          <li><a href="https://memoc.pages.dev/yuenchi/" target="_blank" rel="noopener">遊園地などの入場者ランキング</a></li>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集 PCスマホタブレット</a></li>
+      </ul>
+    </section>
+    <footer class="mt-10 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
+      <nav class="flex justify-center space-x-6">
+      <p><a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイト</a></p>
+      <p><a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a></p>
+      <p><a href="https://memoc.pages.dev/y954/" target="_blank" rel="noopener">相場よりお安く個人用ホームページ作成</a></p>
+      <p><a href="https://x.com/shinjukulunchk" target="_blank" rel="noopener">お問い合わせ用のX(twitter)</a></p>
+      </nav>
+      <p class="mt-4">&copy; メモ帳代わりwebブラウザ便利サイト All Rights Reserved.</p>
+    </footer>
+  </div>
+<script src="/js/y950.js"></script>
+</body>
+</html>
