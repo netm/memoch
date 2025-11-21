@@ -1,0 +1,71 @@
+/* styles.css - 全文 */
+/* リセット */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; background: #fafafa; color: #111; -webkit-font-smoothing:antialiased; }
+
+/* レイアウト */
+.wrap { max-width: 980px; margin: 18px auto; padding: 18px; background: #fff; border-radius: 10px; box-shadow: 0 6px 22px rgba(10,20,40,0.06); }
+.landscape-fullwidth { max-width: 100vw; margin-left: calc(env(safe-area-inset-left,0px) * -1); margin-right: calc(env(safe-area-inset-right,0px) * -1); border-radius: 0; }
+
+/* ヘッダー */
+.header { display:flex; flex-direction:column; gap:12px; }
+h1.title { font-size: 1.8rem; color: #1e3a8a; letter-spacing: -0.5px; }
+h2.subtitle { font-size: 1.05rem; color:#334155; margin-top:4px; }
+
+/* シェアボタン群 */
+.share-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.share-btn { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; color:#fff; font-weight:600; cursor:pointer; text-decoration:none; border:0; }
+.share-btn:active { transform: translateY(1px); }
+
+/* カラフルなボタン */
+#btn-x { background: #1da1f2; }      /* X */
+#btn-facebook { background:#1877f2; } /* Facebook */
+#btn-line { background:#00c300; }     /* Line */
+#btn-email { background:#ff7043; }    /* Email */
+#btn-native-share { background: linear-gradient(90deg,#8e7afe,#5ec9ff); }
+
+/* メインコンテンツ */
+main { margin-top: 14px; display:grid; grid-template-columns: 1fr 320px; gap:18px; }
+@media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+
+/* ゲームリスト */
+.games { background: linear-gradient(180deg,#ffffff,#fbfbff); padding:14px; border-radius: 8px; }
+.games ul { list-style: none; display:flex; flex-direction:column; gap:10px; }
+.games li { padding:10px; border-radius:8px; background: #fff; border: 1px solid #eef2ff; }
+.games a { color: #0b63d4; text-decoration: none; font-weight:700; }
+.games p.desc { margin-top:6px; color:#334155; line-height:1.45; font-size:0.95rem; }
+
+/* サイドバー */
+.sidebar { position:relative; padding:14px; border-radius:8px; background:#fff; border:1px solid #f1f5f9; height:fit-content; }
+.memo { display:flex; flex-direction:column; gap:8px; }
+textarea#page-memo { width:100%; min-height:120px; padding:8px; border-radius:6px; border:1px solid #e2e8f0; resize:vertical; font-size:0.95rem; }
+.action-row { display:flex; gap:8px; margin-top:6px; }
+.btn-primary { flex:1; padding:8px 10px; border-radius:8px; border:0; cursor:pointer; background:#2563eb; color:#fff; font-weight:700; }
+.btn-ghost { background:transparent; border:1px solid #cbd5e1; color:#334155; }
+
+/* フッター内のリンクなど */
+.links { margin-top:18px; display:flex; flex-direction:column; gap:8px; }
+.links a { color:#0b63d4; text-decoration:underline; font-weight:600; }
+
+/* 見出しの色分け（カラフル） */
+h2, h3 { margin-top:10px; }
+h2 { color:#0f766e; }
+h3 { color:#b91c1c; }
+
+/* リンク色は青固定（全体） */
+a { color:#0b63d4; }
+
+/* アクセシビリティ: フォーカス表示 */
+a:focus, button:focus, textarea:focus { outline:3px solid rgba(11,99,212,0.14); outline-offset:2px; }
+
+/* ゲームカードの見やすさ */
+.meta { font-size:0.9rem; color:#475569; margin-top:6px; }
+
+/* 小さな補助テキスト */
+.small { font-size:0.85rem; color:#64748b; }
+
+/* 横向き時、両端を画面端に合わせるための補正（スマホ） */
+@media (orientation: landscape) and (max-width:900px) {
+  body { padding:0 6px; }
+  .wrap { padding:12px; border-radius:0; }
+}
