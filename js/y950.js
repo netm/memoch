@@ -63,6 +63,7 @@
   "白菜と鶏ひき肉のあっさりスープ", "ねぎ塩レモンの蒸し鶏", "とうもろこしと豆腐のサラダ"
             ]
         };
+
 const rouletteList = document.getElementById('rouletteList');
 const recipeDisplay = document.getElementById('recipeDisplay');
 const stopButton = document.getElementById('stopButton');
@@ -82,7 +83,6 @@ let currentTranslateY = 0; // 内部で管理する translateY
 function updateRouletteList(genre) {
   currentGenre = genre;
   const list = recipes[genre];
-  // 4回繰り返して端で見切れないように余裕を持たせる
   const repeatedList = [...list, ...list, ...list, ...list];
 
   rouletteList.innerHTML = '';
@@ -90,7 +90,6 @@ function updateRouletteList(genre) {
     const li = document.createElement('li');
     li.className = 'roulette-item';
     li.textContent = recipe;
-    // 高さを CSS 側で統一している前提
     rouletteList.appendChild(li);
   });
 
@@ -98,6 +97,9 @@ function updateRouletteList(genre) {
   const centerIndex = list.length * 2;
   currentTranslateY = -(centerIndex * RECIPE_HEIGHT);
   applyTransformImmediate(currentTranslateY);
+
+  // CSS カスタムプロパティも更新しておく（アニメーション開始時に利用）
+  rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
 }
 
 /**
@@ -107,18 +109,40 @@ function applyTransformImmediate(y) {
   rouletteList.style.transition = 'none';
   rouletteList.style.transform = `translateY(${y}px)`;
   currentTranslateY = y;
+  // カスタムプロパティも合わせて更新
+  rouletteList.style.setProperty('--tmp-pos', `${y}px`);
 }
 
 /**
  * トランスフォームをトランジション付きで反映
  */
 function applyTransformWithTransition(y, durationSec, easing = 'cubic-bezier(0.2, 0.8, 0.5, 1)') {
+  // set transition then apply transform on next frame
   rouletteList.style.transition = `transform ${durationSec}s ${easing}`;
-  // 次フレームで transform を適用して確実にトランジションさせる
   requestAnimationFrame(() => {
     rouletteList.style.transform = `translateY(${y}px)`;
   });
   currentTranslateY = y;
+  // カスタムプロパティはトランジションに入る前の基準値として保持しておく
+  rouletteList.style.setProperty('--tmp-pos', `${y}px`);
+}
+
+/**
+ * getComputedStyle から現在の translateY をパースして返す（px）
+ */
+function readCurrentTranslateYFromComputed() {
+  const style = getComputedStyle(rouletteList);
+  const transform = style.transform || style.webkitTransform;
+  if (!transform || transform === 'none') return currentTranslateY;
+  // 形式: matrix(a, b, c, d, tx, ty) または matrix3d(...)
+  const m = transform.match(/matrix.*\((.+)\)/);
+  if (m) {
+    const values = m[1].split(',').map(v => v.trim());
+    // 2D matrix: tx is values[4], ty is values[5]
+    const ty = parseFloat(values[5] || 0);
+    return ty;
+  }
+  return currentTranslateY;
 }
 
 /**
@@ -134,8 +158,14 @@ function startRoulette(genre) {
   stopButton.disabled = false;
   stopButton.textContent = 'ルーレットストップ！';
 
-  // 高速回転は CSS の .is-spinning に任せる（CSSでアニメーションを定義）
-  rouletteList.classList.add('is-spinning');
+  // 現在 transform を CSS 変数に入れておく（アニメーションが var(--tmp-pos) を参照するため）
+  rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
+
+  // 高速回転は CSS の .is-spinning に任せる
+  // ただし、アニメーション開始前に transform を確定しておくため、少し遅延してクラスを付与する
+  requestAnimationFrame(() => {
+    rouletteList.classList.add('is-spinning');
+  });
 
   // 表示リセット
   recipeDisplay.textContent = '回転中...';
@@ -150,7 +180,16 @@ function stopRoulette() {
   // すぐに連打防止
   stopButton.disabled = true;
 
-  // 高速回転クラスを外して減速アニメーションへ
+  // まず、アニメーション中の見た目 transform を取得して currentTranslateY に反映する
+  // （CSS アニメーションで transform が上書きされているため、computed style を読む）
+  const computedY = readCurrentTranslateYFromComputed();
+  // computedY は translateY の値（px, 正または負）
+  currentTranslateY = computedY;
+
+  // カスタムプロパティも更新しておく（アニメーションの基準）
+  rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
+
+  // 高速回転クラスを外して減速アニメーションへ移行
   rouletteList.classList.remove('is-spinning');
 
   const list = recipes[currentGenre];
@@ -161,18 +200,23 @@ function stopRoulette() {
   const targetIndex = recipeCount + randomIndexInMiddle; // repeatedList 上の index
 
   // 表示コンテナの中央に来るようにオフセットを調整
-  // 表示が中央の1要素に来る想定なら indexOffsetForCenter = RECIPE_HEIGHT
-  const indexOffsetForCenter = RECIPE_HEIGHT;
+  const indexOffsetForCenter = RECIPE_HEIGHT; // 中央合わせの補正
   const targetTranslateY = -(targetIndex * RECIPE_HEIGHT) + indexOffsetForCenter;
 
   // 減速アニメーション（直接 target にトランジション）
   const animationDurationMs = 3000;
-  applyTransformWithTransition(targetTranslateY, animationDurationMs / 1000);
+  // 確実に現在の transform が反映されたあとにトランジションをかける
+  // （ブラウザが "transition: none -> transform" を認識するように少し待つ）
+  requestAnimationFrame(() => {
+    // apply transform with transition
+    applyTransformWithTransition(targetTranslateY, animationDurationMs / 1000);
+  });
 
   // transitionend で確実に終了処理を走らせる（プロパティ名で判定）
   const onTransitionEnd = (e) => {
     if (e.propertyName !== 'transform') return;
     rouletteList.removeEventListener('transitionend', onTransitionEnd);
+    clearTimeout(animationTimeout);
     finalizeStop(randomIndexInMiddle, targetIndex);
   };
   rouletteList.addEventListener('transitionend', onTransitionEnd);
@@ -182,7 +226,7 @@ function stopRoulette() {
   animationTimeout = setTimeout(() => {
     rouletteList.removeEventListener('transitionend', onTransitionEnd);
     finalizeStop(randomIndexInMiddle, targetIndex);
-  }, animationDurationMs + 200);
+  }, animationDurationMs + 300);
 }
 
 /**
@@ -194,7 +238,9 @@ function finalizeStop(randomIndexInMiddle, targetIndex) {
   stopButton.textContent = '停止しました';
 
   // transition を解除してピクセルレベルで整合
-  applyTransformImmediate(currentTranslateY);
+  // （現在の computed transform を再読み取りして即時反映）
+  const finalComputedY = readCurrentTranslateYFromComputed();
+  applyTransformImmediate(finalComputedY);
 
   // 決定レシピを表示
   const selectedRecipe = recipes[currentGenre][randomIndexInMiddle];
@@ -218,6 +264,11 @@ function highlightSelectedItem(targetIndex) {
   if (selectedItem) {
     selectedItem.classList.add('bg-yellow-300', 'ring-4', 'ring-yellow-500');
     selectedItem.style.backgroundColor = '#fcd34d';
+    // スクロール等で見切れないようにフォーカス移動（任意）
+    if (typeof selectedItem.scrollIntoView === 'function') {
+      // 中央に来るようにスクロール（ただし overflow:hidden のため効果は限定的）
+      selectedItem.scrollIntoView({ block: 'center', inline: 'nearest' });
+    }
   }
 }
 
@@ -360,6 +411,12 @@ window.addEventListener('DOMContentLoaded', function () {
       } else {
         // 回転中にジャンル変更をしたい場合は一旦現在の回転を安定させてから再開
         clearTimeout(animationTimeout);
+
+        // 現在の見た目 transform を取得して currentTranslateY に反映
+        const computedY = readCurrentTranslateYFromComputed();
+        currentTranslateY = computedY;
+        rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
+
         rouletteList.classList.remove('is-spinning');
         isSpinning = false;
         stopButton.disabled = true;
@@ -380,6 +437,4 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // 初期ストップを無効化（ボタンは押せない状態）
   stopButton.disabled = true;
-
-  // ページロード時にボタンを自動クリックしない -> ユーザーが操作したときのみ回転開始
 });
