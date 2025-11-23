@@ -20,32 +20,16 @@ eleventyExcludeFromCollections: false
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="/css/y950.css">
-  <style>
-    /* 最低限のルーレット用 CSS（外部 aaa.css があれば上書きされます） */
+  <style>    /* 最低限のルーレット用 CSS（外部 y950.css があれば上書きされます） */
+    /* このブロックは外部 CSS と同一変数を使うため意図的に整合 */
     #rouletteContainer { height: 240px; overflow: hidden; position: relative; }
     #rouletteList { list-style: none; padding: 0; margin: 0; position: absolute; left: 0; right: 0; }
-    .roulette-item {
-      height: 80px; /* RECIPE_HEIGHT と一致 */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      background: white;
-    }
-    /* 高速回転用の CSS アニメーション（必要なら調整） */
-    .is-spinning {
-      animation: spinFast 0.6s linear infinite;
-    }
+    .roulette-item { height: 80px; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; border-bottom:1px solid rgba(0,0,0,0.05); background:#fff; }
+    .is-spinning { animation: spin var(--roulette-speed) linear infinite; }
     @keyframes spinFast {
-      0%   { transform: translateY(var(--tmp-pos, 0)); }
+      0% { transform: translateY(var(--tmp-pos, 0)); }
       100% { transform: translateY(calc(var(--tmp-pos, 0) - 240px)); }
     }
-    /* ハイライト見た目（Tailwind クラスが存在しない場合の保険） */
-    .bg-yellow-300 { background-color: #fcd34d !important; }
-    .ring-4 { box-shadow: 0 0 0 8px rgba(252,211,77,0.2) !important; }
-    .ring-yellow-500 { outline-color: #f59e0b !important; }
   </style>
 </head>
 <!-- Google tag (gtag.js) -->

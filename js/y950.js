@@ -63,7 +63,6 @@
   "白菜と鶏ひき肉のあっさりスープ", "ねぎ塩レモンの蒸し鶏", "とうもろこしと豆腐のサラダ"
             ]
         };
-
 const rouletteList = document.getElementById('rouletteList');
 const recipeDisplay = document.getElementById('recipeDisplay');
 const stopButton = document.getElementById('stopButton');
@@ -73,13 +72,59 @@ const messageText = document.getElementById('messageText');
 let currentGenre = 'teiban';
 let isSpinning = false;
 let animationTimeout = null;
-const RECIPE_HEIGHT = 80; // CSS の --recipe-height と整合させてください
 let currentTranslateY = 0; // 内部で管理する translateY
 
-/**
- * ルーレットリストを初期化・更新する
- * genre: 'teiban' | 'kotteri' | 'assari'
- */
+/* CSS ルート変数から recipe height を読み取って JS 側で同期する */
+function getRecipeHeightPx() {
+  const root = getComputedStyle(document.documentElement);
+  let v = root.getPropertyValue('--recipe-height').trim();
+  if (!v) return 80;
+  if (v.endsWith('px')) return parseFloat(v);
+  if (v.endsWith('rem')) {
+    const rem = parseFloat(v);
+    const rootFont = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    return rem * rootFont;
+  }
+  const n = parseFloat(v);
+  return Number.isFinite(n) ? n : 80;
+}
+const RECIPE_HEIGHT = getRecipeHeightPx();
+
+/* ユーティリティ: computed style の transform から translateY を読み取る */
+function readCurrentTranslateYFromComputed() {
+  const style = getComputedStyle(rouletteList);
+  const transform = style.transform || style.webkitTransform;
+  if (!transform || transform === 'none') return currentTranslateY;
+  const m = transform.match(/matrix.*\((.+)\)/);
+  if (m) {
+    const values = m[1].split(',').map(v => v.trim());
+    // 2D matrix: tx is values[4], ty is values[5]
+    const ty = parseFloat(values[5] || 0);
+    return ty;
+  }
+  return currentTranslateY;
+}
+
+/* トランスフォームを即時反映（transitionなし） */
+function applyTransformImmediate(y) {
+  rouletteList.style.transition = 'none';
+  rouletteList.style.transform = `translateY(${y}px)`;
+  currentTranslateY = y;
+  rouletteList.style.setProperty('--tmp-pos', `${y}px`);
+}
+
+/* トランジション付きで transform を適用 */
+function applyTransformWithTransition(y, durationSec, easing = 'cubic-bezier(0.2, 0.8, 0.5, 1)') {
+  rouletteList.style.transition = `transform ${durationSec}s ${easing}`;
+  // next frame
+  requestAnimationFrame(() => {
+    rouletteList.style.transform = `translateY(${y}px)`;
+  });
+  currentTranslateY = y;
+  rouletteList.style.setProperty('--tmp-pos', `${y}px`);
+}
+
+/* ルーレットリストを初期化・更新する */
 function updateRouletteList(genre) {
   currentGenre = genre;
   const list = recipes[genre];
@@ -98,98 +143,51 @@ function updateRouletteList(genre) {
   currentTranslateY = -(centerIndex * RECIPE_HEIGHT);
   applyTransformImmediate(currentTranslateY);
 
-  // CSS カスタムプロパティも更新しておく（アニメーション開始時に利用）
+  // CSS カスタムプロパティも更新
   rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
 }
 
-/**
- * トランスフォームを即時に反映（transitionなし）
- */
-function applyTransformImmediate(y) {
-  rouletteList.style.transition = 'none';
-  rouletteList.style.transform = `translateY(${y}px)`;
-  currentTranslateY = y;
-  // カスタムプロパティも合わせて更新
-  rouletteList.style.setProperty('--tmp-pos', `${y}px`);
-}
-
-/**
- * トランスフォームをトランジション付きで反映
- */
-function applyTransformWithTransition(y, durationSec, easing = 'cubic-bezier(0.2, 0.8, 0.5, 1)') {
-  // set transition then apply transform on next frame
-  rouletteList.style.transition = `transform ${durationSec}s ${easing}`;
-  requestAnimationFrame(() => {
-    rouletteList.style.transform = `translateY(${y}px)`;
-  });
-  currentTranslateY = y;
-  // カスタムプロパティはトランジションに入る前の基準値として保持しておく
-  rouletteList.style.setProperty('--tmp-pos', `${y}px`);
-}
-
-/**
- * getComputedStyle から現在の translateY をパースして返す（px）
- */
-function readCurrentTranslateYFromComputed() {
-  const style = getComputedStyle(rouletteList);
-  const transform = style.transform || style.webkitTransform;
-  if (!transform || transform === 'none') return currentTranslateY;
-  // 形式: matrix(a, b, c, d, tx, ty) または matrix3d(...)
-  const m = transform.match(/matrix.*\((.+)\)/);
-  if (m) {
-    const values = m[1].split(',').map(v => v.trim());
-    // 2D matrix: tx is values[4], ty is values[5]
-    const ty = parseFloat(values[5] || 0);
-    return ty;
-  }
-  return currentTranslateY;
-}
-
-/**
- * ルーレット回転開始（ボタンクリックで呼ばれる）
- */
+/* ルーレット回転開始 */
 function startRoulette(genre) {
   if (isSpinning) return;
 
-  // リスト更新（ジャンル切替）
   updateRouletteList(genre);
 
   isSpinning = true;
   stopButton.disabled = false;
   stopButton.textContent = 'ルーレットストップ！';
 
-  // 現在 transform を CSS 変数に入れておく（アニメーションが var(--tmp-pos) を参照するため）
+  // 現在 transform を CSS 変数に入れておく（アニメーションが var(--tmp-pos) を参照）
   rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
 
-  // 高速回転は CSS の .is-spinning に任せる
-  // ただし、アニメーション開始前に transform を確定しておくため、少し遅延してクラスを付与する
+  // ここで高速回転クラスを付与する（CSS 側で速く見えるように調整済み）
+  // requestAnimationFrame で確実に変化を反映
   requestAnimationFrame(() => {
+    // remove any transition so animation starts cleanly from --tmp-pos
+    rouletteList.style.transition = 'none';
+    // ensure transform is set to currentTranslateY before animation
+    rouletteList.style.transform = `translateY(${currentTranslateY}px)`;
+    // force reflow then add class
+    void rouletteList.offsetHeight;
     rouletteList.classList.add('is-spinning');
   });
 
-  // 表示リセット
   recipeDisplay.textContent = '回転中...';
 }
 
-/**
- * ルーレット停止処理（ストップボタンで呼ばれる）
- */
+/* ルーレット停止処理（逆回転を発生させずに自然に減速して停止） */
 function stopRoulette() {
   if (!isSpinning) return;
 
-  // すぐに連打防止
   stopButton.disabled = true;
 
-  // まず、アニメーション中の見た目 transform を取得して currentTranslateY に反映する
-  // （CSS アニメーションで transform が上書きされているため、computed style を読む）
+  // 現在の見た目 transform を取得して currentTranslateY に反映
   const computedY = readCurrentTranslateYFromComputed();
-  // computedY は translateY の値（px, 正または負）
   currentTranslateY = computedY;
-
-  // カスタムプロパティも更新しておく（アニメーションの基準）
   rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
 
   // 高速回転クラスを外して減速アニメーションへ移行
+  // ここで重要: アニメーションが上向き（translateY が負に増える）方向で動いている前提に合わせる
   rouletteList.classList.remove('is-spinning');
 
   const list = recipes[currentGenre];
@@ -203,16 +201,20 @@ function stopRoulette() {
   const indexOffsetForCenter = RECIPE_HEIGHT; // 中央合わせの補正
   const targetTranslateY = -(targetIndex * RECIPE_HEIGHT) + indexOffsetForCenter;
 
-  // 減速アニメーション（直接 target にトランジション）
+  // 減速アニメーション（transform を現在値から target にトランジション）
   const animationDurationMs = 3000;
-  // 確実に現在の transform が反映されたあとにトランジションをかける
-  // （ブラウザが "transition: none -> transform" を認識するように少し待つ）
+
+  // 小さなディレイで「transition: none -> transition」を確実に認識させる
   requestAnimationFrame(() => {
-    // apply transform with transition
-    applyTransformWithTransition(targetTranslateY, animationDurationMs / 1000);
+    // 現在の computed を即時反映しておく（既に反映済なら無害）
+    applyTransformImmediate(currentTranslateY);
+    // さらに次フレームでトランジションをかけて target に移動
+    requestAnimationFrame(() => {
+      applyTransformWithTransition(targetTranslateY, animationDurationMs / 1000);
+    });
   });
 
-  // transitionend で確実に終了処理を走らせる（プロパティ名で判定）
+  // transitionend で終了処理
   const onTransitionEnd = (e) => {
     if (e.propertyName !== 'transform') return;
     rouletteList.removeEventListener('transitionend', onTransitionEnd);
@@ -221,7 +223,7 @@ function stopRoulette() {
   };
   rouletteList.addEventListener('transitionend', onTransitionEnd);
 
-  // 保険としてタイムアウトも設定（transitionend が発生しない場合）
+  // 保険としてタイムアウトも設定
   clearTimeout(animationTimeout);
   animationTimeout = setTimeout(() => {
     rouletteList.removeEventListener('transitionend', onTransitionEnd);
@@ -229,16 +231,13 @@ function stopRoulette() {
   }, animationDurationMs + 300);
 }
 
-/**
- * 停止後の共通後処理
- */
+/* 停止後の共通後処理 */
 function finalizeStop(randomIndexInMiddle, targetIndex) {
   isSpinning = false;
   stopButton.disabled = true;
   stopButton.textContent = '停止しました';
 
   // transition を解除してピクセルレベルで整合
-  // （現在の computed transform を再読み取りして即時反映）
   const finalComputedY = readCurrentTranslateYFromComputed();
   applyTransformImmediate(finalComputedY);
 
@@ -246,44 +245,45 @@ function finalizeStop(randomIndexInMiddle, targetIndex) {
   const selectedRecipe = recipes[currentGenre][randomIndexInMiddle];
   recipeDisplay.textContent = selectedRecipe;
 
+  // アクセシビリティ対応: スクリーンリーダーへ通知
+  if (recipeDisplay) {
+    recipeDisplay.setAttribute('tabindex', '-1');
+    recipeDisplay.focus({ preventScroll: true });
+  }
+
   // ハイライト
   highlightSelectedItem(targetIndex);
 }
 
-/**
- * 停止したアイテムをハイライト
- */
+/* ハイライト処理 */
 function highlightSelectedItem(targetIndex) {
   document.querySelectorAll('.roulette-item').forEach(item => {
-    item.classList.remove('bg-yellow-300', 'ring-4', 'ring-yellow-500');
+    item.classList.remove('bg-yellow-300', 'ring-4', 'ring-yellow-500', 'selected-item');
     item.style.backgroundColor = '';
   });
 
   const children = Array.from(rouletteList.children);
   const selectedItem = children[targetIndex];
   if (selectedItem) {
-    selectedItem.classList.add('bg-yellow-300', 'ring-4', 'ring-yellow-500');
+    selectedItem.classList.add('bg-yellow-300', 'ring-4', 'ring-yellow-500', 'selected-item');
     selectedItem.style.backgroundColor = '#fcd34d';
-    // スクロール等で見切れないようにフォーカス移動（任意）
     if (typeof selectedItem.scrollIntoView === 'function') {
-      // 中央に来るようにスクロール（ただし overflow:hidden のため効果は限定的）
       selectedItem.scrollIntoView({ block: 'center', inline: 'nearest' });
     }
   }
 }
 
-/**
- * メッセージボックス表示
- */
+/* メッセージボックス表示 */
 function showMessage(text) {
   messageText.textContent = text;
   messageBox.style.display = 'flex';
+  // 自動でフォーカスを当てる
+  const closeBtn = document.getElementById('messageCloseBtn');
+  if (closeBtn) closeBtn.focus();
 }
 
-/**
- * 文章コピー
- */
-function copyText() {
+/* コピー処理（モダン API とフォールバック） */
+async function copyText() {
   const recipe = recipeDisplay.textContent;
   if (isSpinning || recipe === 'ボタンを押してルーレット開始！' || recipe === '回転中...') {
     showMessage("レシピが決定してからコピーしてください！");
@@ -292,31 +292,41 @@ function copyText() {
 
   const textToCopy = `今日の晩御飯は「${recipe}」に決定！ #晩御飯ルーレット #献立決定`;
 
-  const textarea = document.createElement('textarea');
-  textarea.value = textToCopy;
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  document.body.appendChild(textarea);
-  textarea.focus();
-  textarea.select();
-
-  try {
-    const successful = document.execCommand('copy');
-    if (successful) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(textToCopy);
       showMessage(`「${recipe}」の情報をコピーしました！`);
-    } else {
-      showMessage('コピーに失敗しました。手動でコピーしてください。');
+      return;
+    } catch (err) {
+      // フォールバックへ
     }
-  } catch (err) {
-    showMessage('コピー機能にアクセスできませんでした。');
   }
 
-  document.body.removeChild(textarea);
+  // フォールバック: textarea + execCommand
+  const textarea = document.createElement('textarea');
+  textarea.value = textToCopy;
+  textarea.setAttribute('aria-hidden', 'true');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) showMessage(`「${recipe}」の情報をコピーしました！`);
+    else showMessage('コピーに失敗しました。手動でコピーしてください。');
+  } catch (err) {
+    showMessage('コピー機能にアクセスできませんでした。');
+  } finally {
+    document.body.removeChild(textarea);
+  }
 }
 
-/**
- * 簡易 PNG 保存
- */
+/* safe file name for PNG download */
+function safeFileName(name) {
+  return name.replace(/[\\/:"*?<>|]+/g, '_').slice(0, 80);
+}
+
+/* 簡易 PNG 保存 */
 function saveAsPng() {
   const recipe = recipeDisplay.textContent;
   if (isSpinning || recipe === 'ボタンを押してルーレット開始！' || recipe === '回転中...') {
@@ -352,7 +362,7 @@ function saveAsPng() {
   const dataURL = canvas.toDataURL('image/png');
   const a = document.createElement('a');
   a.href = dataURL;
-  a.download = `レシピルーレット_${recipe}.png`;
+  a.download = `レシピルーレット_${safeFileName(recipe)}.png`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -360,9 +370,7 @@ function saveAsPng() {
   showMessage(`「${recipe}」の画像をダウンロード開始しました。`);
 }
 
-/**
- * SNS シェア
- */
+/* SNS シェア */
 function shareRecipe(platform) {
   const recipe = recipeDisplay.textContent;
   if (isSpinning || recipe === 'ボタンを押してルーレット開始！' || recipe === '回転中...') {
@@ -372,7 +380,7 @@ function shareRecipe(platform) {
 
   const url = encodeURIComponent(window.location.href);
   const text = encodeURIComponent(`今日の晩御飯は「${recipe}」に決定しました！レシピに迷ったらこれ！`);
-  const hashTag = encodeURIComponent('晩御飯ルーレット,献立決定');
+  const hashTag = encodeURIComponent('晩御飯ルーレット');
   let shareUrl = '';
 
   switch (platform) {
@@ -390,43 +398,33 @@ function shareRecipe(platform) {
       break;
   }
 
-  window.open(shareUrl, '_blank');
+  const win = window.open(shareUrl, '_blank');
+  if (win) win.opener = null;
 }
 
-/**
- * 初期化とイベントリスナー設定
- * 重要: ページ読み込み時に自動で startRoulette を呼ばない（自動回転を避ける）
- */
+/* 初期化とイベントリスナー設定 */
 window.addEventListener('DOMContentLoaded', function () {
-  // 初期表示は「定番レシピ」のリストを読み込むが、自動回転はしない
   updateRouletteList('teiban');
 
-  // ボタン群のイベント（押したときだけ startRoulette が走るようにする）
   document.querySelectorAll('#recipeButtons button').forEach(button => {
     button.addEventListener('click', (e) => {
       const genre = e.currentTarget.dataset.genre;
-      // 回転中でなければ開始
       if (!isSpinning) {
         startRoulette(genre);
       } else {
-        // 回転中にジャンル変更をしたい場合は一旦現在の回転を安定させてから再開
+        // 回転中にジャンル変更をしたい場合は現在の回転を安定させてから再開
         clearTimeout(animationTimeout);
-
-        // 現在の見た目 transform を取得して currentTranslateY に反映
         const computedY = readCurrentTranslateYFromComputed();
         currentTranslateY = computedY;
         rouletteList.style.setProperty('--tmp-pos', `${currentTranslateY}px`);
-
         rouletteList.classList.remove('is-spinning');
         isSpinning = false;
         stopButton.disabled = true;
-
         setTimeout(() => startRoulette(genre), 100);
       }
     });
   });
 
-  // ストップ、コピー、PNG、シェアのイベント
   stopButton.addEventListener('click', stopRoulette);
   document.getElementById('btnCopy').addEventListener('click', copyText);
   document.getElementById('btnSavePng').addEventListener('click', saveAsPng);
@@ -435,6 +433,9 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('shareLine').addEventListener('click', (e) => { e.preventDefault(); shareRecipe('line'); });
   document.getElementById('shareEmail').addEventListener('click', (e) => { e.preventDefault(); shareRecipe('email'); });
 
-  // 初期ストップを無効化（ボタンは押せない状態）
+  // messageBox close ボタンのイベント（HTML 側で id を付与している想定）
+  const msgClose = document.getElementById('messageCloseBtn');
+  if (msgClose) msgClose.addEventListener('click', () => { messageBox.style.display = 'none'; });
+
   stopButton.disabled = true;
 });
