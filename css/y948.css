@@ -1,0 +1,155 @@
+/* aaa.css - 全文（リンクは常に青色。ホバーで濃くなる。その他既存スタイル維持） */
+
+:root{
+  --dice-size: 92px;
+  --dice-bg-top: linear-gradient(180deg,#ffffff 0%,#f3f4f6 100%);
+  --dice-edge: #d1d5db;
+  --pip-color: #111827;
+  --dice-radius: 14px;
+  --dice-shadow: 0 14px 28px rgba(15,23,42,0.18);
+  --inset-shadow: inset 0 -6px 10px rgba(0,0,0,0.04);
+  --link-blue: #2563eb; /* 常時表示の青 */
+  --link-blue-hover: #1e40af; /* ホバー時の濃い青 */
+}
+
+/* 全体リセットの補助 */
+* { box-sizing: border-box; }
+
+h3 {
+  margin-top: 1em !important;
+}
+
+/* リンク：常に青、visited/focus/active も青に統一、ホバーで濃く */
+a,
+a:link,
+a:visited,
+a:focus,
+a:active {
+  color: var(--link-blue);
+  text-decoration: none;
+  transition: color .18s ease;
+  outline: none;
+}
+a:hover,
+a:focus:hover,
+a:active:hover {
+  color: var(--link-blue-hover);
+  text-decoration: underline;
+}
+
+/* Tailwind を使わない環境で .blue-link を使用している場合も適用 */
+.blue-link,
+.blue-link:link,
+.blue-link:visited,
+.blue-link:focus,
+.blue-link:active {
+  color: var(--link-blue);
+  font-weight: 600;
+  transition: color .18s ease;
+}
+.blue-link:hover,
+.blue-link:focus:hover,
+.blue-link:active:hover {
+  color: var(--link-blue-hover);
+  text-decoration: underline;
+}
+
+/* wrapper */
+.dice-face-wrapper{
+  width: var(--dice-size);
+  height: var(--dice-size);
+  margin: 8px;
+  perspective: 700px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* die */
+.dice-face{
+  width: calc(var(--dice-size) * 0.86);
+  height: calc(var(--dice-size) * 0.86);
+  border-radius: var(--dice-radius);
+  background: var(--dice-bg-top);
+  border: 1px solid var(--dice-edge);
+  box-shadow: var(--dice-shadow), var(--inset-shadow);
+  position: relative;
+  display: block;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* small highlight */
+.die-top {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 8%;
+  height: 14%;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.06));
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* pip container */
+.pip-container{
+  position: absolute;
+  inset: 18% 12%;
+  pointer-events: none;
+  width: 76%;
+  height: 64%;
+}
+
+/* pip element */
+.pip{
+  position: absolute;
+  width: 14%;
+  height: 14%;
+  background: var(--pip-color);
+  border-radius: 50%;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  transform: translate(-50%,-50%);
+}
+
+/* spin animation: さらに速く見えるよう短く */
+@keyframes dice-spin-quick {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  30% { transform: rotateX(320deg) rotateY(240deg); }
+  60% { transform: rotateX(640deg) rotateY(480deg); }
+  100% { transform: rotateX(960deg) rotateY(960deg); }
+}
+.dice-spinning{
+  animation: dice-spin-quick 0.22s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 0 22px 36px rgba(15,23,42,0.22);
+  transform-origin: center center;
+}
+
+/* 未振り */
+.dice-face[data-value="0"] {
+  background: linear-gradient(180deg,#fafafa 0%,#f3f4f6 100%);
+  filter: grayscale(0.03);
+}
+
+/* responsive */
+@media (max-width: 640px) {
+  :root{ --dice-size: 72px; }
+}
+
+/* result styles */
+.result-win { color: #065f46; background: #ecfdf5; border-color: #34d399; }
+.result-lose { color: #7f1d1d; background: #fff1f2; border-color: #fca5a5; }
+.result-draw { color: #92400e; background: #fffbeb; border-color: #fbbf24; }
+.result-1111 { color: #6b21a8; background: #f3e8ff; border-color: #a78bfa; }
+
+/* UI補助 */
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* 小さなレイアウト補助（ダイス列の折り返し時の余白調整） */
+#player1-dice-container, #player2-dice-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}

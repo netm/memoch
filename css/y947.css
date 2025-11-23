@@ -1,0 +1,302 @@
+:root{
+  --bg:#fffefd;
+  --accent1:#ff6fa3;
+  --accent2:#7ad3ff;
+  --accent3:#ffd56b;
+  --muted:#6b6b6b;
+  --link:#0b66ff;
+  --frame-bg:linear-gradient(135deg,#ffffff,#fff7f1);
+  --radius:12px;
+  --shadow:0 6px 18px rgba(16,24,40,0.06);
+  --cute-dot: radial-gradient(circle at 10% 10%, rgba(255,111,150,0.12), transparent 10%);
+  --h2-gradient: linear-gradient(90deg,#ff9ccf 0%, #ffd56b 40%, #7ad3ff 100%);
+  --h3-gradient: linear-gradient(90deg,#ffd56b 0%, #ff9ccf 40%, #b8f0ff 100%);
+  --h2-color: #44223a;
+  --h3-color: #2b3b4a;
+  --h2-badge-bg: rgba(255,255,255,0.85);
+  --h3-badge-bg: rgba(255,255,255,0.9);
+}
+
+/* リセットと基本 */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", Roboto, sans-serif;
+  background:var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+}
+
+/* コンテナ */
+.site{
+  width:100%;
+  max-width:1000px;
+  min-width:320px;
+  margin:0 auto;
+}
+
+/* ヘッダーとシェアボタン群 */
+.header{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.controls-left, .controls-right{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* ボタン共通 */
+.btn{
+  border:0;
+  padding:10px 12px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  box-shadow:var(--shadow);
+  transition:transform .14s ease, box-shadow .14s ease;
+  user-select:none;
+}
+
+.btn:active{transform:translateY(1px)}
+.btn-today{background:var(--accent1); color:white}
+.btn-copy{background:linear-gradient(90deg,var(--accent2),#a1e9ff); color:#053b4a}
+.btn-png{background:linear-gradient(90deg,#ffd89b,var(--accent3)); color:#4b2c00}
+.btn-native{background:linear-gradient(90deg,#c9f7ff,#caffdd); color:#09433f}
+
+/* SNS ボタン 小さい丸型 */
+.icon-btn{
+  width:44px;
+  height:44px;
+  padding:6px;
+  border-radius:12px;
+  display:inline-grid;
+  place-items:center;
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+}
+.icon-x{background:#1da1f2}
+.icon-fb{background:#1877f2}
+.icon-line{background:#00b900}
+.icon-mail{background:#ff7ab6}
+
+/* タイトル */
+.site-title{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.site-title h1{
+  margin:0;
+  font-size:22px;
+  line-height:1;
+  color:var(--accent1);
+  letter-spacing:0.4px;
+}
+.tagline{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* レシピ枠 */
+.recipe-area{
+  background:var(--frame-bg);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  border:1px dashed rgba(0,0,0,0.06);
+  position:relative;
+  overflow:hidden;
+}
+
+/* 可愛い装飾 */
+.recipe-area::after{
+  content:'';
+  position:absolute;
+  right:-120px;
+  top:-40px;
+  width:260px;
+  height:260px;
+  background:var(--cute-dot);
+  transform:rotate(12deg);
+  opacity:.6;
+}
+
+/* 枠内太字大きめテキスト */
+#recipe-text{
+  font-weight:800;
+  font-size:18px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  color:#233;
+  margin:0;
+}
+
+/* フラッシュアニメ */
+.flash{
+  animation:flash 650ms ease;
+}
+@keyframes flash{
+  0%{box-shadow:0 0 0 0 rgba(255,111,150,0.18)}
+  70%{box-shadow:0 10px 30px -8px rgba(255,111,150,0.06)}
+  100%{box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+}
+
+/* 見出しデザイン（かわいい・カラフル） */
+h2, h3 {
+  margin:0 0 10px 0;
+  line-height:1.15;
+  font-weight:900;
+  letter-spacing:0.3px;
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:14px;
+  color:var(--h2-color);
+  background:var(--h2-badge-bg);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+}
+
+/* h2にグラデーションボーダーとアイコン風リング */
+h2 {
+  font-size:20px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+    linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.6));
+  position:relative;
+}
+h2::before{
+  content:'';
+  position:absolute;
+  left:-6px;
+  top:-6px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--h2-gradient);
+  filter:blur(6px);
+  opacity:0.9;
+}
+h2::after{
+  content:'';
+  position:absolute;
+  right:-10px;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;
+  height:8px;
+  background:var(--h2-gradient);
+  border-radius:8px;
+  opacity:0.18;
+}
+
+/* h3は少し小さめ・パステルグラデーション */
+h3{
+  display:inline-block;
+  font-size:16px;
+  color:var(--h3-color);
+  background:var(--h3-badge-bg);
+  padding:6px 12px;
+  border-radius:10px;
+  box-shadow:0 6px 12px rgba(16,24,40,0.03);
+  position:relative;
+}
+h3::before{
+  content:'';
+  position:absolute;
+  left:6px;
+  top:6px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--h3-gradient);
+  opacity:0.9;
+  transform:scale(0.9);
+}
+
+/* 説明文セクション */
+.section{
+  margin-top:18px;
+  padding:14px;
+  background:transparent;
+  border-radius:10px;
+}
+.section h2{color:#222; margin:8px 0 6px; font-size:18px}
+.section h3{color:#333; margin:8px 0; font-size:16px}
+.section p{color:#444; margin:8px 0; line-height:1.8; font-size:15px}
+
+/* リストのスタイルを優しくする */
+.list-disc li, .list-decimal li{
+  margin:8px 0;
+  padding-left:6px;
+}
+.list-disc li::marker, .list-decimal li::marker{
+  color:var(--accent1);
+  font-weight:800;
+}
+
+/* 関連リンク */
+.links a{color:var(--link); text-decoration:none}
+.footer-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+
+/* トースト */
+#toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:28px;
+  background:#111;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease;
+  z-index:9999;
+}
+#toast.show{opacity:1}
+
+/* レスポンシブ調整 */
+/* 横向きスマホで両端が画面端にくるようにする */
+@media (orientation: landscape) and (max-width:900px){
+  body{padding:0}
+  .site{padding-left:8px;padding-right:8px; max-width:100vw}
+  .recipe-area{border-radius:6px; padding:16px}
+  .header{padding:10px 8px}
+}
+
+/* 小画面縦向き時 */
+@media (max-width:520px){
+  .btn{padding:8px 10px; font-size:13px}
+  .icon-btn{width:40px;height:40px}
+  #recipe-text{font-size:16px}
+}
+
+/* ヘッダーの並び替え補助（ボタン群が多い場合の崩れを防ぐ） */
+.controls-right .btn-today{
+  order:0;
+}
+.controls-right .btn-copy{
+  order:1;
+}
+
+/* 追加: レスポンシブで見出しをフル幅に */
+@media (max-width:720px){
+  h2, h3{display:block; width:100%;}
+}

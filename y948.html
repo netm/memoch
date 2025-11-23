@@ -1,0 +1,221 @@
+---
+title: "サイコロゾロ目ゲーム1111 - シンプルで楽しいゾロ目バトル"
+date: 2025-11-23
+permalink: "/y948/"
+draft: false
+sitemap: true
+eleventyExcludeFromCollections: false
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>サイコロゾロ目ゲーム1111 - シンプルで楽しいゾロ目バトル</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="スマホ・PC対応のサイコロゾロ目ゲーム1111。COM対戦と二人用に対応。タッチ操作でサイコロを振る。ゾロ目で得点を競います。1111は特別な幸運のサイン。今すぐ遊んで運試し！" />
+  <meta name="keywords" content="サイコロ,ゾロ目,ゲーム,1111,エンジェルナンバー">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y948/">
+<link rel="stylesheet" href="/css/y948.css">
+  <meta property="og:title" content="サイコロゾロ目ゲーム1111 - シンプルで楽しいゾロ目バトル">
+  <meta property="og:description" content="スマホ・PC対応のサイコロゾロ目ゲーム1111。COM対戦と二人用に対応です。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:,">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "サイコロゾロ目ゲーム1111",
+      "url": "https://memoc.pages.dev/y948/",
+      "description": "スマホ・PC対応のサイコロゾロ目ゲーム。COM対戦と二人用に対応。ゾロ目で得点を競います。"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "1が揃ったときの得点ルールは何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1が2個で11点、3個で111点、4個で1111点になります。その他のゾロ目は「出た目×個数」で計算されます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ゾロ目の点数計算はどうなりますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "例えば 5と5と2と2 を出すと14点です。ゾロ目の合計が得点となります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "具体的な勝敗の比較例を教えてください",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "例：自分が5と5で10点、相手が1を四つで1111点 → 相手の勝ち。自分が3と3と2と2で10点、相手が4と4で8点 → 自分の勝ち。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col items-center p-2 sm:p-4">
+  <noscript>
+    <div class="bg-yellow-100 text-yellow-900 p-3 rounded max-w-5xl w-full mx-auto mb-4">JavaScript が無効です。ゲームを遊ぶにはブラウザで JavaScript を有効にしてください。</div>
+  </noscript>
+  <div id="main-container" class="w-full max-w-5xl mx-auto bg-white shadow-2xl rounded-xl p-4 sm:p-8 space-y-8">
+    <header class="text-center space-y-2">
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">サイコロゾロ目ゲーム1111</h1>
+      <p class="text-sm text-gray-500">5つのサイコロを交互に1つずつ振ってゾロ目を競うゲームです。</p>
+    </header>
+    <section class="flex flex-wrap justify-center gap-3">
+      <button class="share-button bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400" onclick="shareSocial('x')" aria-label="Xで共有">X (旧Twitter)</button>
+      <button class="share-button bg-blue-700 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600" onclick="shareSocial('facebook')" aria-label="Facebookで共有">Facebook</button>
+      <button class="share-button bg-green-500 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400" onclick="shareSocial('line')" aria-label="LINEで共有">LINE</button>
+      <button class="share-button bg-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onclick="shareSocial('email')" aria-label="メールで共有">Eメール</button>
+      <button class="share-button bg-indigo-500 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400" onclick="shareSocial('native')" aria-label="共有">共有</button>
+    </section>
+    <div id="mode-selection" class="flex flex-col space-y-4 pt-6">
+      <h3 class="text-center text-2xl font-semibold text-orange-600">プレイモードを選択</h3>
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8">
+        <button class="w-full sm:w-1/2 p-4 bg-lime-500 text-white text-xl font-bold rounded-lg shadow-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-400" onclick="startGame('com')" aria-label="一人用 COM対戦を開始">一人用 COM対戦</button>
+        <button class="w-full sm:w-1/2 p-4 bg-teal-500 text-white text-xl font-bold rounded-lg shadow-xl hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400" onclick="startGame('two_player')" aria-label="二人対戦を開始">二人対戦</button>
+      </div>
+    </div>
+    <div id="game-screen" class="hidden space-y-8">
+      <div class="text-center space-y-2">
+        <p id="current-turn" class="text-2xl font-extrabold text-blue-600" aria-live="polite"></p>
+        <p id="game-message" class="text-lg font-medium text-red-500" aria-live="polite" role="status"></p>
+      </div>
+      <div class="p-4 rounded-lg bg-yellow-100 shadow-md">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-xl font-bold text-yellow-700">プレイヤー 1 <span id="player1-score" class="ml-4 text-3xl font-extrabold">0</span> 点</h3>
+        </div>
+        <div id="player1-dice-container" class="flex justify-center flex-wrap"></div>
+        <p id="player1-roll-result" class="text-center text-lg mt-2 font-semibold"></p>
+      </div>
+      <div class="p-4 rounded-lg bg-blue-100 shadow-md">
+        <div class="flex justify-between items-center mb-2">
+          <h3 id="player2-title" class="text-xl font-bold text-blue-700">プレイヤー2 COM <span id="player2-score" class="ml-4 text-3xl font-extrabold">0</span> 点</h3>
+        </div>
+        <div id="player2-dice-container" class="flex justify-center flex-wrap"></div>
+        <p id="player2-roll-result" class="text-center text-lg mt-2 font-semibold"></p>
+      </div>
+      <div class="text-center pt-4">
+        <button id="roll-button" class="p-4 bg-red-600 text-white text-xl font-bold rounded-lg shadow-2xl hover:bg-red-700 transition duration-300 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400" onclick="handleRoll()" aria-label="サイコロを振る">サイコロを振る</button>
+      </div>
+      <div id="final-result" class="text-center hidden p-6 bg-red-50 rounded-lg border-4 border-red-300">
+        <p class="text-2xl font-bold mb-2 text-gray-800">最終結果:</p>
+        <p id="result-text" class="text-5xl font-extrabold result-text"></p>
+        <button class="mt-4 p-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onclick="resetGame()" aria-label="再チャレンジ">再チャレンジ</button>
+      </div>
+    </div>
+    <!-- 説明セクション -->
+    <section class="space-y-6 pt-10">
+      <h2 class="text-3xl font-bold text-green-700 border-b-2 pb-2 border-green-200">ゾロ目ゲーム1111とは？ゲーム概要</h2>
+      <p>「サイコロゾロ目ゲーム1111」は、5つのサイコロを交互に振ってゾロ目を狙い、高得点を競うオンラインダイスゲームです。このゲームの最大の魅力は、特殊な得点ルールにあります。通常のゾロ目は「出た目 × 個数」で計算されますが、数字の「1」のゾロ目だけは別格です。1が2個で11点、3個で111点、そして4個で1111点という驚異的なハイスコアが狙えます。この「1111」のゾロ目が、プレイヤーに最高の幸運と勝利をもたらします。</p>
+      <p>当ゲームは【一人用 COM対戦】と【二人対戦 (対人戦)】の2つのモードを搭載しており、スマートフォンやPCなど、どのデバイスからでも手軽にアクセスしてすぐに楽しめます。完全無料で、アプリのダウンロードが不要のスマホゲーム。今すぐブラウザでゾロ目の奇跡を体験してください。ダイスゲーム好き、エンジェルナンバーに興味がある方、運試しをしたい方に最適なゲームです。</p>
+      <p>算数を学ぶ小学生や数学を習う中学生にも楽しい学習ゲームとしてご活用いただけます。計算をすることは頭の活性化につながり、脳トレとしてボケ防止にもよい影響があると言われています。</p>
+      <h3 class="text-2xl font-bold text-indigo-700">1のゾロ目と得点の具体例</h3>
+<p>1が揃うと特別に高得点となります。以下はルールと具体例です。</p>
+<ul class="list-disc list-inside space-y-2 pl-4">
+  <li><strong>1が2個</strong>：11点（例：1 と 1）</li>
+  <li><strong>1が3個</strong>：111点（例：1 と 1 と 1）</li>
+  <li><strong>1が4個</strong>：1111点（例：1 を四つ）</li>
+</ul>
+<p>自分に1が出ている状態で、相手が10点以下なら、最後に自分が1を出すと一気に逆転できます☆</p>
+<h3 class="text-2xl font-bold text-pink-700">点数の比較例と勝敗の決め方</h3>
+<p>ゾロ目は「出た目 × 個数」で計算します。複数の組み合わせによる比較例は次のとおりです。</p>
+<ul class="list-disc list-inside space-y-2 pl-4">
+  <li>例：自分が <strong>3 と 3</strong> を出すと 6 点。相手が <strong>1 と 1</strong> を出すと 11 点のため、相手の勝ち。</li>
+  <li>例：自分が <strong>4 を三個</strong> 出すと 12 点。相手が <strong>1 と 1</strong> を出すと、自分の勝ち。</li>
+  <li>例：自分が <strong>2 と 2 、4 と 4</strong> を出すと 12 点。相手が <strong>6 と 6</strong> を出すと 12 点のため、引き分け。</li>
+  <li>例：自分が <strong>1 を四つ</strong> で 1111 点、相手が <strong>5 と 5 と 5</strong> で 15 点 → 自分の勝ち。</li>
+</ul>
+      <h3 class="text-2xl font-bold text-indigo-700">幸運のエンジェルナンバー「1111」が持つ意味とは</h3>
+      <p>このゲームの核となる「1111」は、数秘術やスピリチュアルの世界では非常に強力なエンジェルナンバーとして知られています。「1111」は、新しい始まり、思考の現実化、そしてアセンション（次元上昇）のサインです。この数字を見たとき、それはあなたの思考や願いが現実のものとなる直前であることを示しています。</p>
+      <h3 class="text-2xl font-bold text-red-700">ゾロ目が出た時の具体的な幸運と開運効果を詳しく解説</h3>
+      <ul class="list-disc list-inside space-y-2 pl-4">
+        <li>金運上昇:ゾロ目は「揃う」という性質から、物事が調和し、富が集まってくるサインです。特に「1111」は、予期せぬ収入や投資の成功など、大きな金運の流れを呼び込みます。</li>
+        <li>人間関係の改善:2つ以上のサイコロの目が揃うことは、人間関係における「共鳴」を象徴します。疎遠になっていた人との関係が修復されたり、最高のパートナーとの出会いがある可能性が高まります。</li>
+        <li>仕事・学業の成功:ゾロ目が出た直後は、集中力と直感が冴えわたります。仕事での大きなプロジェクトの成功、学業での成績向上など、努力が報われるスピードが加速します。</li>
+        <li>健康運の強化:ゾロ目、特に「3」や「5」のゾロ目は、心身のバランスが整っている状態を示します。体調不良の改善や、活動的なエネルギーに満ち溢れることを意味します。</li>
+      </ul>
+    </section>
+    <!-- 関連リンクとフッターナビゲーション -->
+    <div class="mt-6">
+      <h3 id="related-title" class="text-xl font-bold text-gray-700">関連コンテンツ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y949/" target="_blank" rel="noopener">軽いゲーム</a></li>
+      </ul>
+      <h3 id="related-suji" class="text-xl font-bold text-gray-700">数字ゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y962/" target="_blank" rel="noopener">算数一年生ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y961/" target="_blank" rel="noopener">かけ算わり算ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y957/" target="_blank" rel="noopener">掛け算の暗算ブラウザゲーム</a></li>
+      </ul>
+      <h3 id="related-card" class="text-xl font-bold text-gray-700">カードゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/taisengame/" target="_blank" rel="noopener">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></li>
+        <li><a href="https://memoc.pages.dev/y3c2/" target="_blank" rel="noopener">カードゲーム二人で楽しいカップルもおすすめ無料ブラウザゲーム</a></li>
+      </ul>
+      <h3 id="kanji-games" class="text-xl font-bold text-gray-700">漢字クイズゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y959/" target="_blank" rel="noopener">漢字問題 小学生で習うクイズ</a></li>
+        <li><a href="https://memoc.pages.dev/y960/" target="_blank" rel="noopener">小学生勉強ゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y958/" target="_blank" rel="noopener">中学一年生の漢字問題ブラウザゲーム</a></li>
+      </ul>
+      <h3 id="english-games" class="text-xl font-bold text-gray-700">英語クイズゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y10k2/" target="_blank" rel="noopener">英単語勉強法とクイズゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y9i2/" target="_blank" rel="noopener">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y11m/" target="_blank" rel="noopener">英語ことわざおしゃれなクイズゲーム</a></li>
+      </ul>
+      <h3 id="shooting-games" class="text-xl font-bold text-gray-700">シューティングゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/senshagame1/" target="_blank" rel="noopener">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></li>
+        <li><a href="https://memoc.pages.dev/sensuikangame1/" target="_blank" rel="noopener">潜水艦ゲーム無料PCスマホタブレット対応シューティングの説明</a></li>
+        <li><a href="https://memoc.pages.dev/sensuikangame2/" target="_blank" rel="noopener">潜水艦ゲーム2人対戦可 無料PCスマホ対応</a></li>
+      </ul>
+      <h3 id="fantasy-games" class="text-xl font-bold text-gray-700">ファンタジーゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/yzombi1/" target="_blank" rel="noopener">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></li>
+        <li><a href="https://memoc.pages.dev/y4d2/" target="_blank" rel="noopener">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></li>
+      </ul>
+      <h3 id="ball-games" class="text-xl font-bold text-gray-700">ボールゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y964/" target="_blank" rel="noopener">ビリヤードルール変則ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y965/" target="_blank" rel="noopener">おはじきシールブラウザゲーム</a></li>
+      </ul>
+      <div class="flex justify-left space-x-6 mt-4">
+        <p><a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイトにもどる</a></p>
+        <p><a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a></p>
+        <p><a href="https://memoc.pages.dev/y954/" target="_blank" rel="noopener">相場よりお安く個人用ホームページ作成</a></p>
+      </div>
+    </div>
+    <footer class="mt-8">
+      <div class="max-w-5xl mx-auto px-4">
+        <p class="text-sm text-gray-500 mt-4">&copy; メモ帳代わりwebブラウザ便利サイト. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+<script src="/js/y948.js"></script>
+</body>
+</html>
