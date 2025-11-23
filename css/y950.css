@@ -139,7 +139,32 @@
             font-weight: 600;
             margin-top: 1rem;
         }
-       
+       a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #2563eb;
+  text-decoration: underline;
+  outline: none;
+}
+
+/* コンテナ内のリンク優先（必要なら上書き用） */
+.container-main a,
+.footer-link,
+.related-link {
+  color: #3b82f6;
+}
+
+.container-main a:hover,
+.footer-link:hover,
+.related-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
         /* 関連リンクとフッターのリンク */
         .footer-link, .related-link {
             color: #3b82f6; /* 青色 */
