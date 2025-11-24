@@ -81,7 +81,7 @@ body{
 
 /* SNS ボタン 小さい丸型 */
 .icon-btn{
-  width:44px;
+  width:auto;
   height:44px;
   padding:6px;
   border-radius:12px;
@@ -145,7 +145,7 @@ body{
   font-size:18px;
   line-height:1.6;
   white-space:pre-wrap;
-  color:#233;
+  color:rgb(51, 51, 34);
   margin:0;
 }
 
@@ -175,6 +175,7 @@ h2, h3 {
 
 /* h2にグラデーションボーダーとアイコン風リング */
 h2 {
+  color: #9c0bad;
   font-size:20px;
   background:
     linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
@@ -208,6 +209,7 @@ h2::after{
 
 /* h3は少し小さめ・パステルグラデーション */
 h3{
+  color: #974705;
   display:inline-block;
   font-size:16px;
   color:var(--h3-color);
