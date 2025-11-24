@@ -212,7 +212,6 @@ h3{
   color: #974705;
   display:inline-block;
   font-size:16px;
-  color:var(--h3-color);
   background:var(--h3-badge-bg);
   padding:6px 12px;
   border-radius:10px;
