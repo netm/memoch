@@ -1,0 +1,25 @@
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
+            /* 背景は優しく雪のようなオフホワイト */
+            background-color: #f7f9fb;
+        }
+
+        /* カスタムカラーとデザイン */
+        .header-gradient {
+            background-image: linear-gradient(135deg, #FF69B4 0%, #8A2BE2 100%); /* ピンクとパープルのグラデーション */
+        }
+        .text-shadow-custom {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .link-style {
+            color: #1e40af; /* リンクの色は青色 */
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .link-style:hover {
+            color: #3b82f6;
+        }
+        .share-button-base {
+            @apply inline-flex items-center justify-center p-3 m-1 rounded-full text-white shadow-lg transition duration-300 transform hover:scale-105;
+        }

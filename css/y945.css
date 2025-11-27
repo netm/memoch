@@ -1,0 +1,128 @@
+        /* カスタムCSS - カラフルなデザインとアニメーション */
+        :root {
+            --color-primary: #FF6B6B;
+            --color-secondary: #4ECDC4;
+            --color-accent: #FFE66D;
+            --color-text: #2C3E50;
+            --color-bg: #F7F9FC;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Mochiy+Pop+One', sans-serif;
+        }
+
+        /* カラフルなタイトル */
+        .rainbow-text {
+            background: linear-gradient(45deg, #c2cc00, #eaff00, #c9cc00, #ffe100, #dab900, #b58e01, #a16300);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* カラフルな見出し装飾 */
+        h2 {
+            border-bottom: 4px solid #4ECDC4;
+            padding-bottom: 0.5rem;
+            color: #2C3E50;
+        }
+        h2::first-letter {
+            color: #c25400;
+            font-size: 1.5em;
+        }
+
+        /* イス（カード）のデザイン */
+        .chair-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid #E2E8F0;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-family: 'Mochiy+Pop+One', sans-serif;
+            color: #4A5568;
+            user-select: none;
+        }
+
+        .chair-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #4ECDC4;
+        }
+
+        .chair-card:active {
+            transform: scale(0.95);
+        }
+
+        .chair-card.removed {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0);
+        }
+
+        /* ボタンデザイン */
+        .btn-game {
+            transition: transform 0.1s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+        .btn-game:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* シェアボタン */
+        .share-btn {
+            transition: opacity 0.2s;
+        }
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* リンク */
+        a {
+            color: #3182CE;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #2C5282;
+            text-decoration: underline;
+        }
+
+        /* スマホ横向き最適化 */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .chair-grid {
+                grid-template-columns: repeat(6, 1fr) !important;
+            }
+            header, .share-area, .game-info {
+                padding: 0.2rem !important;
+            }
+            .chair-card {
+                aspect-ratio: auto;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+       
+        /* 状態表示アニメーション */
+        @keyframes flashRed {
+            0%, 100% { background-color: white; }
+            50% { background-color: #FED7D7; }
+        }
+        .flash-error {
+            animation: flashRed 0.5s ease-in-out;
+        }

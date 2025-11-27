@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気イスゲーム - 心理戦頭脳バトル</title>
+    <meta name="description" content="電気イスゲームは、1から12の数字が書かれたイスを取り合い、合計得点を競う心理戦ゲームです。電流が流れるイスを回避しながら40点を目指せ！">
+     <meta name="keywords" content="電気イスゲーム,電気イス,ゲーム">
+   <!-- Tailwind CSS (Utility classes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="電気イスゲーム - 心理戦頭脳バトル">
+  <meta property="og:description" content="電気イスゲームは、1から12の数字が書かれたイスを取り合い、合計得点を競う心理戦ゲームです。">
+  <meta name="theme-color" content="#fffef6">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y945/">
+<link rel="stylesheet" href="/css/y945.css">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:,">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"電気イスゲーム - 心理戦頭脳バトル",
+    "url":"https://memoc.pages.dev/y945/",
+    "description":"電気イスゲームは1から12の数字が書かれたイスを取り合う心理戦ゲームです。"
+  }
+  </script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5D799GZERM');
+</script>
+<body class="min-h-screen flex flex-col items-center">
+    <!-- ヘッダーエリア -->
+    <header class="w-full text-center py-6 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 rainbow-text">電気イスゲーム</h1>
+        <!-- シェアボタンエリア -->
+        <div class="share-area flex flex-wrap justify-center gap-3 mb-6">
+            <button onclick="share('twitter')" class="share-btn bg-black text-white px-4 py-2 rounded-full font-bold text-sm flex items-center">
+                𝕏 Post
+            </button>
+            <button onclick="share('facebook')" class="share-btn bg-blue-600 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center">
+                Facebook
+            </button>
+            <button onclick="share('line')" class="share-btn bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center">
+                LINE
+            </button>
+            <button onclick="share('email')" class="share-btn bg-gray-500 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center">
+                Mail
+            </button>
+            <button onclick="share('native')" class="share-btn bg-indigo-500 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center">
+                Share
+            </button>
+        </div>
+    </header>
+    <!-- ゲームエリア -->
+    <main class="w-full max-w-4xl px-4 mb-12 flex-grow">
+        <!-- モード選択画面 -->
+        <div id="menuScreen" class="w-full text-center py-10 bg-white rounded-3xl shadow-xl p-8 border-4 border-yellow-200">
+            <h2 class="text-2xl mb-8 border-none text-gray-700">ゲームモードを選択してください</h2>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="startGame('cpu')" class="btn-game bg-cyan-600 hover:bg-cyan-700 text-white text-2xl py-6 px-12 rounded-2xl font-bold w-full md:w-auto">
+                    1P COM戦
+                </button>
+                <button onclick="startGame('pvp')" class="btn-game bg-pink-500 hover:bg-pink-600 text-white text-2xl py-6 px-12 rounded-2xl font-bold w-full md:w-auto">
+                    1P vs 2P
+                </button>
+            </div>
+        </div>
+        <!-- プレイ画面 -->
+        <div id="gameScreen" class="hidden w-full">
+            <!-- スコアボード -->
+            <div class="game-info flex justify-between items-center bg-gray-800 text-white p-4 rounded-xl mb-4 shadow-lg">
+                <div class="text-center w-1/3">
+                    <p class="text-sm text-gray-400">1P SCORE</p>
+                    <p id="p1Score" class="text-3xl font-bold text-cyan-400">0</p>
+                    <div id="p1Life" class="flex justify-center gap-1 mt-1 text-xs text-red-500">
+                        <span>⚡</span><span>⚡</span><span>⚡</span>
+                    </div>
+                </div>
+                <div class="text-center w-1/3">
+                    <p class="text-xs text-gray-400 mb-1">GOAL: 40pt</p>
+                    <div id="turnIndicator" class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                        GAME START
+                    </div>
+                </div>
+                <div class="text-center w-1/3">
+                    <p class="text-sm text-gray-400"><span id="p2Name">COM</span> SCORE</p>
+                    <p id="p2Score" class="text-3xl font-bold text-pink-400">0</p>
+                    <div id="p2Life" class="flex justify-center gap-1 mt-1 text-xs text-red-500">
+                        <span>⚡</span><span>⚡</span><span>⚡</span>
+                    </div>
+                </div>
+            </div>
+            <!-- メッセージエリア -->
+            <div id="messageArea" class="bg-white border-2 border-indigo-100 p-4 rounded-xl text-center mb-6 min-h-[4rem] flex items-center justify-center">
+                <p id="messageText" class="text-xl font-bold text-gray-700">ゲーム開始！</p>
+            </div>
+            <!-- イス（カード）グリッド -->
+            <div id="chairGrid" class="chair-grid grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-6 mx-auto max-w-3xl">
+                <!-- JSで生成されます -->
+            </div>
+        </div>
+    </main>
+    <article class="w-full max-w-4xl px-6 py-12 bg-white rounded-t-3xl shadow-inner">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-indigo-600">電気イスゲームとは？</h2>
+        <p class="mb-4 leading-relaxed">
+            電気イスゲームは、1から12の数字が書かれた12個のイスを取り合い、合計得点を競うシンプルかつ奥深い心理戦ボードゲームです。
+            プレイヤーは交互に「電流（トラップ）」を仕掛け、相手に電流が流れるイスを選ばせるか、自分が安全なイスを選んで得点を稼ぐかを目指します。
+        </p>
+        <h3 class="text-xl font-bold mb-4 mt-8 text-pink-500">基本的なルール</h3>
+        <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700 bg-gray-50 p-6 rounded-xl">
+            <li>場には1～12の数字が書かれた12個のイスがあります。</li>
+            <li>プレイヤーは交互に「電流を設置する側」と「イスを選ぶ側」になります。</li>
+            <li>選んだイスに電流がなければ、そのイスの数字が得点に加算されます。</li>
+            <li><strong>電流があるイスを選んでしまうと、その時点での合計得点は0点になります。</strong></li>
+            <li>一度選ばれたイスは場から消滅します。</li>
+        </ul>
+        <h3 class="text-xl font-bold mb-4 mt-8 text-cyan-600">勝利条件</h3>
+        <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <h4 class="font-bold text-yellow-700 mb-2">① ポイント勝利</h4>
+                <p class="text-sm">合計得点が<strong>40点以上</strong>になった時点で勝利決定！</p>
+            </div>
+            <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                <h4 class="font-bold text-red-700 mb-2">② 自滅勝利</h4>
+                <p class="text-sm">相手が電流のイスを<strong>3回</strong>選ぶと、その時点で相手の負け（自分の勝ち）です。</p>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 class="font-bold text-blue-700 mb-2">③ 判定勝利</h4>
+                <p class="text-sm">イスが残り1つになった時点でゲーム終了。その時得点が高い方が勝利です。</p>
+            </div>
+        </div>
+        <h3 class="text-xl font-bold mb-4 mt-8 text-purple-500">ゲームのポイント</h3>
+        <p class="mb-4 leading-relaxed">
+            このゲームの醍醐味は「ブラフ（はったり）」です。大きな数字のイスは魅力的ですが、当然相手もそこを狙って電流を仕掛けてくるでしょう。
+            あえて小さな数字を取るか、裏をかいて大きな数字を狙うか。相手の思考を読み切れるかが勝負のカギを握ります。
+            スマホを横向きにすれば、画面いっぱいにイスが表示され、臨場感のある対戦が楽しめます。
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-indigo-600">関連リンク</h2>
+        <ul class="space-y-3 mb-12">
+            <li><a href="https://memoc.pages.dev/y948/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">サイコロゾロ目ゲーム1111</a></li>
+            <li><a href="https://memoc.pages.dev/game1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">無料ブラウザゲーム集</a></li>
+            <li><a href="https://memoc.pages.dev/y949/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">軽いゲーム多数ご紹介</a></li>
+        </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-purple-600">カードゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/taisengame/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></li>
+        <li><a href="https://memoc.pages.dev/y3c2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">カードゲーム二人で楽しいおすすめ無料ゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y5e2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">カップル質問ゲームと解説</a></li>
+      </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-green-700">シューティングゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/senshagame1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></li>
+        <li><a href="https://memoc.pages.dev/sensuikangame1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">潜水艦ゲーム無料PCスマホタブレット対応シューティングの説明</a></li>
+        <li><a href="https://memoc.pages.dev/sensuikangame2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">潜水艦ゲーム2人対戦可 無料PCスマホ対応</a></li>
+      </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-orange-600">ファンタジーゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/yzombi1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></li>
+        <li><a href="https://memoc.pages.dev/y4d2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></li>
+      </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-purple-600">数字ゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y962/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">算数一年生ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y961/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">かけ算わり算ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y957/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">掛け算の暗算ブラウザゲーム</a></li>
+      </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-pink-600">漢字クイズゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y959/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">漢字問題 小学生で習うクイズ</a></li>
+        <li><a href="https://memoc.pages.dev/y960/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">小学生勉強ゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y958/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">中学一年生の漢字問題ブラウザゲーム</a></li>
+      </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-green-600">英語クイズゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y10k2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">英単語勉強法とクイズゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y9i2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">英語の自主勉強ネタ中学生二年生の英単語ゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y11m/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">英語ことわざおしゃれなクイズゲーム</a></li>
+      </ul>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-red-600">ボールゲーム</h3>
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y964/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">ビリヤードルール変則ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y965/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">おはじきシールブラウザゲーム</a></li>
+      </ul>
+    </article>
+    <!-- フッター -->
+    <footer class="w-full bg-gray-200 text-black py-8 text-center">
+        <div class="flex justify-center gap-8 mb-4">
+            <p><a href="https://memoc.pages.dev/" class="text-blue-400 hover:text-blue" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイトにもどる</a></p>
+            <p><a href="https://memoc.pages.dev/sitemap/" class="text-blue-400 hover:text-blue" target="_blank" rel="noopener">サイトマップ</a></p>
+      </div>
+        <p class="text-gray-600 text-sm">© メモ帳代わりwebブラウザ便利サイト</p>
+    </footer>
+<script src="/js/y945.js"></script>
+</body>
+</html>
