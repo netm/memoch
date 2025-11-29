@@ -1,0 +1,233 @@
+        /* ベーススタイル */
+        :root {
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --link-color: #0000ff;
+            --accent-pink: #ffb7c5;
+            --accent-blue: #a0d8ef;
+            --accent-yellow: #fff4b1;
+            --accent-green: #c7e9c0;
+            --accent-purple: #e6cde3;
+            --jesse-color: #ff4b4b;
+            --taiga-color: #ff96bc;
+            --hokuto-color: #333333;
+            --yugo-color: #ffea00;
+            --shintaro-color: #00a381;
+            --juri-color: #0075c2;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        /* コンテナ設定（スマホ横向きで端まで表示、PCでは幅制限） */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px 15px; /* スマホでの読みやすさを確保 */
+            }
+        }
+
+        /* タイトル */
+        h1 {
+            background: linear-gradient(to right, #ff5e87, #ff70d2, #ff6c5f);
+            color: #ffffff;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #444;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            background-color: var(--accent-yellow);
+            padding: 8px 12px;
+            border-radius: 5px;
+            border-left: 5px solid orange;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* シェアボタンエリア */
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-x { background-color: #1877f2; }
+        .btn-fb { background-color: #0049a3; }
+        .btn-line { background-color: #06c755; }
+        .btn-mail { background-color: #a3009e; }
+        .btn-native { background-color: #ff9800; }
+
+        /* ナビゲーションボタン（ジャンプリンク） */
+        .nav-links {
+            color: #0000ff;
+            text-decoration: underline;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .nav-btn:nth-child(1) { background-color: var(--accent-pink); }
+        .nav-btn:nth-child(2) { background-color: var(--accent-blue); }
+        .nav-btn:nth-child(3) { background-color: var(--accent-green); }
+        .nav-btn:nth-child(4) { background-color: var(--accent-purple); }
+
+        /* テーブルスタイル */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .info-table th, .info-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .info-table th {
+            background-color: #f0f0f0;
+            white-space: nowrap;
+        }
+
+        /* メンバープロフィールカード */
+        .member-card {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .member-card h3 {
+            margin-top: 0;
+            color: #fff;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+
+        /* メンバーカラー適用 */
+        .mc-jesse h3 { background-color: var(--jesse-color); border-left-color: darkred; }
+        .mc-taiga h3 { background-color: var(--taiga-color); border-left-color: deeppink; }
+        .mc-hokuto h3 { background-color: var(--hokuto-color); border-left-color: black; }
+        .mc-yugo h3 { background-color: var(--yugo-color); color: #333; border-left-color: gold; text-shadow: none; }
+        .mc-shintaro h3 { background-color: var(--shintaro-color); border-left-color: darkgreen; }
+        .mc-juri h3 { background-color: var(--juri-color); border-left-color: darkblue; }
+
+        /* リンク集エリア */
+        .link-collection {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .link-collection ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .link-collection li {
+            color: #0000ff;
+            margin-bottom: 8px;
+        }
+
+        /* テキストエリア */
+        .seo-text {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #fffaf0;
+            border-radius: 8px;
+        }
+
+        /* フッター */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #e3e1e1;
+            color: black;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0f1fff;
+            margin: 0 10px;
+        }
+
+        /* スマホ横向き対応の補足（viewport widthに対して最適化） */
+        @media (orientation: landscape) and (max-height: 500px) {
+            h1 { font-size: 1.2rem; padding: 10px; }
+            .nav-links { grid-template-columns: 1fr 1fr 1fr 1fr; }
+        }
