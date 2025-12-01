@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>顔合成ミニゲーム</title>
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y943/">
+<link rel="stylesheet" href="/css/y943.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <h3 style="margin:0">顔合成ミニゲーム</h3>
+          <div id="themeLabel" class="note">今日のテーマ: —</div>
+        </div>
+        <div class="canvasWrap">
+          <canvas id="mainCanvas" width="720" height="960" aria-label="合成プレビュー"></canvas>
+        </div>
+        <div style="margin-top:10px" class="controls">
+          <input id="photoInput" type="file" accept="image/*" capture="environment" />
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <select id="templateSelect" aria-label="テンプレート選択">
+              <option value="animal">動物フィルター</option>
+              <option value="crown">王冠フィルター</option>
+              <option value="film">フィルムフレーム</option>
+              <option value="comic">コミックポップ</option>
+              <option value="cyber">サイバーネオン</option>
+              <option value="mono">モノクロ名作</option>
+            </select>
+            <button id="resetBtn" type="button">リセット</button>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input id="textInput" type="text" placeholder="キャプションを追加（任意）" />
+            <button id="applyTextBtn" type="button">反映</button>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button id="shareBtn" type="button">SNSでシェア</button>
+            <button id="downloadBtn" type="button">画像をダウンロード</button>
+          </div>
+          <p class="note" style="margin-top:10px">ヒント: 写真は端末で処理されます。保存する場合はダウンロードを使ってください。</p>
+        </div>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="card">
+        <h4 style="margin:0 0 8px 0">プレビュー</h4>
+        <img id="preview" class="previewImg" alt="生成プレビュー" src="" />
+        <div style="margin-top:8px" class="note">ワンタップでSNS共有。共有できない場合はダウンロードして投稿してください。</div>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 8px 0">遊び方</h4>
+        <ol class="note" style="padding-left:18px;margin:0">
+          <li>写真をアップロードまたは撮影</li>
+          <li>テンプレートを選んで「反映」</li>
+          <li>キャプションを入れてシェア or ダウンロード</li>
+        </ol>
+      </div>
+      <div class="card footer">
+        <div class="note">テンプレ5種＋日替わりテーマで毎日違う合成を楽しもう</div>
+      </div>
+    </aside>
+  </div>
+<script src="/js/y943.js"></script>
+</body>
+</html>

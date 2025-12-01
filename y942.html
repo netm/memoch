@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>早押しボタン｜ブラウザで使える無料のwebアプリ（インストール不要）</title>
+  <meta name="description" content="インストール不要でブラウザですぐ使える無料の早押しボタン。スマホ・PC・タブレット対応。音量調節、最大4人対応、キーボードショートカットあり。クイズ大会や授業、パーティーで手軽に使えるWebアプリです。">
+  <meta name="robots" content="index,follow">
+  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y942/">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/y942.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/css/y942.css"></noscript>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="早押しボタン｜ブラウザで使える無料のwebアプリ">
+  <meta property="og:description" content="インストール不要でブラウザですぐ使える早押しボタン。スマホ・PC対応。最大4人。">
+  <meta property="og:url" content="hhttps://memoc.pages.dev/y942/">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="早押しボタン｜ブラウザで使える無料のwebアプリ">
+  <meta name="twitter:description" content="インストール不要でブラウザですぐ使える早押しボタン。スマホ・PC対応。最大4人。">
+  <!-- JSON-LD 構造化データ: WebApplication と FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "早押しボタン",
+        "url": "https://memoc.pages.dev/y942/",
+        "description": "ブラウザで使える早押しボタンアプリ。インストール不要でスマホ・PC・タブレットに対応。最大4人まで。",
+        "applicationCategory": "Game",
+        "operatingSystem": "iOS; Android; Windows; macOS",
+        "browserRequirements": "JavaScript enabled"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "このサイトはインストールが必要ですか",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "いいえ。ブラウザで開くだけで使えます。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "何人まで使えますか",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "最大4人まで同時に利用できます。人数に合わせてボタン数を切り替えられます。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "キーボード操作はできますか",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "はい。PCでは Q / 9 / P / T のキーでそれぞれのボタンを操作できます。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- パフォーマンスのためスクリプトは遅延読み込み -->
+  <script defer src="/js/y942.js"></script>
+</head>
+<body>
+  <header role="banner">
+    <h1>早押しボタン｜ブラウザで使える無料のwebアプリ</h1>
+  </header>
+  <nav class="share-area" aria-label="共有リンク">
+    <a href="https://twitter.com/intent/tweet?text=早押しボタンサイト&url=https://yourdomain.example/" target="_blank" rel="noopener" class="share-btn sb-x">𝕏 Post</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourdomain.example/" target="_blank" rel="noopener" class="share-btn sb-fb">Facebook</a>
+    <a href="https://social-plugins.line.me/lineit/share?url=https://yourdomain.example/" target="_blank" rel="noopener" class="share-btn sb-line">LINE</a>
+    <a href="mailto:?subject=早押しボタンサイト&body=https://yourdomain.example/" class="share-btn sb-email">Email</a>
+    <button id="btn-share-native" class="share-btn sb-native" aria-label="ネイティブ共有">Share</button>
+  </nav>
+  <main role="main">
+    <section class="controls" aria-label="モード選択">
+      <button id="mode-2" class="mode-btn" aria-pressed="false">2人用ボタン</button>
+      <button id="mode-3" class="mode-btn" aria-pressed="false">3人用ボタン</button>
+      <button id="mode-4" class="mode-btn active-mode" aria-pressed="true">4人用ボタン</button>
+    </section>
+    <section class="buzzer-container" aria-label="早押しボタン">
+      <!-- ボタンは button 要素にしてアクセシビリティを向上 -->
+      <button id="btn-red" class="buzzer b-red" data-key="KeyQ" aria-label="赤ボタン Qキー">
+        <span aria-hidden="true">🔴</span>
+        <span class="key-hint">Key: Q</span>
+      </button>
+      <button id="btn-blue" class="buzzer b-blue" data-key="Digit9" aria-label="青ボタン 9キー">
+        <span aria-hidden="true">🔵</span>
+        <span class="key-hint">Key: 9</span>
+      </button>
+      <button id="btn-green" class="buzzer b-green" data-key="KeyP" aria-label="緑ボタン Pキー">
+        <span aria-hidden="true">🟢</span>
+        <span class="key-hint">Key: P</span>
+      </button>
+      <button id="btn-yellow" class="buzzer b-yellow" data-key="KeyT" aria-label="黄ボタン Tキー">
+        <span aria-hidden="true">🟡</span>
+        <span class="key-hint">Key: T</span>
+      </button>
+    </section>
+    <section class="volume-area" aria-label="音量調節" style="margin-top:1rem">
+      <label for="volume-slider">🔊 音量調節</label>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0.5">
+    </section>
+    <article class="seo-content" style="margin-top:1.25rem">
+      <h2>無料で音量調整ができて早押しボタンを押すだけのサイトです</h2>
+      <p>この早押しボタンのサイトは、ダウンロード不要でブラウザからすぐに利用できるWebアプリです。ボタンを押すだけで早押しのシーンに活用できます。スマートフォン（iPhone/Android）、パソコン、タブレットなど、あらゆるデバイスに対応しています。クイズ大会やパーティーゲーム、学校の授業でのレクリエーションなど、手軽に「誰が一番早かったか」を確認したい場面で便利です。</p>
+      <h3>主な特徴</h3>
+      <p>最大4人までの同時利用に対応し、人数に合わせてボタン数を切り替えられます。PCではキーボード操作（Q / 9 / P / T）に対応しており、正確な早押し判定が可能です。スマホを横向きにするとボタンが画面いっぱいに広がり、押しやすくなります。音量調節や視覚的なフィードバックも備えています。</p>
+      <h3>使い方の例</h3>
+      <ul>
+        <li><strong>ホームパーティー</strong>：テレビのクイズ番組風の演出に活用。</li>
+        <li><strong>友達と</strong>：スマホで早押しゲームを開催。</li>
+        <li><strong>学校や塾の授業</strong>：生徒の参加意欲を高めるツールとして使用。</li>
+        <li><strong>YouTuber・配信者</strong>：企画動画の小道具として手軽に導入。</li>
+        <li><strong>結婚式の二次会</strong>：新郎新婦に関する早押しクイズで盛り上げる。</li>
+        <li><strong>家族団らん</strong>：お子様との知育遊びや家族対抗クイズゲームとして。</li>
+      </ul>
+      <h3>対応キーボード操作一覧</h3>
+      <ul>
+        <li>赤ボタン：キーボードの <strong>[ Q ]</strong></li>
+        <li>青ボタン：キーボードの <strong>[ 9 ]</strong></li>
+        <li>緑ボタン：キーボードの <strong>[ P ]</strong></li>
+        <li>黄ボタン：キーボードの <strong>[ T ]</strong></li>
+      </ul>
+      <h3>よくある質問 FAQ</h3>
+      <dl>
+        <dt>インストールは必要ですか</dt>
+        <dd>不要です。ブラウザで開くだけで使えます。</dd>
+        <dt>音が出ない場合はどうすればよいですか</dt>
+        <dd>ブラウザのタブがミュートになっていないか、端末の音量設定を確認してください。初回はユーザー操作で音声再生が許可される必要があります。</dd>
+      </dl>
+            <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-orange-600">関連コンテンツ</h3>
+            <div class="related-links">
+                <ul>
+                    <li><a href="https://memoc.pages.dev/y993/" target="_blank" rel="noopener">くじ引きツール</a></li>
+                    <li><a href="https://memoc.pages.dev/y995/" target="_blank" rel="noopener">イラストお題ルーレット</a></li>
+                    <li><a href="https://memoc.pages.dev/yzpa1/" target="_blank">タイマーおしゃれサイトの解説</a></li>
+                </ul>
+            </div>
+            <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-purple-600">ゲームコンテンツ</h3>
+            <div class="game-links">
+                <ul>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集</a></li>
+          <li><a href="https://memoc.pages.dev/y949/" target="_blank" rel="noopener">軽いゲーム多数ご紹介 スマホでもサクサク</a></li>
+          <li><a href="https://memoc.pages.dev/kurumagamese/" target="_blank" rel="noopener">車ブラウザゲーム無料</a></li>
+                </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-pink-600">カードゲーム</h3>
+            <div class="card-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/taisengame/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">ブラウザゲームで対戦できる友達とカードゲーム二人はペンギン</a></li>
+        <li><a href="https://memoc.pages.dev/y3c2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">カードゲーム二人で楽しいおすすめ無料ゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y5e2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">カップル質問ゲームと解説</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-red-600">大逆転ゲーム</h3>
+            <div class="daigyakuten-games">
+      <ul class="space-y-3 mb-12">
+          <li><a href="https://memoc.pages.dev/y948/" target="_blank" rel="noopener">サイコロゾロ目ゲーム1111</a></li>
+          <li><a href="https://memoc.pages.dev/y945/" target="_blank" rel="noopener">電気イスゲーム - 心理戦頭脳バトル</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-green-700">シューティングゲーム</h3>
+            <div class="shooting-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/senshagame1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">戦車ゲームブラウザ無課金ガチャなし無料PCスマホタブレット</a></li>
+        <li><a href="https://memoc.pages.dev/sensuikangame1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">潜水艦ゲーム無料PCスマホタブレット対応シューティングの説明</a></li>
+        <li><a href="https://memoc.pages.dev/sensuikangame2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">潜水艦ゲーム2人対戦可 無料PCスマホ対応</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-orange-600">ファンタジーゲーム</h3>
+            <div class="fantasy-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/yzombi1/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">ブラウザゲームのホラーシューティング無料PCスマホ対応</a></li>
+        <li><a href="https://memoc.pages.dev/y4d2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">忍者ペンギン装備スキルの説明 PCスマホゲームふたり対戦可</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-purple-600">数字ゲーム</h3>
+            <div class="number-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y962/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">算数一年生ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y961/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">かけ算わり算ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y957/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">掛け算の暗算ブラウザゲーム</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-pink-600">漢字クイズゲーム</h3>
+            <div class="kanji-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y959/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">漢字問題 小学生で習うクイズ</a></li>
+        <li><a href="https://memoc.pages.dev/y960/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">小学生勉強ゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y958/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">中学一年生の漢字問題ブラウザゲーム</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-green-600">英語クイズゲーム</h3>
+            <div class="english-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y6f2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">英語クイズ小学生向けゲームと説明</a></li>
+        <li><a href="https://memoc.pages.dev/y7g2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">英単語小6クイズゲームと説明</a></li>
+        <li><a href="https://memoc.pages.dev/y8h2/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">英語中学からやり直す中一クイズゲーム</a></li>
+      </ul>
+            </div>
+      <h3 class="text-2xl md:text-2xl font-bold mb-6 mt-12 text-red-600">ボールゲーム</h3>
+            <div class="ball-games">
+      <ul class="space-y-3 mb-12">
+        <li><a href="https://memoc.pages.dev/y964/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">ビリヤードルール変則ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y965/" class="text-blue-600 hover:text-blue-600" target="_blank" rel="noopener">おはじきシールブラウザゲーム</a></li>
+      </ul>
+            </div>
+    </article>
+  </main>
+  <footer role="contentinfo" style="padding:1rem;background:#fafafa;margin-top:1rem">
+        <div class="flex justify-center gap-8 mb-4">
+            <p><a href="https://memoc.pages.dev/" class="text-blue-400 hover:text-blue" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイトにもどる</a></p>
+            <p><a href="https://memoc.pages.dev/sitemap/" class="text-blue-400 hover:text-blue" target="_blank" rel="noopener">サイトマップ</a></p>
+      </div>
+        <p class="text-gray-600 text-sm">© <span id="year"></span> メモ帳代わりwebブラウザ便利サイト</p>
+  </footer>
+  <!-- noscript 用の簡易説明（クローラやJS無効時のコンテンツ） -->
+  <noscript>
+    <div style="padding:1rem;background:#fff8e0;border:1px solid #ffd;">
+      JavaScript が無効になっています。早押しボタンを利用するにはブラウザで JavaScript を有効にしてください。簡易版の説明：このページはブラウザで動作する早押しボタンアプリです。インストール不要で最大4人まで利用できます。
+    </div>
+  </noscript>
+  <!-- 最小限のスクリプト（例: 年表示、キーボード対応、アクセシビリティ補助） -->
+  <script>
+    // 年を自動表示
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // キーボードショートカットとボタン動作の簡易実装（詳細は外部ファイルへ）
+    (function(){
+      const sounds = {}; // 実際の音声は外部でロード
+      const volumeSlider = document.getElementById('volume-slider');
+      const buzzers = Array.from(document.querySelectorAll('.buzzer'));
+      const keyMap = {
+        'KeyQ': 'btn-red',
+        'Digit9': 'btn-blue',
+        'KeyP': 'btn-green',
+        'KeyT': 'btn-yellow'
+      };
+      // ボタン押下の視覚フィードバック
+      function flash(el){
+        el.classList.add('active');
+        setTimeout(()=>el.classList.remove('active'), 300);
+      }
+      // クリック / タップ
+      buzzers.forEach(b => {
+        b.addEventListener('click', () => {
+          flash(b);
+          // 音再生処理（外部で実装）
+        });
+      });
+      // キーボード
+      window.addEventListener('keydown', (e) => {
+        const id = keyMap[e.code];
+        if(!id) return;
+        const btn = document.getElementById(id);
+        if(btn){
+          flash(btn);
+          btn.focus();
+          // 音再生処理（外部で実装）
+        }
+      });
+      // 共有API（ネイティブ）
+      const shareBtn = document.getElementById('btn-share-native');
+      if(navigator.share && shareBtn){
+        shareBtn.addEventListener('click', async () => {
+          try {
+            await navigator.share({title: document.title, text: '早押しボタンサイト', url: location.href});
+          } catch (err) {
+            // ユーザーがキャンセルした場合などは無視
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

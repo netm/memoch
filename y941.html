@@ -1,0 +1,123 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="暇つぶしブラウザゲーム - 60秒でどれだけ「暇」を爆発させられるか挑戦！スマホ横向き対応、SNSシェア対応のシンプルで楽しいミニゲームです。">
+  <meta name="keywords" content="暇つぶし,ブラウザゲーム,ミニゲーム,スマホゲーム,シンプルゲーム,暇">
+  <title>暇つぶしブラウザゲーム</title>
+  <link rel="canonical" href="https://memoc.pages.dev/y941/">
+<link rel="stylesheet" href="/css/y941.css">
+</head>
+<body>
+  <main class="container" role="main">
+    <header class="header" role="banner">
+      <div class="titleWrap">
+        <h1 class="title">暇つぶしブラウザゲーム</h1>
+      </div>
+      <nav class="shareRow" aria-label="共有ボタン">
+        <a id="shareX" class="shareBtn x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Xで共有">X</a>
+        <a id="shareFB" class="shareBtn fb" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebookで共有">Facebook</a>
+        <a id="shareLINE" class="shareBtn line" href="#" target="_blank" rel="noopener noreferrer" aria-label="LINEで共有">LINE</a>
+        <a id="shareMail" class="shareBtn mail" href="#" aria-label="メールで共有">Eメール</a>
+        <a id="shareNative" class="shareBtn native" href="#" aria-label="ネイティブ共有">ネイティブ共有</a>
+      </nav>
+    </header>
+    <section class="stageWrap" aria-labelledby="gameHeading">
+      <h2 id="gameHeading">ゲームステージ</h2>
+      <div id="stage" role="application" aria-label="ゲームステージ"></div>
+      <div class="controls" aria-hidden="false">
+        <button id="startBtn" aria-pressed="false">スタート</button>
+        <div class="infoBox" role="status" aria-live="polite">
+          <div class="timer">残り時間: <span id="timer">60</span>秒</div>
+          <div class="score">合計得点: <span id="score">0</span></div>
+        </div>
+      </div>
+      <div class="volumeRow" aria-label="音量調節">
+        <label for="volume">音量</label>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
+      </div>
+    </section>
+    <section class="content" aria-labelledby="descHeading">
+      <h2 id="descHeading"> 暇つぶしブラウザゲームとは？</h2>
+            <p>
+                「暇つぶしブラウザゲーム」は、スマートフォンやパソコンでダウンロード不要ですぐに遊べる無料のウェブゲームです。通勤通学の電車の中、待ち合わせの空き時間、あるいは家でのんびりしている時など、ちょっとした「暇」を感じた瞬間に最適です。
+            </p>
+            <h3>ゲームの特徴</h3>
+            <p>
+                ルールは非常にシンプル。画面上にランダムに現れる「暇」という白い文字をタップ（クリック）するだけです。タップすると「暇」が爆発し、爽快な効果音とともに得点が加算されます。難しい操作や複雑なストーリーは一切ありません。ただひたすらに、目の前の「暇」を消し去る爽快感を味わってください。
+            </p>
+      <h3>短時間で遊べるシンプルなブラウザゲーム</h3>
+      <p>「暇つぶしブラウザゲーム」は、スマホでもパソコンでも簡単に遊べる60秒勝負のミニゲームです。画面上にランダムに現れる「暇」をタップまたはクリックして爆発させ、1つにつき10点を獲得します。残り時間が30秒を切ると出現が加速し、ハイスコアを狙いやすくなります。</p>
+            <h3>ストレス解消にも効果的</h3>
+            <p>
+                日々の生活で溜まったストレスを、爆発音とともに発散しましょう。没頭し反射神経が鍛えられるとともに、より高い集中状態（ゾーン）に入ることができ、遊び終わった後は頭がスッキリします。
+            </p>
+      <h3>スマホ横向き対応で見やすいレイアウト</h3>
+      <p>スマホを横向きにしたとき、ステージが画面の両端まで広がるようにデザインされています。片手でも操作しやすいボタン配置と大きめのタップ領域で、直感的に遊べます。</p>
+      <h3>SNSシェア対応でスコアを共有</h3>
+      <p>ゲーム終了時には合計得点を表示し、X（旧Twitter）、Facebook、LINE、Eメール、ネイティブ共有で簡単にスコアをシェアできます。友達と競い合って楽しめます。</p>
+      <h3>軽量で高速</h3>
+      <p>追加のプラグインやインストールは不要。ブラウザだけで動作するため、すぐに遊べます。音量調節やキーボード操作（スペースで近くの「暇」を爆発）にも対応しています。</p>
+            <h2>サイトの使い方・遊び方</h2>
+            <p>当サイトは直感的な操作で誰でも簡単に遊ぶことができます。以下に詳しい遊び方を解説します。</p>
+            <h3>1. スタートボタンを押す</h3>
+            <p>画面中央下部にあるピンク色の「スタート」ボタンを押してください。60秒のカウントダウンが始まります。</p>
+            <h3>2. 「暇」をタップして爆破</h3>
+            <p>黒いステージ上に白い「暇」の文字がランダムに出現します。これを見つけ次第、素早くタップ（PCの場合はクリック）してください。成功すると爆発して10ポイント獲得できます。</p>
+            <h3>3. スコアアップのコツ</h3>
+            <p>
+                最初はゆっくり出現しますが、残り時間が30秒、10秒と減るにつれて、「暇」の増殖スピードが劇的に速くなります。画面全体を見て、両手（スマホの場合）を使って次々とタップするのが高得点のコツです。
+            </p>
+            <h3>4. 結果をシェア</h3>
+            <p>
+                60秒が経過するとゲーム終了です。あなたの合計得点が大きく表示されます。高得点が出たら、X（旧Twitter）やLINE、Facebookなどのシェアボタンを使って、みんなに共有しましょう。
+            </p>
+      <h3>シンプルな基本プレイ手順</h3>
+      <p>1. 「スタート」ボタンを押す。 2. 60秒のカウントダウンが始まる。 3. ステージ上に現れる「暇」をタップまたはクリックして爆発させる。 4. 1つにつき10点。 5. 残り30秒で出現が加速。 6. 残り0秒になったら合計得点が表示。 7. シェアボタンでスコアを共有。</p>
+      <h3>遊び方のバリエーション</h3>
+      <p>・友達と交互にプレイしてスコアを競う。 ・制限時間内に何個爆発させられるかを記録してランキングを作る。 ・電車やお店では音量を下げて静かに遊ぶ。 ・キーボードのスペースキーで素早くポップする練習をする。</p>
+      <h3>よくある質問（FAQ）</h3>
+      <p>Q: スマホで音が出ない場合は？ A: ブラウザのタブがミュートになっていないか、端末の音量設定を確認してください。Q: ネイティブ共有が使えない場合は？ A: 一部の古いブラウザやデスクトップ環境ではネイティブ共有が利用できないため、メールやSNSリンクを利用してください。</p>
+    </section>
+    <section class="content" aria-labelledby="relatedHeading">
+      <h2 id="relatedHeading">関連コンテンツ</h2>
+      <ul>
+        <li><a href="#" class="related">短時間で遊べるミニゲーム集</a></li>
+        <li><a href="#" class="related">スマホ対応ブラウザゲームまとめ</a></li>
+        <li><a href="#" class="related">友達と遊べるシンプルゲーム</a></li>
+      </ul>
+    </section>
+    <section class="content" aria-labelledby="otherHeading">
+      <h2 id="otherHeading">その他コンテンツ</h2>
+      <ul>
+        <li><a href="#" class="other">ランキングページ（準備中）</a></li>
+        <li><a href="#" class="other">ゲームの遊び方ガイド</a></li>
+        <li><a href="#" class="other">プライバシーポリシー</a></li>
+      </ul>
+    </section>
+    <footer class="content" aria-labelledby="footerHeading">
+      <h2 id="footerHeading">サイト情報</h2>
+      <p><a href="/" title="トップページへ戻る">トップページに戻る</a> | <a href="/sitemap" title="サイトマップ">サイトマップ</a></p>
+    </footer>
+  </main>
+  <!-- result overlay -->
+  <div id="resultOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="resultCard" role="document">
+      <h2>ゲーム終了！</h2>
+      <div class="bigScore" id="resultScore">0</div>
+      <p>スコアをシェアして友達に自慢しよう！</p>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;">
+        <a id="shareX" class="shareBtn x" href="#" target="_blank" rel="noopener noreferrer">Xで共有</a>
+        <a id="shareFB" class="shareBtn fb" href="#" target="_blank" rel="noopener noreferrer">Facebookで共有</a>
+        <a id="shareLINE" class="shareBtn line" href="#" target="_blank" rel="noopener noreferrer">LINEで共有</a>
+        <a id="shareMail" class="shareBtn mail" href="#" rel="noopener noreferrer">メールで共有</a>
+        <a id="shareNative" class="shareBtn native" href="#" rel="noopener noreferrer">ネイティブ共有</a>
+      </div>
+      <p style="margin-top:12px;"><a href="#" onclick="document.getElementById('resultOverlay').classList.remove('visible');return false;">閉じる</a></p>
+    </div>
+  </div>
+<script src="/js/y941.js"></script>
+</body>
+</html>

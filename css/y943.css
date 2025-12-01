@@ -1,0 +1,134 @@
+/* シンプルでモバイル優先のスタイル */
+:root{
+  --bg:#0f1720;
+  --card:#0b1220;
+  --accent:#ffb86b;
+  --muted:#9aa4b2;
+  --glass: rgba(255,255,255,0.04);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  background:linear-gradient(180deg,#071021 0%, #0f1720 100%);
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:18px;
+}
+
+.container{
+  max-width:980px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:18px;
+  align-items:start;
+}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:12px;
+  padding:14px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.left .card{
+  padding:12px;
+}
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+input[type=file]{
+  display:block;
+  width:100%;
+  padding:10px;
+  background:var(--glass);
+  border-radius:8px;
+  color:var(--muted);
+  border:1px dashed rgba(255,255,255,0.04);
+}
+
+select, button, input[type=text]{
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:transparent;
+  color:inherit;
+  font-size:15px;
+}
+
+button{
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--accent),#ff8a5b);
+  color:#081018;
+  font-weight:600;
+  border:none;
+  transition:transform .12s ease;
+}
+
+button:active{transform:scale(.98)}
+
+.canvasWrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border-radius:10px;
+  padding:8px;
+}
+
+#mainCanvas{
+  width:100%;
+  max-width:420px;
+  height:auto;
+  border-radius:8px;
+  background:#111;
+  display:block;
+}
+
+.side{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.previewImg{
+  width:100%;
+  border-radius:8px;
+  background:#000;
+  height:200px;
+  object-fit:contain;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.smallRow{
+  display:flex;
+  gap:8px;
+}
+
+.note{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer{
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* モバイル対応 */
+@media (max-width:900px){
+  .container{grid-template-columns:1fr; padding-bottom:40px}
+  .side{order:2}
+  .left{order:1}
+}
