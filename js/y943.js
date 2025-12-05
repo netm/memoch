@@ -270,7 +270,7 @@
 
         remainingBalls--;
         const maxSpeed = -25;
-        const minSpeed = -10;
+        const minSpeed = -13;
         const vy = minSpeed + (maxSpeed - minSpeed) * power;
 
         balls.push(new Ball(375, 550, 0, vy));
