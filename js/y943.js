@@ -247,8 +247,8 @@
         remainingBalls--;
         // 右のレーンから発射
         // power (0-1) に応じて初速決定
-        const maxSpeed = -35; 
-        const minSpeed = -15;
+        const maxSpeed = -25; 
+        const minSpeed = -10;
         const vy = minSpeed + (maxSpeed - minSpeed) * power;
         
         // レーンの中
