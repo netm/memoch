@@ -225,7 +225,7 @@
         function checkOverlap(x, y, r) {
             for (let e of entities) {
                 const dist = Math.sqrt((e.x - x)**2 + (e.y - y)**2);
-                if (dist < e.r + r + 20) return true;
+                if (dist < e.r + r + 30) return true;
             }
             return false;
         }
