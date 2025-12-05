@@ -1,10 +1,10 @@
     // --- 定数・設定 ---
     const CANVAS_WIDTH = 400;
     const CANVAS_HEIGHT = 600;
-    const GRAVITY = 0.25;
+    const GRAVITY = 0.24;
     const FRICTION = 0.99; // 空気抵抗
     const WALL_BOUNCE = 0.99; // 壁の跳ね返り係数
-    
+
     // ゲーム設定
     const INITIAL_BALLS = 10;
     const SCORE_BLACK = 10;
@@ -33,6 +33,7 @@
     let springPower = 0; // 0.0 to 1.0
     let gameOverTimer = null;
     let isGameOver = false;
+    let rafId = null;
 
     // --- クラス定義 ---
 
@@ -44,6 +45,13 @@
             this.vy = vy;
             this.radius = 12;
             this.markedForDeletion = false;
+
+            // 停止判定用
+            this.prevX = x;
+            this.prevY = y;
+            this.stoppedSince = null;      // 停止開始時刻（ms）または null
+            this.stopThreshold = 0.8;      // 位置差の閾値（ピクセル） - 調整可
+            this.stopDuration = 1000;      // 停止で消すまでの時間（ms）
         }
 
         update() {
@@ -58,15 +66,14 @@
             this.y += this.vy;
 
             // --- 壁判定 ---
-            
             // 右側のバネエリアとの境界線 (x=360あたり)
             if (this.x > 350 - this.radius && this.x < 360 && this.y > 100) {
-                 if (this.vx > 0) {
-                     this.x = 350 - this.radius;
-                     this.vx *= -WALL_BOUNCE;
-                 }
+                if (this.vx > 0) {
+                    this.x = 350 - this.radius;
+                    this.vx *= -WALL_BOUNCE;
+                }
             }
-            
+
             // 右端（バネエリア内）
             if (this.x > CANVAS_WIDTH - this.radius) {
                 this.x = CANVAS_WIDTH - this.radius;
@@ -80,28 +87,23 @@
             }
 
             // 上部のカーブ判定 (半円)
-            // 中心 (200, 200) 半径 200 の円の上半分と仮定
-            // ただしcanvas上部は y=0 なので、中心(200, 200)でy<200の領域をチェック
             const arcCenterX = 200;
             const arcCenterY = 200;
-            const arcRadius = 190; // 少しマージン
+            const arcRadius = 190;
 
             if (this.y < arcCenterY) {
                 const dx = this.x - arcCenterX;
                 const dy = this.y - arcCenterY;
                 const dist = Math.sqrt(dx*dx + dy*dy);
-                
+
                 if (dist > arcRadius - this.radius) {
-                    // 衝突法線ベクトル
                     const nx = dx / dist;
                     const ny = dy / dist;
-                    
-                    // 位置補正
+
                     const overlap = dist - (arcRadius - this.radius);
                     this.x -= nx * overlap;
                     this.y -= ny * overlap;
 
-                    // 反射ベクトル計算 (v' = v - 2(v.n)n)
                     const dot = this.vx * nx + this.vy * ny;
                     this.vx = (this.vx - 2 * dot * nx) * WALL_BOUNCE;
                     this.vy = (this.vy - 2 * dot * ny) * WALL_BOUNCE;
@@ -111,7 +113,32 @@
             // 下に落ちたら消える
             if (this.y > CANVAS_HEIGHT + this.radius) {
                 this.markedForDeletion = true;
+                return;
             }
+
+            // 画面内で停止しているか判定（停止1秒で消える）
+            const onScreen = this.y >= -this.radius && this.y <= CANVAS_HEIGHT + this.radius;
+            const dx = Math.abs(this.x - this.prevX);
+            const dy = Math.abs(this.y - this.prevY);
+
+            // 速度ベースの判定も併用すると安定する（微小な位置変化を許容）
+            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+            const speedEps = 0.05; // 速度がこれ以下ならほぼ停止とみなす
+
+            if (onScreen && dx < this.stopThreshold && dy < this.stopThreshold && speed < speedEps) {
+                if (this.stoppedSince === null) {
+                    this.stoppedSince = Date.now();
+                } else if (Date.now() - this.stoppedSince >= this.stopDuration) {
+                    this.markedForDeletion = true;
+                }
+            } else {
+                // 動いたら停止判定をリセット
+                this.stoppedSince = null;
+            }
+
+            // 次フレーム用に位置を保存
+            this.prevX = this.x;
+            this.prevY = this.y;
         }
 
         draw() {
@@ -138,7 +165,7 @@
             ctx.fillStyle = '#555555ff'; // 釘の色
             ctx.fill();
             ctx.closePath();
-            
+
             // 光沢
             ctx.beginPath();
             ctx.arc(this.x - 1, this.y - 1, 1, 0, Math.PI * 2);
@@ -161,7 +188,7 @@
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fillStyle = this.type === 'red' ? '#d32f2f' : '#212121';
             ctx.fill();
-            ctx.strokeStyle = '#rgba(0,0,0,0.5)';
+            ctx.strokeStyle = 'rgba(0,0,0,0.5)';
             ctx.stroke();
             ctx.closePath();
 
@@ -184,35 +211,32 @@
         holes = [];
         isGameOver = false;
         msgOverlay.style.display = 'none';
-        
+        if (gameOverTimer) { clearTimeout(gameOverTimer); gameOverTimer = null; }
         updateUI();
         generateMap();
+        if (rafId) cancelAnimationFrame(rafId);
         loop();
     }
 
     function generateMap() {
-        // ステージ範囲: x: 20-330, y: 150-550 (上部はカーブ、右はレーン)
-        // 釘: 6本, 穴: 9個 (赤2, 黒7)
-        // ランダム配置だが重ならないようにする
-        
         const safeZone = { xMin: 30, xMax: 320, yMin: 150, yMax: 500 };
-        const entities = []; // 重なりチェック用 {x, y, radius}
+        const entities = [];
 
         function checkOverlap(x, y, r) {
             for (let e of entities) {
                 const dist = Math.sqrt((e.x - x)**2 + (e.y - y)**2);
-                if (dist < e.r + r + 10) return true; // 10px余裕を持たせる
+                if (dist < e.r + r + 10) return true;
             }
             return false;
         }
 
-        // 1. 穴の生成
+        // 穴の生成
         const holeTypes = ['red', 'red', 'black', 'black', 'black', 'black', 'black', 'black', 'black'];
-        
+
         for (let type of holeTypes) {
             let placed = false;
             let attempt = 0;
-            while (!placed && attempt < 100) {
+            while (!placed && attempt < 200) {
                 const x = Math.random() * (safeZone.xMax - safeZone.xMin) + safeZone.xMin;
                 const y = Math.random() * (safeZone.yMax - safeZone.yMin) + safeZone.yMin;
                 if (!checkOverlap(x, y, 15)) {
@@ -224,11 +248,11 @@
             }
         }
 
-        // 2. 釘の生成 (6本)
+        // 釘の生成 (6本)
         for (let i = 0; i < 6; i++) {
             let placed = false;
             let attempt = 0;
-            while (!placed && attempt < 100) {
+            while (!placed && attempt < 200) {
                 const x = Math.random() * (safeZone.xMax - safeZone.xMin) + safeZone.xMin;
                 const y = Math.random() * (safeZone.yMax - safeZone.yMin) + safeZone.yMin;
                 if (!checkOverlap(x, y, 5)) {
@@ -243,20 +267,15 @@
 
     function spawnBall(power) {
         if (remainingBalls <= 0) return;
-        
+
         remainingBalls--;
-        // 右のレーンから発射
-        // power (0-1) に応じて初速決定
-        const maxSpeed = -25; 
+        const maxSpeed = -25;
         const minSpeed = -10;
         const vy = minSpeed + (maxSpeed - minSpeed) * power;
-        
-        // レーンの中
+
         balls.push(new Ball(375, 550, 0, vy));
-        
         updateUI();
-        
-        // リスタートタイマーをリセット
+
         if (gameOverTimer) {
             clearTimeout(gameOverTimer);
             gameOverTimer = null;
@@ -272,18 +291,15 @@
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 const minDist = b.radius + p.radius;
 
-                if (dist < minDist) {
-                    // 簡易的な弾性衝突
+                if (dist < minDist && dist > 0) {
                     const angle = Math.atan2(dy, dx);
                     const speed = Math.sqrt(b.vx*b.vx + b.vy*b.vy);
-                    
-                    // 少し跳ね返り係数をランダムにして予測不能に
+
                     const bounce = 0.5 + Math.random() * 0.3;
-                    
+
                     b.vx = Math.cos(angle) * speed * bounce;
                     b.vy = Math.sin(angle) * speed * bounce;
-                    
-                    // めり込み解消
+
                     const overlap = minDist - dist;
                     b.x += Math.cos(angle) * overlap;
                     b.y += Math.sin(angle) * overlap;
@@ -295,16 +311,13 @@
                 const dx = b.x - h.x;
                 const dy = b.y - h.y;
                 const dist = Math.sqrt(dx*dx + dy*dy);
-                
-                // 穴の中心近くに来たら「入った」とみなす
+
                 if (dist < h.radius * 0.5 && !b.markedForDeletion) {
                     score += h.points;
                     b.markedForDeletion = true;
-                    
-                    // 赤い穴のボーナス
+
                     if (h.type === 'red') {
                         remainingBalls += BONUS_BALLS;
-                        // 演出入れたいところだがシンプルに
                     }
                     updateUI();
                 }
@@ -313,18 +326,15 @@
     }
 
     function update() {
-        // ボール更新
         balls.forEach(b => b.update());
         checkCollisions();
-        
+
         // 削除フラグのボールを除去
         balls = balls.filter(b => !b.markedForDeletion);
 
         // ゲームオーバー判定
         if (remainingBalls === 0 && balls.length === 0 && !isGameOver && !gameOverTimer) {
-            // 3秒後に判定
             gameOverTimer = setTimeout(() => {
-                // まだボールがなければ終了
                 if (remainingBalls === 0 && balls.length === 0) {
                     isGameOver = true;
                     showGameOver();
@@ -336,22 +346,20 @@
     function draw() {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-        // --- 背景・ステージ ---
-        
         // 上部アーチ描画
-        ctx.fillStyle = '#8B4513'; // 枠
+        ctx.fillStyle = '#8B4513';
         ctx.beginPath();
-        ctx.arc(200, 200, 200, Math.PI, 0); // 外枠アーチ
+        ctx.arc(200, 200, 200, Math.PI, 0);
         ctx.lineTo(400, 600);
         ctx.lineTo(0, 600);
         ctx.fill();
 
         // 盤面描画
-        ctx.fillStyle = '#eaffea'; // 薄い黄緑
+        ctx.fillStyle = '#eaffea';
         ctx.beginPath();
-        ctx.arc(200, 200, 190, Math.PI, 0); // 内側アーチ
-        ctx.lineTo(350, 600); // 右端はレーン用にあける
-        ctx.lineTo(10, 600); // 左端マージン
+        ctx.arc(200, 200, 190, Math.PI, 0);
+        ctx.lineTo(350, 600);
+        ctx.lineTo(10, 600);
         ctx.lineTo(10, 200);
         ctx.fill();
 
@@ -359,12 +367,12 @@
         ctx.fillStyle = 'rgba(234,255,234,0.5)';
         ctx.fillRect(355, 0, 40, 600);
 
-        // --- オブジェクト ---
+        // オブジェクト
         pegs.forEach(p => p.draw());
         holes.forEach(h => h.draw());
         balls.forEach(b => b.draw());
 
-        // --- バネ (UI) ---
+        // バネ (UI)
         drawSpring();
     }
 
@@ -372,16 +380,13 @@
         const laneX = 375;
         const baseY = 580;
         const handleHeight = 20;
-        
-        // 引っ張った量に応じたバネの描写
+
         const pullPixels = isDragging ? (dragCurrentY - dragStartY) : 0;
         const pullClamped = Math.max(0, Math.min(150, pullPixels));
-        const springTop = 450 + pullClamped; 
+        const springTop = 450 + pullClamped;
 
-        // バネの線
         ctx.beginPath();
         ctx.moveTo(laneX, springTop);
-        // ジグザグ
         for(let y=springTop; y < baseY; y+=5) {
             ctx.lineTo(laneX + (y%10===0?5:-5), y);
         }
@@ -389,10 +394,11 @@
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // 持ち手
         ctx.fillStyle = isDragging ? '#ff5722' : '#333';
         ctx.fillRect(laneX - 15, springTop - handleHeight, 30, handleHeight);
     }
+
+    // --- UI / ループ / イベント ---
 
     function updateUI() {
         scoreDisplay.textContent = score;
@@ -407,8 +413,9 @@
     function loop() {
         update();
         draw();
+        // ゲームオーバーになっていて盤面にボールが無ければ停止
         if (!isGameOver || balls.length > 0) {
-            requestAnimationFrame(loop);
+            rafId = requestAnimationFrame(loop);
         }
     }
 
@@ -444,7 +451,7 @@
 
     function handleEnd() {
         if (!isDragging) return;
-        
+
         const pullDist = Math.max(0, dragCurrentY - dragStartY);
         const maxPull = 150;
         const power = Math.min(pullDist, maxPull) / maxPull; // 0.0 - 1.0
@@ -468,12 +475,12 @@
         e.preventDefault(); // スクロール防止
         handleStart(e.touches[0].clientX, e.touches[0].clientY);
     }, {passive: false});
-    
+
     window.addEventListener('touchmove', e => {
         if(isDragging) e.preventDefault();
         handleMove(e.touches[0].clientX, e.touches[0].clientY);
     }, {passive: false});
-    
+
     window.addEventListener('touchend', handleEnd);
 
     // Restart
@@ -484,7 +491,7 @@
         const text = `スマートボールWebゲームで遊んだよ！\nスコア: ${score}点\n`;
         const url = window.location.href;
         const hash = "#スマートボール";
-        
+
         let shareUrl = "";
 
         switch(platform) {
@@ -513,13 +520,14 @@
                     return;
                 }
         }
-        
+
         if(shareUrl) window.open(shareUrl, '_blank');
     };
 
     // --- ネイティブシェアボタンの表示制御 ---
     if (!navigator.share) {
-        document.getElementById('native-share-btn').style.display = 'none';
+        const btn = document.getElementById('native-share-btn');
+        if (btn) btn.style.display = 'none';
     }
 
     // --- ゲーム開始 ---
