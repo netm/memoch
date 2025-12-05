@@ -89,18 +89,6 @@ eleventyExcludeFromCollections: false
     gtag('js', new Date());
     gtag('config', 'G-5D799GZERM', { 'anonymize_ip': true });
   </script>
-  <style>
-    /* 最低限のクリティカルCSS（外部CSSが読み込まれるまでのFOUT防止） */
-    :root{--accent-4:#ff6b6b;}
-    body{font-family: system-ui,-apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#222; background:#fff;}
-    header{padding:16px 12px; background:#fafafa; border-bottom:1px solid #eee;}
-    h1{font-size:1.25rem; margin:0;}
-    .container{max-width:980px; margin:20px auto; padding:0 12px;}
-    #game-container{display:flex; flex-direction:column; align-items:center;}
-    canvas{max-width:100%; height:auto; background:#f7f7f7; border-radius:8px;}
-    .share-buttons{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
-    .share-btn{padding:8px 12px; border-radius:6px; border:0; cursor:pointer;}
-  </style>
 </head>
 <body>
   <header>
@@ -113,7 +101,7 @@ eleventyExcludeFromCollections: false
         <canvas id="gameCanvas" width="400" height="600"></canvas>
         <div id="ui-overlay">
             <div>SCORE: <span id="score-display">0</span></div>
-            <div>BALLS: <span id="ball-display">15</span></div>
+            <div>BALLS: <span id="ball-display">10</span></div>
         </div>
         <div id="message-overlay">
             <h2 style="margin:0; border:none; color:var(--accent-4);">GAME SET</h2>
