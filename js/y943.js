@@ -1,369 +1,526 @@
-// シンプルな顔合成ミニゲーム用スクリプト
-// 想定: index.html から読み込む (同ディレクトリに script.js と style.css を置く)
+    // --- 定数・設定 ---
+    const CANVAS_WIDTH = 400;
+    const CANVAS_HEIGHT = 600;
+    const GRAVITY = 0.2;
+    const FRICTION = 0.99; // 空気抵抗
+    const WALL_BOUNCE = 0.99; // 壁の跳ね返り係数
+    
+    // ゲーム設定
+    const INITIAL_BALLS = 10;
+    const SCORE_BLACK = 10;
+    const SCORE_RED = 30;
+    const BONUS_BALLS = 10;
+    const GAME_OVER_DELAY = 3000; // ms
 
-const fileInput = document.getElementById('photoInput');
-const canvas = document.getElementById('mainCanvas');
-const ctx = canvas.getContext('2d', { willReadFrequently: true });
-const templateSelect = document.getElementById('templateSelect');
-const themeLabel = document.getElementById('themeLabel');
-const shareBtn = document.getElementById('shareBtn');
-const downloadBtn = document.getElementById('downloadBtn');
-const resetBtn = document.getElementById('resetBtn');
-const textInput = document.getElementById('textInput');
-const applyTextBtn = document.getElementById('applyTextBtn');
-const preview = document.getElementById('preview');
+    // 要素取得
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreDisplay = document.getElementById('score-display');
+    const ballDisplay = document.getElementById('ball-display');
+    const msgOverlay = document.getElementById('message-overlay');
+    const finalScoreSpan = document.getElementById('final-score');
+    const restartBtn = document.getElementById('restart-btn');
 
-let img = new Image();
-let currentImageLoaded = false;
-let canvasW = 720;
-let canvasH = 960;
+    // 状態変数
+    let balls = []; // 盤面上のボール
+    let pegs = []; // 釘
+    let holes = []; // 穴
+    let score = 0;
+    let remainingBalls = INITIAL_BALLS;
+    let isDragging = false;
+    let dragStartY = 0;
+    let dragCurrentY = 0;
+    let springPower = 0; // 0.0 to 1.0
+    let gameOverTimer = null;
+    let isGameOver = false;
 
-// 日替わりテーマ（簡易）
-const themes = [
-  { name: 'レトロフィルム', overlay: 'film' },
-  { name: '動物チャレンジ', overlay: 'animal' },
-  { name: '王冠プリンス', overlay: 'crown' },
-  { name: 'コミックポップ', overlay: 'comic' },
-  { name: '未来サイバー', overlay: 'cyber' },
-  { name: 'モノクロ名作', overlay: 'mono' },
-  { name: '夏祭り', overlay: 'festival' }
-];
+    // --- クラス定義 ---
 
-function getDailyTheme() {
-  const d = new Date();
-  return themes[d.getDate() % themes.length];
-}
+    class Ball {
+        constructor(x, y, vx, vy) {
+            this.x = x;
+            this.y = y;
+            this.vx = vx;
+            this.vy = vy;
+            this.radius = 12;
+            this.markedForDeletion = false;
+        }
 
-function setThemeLabel() {
-  const t = getDailyTheme();
-  themeLabel.textContent = `今日のテーマ: ${t.name}`;
-  // デフォルトテンプレを日替わりに合わせる
-  const idx = Math.max(0, templateSelect.querySelectorAll('option').length - 1);
-  // try to select matching overlay if exists
-  for (let i = 0; i < templateSelect.options.length; i++) {
-    if (templateSelect.options[i].value === t.overlay) {
-      templateSelect.selectedIndex = i;
-      break;
+        update() {
+            // 重力
+            this.vy += GRAVITY;
+            // 摩擦
+            this.vx *= FRICTION;
+            this.vy *= FRICTION;
+
+            // 位置更新
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // --- 壁判定 ---
+            
+            // 右側のバネエリアとの境界線 (x=360あたり)
+            if (this.x > 350 - this.radius && this.x < 360 && this.y > 100) {
+                 if (this.vx > 0) {
+                     this.x = 350 - this.radius;
+                     this.vx *= -WALL_BOUNCE;
+                 }
+            }
+            
+            // 右端（バネエリア内）
+            if (this.x > CANVAS_WIDTH - this.radius) {
+                this.x = CANVAS_WIDTH - this.radius;
+                this.vx *= -WALL_BOUNCE;
+            }
+
+            // 左端
+            if (this.x < this.radius) {
+                this.x = this.radius;
+                this.vx *= -WALL_BOUNCE;
+            }
+
+            // 上部のカーブ判定 (半円)
+            // 中心 (200, 200) 半径 200 の円の上半分と仮定
+            // ただしcanvas上部は y=0 なので、中心(200, 200)でy<200の領域をチェック
+            const arcCenterX = 200;
+            const arcCenterY = 200;
+            const arcRadius = 190; // 少しマージン
+
+            if (this.y < arcCenterY) {
+                const dx = this.x - arcCenterX;
+                const dy = this.y - arcCenterY;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if (dist > arcRadius - this.radius) {
+                    // 衝突法線ベクトル
+                    const nx = dx / dist;
+                    const ny = dy / dist;
+                    
+                    // 位置補正
+                    const overlap = dist - (arcRadius - this.radius);
+                    this.x -= nx * overlap;
+                    this.y -= ny * overlap;
+
+                    // 反射ベクトル計算 (v' = v - 2(v.n)n)
+                    const dot = this.vx * nx + this.vy * ny;
+                    this.vx = (this.vx - 2 * dot * nx) * WALL_BOUNCE;
+                    this.vy = (this.vy - 2 * dot * ny) * WALL_BOUNCE;
+                }
+            }
+
+            // 下に落ちたら消える
+            if (this.y > CANVAS_HEIGHT + this.radius) {
+                this.markedForDeletion = true;
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.closePath();
+        }
     }
-  }
-}
 
-function resetCanvas() {
-  canvas.width = canvasW;
-  canvas.height = canvasH;
-  ctx.fillStyle = '#222';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  currentImageLoaded = false;
-  preview.src = '';
-}
-
-function fitImageToCanvas(image) {
-  const cw = canvas.width, ch = canvas.height;
-  const iw = image.width, ih = image.height;
-  const scale = Math.max(cw / iw, ch / ih);
-  const nw = iw * scale, nh = ih * scale;
-  const dx = (cw - nw) / 2, dy = (ch - nh) / 2;
-  return { dx, dy, nw, nh };
-}
-
-function drawBaseImage() {
-  if (!currentImageLoaded) {
-    // placeholder
-    ctx.fillStyle = '#111';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#888';
-    ctx.font = '20px sans-serif';
-    ctx.fillText('写真をアップロードして合成しよう', 20, 40);
-    return;
-  }
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const f = fitImageToCanvas(img);
-  ctx.drawImage(img, f.dx, f.dy, f.nw, f.nh);
-}
-
-function applyTemplate(name) {
-  drawBaseImage();
-  const f = fitImageToCanvas(img);
-  // テンプレごとの合成処理
-  switch (name) {
-    case 'animal':
-      drawAnimalEars(f);
-      drawWhiskers(f);
-      applyFilter('saturate(1.1) contrast(1.05)');
-      break;
-    case 'crown':
-      drawCrown(f);
-      applyFilter('brightness(1.05) sepia(0.15)');
-      break;
-    case 'film':
-      drawFilmFrame();
-      applyFilmGrain();
-      break;
-    case 'comic':
-      drawComicHalftone(f);
-      drawSpeechBubble('Wow!');
-      break;
-    case 'cyber':
-      drawCyberGlitch();
-      applyFilter('hue-rotate(200deg) contrast(1.2)');
-      break;
-    case 'mono':
-      applyFilter('grayscale(1) contrast(1.1)');
-      drawVintageBorder();
-      break;
-    default:
-      break;
-  }
-  // もしテキストが入力されていれば描画
-  const txt = textInput.value.trim();
-  if (txt) drawBottomText(txt);
-  updatePreview();
-}
-
-function applyFilter(filterStr) {
-  // 簡易: canvasを一時保存してフィルタをかける方法
-  const tmp = document.createElement('canvas');
-  tmp.width = canvas.width; tmp.height = canvas.height;
-  const tctx = tmp.getContext('2d');
-  tctx.drawImage(canvas, 0, 0);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.filter = filterStr;
-  ctx.drawImage(tmp, 0, 0);
-  ctx.filter = 'none';
-}
-
-function drawAnimalEars(f) {
-  // 耳を左右に描く（シンプルな三角）
-  ctx.save();
-  ctx.translate(0, 0);
-  ctx.fillStyle = '#ffcc99';
-  const earW = f.nw * 0.25, earH = f.nh * 0.22;
-  // 左
-  ctx.beginPath();
-  ctx.ellipse(f.dx + f.nw * 0.18, f.dy + f.nh * 0.08, earW, earH, -0.6, 0, Math.PI * 2);
-  ctx.fill();
-  // 右
-  ctx.beginPath();
-  ctx.ellipse(f.dx + f.nw * 0.82, f.dy + f.nh * 0.08, earW, earH, 0.6, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.restore();
-}
-
-function drawWhiskers(f) {
-  ctx.save();
-  ctx.strokeStyle = '#222';
-  ctx.lineWidth = 3;
-  const cx = f.dx + f.nw / 2, cy = f.dy + f.nh * 0.6;
-  for (let i = -1; i <= 1; i++) {
-    ctx.beginPath();
-    ctx.moveTo(cx - 10, cy + i * 10);
-    ctx.quadraticCurveTo(cx - 120, cy + i * 12, cx - 200, cy + i * 10);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(cx + 10, cy + i * 10);
-    ctx.quadraticCurveTo(cx + 120, cy + i * 12, cx + 200, cy + i * 10);
-    ctx.stroke();
-  }
-  ctx.restore();
-}
-
-function drawCrown(f) {
-  ctx.save();
-  const crownW = f.nw * 0.6;
-  const x = (canvas.width - crownW) / 2;
-  const y = f.dy - f.nh * 0.12;
-  ctx.fillStyle = '#ffd700';
-  ctx.beginPath();
-  ctx.moveTo(x, y + 40);
-  ctx.lineTo(x + crownW * 0.15, y);
-  ctx.lineTo(x + crownW * 0.3, y + 40);
-  ctx.lineTo(x + crownW * 0.45, y);
-  ctx.lineTo(x + crownW * 0.6, y + 40);
-  ctx.lineTo(x + crownW * 0.75, y);
-  ctx.lineTo(x + crownW, y + 40);
-  ctx.closePath();
-  ctx.fill();
-  ctx.fillStyle = '#ff8c00';
-  ctx.fillRect(x, y + 40, crownW, 20);
-  ctx.restore();
-}
-
-function drawFilmFrame() {
-  ctx.save();
-  ctx.strokeStyle = '#000';
-  ctx.lineWidth = 12;
-  ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-  // パンチ穴
-  ctx.fillStyle = '#000';
-  const holeSize = 12;
-  for (let y = 40; y < canvas.height - 40; y += 40) {
-    ctx.fillRect(30, y, holeSize, holeSize);
-    ctx.fillRect(canvas.width - 30 - holeSize, y, holeSize, holeSize);
-  }
-  ctx.restore();
-}
-
-function applyFilmGrain() {
-  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const d = imgData.data;
-  for (let i = 0; i < d.length; i += 4) {
-    const v = (Math.random() - 0.5) * 30;
-    d[i] = d[i] + v;
-    d[i + 1] = d[i + 1] + v;
-    d[i + 2] = d[i + 2] + v;
-  }
-  ctx.putImageData(imgData, 0, 0);
-}
-
-function drawComicHalftone(f) {
-  // 簡易ハーフトーン: 半透明のドットをグリッドで描く
-  ctx.save();
-  ctx.globalCompositeOperation = 'overlay';
-  ctx.fillStyle = '#fff';
-  const step = 12;
-  for (let y = 0; y < canvas.height; y += step) {
-    for (let x = 0; x < canvas.width; x += step) {
-      const size = Math.random() * (step / 2);
-      ctx.beginPath();
-      ctx.arc(x + step / 2, y + step / 2, size, 0, Math.PI * 2);
-      ctx.fill();
+    class Peg {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.radius = 4;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = '#555'; // 釘の色
+            ctx.fill();
+            ctx.closePath();
+            
+            // 光沢
+            ctx.beginPath();
+            ctx.arc(this.x - 1, this.y - 1, 1, 0, Math.PI * 2);
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+            ctx.closePath();
+        }
     }
-  }
-  ctx.restore();
-}
 
-function drawSpeechBubble(text) {
-  ctx.save();
-  ctx.fillStyle = '#fff';
-  ctx.strokeStyle = '#000';
-  ctx.lineWidth = 3;
-  const w = 220, h = 80;
-  const x = canvas.width - w - 30, y = 30;
-  roundRect(ctx, x, y, w, h, 16, true, true);
-  ctx.fillStyle = '#000';
-  ctx.font = '24px sans-serif';
-  ctx.fillText(text, x + 20, y + 48);
-  ctx.restore();
-}
+    class Hole {
+        constructor(x, y, type) {
+            this.x = x;
+            this.y = y;
+            this.type = type; // 'black' or 'red'
+            this.radius = 14;
+            this.points = type === 'red' ? SCORE_RED : SCORE_BLACK;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.type === 'red' ? '#d32f2f' : '#212121';
+            ctx.fill();
+            ctx.strokeStyle = '#rgba(0,0,0,0.5)';
+            ctx.stroke();
+            ctx.closePath();
 
-function roundRect(ctx, x, y, w, h, r, fill, stroke) {
-  if (r === undefined) r = 5;
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.arcTo(x + w, y, x + w, y + h, r);
-  ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r);
-  ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
-  if (fill) ctx.fill();
-  if (stroke) ctx.stroke();
-}
+            // 穴のラベル
+            ctx.fillStyle = '#fff';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(this.points, this.x, this.y);
+        }
+    }
 
-function drawCyberGlitch() {
-  // 簡易グリッチ: 横スライスをずらす
-  const slices = 8;
-  const h = canvas.height / slices;
-  const tmp = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < slices; i++) {
-    const sx = 0, sy = i * h, sw = canvas.width, sh = h;
-    const dx = (Math.random() - 0.5) * 40;
-    ctx.putImageData(tmp, dx, 0, sx, sy, sw, sh);
-  }
-}
+    // --- ゲームロジック関数 ---
 
-function drawVintageBorder() {
-  ctx.save();
-  ctx.strokeStyle = '#b08b57';
-  ctx.lineWidth = 18;
-  ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
-  ctx.restore();
-}
+    function initGame() {
+        score = 0;
+        remainingBalls = INITIAL_BALLS;
+        balls = [];
+        pegs = [];
+        holes = [];
+        isGameOver = false;
+        msgOverlay.style.display = 'none';
+        
+        updateUI();
+        generateMap();
+        loop();
+    }
 
-function drawBottomText(text) {
-  ctx.save();
-  ctx.fillStyle = 'rgba(0,0,0,0.6)';
-  ctx.fillRect(0, canvas.height - 90, canvas.width, 90);
-  ctx.fillStyle = '#fff';
-  ctx.font = '36px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(text, canvas.width / 2, canvas.height - 36);
-  ctx.restore();
-}
+    function generateMap() {
+        // ステージ範囲: x: 20-330, y: 150-550 (上部はカーブ、右はレーン)
+        // 釘: 6本, 穴: 9個 (赤2, 黒7)
+        // ランダム配置だが重ならないようにする
+        
+        const safeZone = { xMin: 30, xMax: 320, yMin: 150, yMax: 500 };
+        const entities = []; // 重なりチェック用 {x, y, radius}
 
-function updatePreview() {
-  preview.src = canvas.toDataURL('image/png');
-}
+        function checkOverlap(x, y, r) {
+            for (let e of entities) {
+                const dist = Math.sqrt((e.x - x)**2 + (e.y - y)**2);
+                if (dist < e.r + r + 10) return true; // 10px余裕を持たせる
+            }
+            return false;
+        }
 
-fileInput.addEventListener('change', (e) => {
-  const f = e.target.files[0];
-  if (!f) return;
-  const url = URL.createObjectURL(f);
-  img = new Image();
-  img.onload = () => {
-    currentImageLoaded = true;
-    // canvasサイズは固定比率だが必要なら調整
-    resetCanvas();
-    drawBaseImage();
-    applyTemplate(templateSelect.value);
-    URL.revokeObjectURL(url);
-  };
-  img.src = url;
-});
+        // 1. 穴の生成
+        const holeTypes = ['red', 'red', 'black', 'black', 'black', 'black', 'black', 'black', 'black'];
+        
+        for (let type of holeTypes) {
+            let placed = false;
+            let attempt = 0;
+            while (!placed && attempt < 100) {
+                const x = Math.random() * (safeZone.xMax - safeZone.xMin) + safeZone.xMin;
+                const y = Math.random() * (safeZone.yMax - safeZone.yMin) + safeZone.yMin;
+                if (!checkOverlap(x, y, 15)) {
+                    holes.push(new Hole(x, y, type));
+                    entities.push({x, y, r: 15});
+                    placed = true;
+                }
+                attempt++;
+            }
+        }
 
-templateSelect.addEventListener('change', () => {
-  if (!currentImageLoaded) {
-    // still show theme change
-    setThemeLabel();
-    return;
-  }
-  applyTemplate(templateSelect.value);
-});
+        // 2. 釘の生成 (6本)
+        for (let i = 0; i < 6; i++) {
+            let placed = false;
+            let attempt = 0;
+            while (!placed && attempt < 100) {
+                const x = Math.random() * (safeZone.xMax - safeZone.xMin) + safeZone.xMin;
+                const y = Math.random() * (safeZone.yMax - safeZone.yMin) + safeZone.yMin;
+                if (!checkOverlap(x, y, 5)) {
+                    pegs.push(new Peg(x, y));
+                    entities.push({x, y, r: 5});
+                    placed = true;
+                }
+                attempt++;
+            }
+        }
+    }
 
-applyTextBtn.addEventListener('click', () => {
-  if (!currentImageLoaded) return;
-  applyTemplate(templateSelect.value);
-});
+    function spawnBall(power) {
+        if (remainingBalls <= 0) return;
+        
+        remainingBalls--;
+        // 右のレーンから発射
+        // power (0-1) に応じて初速決定
+        const maxSpeed = -35; 
+        const minSpeed = -15;
+        const vy = minSpeed + (maxSpeed - minSpeed) * power;
+        
+        // レーンの中
+        balls.push(new Ball(375, 550, 0, vy));
+        
+        updateUI();
+        
+        // リスタートタイマーをリセット
+        if (gameOverTimer) {
+            clearTimeout(gameOverTimer);
+            gameOverTimer = null;
+        }
+    }
 
-resetBtn.addEventListener('click', () => {
-  resetCanvas();
-  setThemeLabel();
-});
+    function checkCollisions() {
+        for (let b of balls) {
+            // 対 釘
+            for (let p of pegs) {
+                const dx = b.x - p.x;
+                const dy = b.y - p.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                const minDist = b.radius + p.radius;
 
-downloadBtn.addEventListener('click', async () => {
-  const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `mashup_${Date.now()}.png`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-});
+                if (dist < minDist) {
+                    // 簡易的な弾性衝突
+                    const angle = Math.atan2(dy, dx);
+                    const speed = Math.sqrt(b.vx*b.vx + b.vy*b.vy);
+                    
+                    // 少し跳ね返り係数をランダムにして予測不能に
+                    const bounce = 0.5 + Math.random() * 0.3;
+                    
+                    b.vx = Math.cos(angle) * speed * bounce;
+                    b.vy = Math.sin(angle) * speed * bounce;
+                    
+                    // めり込み解消
+                    const overlap = minDist - dist;
+                    b.x += Math.cos(angle) * overlap;
+                    b.y += Math.sin(angle) * overlap;
+                }
+            }
 
-shareBtn.addEventListener('click', async () => {
-  if (navigator.share && currentImageLoaded) {
-    canvas.toBlob(async (blob) => {
-      const filesArray = [new File([blob], 'mashup.png', { type: 'image/png' })];
-      try {
-        await navigator.share({
-          files: filesArray,
-          title: '合成写真',
-          text: '作ったよ！'
-        });
-      } catch (err) {
-        console.log('share canceled or failed', err);
-      }
-    }, 'image/png');
-  } else {
-    // フォールバック: プレビューを開く
-    updatePreview();
-    preview.scrollIntoView({ behavior: 'smooth' });
-  }
-});
+            // 対 穴
+            for (let h of holes) {
+                const dx = b.x - h.x;
+                const dy = b.y - h.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                
+                // 穴の中心近くに来たら「入った」とみなす
+                if (dist < h.radius * 0.5 && !b.markedForDeletion) {
+                    score += h.points;
+                    b.markedForDeletion = true;
+                    
+                    // 赤い穴のボーナス
+                    if (h.type === 'red') {
+                        remainingBalls += BONUS_BALLS;
+                        // 演出入れたいところだがシンプルに
+                    }
+                    updateUI();
+                }
+            }
+        }
+    }
 
-// 初期化
-resetCanvas();
-setThemeLabel();
-applyTemplate(templateSelect.value);
+    function update() {
+        // ボール更新
+        balls.forEach(b => b.update());
+        checkCollisions();
+        
+        // 削除フラグのボールを除去
+        balls = balls.filter(b => !b.markedForDeletion);
+
+        // ゲームオーバー判定
+        if (remainingBalls === 0 && balls.length === 0 && !isGameOver && !gameOverTimer) {
+            // 3秒後に判定
+            gameOverTimer = setTimeout(() => {
+                // まだボールがなければ終了
+                if (remainingBalls === 0 && balls.length === 0) {
+                    isGameOver = true;
+                    showGameOver();
+                }
+            }, GAME_OVER_DELAY);
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        // --- 背景・ステージ ---
+        
+        // 上部アーチ描画
+        ctx.fillStyle = '#8B4513'; // 枠
+        ctx.beginPath();
+        ctx.arc(200, 200, 200, Math.PI, 0); // 外枠アーチ
+        ctx.lineTo(400, 600);
+        ctx.lineTo(0, 600);
+        ctx.fill();
+
+        // 盤面描画
+        ctx.fillStyle = '#eaffea'; // 薄い黄緑
+        ctx.beginPath();
+        ctx.arc(200, 200, 190, Math.PI, 0); // 内側アーチ
+        ctx.lineTo(350, 600); // 右端はレーン用にあける
+        ctx.lineTo(10, 600); // 左端マージン
+        ctx.lineTo(10, 200);
+        ctx.fill();
+
+        // 右側レーン
+        ctx.fillStyle = 'rgba(234,255,234,0.5)';
+        ctx.fillRect(355, 0, 40, 600);
+
+        // --- オブジェクト ---
+        pegs.forEach(p => p.draw());
+        holes.forEach(h => h.draw());
+        balls.forEach(b => b.draw());
+
+        // --- バネ (UI) ---
+        drawSpring();
+    }
+
+    function drawSpring() {
+        const laneX = 375;
+        const baseY = 580;
+        const handleHeight = 20;
+        
+        // 引っ張った量に応じたバネの描写
+        const pullPixels = isDragging ? (dragCurrentY - dragStartY) : 0;
+        const pullClamped = Math.max(0, Math.min(150, pullPixels));
+        const springTop = 450 + pullClamped; 
+
+        // バネの線
+        ctx.beginPath();
+        ctx.moveTo(laneX, springTop);
+        // ジグザグ
+        for(let y=springTop; y < baseY; y+=5) {
+            ctx.lineTo(laneX + (y%10===0?5:-5), y);
+        }
+        ctx.strokeStyle = '#555';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 持ち手
+        ctx.fillStyle = isDragging ? '#ff5722' : '#333';
+        ctx.fillRect(laneX - 15, springTop - handleHeight, 30, handleHeight);
+    }
+
+    function updateUI() {
+        scoreDisplay.textContent = score;
+        ballDisplay.textContent = remainingBalls;
+    }
+
+    function showGameOver() {
+        finalScoreSpan.textContent = score;
+        msgOverlay.style.display = 'flex';
+    }
+
+    function loop() {
+        update();
+        draw();
+        if (!isGameOver || balls.length > 0) {
+            requestAnimationFrame(loop);
+        }
+    }
+
+    // --- 入力ハンドリング (PC & Mobile) ---
+
+    // バネエリアの判定
+    function isSpringArea(x, y) {
+        return x > 350 && y > 400;
+    }
+
+    function handleStart(x, y) {
+        // キャンバス内の座標に変換
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const cx = (x - rect.left) * scaleX;
+        const cy = (y - rect.top) * scaleY;
+
+        if (isSpringArea(cx, cy) && remainingBalls > 0) {
+            isDragging = true;
+            dragStartY = cy;
+            dragCurrentY = cy;
+        }
+    }
+
+    function handleMove(x, y) {
+        if (!isDragging) return;
+        const rect = canvas.getBoundingClientRect();
+        const scaleY = canvas.height / rect.height;
+        const cy = (y - rect.top) * scaleY;
+        dragCurrentY = cy;
+    }
+
+    function handleEnd() {
+        if (!isDragging) return;
+        
+        const pullDist = Math.max(0, dragCurrentY - dragStartY);
+        const maxPull = 150;
+        const power = Math.min(pullDist, maxPull) / maxPull; // 0.0 - 1.0
+
+        if (power > 0.1) {
+            spawnBall(power);
+        }
+
+        isDragging = false;
+        dragStartY = 0;
+        dragCurrentY = 0;
+    }
+
+    // Mouse Events
+    canvas.addEventListener('mousedown', e => handleStart(e.clientX, e.clientY));
+    window.addEventListener('mousemove', e => handleMove(e.clientX, e.clientY));
+    window.addEventListener('mouseup', handleEnd);
+
+    // Touch Events
+    canvas.addEventListener('touchstart', e => {
+        e.preventDefault(); // スクロール防止
+        handleStart(e.touches[0].clientX, e.touches[0].clientY);
+    }, {passive: false});
+    
+    window.addEventListener('touchmove', e => {
+        if(isDragging) e.preventDefault();
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }, {passive: false});
+    
+    window.addEventListener('touchend', handleEnd);
+
+    // Restart
+    restartBtn.addEventListener('click', initGame);
+
+    // --- シェア機能 ---
+    window.shareSocial = function(platform) {
+        const text = `スマートボールWebゲームで遊んだよ！\nスコア: ${score}点\n`;
+        const url = window.location.href;
+        const hash = "#スマートボール";
+        
+        let shareUrl = "";
+
+        switch(platform) {
+            case 'x':
+                shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=スマートボール,WebGame`;
+                break;
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                break;
+            case 'line':
+                shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text + " " + url)}`;
+                break;
+            case 'email':
+                shareUrl = `mailto:?subject=スマートボールゲーム&body=${encodeURIComponent(text + "\n" + url)}`;
+                break;
+            case 'native':
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'スマートボールWebゲーム',
+                        text: text,
+                        url: url,
+                    }).catch(console.error);
+                    return;
+                } else {
+                    alert("お使いのブラウザはシェア機能に対応していません。");
+                    return;
+                }
+        }
+        
+        if(shareUrl) window.open(shareUrl, '_blank');
+    };
+
+    // --- ネイティブシェアボタンの表示制御 ---
+    if (!navigator.share) {
+        document.getElementById('native-share-btn').style.display = 'none';
+    }
+
+    // --- ゲーム開始 ---
+    initGame();

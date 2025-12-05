@@ -1,68 +1,233 @@
-<!doctype html>
+---
+title: "スマートボールWebブラウザ 昭和レトロゲーム"
+date: 2025-12-05
+permalink: "/y943/"
+draft: false
+sitemap: true
+eleventyExcludeFromCollections: false
+---
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>顔合成ミニゲーム</title>
-  <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>スマートボールWebブラウザ 昭和レトロゲーム</title>
+  <meta name="description" content="スマホ・PCで遊べる無料スマートボール。遊び方・攻略・歴史・FAQを掲載。インストール不要で今すぐプレイ。">
+  <meta name="keywords" content="スマートボール,ブラウザゲーム,レトロゲーム,昭和レトロ">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memoc.pages.dev/y943/">
-<link rel="stylesheet" href="/css/y943.css">
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="game">
+  <meta property="og:title" content="スマートボールWebブラウザ 昭和レトロゲーム">
+  <meta property="og:description" content="スマホ・PCで遊べる無料スマートボール。遊び方・攻略・歴史・FAQを掲載。インストール不要で今すぐプレイ。">
+  <meta property="og:url" content="https://memoc.pages.dev/y943/">
+  <meta property="og:site_name" content="メモ帳代わりwebブラウザ便利サイト">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@your_twitter_handle">
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/css/y940.css" as="style">
+  <link rel="stylesheet" href="/css/y943.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/css/y943.css"></noscript>
+  <!-- Structured data: Game + FAQ + Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://memoc.pages.dev/#website",
+        "url": "https://memoc.pages.dev/",
+        "name": "メモ帳代わりwebブラウザ便利サイト"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"ホーム","item":"https://memoc.pages.dev/"},
+          {"@type":"ListItem","position":2,"name":"無料ブラウザゲーム集","item":"https://memoc.pages.dev/game1/"},
+          {"@type":"ListItem","position":3,"name":"スマートボール","item":"https://memoc.pages.dev/y943/"}
+        ]
+      },
+      {
+        "@type": "Game",
+        "name": "スマートボールWebブラウザ 昭和レトロゲーム",
+        "description": "スマホ・PCで遊べる無料のスマートボール。遊び方・攻略・歴史・FAQを掲載。インストール不要で今すぐプレイ。",
+        "url": "https://memoc.pages.dev/y943/",
+        "applicationCategory": "Game"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "スマートボールはインストールが必要ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "いいえ。ブラウザで動作するためインストール不要です。スマホ・PCどちらでも遊べます。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "高得点を取るコツは？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "盤面の釘の配置を観察し、狙った穴に入る軌道を予測して発射角度を調整することが重要です。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5D799GZERM', { 'anonymize_ip': true });
+  </script>
+  <style>
+    /* 最低限のクリティカルCSS（外部CSSが読み込まれるまでのFOUT防止） */
+    :root{--accent-4:#ff6b6b;}
+    body{font-family: system-ui,-apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#222; background:#fff;}
+    header{padding:16px 12px; background:#fafafa; border-bottom:1px solid #eee;}
+    h1{font-size:1.25rem; margin:0;}
+    .container{max-width:980px; margin:20px auto; padding:0 12px;}
+    #game-container{display:flex; flex-direction:column; align-items:center;}
+    canvas{max-width:100%; height:auto; background:#f7f7f7; border-radius:8px;}
+    .share-buttons{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+    .share-btn{padding:8px 12px; border-radius:6px; border:0; cursor:pointer;}
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <h3 style="margin:0">顔合成ミニゲーム</h3>
-          <div id="themeLabel" class="note">今日のテーマ: —</div>
-        </div>
-        <div class="canvasWrap">
-          <canvas id="mainCanvas" width="720" height="960" aria-label="合成プレビュー"></canvas>
-        </div>
-        <div style="margin-top:10px" class="controls">
-          <input id="photoInput" type="file" accept="image/*" capture="environment" />
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <select id="templateSelect" aria-label="テンプレート選択">
-              <option value="animal">動物フィルター</option>
-              <option value="crown">王冠フィルター</option>
-              <option value="film">フィルムフレーム</option>
-              <option value="comic">コミックポップ</option>
-              <option value="cyber">サイバーネオン</option>
-              <option value="mono">モノクロ名作</option>
-            </select>
-            <button id="resetBtn" type="button">リセット</button>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <input id="textInput" type="text" placeholder="キャプションを追加（任意）" />
-            <button id="applyTextBtn" type="button">反映</button>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <button id="shareBtn" type="button">SNSでシェア</button>
-            <button id="downloadBtn" type="button">画像をダウンロード</button>
-          </div>
-          <p class="note" style="margin-top:10px">ヒント: 写真は端末で処理されます。保存する場合はダウンロードを使ってください。</p>
-        </div>
-      </div>
+  <header>
+    <div class="container">
+      <h1>スマートボール Webブラウザゲーム</h1>
     </div>
-    <aside class="side">
-      <div class="card">
-        <h4 style="margin:0 0 8px 0">プレビュー</h4>
-        <img id="preview" class="previewImg" alt="生成プレビュー" src="" />
-        <div style="margin-top:8px" class="note">ワンタップでSNS共有。共有できない場合はダウンロードして投稿してください。</div>
+  </header>
+<main class="container">
+    <div id="game-container">
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <div id="ui-overlay">
+            <div>SCORE: <span id="score-display">0</span></div>
+            <div>BALLS: <span id="ball-display">15</span></div>
+        </div>
+        <div id="message-overlay">
+            <h2 style="margin:0; border:none; color:var(--accent-4);">GAME SET</h2>
+            <div style="font-size:1.5rem;">合計: <span id="final-score">0</span> 点</div>
+            <button id="restart-btn">リスタート</button>
+        </div>
+    </div>
+    <section class="share-section" aria-labelledby="share-title">
+      <h3 id="share-title">スコアをシェアしよう</h3>
+      <p style="margin-top:12px; color:#555;">操作は簡単。画面右側のバネを引いて指を離すだけでボールが発射されます。スマホでも快適に遊べます。</p>
+      <div class="share-buttons" role="group" aria-label="共有ボタン">
+        <button class="share-btn btn-x" onclick="shareSocial('x')" aria-label="Xでシェア">X (Twitter)</button>
+        <button class="share-btn btn-fb" onclick="shareSocial('facebook')" aria-label="Facebookでシェア">Facebook</button>
+        <button class="share-btn btn-line" onclick="shareSocial('line')" aria-label="LINEでシェア">LINE</button>
+        <button class="share-btn btn-email" onclick="shareSocial('email')" aria-label="メールでシェア">E-mail</button>
+        <button class="share-btn btn-native" id="native-share-btn" onclick="shareSocial('native')" aria-label="ネイティブシェア">シェアする</button>
       </div>
-      <div class="card">
-        <h4 style="margin:0 0 8px 0">遊び方</h4>
-        <ol class="note" style="padding-left:18px;margin:0">
-          <li>写真をアップロードまたは撮影</li>
-          <li>テンプレートを選んで「反映」</li>
-          <li>キャプションを入れてシェア or ダウンロード</li>
-        </ol>
+    </section>
+    <hr>
+    <!-- コンテンツ（説明・遊び方・歴史・攻略・FAQ） -->
+    <article class="content-area" aria-labelledby="about-title">
+      <h2 id="about-title">スマートボールとは</h2>
+      <p>
+        スマートボールはピンボールの一種で、昭和の時代に日本の温泉街や遊技場で人気になり親しまれたレトロゲームです。
+        ガラス板の下にある傾斜した盤面に、釘と風車や穴が配置されており、プレイヤーはバネ仕掛けのレバーを引いてボールを弾きます。
+        ボールを穴に入れて得点を競います。釘の配置やバネの強さでボールの軌道が変わるため、単純な仕組みですが奥深さや戦略性があります。
+      </p>
+      <h2>サイトの説明・遊び方</h2>
+      <p>
+        このページは手軽に遊べるスマートボールをブラウザで作成したWebゲームのサイトになります。インストール不要でスマホ・PCどちらでも遊べます。
+        サイトを開くたびに穴とクギの位置が変わるので何回も楽しめます。通勤・通学の隙間時間や、ちょっとした息抜きに最適です。ハイスコアを目指してチャレンジしてみてください。
+      </p>
+      <h3>操作方法（簡単ガイド）</h3>
+      <ul>
+        <li><strong>ボールの発射：</strong>画面右側のバネをタッチまたはクリックして下に引き、指を離すと発射されます。</li>
+        <li><strong>得点：</strong>黒い穴は10点、赤い穴は30点（赤穴に入るとボールが10個追加されます）。</li>
+        <li><strong>ゲームオーバー：</strong>手持ちのボールが0になり、全てのボールがなくなると終了します。</li>
+      </ul>
+      <h3>攻略のコツ（高得点を狙う）</h3>
+      <ol>
+        <li>最初に盤面の釘配置を観察し、ボールの跳ね返りを予測する。</li>
+        <li>やや弱めに発射して穴の近くへ転がすようにねらうと得点を稼げる。</li>
+        <li>赤い穴をねらうことを優先し、ボールを増やす戦略を取る。</li>
+      </ol>
+      <h2>スマートボールの歴史</h2>
+      <p>
+        スマートボールはヨーロッパのバガテル（Bagatelle）に起源を持ち、アメリカでピンボールへと発展した後、日本に伝わりました。
+        戦後の娯楽として「コリントゲーム」「スマートボール」として広まり、昭和の遊技場文化を象徴する存在となりました。
+      </p>
+      <h2>よくある質問（FAQ）</h2>
+      <dl>
+        <dt>Q: スマホで動作しますか？</dt>
+        <dd>A: はい。主要なスマホブラウザで動作するように製作しています。</dd>
+        <dt>Q: セーブ機能はありますか？</dt>
+        <dd>A: ありません。スコアはプレイ中のみ保持されます。</dd>
+      </dl>
+    </article>
+  </main>
+  <footer class="footer-links" role="contentinfo" style="background:#ffffe8; padding:20px 0; border-top:1px solid #eee;">
+    <div class="container">
+      <h3>関連コンテンツ</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y949/" target="_blank" rel="noopener">軽いゲーム集</a></li>
+        <li><a href="https://memoc.pages.dev/y10k2/" target="_blank" rel="noopener">英単語勉強法とクイズゲーム集</a></li>
+      </ul>
+      <h3>ボールゲーム</h3>
+      <ul>
+        <li><a href="https://memoc.pages.dev/y964/" target="_blank" rel="noopener">ビリヤードルール変則ブラウザゲーム</a></li>
+        <li><a href="https://memoc.pages.dev/y965/" target="_blank" rel="noopener">おはじきシールブラウザゲーム</a></li>
+      </ul>
+      <div style="margin-top:20px;">
+        <p><a href="https://memoc.pages.dev/" target="_blank" rel="noopener">メモ帳代わりwebブラウザ便利サイトにもどる</a></p>
+        <p><a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a></p>
       </div>
-      <div class="card footer">
-        <div class="note">テンプレ5種＋日替わりテーマで毎日違う合成を楽しもう</div>
-      </div>
-    </aside>
-  </div>
+      <p style="margin-top:15px; font-size:0.8rem; color:#777;">&copy; メモ帳代わりwebブラウザ便利サイト</p>
+    </div>
+  </footer>
+  <!-- スクリプト（遅延読み込み・非同期） -->
+  <script>
+    // シェア関数（スコアを含めた共有URLを生成）
+    function shareSocial(platform) {
+      const score = document.getElementById('score-display')?.textContent || '0';
+      const url = encodeURIComponent('https://memoc.pages.dev/y940/?score=' + score);
+      const text = encodeURIComponent('スマートボールで' + score + '点を出しました！ あなたも挑戦してみてください。');
+      if (platform === 'x') {
+        window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + url, '_blank', 'noopener');
+      } else if (platform === 'facebook') {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank', 'noopener');
+      } else if (platform === 'line') {
+        window.open('https://social-plugins.line.me/lineit/share?url=' + url, '_blank', 'noopener');
+      } else if (platform === 'email') {
+        location.href = 'mailto:?subject=' + encodeURIComponent('スマートボールのスコア') + '&body=' + text + '%0A' + url;
+      } else if (platform === 'native' && navigator.share) {
+        navigator.share({ title: 'スマートボール', text: 'スマートボールで' + score + '点！', url: 'https://memoc.pages.dev/y940/' }).catch(()=>{});
+      } else {
+        alert('共有機能が利用できません。URLをコピーして共有してください。');
+      }
+    }
+    // ゲームスクリプトの遅延読み込み
+    (function(){
+      var s = document.createElement('script');
+      s.src = '/js/y940.js';
+      s.defer = true;
+      s.onload = function(){ console.log('game script loaded'); };
+      document.body.appendChild(s);
+    })();
+  </script>
+  <!-- NoScript用の案内 -->
+  <noscript>
+    <div style="padding:12px; background:#fff3cd; color:#856404; text-align:center;">
+      JavaScriptが無効になっています。ゲームをプレイするにはブラウザのJavaScriptを有効にしてください。
+    </div>
+  </noscript>
 <script src="/js/y943.js"></script>
 </body>
 </html>
