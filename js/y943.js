@@ -225,7 +225,7 @@
         function checkOverlap(x, y, r) {
             for (let e of entities) {
                 const dist = Math.sqrt((e.x - x)**2 + (e.y - y)**2);
-                if (dist < e.r + r + 10) return true;
+                if (dist < e.r + r + 20) return true;
             }
             return false;
         }
@@ -270,7 +270,7 @@
 
         remainingBalls--;
         const maxSpeed = -25;
-        const minSpeed = -13;
+        const minSpeed = -15;
         const vy = minSpeed + (maxSpeed - minSpeed) * power;
 
         balls.push(new Ball(375, 550, 0, vy));
