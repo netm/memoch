@@ -219,7 +219,7 @@
     }
 
     function generateMap() {
-        const safeZone = { xMin: 30, xMax: 320, yMin: 150, yMax: 500 };
+        const safeZone = { xMin: 40, xMax: 310, yMin: 150, yMax: 500 };
         const entities = [];
 
         function checkOverlap(x, y, r) {
