@@ -1,7 +1,7 @@
     // --- 定数・設定 ---
     const CANVAS_WIDTH = 400;
     const CANVAS_HEIGHT = 600;
-    const GRAVITY = 0.2;
+    const GRAVITY = 0.25;
     const FRICTION = 0.99; // 空気抵抗
     const WALL_BOUNCE = 0.99; // 壁の跳ね返り係数
     
@@ -135,7 +135,7 @@
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#555'; // 釘の色
+            ctx.fillStyle = '#555555ff'; // 釘の色
             ctx.fill();
             ctx.closePath();
             
