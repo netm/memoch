@@ -180,37 +180,6 @@ eleventyExcludeFromCollections: false
       <p style="margin-top:15px; font-size:0.8rem; color:#777;">&copy; メモ帳代わりwebブラウザ便利サイト</p>
     </div>
   </footer>
-  <!-- スクリプト（遅延読み込み・非同期） -->
-  <script>
-    // シェア関数（スコアを含めた共有URLを生成）
-    function shareSocial(platform) {
-      const score = document.getElementById('score-display')?.textContent || '0';
-      const url = encodeURIComponent('https://memoc.pages.dev/y940/?score=' + score);
-      const text = encodeURIComponent('スマートボールで' + score + '点を出しました！ あなたも挑戦してみてください。');
-      if (platform === 'x') {
-        window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + url, '_blank', 'noopener');
-      } else if (platform === 'facebook') {
-        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank', 'noopener');
-      } else if (platform === 'line') {
-        window.open('https://social-plugins.line.me/lineit/share?url=' + url, '_blank', 'noopener');
-      } else if (platform === 'email') {
-        location.href = 'mailto:?subject=' + encodeURIComponent('スマートボールのスコア') + '&body=' + text + '%0A' + url;
-      } else if (platform === 'native' && navigator.share) {
-        navigator.share({ title: 'スマートボール', text: 'スマートボールで' + score + '点！', url: 'https://memoc.pages.dev/y940/' }).catch(()=>{});
-      } else {
-        alert('共有機能が利用できません。URLをコピーして共有してください。');
-      }
-    }
-    // ゲームスクリプトの遅延読み込み
-    (function(){
-      var s = document.createElement('script');
-      s.src = '/js/y940.js';
-      s.defer = true;
-      s.onload = function(){ console.log('game script loaded'); };
-      document.body.appendChild(s);
-    })();
-  </script>
-  <!-- NoScript用の案内 -->
   <noscript>
     <div style="padding:12px; background:#fff3cd; color:#856404; text-align:center;">
       JavaScriptが無効になっています。ゲームをプレイするにはブラウザのJavaScriptを有効にしてください。
