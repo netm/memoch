@@ -4,7 +4,8 @@
       --accent:#ff80bf;
       --accent-2:#0062ff;
       --accent-3:#ffa200;
-      --accent-4:#00db3a;
+      --accent-4:#4ec002;
+      --accent-5:#db0096;
       --text:#2b2b2b;
       --muted:#6b6b6b;
       --radius:14px;
@@ -19,6 +20,7 @@
     .lead{margin:6px 0 18px;color:var(--muted);font-size:0.98rem;}
     main h2{font-size:1.2rem;color:var(--accent-4);margin-top:6px;}
     main h3{font-size:1.2rem;color:var(--accent-3);margin-top:6px;}
+    main h4{font-size:1.2rem;color:var(--accent-5);margin-top:6px;}
     section{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));padding:14px;border-radius:12px;margin-bottom:14px;border:1px solid rgba(124,77,255,0.06);}
     figure{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0;}
     img.illust{border-radius:12px;border:6px solid rgba(255,255,255,0.6);box-shadow:0 8px 20px rgba(0,0,0,0.06);max-width:420px;}
