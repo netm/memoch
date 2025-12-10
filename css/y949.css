@@ -53,7 +53,8 @@ h2 { color:#0f766e; }
 h3 { color:#b91c1c; }
 
 /* リンク色は青固定（全体） */
-a { color:#0b63d4; }
+a { color:#0b63d4;
+  text-decoration: underline; }
 
 /* アクセシビリティ: フォーカス表示 */
 a:focus, button:focus, textarea:focus { outline:3px solid rgba(11,99,212,0.14); outline-offset:2px; }
