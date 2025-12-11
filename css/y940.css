@@ -46,7 +46,7 @@ h2 {
 }
 
 h3 {
-    color: #4facfe;
+    color: #52cf00;
     margin-top: 30px;
 }
 
@@ -80,10 +80,10 @@ h3 {
     transform: scale(1.1) rotate(10deg);
 }
 
-.btn-x { background-color: #000; }
-.btn-fb { background-color: #1877f2; }
+.btn-x { background-color: #61a6ff; }
+.btn-fb { background-color: #0063e3; }
 .btn-line { background-color: #00c300; }
-.btn-email { background-color: #888; }
+.btn-email { background-color: #fc9700; }
 .btn-native { background: linear-gradient(45deg, #ff00cc, #333399); }
 
 /* Game Area */
