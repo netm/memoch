@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="6エンジェルナンバーをテーマにした複数人で遊べるブラウザゲーム。スマホ横向き対応、1〜6人対戦、COM対戦あり。直感的でかわいいUI。">
+  <meta name="keywords" content="6エンジェルナンバー,ブラウザゲーム,複数人,カードゲーム,無料ゲーム">
+  <title>6エンジェルナンバー 複数人ブラウザゲーム</title>
+  <link rel="canonical" href="">
+  <style>
+    /* インラインで読み込みを早くするための最小CSS読み込みプレースホルダ */
+  </style>
+  <link rel="stylesheet" href="/css/y939.css">
+</head>
+<body>
+  <header class="header" role="banner">
+    <div class="title-wrap">
+      <h1 class="site-title">6エンジェルナンバー 複数人ブラウザゲーム</h1>
+    </div>
+    <p class="subtitle">かわいいカードで遊ぶ、直感的でシンプルな対戦ゲーム</p>
+    <nav class="share-row" aria-label="シェア">
+      <button class="share-btn" data-share="x" title="Xでシェア">X</button>
+      <button class="share-btn" data-share="facebook" title="Facebookでシェア">Facebook</button>
+      <button class="share-btn" data-share="line" title="LINEでシェア">LINE</button>
+      <button class="share-btn" data-share="instagram" title="Instagramでシェア">Instagram</button>
+      <button id="emailShare" class="share-btn" data-share="email" title="メールでシェア">Eメール</button>
+      <button id="nativeShare" class="share-btn native-share" title="ネイティブシェア">ネイティブシェア</button>
+    </nav>
+    <div class="modes" role="tablist" aria-label="プレイモード">
+      <button class="mode-btn" data-players="1" aria-selected="true">1人 vs COM</button>
+      <button class="mode-btn" data-players="2">2人対戦</button>
+      <button class="mode-btn" data-players="3">3人用</button>
+      <button class="mode-btn" data-players="4">4人用</button>
+      <button class="mode-btn" data-players="5">5人用</button>
+      <button class="mode-btn" data-players="6">6人用</button>
+    </div>
+  </header>
+  <main id="main" role="main">
+    <section class="game-area" aria-label="ゲームエリア">
+      <div class="left-col">
+        <div class="card-board-wrap panel" aria-live="polite">
+          <div id="cardBoard" aria-label="カードボード" role="grid">
+            <!-- カードがここに生成されます -->
+          </div>
+          <div class="controls">
+            <button id="startGame" aria-pressed="false">ゲーム開始</button>
+          </div>
+          <div id="messageBox" aria-live="assertive"></div>
+        </div>
+      </div>
+      <aside class="right-col">
+        <div class="panel scores" aria-labelledby="scoresTitle">
+          <h3 id="scoresTitle">スコア</h3>
+          <ul id="scoreBoard" aria-live="polite"></ul>
+        </div>
+        <div class="panel players" aria-labelledby="playersTitle">
+          <h3 id="playersTitle">プレイヤー</h3>
+          <ul id="playersList" aria-live="polite"></ul>
+        </div>
+        <div class="panel" aria-labelledby="rulesTitle">
+          <h3 id="rulesTitle">遊び方</h3>
+          <div id="rulesText"></div>
+        </div>
+      </aside>
+    </section>
+    <section class="content" aria-label="サイト説明">
+      <article>
+        <h2>サイトの説明</h2>
+        <p>「6エンジェルナンバー 複数人ブラウザゲーム」はスマートフォンとパソコンの両方で快適に遊べるシンプルなカードゲームです。操作はタップ（クリック）だけで、誰でもすぐに始められます。1人でCOMと対戦したり、友達と最大6人まで対戦できます。</p>
+        <p>特徴：レスポンシブデザイン、ネイティブシェア対応、直感的なUI、短時間で遊べるラウンド制。占い要素として「6エンジェルナンバー」に関する解説も同ページ内に豊富に掲載しています。</p>
+      </article>
+      <article>
+        <h2>6エンジェルナンバーの説明</h2>
+        <p>エンジェルナンバー「6」は、バランス、家庭、愛、責任、調和を象徴する数字です。スピリチュアルな文脈では、6は「家族や身近な人とのつながりを大切にする」メッセージと解釈されます。仕事や人間関係での調和を促し、物質的な安定や心の安らぎを示唆することが多いです。</p>
+        <p>当サイトでは、「6エンジェルナンバー」に関するゲームと数字の解説を掲載しています。占い的な読み方、数秘術的な解釈、日常での活かし方などを紹介しています。</p>
+      </article>
+      <article>
+        <h2>サイトの使い方の例</h2>
+        <h3>例1：友達と2人で対戦</h3>
+        <p>「2人対戦」を選択してスタート。各プレイヤーは順番にカードを2枚めくり、指定の組み合わせが出れば星を獲得します。3ターン終了時に星が多い方が勝ちです。</p>
+        <h3>例2：1人でCOMと遊ぶ</h3>
+        <p>「1人 vs COM」を選ぶとCOMが自動でプレイします。短時間で遊べるので休憩時間や待ち時間に最適です。</p>
+        <h3>例3：パーティーで最大6人で遊ぶ</h3>
+        <p>大人数モードでは順番にめくっていき、誰が一番星を集めるかを競います。子どもから大人まで楽しめるルールです。</p>
+      </article>
+      <article>
+        <h2>関連コンテンツ</h2>
+        <ul>
+          <li><a href="https://memoc.pages.dev/y948/" target="_blank" rel="noopener">サイコロゾロ目ゲーム1111 - シンプルで楽しいゾロ目バトル</a></li>
+          <li><a href="https://memoc.pages.dev/y940/" target="_blank" rel="noopener">777エンジェルナンバー｜7.77秒ストップウォッチゲーム</a></li>
+          <li><a href="https://memoc.pages.dev/taisengame/" target="_blank" rel="noopener">カードゲームでブラウザ対戦して友達と遊ぶ</a></li>
+        </ul>
+      </article>
+      <article>
+        <h2>その他コンテンツ</h2>
+        <ul>
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集</a></li>
+          <li><a href="https://memoc.pages.dev/y949/" target="_blank" rel="noopener">軽いゲーム</a></li>
+          <li><a href="https://memoc.pages.dev/y960/" target="_blank" rel="noopener">小学生勉強ゲーム集</a></li>
+        </ul>
+      </article>
+      <footer class="footer" role="contentinfo">
+        <div>
+        <p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイトにもどる</a></p>
+        <p><a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a></p></div>
+        <div>© メモ帳代わりwebブラウザ便利サイト</div>
+      </footer>
+    </section>
+  </main>
+  <script src="/js/y939.js"></script>
+</body>
+</html>

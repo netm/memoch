@@ -1,0 +1,273 @@
+/* styles.css - 全文 */
+:root{
+  --bg:#fff7ff;
+  --accent1:#ff8fb1;
+  --accent2:#ffd36e;
+  --accent3:#8bd3ff;
+  --accent4:#b9ffb7;
+  --text:#333;
+  --link:#1a73e8;
+  --card-bg:#ffffff;
+  --card-border:#f0c6e6;
+  --shadow: 0 6px 18px rgba(0,0,0,0.08);
+  --radius:14px;
+  --cute-font: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--cute-font);
+  color:var(--text);
+  background: linear-gradient(180deg, #fff 0%, #fff7ff 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:18px;
+}
+
+/* Header */
+.header{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+  text-align:center;
+  margin-bottom:12px;
+}
+.title-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+h1.site-title{
+  margin:0;
+  font-size:clamp(20px,4.2vw,36px);
+  background:linear-gradient(90deg,var(--accent1),var(--accent3));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:800;
+  letter-spacing:1px;
+  text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+}
+.subtitle{
+  font-size:12px;
+  color:#666;
+}
+
+/* Share buttons */
+.share-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.share-btn{
+  border:0;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  color:#fff;
+  box-shadow:var(--shadow);
+  transition:transform .12s ease;
+}
+.share-btn:active{transform:translateY(2px)}
+.share-btn[data-share="x"]{background:#1da1f2}
+.share-btn[data-share="facebook"]{background:#1877f2}
+.share-btn[data-share="line"]{background:#00c300}
+.share-btn[data-share="instagram"]{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)}
+.share-btn[data-share="email"]{background:#6c63ff}
+.native-share{background:linear-gradient(90deg,var(--accent2),var(--accent4)); color:#222}
+
+/* Mode buttons */
+.modes{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:12px 0;
+}
+.mode-btn{
+  padding:10px 12px;
+  border-radius:12px;
+  border:2px solid transparent;
+  background:linear-gradient(180deg,#fff,#fff0f6);
+  cursor:pointer;
+  font-weight:700;
+  color:var(--text);
+  box-shadow:var(--shadow);
+}
+.mode-btn.active{
+  border-color:var(--accent1);
+  background:linear-gradient(90deg,rgba(255,143,177,0.12),rgba(139,211,255,0.08));
+}
+
+/* Board */
+.game-area{
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.left-col{
+  min-width:260px;
+  max-width:420px;
+  width:100%;
+}
+.card-board-wrap{
+  background:linear-gradient(180deg,#fff,#fffaf0);
+  padding:14px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+#cardBoard{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:8px;
+}
+.card{
+  position:relative;
+  height:84px;
+  border-radius:12px;
+  border:2px solid var(--card-border);
+  background:var(--card-bg);
+  cursor:pointer;
+  overflow:hidden;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .25s ease, box-shadow .12s ease;
+  font-size:20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+.card .card-back,
+.card .card-front{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:28px;
+  transition:transform .35s ease, opacity .2s ease;
+  width:100%;
+  height:100%;
+}
+.card .card-back{
+  background:linear-gradient(180deg,#ffdff0,#fff);
+  color:#ff4d8b;
+  transform:rotateY(0deg);
+  backface-visibility:hidden;
+}
+.card .card-front{
+  background:linear-gradient(180deg,#fff,#f0f8ff);
+  color:#333;
+  transform:rotateY(180deg);
+  backface-visibility:hidden;
+  border-left:4px solid rgba(0,0,0,0.03);
+}
+.card.flipped .card-back{transform:rotateY(180deg); opacity:0}
+.card.flipped .card-front{transform:rotateY(0deg); opacity:1}
+
+/* Right column */
+.right-col{
+  min-width:220px;
+  max-width:360px;
+  width:100%;
+}
+.panel{
+  background:linear-gradient(180deg,#ffffff,#f7fff7);
+  padding:12px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+}
+.players, .scores{
+  margin-bottom:12px;
+}
+.players ul, .scores ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.player-item, .score-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px;
+  border-radius:8px;
+  background:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.2));
+}
+
+/* Controls */
+.controls{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-top:10px;
+}
+#startGame{
+  padding:10px 14px;
+  border-radius:12px;
+  border:0;
+  background:linear-gradient(90deg,var(--accent1),var(--accent3));
+  color:#fff;
+  font-weight:800;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+
+/* Message */
+#messageBox{min-height:44px; display:flex; align-items:center; justify-content:center; margin-top:10px}
+.msg{padding:10px 14px;border-radius:12px;font-weight:800}
+.msg.success{background:linear-gradient(90deg,#fff7e6,#e6fff0); color:#0a7a3a}
+.msg.info{background:#eef6ff;color:#0a4b8c}
+.msg.turn{background:linear-gradient(90deg,#fff0f6,#f0f8ff); color:#333}
+.msg.win{background:linear-gradient(90deg,#fff1f0,#fff7e6); color:#b0006d; font-size:1.2rem}
+
+/* Content sections */
+.content{
+  margin-top:18px;
+  display:flex;
+  gap:18px;
+  flex-direction:column;
+}
+.content section{
+  background:linear-gradient(180deg,#ffffff,#fffaf7);
+  padding:14px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+}
+.content h2{color:var(--accent1); margin-top:0}
+.content p{line-height:1.7; color:#444}
+
+/* Links blue */
+a{color:var(--link); text-decoration:underline}
+
+/* Footer */
+.footer{
+  margin-top:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  font-size:13px;
+}
+
+/* Responsive: ensure on mobile landscape the board stretches to edges */
+@media (orientation:landscape) and (max-width:900px){
+  body{padding:8px}
+  .game-area{flex-direction:row; align-items:flex-start}
+  .card-board-wrap{width:100vw; border-radius:0; padding:12px}
+  #cardBoard{gap:8px}
+  .card{height:calc((100vh - 220px)/2); min-height:64px}
+}
+
+/* Small screens */
+@media (max-width:720px){
+  .game-area{flex-direction:column}
+  .right-col{order:2}
+  .left-col{order:1}
+}
