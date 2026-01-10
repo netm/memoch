@@ -1,0 +1,112 @@
+<!-- index.html - 全文 -->
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>地雷ゲーム 3人対戦も面白い | シンプルで盛り上がるパーティーゲーム</title>
+  <meta name="description" content="地雷ゲーム 3人対戦も面白い。スマホ・PC対応の3x3マスで地雷を埋め、着地して爆破。1P vs COM / 1P vs 2P / 3人対戦対応。簡単操作で盛り上がる心理戦。">
+  <meta name="keywords" content="地雷ゲーム, 3人対戦, パーティーゲーム, ブラフ, スマホゲーム, 1P vs COM, 1P vs 2P">
+  <meta property="og:title" content="地雷ゲーム 3人対戦も面白い">
+  <meta property="og:description" content="スマホ・PC対応のシンプルな地雷ゲーム。3x3マスで地雷を埋め、着地して爆破。友達と盛り上がろう。">
+  <meta property="og:type" content="game">
+  <meta name="twitter:card" content="summary">
+<meta name="google-adsense-account" content="ca-pub-3701488620779249">
+  <link rel="canonical" href="https://memoc.pages.dev/y938/">
+  <link rel="stylesheet" href="/css/y938.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Game",
+    "name":"地雷ゲーム 3人対戦も面白い",
+    "description":"3x3 のマスで地雷を埋め、着地して爆破するシンプルなパーティーゲーム。1P vs COM / 1P vs 2P / 3人対戦に対応。",
+    "url": ""
+  }
+  </script>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="site-title">
+    <header class="header" role="banner">
+      <div class="title-wrap">
+        <h1 id="site-title">地雷ゲーム 3人対戦も面白い</h1>
+        <nav class="share-bar" aria-label="シェア">
+          <button class="share-btn" data-share="x" title="Xでシェア">X</button>
+          <button class="share-btn" data-share="facebook" title="Facebookでシェア">Facebook</button>
+          <button class="share-btn" data-share="line" title="LINEでシェア">LINE</button>
+          <button class="share-btn" data-share="instagram" title="Instagramを開く">Instagram</button>
+          <button class="share-btn" data-share="email" title="メールでシェア">Eメール</button>
+          <button class="share-btn" data-share="native" title="ネイティブシェア">ネイティブ</button>
+        </nav>
+      </div>
+      <div class="mode-bar" role="tablist" aria-label="ゲームモード">
+        <button class="mode-btn active" data-mode="1p-com" role="tab" aria-selected="true">1P vs COM</button>
+        <button class="mode-btn" data-mode="1p-2p" role="tab" aria-selected="false">1P vs 2P</button>
+        <button class="mode-btn" data-mode="3p" role="tab" aria-selected="false">3人対戦</button>
+      </div>
+      <div class="volume-row" aria-hidden="false">
+        <div id="volume-left" class="label">0</div>
+        <input id="volume-range" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="音量調整" />
+        <div id="volume-right" class="label">音量大</div>
+      </div>
+    </header>
+    <section class="stage" aria-label="ゲームステージ">
+      <div id="game-grid" role="grid" aria-label="3x3 ゲームグリッド"></div>
+      <div id="hearts-wrap" aria-live="polite" aria-atomic="true"></div>
+      <article class="description" id="description" role="status" aria-live="polite">
+        <!-- 説明文がここに入る -->
+      </article>
+      <button id="explode-btn" aria-pressed="false">爆破スイッチ</button>
+    </section>
+    <section class="content-block" aria-labelledby="howto">
+      <h2 id="howto" style="color:var(--accent1)">説明文</h2>
+      <div id="how-to-play" class="how-to-play" role="article">
+        <h3>遊び方（基本ルール）</h3>
+      <p>地雷ゲームは心理戦と運が混ざったシンプルなパーティーゲームです。3x3 のマスに地雷を埋め、全員が着地したら爆破スイッチを押して結果を確認します。スマホ・PC 両対応で操作はタップ/クリックだけです。</p>
+      <ul>
+        <li>各プレイヤーは地雷を <strong>3つ</strong> 埋めます（同じマスに複数可、最大3つ）。</li>
+        <li>全員が地雷を埋め終えたら、各自が着地するマスを選びます。</li>
+        <li>全員着地後に「爆破スイッチ」を押すと爆発音とともに地雷と人が表示され、ダメージが適用されます。</li>
+        <li>地雷1つでハートが1つ減り、地雷2つ以上で即ゲームオーバーになります。</li>
+      </ul>
+      <h3>戦略とコツ</h3>
+      <p>相手の心理を読む「ブラフ」と、リスクを分散する「分散配置」、会話でのかけ引きなど、戦略性が高いのが特徴です。初心者向けかつゲーム上級者も楽しめる設計です。</p>
+      <h3>対応デバイスと操作方法</h3>
+      <p>スマホでタッチ。PCはマウスでクリック。音量スライダーで効果音の大きさを調整できます。</p>
+      </div>
+    </section>
+    <section class="content-block" aria-labelledby="examples">
+      <h3 id="examples" style="color:var(--accent2)">遊び方の例</h3>
+      <div id="play-examples">
+        <h3>サイトの使い方の例</h3>
+      <ol>
+        <li><strong>友達と対戦</strong>：スマホを中心にして3人で集まって遊ぶ。会話と心理戦で盛り上がる。</li>
+        <li><strong>COM と練習</strong>：1P vs COM で地雷の置き方や読み合いを練習する。</li>
+        <li><strong>2 人で真剣勝負</strong>：1P vs 2P モードで集中して戦略を練る。</li>
+        <li><strong>配信や実況向け</strong>：爆破の瞬間が盛り上がるので配信コンテンツに最適。</li>
+      </ol>
+      </div>
+    </section>
+    <section class="content-block" aria-labelledby="related">
+      <h3 id="related" style="color:var(--accent3)">関連コンテンツ</h3>
+      <div id="related-links"></div>
+          <li><a href="https://memoc.pages.dev/y945/" target="_blank" rel="noopener">電気イスゲーム - 心理戦頭脳バトル</a></li>
+          <li><a href="https://memoc.pages.dev/y939/" target="_blank" rel="noopener">6エンジェルナンバー 複数人ブラウザゲーム</a></li>
+          <li><a href="https://memoc.pages.dev/y948/" target="_blank" rel="noopener">サイコロゾロ目ゲーム1111 - シンプルで楽しいゾロ目バトル</a></li>
+    </section>
+    <section class="content-block" aria-labelledby="other">
+      <h3 id="other" style="color:#9ad">その他コンテンツ</h3>
+      <div id="other-links">
+          <li><a href="https://memoc.pages.dev/game1/" target="_blank" rel="noopener">無料ブラウザゲーム集</a></li>
+          <li><a href="https://memoc.pages.dev/y949/" target="_blank" rel="noopener">軽いゲーム多数ご紹介 スマホでもサクサク</a></li>
+      </div>
+    </section>
+    <footer class="content-block" role="contentinfo">
+      <nav>
+        <p><a href="https://memoc.pages.dev/">メモ帳代わりwebブラウザ便利サイトにもどる</a></p>
+        <p><a href="https://memoc.pages.dev/sitemap/" target="_blank" rel="noopener">サイトマップ</a></p>
+      </nav>
+    </footer>
+  </main>
+  <script src="/js/y938.js"></script>
+</body>
+</html>
