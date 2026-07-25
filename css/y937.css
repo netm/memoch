@@ -1,0 +1,255 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f7f9fa;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #ff4757;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #2ed573;
+    font-size: 1.4rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-left: 5px solid #2ed573;
+    padding-left: 10px;
+}
+
+h3 {
+    color: #1e90ff;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+#chartTitle {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid #ffa502;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#chartTitle:focus {
+    border-color: #ff6348;
+}
+
+.canvas-container {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* スマホ横向き時の特別対応：画面両端にフィット */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    body {
+        padding: 5px;
+    }
+    main {
+        max-width: 100%;
+        padding: 10px;
+        border-radius: 0;
+    }
+    .canvas-container {
+        height: 60vh;
+    }
+}
+
+canvas {
+    width: 100%;
+    height: 350px;
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.control-panel {
+    margin-bottom: 20px;
+    background: #f1f2f6;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.color-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-black { background: #2f3542; color: #fff; }
+.btn-red { background: #ff4757; color: #fff; }
+.btn-blue { background: #1e90ff; color: #fff; }
+.btn-green { background: #2ed573; color: #fff; }
+.btn-orange { background: #ffa502; color: #fff; }
+
+.picker-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+}
+
+.color-picker {
+    width: 40px;
+    height: 34px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.btn-clear { background: #ff6b81; color: #fff; flex: 1; }
+.btn-save { background: #ffa502; color: #fff; flex: 1; }
+
+.share-zone {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 15px;
+    border-top: 2px dashed #ddd;
+}
+
+.share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.share-btn {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.share-x { background-color: #000000; }
+.share-fb { background-color: #1877F2; }
+.share-line { background-color: #06C755; }
+.share-mail { background-color: #747d8c; }
+
+.share-btn:hover {
+    opacity: 0.85;
+}
+
+.seo-content {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.95rem;
+    color: #4f5d75;
+}
+
+.seo-content p {
+    margin-bottom: 15px;
+}
+
+.seo-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.links-section {
+    margin-top: 30px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.links-section ul {
+    list-style: none;
+}
+
+.links-section li {
+    margin-bottom: 8px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+footer .footer-links {
+    margin-bottom: 10px;
+}
+
+footer .footer-links a {
+    margin: 0 10px;
+}

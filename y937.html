@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+    <title>株資産推移グラフ作成ツール - 無料で毎月の資産状況を可視化</title>
+    <meta name="description" content="直感的なドラッグ操作で1日から31日までの株資産・投資信託の推移を簡単にグラフ化できる無料Webツールです。スマホの横向き全画面表示対応、ブラウザ保存機能、画像ダウンロード機能、SNSシェア機能を完備。">
+    <link rel="canonical" href="https://memoc.pages.dev/937/">
+     <link rel="stylesheet" href="/css/y937.css">
+    <script src="/js/y937.js"></script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+<header>
+    <h1>株資産の推移を簡単グラフ化ツール</h1>
+    <p>指先ひとつ・マウスドラッグだけで1ヶ月の資産変動グラフを直感設計</p>
+</header>
+<main>
+    <!-- タイトル入力エリア -->
+    <div class="input-container">
+        <label for="chartTitle" style="display:none;">グラフタイトル</label>
+        <input type="text" id="chartTitle" value="●月の株資産　←自由に変更可" placeholder="グラフのタイトルを自由に入力（例: 2026年7月の株資産）">
+    </div>
+    <!-- グラフ描画エリア -->
+    <div class="canvas-container">
+        <canvas id="cryptoChart"></canvas>
+    </div>
+
+    <!-- カラーコントロールパネル -->
+    <div class="control-panel">
+        <div class="control-group">
+            <h3>📈 グラフ線の色変更</h3>
+            <div class="color-buttons">
+                <button class="btn btn-black preset-line" data-color="#2f3542">黒</button>
+                <button class="btn btn-red preset-line" data-color="#ff4757">赤</button>
+                <button class="btn btn-blue preset-line" data-color="#1e90ff">青</button>
+                <button class="btn btn-green preset-line" data-color="#2ed573">緑</button>
+                <button class="btn btn-orange preset-line" data-color="#ffa502">オレンジ</button>
+                <div class="picker-container">
+                    <span>🎨 パレット:</span>
+                    <input type="color" id="lineColorPicker" class="color-picker" value="#007bff">
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <h3>🖼️ グラフ背景カラー変更</h3>
+            <div class="color-buttons">
+                <button class="btn btn-black preset-bg" data-color="#2f3542">黒</button>
+                <button class="btn btn-red preset-bg" data-color="#ffeaa7">赤(淡)</button>
+                <button class="btn btn-blue preset-bg" data-color="#e0f7fa">青(淡)</button>
+                <button class="btn btn-green preset-bg" data-color="#e8f5e9">緑(淡)</button>
+                <button class="btn btn-orange preset-bg" data-color="#fff3e0">オレンジ</button>
+                <div class="picker-container">
+                    <span>🎨 パレット:</span>
+                    <input type="color" id="bgColorPicker" class="color-picker" value="#ffffff">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- アクションボタンエリア -->
+    <div class="action-buttons">
+        <button id="clearBtn" class="btn btn-clear">🧹 すべて消去</button>
+        <button id="savePngBtn" class="btn btn-save">💾 PNG画像で保存</button>
+    </div>
+    <!-- SNSシェアエリア -->
+    <div class="share-zone">
+        <h3>📢 作成した資産グラフをみんなにシェアする</h3>
+        <div class="share-buttons">
+            <a href="https://twitter.com！" target="_blank" rel="nofollow noopener" class="share-btn share-x">X (旧Twitter)</a>
+            <a href="https://facebook.com" target="_blank" rel="nofollow noopener" class="share-btn share-fb">Facebook</a>
+            <a href="https://line.me" target="_blank" rel="nofollow noopener" class="share-btn share-line">LINE</a>
+            <a href="mailto:?subject=株資産推移グラフ&body=株資産推移グラフを作成しました。サイトはこちら：https://example.com" class="share-btn share-mail">Eメール</a>
+        </div>
+    </div>
+    <section class="seo-content">
+        <h2>📊 株資産推移グラフ作成ツールとは？特徴と活用方法</h2>
+        <p>本ツールは、個人投資家、トレーダー、つみたてNISAやiDeCoで資産形成を行うすべての人のために開発された「完全無料・登録不要」の株資産推移グラフ作成シミュレーターです。1日から31日までの日々の資産状況のボラティリティや成長の記録を、マウスのドラッグやスマートフォンでの指タッチといった直感的な操作だけで簡単にグラフ化できます。</p>
+        <h3>💡 サイトとグラフの圧倒的な軽量・高速化</h3>
+        <p>グラフ描画サイトとして軽量な点を重視して設計されているため、読み込み速度が圧倒的に速く、低速なモバイル回線や格安SIM環境のスマートフォンでもストレスなく一瞬で起動します。データ通信量を最小限に抑えつつ、サクサク動くユーザー体験を実現しました。</p>
+        <h3>📱 スマホの横向き(レスポンシブ・ランドスケープ)に完全最適化</h3>
+        <p>「スマホの画面だと1ヶ月分の細かい折れ線グラフが見づらい」という不満を解消するため、スマートフォンを横向き（ランドスケープモード）にした際、グラフの両端がディスプレイの左右端にぴったりとフィットするデザイン性を施しています。横画面にすることで、1日から31日までのデータポイントが広く引き伸ばされ、指先での細かなタップ＆ドラッグ操作が劇的に快適になります。PCの大画面ブラウザでも同様に、ウィンドウ幅いっぱいにダイナミックに広がります。</p>
+        <h3>🔒 抜群の安心感！ブラウザ自動保存機能（LocalStorage）</h3>
+        <p>せっかく入力した日々の株価や資産評価額の推移データも、ブラウザを閉じたり誤ってリロード（再読み込み）したりした瞬間に消えてしまっては意味がありません。当サイトでは、データが変更されるたびにユーザーのWebブラウザ内部の安全な領域（LocalStorage）へ自動的にリアルタイム保存を行います。サーバーへデータを送信しない仕組みのため、あなたの重要な資産状況やポートフォリオの数値が外部に漏洩する心配は一切ありません。完全なプライバシー保護のもとで、いつでも前回の続きからグラフ編集を再開できます。ご自身のスマホ端末（ご自身のパソコン）のみに保存されます。</p>
+        <h3>🎨 自由自在なカスタマイズ！カラフルなテーマ変更</h3>
+        <p>投資のモチベーションを高めるために、視覚的な美しさにもこだわりました。ワンクリックでカラーを切り替えられるクリックボタンに加え、無段階で細かく色合いを選べるカラーパレット（カラーピッカー）を搭載。投資成績が良い時は「鮮やかな赤や青」、落ち着いた記録付けをしたい時は「スタイリッシュな黒や緑」など、グラフの線と背景色の組み合わせを自由自在にデザイン可能です。仕上がったグラフは高画質なPNG画像ファイルとしてワンタップで即座に画像保存ができます。</p>
+        <h3>🔍 主な想定利用シーンとメリット</h3>
+        <ul>
+            <li><strong>月次資産報告の作成：</strong> 毎月末に「2026年7月の株資産」など自由なタイトルを冠して、一ヶ月の投資成果を1枚の画像に集約。</li>
+            <li><strong>投資ブログやSNSへの投稿：</strong> X（旧Twitter）やFacebook等のシェアボタンを活用し、進捗を投資家コミュニティへ瞬時に共有。</li>
+            <li><strong>投資日記・メンタルトレーニング</strong> 相場の急変動による資産の上下をビジュアルとして客観的に捉えることで、狼狽売りを防ぐメンタルトレーニングに。</li>
+        </ul>
+    </section>
+    <!-- 関連リンク -->
+    <section class="links-section">
+        <h2>🔗 関連リンク一覧</h2>
+        <ul>
+            <li><a href="https://memoc.pages.dev/toushi/ " target="_blank" rel="noopener noreferrer">投資メモ電卓web</a></li>
+            <li><a href="https://memoc.pages.dev/interestcalculation/ " target="_blank" rel="noopener noreferrer">複利電卓 無料 積立NISA</a></li>
+            <li><a href="https://memoc.pages.dev/y998s/ " target="_blank" rel="noopener noreferrer">書き込みカレンダー</a></li>
+            <li><a href="https://memoc.pages.dev/y997/ " target="_blank" rel="noopener noreferrer">家計簿項目表のブラウザアプリ</a></li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <div class="footer-links">
+        <a href="https://memoc.pages.dev/">🏠 サイトトップページへ戻る</a> |
+        <a href="https://memoc.pages.dev/sitemap/">🗺️ サイトマップ</a>
+    </div>
+    <p>株資産推移グラフ作成ツール All Rights Reserved. (軽量版ネイティブアプリ仕様)</p>
+</footer>
+</body>
+</html>
