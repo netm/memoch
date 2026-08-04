@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+　　<meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>干支格言コレクション</title>
+     <link rel="stylesheet" href="/css/indez2.css">
+    <script src="/js/indez2.js"></script>
+</head>
+<body>
+
+  <div class="container" role="application" aria-label="干支格言コレクション">
+    <div class="header">
+      <div class="logo">卍</div>
+      <div>
+        <div class="h1">干支格言コレクション</div>
+        <div style="font-size:12px;color:#ffb87a;margin-top:6px">背景黒 × オレンジのかわいいデザイン</div>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="filter" style="min-width:220px;">
+        <input id="filter" type="search" placeholder="検索: 丁巳 など" aria-label="検索" />
+      </div>
+      <div class="controls">
+        <input id="eraDate" type="date" aria-label="日付選択（和暦表示用）" />
+        <div id="eraOutput" style="color:#ffb87a;font-weight:700;font-size:13px;min-width:180px"></div>
+      </div>
+    </div>
+
+    <div class="grid-wrap">
+      <div>
+        <div id="list" class="list" role="list" aria-label="干支一覧"></div>
+      </div>
+
+      <aside class="panel" aria-live="polite">
+        <div class="title" id="panelTitle">選択してください
+          <button id="close" class="btn-close" style="display:none">閉じる</button>
+        </div>
+        <div id="panelBody" class="body">格言がここに表示されます。</div>
+        <div id="panelDate" class="date"></div>
+        <div class="footer-note">日付と和暦は自動で変換されます</div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
