@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="google-adsense-account" content="ca-pub-3701488620779249">
+    <title>2つの収支カレンダー デイトレとスイングトレード投資成績管理ツール</title>
+    <meta name="description" content="デイトレードとスイングトレードの収支を1つのカレンダーで同時に管理できる無料のWebアプリ。スマホ・PC対応、自動計算機能、ブラウザ保存機能完備。">
+    <link rel="canonical" href="https://memoc.pages.dev/y936/">
+     <link rel="stylesheet" href="/css/y936.css">
+    <script src="/js/y936.js"></script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D799GZERM');
+</script>
+<body>
+
+<div class="container">
+    <header>
+        <h1 class="site-title">2つの収支カレンダー デイトレとスイングトレード</h1>
+    </header>
+
+    <main>
+        <div class="calendar-name-container">
+            <input type="text" id="calendarName" class="calendar-name-input" value="デイトレ ＆ スイングトレード 収支">
+        </div>
+
+        <div class="nav-controls">
+            <button id="prevMonth" class="nav-btn">先月</button>
+            <h2 id="monthYearTitle" class="month-title">2026年 8月</h2>
+            <button id="nextMonth" class="nav-btn">来月</button>
+        </div>
+
+        <div class="calendar-wrapper">
+            <div id="calendarGrid" class="calendar-grid">
+                <!-- JSで動的に生成 -->
+            </div>
+        </div>
+
+        <div class="totals-container">
+            <div class="total-row">
+                <input type="text" id="labelTop" class="total-label-input" value="デイトレ合計">
+                <div class="total-value">¥ <span id="totalTopVal">0</span></div>
+            </div>
+            <div class="total-row">
+                <input type="text" id="labelBottom" class="total-label-input" value="スイング合計">
+                <div class="total-value">¥ <span id="totalBottomVal">0</span></div>
+            </div>
+        </div>
+
+        <div class="iframe-container">
+            <iframe src="https://memoc.pages.dev/y936/"></iframe>
+        </div>
+
+        <h3 class="section-title">🎨 カラー＆デザイン設定</h3>
+        <div class="color-panel">
+            <div class="color-picker-group">
+                <label>上段(+)の色</label>
+                <input type="color" id="colorTopPlus" value="#0000ff">
+            </div>
+            <div class="color-picker-group">
+                <label>上段(-)の色</label>
+                <input type="color" id="colorTopMinus" value="#ff0000">
+            </div>
+            <div class="color-picker-group">
+                <label>下段(+)の色</label>
+                <input type="color" id="colorBottomPlus" value="#008000">
+            </div>
+            <div class="color-picker-group">
+                <label>下段(-)の色</label>
+                <input type="color" id="colorBottomMinus" value="#800080">
+            </div>
+            <div class="color-picker-group">
+                <label>カレンダー名色</label>
+                <input type="color" id="colorCalendarName" value="#333333">
+            </div>
+            <div class="color-picker-group">
+                <label>背景カラー</label>
+                <input type="color" id="colorBg" value="#f4f7f6">
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button id="clearAll" class="action-btn btn-clear">⚠️ すべて消去</button>
+            <button id="savePng" class="action-btn btn-png">📸 PNG画像で保存</button>
+        </div>
+
+        <div class="share-buttons">
+            <a id="shareX" href="#" target="_blank" class="share-btn share-x">X(旧Twitter)</a>
+            <a id="shareLine" href="#" target="_blank" class="share-btn share-line">LINE</a>
+            <a id="shareInsta" href="#" target="_blank" class="share-btn share-insta">Instagram</a>
+            <a id="shareEmail" href="#" class="share-btn share-email">Eメール</a>
+        </div>
+
+        <section class="seo-content">
+            <h2 class="section-title">📊 デイトレとスイングトレードの収支を1つのカレンダーで完全一元管理</h2>
+            <p>株式投資、FX、仮想通貨（暗号資産）、先物取引など、現代のトレーダーは複数の手法を並行して運用することが一般的です。特に、その日のうちにポジションを決済する「デイトレード」と、数日から数週間のスパンで大きな波を狙う「スイングトレード」は、資金効率を最大化するための強力な組み合わせです。しかし、それぞれの投資成績や毎日の損益（P&L）を別々に管理するのは非常に面倒です。そこで開発されたのが、この「2つの収支カレンダー デイトレとスイングトレード」です。</p>
+            
+            <h3>💡 スマホ横向き（ランドスケープ）で画面いっぱいに広がる超見やすい設計</h3>
+            <p>本ツールはレスポンシブデザインを徹底追求しています。パソコンのブラウザからはもちろん、スマートフォンでアクセスした際にもストレスフリーで操作が可能です。特にスマホを横向きにしたとき、画面の両端ぴったりにカレンダーがフィットする独自設計を採用。1日の中の上段・下段の2つの入力欄が綺麗に並び、一目で当月のトレード結果を見渡すことができます。外出先のタップ操作でも数値を簡単に入力・修正できます。</p>
+
+            <h3>🔒 面倒な登録は不要！ローカルストレージ（ブラウザ保存機能）でプライバシーを保護</h3>
+            <p>メールアドレスの登録やパスワードの設定、口座連携などの煩わしい手続きは一切ありません。入力したデータはお使いのブラウザの「ローカルストレージ（ブラウザ保存機能）」に即座に暗号化されて自動保存されます。サーバーへ大切な資産データが送信されることがないため、セキュリティ面でも非常に安全です。いつでもサイトを開くだけで、前回の続きから収支入力を再開できます。</p>
+
+            <h3>📈 自由自在なカスタマイズ性と自動合計計算機能</h3>
+            <p>日ごとのマス目には上段と下段の2つの数値を入力可能。カレンダー上部の大タイトルだけでなく、各合計欄の「名称」も自由に書き換えることができます。例えば上段を「デイトレ」、下段を「スイング」とするだけでなく、「現物取引と信用取引」「FXと株」「ビットコインとアルトコイン」「主人の口座と妻の口座」など、あなたのライフスタイルや投資戦略に合わせて自由に変更可能です。さらに、入力した数値はリアルタイムで今月の合計金額として自動計算されます。プラス額とマイナス額の色相もお好みのパレットに変更できるため、モチベーション維持にも繋がります。</p>
+
+            <h3>📅 ワンクリックで先月・来月へ瞬時に移動</h3>
+            <p>今月のカレンダーはアクセス時に自動的に構築されます。過去の取引履歴を振り返りたいときや、新しい月の計画を立てたいときは、上部の「先月」「来月」ボタンを押すだけで瞬時にカレンダーが切り替わります。もちろん、月を移動してもそれぞれの月のデータはブラウザに記憶されたままです。長期的な収支の波を把握し、トレードの勝率向上やリスク管理、ドローダウンの抑制に役立ててください。</p>
+        </section>
+
+        <section class="links-section">
+            <h3 class="section-title">🔗 関連リンク</h3>
+            <ul>
+            <li><a href="https://memoc.pages.dev/toushi/" target="_blank" rel="noopener noreferrer">投資メモ電卓web</a></li>
+            <li><a href="https://memoc.pages.dev/interestcalculation/" target="_blank" rel="noopener noreferrer">複利電卓 無料 積立NISA</a></li>
+            <li><a href="https://memoc.pages.dev/y937/" target="_blank" rel="noopener noreferrer">株資産推移グラフ作成ツール</a></li>
+            </ul>
+        </section>
+        <section class="links-section">
+            <h3 class="section-title">🔗 カレンダー家計簿リンク</h3>
+            <ul>
+            <li><a href="https://memoc.pages.dev/y998s/" target="_blank" rel="noopener noreferrer">書き込みカレンダー</a></li>
+            <li><a href="https://memoc.pages.dev/y992/" target="_blank" rel="noopener noreferrer">スケジュール帳ブラウザアプリ</a></li>
+            <li><a href="https://memoc.pages.dev/y997/" target="_blank" rel="noopener noreferrer">家計簿項目表のブラウザアプリ</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer-nav">
+        <a href="https://memoc.pages.dev/">🏠 サイトトップページへ戻る</a> |
+        <a href="https://memoc.pages.dev/sitemap/">🗺️ サイトマップ</a>
+        <p style="margin-top: 15px; font-size: 12px; color: #aaa;">&copy; 2026 2つの収支カレンダー デイトレとスイングトレード All Rights Reserved.</p>
+    </footer>
+</div>
+</body>
+</html>
