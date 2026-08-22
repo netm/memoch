@@ -123,20 +123,39 @@ document.addEventListener('DOMContentLoaded', () => {
             dayCell.appendChild(dayNum);
 
             const inputTop = document.createElement('input');
-            inputTop.type = 'number';
+            inputTop.type = 'text';
+            inputTop.inputMode = 'text';
             inputTop.className = 'day-input input-top';
-            inputTop.placeholder = '　';
+            inputTop.placeholder = '上段';
             inputTop.value = topData[day] || '';
             dayCell.appendChild(inputTop);
 
             const inputBottom = document.createElement('input');
-            inputBottom.type = 'number';
+            inputBottom.type = 'text';
+            inputBottom.inputMode = 'text';
             inputBottom.className = 'day-input input-bottom';
-            inputBottom.placeholder = '　';
+            inputBottom.placeholder = '下段';
             inputBottom.value = bottomData[day] || '';
             dayCell.appendChild(inputBottom);
 
+            const validateAndFilter = (input) => {
+                let val = input.value;
+                val = val.replace(/[^-0-9.]/g, '');
+                const parts = val.split('-');
+                if (parts.length > 2) {
+                    val = '-' + parts.join('').replace(/-/g, '');
+                } else if (parts.length === 2 && val.indexOf('-') !== 0) {
+                    val = val.replace(/-/g, '');
+                }
+                const dotParts = val.split('.');
+                if (dotParts.length > 2) {
+                    val = dotParts[0] + '.' + dotParts.slice(1).join('');
+                }
+                input.value = val;
+            };
+
             inputTop.addEventListener('input', () => {
+                validateAndFilter(inputTop);
                 topData[day] = inputTop.value;
                 localStorage.setItem(getStorageKey(year, month, 'top'), JSON.stringify(topData));
                 calculateTotals();
@@ -144,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             inputBottom.addEventListener('input', () => {
+                validateAndFilter(inputBottom);
                 bottomData[day] = inputBottom.value;
                 localStorage.setItem(getStorageKey(year, month, 'bottom'), JSON.stringify(bottomData));
                 calculateTotals();
