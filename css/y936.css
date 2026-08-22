@@ -104,7 +104,6 @@ h2.month-title {
     background: #fafafa;
     display: flex;
     flex-direction: column;
-    min-height: 85px;
 }
 
 .calendar-day.empty {
@@ -128,6 +127,10 @@ h2.month-title {
     margin-bottom: 2px;
     text-align: right;
     -moz-appearance: textfield;
+}
+
+.day-input:last-child {
+    margin-bottom: 0;
 }
 
 .day-input::-webkit-outer-spin-button,
