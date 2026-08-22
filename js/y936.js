@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inputTop.type = 'text';
             inputTop.inputMode = 'text';
             inputTop.className = 'day-input input-top';
-            inputTop.placeholder = '上段';
+            inputTop.placeholder = '　';
             inputTop.value = topData[day] || '';
             dayCell.appendChild(inputTop);
 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inputBottom.type = 'text';
             inputBottom.inputMode = 'text';
             inputBottom.className = 'day-input input-bottom';
-            inputBottom.placeholder = '下段';
+            inputBottom.placeholder = '　';
             inputBottom.value = bottomData[day] || '';
             dayCell.appendChild(inputBottom);
 
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             colorBottomPlus.value = '#008000';
             colorBottomMinus.value = '#800080';
             colorCalendarName.value = '#333333';
-            colorBg.value = '#f4f7f6';
+            colorBg.value = '#ffda6cff';
             applyColors();
             renderCalendar();
         }
