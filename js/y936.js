@@ -125,14 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputTop = document.createElement('input');
             inputTop.type = 'number';
             inputTop.className = 'day-input input-top';
-            inputTop.placeholder = '上段';
+            inputTop.placeholder = '　';
             inputTop.value = topData[day] || '';
             dayCell.appendChild(inputTop);
 
             const inputBottom = document.createElement('input');
             inputBottom.type = 'number';
             inputBottom.className = 'day-input input-bottom';
-            inputBottom.placeholder = '下段';
+            inputBottom.placeholder = '　';
             inputBottom.value = bottomData[day] || '';
             dayCell.appendChild(inputBottom);
 
