@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             colorBottomPlus.value = '#008000';
             colorBottomMinus.value = '#800080';
             colorCalendarName.value = '#333333';
-            colorBg.value = '#ffda6cff';
+            colorBg.value = '#ffdea0';
             applyColors();
             renderCalendar();
         }
