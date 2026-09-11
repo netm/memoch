@@ -53,8 +53,8 @@ h1.site-title {
     border: 2px dashed var(--accent-color);
     border-radius: 6px;
     padding: 5px 10px;
-    width: 80%;
-    max-width: 500px;
+    width: 98%;
+    max-width: 1180px;
     background: transparent;
 }
 
