@@ -1,0 +1,347 @@
+/* 基本リセットと共通設定 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+body {
+    background-color: #f3f4f6;
+    color: #333;
+    line-height: 1.6;
+    padding: 10px;
+}
+
+/* レスポンシブコンテナ：PCではスマート、スマホ横向き（Landscape）で画面両端いっぱいに広がる */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 20px;
+}
+
+@media (max-width: 915px) and (orientation: landscape) {
+    body {
+        padding: 0;
+    }
+    .container {
+        max-width: 100%;
+        border-radius: 0;
+        padding: 10px;
+    }
+}
+
+/* アプリメインエリア（背景色変更の対象） */
+#app-container {
+    background-color: #fefcbf; /* 初期値：薄い黄色 */
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* カラフルなヘッダー・タイトル装飾 */
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #3b82f6; /* 青 */
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.year-display {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ec4899; /* ピンク */
+    margin-bottom: 15px;
+}
+
+/* タイトル入力欄 */
+.title-input-container {
+    margin-bottom: 20px;
+}
+
+.main-title-input {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 10px;
+    border: 2px dashed #f59e0b; /* オレンジ */
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* テーブルスタイル */
+.profit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.profit-table th, .profit-table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.profit-table th {
+    background-color: #f3f4f6;
+    font-weight: bold;
+}
+
+/* 名称変更可能インプット */
+.label-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #4b5563;
+    padding: 4px;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.label-input:focus {
+    outline: none;
+    border-bottom: 2px solid #3b82f6;
+}
+
+/* 月表示列 */
+.month-label {
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* 金額入力欄 */
+.amount-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* 合計表示行 */
+.total-row {
+    background-color: #f9fafb;
+    font-weight: bold;
+}
+
+.total-title {
+    color: #10b981; /* 緑 */
+    font-size: 0.95rem;
+}
+
+.total-val {
+    font-size: 1.1rem;
+    text-align: right;
+    padding: 8px;
+}
+
+/* カラーコントロールパネル */
+.control-section {
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #10b981; /* 緑 */
+    margin-bottom: 15px;
+    border-left: 4px solid #10b981;
+    padding-left: 8px;
+}
+
+.color-control-group {
+    margin-bottom: 15px;
+}
+
+.color-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #4b5563;
+}
+
+.palette-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.color-btn {
+    border: 1px solid #ccc;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.btn-black { background-color: #333333; }
+.btn-red { background-color: #ef4444; }
+.btn-blue { background-color: #3b82f6; }
+.btn-green { background-color: #10b981; }
+.btn-orange { background-color: #f59e0b; }
+
+.btn-bg-black { background-color: #1f2937; }
+.btn-bg-red { background-color: #fee2e2; }
+.btn-bg-blue { background-color: #dbeafe; }
+.btn-bg-green { background-color: #d1fae5; }
+.btn-bg-orange { background-color: #ffedd5; }
+
+.custom-picker {
+    width: 40px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+}
+
+/* 機能ボタン（消去・画像保存） */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #fff;
+    transition: opacity 0.2s;
+}
+
+.btn-action:hover {
+    opacity: 0.9;
+}
+
+#btn-clear { background-color: #6b7280; } /* グレー */
+#btn-png { background-color: #8b5cf6; } /* パープル */
+
+/* SNSシェアセクション */
+.share-section {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.share-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#share-x { background-color: #0f1419; }
+#share-line { background-color: #06c755; }
+#share-insta { background-color: #e1306c; }
+#share-email { background-color: #ea4335; }
+
+/* SEO説明文セクション */
+.seo-content {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 2px solid #e5e7eb;
+}
+
+h3 {
+    font-size: 1.1rem;
+    color: #f59e0b; /* オレンジ */
+    margin: 15px 0 5px 0;
+}
+
+.seo-content p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+.seo-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+/* ナビゲーション・フッターリンク */
+.footer-links {
+    margin-top: 30px;
+    background-color: #f9fafb;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.link-group {
+    margin-bottom: 12px;
+}
+
+.link-group a {
+    color: #0000ff; /* 指定の青色 */
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+
+.link-group a:hover {
+    text-decoration: underline;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+}
+
+.footer-nav a {
+    color: #0000ff; /* 指定の青色 */
+    text-decoration: none;
+    font-size: 0.9rem;
+}
