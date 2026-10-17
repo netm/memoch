@@ -26,141 +26,121 @@ eleventyExcludeFromCollections: false
   gtag('config', 'G-5D799GZERM');
 </script>
 <body>
-<div class="container">
+<div class="container" id="app-container">
     <header>
-        <h1 id="main-title">2つの月別の年間損益表</h1>
-        <div class="year-display"><span id="current-year"></span>年</div>
+        <h1>2つの月別の年間損益表</h1>
+        <p style="font-size:0.8rem; color:#666; margin-bottom:10px;">スマホ横向き対応・自動ブラウザ保存機能付き</p>
+        <!-- 自由に入力できるタイトル欄 -->
+        <input type="text" id="main-title" class="main-title-input" value="NISA株とデイトレ（家計簿）" placeholder="タイトルを自由に入力">
     </header>
 
     <main>
-        <!-- タイトル・ラベル入力設定エリア -->
-        <section class="title-setup">
-            <input type="text" id="table-title-input" class="styled-input" placeholder="表のタイトル（例: NISA株とデイトレ（家計簿））" value="NISA株とデイトレ（家計簿）">
-            <div class="label-settings">
-                <input type="text" id="label-col1-input" class="styled-input" placeholder="項目1の名称（例: NISA株）" value="NISA株">
-                <input type="text" id="label-col2-input" class="styled-input" placeholder="項目2の名称（例: デイトレ）" value="デイトレ">
+        <!-- 損益計算テーブル -->
+        <div class="profit-table">
+            <div class="table-header">
+                <div>月</div>
+                <div><input type="text" id="col1-title" class="header-input" value="NISA株"></div>
+                <div><input type="text" id="col2-title" class="header-input" value="デイトレ"></div>
             </div>
-        </section>
-
-        <!-- メイン損益計算テーブル -->
-        <section class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th style="color: var(--month-color);">月</th>
-                        <th>項目1金額</th>
-                        <th>項目2金額</th>
-                    </tr>
-                </thead>
-                <tbody id="months-tbody">
-                    <!-- JavaScriptで1月〜12月の行がここに自動生成されます -->
-                </tbody>
-                <tfoot>
-                    <tr class="total-row">
-                        <td class="month-label">合計</td>
-                        <td><span id="total-1">0</span></td>
-                        <td><span id="total-2">0</span></td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-
-        <!-- カラーチェンジャーパネル -->
-        <section class="color-settings-panel">
-            <h2>カスタムカラー設定</h2>
             
-            <div class="picker-group">
-                <label>タイトルの色変更</label>
-                <div class="color-pickers" id="title-picker-container">
-                    <button class="color-btn" style="background-color: #000000;" data-color="#000000"></button>
-                    <button class="color-btn" style="background-color: #e53935;" data-color="#e53935"></button>
-                    <button class="color-btn" style="background-color: #1e88e5;" data-color="#1e88e5"></button>
-                    <button class="color-btn" style="background-color: #43a047;" data-color="#43a047"></button>
-                    <button class="color-btn" style="background-color: #fb8c00;" data-color="#fb8c00"></button>
-                    <div class="custom-picker-wrapper">
-                        <span>パレット:</span>
-                        <input type="color" id="custom-title" class="custom-picker" value="#333333">
-                    </div>
-                </div>
-            </div>
+            <!-- 1月〜12月の行（JavaScriptから自動生成） -->
+            <div id="table-body"></div>
 
-            <div class="picker-group">
-                <label>月の色変更</label>
-                <div class="color-pickers" id="month-picker-container">
-                    <button class="color-btn" style="background-color: #000000;" data-color="#000000"></button>
-                    <button class="color-btn" style="background-color: #e53935;" data-color="#e53935"></button>
-                    <button class="color-btn" style="background-color: #1e88e5;" data-color="#1e88e5"></button>
-                    <button class="color-btn" style="background-color: #43a047;" data-color="#43a047"></button>
-                    <button class="color-btn" style="background-color: #fb8c00;" data-color="#fb8c00"></button>
-                    <div class="custom-picker-wrapper">
-                        <span>パレット:</span>
-                        <input type="color" id="custom-month" class="custom-picker" value="#333333">
-                    </div>
-                </div>
+            <!-- 合計金額欄 -->
+            <div class="table-footer">
+                <div class="total-label">合計</div>
+                <div class="total-value" id="total-1">0</div>
+                <div class="total-value" id="total-2">0</div>
             </div>
+        </div>
 
-            <div class="picker-group">
-                <label>金額入力欄「+の数字」の色変更</label>
-                <div class="color-pickers" id="pos-picker-container">
-                    <button class="color-btn" style="background-color: #000000;" data-color="#000000"></button>
-                    <button class="color-btn" style="background-color: #e53935;" data-color="#e53935"></button>
-                    <button class="color-btn" style="background-color: #1e88e5;" data-color="#1e88e5"></button>
-                    <button class="color-btn" style="background-color: #43a047;" data-color="#43a047"></button>
-                    <button class="color-btn" style="background-color: #fb8c00;" data-color="#fb8c00"></button>
-                    <div class="custom-picker-wrapper">
-                        <span>パレット:</span>
-                        <input type="color" id="custom-pos" class="custom-picker" value="#000000">
+        <!-- カラー変更コントロールパネル -->
+        <section class="control-panel">
+            <h2>🎨 デザイン・カラー変更カスタムパネル</h2>
+            <div class="color-picker-group">
+                
+                <!-- タイトル色変更 -->
+                <div class="color-row">
+                    <span class="color-label">タイトルの色:</span>
+                    <div class="palette-box">
+                        <button class="color-btn black" data-target="title" data-color="#000000"></button>
+                        <button class="color-btn red" data-target="title" data-color="#ff0000"></button>
+                        <button class="color-btn blue" data-target="title" data-color="#0000ff"></button>
+                        <button class="color-btn green" data-target="title" data-color="#008000"></button>
+                        <button class="color-btn orange" data-target="title" data-color="#ffa500"></button>
                     </div>
+                    <input type="color" id="title-color-picker" class="custom-picker" value="#000000">
                 </div>
-            </div>
 
-            <div class="picker-group">
-                <label>金額入力欄「-の数字」の色変更</label>
-                <div class="color-pickers" id="neg-picker-container">
-                    <button class="color-btn" style="background-color: #000000;" data-color="#000000"></button>
-                    <button class="color-btn" style="background-color: #e53935;" data-color="#e53935"></button>
-                    <button class="color-btn" style="background-color: #1e88e5;" data-color="#1e88e5"></button>
-                    <button class="color-btn" style="background-color: #43a047;" data-color="#43a047"></button>
-                    <button class="color-btn" style="background-color: #fb8c00;" data-color="#fb8c00"></button>
-                    <div class="custom-picker-wrapper">
-                        <span>パレット:</span>
-                        <input type="color" id="custom-neg" class="custom-picker" value="#000000">
+                <!-- 月の色変更 -->
+                <div class="color-row">
+                    <span class="color-label">月の色:</span>
+                    <div class="palette-box">
+                        <button class="color-btn black" data-target="month" data-color="#333333"></button>
+                        <button class="color-btn red" data-target="month" data-color="#ff0000"></button>
+                        <button class="color-btn blue" data-target="month" data-color="#0000ff"></button>
+                        <button class="color-btn green" data-target="month" data-color="#008000"></button>
+                        <button class="color-btn orange" data-target="month" data-color="#ffa500"></button>
                     </div>
+                    <input type="color" id="month-color-picker" class="custom-picker" value="#333333">
                 </div>
-            </div>
 
-            <div class="picker-group">
-                <label>背景カラー変更（初期設定: 薄い黄色）</label>
-                <div class="color-pickers" id="bg-picker-container">
-                    <button class="color-btn" style="background-color: #000000;" data-color="#000000"></button>
-                    <button class="color-btn" style="background-color: #ffebee;" data-color="#ffebee"></button>
-                    <button class="color-btn" style="background-color: #e3f2fd;" data-color="#e3f2fd"></button>
-                    <button class="color-btn" style="background-color: #e8f5e9;" data-color="#e8f5e9"></button>
-                    <button class="color-btn" style="background-color: #fff3e0;" data-color="#fff3e0"></button>
-                    <div class="custom-picker-wrapper">
-                        <span>パレット:</span>
-                        <input type="color" id="custom-bg" class="custom-picker" value="#fffde7">
+                <!-- 金額入力欄（+の数字）色変更 -->
+                <div class="color-row">
+                    <span class="color-label">プラス数字の色:</span>
+                    <div class="palette-box">
+                        <button class="color-btn black" data-target="plus" data-color="#000000"></button>
+                        <button class="color-btn red" data-target="plus" data-color="#ff0000"></button>
+                        <button class="color-btn blue" data-target="plus" data-color="#0000ff"></button>
+                        <button class="color-btn green" data-target="plus" data-color="#008000"></button>
+                        <button class="color-btn orange" data-target="plus" data-color="#ffa500"></button>
                     </div>
+                    <input type="color" id="plus-color-picker" class="custom-picker" value="#000000">
                 </div>
+
+                <!-- 金額入力欄（-の数字）色変更 -->
+                <div class="color-row">
+                    <span class="color-label">マイナス数字の色:</span>
+                    <div class="palette-box">
+                        <button class="color-btn black" data-target="minus" data-color="#000000"></button>
+                        <button class="color-btn red" data-target="minus" data-color="#ff0000"></button>
+                        <button class="color-btn blue" data-target="minus" data-color="#0000ff"></button>
+                        <button class="color-btn green" data-target="minus" data-color="#008000"></button>
+                        <button class="color-btn orange" data-target="minus" data-color="#ffa500"></button>
+                    </div>
+                    <input type="color" id="minus-color-picker" class="custom-picker" value="#000000">
+                </div>
+
+                <!-- 背景カラー変更 -->
+                <div class="color-row">
+                    <span class="color-label">背景カラー:</span>
+                    <div class="palette-box">
+                        <button class="bg-btn black" data-color="#333333">黒</button>
+                        <button class="bg-btn lightred" data-color="#ffebee">薄赤</button>
+                        <button class="bg-btn lightblue" data-color="#e3f2fd">薄青</button>
+                        <button class="bg-btn lightgreen" data-color="#e8f5e9">薄緑</button>
+                        <button class="bg-btn lightorange" data-color="#fff3e0">薄オ</button>
+                    </div>
+                    <input type="color" id="bg-custom-color" class="custom-picker" value="#fffde7">
+                    <input type="hidden" id="bg-pattern" value="#fffde7">
+                </div>
+
             </div>
         </section>
 
-        <!-- 操作用アクションボタン -->
-        <section class="action-buttons">
-            <button id="clear-all-btn" class="btn btn-clear">すべて消去</button>
-            <button id="save-png-btn" class="btn btn-png">PNG画像で保存</button>
-        </section>
+        <!-- アクションボタンエリア -->
+        <div class="action-buttons">
+            <button id="clear-btn" class="btn btn-danger">🗑️ すべて消去ボタン</button>
+            <button id="png-btn" class="btn btn-success">💾 PNG画像で保存ボタン</button>
+        </div>
 
-        <!-- SNSシェアエリア -->
-        <section class="share-section">
-            <h3>この年間損益表をシェアする</h3>
-            <div class="share-buttons">
-                <a id="share-x" class="share-btn x" target="_blank" rel="noopener">X (旧Twitter)</a>
-                <a id="share-line" class="share-btn line" target="_blank" rel="noopener">LINE</a>
-                <a id="share-instagram" class="share-btn instagram" target="_blank" rel="noopener">Instagram</a>
-                <a id="share-email" class="share-btn email">Eメール</a>
-            </div>
-        </section>
+        <!-- SNSシェアゾーン -->
+        <div class="share-zone">
+            <a id="share-x" class="share-btn share-x" target="_blank" rel="noopener">📱 X(旧Twitter)ボタン</a>
+            <a id="share-line" class="share-btn share-line" target="_blank" rel="noopener">💬 LINEボタン</a>
+            <a id="share-instagram" class="share-btn share-insta" href="#">📸 Instagramボタン</a>
+            <a id="share-email" class="share-btn share-email">✉️ Eメールシェアボタン</a>
+        </div>
     <article class="seo-content">
         <h1>2つの月別の年間損益表 NISA株とデイトレや家計簿におすすめ</h1>
         <p>新NISA（少額投資非課税制度）の普及に伴い、資産運用を始める方が急増しています。しかし、「長期保有のNISA口座の評価損益」と「日々のデイトレード・短期スイングトレードの確定損益」を別々に管理できず、現在の本当の財務状況が見えにくくなっていませんか？また、毎月の生活費を管理する「家計簿」の収支と、投資によるリターンを完全に分けて把握することも、正しい資産形成には不可欠です。</p>

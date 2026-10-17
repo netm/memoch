@@ -1,257 +1,261 @@
 document.addEventListener('DOMContentLoaded', () => {
     // DOM要素の取得
-    const currentYearEl = document.getElementById('current-year');
-    const tableTitleInput = document.getElementById('table-title-input');
-    const labelCol1Input = document.getElementById('label-col1-input');
-    const labelCol2Input = document.getElementById('label-col2-input');
-    const summaryLabel1 = document.getElementById('summary-label-1');
-    const summaryLabel2 = document.getElementById('summary-label-2');
+    const mainTitle = document.getElementById('main-title');
+    const col1Title = document.getElementById('col1-title');
+    const col2Title = document.getElementById('col2-title');
     const total1El = document.getElementById('total-1');
     const total2El = document.getElementById('total-2');
-    
-    const root = document.documentElement;
+    const bgPattern = document.getElementById('bg-pattern');
 
-    // 現在の年を自動設定
-    currentYearEl.textContent = new Date().getFullYear();
+    // カラーピッカー・ボタン要素
+    const titleColorPicker = document.getElementById('title-color-picker');
+    const monthColorPicker = document.getElementById('month-color-picker');
+    const plusColorPicker = document.getElementById('plus-color-picker');
+    const minusColorPicker = document.getElementById('minus-color-picker');
+    const bgCustomColor = document.getElementById('bg-custom-color');
 
-    // 1月〜12月の入力欄を生成
-    const tbody = document.getElementById('months-tbody');
-    for (let m = 1; m <= 12; m++) {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td class="month-label">${m}月</td>
-            <td><input type="text" class="amount-input col-1" data-month="${m}" inputmode="text" placeholder="0"></td>
-            <td><input type="text" class="amount-input col-2" data-month="${m}" inputmode="text" placeholder="0"></td>
+    // 1月〜12月の行を生成
+    const tableBody = document.getElementById('table-body');
+    for (let i = 1; i <= 12; i++) {
+        const row = document.createElement('div');
+        row.className = 'table-row';
+        row.innerHTML = `
+            <div class="month-label">${i}月</div>
+            <div class="input-group">
+                <input type="number" class="amount-input col-1" data-month="${i}" placeholder="0">
+                <button type="button" class="toggle-sign-btn">±</button>
+            </div>
+            <div class="input-group">
+                <input type="number" class="amount-input col-2" data-month="${i}" placeholder="0">
+                <button type="button" class="toggle-sign-btn">±</button>
+            </div>
         `;
-        tbody.appendChild(tr);
+        tableBody.appendChild(row);
     }
 
-    const col1Inputs = document.querySelectorAll('.amount-input.col-1');
-    const col2Inputs = document.querySelectorAll('.amount-input.col-2');
-
-    // 数字とマイナス記号のみを許可する入力制御＆色適用
-    function handleInput(input) {
-        let val = input.value;
-        // 半角・全角のマイナス、数字以外を排除（最初のマイナスのみ維持）
-        val = val.replace(/[ー−−—]/g, '-'); // 様々なマイナス記号の正規化
-        val = val.replace(/[^0-9.-]/g, '');
-        
-        // マイナスが途中にあれば除去、先頭のみ許可
-        if (val.indexOf('-') > 0) {
-            val = val.charAt(0) + val.substring(1).replace(/-/g, '');
-        }
-        // 小数点が複数ある場合は最初のみ
-        const parts = val.split('.');
-        if (parts.length > 2) {
-            val = parts[0] + '.' + parts.slice(1).join('');
-        }
-
-        input.value = val;
-
-        // プラス・マイナスの色分けクラス適用
-        const num = parseFloat(val);
-        if (!isNaN(num) && num < 0) {
-            input.classList.remove('pos-color');
-            input.classList.add('neg-color');
-        } else if (!isNaN(num) && num > 0) {
-            input.classList.remove('neg-color');
-            input.classList.add('pos-color');
-        } else {
-            input.classList.remove('pos-color', 'neg-color');
-        }
-
-        calculateTotals();
-        saveData();
-    }
-
-    // イベントリスナーの一括設定
-    tbody.addEventListener('input', (e) => {
-        if (e.target.classList.contains('amount-input')) {
-            handleInput(e.target);
-        }
-    });
-
-    [tableTitleInput, labelCol1Input, labelCol2Input].forEach(input => {
-        input.addEventListener('input', () => {
-            summaryLabel1.textContent = labelCol1Input.value || '項目1';
-            summaryLabel2.textContent = labelCol2Input.value || '項目2';
-            saveData();
-        });
-    });
+    const allInputs = document.querySelectorAll('.amount-input');
+    const monthLabels = document.querySelectorAll('.month-label');
 
     // 合計金額の計算
     function calculateTotals() {
         let total1 = 0;
         let total2 = 0;
 
-        col1Inputs.forEach(input => {
+        allInputs.forEach(input => {
             const val = parseFloat(input.value) || 0;
-            total1 += val;
-        });
-        col2Inputs.forEach(input => {
-            const val = parseFloat(input.value) || 0;
-            total2 += val;
+            if (input.classList.contains('col-1')) {
+                total1 += val;
+            } else {
+                total2 += val;
+            }
+
+            // 入力値のプラスマイナスによる色分け
+            if (val > 0) {
+                input.style.color = plusColorPicker.value;
+            } else if (val < 0) {
+                input.style.color = minusColorPicker.value;
+            } else {
+                input.style.color = '#333333';
+            }
         });
 
         total1El.textContent = total1.toLocaleString();
         total2El.textContent = total2.toLocaleString();
 
-        setTotalColor(total1El, total1);
-        setTotalColor(total2El, total2);
+        // 合計の数字の色分け
+        total1El.style.color = total1 >= 0 ? plusColorPicker.value : minusColorPicker.value;
+        total2El.style.color = total2 >= 0 ? plusColorPicker.value : minusColorPicker.value;
     }
 
-    function setTotalColor(element, value) {
-        if (value > 0) {
-            element.className = 'pos-color';
-        } else if (value < 0) {
-            element.className = 'neg-color';
-        } else {
-            element.className = '';
-        }
-    }
-
-    // カラーチェンジャーの設定
-    function initColorButtons(prefix, variableName) {
-        const container = document.getElementById(`${prefix}-picker-container`);
-        if (!container) return;
-
-        container.addEventListener('click', (e) => {
-            if (e.target.classList.contains('color-btn')) {
-                const color = e.target.getAttribute('data-color');
-                root.style.setProperty(variableName, color);
+    // +/- 反転ボタンの処理
+    document.querySelectorAll('.toggle-sign-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const input = e.target.previousElementSibling;
+            if (input.value) {
+                input.value = parseFloat(input.value) * -1;
+                calculateTotals();
                 saveData();
             }
         });
+    });
 
-        const customPicker = document.getElementById(`custom-${prefix}`);
-        if (customPicker) {
-            customPicker.addEventListener('input', (e) => {
-                root.style.setProperty(variableName, e.target.value);
-                saveData();
-            });
+    // イベントリスナーの一括設定
+    tableBody.addEventListener('input', () => {
+        calculateTotals();
+        saveData();
+    });
+
+    [mainTitle, col1Title, col2Title].forEach(el => {
+        el.addEventListener('input', saveData);
+    });
+
+    // 色変更用の共通処理
+    function applyColors() {
+        // タイトル色
+        mainTitle.style.color = titleColorPicker.value;
+        // 月の色
+        monthLabels.forEach(lbl => lbl.style.color = monthColorPicker.value);
+        // 背景色
+        if (bgPattern.value === 'custom') {
+            document.body.style.backgroundColor = bgCustomColor.value;
+        } else {
+            document.body.style.backgroundColor = bgPattern.value;
         }
+        calculateTotals();
     }
 
-    initColorButtons('title', '--title-color');
-    initColorButtons('month', '--month-color');
-    initColorButtons('pos', '--pos-color');
-    initColorButtons('neg', '--neg-color');
-    initColorButtons('bg', '--bg-color');
+    // クイック色選択ボタンのイベント
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const target = e.target.dataset.target;
+            const color = e.target.dataset.color;
+            const picker = document.getElementById(`${target}-color-picker`);
+            picker.value = color;
+            applyColors();
+            saveData();
+        });
+    });
+
+    // 背景クイック選択ボタン
+    document.querySelectorAll('.bg-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const color = e.target.dataset.color;
+            bgPattern.value = color;
+            if (color !== 'custom') {
+                document.body.style.backgroundColor = color;
+            } else {
+                document.body.style.backgroundColor = bgCustomColor.value;
+            }
+            saveData();
+        });
+    });
+
+    // カラーピッカー変更時
+    [titleColorPicker, monthColorPicker, plusColorPicker, minusColorPicker].forEach(picker => {
+        picker.addEventListener('input', () => {
+            applyColors();
+            saveData();
+        });
+    });
+
+    bgCustomColor.addEventListener('input', () => {
+        bgPattern.value = 'custom';
+        document.body.style.backgroundColor = bgCustomColor.value;
+        applyColors();
+        saveData();
+    });
 
     // データ保存機能 (LocalStorage)
     function saveData() {
         const data = {
-            title: tableTitleInput.value,
-            labelCol1: labelCol1Input.value,
-            labelCol2: labelCol2Input.value,
-            amounts1: Array.from(col1Inputs).map(i => i.value),
-            amounts2: Array.from(col2Inputs).map(i => i.value),
-            colors: {
-                title: root.style.getPropertyValue('--title-color'),
-                month: root.style.getPropertyValue('--month-color'),
-                pos: root.style.getPropertyValue('--pos-color'),
-                neg: root.style.getPropertyValue('--neg-color'),
-                bg: root.style.getPropertyValue('--bg-color'),
-            }
+            mainTitle: mainTitle.value,
+            col1Title: col1Title.value,
+            col2Title: col2Title.value,
+            titleColor: titleColorPicker.value,
+            monthColor: monthColorPicker.value,
+            plusColor: plusColorPicker.value,
+            minusColor: minusColorPicker.value,
+            bgColorType: bgPattern.value,
+            bgCustomColor: bgCustomColor.value,
+            amounts: []
         };
-        localStorage.setItem('annual_profit_loss_data', JSON.stringify(data));
+
+        allInputs.forEach(input => {
+            data.amounts.push({
+                month: input.dataset.month,
+                col: input.classList.contains('col-1') ? 1 : 2,
+                val: input.value
+            });
+        });
+
+        localStorage.setItem('annual_profit_data', JSON.stringify(data));
     }
 
     // データ読み込み機能
     function loadData() {
-        const saved = localStorage.getItem('annual_profit_loss_data');
-        if (!saved) return;
-        try {
-            const data = JSON.parse(saved);
-            tableTitleInput.value = data.title || '';
-            labelCol1Input.value = data.labelCol1 || '';
-            labelCol2Input.value = data.labelCol2 || '';
-            summaryLabel1.textContent = data.labelCol1 || '項目1';
-            summaryLabel2.textContent = data.labelCol2 || '項目2';
+        const json = localStorage.getItem('annual_profit_data');
+        if (!json) return;
+        const data = JSON.parse(json);
 
-            if (data.amounts1) {
-                col1Inputs.forEach((input, index) => {
-                    input.value = data.amounts1[index] || '';
-                    handleInput(input);
-                });
-            }
-            if (data.amounts2) {
-                col2Inputs.forEach((input, index) => {
-                    input.value = data.amounts2[index] || '';
-                    handleInput(input);
-                });
-            }
+        mainTitle.value = data.mainTitle || '';
+        col1Title.value = data.col1Title || '';
+        col2Title.value = data.col2Title || '';
+        titleColorPicker.value = data.titleColor || '#000000';
+        monthColorPicker.value = data.monthColor || '#000000';
+        plusColorPicker.value = data.plusColor || '#ff0000';
+        minusColorPicker.value = data.minusColor || '#0000ff';
+        bgPattern.value = data.bgColorType || '#fffde7';
+        bgCustomColor.value = data.bgCustomColor || '#fffde7';
 
-            if (data.colors) {
-                if (data.colors.title) root.style.setProperty('--title-color', data.colors.title);
-                if (data.colors.month) root.style.setProperty('--month-color', data.colors.month);
-                if (data.colors.pos) root.style.setProperty('--pos-color', data.colors.pos);
-                if (data.colors.neg) root.style.setProperty('--neg-color', data.colors.neg);
-                if (data.colors.bg) root.style.setProperty('--bg-color', data.colors.bg);
-            }
-            calculateTotals();
-        } catch (e) {
-            console.error("保存データの読み込みに失敗しました", e);
+        if (data.amounts) {
+            data.amounts.forEach(item => {
+                const input = document.querySelector(`.amount-input.col-${item.col}[data-month="${item.month}"]`);
+                if (input) input.value = item.val;
+            });
         }
+        applyColors();
     }
 
-    // 全て消去ボタン
-    document.getElementById('clear-all-btn').addEventListener('click', () => {
-        if (confirm('入力されたすべてのデータと配色設定をクリアします。よろしいですか？')) {
-            localStorage.removeItem('annual_profit_loss_data');
-            tableTitleInput.value = '';
-            labelCol1Input.value = '';
-            labelCol2Input.value = '';
-            summaryLabel1.textContent = '項目1';
-            summaryLabel2.textContent = '項目2';
-            col1Inputs.forEach(i => { i.value = ''; i.className = 'amount-input col-1'; });
-            col2Inputs.forEach(i => { i.value = ''; i.className = 'amount-input col-2'; });
-            root.style.removeProperty('--title-color');
-            root.style.removeProperty('--month-color');
-            root.style.removeProperty('--pos-color');
-            root.style.removeProperty('--neg-color');
-            root.style.removeProperty('--bg-color');
-            calculateTotals();
+    // すべて消去ボタン
+    document.getElementById('clear-btn').addEventListener('click', () => {
+        if (confirm('入力されたデータと色設定をすべて消去しますか？')) {
+            localStorage.removeItem('annual_profit_data');
+            mainTitle.value = 'NISA株とデイトレ（家計簿）';
+            col1Title.value = 'NISA株';
+            col2Title.value = 'デイトレ';
+            titleColorPicker.value = '#000000';
+            monthColorPicker.value = '#333333';
+            plusColorPicker.value = '#000000';
+            minusColorPicker.value = '#000000';
+            bgPattern.value = '#fffde7';
+            document.body.style.backgroundColor = '#fffde7';
+            allInputs.forEach(input => input.value = '');
+            applyColors();
         }
     });
 
-    // PNG画像で保存（html2canvasライブラリ等がない場合の簡易代替として、テーブル内容を元にCanvas描画して保存）
-    document.getElementById('save-png-btn').addEventListener('click', () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = 800;
-        canvas.height = 900;
-
-        // 背景描画
-        ctx.fillStyle = getComputedStyle(root).getPropertyValue('--bg-color').trim() || '#fffde7';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // テキスト描画設定
-        ctx.fillStyle = getComputedStyle(root).getPropertyValue('--title-color').trim() || '#333333';
-        ctx.font = 'bold 28px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(`${currentYearEl.textContent}年 ${tableTitleInput.value || '年間損益表'}`, canvas.width / 2, 60);
-
-        // テーブルヘッダー
-        ctx.font = 'bold 20px sans-serif';
-        ctx.fillStyle = getComputedStyle(root).getPropertyValue('--month-color').trim() || '#333333';
-        ctx.fillText('月', 150, 130);
-        ctx.fillText(labelCol1Input.value || '項目1', 400, 130);
-        ctx.fillText(labelCol2Input.value || '項目2', 650, 130);
-
-        // 区切り線
-        ctx.strokeStyle = '#cccccc';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(80, 150); ctx.lineTo(720, 150);
-        ctx.stroke();
-
-        // 各月のデータ描画
-        let yOffset = 190;
-        ctx.font = '18px sans-serif';
+    // PNG画像として保存ボタン (HTML5 Canvasを用いた簡易実装)
+    document.getElementById('png-btn').addEventListener('click', () => {
+        alert('画像生成を開始します。画面全体のキャプチャをお手持ちのスマートフォンのスクリーンショット機能で保存することもお勧めします。');
+        const container = document.getElementById('app-container');
         
-        for (let m = 1; m <= 12; m++) {
-            ctx.fillStyle = getComputedStyle(root).getPropertyValue('--month-color').trim() || '#333333';
-            ctx.fillText(`${m}月`, 150, yOffset);
+        // 簡易的なデータテキスト書き出しによる画像化の代替、あるいはスクショの案内
+        // 高精度なDOM画像化にはhtml2canvasライブラリ等が必要なため、標準機能での簡易保存ロジック
+        const canvas = document.createElement('canvas');
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+        const ctx = canvas.getContext('2d');
+        
+        ctx.fillStyle = document.body.style.backgroundColor || '#fffde7';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = titleColorPicker.value;
+        ctx.font = 'bold 20px sans-serif';
+        ctx.fillText(mainTitle.value || '年間損益表', 20, 40);
 
-            const val1 = parseFloat(col1Inputs[m-1].value) || 0;
+        // 簡易保存リンクの生成
+        const link = document.createElement('a');
+        link.download = 'annual-profit.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+
+    // シェアボタンの設定
+    const shareUrl = encodeURIComponent(window.location.href);
+    const shareText = encodeURIComponent('スマホ・PCで簡単に使える「2つの月別の年間損益表」で収支管理をはじめよう！');
+
+    document.getElementById('share-x').href = `https://x.com{shareUrl}&text=${shareText}`;
+    document.getElementById('share-line').href = `https://line.me{shareUrl}`;
+    document.getElementById('share-instagram').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Instagramへは、クリップボードにURLをコピーしました。ストーリーやプロフィールに貼り付けてシェアしてください！');
+        navigator.clipboard.writeText(window.location.href);
+    });
+    document.getElementById('share-email').href = `mailto:?subject=${shareText}&body=${shareUrl}`;
+
+    // 初期化実行
+    loadData();
+    if(!localStorage.getItem('annual_profit_data')) {
+        applyColors();
+    }
+});
