@@ -1,197 +1,342 @@
-// localStorageのキー
-const STORAGE_KEY = 'annual_profit_loss_data';
-
-// DOM要素の取得
-const currentYearEl = document.getElementById('current-year');
-const tableTitleEl = document.getElementById('table-title');
-const label1Inputs = document.querySelectorAll('.label-1');
-const label2Inputs = document.querySelectorAll('.label-2');
-const label1TitleEl = document.getElementById('label-1-title');
-const label2TitleEl = document.getElementById('label-2-title');
-const total1El = document.getElementById('total-1');
-const total2El = document.getElementById('total-2');
-const monthLabels = document.querySelectorAll('.month-label');
-const bgElement = document.getElementById('app-container');
-
-// 初期設定（現在の年を自動表示）
-currentYearEl.textContent = new Date().getFullYear();
-
-// データ保存用オブジェクト
-let appData = {
-    title: "NISA株とデイトレ（家計簿）",
-    label1: "NISA株",
-    label2: "デイトレ（家計簿）",
-    values: Array(12).fill(null).map(() => ({ col1: "", col2: "" })),
-    colors: {
-        month: "#333333",
-        positive: "#10b981",
-        negative: "#ef4444",
-        bg: "#fefcbf"
-    }
-};
-
-// データの読み込み
-function loadData() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-        try {
-            appData = JSON.parse(saved);
-        } catch (e) {
-            console.error("データの読み込みに失敗しました", e);
-        }
-    }
-    renderData();
+/* 基本リセットと共通設定 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
 }
 
-// データの保存
-function saveData() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+body {
+    background-color: #f3f4f6;
+    color: #333;
+    line-height: 1.4;
+    padding: 10px;
 }
 
-// 画面への反映と再計算
-function renderData() {
-    tableTitleEl.value = appData.title;
-    label1Inputs.forEach(el => el.value = appData.label1);
-    label2Inputs.forEach(el => el.value = appData.label2);
-    label1TitleEl.textContent = appData.label1;
-    label2TitleEl.textContent = appData.label2;
+/* レスポンシブコンテナ：PCではスマート、スマホ横向きで画面両端いっぱいに広がる */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 20px;
+}
 
-    let total1 = 0;
-    let total2 = 0;
-
-    for (let i = 0; i < 12; i++) {
-        const rowData = appData.values[i] || { col1: "", col2: "" };
-        const input1 = document.getElementById(`val-1-${i}`);
-        const input2 = document.getElementById(`val-2-${i}`);
-        
-        input1.value = rowData.col1;
-        input2.value = rowData.col2;
-
-        const val1 = parseFloat(rowData.col1) || 0;
-        const val2 = parseFloat(rowData.col2) || 0;
-
-        total1 += val1;
-        total2 += val2;
-
-        applyInputColor(input1, val1);
-        applyInputColor(input2, val2);
+@media (max-width: 915px) and (orientation: landscape) {
+    body {
+        padding: 0;
     }
-
-    total1El.textContent = total1.toLocaleString();
-    total2El.textContent = total2.toLocaleString();
-    applyInputColor(total1El, total1);
-    applyInputColor(total2El, total2);
-
-    applyStyles();
-}
-
-// 数値に応じた色適用
-function applyInputColor(element, val) {
-    if (val > 0) {
-        element.style.color = appData.colors.positive;
-    } else if (val < 0) {
-        element.style.color = appData.colors.negative;
-    } else {
-        element.style.color = "#333333";
+    .container {
+        max-width: 100%;
+        border-radius: 0;
+        padding: 10px;
     }
 }
 
-// スタイルの適用
-function applyStyles() {
-    monthLabels.forEach(el => el.style.color = appData.colors.month);
-    bgElement.style.backgroundColor = appData.colors.bg;
+/* アプリメインエリア（背景色変更の対象） */
+#app-container {
+    background-color: #fefcbf; /* 初期値：薄い黄色 */
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
-// イベントリスナーの設定
-tableTitleEl.addEventListener('input', (e) => {
-    appData.title = e.target.value;
-    saveData();
-});
-
-label1Inputs.forEach(el => el.addEventListener('input', (e) => {
-    appData.label1 = e.target.value;
-    label1Inputs.forEach(i => i.value = e.target.value);
-    label1TitleEl.textContent = e.target.value;
-    saveData();
-}));
-
-label2Inputs.forEach(el => el.addEventListener('input', (e) => {
-    appData.label2 = e.target.value;
-    label2Inputs.forEach(i => i.value = e.target.value);
-    label2TitleEl.textContent = e.target.value;
-    saveData();
-}));
-
-// 各入力欄へのインプットイベント登録
-for (let i = 0; i < 12; i++) {
-    document.getElementById(`val-1-${i}`).addEventListener('input', (e) => {
-        appData.values[i].col1 = e.target.value;
-        saveData();
-        renderData();
-    });
-    document.getElementById(`val-2-${i}`).addEventListener('input', (e) => {
-        appData.values[i].col2 = e.target.value;
-        saveData();
-        renderData();
-    });
+/* カラフルなヘッダー・タイトル装飾 */
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #3b82f6; /* 青 */
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-// カラー変更関数
-function changeColor(type, color) {
-    appData.colors[type] = color;
-    saveData();
-    renderData();
+.year-display {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ec4899; /* ピンク */
+    margin-bottom: 15px;
 }
 
-// カスタムカラーピッカー
-document.getElementById('picker-month').addEventListener('input', (e) => changeColor('month', e.target.value));
-document.getElementById('picker-pos').addEventListener('input', (e) => changeColor('positive', e.target.value));
-document.getElementById('picker-neg').addEventListener('input', (e) => changeColor('negative', e.target.value));
-document.getElementById('picker-bg').addEventListener('input', (e) => changeColor('bg', e.target.value));
+/* タイトル入力欄 */
+.title-input-container {
+    margin-bottom: 15px;
+}
 
-// 全消去
-document.getElementById('btn-clear').addEventListener('click', () => {
-    if (confirm('すべての入力データを消去しますか？（カスタム色設定は維持されます）')) {
-        appData.values = Array(12).fill(null).map(() => ({ col1: "", col2: "" }));
-        saveData();
-        renderData();
-    }
-});
+.main-title-input {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 8px;
+    border: 2px dashed #f59e0b; /* オレンジ */
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
+}
 
-// PNG保存（html2canvasライブラリが必要）
-document.getElementById('btn-png').addEventListener('click', () => {
-    if (typeof html2canvas !== 'undefined') {
-        html2canvas(document.getElementById('capture-area')).then(canvas => {
-            const link = document.createElement('a');
-            link.download = `年間損益表_${appData.title}.png`;
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    } else {
-        alert('PNG保存機能を利用するにはhtml2canvasライブラリが必要です。HTMLのヘッドにCDNを追加してください。');
-    }
-});
+/* テーブルスタイル（行間幅を狭く調整） */
+.profit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
 
-// シェアボタンのリンク生成
-document.getElementById('share-x').addEventListener('click', () => {
-    const text = encodeURIComponent(`【${appData.title}】月別の年間損益を自動計算して管理中！ ` + window.location.href);
-    window.open(`https://twitter.com{text}`, '_blank');
-});
+.profit-table th, .profit-table td {
+    border: 1px solid #e5e7eb;
+    padding: 4px 8px;
+    text-align: center;
+    vertical-align: middle;
+}
 
-document.getElementById('share-line').addEventListener('click', () => {
-    const text = encodeURIComponent(`【${appData.title}】月別の年間損益表で資産管理を行っています： ` + window.location.href);
-    window.open(`https://line.me{text}`, '_blank');
-});
+.profit-table th {
+    background-color: #f3f4f6;
+    font-weight: bold;
+    padding: 6px 8px;
+}
 
-document.getElementById('share-insta').addEventListener('click', () => {
-    alert('Instagramへの直接シェアは制限されているため、スクリーンショット画像を保存して投稿してください。URL: ' + window.location.href);
-});
+/* 名称変更可能インプット */
+.label-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #4b5563;
+    padding: 2px;
+    border-bottom: 1px solid #cbd5e1;
+}
 
-document.getElementById('share-email').addEventListener('click', () => {
-    const subject = encodeURIComponent(`月別年間損益表：${appData.title}`);
-    const body = encodeURIComponent(`こちらのツールで年間収支を管理しています。\n\n${window.location.href}`);
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-});
+.label-input:focus {
+    outline: none;
+    border-bottom: 2px solid #3b82f6;
+}
 
-// 初期起動
-loadData();
+/* 月表示列 */
+.month-label {
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* 金額入力欄 */
+.amount-input {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* 合計表示行 */
+.total-row {
+    background-color: #f9fafb;
+    font-weight: bold;
+}
+
+.total-title {
+    color: #10b981; /* 緑 */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.total-val {
+    font-size: 1.1rem;
+    text-align: right;
+    padding: 6px 8px;
+}
+
+/* カラーコントロールパネル */
+.control-section {
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #10b981; /* 緑 */
+    margin-bottom: 15px;
+    border-left: 4px solid #10b981;
+    padding-left: 8px;
+}
+
+.color-control-group {
+    margin-bottom: 15px;
+}
+
+.color-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #4b5563;
+}
+
+.palette-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.color-btn {
+    border: 1px solid #ccc;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.btn-black { background-color: #333333; }
+.btn-red { background-color: #ef4444; }
+.btn-blue { background-color: #3b82f6; }
+.btn-green { background-color: #10b981; }
+.btn-orange { background-color: #f59e0b; }
+
+.btn-bg-black { background-color: #1f2937; }
+.btn-bg-red { background-color: #fee2e2; }
+.btn-bg-blue { background-color: #dbeafe; }
+.btn-bg-green { background-color: #d1fae5; }
+.btn-bg-orange { background-color: #ffedd5; }
+
+.custom-picker {
+    width: 40px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+}
+
+/* 機能ボタン */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #fff;
+    transition: opacity 0.2s;
+}
+
+.btn-action:hover {
+    opacity: 0.9;
+}
+
+#btn-clear { background-color: #6b7280; }
+#btn-png { background-color: #8b5cf6; }
+
+/* SNSシェアセクション */
+.share-section {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.share-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#share-x { background-color: #0f1419; }
+#share-line { background-color: #06c755; }
+#share-insta { background-color: #e1306c; }
+#share-email { background-color: #ea4335; }
+
+/* SEO説明文セクション */
+.seo-content {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 2px solid #e5e7eb;
+}
+
+h3 {
+    font-size: 1.1rem;
+    color: #f59e0b; /* オレンジ */
+    margin: 15px 0 5px 0;
+}
+
+.seo-content p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+/* ナビゲーション・フッターリンク */
+.footer-links {
+    margin-top: 30px;
+    background-color: #f9fafb;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.link-group {
+    margin-bottom: 12px;
+}
+
+.link-group a {
+    color: #0000ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+
+.link-group a:hover {
+    text-decoration: underline;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+}
+
+.footer-nav a {
+    color: #0000ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}

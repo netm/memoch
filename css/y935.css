@@ -63,7 +63,8 @@ h1 {
 
 /* タイトル入力欄 */
 .title-input-container {
-    margin-bottom: 15px;
+    color: #c98d00fb; /* オレンジ */
+    margin-bottom: 5px;
 }
 
 .main-title-input {

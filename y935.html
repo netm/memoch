@@ -42,7 +42,7 @@ eleventyExcludeFromCollections: false
                 <input type="text" id="table-title" class="main-title-input" placeholder="NISA株とデイトレ（家計簿）">
             </div>
 
-            <!-- メイン損益テーブル -->
+            <!-- メメイン損益テーブル -->
             <table class="profit-table">
                 <thead>
                     <tr>
@@ -56,19 +56,19 @@ eleventyExcludeFromCollections: false
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 1月〜12月の入力欄をループ生成 -->
+                    <!-- スマホでのマイナス記号の不具合を解消するため type="text" に変更し inputmode="decimal" で最適化 -->
                     <script>
                         for(let i=0; i<12; i++) {
                             document.write(`
                                 <tr>
                                     <td class="month-label">${i+1}月</td>
-                                    <td><input type="number" id="val-1-${i}" class="amount-input" placeholder="0"></td>
-                                    <td><input type="number" id="val-2-${i}" class="amount-input" placeholder="0"></td>
+                                    <td><input type="text" inputmode="decimal" id="val-1-${i}" class="amount-input" placeholder="0"></td>
+                                    <td><input type="text" inputmode="decimal" id="val-2-${i}" class="amount-input" placeholder="0"></td>
                                 </tr>
                             `);
                         }
                     </script>
-                    <!-- 合計表示行（それぞれのカラムの下にピッタリ並ぶ配置） -->
+                    <!-- 合計表示行 -->
                     <tr class="total-row">
                         <td class="total-title">合計</td>
                         <td class="total-val" id="total-1">0</td>
@@ -77,7 +77,7 @@ eleventyExcludeFromCollections: false
                 </tbody>
             </table>
 
-            <!-- 名称変更された合計ラベルの同期用（スクリプト処理を滑らかにするための裏保持） -->
+            <!-- 裏保持用要素 -->
             <span id="label-1-title" style="display:none;"></span>
             <span id="label-2-title" style="display:none;"></span>
         </div>
