@@ -9,11 +9,11 @@
 body {
     background-color: #f3f4f6;
     color: #333;
-    line-height: 1.6;
-    padding: 4px;
+    line-height: 1.4;
+    padding: 10px;
 }
 
-/* レスポンシブコンテナ：PCではスマート、スマホ横向き（Landscape）で画面両端いっぱいに広がる */
+/* レスポンシブコンテナ：PCではスマート、スマホ横向きで画面両端いっぱいに広がる */
 .container {
     width: 100%;
     max-width: 800px;
@@ -22,7 +22,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    padding: 10px;
+    padding: 20px;
 }
 
 @media (max-width: 915px) and (orientation: landscape) {
@@ -32,14 +32,14 @@ body {
     .container {
         max-width: 100%;
         border-radius: 0;
-        padding: 4px;
+        padding: 10px;
     }
 }
 
 /* アプリメインエリア（背景色変更の対象） */
 #app-container {
     background-color: #fefcbf; /* 初期値：薄い黄色 */
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
 }
@@ -58,18 +58,18 @@ h1 {
     font-size: 1.4rem;
     font-weight: bold;
     color: #ec4899; /* ピンク */
-    margin-bottom: 4px;
+    margin-bottom: 15px;
 }
 
 /* タイトル入力欄 */
 .title-input-container {
-    margin-bottom: 4px;
+    margin-bottom: 15px;
 }
 
 .main-title-input {
     width: 100%;
     font-size: 1.3rem;
-    padding: 4px;
+    padding: 8px;
     border: 2px dashed #f59e0b; /* オレンジ */
     border-radius: 6px;
     text-align: center;
@@ -77,11 +77,11 @@ h1 {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* テーブルスタイル */
+/* テーブルスタイル（行間幅を極限まで狭く調整） */
 .profit-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 4px;
+    margin-bottom: 15px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 6px;
     overflow: hidden;
@@ -90,7 +90,7 @@ h1 {
 
 .profit-table th, .profit-table td {
     border: 1px solid #e5e7eb;
-    padding: 8px 10px;
+    padding: 4px 8px; /* 上下パディングを狭くしてスペース幅を削減 */
     text-align: center;
     vertical-align: middle;
 }
@@ -98,6 +98,7 @@ h1 {
 .profit-table th {
     background-color: #f3f4f6;
     font-weight: bold;
+    padding: 6px 8px;
 }
 
 /* 名称変更可能インプット */
@@ -109,7 +110,7 @@ h1 {
     font-weight: bold;
     font-size: 0.95rem;
     color: #4b5563;
-    padding: 4px;
+    padding: 2px;
     border-bottom: 1px solid #cbd5e1;
 }
 
@@ -129,7 +130,7 @@ h1 {
 /* 金額入力欄 */
 .amount-input {
     width: 100%;
-    padding: 2px;
+    padding: 4px 6px; /* 入力欄の中の余白を狭く */
     border: 1px solid #d1d5db;
     border-radius: 4px;
     text-align: right;
@@ -137,7 +138,7 @@ h1 {
     font-weight: bold;
 }
 
-/* 合計表示行 */
+/* 合計表示行（指定のデザイン通りの横並び構造へ） */
 .total-row {
     background-color: #f9fafb;
     font-weight: bold;
@@ -145,13 +146,14 @@ h1 {
 
 .total-title {
     color: #10b981; /* 緑 */
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .total-val {
     font-size: 1.1rem;
     text-align: right;
-    padding: 2px;
+    padding: 6px 8px;
 }
 
 /* カラーコントロールパネル */
@@ -225,7 +227,7 @@ h2 {
     background: none;
 }
 
-/* 機能ボタン（消去・画像保存） */
+/* 機能ボタン */
 .action-buttons {
     display: flex;
     gap: 10px;
@@ -303,13 +305,6 @@ h3 {
     text-align: justify;
 }
 
-.seo-content ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    color: #4b5563;
-}
-
 /* ナビゲーション・フッターリンク */
 .footer-links {
     margin-top: 30px;
@@ -323,7 +318,7 @@ h3 {
 }
 
 .link-group a {
-    color: #0000ff; /* 指定の青色 */
+    color: #0000ff; /* 青色 */
     text-decoration: none;
     font-size: 0.9rem;
     margin-right: 15px;
@@ -341,7 +336,7 @@ h3 {
 }
 
 .footer-nav a {
-    color: #0000ff; /* 指定の青色 */
+    color: #0000ff; /* 青色 */
     text-decoration: none;
     font-size: 0.9rem;
 }

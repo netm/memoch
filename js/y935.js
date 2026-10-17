@@ -10,12 +10,10 @@ const label1TitleEl = document.getElementById('label-1-title');
 const label2TitleEl = document.getElementById('label-2-title');
 const total1El = document.getElementById('total-1');
 const total2El = document.getElementById('total-2');
-
-// カラーピッカー・ボタン関連
 const monthLabels = document.querySelectorAll('.month-label');
 const bgElement = document.getElementById('app-container');
 
-// 初期設定（2026年を自動表示）
+// 初期設定（現在の年を自動表示）
 currentYearEl.textContent = new Date().getFullYear();
 
 // データ保存用オブジェクト
@@ -65,7 +63,7 @@ function renderData() {
         const rowData = appData.values[i] || { col1: "", col2: "" };
         const input1 = document.getElementById(`val-1-${i}`);
         const input2 = document.getElementById(`val-2-${i}`);
-       
+        
         input1.value = rowData.col1;
         input2.value = rowData.col2;
 
@@ -124,6 +122,7 @@ label2Inputs.forEach(el => el.addEventListener('input', (e) => {
     saveData();
 }));
 
+// 各入力欄へのインプットイベント登録
 for (let i = 0; i < 12; i++) {
     document.getElementById(`val-1-${i}`).addEventListener('input', (e) => {
         appData.values[i].col1 = e.target.value;
@@ -159,7 +158,7 @@ document.getElementById('btn-clear').addEventListener('click', () => {
     }
 });
 
-// PNG保存（html2canvasのCDNを利用前提、入っていない場合は簡易アラート）
+// PNG保存（html2canvasライブラリが必要）
 document.getElementById('btn-png').addEventListener('click', () => {
     if (typeof html2canvas !== 'undefined') {
         html2canvas(document.getElementById('capture-area')).then(canvas => {
@@ -189,7 +188,7 @@ document.getElementById('share-insta').addEventListener('click', () => {
 });
 
 document.getElementById('share-email').addEventListener('click', () => {
-    const subject = encodeURIComponent(`月別の年間損益表：${appData.title}`);
+    const subject = encodeURIComponent(`月別年間損益表：${appData.title}`);
     const body = encodeURIComponent(`こちらのツールで年間収支を管理しています。\n\n${window.location.href}`);
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
 });

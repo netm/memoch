@@ -15,9 +15,9 @@ eleventyExcludeFromCollections: false
     <meta name="description" content="NISAの株式投資やデイトレードの収支、日々の家計簿管理が簡単にできる2軸の月別年間損益表です。スマホ・PC対応、ブラウザ保存機能付きで自動合計計算が可能。">
     <link rel="canonical" href="https://memoc.pages.dev/y935/">
      <link rel="stylesheet" href="/css/y935.css">
-    <script src="/js/y935.js"></script>
     <!-- PNG保存を動作させるためのhtml2canvasライブラリ(CDN) -->
     <script src="https://cloudflare.com" defer></script>
+    <script src="/js/y935.js" defer></script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
@@ -34,7 +34,7 @@ eleventyExcludeFromCollections: false
         <div id="app-container">
             <header>
                 <h1>2つの月別の年間損益表</h1>
-                <div class="year-display"><span id="current-year">2026</span>年</div>
+                <div class="year-display"><span id="current-year"></span>年</div>
             </header>
 
             <!-- 自由入力タイトル欄 -->
@@ -46,18 +46,17 @@ eleventyExcludeFromCollections: false
             <table class="profit-table">
                 <thead>
                     <tr>
-                        <th style="width: 15%;">月</th>
-                        <th style="width: 42.5%;">
+                        <th style="width: 16%;">月</th>
+                        <th style="width: 42%;">
                             <input type="text" class="label-input label-1" value="NISA株">
                         </th>
-                        <th style="width: 42.5%;">
+                        <th style="width: 42%;">
                             <input type="text" class="label-input label-2" value="デイトレ（家計簿）">
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 1月〜12月のループ構造 -->
-                    <!-- JSから値を代入・取得するために個別のIDを割り当て -->
+                    <!-- 1月〜12月の入力欄をループ生成 -->
                     <script>
                         for(let i=0; i<12; i++) {
                             document.write(`
@@ -69,24 +68,25 @@ eleventyExcludeFromCollections: false
                             `);
                         }
                     </script>
-                    <!-- 自動計算合計行 -->
+                    <!-- 合計表示行（それぞれのカラムの下にピッタリ並ぶ配置） -->
                     <tr class="total-row">
-                        <td class="total-title" id="label-1-title">NISA株</td>
-                        <td colspan="2" class="total-val" id="total-1">0</td>
-                    </tr>
-                    <tr class="total-row">
-                        <td class="total-title" id="label-2-title">デイトレ（家計簿）</td>
-                        <td colspan="2" class="total-val" id="total-2">0</td>
+                        <td class="total-title">合計</td>
+                        <td class="total-val" id="total-1">0</td>
+                        <td class="total-val" id="total-2">0</td>
                     </tr>
                 </tbody>
             </table>
+
+            <!-- 名称変更された合計ラベルの同期用（スクリプト処理を滑らかにするための裏保持） -->
+            <span id="label-1-title" style="display:none;"></span>
+            <span id="label-2-title" style="display:none;"></span>
         </div>
     </div>
 
     <!-- カラー変更・カスタマイズコントロール -->
     <section class="control-section">
         <h2>表示カラーのカスタマイズ</h2>
-       
+        
         <!-- 月の文字色 -->
         <div class="color-control-group">
             <span class="color-label">月の色変更</span>
@@ -156,8 +156,6 @@ eleventyExcludeFromCollections: false
             <button id="share-email" class="share-btn">Eメール</button>
         </div>
     </section>
-
-    <!-- SEO対策用解説文章 -->
     <article class="seo-content">
         <h2>おすすめの年間損益計算・家計簿ツールを徹底解説</h2>
         <p>当サイトが提供する「2つの月別の年間損益表」は、近年の投資ブームでマストとなった<strong>NISA（少額投資非課税制度）の株式投資、新NISA口座での運用実績</strong>や、スキャルピング・スイングトレードといった<strong>デイトレードの収支管理</strong>、そして毎日の暮らしを支える<strong>家計簿の連動管理</strong>を同時に実現できるおすすめの無料Webアプリです。個人の資産運用が日常化する中で、「投資用の資金の流れ」と「普段の生活費（家計簿）」を切り離して、なおかつ1つの画面で一元管理したいというニーズが非常に高まっています。このツールを使えば、面倒なExcel（エクセル）の立ち上げやスプレッドシートの複雑な関数設定は一切不要。スマートフォン（スマホ）やパソコン（PC）のブラウザさえあれば、いつでもどこでもワンタップで金額を入力するだけで、瞬時に1年間の合計利益や損失（プロフィット＆ロス）を自動計算することができます。</p>
