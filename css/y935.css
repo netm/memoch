@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    background-color: #fffde7; /* 初期設定の薄い黄色 */
+    background-color: #fff0c5; /* 初期設定の薄い黄色 */
     color: #333333;
     line-height: 1.4;
     padding: 10px;
@@ -46,7 +46,7 @@ header {
 
 h1 {
     font-size: 1.5rem;
-    color: #e91e63; /* カラフル色 */
+    color: #ff4c88; /* カラフル色 */
     margin-bottom: 10px;
 }
 
@@ -136,7 +136,7 @@ h1 {
 
 /* 合計金額欄 */
 .table-footer {
-    background-color: #ff5722; /* カラフル色 */
+    background-color: #ff9d6c; /* カラフル色 */
     color: white;
     padding: 8px 6px;
     border-radius: 8px;
@@ -205,16 +205,16 @@ h1 {
 }
 
 .color-btn.black { background: #000000; }
-.color-btn.red { background: #ff0000; }
-.color-btn.blue { background: #0000ff; }
-.color-btn.green { background: #008000; }
-.color-btn.orange { background: #ffa500; }
+.color-btn.red { background: #ff4545; }
+.color-btn.blue { background: #3f3fff; }
+.color-btn.green { background: #4bff4b; }
+.color-btn.orange { background: #ffbc40; }
 
 .bg-btn.black { background: #333333; color: white; }
-.bg-btn.lightred { background: #ffebee; }
-.bg-btn.lightblue { background: #e3f2fd; }
-.bg-btn.lightgreen { background: #e8f5e9; }
-.bg-btn.lightorange { background: #fff3e0; }
+.bg-btn.lightred { background: #ffd8de; }
+.bg-btn.lightblue { background: #d4edff; }
+.bg-btn.lightgreen { background: #e1ffe3; }
+.bg-btn.lightorange { background: #ffeed2; }
 
 .custom-picker {
     width: 30px;
@@ -246,7 +246,7 @@ h1 {
 
 .btn:hover { opacity: 0.9; }
 .btn-danger { background-color: #d32f2f; }
-.btn-success { background-color: #2e7d32; }
+.btn-success { background-color: #5cb461; }
 
 .share-zone {
     display: flex;
@@ -255,7 +255,7 @@ h1 {
     justify-content: center;
     margin-bottom: 20px;
     padding: 10px;
-    background: #e8eaf6;
+    background: #efffc2;
     border-radius: 12px;
 }
 
@@ -270,7 +270,7 @@ h1 {
 
 .share-x { background-color: #000000; }
 .share-line { background-color: #06c755; }
-.share-insta { background-color: #e1306c; }
+.share-insta { background-color: #9bc5ff; }
 .share-email { background-color: #78909c; }
 
 /* SEOコンテンツ・下部リンク */
