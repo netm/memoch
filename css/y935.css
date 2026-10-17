@@ -10,7 +10,7 @@ body {
     background-color: #f3f4f6;
     color: #333;
     line-height: 1.6;
-    padding: 10px;
+    padding: 4px;
 }
 
 /* レスポンシブコンテナ：PCではスマート、スマホ横向き（Landscape）で画面両端いっぱいに広がる */
@@ -22,7 +22,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    padding: 20px;
+    padding: 10px;
 }
 
 @media (max-width: 915px) and (orientation: landscape) {
@@ -32,7 +32,7 @@ body {
     .container {
         max-width: 100%;
         border-radius: 0;
-        padding: 10px;
+        padding: 4px;
     }
 }
 
@@ -58,18 +58,18 @@ h1 {
     font-size: 1.4rem;
     font-weight: bold;
     color: #ec4899; /* ピンク */
-    margin-bottom: 15px;
+    margin-bottom: 4px;
 }
 
 /* タイトル入力欄 */
 .title-input-container {
-    margin-bottom: 20px;
+    margin-bottom: 4px;
 }
 
 .main-title-input {
     width: 100%;
     font-size: 1.3rem;
-    padding: 10px;
+    padding: 4px;
     border: 2px dashed #f59e0b; /* オレンジ */
     border-radius: 6px;
     text-align: center;
@@ -81,7 +81,7 @@ h1 {
 .profit-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 6px;
     overflow: hidden;
@@ -129,7 +129,7 @@ h1 {
 /* 金額入力欄 */
 .amount-input {
     width: 100%;
-    padding: 6px;
+    padding: 2px;
     border: 1px solid #d1d5db;
     border-radius: 4px;
     text-align: right;
@@ -151,7 +151,7 @@ h1 {
 .total-val {
     font-size: 1.1rem;
     text-align: right;
-    padding: 8px;
+    padding: 2px;
 }
 
 /* カラーコントロールパネル */
