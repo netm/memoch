@@ -246,7 +246,7 @@ h1 {
 
 .btn:hover { opacity: 0.9; }
 .btn-danger { background-color: #ff4747; }
-.btn-success { background-color: #004cff; }
+.btn-success { background-color: #1b60ff; }
 
 .share-zone {
     display: flex;
