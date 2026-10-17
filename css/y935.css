@@ -3,341 +3,263 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
 }
 
 body {
-    background-color: #f3f4f6;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.6;
     color: #333;
-    line-height: 1.4;
+    background-color: #f4f5f7;
     padding: 10px;
 }
 
-/* レスポンシブコンテナ：PCではスマート、スマホ横向きで画面両端いっぱいに広がる */
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    padding: 20px;
-}
-
-@media (max-width: 915px) and (orientation: landscape) {
-    body {
-        padding: 0;
-    }
-    .container {
-        max-width: 100%;
-        border-radius: 0;
-        padding: 10px;
-    }
-}
-
-/* アプリメインエリア（背景色変更の対象） */
-#app-container {
-    background-color: #fefcbf; /* 初期値：薄い黄色 */
-    padding: 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-/* カラフルなヘッダー・タイトル装飾 */
+/* カラフルなヘッダー要素 */
 h1 {
-    font-size: 1.8rem;
+    color: #e91e63;
     text-align: center;
-    color: #3b82f6; /* 青 */
-    margin-bottom: 5px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+h2 {
+    color: #2196f3;
+    margin: 20px 0 10px 0;
+    border-bottom: 2px solid #2196f3;
+    padding-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+h3 {
+    color: #4caf50;
+    margin: 15px 0 8px 0;
+    font-size: 1.1rem;
+}
+
+/* メインアプリケーションコンテナ */
+#profit-loss-app {
+    background-color: #fffee0; /* 初期値: 薄い黄色 */
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
 }
 
 .year-display {
     text-align: center;
     font-size: 1.4rem;
     font-weight: bold;
-    color: #ec4899; /* ピンク */
+    color: #ff5722;
+    margin-bottom: 10px;
+}
+
+.title-input-container {
+    text-align: center;
     margin-bottom: 15px;
 }
 
-/* タイトル入力欄 */
-.title-input-container {
-    color: #c98d00fb; /* オレンジ */
-    margin-bottom: 5px;
-}
-
-.main-title-input {
+#table-title {
     width: 100%;
-    font-size: 1.3rem;
-    padding: 8px;
-    border: 2px dashed #f59e0b; /* オレンジ */
-    border-radius: 6px;
-    text-align: center;
+    font-size: 1.2rem;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* テーブルスタイル（行間幅を極限まで狭く調整） */
-.profit-table {
+/* テーブルデザイン（スペースを狭く） */
+.loss-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
-.profit-table th, .profit-table td {
-    border: 1px solid #e5e7eb;
-    padding: 4px 8px; /* 上下パディングを狭くしてスペース幅を削減 */
+.loss-table th, .loss-table td {
+    border: 1px solid #ccc;
+    padding: 4px 6px; /* 上下スペースをせまく */
     text-align: center;
-    vertical-align: middle;
 }
 
-.profit-table th {
-    background-color: #f3f4f6;
-    font-weight: bold;
-    padding: 6px 8px;
+.loss-table th {
+    background-color: #f2f2f2;
 }
 
-/* 名称変更可能インプット */
-.label-input {
+.header-input {
     width: 100%;
+    font-weight: bold;
+    text-align: center;
     border: none;
     background: transparent;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.95rem;
-    color: #4b5563;
-    padding: 2px;
-    border-bottom: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    padding: 4px;
 }
 
-.label-input:focus {
-    outline: none;
-    border-bottom: 2px solid #3b82f6;
-}
-
-/* 月表示列 */
 .month-label {
     font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    white-space: nowrap;
+    font-size: 0.9rem;
+    width: 15%;
 }
 
-/* 金額入力欄 */
 .amount-input {
     width: 100%;
-    padding: 4px 6px; /* 入力欄の中の余白を狭く */
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    text-align: right;
+    padding: 5px;
     font-size: 1rem;
-    font-weight: bold;
+    text-align: right;
+    border: 1px solid #eee;
+    border-radius: 3px;
 }
 
-/* 合計表示行（指定のデザイン通りの横並び構造へ） */
 .total-row {
-    background-color: #f9fafb;
+    background-color: #e1f5fe;
     font-weight: bold;
 }
 
-.total-title {
-    color: #10b981; /* 緑 */
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.total-val {
+.total-row td {
+    padding: 8px 6px;
     font-size: 1.1rem;
-    text-align: right;
-    padding: 6px 8px;
 }
 
-/* カラーコントロールパネル */
-.control-section {
-    margin-top: 20px;
+/* カラーカスタムパネル */
+.color-panel {
     background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
-h2 {
-    font-size: 1.2rem;
-    color: #10b981; /* 緑 */
+    padding: 10px;
+    border-radius: 6px;
     margin-bottom: 15px;
-    border-left: 4px solid #10b981;
-    padding-left: 8px;
+    border: 1px solid #ddd;
 }
 
-.color-control-group {
-    margin-bottom: 15px;
-}
-
-.color-label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #4b5563;
-}
-
-.palette-buttons {
+.color-group {
+    margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
     align-items: center;
 }
 
-.color-btn {
-    border: 1px solid #ccc;
-    width: 32px;
-    height: 32px;
+.color-group label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.btn-preset {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #666;
     border-radius: 4px;
+    margin-right: 5px;
     cursor: pointer;
-    transition: transform 0.1s ease;
 }
 
-.color-btn:hover {
-    transform: scale(1.1);
-}
-
-.btn-black { background-color: #333333; }
-.btn-red { background-color: #ef4444; }
-.btn-blue { background-color: #3b82f6; }
-.btn-green { background-color: #10b981; }
-.btn-orange { background-color: #f59e0b; }
-
-.btn-bg-black { background-color: #1f2937; }
-.btn-bg-red { background-color: #fee2e2; }
-.btn-bg-blue { background-color: #dbeafe; }
-.btn-bg-green { background-color: #d1fae5; }
-.btn-bg-orange { background-color: #ffedd5; }
+/* クイックカラー指定 */
+.color-black { background-color: #000000; }
+.color-red { background-color: #ff0000; }
+.color-blue { background-color: #0000ff; }
+.color-green { background-color: #228b22; }
+.color-orange { background-color: #ffa500; }
+.color-lightred { background-color: #ffebee; }
+.color-lightblue { background-color: #e3f2fd; }
+.color-lightgreen { background-color: #e8f5e9; }
+.color-lightorange { background-color: #fff3e0; }
 
 .custom-picker {
-    width: 40px;
-    height: 32px;
+    width: 30px;
+    height: 26px;
     padding: 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #666;
     cursor: pointer;
-    background: none;
 }
 
-/* 機能ボタン */
+/* 操作ボタン */
 .action-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.btn-action {
+.btn {
     flex: 1;
     padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
     font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
     color: #fff;
-    transition: opacity 0.2s;
-}
-
-.btn-action:hover {
-    opacity: 0.9;
-}
-
-#btn-clear { background-color: #6b7280; } /* グレー */
-#btn-png { background-color: #8b5cf6; } /* パープル */
-
-/* SNSシェアセクション */
-.share-section {
-    margin-top: 25px;
     text-align: center;
 }
 
-.share-buttons {
+#clear-btn { background-color: #ff5722; }
+#png-btn { background-color: #009688; }
+
+/* カラフルなシェアボタン */
+.share-zone {
     display: flex;
-    justify-content: center;
-    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    gap: 8px;
+    margin-bottom: 25px;
 }
 
 .share-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    color: white;
+    flex: 1;
+    min-width: 120px;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
     font-weight: bold;
-    font-size: 0.85rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 0.9rem;
 }
 
-#share-x { background-color: #0f1419; }
-#share-line { background-color: #06c755; }
-#share-insta { background-color: #e1306c; }
-#share-email { background-color: #ea4335; }
+.btn-x { background-color: #1da1f2; }
+.btn-line { background-color: #06c755; }
+.btn-instagram { background-color: #e1306c; }
+.btn-email { background-color: #757575; }
 
-/* SEO説明文セクション */
+/* SEO文章・フッターリンク */
 .seo-content {
-    margin-top: 35px;
-    padding-top: 20px;
-    border-top: 2px solid #e5e7eb;
-}
-
-h3 {
-    font-size: 1.1rem;
-    color: #f59e0b; /* オレンジ */
-    margin: 15px 0 5px 0;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    font-size: 0.9rem;
 }
 
 .seo-content p {
-    font-size: 0.9rem;
-    color: #4b5563;
-    margin-bottom: 12px;
-    text-align: justify;
-}
-
-/* ナビゲーション・フッターリンク */
-.footer-links {
-    margin-top: 30px;
-    background-color: #f9fafb;
-    padding: 15px;
-    border-radius: 6px;
-}
-
-.link-group {
     margin-bottom: 12px;
 }
 
-.link-group a {
-    color: #0000ff; /* 青色 */
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin-right: 15px;
+.links-zone {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    text-align: center;
 }
 
-.link-group a:hover {
+.links-zone a {
+    color: #0000ff; /* リンクの色は青色 */
     text-decoration: underline;
+    margin: 0 10px;
+    font-size: 0.95rem;
 }
 
-.footer-nav {
-    display: flex;
-    gap: 15px;
-    border-top: 1px solid #e5e7eb;
-    padding-top: 10px;
-}
-
-.footer-nav a {
-    color: #0000ff; /* 青色 */
-    text-decoration: none;
-    font-size: 0.9rem;
+/* レスポンシブ対応：スマホ横向き(Landscape)で画面両端いっぱいに表示 */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    body {
+        padding: 0;
+    }
+    #profit-loss-app {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+    }
 }

@@ -15,9 +15,7 @@ eleventyExcludeFromCollections: false
     <meta name="description" content="NISAの株式投資やデイトレードの収支、日々の家計簿管理が簡単にできる2軸の月別年間損益表です。スマホ・PC対応、ブラウザ保存機能付きで自動合計計算が可能。">
     <link rel="canonical" href="https://memoc.pages.dev/y935/">
      <link rel="stylesheet" href="/css/y935.css">
-    <!-- PNG保存を動作させるためのhtml2canvasライブラリ(CDN) -->
-    <script src="https://cloudflare.com" defer></script>
-    <script src="/js/y935.js" defer></script>
+    <script src="/js/y935.js"></script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5D799GZERM"></script>
@@ -28,150 +26,134 @@ eleventyExcludeFromCollections: false
   gtag('config', 'G-5D799GZERM');
 </script>
 <body>
-<div class="container">
-    <!-- アプリ本体（画像キャプチャ対象エリア） -->
-    <div id="capture-area">
-        <div id="app-container">
-            <header>
-                <h1>2つの月別の年間損益表</h1>
-                <div class="year-display"><span id="current-year"></span>年</div>
-            </header>
-
-            <!-- 自由入力タイトル欄 -->
-            <div class="title-input-container">
-                <input type="text" id="table-title" class="main-title-input" placeholder="NISA株とデイトレ（家計簿）">
-            </div>
-
-            <!-- メメイン損益テーブル -->
-            <table class="profit-table">
-                <thead>
-                    <tr>
-                        <th style="width: 16%;">月</th>
-                        <th style="width: 42%;">
-                            <input type="text" class="label-input label-1" value="NISA株">
-                        </th>
-                        <th style="width: 42%;">
-                            <input type="text" class="label-input label-2" value="デイトレ（家計簿）">
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- スマホでのマイナス記号の不具合を解消するため type="text" に変更し inputmode="decimal" で最適化 -->
-                    <script>
-                        for(let i=0; i<12; i++) {
-                            document.write(`
-                                <tr>
-                                    <td class="month-label">${i+1}月</td>
-                                    <td><input type="text" inputmode="decimal" id="val-1-${i}" class="amount-input" placeholder="0"></td>
-                                    <td><input type="text" inputmode="decimal" id="val-2-${i}" class="amount-input" placeholder="0"></td>
-                                </tr>
-                            `);
-                        }
-                    </script>
-                    <!-- 合計表示行 -->
-                    <tr class="total-row">
-                        <td class="total-title">合計</td>
-                        <td class="total-val" id="total-1">0</td>
-                        <td class="total-val" id="total-2">0</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- 裏保持用要素 -->
-            <span id="label-1-title" style="display:none;"></span>
-            <span id="label-2-title" style="display:none;"></span>
-        </div>
-    </div>
-
-    <!-- カラー変更・カスタマイズコントロール -->
-    <section class="control-section">
-        <h2>表示カラーのカスタマイズ</h2>
+    <!-- メインアプリケーション領域 -->
+    <main id="profit-loss-app">
         
-        <!-- 月の文字色 -->
-        <div class="color-control-group">
-            <span class="color-label">月の色変更</span>
-            <div class="palette-buttons">
-                <button class="color-btn btn-black" onclick="changeColor('month', '#333333')"></button>
-                <button class="color-btn btn-red" onclick="changeColor('month', '#ef4444')"></button>
-                <button class="color-btn btn-blue" onclick="changeColor('month', '#3b82f6')"></button>
-                <button class="color-btn btn-green" onclick="changeColor('month', '#10b981')"></button>
-                <button class="color-btn btn-orange" onclick="changeColor('month', '#f59e0b')"></button>
-                <input type="color" id="picker-month" class="custom-picker" value="#333333">
+        <header>
+            <div class="year-display"><span id="current-year">2026</span>年</div>
+            <div class="title-input-container">
+                <input type="text" id="table-title" value="NISA株とデイトレ（家計簿）" placeholder="タイトルを自由に入力">
             </div>
-        </div>
+        </header>
 
-        <!-- プラス数字の色 -->
-        <div class="color-control-group">
-            <span class="color-label">「+の数字」の色変更</span>
-            <div class="palette-buttons">
-                <button class="color-btn btn-black" onclick="changeColor('positive', '#333333')"></button>
-                <button class="color-btn btn-red" onclick="changeColor('positive', '#ef4444')"></button>
-                <button class="color-btn btn-blue" onclick="changeColor('positive', '#3b82f6')"></button>
-                <button class="color-btn btn-green" onclick="changeColor('positive', '#10b981')"></button>
-                <button class="color-btn btn-orange" onclick="changeColor('positive', '#f59e0b')"></button>
-                <input type="color" id="picker-pos" class="custom-picker" value="#10b981">
+        <!-- 損益入力テーブル -->
+        <table class="loss-table">
+            <thead>
+                <tr>
+                    <th>月</th>
+                    <th><input type="text" id="col1-header" class="header-input" value="NISA株"></th>
+                    <th><input type="text" id="col2-header" class="header-input" value="デイトレ（家計簿）"></th>
+                </tr>
+            </thead>
+            <tbody id="monthly-inputs">
+                <!-- JavaScriptで1月〜12月の行が自動挿入されます -->
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td>合計</td>
+                    <td id="total-1">0</td>
+                    <td id="total-2">0</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- カラー変更カスタムパネル -->
+        <section class="color-panel">
+            <h3>🎨 デザインカラー設定</h3>
+            
+            <div class="color-group">
+                <label>タイトルの色</label>
+                <button class="btn-preset color-black" data-color="#000000"></button>
+                <button class="btn-preset color-red" data-color="#ff0000"></button>
+                <button class="btn-preset color-blue" data-color="#0000ff"></button>
+                <button class="btn-preset color-green" data-color="#228b22"></button>
+                <button class="btn-preset color-orange" data-color="#ffa500"></button>
+                <input type="color" id="title-color-picker" class="custom-picker" value="#000000">
             </div>
-        </div>
 
-        <!-- マイナス数字の色 -->
-        <div class="color-control-group">
-            <span class="color-label">「-の数字」の色変更</span>
-            <div class="palette-buttons">
-                <button class="color-btn btn-black" onclick="changeColor('negative', '#333333')"></button>
-                <button class="color-btn btn-red" onclick="changeColor('negative', '#ef4444')"></button>
-                <button class="color-btn btn-blue" onclick="changeColor('negative', '#3b82f6')"></button>
-                <button class="color-btn btn-green" onclick="changeColor('negative', '#10b981')"></button>
-                <button class="color-btn btn-orange" onclick="changeColor('negative', '#f59e0b')"></button>
-                <input type="color" id="picker-neg" class="custom-picker" value="#ef4444">
+            <div class="color-group">
+                <label>月の文字色</label>
+                <button class="btn-preset color-black" data-color="#000000"></button>
+                <button class="btn-preset color-red" data-color="#ff0000"></button>
+                <button class="btn-preset color-blue" data-color="#0000ff"></button>
+                <button class="btn-preset color-green" data-color="#228b22"></button>
+                <button class="btn-preset color-orange" data-color="#ffa500"></button>
+                <input type="color" id="month-color-picker" class="custom-picker" value="#000000">
             </div>
-        </div>
 
-        <!-- 背景カラー -->
-        <div class="color-control-group">
-            <span class="color-label">背景カラー変更</span>
-            <div class="palette-buttons">
-                <button class="color-btn btn-bg-black" onclick="changeColor('bg', '#1f2937')"></button>
-                <button class="color-btn btn-bg-red" onclick="changeColor('bg', '#fee2e2')"></button>
-                <button class="color-btn btn-bg-blue" onclick="changeColor('bg', '#dbeafe')"></button>
-                <button class="color-btn btn-bg-green" onclick="changeColor('bg', '#d1fae5')"></button>
-                <button class="color-btn btn-bg-orange" onclick="changeColor('bg', '#ffedd5')"></button>
-                <input type="color" id="picker-bg" class="custom-picker" value="#fefcbf">
+            <div class="color-group">
+                <label>金額入力欄（＋の数字）の色</label>
+                <button class="btn-preset color-black" data-color="#000000"></button>
+                <button class="btn-preset color-red" data-color="#ff0000"></button>
+                <button class="btn-preset color-blue" data-color="#0000ff"></button>
+                <button class="btn-preset color-green" data-color="#228b22"></button>
+                <button class="btn-preset color-orange" data-color="#ffa500"></button>
+                <input type="color" id="plus-color-picker" class="custom-picker" value="#228b22">
             </div>
-        </div>
-    </section>
 
-    <!-- 操作・保存ボタン -->
-    <div class="action-buttons">
-        <button id="btn-clear" class="btn-action">すべて消去</button>
-        <button id="btn-png" class="btn-action">PNG画像で保存</button>
-    </div>
+            <div class="color-group">
+                <label>金額入力欄（－の数字）の色</label>
+                <button class="btn-preset color-black" data-color="#000000"></button>
+                <button class="btn-preset color-red" data-color="#ff0000"></button>
+                <button class="btn-preset color-blue" data-color="#0000ff"></button>
+                <button class="btn-preset color-green" data-color="#228b22"></button>
+                <button class="btn-preset color-orange" data-color="#ffa500"></button>
+                <input type="color" id="minus-color-picker" class="custom-picker" value="#ff0000">
+            </div>
 
-    <!-- SNSシェア機能 -->
-    <section class="share-section">
-        <h3>結果をみんなにシェアする</h3>
-        <div class="share-buttons">
-            <button id="share-x" class="share-btn">X（旧Twitter）</button>
-            <button id="share-line" class="share-btn">LINE</button>
-            <button id="share-insta" class="share-btn">Instagram</button>
-            <button id="share-email" class="share-btn">Eメール</button>
+            <div class="color-group">
+                <label>背景カラー</label>
+                <button class="btn-preset color-black" data-color="#000000"></button>
+                <button class="btn-preset color-lightred" data-color="#ffebee"></button>
+                <button class="btn-preset color-lightblue" data-color="#e3f2fd"></button>
+                <button class="btn-preset color-lightgreen" data-color="#e8f5e9"></button>
+                <button class="btn-preset color-lightorange" data-color="#fff3e0"></button>
+                <input type="color" id="bg-color-picker" class="custom-picker" value="#fffee0">
+            </div>
+        </section>
+
+        <!-- 操作用ボタンエリア -->
+        <div class="action-buttons">
+            <button id="clear-btn" class="btn">すべて消去</button>
+            <button id="png-btn" class="btn">PNG画像で保存</button>
         </div>
-    </section>
+
+        <!-- 各種SNSシェアボタン -->
+        <div class="share-zone">
+            <a id="share-x" class="share-btn btn-x" target="_blank" rel="noopener">X(旧Twitter)</a>
+            <a id="share-line" class="share-btn btn-line" target="_blank" rel="noopener">LINEシェア</a>
+            <a id="share-instagram" class="share-btn btn-instagram" target="_blank" rel="noopener">Instagram</a>
+            <a id="share-email" class="share-btn btn-email">Eメールシェア</a>
+        </div>
+    </main>
+
     <article class="seo-content">
+        <h1>2つの月別の年間損益表 NISA株とデイトレや家計簿におすすめ</h1>
+        <p>新NISA（少額投資非課税制度）の普及に伴い、資産運用を始める方が急増しています。しかし、「長期保有のNISA口座の評価損益」と「日々のデイトレード・短期スイングトレードの確定損益」を別々に管理できず、現在の本当の財務状況が見えにくくなっていませんか？また、毎月の生活費を管理する「家計簿」の収支と、投資によるリターンを完全に分けて把握することも、正しい資産形成には不可欠です。</p>
+        <h2>なぜ2つの損益欄を並べて管理することが重要なのか？</h2>
+        <p>本ツールは、1枚のシートに2つの独立した金額入力欄を設けています。これにより、以下のような応用的な2軸管理がこれ1つで実現します。</p>        
+        <h3>1. NISA口座（つみたて・成長投資枠）× デイトレード</h3>
+        <p>ほったらかし運用の新NISA口座の月間増減額と、毎日・毎週売買を行うアクティブなデイトレードの利益・損失を左右に並べることで、長期と短期の投資バランスが崩れていないかをひと目でチェックできます。</p>
+        <h3>2. 投資全体の損益 × 毎月の家計簿（生活費収支）</h3>
+        <p>「今月は株で勝てたけれど、生活費を使いすぎていないか？」「家計の貯蓄ペースに対して、投資の複利効果はどのくらい出ているか？」という、リアルな資産の増減をダイレクトにリンクさせることができます。</p>
+        <h3>3. 夫婦別の資産管理や、副業収益との合算</h3>
+        <p>「夫の投資枠」と「妻の投資枠」を並べたり、「本業の貯蓄」と「副業の純利益」を並べることで、複数の収入源をスマートに一元管理できます。項目名は「NISA株」や「デイトレ（家計簿）」の部分をタップするだけで、自由に書き換えることが可能です。</p>
+        <h2>スマホ・PC対応！ブラウザ保存でいつでも手軽に更新</h2>
+        <p>高機能な表計算ソフトを起動したり、面倒なアカウントログインを行う必要はありません。本ツールは、スマートフォンやパソコンのブラウザにデータを自動で安全に保存（ローカルストレージ機能）するため、ページを閉じても次回開いたときに前回の続きからすぐに入力を再開できます。</p>
+        <p>さらに、スマートフォンを横向き（ランドスケープモード）にした際には、画面の両端いっぱいにテーブルが広がるレスポンシブデザインを採用。親指一本でサクサクと数字を入力し、合計金額の自動計算結果を受け取ることができます。</p>
+        <h2>豊富なカラーカスタム機能であなただけの見やすいデザインに</h2>
+        <p>黒、赤、青、緑、オレンジのクイック変更ボタンだけでなく、自由な色彩を選べるカラーパレットを完備。タイトルの色や各月の文字色はもちろん、プラスの利益が出た時の色、マイナスの損失が出た時の色、そして背景のカラー（初期設定は目に優しい薄い黄色）まで完全にパーソナライズ可能です。モチベーションが高まる自分だけの損益計算書を作成しましょう。</p>
+
         <h2>おすすめの年間損益計算・家計簿ツールを徹底解説</h2>
         <p>当サイトが提供する「2つの月別の年間損益表」は、近年の投資ブームでマストとなった<strong>NISA（少額投資非課税制度）の株式投資、新NISA口座での運用実績</strong>や、スキャルピング・スイングトレードといった<strong>デイトレードの収支管理</strong>、そして毎日の暮らしを支える<strong>家計簿の連動管理</strong>を同時に実現できるおすすめの無料Webアプリです。個人の資産運用が日常化する中で、「投資用の資金の流れ」と「普段の生活費（家計簿）」を切り離して、なおかつ1つの画面で一元管理したいというニーズが非常に高まっています。このツールを使えば、面倒なExcel（エクセル）の立ち上げやスプレッドシートの複雑な関数設定は一切不要。スマートフォン（スマホ）やパソコン（PC）のブラウザさえあれば、いつでもどこでもワンタップで金額を入力するだけで、瞬時に1年間の合計利益や損失（プロフィット＆ロス）を自動計算することができます。</p>
-
         <h3>なぜ新NISA株管理とデイトレ、家計簿の「2軸」が必要なのか？</h3>
         <p>一般的な家計簿アプリや投資管理ソフトでは、銀行口座の残高や日々の食費・光熱費の記録には優れていても、株式投資の損益をきれいに並べて比較することが難しいという課題がありました。特に新NISAにおけるインデックス投資信託の積立や高配当株の長期保有と、短期的な利益を狙うデイトレードやFX、仮想通貨の運用では、資金の性質が全く異なります。本ツールでは、2つの並列した入力欄を用意しているため、例えば左側を「NISA株収支」、右側を「デイトレ収支」と設定して投資全体のパフォーマンスを比較したり、あるいは左側を「総投資額の増減」、右側を「通常の家計簿（貯金額）」として生活防衛資金の推移を視覚的に把握したりできます。左を「給料や配当収入」にして、右を「出費」など、個人のライフスタイルや投資戦略に合わせて自由自在に名称を変更してご活用いただけます。</p>
-
         <h3>スマホ横向きにも完全対応！見やすさと操作性を重視したレスポンシブデザイン</h3>
         <p>本アプリは、移動中や外出先の隙間時間にもストレスなく収支を入力できるよう、スマートフォンでの操作性を極限まで追求しています。特にこだわり抜いたのが<strong>「スマホを横向きにした時の全画面表示」</strong>です。スマートフォンを横画面（ランドスケープモード）に回転させると、表の両端が画面の左右ぴったりにフィットするようCSSで完全最適化されています。これにより、小さな画面でも1月から12月までの数字が途切れることなく、横幅を広く使って非常に見やすく快適に入力することができます。もちろん、おうちのパソコンの大画面でじっくりデータ入力や年間分析を行う際にも、レイアウトが崩れることなく美しく表示されるハイブリッド仕様です。</p>
-
         <h3>安心のブラウザ保存機能（localStorage）とデータプライバシー</h3>
         <p>せっかく入力した年間の利益や損失のデータも、ページを閉じたりブラウザを更新したりするたびに消えてしまっては意味がありません。当ツールには高機能な<strong>「ブラウザ保存機能（ローカルストレージ自動保存）」</strong>が標準搭載されています。あなたがタイトルを変更したり、月々のリアルな損益数値を入力したりするたびに、裏側で自動的にデータが安全にブラウザ内へ保存されます。これにより、翌日や翌月に再びサイトを訪れた際にも、前回の続きからそのままスムーズに記録を再開できます。また、データはすべてお客様がお使いのデバイス（端末）内にのみ保存され、外部のサーバーに送信されることは一切ないため、誰にも見られたくないリアルな資産状況やお金のデータを完全にプライベートな状態で管理できるという安心・安全面での大きなメリットもあります。</p>
-
         <h3>モチベーションを高める豊富なカラーカスタマイズ機能</h3>
         <p>毎月の収支管理を楽しく、そして長く継続させるためには、視覚的な使いやすさが欠かせません。本ツールには、ユーザーの好みに合わせて画面の見た目を一瞬で変えられるカラー変更パレットが備わっています。「1月〜12月」の月の文字色をシックな黒や目立つ赤・青に変更できるだけでなく、一番のポイントは<strong>「+の数字（利益）」と「-の数字（損失）」の色を個別に指定できる点</strong>です。例えば、利益が出た月は鮮やかなグリーンやブルーでテンションを上げ、損失を出してしまった月は警告の意味を込めて真っ赤に表示させる、といったプロの投資ツールさながらのビジュアル配置が可能です。さらに、背景カラーも標準の目に優しい薄い黄色から、落ち着いた薄緑、クールな薄青、そして完全自由なカラーパレットから好きな色を抽出して設定できます。あなただけのオリジナルデザインの損益計算シートを作成してください。</p>
-
         <h3>ワンクリックで完結するデータ消去とPNG画像ダウンロード・SNSシェア</h3>
         <p>年が明けて新しいデータに切り替えたい時や、入力を完全にやり直したい時のために、ワンタップで表をクリアできる「すべて消去ボタン」を配置しています。また、1年間の素晴らしい運用成果や、家計簿の節約目標を達成した記録を画像として手元に残しておきたいという方のために、表全体を美しいデザインのまま保存できる<strong>「PNG画像で保存ボタン」</strong>も実装。さらに、投資仲間と成果を報告し合ったり、モチベーションを共有したりできるよう、X（旧Twitter）、LINE、Instagram、Eメールへの共有シェアボタンもカラフルなボタンデザインで網羅しています。ぜひ本ツールを日々の暮らしの資産形成、NISA運用、デイトレードの収支反省にお役立てください！</p>
     </article>

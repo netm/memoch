@@ -1,342 +1,195 @@
-/* 基本リセットと共通設定 */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // 現在の年を自動設定
+    const currentYear = new Date().getFullYear();
+    document.getElementById('current-year').textContent = currentYear;
 
-body {
-    background-color: #f3f4f6;
-    color: #333;
-    line-height: 1.4;
-    padding: 10px;
-}
+    // DOM要素の取得
+    const appContainer = document.getElementById('profit-loss-app');
+    const tableTitle = document.getElementById('table-title');
+    const col1Header = document.getElementById('col1-header');
+    const col2Header = document.getElementById('col2-header');
+    const total1Display = document.getElementById('total-1');
+    const total2Display = document.getElementById('total-2');
 
-/* レスポンシブコンテナ：PCではスマート、スマホ横向きで画面両端いっぱいに広がる */
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    padding: 20px;
-}
+    // カラーピッカー・ボタン要素
+    const titleColorPicker = document.getElementById('title-color-picker');
+    const monthColorPicker = document.getElementById('month-color-picker');
+    const plusColorPicker = document.getElementById('plus-color-picker');
+    const minusColorPicker = document.getElementById('minus-color-picker');
+    const bgColorPicker = document.getElementById('bg-color-picker');
 
-@media (max-width: 915px) and (orientation: landscape) {
-    body {
-        padding: 0;
+    // 1月〜12月の入力欄を生成
+    const tbody = document.getElementById('monthly-inputs');
+    for (let m = 1; m <= 12; m++) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td class="month-label">${m}月</td>
+            <td><input type="number" class="amount-input col-1" data-month="${m}" placeholder="0"></td>
+            <td><input type="number" class="amount-input col-2" data-month="${m}" placeholder="0"></td>
+        `;
+        tbody.appendChild(tr);
     }
-    .container {
-        max-width: 100%;
-        border-radius: 0;
-        padding: 10px;
+
+    const allInputs = document.querySelectorAll('.amount-input');
+    const monthLabels = document.querySelectorAll('.month-label');
+
+    // 合計金額の計算と色の適用
+    function calculateTotals() {
+        let total1 = 0;
+        let total2 = 0;
+
+        allInputs.forEach(input => {
+            const val = parseFloat(input.value) || 0;
+            
+            // 入力値の正負に応じた色変更
+            const plusColor = plusColorPicker.value;
+            const minusColor = minusColorPicker.value;
+            if (val > 0) {
+                input.style.color = plusColor;
+            } else if (val < 0) {
+                input.style.color = minusColor;
+            } else {
+                input.style.color = 'inherit';
+            }
+
+            if (input.classList.contains('col-1')) {
+                total1 += val;
+            } else {
+                total2 += val;
+            }
+        });
+
+        total1Display.textContent = total1.toLocaleString();
+        total2Display.textContent = total2.toLocaleString();
+
+        // 合計部分の文字色もプラス・マイナスに対応
+        applyTotalColor(total1Display, total1);
+        applyTotalColor(total2Display, total2);
     }
-}
 
-/* アプリメインエリア（背景色変更の対象） */
-#app-container {
-    background-color: #fefcbf; /* 初期値：薄い黄色 */
-    padding: 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
+    function applyTotalColor(element, value) {
+        if (value > 0) element.style.color = plusColorPicker.value;
+        else if (value < 0) element.style.color = minusColorPicker.value;
+        else element.style.color = 'inherit';
+    }
 
-/* カラフルなヘッダー・タイトル装飾 */
-h1 {
-    font-size: 1.8rem;
-    text-align: center;
-    color: #3b82f6; /* 青 */
-    margin-bottom: 5px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
+    // ローカルストレージへの保存
+    function saveData() {
+        const data = {
+            title: tableTitle.value,
+            col1Header: col1Header.value,
+            col2Header: col2Header.value,
+            inputs: Array.from(allInputs).map(i => i.value),
+            colors: {
+                title: titleColorPicker.value,
+                month: monthColorPicker.value,
+                plus: plusColorPicker.value,
+                minus: minusColorPicker.value,
+                bg: bgColorPicker.value
+            }
+        };
+        localStorage.setItem('profit_loss_data_2026', JSON.stringify(data));
+    }
 
-.year-display {
-    text-align: center;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #ec4899; /* ピンク */
-    margin-bottom: 15px;
-}
+    // ローカルストレージからの読み込み
+    function loadData() {
+        const saved = localStorage.getItem('profit_loss_data_2026');
+        if (saved) {
+            const data = JSON.parse(saved);
+            tableTitle.value = data.title || '';
+            col1Header.value = data.col1Header || 'NISA株';
+            col2Header.value = data.col2Header || 'デイトレ（家計簿）';
+            
+            if (data.inputs) {
+                allInputs.forEach((input, index) => {
+                    input.value = data.inputs[index] || '';
+                });
+            }
+            if (data.colors) {
+                titleColorPicker.value = data.colors.title || '#000000';
+                monthColorPicker.value = data.colors.month || '#000000';
+                plusColorPicker.value = data.colors.plus || '#000000';
+                minusColorPicker.value = data.colors.minus || '#000000';
+                bgColorPicker.value = data.colors.bg || '#fffee0';
+            }
+            applyColors();
+            calculateTotals();
+        }
+    }
 
-/* タイトル入力欄 */
-.title-input-container {
-    margin-bottom: 15px;
-}
+    // 色の適用処理
+    function applyColors() {
+        tableTitle.style.color = titleColorPicker.value;
+        monthLabels.forEach(label => label.style.color = monthColorPicker.value);
+        appContainer.style.backgroundColor = bgColorPicker.value;
+        calculateTotals();
+    }
 
-.main-title-input {
-    width: 100%;
-    font-size: 1.3rem;
-    padding: 8px;
-    border: 2px dashed #f59e0b; /* オレンジ */
-    border-radius: 6px;
-    text-align: center;
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.8);
-}
+    // クイック色変更ボタンのイベント設定
+    function setupPresetButtons(className, pickerElement) {
+        document.querySelectorAll(`.${className}`).forEach(button => {
+            button.addEventListener('click', () => {
+                pickerElement.value = button.getAttribute('data-color');
+                applyColors();
+                saveData();
+            });
+        });
+    }
 
-/* テーブルスタイル（行間幅を狭く調整） */
-.profit-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
+    setupPresetButtons('btn-title-color', titleColorPicker);
+    setupPresetButtons('btn-month-color', monthColorPicker);
+    setupPresetButtons('btn-plus-color', plusColorPicker);
+    setupPresetButtons('btn-minus-color', minusColorPicker);
+    setupPresetButtons('btn-bg-color', bgColorPicker);
 
-.profit-table th, .profit-table td {
-    border: 1px solid #e5e7eb;
-    padding: 4px 8px;
-    text-align: center;
-    vertical-align: middle;
-}
+    // ピッカー直接変更時のイベント
+    [titleColorPicker, monthColorPicker, plusColorPicker, minusColorPicker, bgColorPicker].forEach(picker => {
+        picker.addEventListener('input', () => {
+            applyColors();
+            saveData();
+        });
+    });
 
-.profit-table th {
-    background-color: #f3f4f6;
-    font-weight: bold;
-    padding: 6px 8px;
-}
+    // 入力時の自動計算と自動保存
+    appContainer.addEventListener('input', (e) => {
+        if (e.target.classList.contains('amount-input') || e.target.tagName === 'INPUT') {
+            calculateTotals();
+            saveData();
+        }
+    });
 
-/* 名称変更可能インプット */
-.label-input {
-    width: 100%;
-    border: none;
-    background: transparent;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.95rem;
-    color: #4b5563;
-    padding: 2px;
-    border-bottom: 1px solid #cbd5e1;
-}
+    // 全て消去ボタン
+    document.getElementById('clear-btn').addEventListener('click', () => {
+        if (confirm('入力されたすべてのデータを消去しますか？')) {
+            allInputs.forEach(i => i.value = '');
+            tableTitle.value = 'NISA株とデイトレ（家計簿）';
+            col1Header.value = 'NISA株';
+            col2Header.value = 'デイトレ（家計簿）';
+            titleColorPicker.value = '#000000';
+            monthColorPicker.value = '#000000';
+            plusColorPicker.value = '#228b22';
+            minusColorPicker.value = '#ff0000';
+            bgColorPicker.value = '#fffee0';
+            applyColors();
+            saveData();
+        }
+    });
 
-.label-input:focus {
-    outline: none;
-    border-bottom: 2px solid #3b82f6;
-}
+    // PNG画像として保存ボタン (簡易版・HTML2Canvas等のライブラリがないためウィンドウ印刷またはCSSキャプチャの代替案内を兼ねる仕組み、ここでは標準機能としてコンテナ要素を画像化する仕組みのダミー、あるいは背景色を含んだ新しいウィンドウを開いて印刷させる処理を推奨しますが、ネイティブで組むため印刷ダイアログを起動します)
+    document.getElementById('png-btn').addEventListener('click', () => {
+        alert('「ページを印刷」からPDFまたは画像として保存するか、スマホのスクリーンショット機能をご利用ください。');
+        window.print();
+    });
 
-/* 月表示列 */
-.month-label {
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-}
+    // シェアボタンの設定
+    const shareUrl = encodeURIComponent(window.location.href);
+    const shareText = encodeURIComponent('2つの月別年間損益表でNISAやデイトレ、家計簿を簡単管理！');
 
-/* 金額入力欄 */
-.amount-input {
-    width: 100%;
-    padding: 4px 6px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    text-align: right;
-    font-size: 1rem;
-    font-weight: bold;
-}
+    document.getElementById('share-x').href = `https://x.com{shareUrl}&text=${shareText}`;
+    document.getElementById('share-line').href = `https://line.me{shareUrl}`;
+    document.getElementById('share-instagram').href = `https://instagram.com`; // インスタは直接URL共有不可のためアプリ誘導
+    document.getElementById('share-email').href = `mailto:?subject=${shareText}&body=${shareUrl}`;
 
-/* 合計表示行 */
-.total-row {
-    background-color: #f9fafb;
-    font-weight: bold;
-}
-
-.total-title {
-    color: #10b981; /* 緑 */
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.total-val {
-    font-size: 1.1rem;
-    text-align: right;
-    padding: 6px 8px;
-}
-
-/* カラーコントロールパネル */
-.control-section {
-    margin-top: 20px;
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
-h2 {
-    font-size: 1.2rem;
-    color: #10b981; /* 緑 */
-    margin-bottom: 15px;
-    border-left: 4px solid #10b981;
-    padding-left: 8px;
-}
-
-.color-control-group {
-    margin-bottom: 15px;
-}
-
-.color-label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #4b5563;
-}
-
-.palette-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-}
-
-.color-btn {
-    border: 1px solid #ccc;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.1s ease;
-}
-
-.color-btn:hover {
-    transform: scale(1.1);
-}
-
-.btn-black { background-color: #333333; }
-.btn-red { background-color: #ef4444; }
-.btn-blue { background-color: #3b82f6; }
-.btn-green { background-color: #10b981; }
-.btn-orange { background-color: #f59e0b; }
-
-.btn-bg-black { background-color: #1f2937; }
-.btn-bg-red { background-color: #fee2e2; }
-.btn-bg-blue { background-color: #dbeafe; }
-.btn-bg-green { background-color: #d1fae5; }
-.btn-bg-orange { background-color: #ffedd5; }
-
-.custom-picker {
-    width: 40px;
-    height: 32px;
-    padding: 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    background: none;
-}
-
-/* 機能ボタン */
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.btn-action {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    color: #fff;
-    transition: opacity 0.2s;
-}
-
-.btn-action:hover {
-    opacity: 0.9;
-}
-
-#btn-clear { background-color: #6b7280; }
-#btn-png { background-color: #8b5cf6; }
-
-/* SNSシェアセクション */
-.share-section {
-    margin-top: 25px;
-    text-align: center;
-}
-
-.share-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.share-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    color: white;
-    font-weight: bold;
-    font-size: 0.85rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-#share-x { background-color: #0f1419; }
-#share-line { background-color: #06c755; }
-#share-insta { background-color: #e1306c; }
-#share-email { background-color: #ea4335; }
-
-/* SEO説明文セクション */
-.seo-content {
-    margin-top: 35px;
-    padding-top: 20px;
-    border-top: 2px solid #e5e7eb;
-}
-
-h3 {
-    font-size: 1.1rem;
-    color: #f59e0b; /* オレンジ */
-    margin: 15px 0 5px 0;
-}
-
-.seo-content p {
-    font-size: 0.9rem;
-    color: #4b5563;
-    margin-bottom: 12px;
-    text-align: justify;
-}
-
-/* ナビゲーション・フッターリンク */
-.footer-links {
-    margin-top: 30px;
-    background-color: #f9fafb;
-    padding: 15px;
-    border-radius: 6px;
-}
-
-.link-group {
-    margin-bottom: 12px;
-}
-
-.link-group a {
-    color: #0000ff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin-right: 15px;
-}
-
-.link-group a:hover {
-    text-decoration: underline;
-}
-
-.footer-nav {
-    display: flex;
-    gap: 15px;
-    border-top: 1px solid #e5e7eb;
-    padding-top: 10px;
-}
-
-.footer-nav a {
-    color: #0000ff;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
+    // 初期データの読み込み
+    loadData();
+});
