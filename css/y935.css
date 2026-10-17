@@ -46,7 +46,7 @@ header {
 
 h1 {
     font-size: 1.5rem;
-    color: #ff4c88; /* カラフル色 */
+    color: #ff8754; /* カラフル色 */
     margin-bottom: 10px;
 }
 
@@ -77,8 +77,8 @@ h1 {
 }
 
 .table-header {
-    background-color: #7eff9c; /* カラフル色 */
-    color: white;
+    background-color: #a4ffb9; /* カラフル色 */
+    color: rgb(36, 36, 36);
     padding: 6px;
     border-radius: 8px;
     font-weight: bold;
@@ -89,7 +89,7 @@ h1 {
     width: 100%;
     background: transparent;
     border: 1px dashed white;
-    color: white;
+    color: rgb(65, 65, 65);
     text-align: center;
     font-weight: bold;
     padding: 4px;
@@ -136,8 +136,8 @@ h1 {
 
 /* 合計金額欄 */
 .table-footer {
-    background-color: #a2e8ff; /* カラフル色 */
-    color: white;
+    background-color: #caf2ff; /* カラフル色 */
+    color: rgb(65, 65, 65);
     padding: 8px 6px;
     border-radius: 8px;
     font-weight: bold;
@@ -246,7 +246,7 @@ h1 {
 
 .btn:hover { opacity: 0.9; }
 .btn-danger { background-color: #ff4747; }
-.btn-success { background-color: #ffe51f; }
+.btn-success { background-color: #c2ab00; }
 
 .share-zone {
     display: flex;
@@ -271,7 +271,7 @@ h1 {
 .share-x { background-color: #000000; }
 .share-line { background-color: #06c755; }
 .share-insta { background-color: #ff75e6; }
-.share-email { background-color: #8ed8fe; }
+.share-email { background-color: #00aaff; }
 
 /* SEOコンテンツ・下部リンク */
 .seo-content {
@@ -279,7 +279,7 @@ h1 {
     padding: 15px;
     border-radius: 12px;
     margin-top: 20px;
-    border-top: 4px solid #4caf50;
+    border-top: 4px solid #70ff75;
 }
 
 .seo-content h2 {
